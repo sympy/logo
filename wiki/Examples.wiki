@@ -4,10 +4,22 @@
 
 We tried to create an example for most of the features of sympy. Currently, this also the only documentation to sympy.
 
+You can find all the following examples in the `examples` directory as regular python scripts. More examples can be found in the tests directory in form of the testing suite.
+
 
 = Basic manipulation =
 
-x
+{{{
+>>> import sym
+>>> a=sym.symbol('a')
+>>> b=sym.symbol('b')
+>>> c=sym.symbol('c')
+>>> e=( a*b*b+2*b*a*b )**c
+>>> print e
+((a*b)*b+((2*b)*a)*b)^c
+>>> print e.eval()
+3^c*a^c*b^(2*c)
+}}}
 
 = Series expansion = 
 
