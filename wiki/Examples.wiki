@@ -1,8 +1,8 @@
-#summary Examples of all features of sympy
+#summary Examples of most features of sympy
 
 = Introduction =
 
-We tried to create an example of most features of sympy. Currently, this also the only documentation to sympy.
+We tried to create an example for most of the features of sympy. Currently, this also the only documentation to sympy.
 
 
 = Basic manipulation =
