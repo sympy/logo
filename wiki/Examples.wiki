@@ -1,0 +1,10 @@
+#summary Examples of all features of sympy
+
+= Introduction =
+
+We tried to create an example of most features of sympy. Currently, this also the only documentation to sympy.
+
+
+= Basic manipulation =
+
+x
