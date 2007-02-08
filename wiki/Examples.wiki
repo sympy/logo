@@ -7,7 +7,7 @@ We tried to create an example for most of the features of sympy. Currently, this
 You can find all the following examples in the `examples` directory as regular python scripts. More examples can be found in the tests directory in form of the testing suite.
 
 
-= Basic manipulation =
+== Basic manipulation ==
 
 {{{
 >>> import sym
@@ -21,7 +21,7 @@ You can find all the following examples in the `examples` directory as regular p
 3^c*a^c*b^(2*c)
 }}}
 
-= Series expansion = 
+== Series expansion ==
 
 {{{
 >>> import sym
@@ -29,4 +29,7 @@ You can find all the following examples in the `examples` directory as regular p
 >>> e=1/sym.cos(x)
 >>> print e.series(x,10)
 1+50521/3628800*x^10+61/720*x^6+277/8064*x^8+1/2*x^2+5/24*x^4
+>>> e=1/sym.sin(x)
+>>> print e.series(x,4)
+x^(-1)+1/6*x+1/216*x^5+1/36*x^3
 }}}
