@@ -8,3 +8,12 @@ We tried to create an example for most of the features of sympy. Currently, this
 = Basic manipulation =
 
 x
+
+= Series expansion = 
+
+{{{
+import sym
+x=sym.symbol('x')
+e=1/sym.cos(x)
+print e.series(x,10)
+}}}
