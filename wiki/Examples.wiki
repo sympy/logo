@@ -106,6 +106,14 @@ x^(-1)+1/6*x+1/216*x^5+1/36*x^3
 y^(-1)
 >>> print e.subs(sym.cos(x),y).subs(y,x**2)
 x^(-2)
+>>> e=1/sym.ln(x)
+>>> e=e.subs(x,sym.real(2.71828))
+>>> print e
+ln(2.71828)^(-1)
+>>> print e.eval()
+ln(2.71828)^(-1)
+>>> print e.evalf()
+1.00000067265
 }}}
 
 == Arbitrary precision integers and rationals ==
