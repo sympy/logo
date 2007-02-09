@@ -49,6 +49,8 @@ also in a way so that the result is what you would write by hand - so for exampl
 sum is sorted according to their hash values, so they don't have to be in the
 alphabetical order (depends on the hash implementation).
 
+The polic is, that the user (you) shouldn't need to call `eval()` directly. The methods, which need evaluated arguments, should evaluate them themselves. The only argument against this behavior is the speed - some expressions would be evaluated several times. This could be possibly handled by some caching mechanism. 
+
 = Comparisons =
 
 Expressions can be compared using a regular python syntax:
