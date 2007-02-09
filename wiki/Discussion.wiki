@@ -62,12 +62,18 @@ but try first without it, if it works.
 
 It seems to work somehow. Let's forget about it now. Let's thing it through when we really need it.
 
-= Ideas for speedup =
 
-== caching ==
+= Caching =
 
 objects could remember a pointer to evaluated self. so that next time they
 just return the pointer. maybe also there could be a huge database (dict) of
 hashes and evaluated objs. (memory intensive probably)
 
 The same with some methods in `limits.py` - they should cache results.
+
+= New features = 
+
+* implement integration according to issac98.pdf
+* integrate the limits into the sym core. Design some core (`*`,`+`,`/`,`-`,
+  differentiation, series expansion, ln, exp) and a higher level (sin, cos,
+  tan, limits, matrices) etc.
