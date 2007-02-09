@@ -59,10 +59,9 @@ This is equivalent to `(a+b).eq(b+a)` and the `basic.eq()` method just calls eva
 
 Whic means that if the expansion operation is not performed upon evaluation (which is
 reasonable), then `(a+b)^2 != (a^2+2ab+b^2)`, on the other hand
-`((a+b)^2).expand == (a^2+2ab+b^2)`. 
+`((a+b)^2).expand() == (a^2+2ab+b^2)`. As we said, what exactly is performed in `eval()` depends on the implementation, for example the expansion would be in `pow.eval()`. In the current implementation of sympy, we do not perform expansion in `pow.eval()`.
 
-a=symbol("x") and another b=symbol("x") is the same thing, i.e a==b is True.
-Note that this is different from Ginac. We chose a==b, because it seems more
+Note that `a=symbol("x")` and another `b=symbol("x")` is the same thing, i.e `a==b` is `True`. Note that this is different from Ginac. We chose `a==b`, because it seems more
 natural. In the future, we should implement a=symbol(), to get a unique symbol,
 to use for internal computations.
 
@@ -120,4 +119,3 @@ So you are writing expressions in a natural way, but there is no magic behind it
 The `eval()` method is implemented in all sympy classes and it returns the same expression represented by the class, but put in a canonical form.
 
 Example: `add(mul(a,b),mul(b,a)).eval()` returns `mul(mul(rational(2),a), b)`.
-
