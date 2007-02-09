@@ -49,18 +49,24 @@ also in a way so that the result is what you would write by hand - so for exampl
 sum is sorted according to their hash values, so they don't have to be in the
 alphabetical order (depends on the hash implementation).
 
-the issue of comparisons - you basically compare evaluated forms.
-so, if expansion operation is not performed upon evaluation (which is
-reasonable), then (a+b)^2 != (a^2+2ab+b^2). on the other hand
-((a+b)^2).expand == (a^2+2ab+b^2). so, we should define, what we mean by eval,
-and take this into account during comparisons.
+== Comparisons ==
+
+Expressions can be compared using a regular python syntax:
+{{{
+a+b==b+a
+}}}
+This is equivalent to `(a+b).eq(b+a)` and the `basic.eq()` method just calls eval() to both `self` and the argument and then compare the hashes.
+
+Whic means that if the expansion operation is not performed upon evaluation (which is
+reasonable), then `(a+b)^2 != (a^2+2ab+b^2)`, on the other hand
+`((a+b)^2).expand == (a^2+2ab+b^2)`. 
 
 a=symbol("x") and another b=symbol("x") is the same thing, i.e a==b is True.
 Note that this is different from Ginac. We chose a==b, because it seems more
 natural. In the future, we should implement a=symbol(), to get a unique symbol,
 to use for internal computations.
 
-= Functionality = 
+== Functionality == 
 
 There is no given requiremens on classes in the library. For example, if they
 don't implement the `diff()` method and you construct an expression using such a
@@ -92,7 +98,7 @@ changed. So you can pass any instance to other objects, because you don't have
 to worry that it will change, or that this would break anything.
 
 
-= Basics =
+=== Basics ===
 
 Every symbolic object and operation is implemented using a class and all such classes in sympy are derived from `basic`. 
 
@@ -109,7 +115,7 @@ print e
 }}}
 So you are writing expressions in a natural way, but there is no magic behind it, it is completely equivalent to constructing the expressions using the sympy classes directly. From the sympy point of view, you don't have to know about the syntactic sugar at all, all the expressions are just in the form `pow( add(symbol("a"),symbol("b")), rational(2))`.
 
-= eval() =
+=== eval() ===
 
 The `eval()` method is implemented in all sympy classes and it returns the same expression represented by the class, but put in a canonical form.
 
