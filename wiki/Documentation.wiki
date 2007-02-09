@@ -1,0 +1,13 @@
+#summary Documentation to sympy.
+
+= Introduction =
+
+This document describes the main ideas of how sympy works. For examples of most features of sympy, look into Examples.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
