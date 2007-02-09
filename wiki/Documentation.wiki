@@ -61,8 +61,10 @@ Whic means that if the expansion operation is not performed upon evaluation (whi
 reasonable), then `(a+b)^2 != (a^2+2ab+b^2)`, on the other hand
 `((a+b)^2).expand() == (a^2+2ab+b^2)`. As we said, what exactly is performed in `eval()` depends on the implementation, for example the expansion would be in `pow.eval()`. In the current implementation of sympy, we do not perform expansion in `pow.eval()`.
 
-We made this decision in sympy: `a=symbol("x")` and another `b=symbol("x")` is the same thing, i.e `a==b` is `True`. Note that this is different from Ginac. We chose `a==b`, because it seems more
-natural. Sometimes, you need to have a unique symbol, for example as a temporary one in some calculation, which is going to be substituted for something else at the end anyway. This is achieved using `symbol("x",dummy=True)` or simply as `symbol("x",True)`. So, to sum it up: `symbol("x")==symbol("x")`, but `symbol("x",True)!=symbol("x",True)`.
+We made this decision in sympy: `a=symbol("x")` and another `b=symbol("x")` (with the same string "x") is the same thing, i.e `a==b` is `True`. Note that this is different from Ginac. We chose `a==b`, because it is more
+natural - `exp(x)==exp(x)` for the same intance of `x` but different instances of `exp`, so we chose to have `exp(x)==exp(x)` even for different instances of `x`. 
+
+Sometimes, you need to have a unique symbol, for example as a temporary one in some calculation, which is going to be substituted for something else at the end anyway. This is achieved using `symbol("x",dummy=True)` or simply as `symbol("x",True)`. So, to sum it up: `symbol("x")==symbol("x")`, but `symbol("x",True)!=symbol("x",True)`.
 
 == Functionality == 
 
