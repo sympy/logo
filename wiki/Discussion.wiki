@@ -44,3 +44,13 @@ maple, what they are doing. the same in series expansion. needs to be
 specified. I am rather skeptical, I don't want eval() to do any magic.
 my conclusion now i that `ln(a*b)` and exp(a+b) should be rewritten on
 expand(), but not on eval().
+
+= Series =
+
+need to create a special class for series (probably a child of mul, which
+would only accept polynoms of one variable), which would implement
+multiplication, adding etc. copy from ginac. can neglect higher terms, so
+it should be pretty fast. otherwise it's going to be slow.
+but try first without it, if it works.
+
+It seems to work somehow. Let's forget about it now. Let's thing it through when we really need it.
