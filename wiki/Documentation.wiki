@@ -32,7 +32,7 @@ e=(a+b)**2
 print e
 }}}
 but from the sympy
-point of view, we just need the classes `add`, `mul`, `pow`.
+point of view, we just need the classes `add`, `mul`, `pow`, `rational`.
 
 = Canonical form: eval() =
 
@@ -61,9 +61,8 @@ Whic means that if the expansion operation is not performed upon evaluation (whi
 reasonable), then `(a+b)^2 != (a^2+2ab+b^2)`, on the other hand
 `((a+b)^2).expand() == (a^2+2ab+b^2)`. As we said, what exactly is performed in `eval()` depends on the implementation, for example the expansion would be in `pow.eval()`. In the current implementation of sympy, we do not perform expansion in `pow.eval()`.
 
-Note that `a=symbol("x")` and another `b=symbol("x")` is the same thing, i.e `a==b` is `True`. Note that this is different from Ginac. We chose `a==b`, because it seems more
-natural. In the future, we should implement a=symbol(), to get a unique symbol,
-to use for internal computations.
+We made this decision in sympy: `a=symbol("x")` and another `b=symbol("x")` is the same thing, i.e `a==b` is `True`. Note that this is different from Ginac. We chose `a==b`, because it seems more
+natural. Sometimes, you need to have a unique symbol, for example as a temporary one in some calculation, which is going to be substituted for something else at the end anyway. This is achieved using `symbol("x",dummy=True)` or simply as `symbol("x",True)`. So, to sum it up: `symbol("x")==symbol("x")`, but `symbol("x",True)!=symbol("x",True)`.
 
 == Functionality == 
 
@@ -84,7 +83,6 @@ will not be able to call `(1+cos(x)).series()`.
 the symbolic object is characterized (defined) by the things which it can do.
 so implementing more methods like `diff`, `subs` etc., you are creating a "shape" of the symbolic object. Useful things to implement in new classes are: `diff`, `subs`, `series`.
 
-
 All objects in the sympy are immutable - in the sense, that any
 operation (like `eval()` for example) just returns a new instance (it can
 return the same instance only if it didn't change). This is a common mistake
@@ -95,27 +93,3 @@ track of for example the evaluated variable. Or hash. Or it can precalculate
 anything regarding the expression it contains. But the expression cannot be
 changed. So you can pass any instance to other objects, because you don't have
 to worry that it will change, or that this would break anything.
-
-
-=== Basics ===
-
-Every symbolic object and operation is implemented using a class and all such classes in sympy are derived from `basic`. 
-
-Example: the expression (a+b)^2 is represented by `pow( add(symbol("a"),symbol("b")), rational(2))`. All `pow`, `add`, `symbol` classes are derived from `basic`. 
-
-There is no conceptual difference between operations (like `*`,`+`,`/`) and other symbolic objects (like symbols and numbers). All the functionality is implemented in the particular class, so for example `add` knows how to collect the same terms (i.e. to reduce `add(mul(a,b),mul(b,a))` to `mul(mul(rational(2),a), b)`).
-
-*Syntactic sugar*: The operations `+`, `-`, `*`, `/` and `^` are also defined in the class `basic` using the python methods `__add__`, `__sub__`, `__mul__`, `__div__` and `__pow__`. So in our example, we can actually write `(symbol("a")+symbol("b"))**rational(2)`, which will return `pow( add(symbol("a"),symbol("b")), rational(2))`. Some classes also accept python `int`s as input, so you can write `(symbol("a")+symbol("b"))**2` instead of `(symbol("a")+symbol("b"))**rational(2)`. The common practice is to write code like this:
-{{{
-a=symbol("a")
-b=symbol("b")
-e=(a+b)**2
-print e
-}}}
-So you are writing expressions in a natural way, but there is no magic behind it, it is completely equivalent to constructing the expressions using the sympy classes directly. From the sympy point of view, you don't have to know about the syntactic sugar at all, all the expressions are just in the form `pow( add(symbol("a"),symbol("b")), rational(2))`.
-
-=== eval() ===
-
-The `eval()` method is implemented in all sympy classes and it returns the same expression represented by the class, but put in a canonical form.
-
-Example: `add(mul(a,b),mul(b,a)).eval()` returns `mul(mul(rational(2),a), b)`.
