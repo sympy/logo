@@ -5,28 +5,7 @@
 This document describes the main ideas of how sympy works. For examples of most features of sympy, look into [http://code.google.com/p/sympy/wiki/Examples Examples].
 
 
-= Basics =
 
-Every symbolic object and operation is implemented using a class and all such classes in sympy are derived from `basic`. 
-
-Example: the expression (a+b)^2 is represented by `pow( add(symbol("a"),symbol("b")), rational(2))`. All `pow`, `add`, `symbol` classes are derived from `basic`. 
-
-There is no conceptual difference between operations (like `*`,`+`,`/`) and other symbolic objects (like symbols and numbers). All the functionality is implemented in the particular class, so for example `add` knows how to collect the same terms (i.e. to reduce `add(mul(a,b),mul(b,a))` to `mul(mul(rational(2),a), b)`).
-
-*Syntactic sugar*: The operations `+`, `-`, `*`, `/` and `^` are also defined in the class `basic` using the python methods `__add__`, `__sub__`, `__mul__`, `__div__` and `__pow__`. So in our example, we can actually write `(symbol("a")+symbol("b"))**rational(2)`, which will return `pow( add(symbol("a"),symbol("b")), rational(2))`. Some classes also accept python `int`s as input, so you can write `(symbol("a")+symbol("b"))**2` instead of `(symbol("a")+symbol("b"))**rational(2)`. The common practice is to write code like this:
-{{{
-a=symbol("a")
-b=symbol("b")
-e=(a+b)**2
-print e
-}}}
-So you are writing expressions in a natural way, but there is no magic behind it, it is completely equivalent to constructing the expressions using the sympy classes directly. From the sympy point of view, you don't have to know about the syntactic sugar at all, all the expressions are just in the form `pow( add(symbol("a"),symbol("b")), rational(2))`.
-
-= eval() =
-
-The `eval()` method is implemented in all sympy classes and it returns the same expression represented by the class, but put in a canonical form.
-
-Example: `add(mul(a,b),mul(b,a)).eval()` returns `mul(mul(rational(2),a), b)`.
 
 = Basics =
 
@@ -38,25 +17,35 @@ instance of the `add` class.  You can call all methods, which the particular
 class supports.
 
 For easier use, there is a syntactic sugar for expressions like:
-`sym.cos(x)+1` ... `basic.__add__(1)`  ... `add(sym.cos(x),rational(1))`
 
-`1/sym.cos(x)` ... `basic.__rdiv__(1)` ... `mul(rational(1),pow(sym.cos(x),rational(-1)))`
-So, you can write normal expressions using python arithmetics, but from the sympy
-point of view, we just need the classes add,mul,pow.
+`cos(x)+1` is equal to `cos(x).__add__(1)` is equal to `add(cos(x),rational(1))` 
+
+or
+
+`2/cos(x)` is equal to `cos(x).__rdiv__(2)` is equal to `mul(rational(2),pow(cos(x),rational(-1)))`.
+
+So, you can write normal expressions using python arithmetics like this:
+{{{
+a=symbol("a")
+b=symbol("b")
+e=(a+b)**2
+print e
+}}}
+but from the sympy
+point of view, we just need the classes `add`, `mul`, `pow`.
 
 = eval() =
 
 During the construction of the expression, the result is unevaluated, so this
 phase is really fast. For computation, the expression needs to be in a
-canonical form, this is achieved using the method eval(), which  only performs
+canonical form, this is achieved using the method `eval()`, which  only performs
 unexpensive operations necessary to put the expression in the canonical form.
 So the canonical form doesn't mean the simplest possible expresion. The exact
-list of operations performed by eval() depends on the implementation.
+list of operations performed by `eval()` depends on the implementation.
 Obviously, the definition of the canonical form is arbitrary, the only
 requirement is that all equivalent expressions must have the same canonical
-form.  We tried to achieve a canonical, standard form as fast as possible and
-also in a way so that the result is what you would write by hand - so "ba + -4
-+ b + ab + 4 + (a+b)^2" becomes "2ab + b + (a+b)^2".  The order of terms in the
+form.  We tried the conversion to a canonical (standard) form to be as fast as possible and
+also in a way so that the result is what you would write by hand - so for example `b*a + -4 + b + a*b + 4 + (a+b)^2` becomes `2*a*b + b + (a+b)^2`.  The order of terms in the
 sum is sorted according to their hash values, so they don't have to be in the
 alphabetical order (depends on the hash implementation).
 
@@ -99,3 +88,29 @@ natural. In the future, we should implement a=symbol(), to get a unique symbol,
 to use for internal computations.
 
 useful things to implement in new classes: diff, subs, series
+
+
+= Basics =
+
+Every symbolic object and operation is implemented using a class and all such classes in sympy are derived from `basic`. 
+
+Example: the expression (a+b)^2 is represented by `pow( add(symbol("a"),symbol("b")), rational(2))`. All `pow`, `add`, `symbol` classes are derived from `basic`. 
+
+There is no conceptual difference between operations (like `*`,`+`,`/`) and other symbolic objects (like symbols and numbers). All the functionality is implemented in the particular class, so for example `add` knows how to collect the same terms (i.e. to reduce `add(mul(a,b),mul(b,a))` to `mul(mul(rational(2),a), b)`).
+
+*Syntactic sugar*: The operations `+`, `-`, `*`, `/` and `^` are also defined in the class `basic` using the python methods `__add__`, `__sub__`, `__mul__`, `__div__` and `__pow__`. So in our example, we can actually write `(symbol("a")+symbol("b"))**rational(2)`, which will return `pow( add(symbol("a"),symbol("b")), rational(2))`. Some classes also accept python `int`s as input, so you can write `(symbol("a")+symbol("b"))**2` instead of `(symbol("a")+symbol("b"))**rational(2)`. The common practice is to write code like this:
+{{{
+a=symbol("a")
+b=symbol("b")
+e=(a+b)**2
+print e
+}}}
+So you are writing expressions in a natural way, but there is no magic behind it, it is completely equivalent to constructing the expressions using the sympy classes directly. From the sympy point of view, you don't have to know about the syntactic sugar at all, all the expressions are just in the form `pow( add(symbol("a"),symbol("b")), rational(2))`.
+
+= eval() =
+
+The `eval()` method is implemented in all sympy classes and it returns the same expression represented by the class, but put in a canonical form.
+
+Example: `add(mul(a,b),mul(b,a)).eval()` returns `mul(mul(rational(2),a), b)`.
+
+
