@@ -49,7 +49,7 @@ also in a way so that the result is what you would write by hand - so for exampl
 sum is sorted according to their hash values, so they don't have to be in the
 alphabetical order (depends on the hash implementation).
 
-== Comparisons ==
+= Comparisons =
 
 Expressions can be compared using a regular python syntax:
 {{{
@@ -66,9 +66,9 @@ natural - `exp(x)==exp(x)` for the same intance of `x` but different instances o
 
 Sometimes, you need to have a unique symbol, for example as a temporary one in some calculation, which is going to be substituted for something else at the end anyway. This is achieved using `symbol("x",dummy=True)` or simply as `symbol("x",True)`. So, to sum it up: `symbol("x")==symbol("x")`, but `symbol("x",True)!=symbol("x",True)`.
 
-== Functionality == 
+= Functionality =
 
-There is no given requiremens on classes in the library. For example, if they
+There are no given requiremens on classes in the library. For example, if they
 don't implement the `diff()` method and you construct an expression using such a
 class, then trying to use the `basic.series()` method will raise an exception of not
 founding the `diff()` method in your class. This "duck typing" has an advantage
@@ -95,3 +95,4 @@ track of for example the evaluated variable. Or hash. Or it can precalculate
 anything regarding the expression it contains. But the expression cannot be
 changed. So you can pass any instance to other objects, because you don't have
 to worry that it will change, or that this would break anything.
+
