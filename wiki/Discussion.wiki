@@ -71,8 +71,7 @@ hashes and evaluated objs. (memory intensive probably)
 
 The same with some methods in `limits.py` - they should cache results.
 
-= New features = 
+= New features =
 
   * implement integration according to issac98.pdf
   * integrate the limits into the sym core. Design some core (`*`,`+`,`/`,`-`,  differentiation, series expansion, ln, exp) and a higher level (sin, cos, tan, limits, matrices) etc.
-
