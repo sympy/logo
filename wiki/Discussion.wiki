@@ -61,3 +61,13 @@ it should be pretty fast. otherwise it's going to be slow.
 but try first without it, if it works.
 
 It seems to work somehow. Let's forget about it now. Let's thing it through when we really need it.
+
+= Ideas for speedup =
+
+== caching ==
+
+objects could remember a pointer to evaluated self. so that next time they
+just return the pointer. maybe also there could be a huge database (dict) of
+hashes and evaluated objs. (memory intensive probably)
+
+The same with some methods in `limits.py` - they should cache results.
