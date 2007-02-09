@@ -34,7 +34,7 @@ print e
 but from the sympy
 point of view, we just need the classes `add`, `mul`, `pow`.
 
-= eval() =
+= Canonical form: eval() =
 
 During the construction of the expression, the result is unevaluated, so this
 phase is really fast. For computation, the expression needs to be in a
@@ -49,45 +49,47 @@ also in a way so that the result is what you would write by hand - so for exampl
 sum is sorted according to their hash values, so they don't have to be in the
 alphabetical order (depends on the hash implementation).
 
-There is no given requiremens on classes in the library. For example, if they
-don't implement the diff() method and you construct an expression using such a
-class, then trying to use basic.series() methods will raise an exception of not
-founding the diff() method of your class. This "duck typing" has an advantage
-that you just implement the functionality which you need. You can define the
-function cos as this
-class cos(basic):
-    def __init__(self,arg):
-        basic.__init__(self)
-        self.arg=arg
-and use it like "1+cos(x)", but if you don't implement the diff() method, you
-will not be able to call (1+cos(x)).series().
-the symbolic object is characterized (defined) by the things which it can do.
-so implementing more methods like diff, subs etc., you are creating a "shape" ofthe symbolic object.
-
 the issue of comparisons - you basically compare evaluated forms.
 so, if expansion operation is not performed upon evaluation (which is
 reasonable), then (a+b)^2 != (a^2+2ab+b^2). on the other hand
 ((a+b)^2).expand == (a^2+2ab+b^2). so, we should define, what we mean by eval,
 and take this into account during comparisons.
 
-
-All objects in the sympy should be immutable - in the sense, that any
-operation (like eval() for example) should just return a new instance (it can
-return the same instance only if we didn't change). This is a common mistake
-to change the current instance, like "self.arg=self.arg.eval()" (wrong!). Use
-"arg=self.arg.eval();return exp(arg)" instead. The object in immutable in the
-sense of the symbolic expression they represent. They can modify itself to keep
-track of for example the evaluated variable. Or hash. Or they can precalculate
-anything regarding the expression they contain. But the expression cannot be
-changed. So you can pass any instance to other objects, because you don't have
-to worry that it will change, or that this would break anything.
-
 a=symbol("x") and another b=symbol("x") is the same thing, i.e a==b is True.
 Note that this is different from Ginac. We chose a==b, because it seems more
 natural. In the future, we should implement a=symbol(), to get a unique symbol,
 to use for internal computations.
 
-useful things to implement in new classes: diff, subs, series
+= Functionality = 
+
+There is no given requiremens on classes in the library. For example, if they
+don't implement the `diff()` method and you construct an expression using such a
+class, then trying to use the `basic.series()` method will raise an exception of not
+founding the `diff()` method in your class. This "duck typing" has an advantage
+that you just implement the functionality which you need. You can define the
+function `cos` like this
+{{{
+class cos(basic):
+    def __init__(self,arg):
+        basic.__init__(self)
+        self.arg=arg
+}}}
+and use it like `1+cos(x)`, but if you don't implement the `diff()` method, you
+will not be able to call `(1+cos(x)).series()`.
+the symbolic object is characterized (defined) by the things which it can do.
+so implementing more methods like `diff`, `subs` etc., you are creating a "shape" of the symbolic object. Useful things to implement in new classes are: `diff`, `subs`, `series`.
+
+
+All objects in the sympy are immutable - in the sense, that any
+operation (like `eval()` for example) just returns a new instance (it can
+return the same instance only if it didn't change). This is a common mistake
+to change the current instance, like `self.arg=self.arg.eval()` (wrong!). Use
+`arg=self.arg.eval();return exp(arg)` instead. The object in immutable in the
+sense of the symbolic expression it represents. It can modify itself to keep
+track of for example the evaluated variable. Or hash. Or it can precalculate
+anything regarding the expression it contains. But the expression cannot be
+changed. So you can pass any instance to other objects, because you don't have
+to worry that it will change, or that this would break anything.
 
 
 = Basics =
@@ -112,5 +114,4 @@ So you are writing expressions in a natural way, but there is no magic behind it
 The `eval()` method is implemented in all sympy classes and it returns the same expression represented by the class, but put in a canonical form.
 
 Example: `add(mul(a,b),mul(b,a)).eval()` returns `mul(mul(rational(2),a), b)`.
-
 
