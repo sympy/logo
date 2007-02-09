@@ -5,9 +5,19 @@
 This document describes the main ideas of how sympy works. For examples of most features of sympy, look into [http://code.google.com/p/sympy/wiki/Examples Examples].
 
 
-= Details =
+= Basics =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Every symbolic object and operation is implemented using a class and all such classes in sympy are derived from `basic`. 
+
+Example: the expression (a+b)^2 is represented by `pow( add(symbol("a"),symbol("b")), rational(2))`. All `pow`, `add`, `symbol` classes are derived from `basic`. 
+
+There is no conceptual difference between operations (like `*`,`+`,`/`) and other symbolic objects (like symbols and numbers). All the functionality is implemented in the particular class, so for example `add` knows how to collect the same terms (i.e. to reduce `add(mul(a,b),mul(b,a))` to `mul(mul(rational(2),a), b)`).
+
+*Syntactic sugar*: The operations `+`, `-`, `*`, `/` and `^` are also defined in the class `basic` using the python methods `__add__`, `__sub__`, `__mul__`, `__div__`, `__pow__`. So in our example, we can actually write `(symbol("a")+symbol("b"))**rational(2)`, which will return `pow( add(symbol("a"),symbol("b")), rational(2))`. Some classes also accept python `int`s as input, so you can write `(symbol("a")+symbol("b"))**2` instead of `(symbol("a")+symbol("b"))**rational(2)`. The common practice is to write code like this:
+{{{
+a=symbol("a")
+b=symbol("b")
+e=(a+b)**2
+print e
+}}}
+So you are writing expressions like in a natural way, but there is no magic behind it, it is completely equivalent to constructing the expressions using the sympy classes directly.
