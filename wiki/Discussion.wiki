@@ -73,7 +73,6 @@ The same with some methods in `limits.py` - they should cache results.
 
 = New features = 
 
-* implement integration according to issac98.pdf
-* integrate the limits into the sym core. Design some core (`*`,`+`,`/`,`-`,
-  differentiation, series expansion, ln, exp) and a higher level (sin, cos,
-  tan, limits, matrices) etc.
+  * implement integration according to issac98.pdf
+  * integrate the limits into the sym core. Design some core (`*`,`+`,`/`,`-`,  differentiation, series expansion, ln, exp) and a higher level (sin, cos, tan, limits, matrices) etc.
+
