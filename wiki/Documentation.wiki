@@ -2,7 +2,7 @@
 
 = Introduction =
 
-This document describes the main ideas of how sympy works. For examples of most features of sympy, look into Examples.
+This document describes the main ideas of how sympy works. For examples of most features of sympy, look into [http://code.google.com/p/sympy/wiki/Examples Examples].
 
 
 = Details =
