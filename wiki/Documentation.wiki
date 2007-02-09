@@ -28,21 +28,23 @@ The `eval()` method is implemented in all sympy classes and it returns the same 
 
 Example: `add(mul(a,b),mul(b,a)).eval()` returns `mul(mul(rational(2),a), b)`.
 
-== old ==
+= Basics =
 
-All symbolic things are implemented using subclasses of the "basic" class.
-First, you need to create symbols using symbol("x") or numbers using
-rational(5) or real(34.3). Then you construct the expression using any class
-from the CAS system.  For example add(symbol("a"),symbol("b")) gives an
-instance of the add class.  You can call all methods, which the particular
+All symbolic things are implemented using subclasses of the `basic` class.
+First, you need to create symbols using `symbol("x")` or numbers using
+`rational(5)` or `real(34.3)`. Then you construct the expression using any class
+from sympy.  For example `add(symbol("a"),symbol("b"))` gives an
+instance of the `add` class.  You can call all methods, which the particular
 class supports.
 
 For easier use, there is a syntactic sugar for expressions like:
-sym.cos(x)+1 ... basic.__add__(1)  ... add(sym.cos(x),rational(1))
-1/sym.cos(x) ... basic.__rdiv__(1) ...
-           ... mul(rational(1),pow(sym.cos(x),rational(-1)))
-So, you can write normal expressions using python arithmetics, but from the CAS
+`sym.cos(x)+1` ... `basic.__add__(1)`  ... `add(sym.cos(x),rational(1))`
+
+`1/sym.cos(x)` ... `basic.__rdiv__(1)` ... `mul(rational(1),pow(sym.cos(x),rational(-1)))`
+So, you can write normal expressions using python arithmetics, but from the sympy
 point of view, we just need the classes add,mul,pow.
+
+= eval() =
 
 During the construction of the expression, the result is unevaluated, so this
 phase is really fast. For computation, the expression needs to be in a
