@@ -10,4 +10,9 @@ Here are some ideas where sympy could be effectively used.
 
 Write a geometry module, which you would tell: create a triangle, construct angle bisectors, a circumcircle etc. And then you would ask questions: do these three lines intersect? Is this point in that line? 
 
-The module will use an analytic geometry to represent the geometry entities (lines, triangles, points, ...) and then solve symbolic equations to answer the questions. 
+The module will use an analytic geometry to represent the geometry entities (lines, triangles, points, ...) and then solve symbolic equations to answer the questions.
+
+= Other =
+
+All the things which are written as Mathematica modules, for a real world example, look at 
+http://www.feyncalc.org/ for doing quantum field theory (QFT) calculations.
