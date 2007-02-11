@@ -7,3 +7,7 @@ The motivation to work on sympy is given on the main page (http://code.google.co
 Here are some ideas where sympy could be effectively used.
 
 = Geometry =
+
+Write a geometry module, which you would tell: create a triangle, construct angle bisectors, a circumcircle etc. And then you would ask questions: do these three lines intersect? Is this point in that line? 
+
+The module will use an analytic geometry to represent the geometry entities (lines, triangles, points, ...) and then solve symbolic equations to answer the questions. 
