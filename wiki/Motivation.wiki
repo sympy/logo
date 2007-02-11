@@ -14,5 +14,5 @@ The module will use an analytic geometry to represent the geometry entities (lin
 
 = Other =
 
-All the things which are written as Mathematica modules, for a real world example, look at 
+All the things which are written as Mathematica or Maple modules, for a real world example, look at 
 http://www.feyncalc.org/ for doing quantum field theory (QFT) calculations.
