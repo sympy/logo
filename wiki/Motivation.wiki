@@ -18,5 +18,4 @@ All the things which are written as Mathematica or Maple modules.
 
   * look into http://sympy.googlecode.com/svn/trunk/doc/gruntz.pdf, page 131, there is a code from computing symbolic limits in the Maple language. Then look into http://sympy.googlecode.com/svn/trunk/sym/modules/limits.py, which does the same thing (I used the Maple code as a reference). 
 
-  * for a real world example, look at 
-http://www.feyncalc.org/ for doing quantum field theory (QFT) calculations.
+  * for a real world example, look at http://www.feyncalc.org/ for doing quantum field theory (QFT) calculations.
