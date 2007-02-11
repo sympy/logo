@@ -2,10 +2,8 @@
 
 = Introduction =
 
-Most programs for symbolic manipulation use a special language, The problem with that is best desribed by http://www.ginac.de/FAQ.html#whynotmaple:
+The motivation to work on sympy is given on the main page (http://code.google.com/p/sympy/) in the section Motivation. 
 
-First of all: Maple is a wonderful product. Yes, it is. However, when you start writing large-scale applications you are doomed to run into trouble with it unless you are extremely careful and know exactly what you are doing. One important problem with Maple (and any other CAS) is the lack of a standardized up-to-date language. For instance, the concept of Object Oriented design is not present. Quite generally, facilities for encapsulation are poorly developed. Maple's language is dynamically scoped and from time to time you find that Maple's developers messed up with that by not properly declaring variables to be local resulting in obscure (history-dependend) bugs. How are we supposed to write scientific software with the language even the Maple developers have problems to handle? Mathematica and Macsyma face the same problem, by the way.
+Here are some ideas where sympy could be effectively used.
 
-Rather than pointing out a number of Maple's linguistical and structural weaknesses let us ponder about one simple fact. The purpose of symbolic computation is to "simplify" mathematical expressions so that we can more easily understand their structure or code them more efficiently for numerical evaluation by a computing machine. Most beginners simply use their Computer Algebra tool by typing in some expression and then tell the system to "simplify" it, usually by a command with that name. This is fine, so far. However, when several people embark on a large-scale project that relies considerably on symbolic computation, it is unacceptable. This is because whenever somebody codes simplify(expression) somewhere, this is a demonstration of his inability to understand what's going on. Does he really want to "simplify" a rational function by canceling a greatest common divisor from numerator and denominator? Or maybe he really only wants to expand an expression and later collect for some variable? When the CAS manufacturer ships the next release of his product, such calls to "simplify" are doomed to break. Sure, CAS do an amazing job at simplifying results. But since nobody ever defined what "simple" really means the next release might come up with different (though still hopefully correct) results. This frequently leads to subtle errors that are very hard to debug. When you start a large-scale program involving Computer Algebra, it is a good idea to memorize this: "simplify" is evil.
-
-
+= Geometry =
