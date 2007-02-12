@@ -4,7 +4,7 @@
 
 This page contains arguments for and against some decisions made in sympy.
 
-The driving idea is this: *Don't think about design decisions too much. Write a testcase for every functionality we want from sympy. We don't care how the functionality is achieved as far as it works.*
+The driving idea is this: *Don't think about the design decisions too much. Write a testcase for every functionality we want from sympy. We don't care how the functionality is achieved as far as it works.*
 
 Write tests, so that they are written from the users point of view. i.e.,
 write them, as we would like to use the library. Particularly, tests should
