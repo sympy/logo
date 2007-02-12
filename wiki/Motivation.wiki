@@ -22,4 +22,4 @@ As an example, why Sympy is a better approach than Maple, look into http://sympy
   * anything, where the calculation is standard, but tedious. Examples:
     * computing an area of a surface given parametrically
     * deriving the Einstein equations in general relativity given the metric tensor
-    those are things which can be done in Maple/Mathematica, but is more convenient to have it in Python
+  those are things which can be done in Maple/Mathematica, but is more convenient to have it in Python
