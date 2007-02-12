@@ -15,7 +15,6 @@ The module will use an analytic geometry to represent the geometry entities (lin
 = Other =
 
 All the things which are written as Mathematica or Maple modules.
-
-  * look into http://sympy.googlecode.com/svn/trunk/doc/gruntz.pdf, page 131, there is a code from computing symbolic limits in the Maple language. Then look into http://sympy.googlecode.com/svn/trunk/sym/modules/limits.py, which does the same thing (I used the Maple code as a reference). 
+As an example, why Sympy is a better approach than Maple, look into http://sympy.googlecode.com/svn/trunk/doc/gruntz.pdf, page 131, there is a code for computing symbolic limits in the Maple language. Then look into http://sympy.googlecode.com/svn/trunk/sym/modules/limits.py, which does the same thing (I used the Maple code as a reference). Sympy code is shorter and cleaner.
 
   * for a real world example, look at the sources of http://www.feyncalc.org/ for doing quantum field theory (QFT) calculations, it's a larger library, written in a comletely messy Mathematica language. Another thing is, that even though feyncalc is opensource, it depends on Mathematica, which is a very expensive product. To have some feeling what kind of equations need to be solved in QFT, look here: http://www.feyncalc.org/download/examples/vacuumselfenergy/ or http://www.feyncalc.org/download/examples/csaba/qQ-VV.html
