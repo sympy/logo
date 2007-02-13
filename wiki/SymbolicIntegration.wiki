@@ -1,0 +1,25 @@
+#summary Some intial notes on symbolic integration
+
+= Introduction =
+
+http://springerlink.metapress.com/content/ag2u372705324332/?p=a75a0e3fbcc444cb9d289aa039bfe212&pi=6
+
+from http://www.ccas.ru/sabramov/ps/PCS56.pdf:
+
+The results of his
+work in this area included a new version of the algo-
+rithm of parallel integration (the ﬁrst versions of the
+algorithm of parallel integration were proposed in the
+late 1970s and early 1980s by A. Norman, P. Moore,
+and J. Davenport; here, the term “parallel” does not
+relate to multiprocessor execution, and Manuel sug-
+gested replacing this term with “ﬂat integration”). In
+general, this algorithm is not as powerful as the com-
+plete version of the Risch—Bronstein algorithm for
+symbolic integration; however, it may be implemented
+in just a hundred lines of code. A note on the algorithm
+of parallel integration is published in this issue of Pro-
+gramming and Computer Software. This note is an
+extended abstract of Manuel’s talk at the joint seminar
+on computer algebra of the MSU and JINR (Joint Insti-
+tute for Nuclear Research) in Dubna on May 18, 2005.
