@@ -28,8 +28,12 @@ tute for Nuclear Research) in Dubna on May 18, 2005.
 
 link to the mentioned abstract: http://springerlink.metapress.com/content/ag2u372705324332/?p=a75a0e3fbcc444cb9d289aa039bfe212&pi=6
 
-==Books==
+==References==
 
 Symbolic Integration I: Transcendental Functions, M Bronstein
 
 http://books.google.com/books?id=8SAaSd89sSkC&printsec=frontcover&dq=Parallel+Integration++M.+Bronstein
+
+Article from M. Bronstein
+
+http://sympy.googlecode.com/svn/trunk/doc/issac98.pdf
