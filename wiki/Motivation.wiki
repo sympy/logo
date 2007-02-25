@@ -23,7 +23,7 @@ As an example, why Sympy is a better approach than Maple, look into http://sympy
   * anything, where the calculation is standard, but tedious. Examples:
     * computing an area of a surface that is given parametrically
     * finding solutions to partial differential equations in the form of series
-    * deriving the Einstein equations in general relativity given the metric tensor
+    * deriving the Einstein equations in general relativity from the metric tensor
 
 
 There are many areas, where a symbolic manipulation library can be used. But it must be much easier to use it (and extend it) than Maple or Mathematica is.
