@@ -1,4 +1,5 @@
 #summary Examples of most features of sympy
+#labels Featured
 
 = Introduction =
 
