@@ -1,4 +1,5 @@
 #summary Documentation to sympy.
+#labels Featured
 
 = Introduction =
 
