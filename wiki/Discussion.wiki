@@ -75,7 +75,7 @@ The same with some methods in `limits.py` - they should cache results.
 
   * factorisation
   * integration according to issac98.pdf
-  * symbolic matrices
+  * symbolic matrices (linear algebra)
   * asymptotic expansion
   * equations solving
   * objects with indices (tensors)
