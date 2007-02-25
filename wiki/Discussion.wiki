@@ -86,3 +86,5 @@ The same with some methods in `limits.py` - they should cache results.
 = References =
 
 http://www.inf.ethz.ch/personal/gonnet/CAII/HeuristicAlgorithms/
+
+http://www.ucw.cz/~fox/work/factoring/index.en.html
