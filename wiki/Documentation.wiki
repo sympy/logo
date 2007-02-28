@@ -10,30 +10,30 @@ For some ideas, where Sympy can be used, see http://code.google.com/p/sympy/wiki
 
 = Basics =
 
-All symbolic things are implemented using subclasses of the `basic` class.
-First, you need to create symbols using `symbol("x")` or numbers using
-`rational(5)` or `real(34.3)`. Then you construct the expression using any class
-from sympy.  For example `add(symbol("a"),symbol("b"))` gives an
+All symbolic things are implemented using subclasses of the `Basic` class.
+First, you need to create symbols using `Symbol("x")` or numbers using
+`Rational(5)` or `Real(34.3)`. Then you construct the expression using any class
+from sympy.  For example `Add(Symbol("a"),Symbol("b"))` gives an
 instance of the `add` class.  You can call all methods, which the particular
 class supports.
 
 For easier use, there is a syntactic sugar for expressions like:
 
-`cos(x)+1` is equal to `cos(x).__add__(1)` is equal to `add(cos(x),rational(1))` 
+`cos(x)+1` is equal to `cos(x).__add__(1)` is equal to `Add(cos(x),Rational(1))` 
 
 or
 
-`2/cos(x)` is equal to `cos(x).__rdiv__(2)` is equal to `mul(rational(2),pow(cos(x),rational(-1)))`.
+`2/cos(x)` is equal to `cos(x).__rdiv__(2)` is equal to `Mul(Rational(2),Pow(cos(x),Rational(-1)))`.
 
 So, you can write normal expressions using python arithmetics like this:
 {{{
-a=symbol("a")
-b=symbol("b")
+a=Symbol("a")
+b=Symbol("b")
 e=(a+b)**2
 print e
 }}}
 but from the sympy
-point of view, we just need the classes `add`, `mul`, `pow`, `rational`.
+point of view, we just need the classes `Add`, `Mul`, `Pow`, `Rational`.
 
 = Canonical form: eval() =
 
@@ -64,21 +64,21 @@ Whic means that if the expansion operation is not performed upon evaluation (whi
 reasonable), then `(a+b)^2 != (a^2+2ab+b^2)`, on the other hand
 `((a+b)^2).expand() == (a^2+2ab+b^2)`. As we said, what exactly is performed in `eval()` depends on the implementation, for example the expansion would be in `pow.eval()`. In the current implementation of sympy, we do not perform expansion in `pow.eval()`.
 
-We made this decision in sympy: `a=symbol("x")` and another `b=symbol("x")` (with the same string "x") is the same thing, i.e `a==b` is `True`. Note that this is different from Ginac. We chose `a==b`, because it is more
+We made this decision in sympy: `a=Symbol("x")` and another `b=Symbol("x")` (with the same string "x") is the same thing, i.e `a==b` is `True`. Note that this is different from Ginac. We chose `a==b`, because it is more
 natural - `exp(x)==exp(x)` for the same intance of `x` but different instances of `exp`, so we chose to have `exp(x)==exp(x)` even for different instances of `x`. 
 
-Sometimes, you need to have a unique symbol, for example as a temporary one in some calculation, which is going to be substituted for something else at the end anyway. This is achieved using `symbol("x",dummy=True)` or simply as `symbol("x",True)`. So, to sum it up: `symbol("x")==symbol("x")`, but `symbol("x",True)!=symbol("x",True)`.
+Sometimes, you need to have a unique symbol, for example as a temporary one in some calculation, which is going to be substituted for something else at the end anyway. This is achieved using `Symbol("x",dummy=True)` or simply as `Symbol("x",True)`. So, to sum it up: `Symbol("x")==Symbol("x")`, but `Symbol("x",True)!=Symbol("x",True)`.
 
 = Functionality =
 
 There are no given requiremens on classes in the library. For example, if they
 don't implement the `diff()` method and you construct an expression using such a
-class, then trying to use the `basic.series()` method will raise an exception of not
+class, then trying to use the `Basic.series()` method will raise an exception of not
 founding the `diff()` method in your class. This "duck typing" has an advantage
 that you just implement the functionality which you need. You can define the
 function `cos` like this
 {{{
-class cos(basic):
+class cos(Basic):
     def __init__(self,arg):
         basic.__init__(self)
         self.arg=arg
