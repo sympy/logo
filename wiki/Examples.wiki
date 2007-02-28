@@ -12,9 +12,9 @@ You can find all the following examples in the `examples` directory as regular p
 
 {{{
 >>> import sym
->>> a=sym.symbol('a')
->>> b=sym.symbol('b')
->>> c=sym.symbol('c')
+>>> a=sym.Symbol('a')
+>>> b=sym.Symbol('b')
+>>> c=sym.Symbol('c')
 >>> e=( a*b*b+2*b*a*b )**c
 >>> print e
 ((a*b)*b+((2*b)*a)*b)^c
@@ -26,8 +26,8 @@ You can find all the following examples in the `examples` directory as regular p
 
 {{{
 >>> import sym
->>> a=sym.symbol('a')
->>> b=sym.symbol('b')
+>>> a=sym.Symbol('a')
+>>> b=sym.Symbol('b')
 >>> e=(a+b)**5
 >>> print e
 (a+b)^5
@@ -41,8 +41,8 @@ b^5+10*b^3*a^2+5*b^4*a+10*b^2*a^3+5*b*a^4+a^5
 
 {{{
 >>> import sym
->>> a=sym.symbol('a')
->>> b=sym.symbol('b')
+>>> a=sym.Symbol('a')
+>>> b=sym.Symbol('b')
 >>> e=sym.ln((a+b)**5)
 >>> print e
 ln((a+b)^5)
@@ -64,8 +64,8 @@ ln(exp((a+b)^5))
 
 {{{
 >>> import sym
->>> a=sym.symbol('a')
->>> b=sym.symbol('b')
+>>> a=sym.Symbol('a')
+>>> b=sym.Symbol('b')
 >>> e=(a+2*b)**5
 >>> print e
 (a+2*b)^5
@@ -85,7 +85,7 @@ ln(exp((a+b)^5))
 
 {{{
 >>> import sym
->>> x=sym.symbol('x')
+>>> x=sym.Symbol('x')
 >>> e=1/sym.cos(x)
 >>> print e.series(x,10)
 1+50521/3628800*x^10+61/720*x^6+277/8064*x^8+1/2*x^2+5/24*x^4
@@ -98,8 +98,8 @@ x^(-1)+1/6*x+1/216*x^5+1/36*x^3
 
 {{{
 >>> import sym
->>> x=sym.symbol('x')
->>> y=sym.symbol('y')
+>>> x=sym.Symbol('x')
+>>> y=sym.Symbol('y')
 >>> e=1/sym.cos(x)
 >>> print e
 1*cos(x)^(-1)
@@ -108,7 +108,7 @@ y^(-1)
 >>> print e.subs(sym.cos(x),y).subs(y,x**2)
 x^(-2)
 >>> e=1/sym.ln(x)
->>> e=e.subs(x,sym.real(2.71828))
+>>> e=e.subs(x,sym.Real(2.71828))
 >>> print e
 ln(2.71828)^(-1)
 >>> print e.eval()
@@ -121,7 +121,7 @@ ln(2.71828)^(-1)
 
 {{{
 >>> import sym
->>> e=sym.rational(2)**50/sym.rational(10)**50
+>>> e=sym.Rational(2)**50/sym.Rational(10)**50
 >>> print e
 2^50*(10^50)^(-1)
 >>> print e.eval()
@@ -131,17 +131,17 @@ ln(2.71828)^(-1)
 == Limits ==
 
 {{{
->>> from sym import exp,ln,symbol,rational,sin,limit,limitinf
+>>> from sym import exp,ln,Symbol,Rational,sin,limit,limitinf
 >>>
->>> x=symbol("x")
->>> a=symbol("a")
->>> h=symbol("h")
+>>> x=Symbol("x")
+>>> a=Symbol("a")
+>>> h=Symbol("h")
 >>>
 >>> def sqrt(x):
-...     return x**rational(1,2)
+...     return x**Rational(1,2)
 ...
 >>> def sqrt3(x):
-...     return x**rational(1,3)
+...     return x**Rational(1,3)
 ...
 >>> def limitminf(f,x):
 ...     return limitinf(f.subs(x,-x),x)
@@ -149,19 +149,19 @@ ln(2.71828)^(-1)
 >>> def show(computed, correct):
 ...     print "computed:",computed,"correct:",correct.eval()
 ...
->>> show( limitinf(sqrt(x**2-5*x+6)-x,x) , -rational(5)/2 )
+>>> show( limitinf(sqrt(x**2-5*x+6)-x,x) , -Rational(5)/2 )
 computed: (-5/2) correct: (-5/2)
->>> show( limitinf(x*(sqrt(x**2+1)-x),x) , rational(1)/2 )
+>>> show( limitinf(x*(sqrt(x**2+1)-x),x) , Rational(1)/2 )
 computed: 1/2 correct: 1/2
->>> show( limitinf(x-sqrt3(x**3-1),x) , rational(0) )
+>>> show( limitinf(x-sqrt3(x**3-1),x) , Rational(0) )
 computed: 0 correct: 0
->>> show( limitminf(ln(1+exp(x))/x,x) , rational(0) )
+>>> show( limitminf(ln(1+exp(x))/x,x) , Rational(0) )
 computed: 0 correct: 0
->>> show( limitinf(ln(1+exp(x))/x,x) , rational(1) )
+>>> show( limitinf(ln(1+exp(x))/x,x) , Rational(1) )
 computed: 1 correct: 1
->>> show( limit(sin(3*x)/x,x,0) , rational(3) )
+>>> show( limit(sin(3*x)/x,x,0) , Rational(3) )
 computed: 3 correct: 3
->>> show( limit(sin(5*x)/sin(2*x),x,0) , rational(5)/2 )
+>>> show( limit(sin(5*x)/sin(2*x),x,0) , Rational(5)/2 )
 computed: 5/2 correct: 5/2
 >>> show( limitinf(((x-1)/(x+1))**x,x) , exp(-2))
 computed: exp((-2)) correct: exp((-2))
