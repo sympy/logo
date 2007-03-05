@@ -58,7 +58,7 @@ Expressions can be compared using a regular python syntax:
 {{{
 a+b==b+a
 }}}
-This is equivalent to `(a+b).__eq__(b+a)` and the `basic.__eq__()` method just calls eval() to both `self` and the argument and then compare the hashes.
+This is equivalent to `(a+b).__eq__(b+a)` and the `Basic.__eq__()` method just calls eval() to both `self` and the argument and then compare the hashes.
 
 Whic means that if the expansion operation is not performed upon evaluation (which is
 reasonable), then `(a+b)^2 != (a^2+2ab+b^2)`, on the other hand
