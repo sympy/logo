@@ -1,0 +1,29 @@
+#summary Development notes
+
+= Introduction =
+
+Sympy development discussion takes place on the mailing list
+http://groups.google.com/group/sympy. You can send your patch there, or you can use the issue system.
+
+
+= Rules =
+
+We have only one rule:
+
+ * As long as all the tests pass, the code is considered fine and can be commited to the svn repository.
+
+This means, that _all_ functionality that the user expects from a symbolic system need to have a test case. If you implement a new feature, write a test case for it (and as long as this test case passes, the feature is considered to work). If you think there is a bug, write a test case which fails and then fix the bug. 
+If you think some other test case should be modified, please discuss it on the mailing list first. 
+
+This also means, that any refactoring is very easy to do, just make sure all the tests run.
+
+
+= Lists = 
+
+Besides the mailing list, there is a list where all issue changes are sent:
+
+http://groups.google.com/group/sympy-issues
+
+So if you want to be notified of any change, subscribe to the list. Then there is a list which receives all subversion commits:
+
+http://groups.google.com/group/sympy-commits
