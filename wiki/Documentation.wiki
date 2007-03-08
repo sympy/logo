@@ -126,6 +126,5 @@ to worry that it will change, or that this would break anything.
 
 = Conclusion =
 
-So, those are the main ideas behind sympy, which we try to obey. The rest depends on the current implementation and can possibly change in the future. The point of all of this is that the inter dependecies inside sympy should be kept to a minimum. If one wants to add new functionality to sympy, all that is necessary is to create a subclass of `basic` and implement what you want. Compare this to for example `ginac`.
-
+So, those are the main ideas behind sympy, which we try to obey. The rest depends on the current implementation and can possibly change in the future. The point of all of this is that the inter dependecies inside sympy should be kept to a minimum. If one wants to add new functionality to sympy, all that is necessary is to create a subclass of `Basic` and implement what you want. Compare this to for example `ginac`.
 
