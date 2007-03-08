@@ -116,10 +116,10 @@ so implementing more methods like `diff`, `subs` etc., you are creating a "shape
 All objects in the sympy are immutable - in the sense, that any
 operation (like `eval()` for example) just returns a new instance (it can
 return the same instance only if it didn't change). This is a common mistake
-to change the current instance, like `self.arg=self.arg.eval()` (wrong!). Use
-`arg=self.arg.eval();return exp(arg)` instead. The object in immutable in the
+to change the current instance, like `self.arg=self.arg +1` (wrong!). Use
+`arg=self.arg + 1;return arg` instead. The object in immutable in the
 sense of the symbolic expression it represents. It can modify itself to keep
-track of for example the evaluated variable. Or hash. Or it can precalculate
+track of for example its hash. Or it can precalculate
 anything regarding the expression it contains. But the expression cannot be
 changed. So you can pass any instance to other objects, because you don't have
 to worry that it will change, or that this would break anything.
