@@ -111,7 +111,7 @@ class cos(Basic):
 and use it like `1+cos(x)`, but if you don't implement the `diff()` method, you
 will not be able to call `(1+cos(x)).series()`.
 the symbolic object is characterized (defined) by the things which it can do.
-so implementing more methods like `diff`, `subs` etc., you are creating a "shape" of the symbolic object. Useful things to implement in new classes are: `hash` (to use the class in comparisons), `diff` (to use it in series expansion), `subs` (to use it in expressions, where some parts are being substituted), `series` (if the series cannot be computed using the general `basic.series()` method). When you create a new class, don't worry about this too much - just try to use it in your code, and you will realize immediately, which methods need to be implemented in each situation.
+so implementing more methods like `diff`, `subs` etc., you are creating a "shape" of the symbolic object. Useful things to implement in new classes are: `hash` (to use the class in comparisons), `eval` (to do some easy rewritings automatically, like `a+a -> 2a`), `diff` (to use it in series expansion), `subs` (to use it in expressions, where some parts are being substituted), `series` (if the series cannot be computed using the general `basic.series()` method). When you create a new class, don't worry about this too much - just try to use it in your code, and you will realize immediately, which methods need to be implemented in each situation.
 
 All objects in the sympy are immutable - in the sense, that any
 operation (like `eval()` for example) just returns a new instance (it can
@@ -127,4 +127,3 @@ to worry that it will change, or that this would break anything.
 = Conclusion =
 
 So, those are the main ideas behind sympy, which we try to obey. The rest depends on the current implementation and can possibly change in the future. The point of all of this is that the inter dependecies inside sympy should be kept to a minimum. If one wants to add new functionality to sympy, all that is necessary is to create a subclass of `Basic` and implement what you want. Compare this to for example `ginac`.
-
