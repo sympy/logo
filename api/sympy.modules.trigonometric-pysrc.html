@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>sympy.modules.trigonometric</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sympy-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/sympy">Sympy</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="sympy-module.html">Package&nbsp;sympy</a> ::
+        <a href="sympy.modules-module.html">Package&nbsp;modules</a> ::
+        Module&nbsp;trigonometric
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="sympy.modules.trigonometric-module.html">Module sympy.modules.trigonometric</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package sympy=sympy-module.html"><a title="sympy" class="py-name" href="#" onclick="return doclink('link-0', 'sympy', 'link-0');">sympy</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package sympy.core=sympy.core-module.html"><a title="sympy.core" class="py-name" href="#" onclick="return doclink('link-1', 'core', 'link-1');">core</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Module sympy.core.functions=sympy.core.functions-module.html"><a title="sympy.core.functions" class="py-name" href="#" onclick="return doclink('link-2', 'functions', 'link-2');">functions</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Class sympy.core.functions.Function=sympy.core.functions.Function-class.html"><a title="sympy.core.functions.Function" class="py-name" href="#" onclick="return doclink('link-3', 'Function', 'link-3');">Function</a></tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-4" class="py-name"><a title="sympy" class="py-name" href="#" onclick="return doclink('link-4', 'sympy', 'link-0');">sympy</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="sympy.core" class="py-name" href="#" onclick="return doclink('link-5', 'core', 'link-1');">core</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Module sympy.core.numbers=sympy.core.numbers-module.html"><a title="sympy.core.numbers" class="py-name" href="#" onclick="return doclink('link-6', 'numbers', 'link-6');">numbers</a></tt> <tt class="py-keyword">import</tt> <tt id="link-7" class="py-name" targets="Class sympy.core.numbers.Real=sympy.core.numbers.Real-class.html"><a title="sympy.core.numbers.Real" class="py-name" href="#" onclick="return doclink('link-7', 'Real', 'link-7');">Real</a></tt><tt class="py-op">,</tt> <tt id="link-8" class="py-name" targets="Class sympy.core.numbers.Rational=sympy.core.numbers.Rational-class.html"><a title="sympy.core.numbers.Rational" class="py-name" href="#" onclick="return doclink('link-8', 'Rational', 'link-8');">Rational</a></tt><tt class="py-op">,</tt> <tt id="link-9" class="py-name" targets="Variable sympy.core.numbers.pi=sympy.core.numbers-module.html#pi,Variable sympy.pi=sympy-module.html#pi"><a title="sympy.core.numbers.pi
+sympy.pi" class="py-name" href="#" onclick="return doclink('link-9', 'pi', 'link-9');">pi</a></tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">decimal</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"> </tt>
+<a name="sin"></a><div id="sin-def"><a name="L5"></a><tt class="py-lineno">  5</tt> <a class="py-toggle" href="#" id="sin-toggle" onclick="return toggle('sin');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sympy.modules.trigonometric.sin-class.html">sin</a><tt class="py-op">(</tt><tt class="py-base-class">Function</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="sin-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="sin-expanded"><a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-docstring">    Usage</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-docstring">    =====</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">      sin(x) -&gt; Returns the sine of x (measured in radians)</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-docstring">    Notes</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-docstring">    =====</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-docstring">        sin(x) will evaluate automatically in the case x is a </tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-docstring">        multiple of pi.</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-docstring">    </tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-docstring">    Further examples</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-docstring">    ================</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; sin(x**2).diff(x)</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-docstring">        2*cos(x^2)*x</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; sin(1).diff(x)</tt> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-docstring">        0</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-docstring">        &gt;&gt;&gt; sin(pi)</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-docstring">        0</tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-docstring">        </tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-docstring">    See also</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">    ========</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring">       L{cos}, L{tan}</tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring">       U{Definitions in trigonometry&lt;http://planetmath.org/encyclopedia/DefinitionsInTrigonometry.html&gt;}</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">     </tt>
+<a name="sin.getname"></a><div id="sin.getname-def"><a name="L32"></a><tt class="py-lineno"> 32</tt> <a class="py-toggle" href="#" id="sin.getname-toggle" onclick="return toggle('sin.getname');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.sin-class.html#getname">getname</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="sin.getname-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="sin.getname-expanded"><a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-string">"sin"</tt> </tt>
+</div><a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">         </tt>
+<a name="sin.derivative"></a><div id="sin.derivative-def"><a name="L35"></a><tt class="py-lineno"> 35</tt> <a class="py-toggle" href="#" id="sin.derivative-toggle" onclick="return toggle('sin.derivative');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.sin-class.html#derivative">derivative</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="sin.derivative-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="sin.derivative-expanded"><a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-10" class="py-name" targets="Class sympy.modules.trigonometric.cos=sympy.modules.trigonometric.cos-class.html"><a title="sympy.modules.trigonometric.cos" class="py-name" href="#" onclick="return doclink('link-10', 'cos', 'link-10');">cos</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"> </tt>
+<a name="sin.bounded"></a><div id="sin.bounded-def"><a name="L38"></a><tt class="py-lineno"> 38</tt> <a class="py-toggle" href="#" id="sin.bounded-toggle" onclick="return toggle('sin.bounded');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.sin-class.html#bounded">bounded</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="sin.bounded-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="sin.bounded-expanded"><a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">         </tt>
+<a name="sin.eval"></a><div id="sin.eval-def"><a name="L41"></a><tt class="py-lineno"> 41</tt> <a class="py-toggle" href="#" id="sin.eval-toggle" onclick="return toggle('sin.eval');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.sin-class.html#eval">eval</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="sin.eval-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="sin.eval-expanded"><a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Method sympy.core.basic.Basic.isnumber()=sympy.core.basic.Basic-class.html#isnumber,Function sympy.core.numbers.isnumber()=sympy.core.numbers-module.html#isnumber"><a title="sympy.core.basic.Basic.isnumber
+sympy.core.numbers.isnumber" class="py-name" href="#" onclick="return doclink('link-11', 'isnumber', 'link-11');">isnumber</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">             <tt class="py-keyword">return</tt> <tt class="py-name">self</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-name">a</tt> <tt class="py-op">=</tt> <tt class="py-number">2</tt><tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt> <tt class="py-op">/</tt> <tt id="link-12" class="py-name"><a title="sympy.core.numbers.pi
+sympy.pi" class="py-name" href="#" onclick="return doclink('link-12', 'pi', 'link-9');">pi</a></tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">        <tt class="py-keyword">print</tt> <tt class="py-name">a</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">a</tt> <tt class="py-op">-</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">float</tt><tt class="py-op">(</tt><tt class="py-name">a</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">            <tt class="py-comment"># arg is a multiple of pi</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-name">a_mod4</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">a</tt><tt class="py-op">)</tt> <tt class="py-op">%</tt> <tt class="py-number">4</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">a_mod4</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt> <tt class="py-keyword">or</tt> <tt class="py-name">a_mod4</tt> <tt class="py-op">==</tt> <tt class="py-number">2</tt><tt class="py-op">:</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt id="link-13" class="py-name"><a title="sympy.core.numbers.Rational" class="py-name" href="#" onclick="return doclink('link-13', 'Rational', 'link-8');">Rational</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">a_mod4</tt> <tt class="py-op">%</tt> <tt class="py-number">4</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt>  </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">                           <tt class="py-keyword">return</tt> <tt id="link-14" class="py-name"><a title="sympy.core.numbers.Rational" class="py-name" href="#" onclick="return doclink('link-14', 'Rational', 'link-8');">Rational</a></tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">                <tt class="py-keyword">elif</tt> <tt class="py-name">a_mod4</tt> <tt class="py-op">==</tt> <tt class="py-number">3</tt><tt class="py-op">:</tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">                    <tt class="py-keyword">return</tt> <tt id="link-15" class="py-name"><a title="sympy.core.numbers.Rational" class="py-name" href="#" onclick="return doclink('link-15', 'Rational', 'link-8');">Rational</a></tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt> </tt>
+</div><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">     </tt>
+<a name="sin.evalf"></a><div id="sin.evalf-def"><a name="L58"></a><tt class="py-lineno"> 58</tt> <a class="py-toggle" href="#" id="sin.evalf-toggle" onclick="return toggle('sin.evalf');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.sin-class.html#evalf">evalf</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">precision</tt><tt class="py-op">=</tt><tt class="py-number">28</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="sin.evalf-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="sin.evalf-expanded"><a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name"><a title="sympy.core.basic.Basic.isnumber
+sympy.core.numbers.isnumber" class="py-name" href="#" onclick="return doclink('link-16', 'isnumber', 'link-11');">isnumber</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">ValueError</tt><tt class="py-op">(</tt><tt class="py-string">"Argument can't be a symbolic value"</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-name">decimal</tt><tt class="py-op">.</tt><tt class="py-name">getcontext</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">prec</tt> <tt class="py-op">=</tt> <tt class="py-name">precision</tt> <tt class="py-op">+</tt> <tt class="py-number">2</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line">        <tt class="py-name">x</tt> <tt class="py-op">=</tt> <tt id="link-17" class="py-name"><a title="sympy.core.numbers.Real" class="py-name" href="#" onclick="return doclink('link-17', 'Real', 'link-7');">Real</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt><tt class="py-op">)</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">        <tt class="py-name">i</tt><tt class="py-op">,</tt> <tt class="py-name">lasts</tt><tt class="py-op">,</tt> <tt class="py-name">s</tt><tt class="py-op">,</tt> <tt class="py-name">fact</tt><tt class="py-op">,</tt> <tt class="py-name">num</tt><tt class="py-op">,</tt> <tt id="link-18" class="py-name" targets="Function sympy.core.functions.sign()=sympy.core.functions-module.html#sign,Method sympy.core.numbers.Infinity.sign()=sympy.core.numbers.Infinity-class.html#sign,Method sympy.core.numbers.Rational.sign()=sympy.core.numbers.Rational-class.html#sign,Function sympy.core.numbers.sign()=sympy.core.numbers-module.html#sign,Function sympy.modules.limits.sign()=sympy.modules.limits-module.html#sign"><a title="sympy.core.functions.sign
+sympy.core.numbers.Infinity.sign
+sympy.core.numbers.Rational.sign
+sympy.core.numbers.sign
+sympy.modules.limits.sign" class="py-name" href="#" onclick="return doclink('link-18', 'sign', 'link-18');">sign</a></tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">x</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">x</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">s</tt> <tt class="py-op">!=</tt> <tt class="py-name">lasts</tt><tt class="py-op">:</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">            <tt class="py-name">lasts</tt> <tt class="py-op">=</tt> <tt class="py-name">s</tt>     </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">            <tt class="py-name">i</tt> <tt class="py-op">+=</tt> <tt class="py-number">2</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">            <tt class="py-name">fact</tt> <tt class="py-op">*=</tt> <tt class="py-name">i</tt> <tt class="py-op">*</tt> <tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">            <tt class="py-name">num</tt> <tt class="py-op">*=</tt> <tt class="py-name">x</tt> <tt class="py-op">*</tt> <tt class="py-name">x</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">            <tt id="link-19" class="py-name"><a title="sympy.core.functions.sign
+sympy.core.numbers.Infinity.sign
+sympy.core.numbers.Rational.sign
+sympy.core.numbers.sign
+sympy.modules.limits.sign" class="py-name" href="#" onclick="return doclink('link-19', 'sign', 'link-18');">sign</a></tt> <tt class="py-op">*=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">            <tt class="py-name">s</tt> <tt class="py-op">+=</tt> <tt class="py-name">num</tt> <tt class="py-op">/</tt> <tt class="py-name">fact</tt> <tt class="py-op">*</tt> <tt id="link-20" class="py-name"><a title="sympy.core.functions.sign
+sympy.core.numbers.Infinity.sign
+sympy.core.numbers.Rational.sign
+sympy.core.numbers.sign
+sympy.modules.limits.sign" class="py-name" href="#" onclick="return doclink('link-20', 'sign', 'link-18');">sign</a></tt>  </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">decimal</tt><tt class="py-op">.</tt><tt class="py-name">getcontext</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">prec</tt> <tt class="py-op">=</tt> <tt class="py-name">precision</tt> <tt class="py-op">-</tt> <tt class="py-number">2</tt>         </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">+</tt><tt class="py-name">s</tt> </tt>
+</div></div><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">     </tt>
+<a name="cos"></a><div id="cos-def"><a name="L74"></a><tt class="py-lineno"> 74</tt> <a class="py-toggle" href="#" id="cos-toggle" onclick="return toggle('cos');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sympy.modules.trigonometric.cos-class.html">cos</a><tt class="py-op">(</tt><tt class="py-base-class">Function</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cos-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="cos-expanded"><a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">    <tt class="py-docstring">"""Return the cosine of x (measured in radians)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">     </tt>
+<a name="cos.getname"></a><div id="cos.getname-def"><a name="L78"></a><tt class="py-lineno"> 78</tt> <a class="py-toggle" href="#" id="cos.getname-toggle" onclick="return toggle('cos.getname');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.cos-class.html#getname">getname</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cos.getname-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="cos.getname-expanded"><a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-string">"cos"</tt> </tt>
+</div><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">         </tt>
+<a name="cos.derivative"></a><div id="cos.derivative-def"><a name="L81"></a><tt class="py-lineno"> 81</tt> <a class="py-toggle" href="#" id="cos.derivative-toggle" onclick="return toggle('cos.derivative');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.cos-class.html#derivative">derivative</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cos.derivative-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="cos.derivative-expanded"><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">-</tt><tt id="link-21" class="py-name" targets="Class sympy.modules.trigonometric.sin=sympy.modules.trigonometric.sin-class.html"><a title="sympy.modules.trigonometric.sin" class="py-name" href="#" onclick="return doclink('link-21', 'sin', 'link-21');">sin</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line"> </tt>
+<a name="cos.bounded"></a><div id="cos.bounded-def"><a name="L84"></a><tt class="py-lineno"> 84</tt> <a class="py-toggle" href="#" id="cos.bounded-toggle" onclick="return toggle('cos.bounded');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.cos-class.html#bounded">bounded</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cos.bounded-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="cos.bounded-expanded"><a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">True</tt> </tt>
+</div><a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">     </tt>
+<a name="cos.eval"></a><div id="cos.eval-def"><a name="L87"></a><tt class="py-lineno"> 87</tt> <a class="py-toggle" href="#" id="cos.eval-toggle" onclick="return toggle('cos.eval');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.cos-class.html#eval">eval</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cos.eval-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="cos.eval-expanded"><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="sympy.core.basic.Basic.isnumber
+sympy.core.numbers.isnumber" class="py-name" href="#" onclick="return doclink('link-22', 'isnumber', 'link-11');">isnumber</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">             <tt class="py-keyword">return</tt> <tt class="py-name">self</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">        <tt class="py-comment"># case self.arg is a number </tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">a</tt> <tt class="py-op">=</tt> <tt class="py-number">2</tt><tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt> <tt class="py-op">/</tt> <tt id="link-23" class="py-name"><a title="sympy.core.numbers.pi
+sympy.pi" class="py-name" href="#" onclick="return doclink('link-23', 'pi', 'link-9');">pi</a></tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">a</tt> <tt class="py-op">-</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">float</tt><tt class="py-op">(</tt><tt class="py-name">a</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line">            <tt class="py-comment"># arg is a multiple of pi</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-comment"></tt>            <tt class="py-name">a_mod4</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">a</tt><tt class="py-op">)</tt> <tt class="py-op">%</tt> <tt class="py-number">4</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">a_mod4</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt> <tt class="py-keyword">or</tt> <tt class="py-name">a_mod4</tt> <tt class="py-op">==</tt> <tt class="py-number">3</tt><tt class="py-op">:</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">                <tt class="py-keyword">return</tt> <tt id="link-24" class="py-name"><a title="sympy.core.numbers.Rational" class="py-name" href="#" onclick="return doclink('link-24', 'Rational', 'link-8');">Rational</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">                <tt class="py-keyword">if</tt> <tt class="py-name">a_mod4</tt> <tt class="py-op">%</tt> <tt class="py-number">4</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt>  </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">                    <tt class="py-keyword">return</tt> <tt id="link-25" class="py-name"><a title="sympy.core.numbers.Rational" class="py-name" href="#" onclick="return doclink('link-25', 'Rational', 'link-8');">Rational</a></tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">                <tt class="py-keyword">elif</tt> <tt class="py-name">a_mod4</tt> <tt class="py-op">==</tt> <tt class="py-number">2</tt><tt class="py-op">:</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">                    <tt class="py-keyword">return</tt> <tt id="link-26" class="py-name"><a title="sympy.core.numbers.Rational" class="py-name" href="#" onclick="return doclink('link-26', 'Rational', 'link-8');">Rational</a></tt><tt class="py-op">(</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt> </tt>
+</div><a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">     </tt>
+<a name="cos.evalf"></a><div id="cos.evalf-def"><a name="L104"></a><tt class="py-lineno">104</tt> <a class="py-toggle" href="#" id="cos.evalf-toggle" onclick="return toggle('cos.evalf');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.cos-class.html#evalf">evalf</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">precision</tt><tt class="py-op">=</tt><tt class="py-number">28</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="cos.evalf-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="cos.evalf-expanded"><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt><tt class="py-op">.</tt><tt id="link-27" class="py-name"><a title="sympy.core.basic.Basic.isnumber
+sympy.core.numbers.isnumber" class="py-name" href="#" onclick="return doclink('link-27', 'isnumber', 'link-11');">isnumber</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">ValueError</tt><tt class="py-op">(</tt><tt class="py-string">"Argument can't be a symbolic value"</tt><tt class="py-op">)</tt> </tt>
+<a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line">        <tt class="py-name">decimal</tt><tt class="py-op">.</tt><tt class="py-name">getcontext</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">prec</tt> <tt class="py-op">=</tt> <tt class="py-name">precision</tt> <tt class="py-op">+</tt> <tt class="py-number">2</tt> </tt>
+<a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-name">x</tt> <tt class="py-op">=</tt> <tt id="link-28" class="py-name"><a title="sympy.core.numbers.Real" class="py-name" href="#" onclick="return doclink('link-28', 'Real', 'link-7');">Real</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt><tt class="py-op">)</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-name">i</tt><tt class="py-op">,</tt> <tt class="py-name">lasts</tt><tt class="py-op">,</tt> <tt class="py-name">s</tt><tt class="py-op">,</tt> <tt class="py-name">fact</tt><tt class="py-op">,</tt> <tt class="py-name">num</tt><tt class="py-op">,</tt> <tt id="link-29" class="py-name"><a title="sympy.core.functions.sign
+sympy.core.numbers.Infinity.sign
+sympy.core.numbers.Rational.sign
+sympy.core.numbers.sign
+sympy.modules.limits.sign" class="py-name" href="#" onclick="return doclink('link-29', 'sign', 'link-18');">sign</a></tt> <tt class="py-op">=</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-name">x</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">x</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-keyword">while</tt> <tt class="py-name">s</tt> <tt class="py-op">!=</tt> <tt class="py-name">lasts</tt><tt class="py-op">:</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">            <tt class="py-name">lasts</tt> <tt class="py-op">=</tt> <tt class="py-name">s</tt>     </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">            <tt class="py-name">i</tt> <tt class="py-op">+=</tt> <tt class="py-number">2</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">            <tt class="py-name">fact</tt> <tt class="py-op">*=</tt> <tt class="py-name">i</tt> <tt class="py-op">*</tt> <tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">            <tt class="py-name">num</tt> <tt class="py-op">*=</tt> <tt class="py-name">x</tt> <tt class="py-op">*</tt> <tt class="py-name">x</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">            <tt id="link-30" class="py-name"><a title="sympy.core.functions.sign
+sympy.core.numbers.Infinity.sign
+sympy.core.numbers.Rational.sign
+sympy.core.numbers.sign
+sympy.modules.limits.sign" class="py-name" href="#" onclick="return doclink('link-30', 'sign', 'link-18');">sign</a></tt> <tt class="py-op">*=</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line">            <tt class="py-name">s</tt> <tt class="py-op">+=</tt> <tt class="py-name">num</tt> <tt class="py-op">/</tt> <tt class="py-name">fact</tt> <tt class="py-op">*</tt> <tt id="link-31" class="py-name"><a title="sympy.core.functions.sign
+sympy.core.numbers.Infinity.sign
+sympy.core.numbers.Rational.sign
+sympy.core.numbers.sign
+sympy.modules.limits.sign" class="py-name" href="#" onclick="return doclink('link-31', 'sign', 'link-18');">sign</a></tt>  </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">        <tt class="py-name">decimal</tt><tt class="py-op">.</tt><tt class="py-name">getcontext</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">prec</tt> <tt class="py-op">=</tt> <tt class="py-name">precision</tt> <tt class="py-op">-</tt> <tt class="py-number">2</tt>         </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">+</tt><tt class="py-name">s</tt> </tt>
+</div></div><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"> </tt>
+<a name="tan"></a><div id="tan-def"><a name="L120"></a><tt class="py-lineno">120</tt> <a class="py-toggle" href="#" id="tan-toggle" onclick="return toggle('tan');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sympy.modules.trigonometric.tan-class.html">tan</a><tt class="py-op">(</tt><tt class="py-base-class">Function</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="tan-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="tan-expanded"><a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">    <tt class="py-docstring">"""Return the tangent of x (measured in radians)</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">     </tt>
+<a name="tan.getname"></a><div id="tan.getname-def"><a name="L124"></a><tt class="py-lineno">124</tt> <a class="py-toggle" href="#" id="tan.getname-toggle" onclick="return toggle('tan.getname');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.tan-class.html#getname">getname</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="tan.getname-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="tan.getname-expanded"><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-string">"tan"</tt> </tt>
+</div><a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">         </tt>
+<a name="tan.derivative"></a><div id="tan.derivative-def"><a name="L127"></a><tt class="py-lineno">127</tt> <a class="py-toggle" href="#" id="tan.derivative-toggle" onclick="return toggle('tan.derivative');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.tan-class.html#derivative">derivative</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="tan.derivative-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="tan.derivative-expanded"><a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-32" class="py-name"><a title="sympy.core.numbers.Rational" class="py-name" href="#" onclick="return doclink('link-32', 'Rational', 'link-8');">Rational</a></tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> <tt class="py-op">/</tt> <tt class="py-op">(</tt><tt id="link-33" class="py-name"><a title="sympy.modules.trigonometric.cos" class="py-name" href="#" onclick="return doclink('link-33', 'cos', 'link-10');">cos</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt><tt class="py-op">)</tt><tt class="py-op">**</tt><tt class="py-number">2</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">         </tt>
+<a name="tan.eval"></a><div id="tan.eval-def"><a name="L130"></a><tt class="py-lineno">130</tt> <a class="py-toggle" href="#" id="tan.eval-toggle" onclick="return toggle('tan.eval');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.trigonometric.tan-class.html#eval">eval</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="tan.eval-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="tan.eval-expanded"><a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-34" class="py-name"><a title="sympy.modules.trigonometric.sin" class="py-name" href="#" onclick="return doclink('link-34', 'sin', 'link-21');">sin</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt><tt class="py-op">)</tt> <tt class="py-op">/</tt> <tt id="link-35" class="py-name"><a title="sympy.modules.trigonometric.cos" class="py-name" href="#" onclick="return doclink('link-35', 'cos', 'link-10');">cos</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">arg</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sympy-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/sympy">Sympy</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Mar 10 19:15:52 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>

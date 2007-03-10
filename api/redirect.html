@@ -1,0 +1,38 @@
+<html><head><title>Epydoc Redirect Page</title>
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+<!--
+var pages = ["sympy.core.basic.AutomaticEvaluationType-c", "sympy.modules.integrals.IntegralError-c", "sympy.core.prettyprint.StringPict-c", "sympy.core.hashing.HashAlgorithm-c", "sympy.core.numbers.ImaginaryUnit-c", "sympy.modules.integrals.Integral-c", "sympy.modules.trigonometric.cos-c", "sympy.modules.trigonometric.sin-c", "sympy.modules.trigonometric.tan-c", "sympy.core.functions.Function-c", "sympy.core.hashing.Mbernstein-c", "sympy.modules.trigonometric-m", "sympy.core.numbers.Constant-c", "sympy.core.numbers.Infinity-c", "sympy.core.numbers.Rational-c", "sympy.core.power.pole_error-c", "sympy.core.hashing.Mpython-c", "sympy.core.numbers.ConstPi-c", "sympy.core.symbol.NCSymbol-c", "sympy.core.functions.abs_-c", "sympy.core.numbers.Number-c", "sympy.core.functions.exp-c", "sympy.core.functions.log-c", "sympy.core.symbol.Symbol-c", "sympy.modules.decorator-m", "sympy.modules.integrals-m", "sympy.core.hashing.Mmd5-c", "sympy.core.numbers.Real-c", "sympy.core.prettyprint-m", "sympy.core.addmul.Pair-c", "sympy.core.basic.Basic-c", "sympy.core.addmul.Add-c", "sympy.core.addmul.Mul-c", "sympy.core.functions-m", "sympy.modules.limits-m", "sympy.core.power.Pow-c", "sympy.core.hashing-m", "sympy.core.numbers-m", "sympy.core.addmul-m", "sympy.core.symbol-m", "sympy.core.basic-m", "sympy.core.power-m", "sympy.modules-m", "sympy.core-m", "sympy-m"];
+var dottedName = get_anchor();
+if (dottedName) {
+    var target = redirect_url(dottedName);
+    if (target) window.location.replace(target);
+}
+// -->
+</script>
+
+<h3>Epydoc Auto-redirect page</h3>
+
+<p>When javascript is enabled, this page will redirect URLs of
+the form <tt>redirect.html#<i>dotted.name</i></tt> to the
+documentation for the object with the given fully-qualified
+dotted name.</p>
+<p><a id="message"> &nbsp; </a></p>
+
+<script type="text/javascript">
+<!--
+if (dottedName) {
+    var msg = document.getElementById("message");
+    msg.innerHTML = "No documentation found for <tt>"+
+                    dottedName+"</tt>";
+}
+// -->
+</script>
+
+</body>
+</html>

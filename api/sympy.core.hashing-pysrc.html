@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>sympy.core.hashing</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sympy-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/sympy">Sympy</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="sympy-module.html">Package&nbsp;sympy</a> ::
+        <a href="sympy.core-module.html">Package&nbsp;core</a> ::
+        Module&nbsp;hashing
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="sympy.core.hashing-module.html">Module sympy.core.hashing</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-docstring">"""This module provides hashing.</tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-docstring">usage:</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-docstring">    h=mhash()</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-docstring">    h.addint(15)</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-docstring">    h.addstr("hey man!")</tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-docstring">    h.addfloat(45.3)</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-docstring">    print h.value</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-docstring">mhash.value contains the hash value which is generally a long int, that</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"><tt class="py-docstring">depends on the order of objects added. </tt> </tt>
+<a name="L13"></a><tt class="py-lineno">13</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line"> </tt>
+<a name="mhash"></a><div id="mhash-def"><a name="L15"></a><tt class="py-lineno">15</tt> <a class="py-toggle" href="#" id="mhash-toggle" onclick="return toggle('mhash');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing-module.html#mhash">mhash</a><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="mhash-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="mhash-expanded"><a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line">    <tt class="py-comment">#return Mmd5()</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt class="py-comment">#return Mbernstein()</tt> </tt>
+<a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"><tt class="py-comment"></tt>    <tt class="py-keyword">return</tt> <tt id="link-0" class="py-name" targets="Class sympy.core.hashing.Mpython=sympy.core.hashing.Mpython-class.html"><a title="sympy.core.hashing.Mpython" class="py-name" href="#" onclick="return doclink('link-0', 'Mpython', 'link-0');">Mpython</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L19"></a><tt class="py-lineno">19</tt>  <tt class="py-line"> </tt>
+<a name="HashAlgorithm"></a><div id="HashAlgorithm-def"><a name="L20"></a><tt class="py-lineno">20</tt> <a class="py-toggle" href="#" id="HashAlgorithm-toggle" onclick="return toggle('HashAlgorithm');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sympy.core.hashing.HashAlgorithm-class.html">HashAlgorithm</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HashAlgorithm-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="HashAlgorithm-expanded"><a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line"> </tt>
+<a name="HashAlgorithm.addint"></a><div id="HashAlgorithm.addint-def"><a name="L22"></a><tt class="py-lineno">22</tt> <a class="py-toggle" href="#" id="HashAlgorithm.addint-toggle" onclick="return toggle('HashAlgorithm.addint');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.HashAlgorithm-class.html#addint">addint</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">x</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HashAlgorithm.addint-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="HashAlgorithm.addint-expanded"><a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Method sympy.core.hashing.Mbernstein.add()=sympy.core.hashing.Mbernstein-class.html#add,Method sympy.core.hashing.Mmd5.add()=sympy.core.hashing.Mmd5-class.html#add,Method sympy.core.hashing.Mpython.add()=sympy.core.hashing.Mpython-class.html#add"><a title="sympy.core.hashing.Mbernstein.add
+sympy.core.hashing.Mmd5.add
+sympy.core.hashing.Mpython.add" class="py-name" href="#" onclick="return doclink('link-1', 'add', 'link-1');">add</a></tt><tt class="py-op">(</tt><tt class="py-name">x</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line"> </tt>
+<a name="HashAlgorithm.addfloat"></a><div id="HashAlgorithm.addfloat-def"><a name="L25"></a><tt class="py-lineno">25</tt> <a class="py-toggle" href="#" id="HashAlgorithm.addfloat-toggle" onclick="return toggle('HashAlgorithm.addfloat');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.HashAlgorithm-class.html#addfloat">addfloat</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">x</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="HashAlgorithm.addfloat-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="HashAlgorithm.addfloat-expanded"><a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-2" class="py-name"><a title="sympy.core.hashing.Mbernstein.add
+sympy.core.hashing.Mmd5.add
+sympy.core.hashing.Mpython.add" class="py-name" href="#" onclick="return doclink('link-2', 'add', 'link-1');">add</a></tt><tt class="py-op">(</tt><tt id="link-3" class="py-name" targets="Method sympy.core.addmul.Pair.hash()=sympy.core.addmul.Pair-class.html#hash,Method sympy.core.functions.Function.hash()=sympy.core.functions.Function-class.html#hash,Method sympy.core.numbers.Constant.hash()=sympy.core.numbers.Constant-class.html#hash,Method sympy.core.numbers.ImaginaryUnit.hash()=sympy.core.numbers.ImaginaryUnit-class.html#hash,Method sympy.core.numbers.Infinity.hash()=sympy.core.numbers.Infinity-class.html#hash,Method sympy.core.numbers.Rational.hash()=sympy.core.numbers.Rational-class.html#hash,Method sympy.core.numbers.Real.hash()=sympy.core.numbers.Real-class.html#hash,Method sympy.core.power.Pow.hash()=sympy.core.power.Pow-class.html#hash,Method sympy.core.symbol.Symbol.hash()=sympy.core.symbol.Symbol-class.html#hash"><a title="sympy.core.addmul.Pair.hash
+sympy.core.functions.Function.hash
+sympy.core.numbers.Constant.hash
+sympy.core.numbers.ImaginaryUnit.hash
+sympy.core.numbers.Infinity.hash
+sympy.core.numbers.Rational.hash
+sympy.core.numbers.Real.hash
+sympy.core.power.Pow.hash
+sympy.core.symbol.Symbol.hash" class="py-name" href="#" onclick="return doclink('link-3', 'hash', 'link-3');">hash</a></tt><tt class="py-op">(</tt><tt class="py-name">x</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L27"></a><tt class="py-lineno">27</tt>  <tt class="py-line"> </tt>
+<a name="Mpython"></a><div id="Mpython-def"><a name="L28"></a><tt class="py-lineno">28</tt> <a class="py-toggle" href="#" id="Mpython-toggle" onclick="return toggle('Mpython');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sympy.core.hashing.Mpython-class.html">Mpython</a><tt class="py-op">(</tt><tt class="py-base-class">HashAlgorithm</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mpython-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="Mpython-expanded"><a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-docstring">    An algorithm used in python, the result is a 4 byte hash value.</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-docstring">    It is not very strong.</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line">    <tt id="link-4" class="py-name" targets="Variable sympy.core.hashing.Mpython.i2p31=sympy.core.hashing.Mpython-class.html#i2p31"><a title="sympy.core.hashing.Mpython.i2p31" class="py-name" href="#" onclick="return doclink('link-4', 'i2p31', 'link-4');">i2p31</a></tt><tt class="py-op">=</tt><tt class="py-number">2</tt><tt class="py-op">**</tt><tt class="py-number">31</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line">    <tt id="link-5" class="py-name" targets="Variable sympy.core.hashing.Mpython.i2p32=sympy.core.hashing.Mpython-class.html#i2p32"><a title="sympy.core.hashing.Mpython.i2p32" class="py-name" href="#" onclick="return doclink('link-5', 'i2p32', 'link-5');">i2p32</a></tt><tt class="py-op">=</tt><tt class="py-number">2</tt><tt class="py-op">**</tt><tt class="py-number">32</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"> </tt>
+<a name="Mpython.__init__"></a><div id="Mpython.__init__-def"><a name="L37"></a><tt class="py-lineno">37</tt> <a class="py-toggle" href="#" id="Mpython.__init__-toggle" onclick="return toggle('Mpython.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.Mpython-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mpython.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mpython.__init__-expanded"><a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt><tt class="py-op">=</tt><tt class="py-number">0x3456</tt> </tt>
+</div><a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"> </tt>
+<a name="Mpython.trimlong"></a><div id="Mpython.trimlong-def"><a name="L40"></a><tt class="py-lineno">40</tt> <a class="py-toggle" href="#" id="Mpython.trimlong-toggle" onclick="return toggle('Mpython.trimlong');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.Mpython-class.html#trimlong">trimlong</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">x</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mpython.trimlong-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mpython.trimlong-expanded"><a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line">        <tt class="py-docstring">"""Trims an unsigned integer"""</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line">        <tt class="py-name">x</tt><tt class="py-op">=</tt><tt class="py-name">x</tt> <tt class="py-op">&amp;</tt> <tt class="py-number">0xFFFFFFFFL</tt> </tt>
+<a name="L43"></a><tt class="py-lineno">43</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">x</tt><tt class="py-op">&gt;=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="sympy.core.hashing.Mpython.i2p31" class="py-name" href="#" onclick="return doclink('link-6', 'i2p31', 'link-4');">i2p31</a></tt><tt class="py-op">:</tt> <tt class="py-name">x</tt><tt class="py-op">-=</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="sympy.core.hashing.Mpython.i2p32" class="py-name" href="#" onclick="return doclink('link-7', 'i2p32', 'link-5');">i2p32</a></tt> </tt>
+<a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">x</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line"> </tt>
+<a name="Mpython.add"></a><div id="Mpython.add-def"><a name="L46"></a><tt class="py-lineno">46</tt> <a class="py-toggle" href="#" id="Mpython.add-toggle" onclick="return toggle('Mpython.add');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.Mpython-class.html#add">add</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">item</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mpython.add-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mpython.add-expanded"><a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">        <tt class="py-docstring">"""Adds any integer to the hash value."""</tt> </tt>
+<a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-8" class="py-name" targets="Method sympy.core.hashing.Mpython.trimlong()=sympy.core.hashing.Mpython-class.html#trimlong"><a title="sympy.core.hashing.Mpython.trimlong" class="py-name" href="#" onclick="return doclink('link-8', 'trimlong', 'link-8');">trimlong</a></tt><tt class="py-op">(</tt><tt class="py-number">1000003</tt><tt class="py-op">*</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt><tt class="py-op">)</tt><tt class="py-op">^</tt><tt class="py-name">item</tt> </tt>
+</div><a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line"> </tt>
+<a name="Mpython.addint"></a><div id="Mpython.addint-def"><a name="L50"></a><tt class="py-lineno">50</tt> <a class="py-toggle" href="#" id="Mpython.addint-toggle" onclick="return toggle('Mpython.addint');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.Mpython-class.html#addint">addint</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">x</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mpython.addint-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mpython.addint-expanded"><a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">        <tt class="py-docstring">"""The hash function needs this:"""</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="sympy.core.hashing.Mbernstein.add
+sympy.core.hashing.Mmd5.add
+sympy.core.hashing.Mpython.add" class="py-name" href="#" onclick="return doclink('link-9', 'add', 'link-1');">add</a></tt><tt class="py-op">(</tt><tt class="py-name">x</tt><tt class="py-op">+</tt><tt class="py-number">3</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line"> </tt>
+<a name="Mpython.addstr"></a><div id="Mpython.addstr-def"><a name="L54"></a><tt class="py-lineno">54</tt> <a class="py-toggle" href="#" id="Mpython.addstr-toggle" onclick="return toggle('Mpython.addstr');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.Mpython-class.html#addstr">addstr</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">x</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mpython.addstr-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mpython.addstr-expanded"><a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">        <tt class="py-comment">#hash only last 5 letters, because the python algorithm is not</tt> </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-comment">#very strong</tt> </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="sympy.core.hashing.Mbernstein.add
+sympy.core.hashing.Mmd5.add
+sympy.core.hashing.Mpython.add" class="py-name" href="#" onclick="return doclink('link-10', 'add', 'link-1');">add</a></tt><tt class="py-op">(</tt><tt id="link-11" class="py-name"><a title="sympy.core.addmul.Pair.hash
+sympy.core.functions.Function.hash
+sympy.core.numbers.Constant.hash
+sympy.core.numbers.ImaginaryUnit.hash
+sympy.core.numbers.Infinity.hash
+sympy.core.numbers.Rational.hash
+sympy.core.numbers.Real.hash
+sympy.core.power.Pow.hash
+sympy.core.symbol.Symbol.hash" class="py-name" href="#" onclick="return doclink('link-11', 'hash', 'link-3');">hash</a></tt><tt class="py-op">(</tt><tt class="py-name">x</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">5</tt><tt class="py-op">:</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line"> </tt>
+<a name="Mbernstein"></a><div id="Mbernstein-def"><a name="L59"></a><tt class="py-lineno">59</tt> <a class="py-toggle" href="#" id="Mbernstein-toggle" onclick="return toggle('Mbernstein');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sympy.core.hashing.Mbernstein-class.html">Mbernstein</a><tt class="py-op">(</tt><tt class="py-base-class">HashAlgorithm</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mbernstein-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="Mbernstein-expanded"><a name="L60"></a><tt class="py-lineno">60</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L61"></a><tt class="py-lineno">61</tt>  <tt class="py-line"><tt class="py-docstring">    An algorithm produced by Professor Daniel J. Bernstein</tt> </tt>
+<a name="L62"></a><tt class="py-lineno">62</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L63"></a><tt class="py-lineno">63</tt>  <tt class="py-line"><tt class="py-docstring">    http://www.partow.net/programming/hashfunctions/index.html</tt> </tt>
+<a name="L64"></a><tt class="py-lineno">64</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L65"></a><tt class="py-lineno">65</tt>  <tt class="py-line"><tt class="py-docstring">    The result is generally a long int hash value. Unfortunately, this </tt> </tt>
+<a name="L66"></a><tt class="py-lineno">66</tt>  <tt class="py-line"><tt class="py-docstring">    algorithm is not strong enough, it doesn't pass </tt> </tt>
+<a name="L67"></a><tt class="py-lineno">67</tt>  <tt class="py-line"><tt class="py-docstring">    the test test_bug5h2() in test_hashing.py.</tt> </tt>
+<a name="L68"></a><tt class="py-lineno">68</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="Mbernstein.__init__"></a><div id="Mbernstein.__init__-def"><a name="L69"></a><tt class="py-lineno">69</tt> <a class="py-toggle" href="#" id="Mbernstein.__init__-toggle" onclick="return toggle('Mbernstein.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.Mbernstein-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mbernstein.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mbernstein.__init__-expanded"><a name="L70"></a><tt class="py-lineno">70</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt><tt class="py-op">=</tt><tt class="py-number">5381</tt> </tt>
+</div><a name="L71"></a><tt class="py-lineno">71</tt>  <tt class="py-line"> </tt>
+<a name="Mbernstein.add"></a><div id="Mbernstein.add-def"><a name="L72"></a><tt class="py-lineno">72</tt> <a class="py-toggle" href="#" id="Mbernstein.add-toggle" onclick="return toggle('Mbernstein.add');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.Mbernstein-class.html#add">add</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">item</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mbernstein.add-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mbernstein.add-expanded"><a name="L73"></a><tt class="py-lineno">73</tt>  <tt class="py-line">        <tt class="py-docstring">"""Adds any integer to the hash value."""</tt> </tt>
+<a name="L74"></a><tt class="py-lineno">74</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">=</tt> <tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">&lt;&lt;</tt> <tt class="py-number">5</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-name">item</tt> </tt>
+</div><a name="L75"></a><tt class="py-lineno">75</tt>  <tt class="py-line"> </tt>
+<a name="Mbernstein.addstr"></a><div id="Mbernstein.addstr-def"><a name="L76"></a><tt class="py-lineno">76</tt> <a class="py-toggle" href="#" id="Mbernstein.addstr-toggle" onclick="return toggle('Mbernstein.addstr');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.Mbernstein-class.html#addstr">addstr</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">x</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mbernstein.addstr-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mbernstein.addstr-expanded"><a name="L77"></a><tt class="py-lineno">77</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name"><a title="sympy.core.hashing.Mbernstein.add
+sympy.core.hashing.Mmd5.add
+sympy.core.hashing.Mpython.add" class="py-name" href="#" onclick="return doclink('link-12', 'add', 'link-1');">add</a></tt><tt class="py-op">(</tt><tt id="link-13" class="py-name"><a title="sympy.core.addmul.Pair.hash
+sympy.core.functions.Function.hash
+sympy.core.numbers.Constant.hash
+sympy.core.numbers.ImaginaryUnit.hash
+sympy.core.numbers.Infinity.hash
+sympy.core.numbers.Rational.hash
+sympy.core.numbers.Real.hash
+sympy.core.power.Pow.hash
+sympy.core.symbol.Symbol.hash" class="py-name" href="#" onclick="return doclink('link-13', 'hash', 'link-3');">hash</a></tt><tt class="py-op">(</tt><tt class="py-name">x</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L78"></a><tt class="py-lineno">78</tt>  <tt class="py-line"> </tt>
+<a name="L79"></a><tt class="py-lineno">79</tt>  <tt class="py-line"> </tt>
+<a name="Mmd5"></a><div id="Mmd5-def"><a name="L80"></a><tt class="py-lineno">80</tt> <a class="py-toggle" href="#" id="Mmd5-toggle" onclick="return toggle('Mmd5');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sympy.core.hashing.Mmd5-class.html">Mmd5</a><tt class="py-op">(</tt><tt class="py-base-class">HashAlgorithm</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mmd5-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="Mmd5-expanded"><a name="L81"></a><tt class="py-lineno">81</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L82"></a><tt class="py-lineno">82</tt>  <tt class="py-line"><tt class="py-docstring">    MD5 algorithm, this works fine (so far :).</tt> </tt>
+<a name="L83"></a><tt class="py-lineno">83</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L84"></a><tt class="py-lineno">84</tt>  <tt class="py-line"> </tt>
+<a name="Mmd5.__init__"></a><div id="Mmd5.__init__-def"><a name="L85"></a><tt class="py-lineno">85</tt> <a class="py-toggle" href="#" id="Mmd5.__init__-toggle" onclick="return toggle('Mmd5.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.Mmd5-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mmd5.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mmd5.__init__-expanded"><a name="L86"></a><tt class="py-lineno">86</tt>  <tt class="py-line">        <tt class="py-keyword">import</tt> <tt class="py-name">md5</tt> </tt>
+<a name="L87"></a><tt class="py-lineno">87</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">md5</tt><tt class="py-op">=</tt><tt class="py-name">md5</tt><tt class="py-op">.</tt><tt class="py-name">new</tt><tt class="py-op">(</tt><tt class="py-string">"heja"</tt><tt class="py-op">)</tt> </tt>
+<a name="L88"></a><tt class="py-lineno">88</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt><tt class="py-op">=</tt><tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">md5</tt><tt class="py-op">.</tt><tt class="py-name">hexdigest</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt><tt class="py-number">16</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L89"></a><tt class="py-lineno">89</tt>  <tt class="py-line"> </tt>
+<a name="Mmd5.add"></a><div id="Mmd5.add-def"><a name="L90"></a><tt class="py-lineno">90</tt> <a class="py-toggle" href="#" id="Mmd5.add-toggle" onclick="return toggle('Mmd5.add');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.Mmd5-class.html#add">add</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">item</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mmd5.add-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mmd5.add-expanded"><a name="L91"></a><tt class="py-lineno">91</tt>  <tt class="py-line">        <tt class="py-docstring">"""Adds any integer to the hash value."""</tt> </tt>
+<a name="L92"></a><tt class="py-lineno">92</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">md5</tt><tt class="py-op">.</tt><tt class="py-name">update</tt><tt class="py-op">(</tt><tt class="py-name">str</tt><tt class="py-op">(</tt><tt class="py-name">item</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno">93</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">value</tt> <tt class="py-op">=</tt> <tt class="py-name">int</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">md5</tt><tt class="py-op">.</tt><tt class="py-name">hexdigest</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">,</tt><tt class="py-number">16</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L94"></a><tt class="py-lineno">94</tt>  <tt class="py-line"> </tt>
+<a name="Mmd5.addstr"></a><div id="Mmd5.addstr-def"><a name="L95"></a><tt class="py-lineno">95</tt> <a class="py-toggle" href="#" id="Mmd5.addstr-toggle" onclick="return toggle('Mmd5.addstr');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.hashing.Mmd5-class.html#addstr">addstr</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">x</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Mmd5.addstr-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Mmd5.addstr-expanded"><a name="L96"></a><tt class="py-lineno">96</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="sympy.core.hashing.Mbernstein.add
+sympy.core.hashing.Mmd5.add
+sympy.core.hashing.Mpython.add" class="py-name" href="#" onclick="return doclink('link-14', 'add', 'link-1');">add</a></tt><tt class="py-op">(</tt><tt class="py-name">x</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L97"></a><tt class="py-lineno">97</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sympy-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/sympy">Sympy</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Mar 10 19:15:51 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>
