@@ -5,6 +5,9 @@
 
 This document describes the main ideas of how sympy works. For examples of most features of sympy, look into [http://code.google.com/p/sympy/wiki/Examples Examples].
 
+API documentation is here:
+http://sympy.googlecode.com/svn/api/index.html
+
 For some ideas, where Sympy can be used, see http://code.google.com/p/sympy/wiki/Motivation.
 
 
