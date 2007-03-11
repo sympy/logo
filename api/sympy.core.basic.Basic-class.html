@@ -67,13 +67,12 @@ object --+
 
 <dl><dt>Known Subclasses:</dt>
 <dd>
-    <a href="sympy.modules.integrals.Integral-class.html">modules.integrals.Integral</a>,
     <a href="sympy.core.functions.Function-class.html">functions.Function</a>,
+    <a href="sympy.modules.integrals.Integral-class.html">modules.integrals.Integral</a>,
     <a href="sympy.core.symbol.Symbol-class.html">symbol.Symbol</a>,
     <a href="sympy.core.power.Pow-class.html">power.Pow</a>,
     <a href="sympy.core.addmul.Pair-class.html">addmul.Pair</a>,
     <a href="sympy.core.numbers.Constant-class.html">numbers.Constant</a>,
-    <a href="sympy.core.numbers.ImaginaryUnit-class.html">numbers.ImaginaryUnit</a>,
     <a href="sympy.core.numbers.Number-class.html">numbers.Number</a>
 </dd></dl>
 
@@ -514,10 +513,9 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="isequal"></a><span class="summary-sig-name">isequal</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">a</span>)</span></td>
+          <td><span class="summary-sig"><a name="hash"></a><span class="summary-sig-name">hash</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.isequal">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.hash">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -531,10 +529,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="cmphash"></a><span class="summary-sig-name">cmphash</span>(<span class="summary-sig-arg">a</span>,
-        <span class="summary-sig-arg">b</span>)</span></td>
+          <td><span class="summary-sig"><a name="isequal"></a><span class="summary-sig-name">isequal</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">a</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.cmphash">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.isequal">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -843,7 +841,7 @@ object --+
           <td><span class="summary-sig"><a name="_doadd"></a><span class="summary-sig-name">_doadd</span>(<span class="summary-sig-arg">a</span>,
         <span class="summary-sig-arg">b</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic._doadd">source&nbsp;code</a></span>
+            
             
           </td>
         </tr>
@@ -860,7 +858,7 @@ object --+
           <td><span class="summary-sig"><a name="_domul"></a><span class="summary-sig-name">_domul</span>(<span class="summary-sig-arg">a</span>,
         <span class="summary-sig-arg">b</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic._domul">source&nbsp;code</a></span>
+            
             
           </td>
         </tr>
@@ -877,7 +875,7 @@ object --+
           <td><span class="summary-sig"><a name="_dopow"></a><span class="summary-sig-name">_dopow</span>(<span class="summary-sig-arg">a</span>,
         <span class="summary-sig-arg">b</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic._dopow">source&nbsp;code</a></span>
+            
             
           </td>
         </tr>
@@ -896,7 +894,24 @@ object --+
       float returns real, otherwise &quot;a&quot; (=it's a Basic 
       subclass).</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.sympify">source&nbsp;code</a></span>
+            
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="cmphash"></a><span class="summary-sig-name">cmphash</span>(<span class="summary-sig-arg">a</span>,
+        <span class="summary-sig-arg">b</span>)</span></td>
+          <td align="right" valign="top">
+            
             
           </td>
         </tr>
@@ -915,7 +930,7 @@ object --+
       See 
       http://groups.google.com/group/sympy/browse_thread/thread/aadbef6e2a4ae335</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.muleval">source&nbsp;code</a></span>
+            
             
           </td>
         </tr>
@@ -933,7 +948,7 @@ object --+
         <span class="summary-sig-arg">y</span>)</span><br />
       Try to simplify x+y in this order.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.addeval">source&nbsp;code</a></span>
+            
             
           </td>
         </tr>
@@ -1073,8 +1088,9 @@ object --+
   </table>
   
   <p>Returns the absolute value of self.</p>
-  Example usage: &gt;&gt;&gt; from sym import * &gt;&gt;&gt; abs(1+2*I) 
-  5^1/2 &gt;&gt;&gt; x = Symbol('x') &gt;&gt;&gt; abs(-x) x
+  Example usage: &gt;&gt;&gt; from sympy import * &gt;&gt;&gt; 
+  abs(1+2*I) 5^(1/2) &gt;&gt;&gt; x = Symbol('x') &gt;&gt;&gt; abs(-x) 
+  abs(x)
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -1153,7 +1169,7 @@ object --+
     <br /><em class="fname">Static Method</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.muleval">source&nbsp;code</a></span>&nbsp;
+    >&nbsp;
     </td>
   </table>
   
@@ -1177,7 +1193,7 @@ object --+
     <br /><em class="fname">Static Method</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.addeval">source&nbsp;code</a></span>&nbsp;
+    >&nbsp;
     </td>
   </table>
   
@@ -1238,7 +1254,7 @@ object --+
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Sat Mar 10 19:15:50 2007
+    Generated by Epydoc 3.0beta1 on Mon Mar 12 00:09:04 2007
     </td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>

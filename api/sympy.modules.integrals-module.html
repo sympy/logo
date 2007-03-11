@@ -91,6 +91,139 @@
     </td>
   </tr>
 </table>
+<!-- ==================== FUNCTIONS ==================== -->
+<a name="section-Functions"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="sympy.modules.integrals-module.html#integrate" class="summary-sig-name">integrate</a>(<span class="summary-sig-arg">f</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kargs</span>)</span><br />
+      integrate(f, x) -&gt; Returns the indefinite integral &int; f(x) 
+      dx</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.modules.integrals-pysrc.html#integrate">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="integrate"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">integrate</span>(<span class="sig-arg">f</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kargs</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="sympy.modules.integrals-pysrc.html#integrate">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  <h1 class="heading">Usage</h1>
+    <h2 class="heading">Indefinite integrals</h2>
+      <p>integrate(f, x) -&gt; Returns the indefinite integral &int; f(x) 
+      dx</p>
+      <p>integrate(f, x, y) -&gt; Return the indefinite double integral 
+      &int; &int; f(x, y) dy dx</p>
+      integrate(f, x, y, z, ...) -&gt; Return the indefinite multiple 
+      integral (arbitrary number of variables) &int; &int; ... &int; f(x, 
+      y, z, ...) dx ... dy dz
+    <h2 class="heading">Definite Integrals</h2>
+      <p>integrate(f, (x, a, b)) -&gt; Returns the definite integral with 
+      integration limits a, b</p>
+      integrate(f, (x, a, b), (y, c, d)) -&gt; Returns the definite 
+      double integral
+  <h1 class="heading">Notes</h1>
+    <p>Currently only very simple integrals are computed.The general 
+    algorithm for calculating integrals is described <a 
+    href="http://sympy.googlecode.com/svn/trunk/doc/issac98.pdf" 
+    target="_top">here</a> Someone just needs to implement it. :)</p>
+    Has an optional parameter evaluate, which can have value True or 
+    False. If set to False, the integral will not be evaluated. Default is 
+    set to True.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>integrate(x , (x,1,2), evaluate=False)
+<span class="py-output">int_{1}^{2} (x) dx</span></pre>
+  <h1 class="heading">Further examples</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>integrate(2*x*y, (x,0,1), (y,-1,2))
+<span class="py-output">3/2</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>integrate(y, y)
+<span class="py-output">1/2*y^2</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>integrate(y*x, y)
+<span class="py-output">1/2*y^2*x</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>integrate(y*x, x, y)
+<span class="py-output">1/4*x^2*y^2</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>integrate(x*y**2 , (x,1,2), y)
+<span class="py-output">1/2*y^3</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>integrate(x , (x,1,2), evaluate=False)
+<span class="py-output">int_{1}^{2} (x) dx</span></pre>
+  <h1 class="heading">See also</h1>
+    <ul>
+      <li>
+        <a href="sympy.modules.limits-module.html#limit" 
+        class="link">limit</a>
+      </li>
+      <li>
+        External links
+        <ul>
+          <li>
+            <a 
+            href="http://planetmath.org/encyclopedia/RiemannIntegral.html" 
+            target="_top">Riemman integral</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
@@ -122,7 +255,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Sat Mar 10 19:15:49 2007
+    Generated by Epydoc 3.0beta1 on Mon Mar 12 00:09:04 2007
     </td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>

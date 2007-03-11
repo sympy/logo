@@ -74,30 +74,24 @@ Definite integral.
 
 Integral(f, (x,a,b) represents \int_a^b f(x) dx
 
-Usage:
+Usage
+=====
 
-print Integral(1/t, (t,1,x))
+print Integral(1/t, (t,1,x))  will print::
 
-    will print: int_{1}^{x} (t^(-1)) dt
+     int_{1}^{x} (t^(-1)) dt
 
-print Integral(1/t, (t,1,x)).doit()
+print Integral(1/t, (t,1,x)).doit() will print::
 
-    will print: log(x)
+    log(x)
 
-print Integral(1/t, (t,1,x)).diff(x)
+print Integral(1/t, (t,1,x)).diff(x) will print: 
 
-    will print: 1/x
-
+    1/x
 
 Currently can only integrate very simple functions, like polynoms.
 You can however implement as many formulas as you want at the end
 of the primitive_function() function.
-
-The general algorithm for calculating integrals is described here:
-
-http://sympy.googlecode.com/svn/trunk/doc/issac98.pdf
-
-Someone just needs to implement it. :)
 
 </pre><br /><br />
 
@@ -151,7 +145,7 @@ Someone just needs to implement it. :)
         <tr>
           <td><span class="summary-sig"><a href="sympy.modules.integrals.Integral-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">f</span>,
-        <span class="summary-sig-arg">(x, a, b)</span>)</span><br />
+        <span class="summary-sig-arg">args</span>)</span><br />
       int_a^b f(x)  dx</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="sympy.modules.integrals-pysrc.html#Integral.__init__">source&nbsp;code</a></span>
@@ -213,25 +207,6 @@ Someone just needs to implement it. :)
       
     </td>
   </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="sympy.modules.integrals.Integral-class.html#primitive_function" class="summary-sig-name">primitive_function</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">f</span>,
-        <span class="summary-sig-arg">x</span>)</span><br />
-      Try to calculate a primitive function to &quot;f(x)&quot;.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.modules.integrals-pysrc.html#Integral.primitive_function">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
   <tr>
     <td colspan="2" class="summary">
     <p class="indent-wrapped-lines"><b>Inherited from <code><a href="sympy.core.basic.Basic-class.html">core.basic.Basic</a></code></b>:
@@ -255,7 +230,6 @@ Someone just needs to implement it. :)
       <code><a href="sympy.core.basic.Basic-class.html#__rsub__">__rsub__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__sub__">__sub__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#bounded">bounded</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#cmphash">cmphash</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#commutative">commutative</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#conjugate">conjugate</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#diffn">diffn</a></code>,
@@ -263,6 +237,7 @@ Someone just needs to implement it. :)
       <code><a href="sympy.core.basic.Basic-class.html#evalf">evalf</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#expand">expand</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#has">has</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#hash">hash</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#isequal">isequal</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#isnumber">isnumber</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#ldegree">ldegree</a></code>,
@@ -303,10 +278,29 @@ Someone just needs to implement it. :)
     </table>
   </td>
 </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="sympy.modules.integrals.Integral-class.html#primitive_function" class="summary-sig-name">primitive_function</a>(<span class="summary-sig-arg">f</span>,
+        <span class="summary-sig-arg">x</span>)</span><br />
+      Try to calculate a primitive function to &quot;f(x)&quot;.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.modules.integrals-pysrc.html#Integral.primitive_function">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
   <tr>
     <td colspan="2" class="summary">
     <p class="indent-wrapped-lines"><b>Inherited from <code><a href="sympy.core.basic.Basic-class.html">core.basic.Basic</a></code></b>:
       <code><a href="sympy.core.basic.Basic-class.html#addeval">addeval</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#cmphash">cmphash</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#muleval">muleval</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#sympify">sympify</a></code>
       </p>
@@ -370,7 +364,7 @@ Someone just needs to implement it. :)
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">f</span>,
-        <span class="sig-arg">(x, a, b)</span>)</span>
+        <span class="sig-arg">args</span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
@@ -416,9 +410,9 @@ Someone just needs to implement it. :)
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">primitive_function</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">f</span>,
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">primitive_function</span>(<span class="sig-arg">f</span>,
         <span class="sig-arg">x</span>)</span>
+    <br /><em class="fname">Static Method</em>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="sympy.modules.integrals-pysrc.html#Integral.primitive_function">source&nbsp;code</a></span>&nbsp;
@@ -463,7 +457,7 @@ Someone just needs to implement it. :)
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Sat Mar 10 19:15:50 2007
+    Generated by Epydoc 3.0beta1 on Mon Mar 12 00:09:04 2007
     </td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>

@@ -56,23 +56,124 @@
 </table>
 <!-- ==================== PACKAGE DESCRIPTION ==================== -->
 <h1 class="epydoc">Package sympy</h1><span class="codelink"><a href="sympy-pysrc.html">source&nbsp;code</a></span><br /><br />
-<p>Computer Algebra System (CAS) in Python</p>
-  <p>Sympy is a symbolic manipulation package, written in pure Python. Its 
-  aim is to become a full featured CAS in Python, while keeping the code as
-  simple as possible in order to be comprehensible and easily 
-  extensible.</p>
-  To help you get started, here is a simple example in the python 
-  interpreter:
+<h1 class="heading">Computer Algebra System (CAS) in Python</h1>
+    Sympy is a symbolic manipulation package, written in pure Python. 
+    Its aim is to become a full featured CAS in Python, while keeping the 
+    code as simple as possible in order to be comprehensible and easily 
+    extensible.
+  <h1 class="heading">Features</h1>
+    Currently, Sympy has only around 1600 lines of code (including 
+    comments) and its capabilities include:
+    <ul>
+      <li>
+        basic arithmetics *, /, +, -
+      </li>
+      <li>
+        basic simplification (like a*b*b + 2*b*a*b -&gt; 3*a*b^2)
+      </li>
+      <li>
+        expansion (like (a+b)^2 -&gt; a^2 + 2*a*b + b^2)
+      </li>
+      <li>
+        functions (exp, ln, sin, cos, tan, ...)
+      </li>
+      <li>
+        differentiation
+      </li>
+      <li>
+        integration (currently it can do only very simple integrals)
+      </li>
+      <li>
+        taylor series
+      </li>
+      <li>
+        basic substitution (like x-&gt; ln(x))
+      </li>
+      <li>
+        arbitrary precision integers and
+      </li>
+      <li>
+        rationals
+      </li>
+      <li>
+        standard (python) floats
+      </li>
+      <li>
+        complex numbers (currently only simple things)
+      </li>
+      <li>
+        limits
+      </li>
+    </ul>
+    To help you get started, here is a simple example in the python 
+    interpreter:
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">import</span> sym
-<span class="py-prompt">&gt;&gt;&gt; </span>x = sym.Symbol(<span class="py-string">'x'</span>)
-<span class="py-prompt">&gt;&gt;&gt; </span>e = 1/sym.cos(x)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol, cos
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>e = 1/cos(x)
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> e.series(x,10)
-<span class="py-output">1+1/2*x^2+5/24*x^4+61/720*x^6+277/8064*x^8+50521/3628800*x^10</span></pre>
-  for full documentation, see the docs at our web page: 
-  http://code.google.com/p/sympy/wiki/Documentation<br /><br />
+<span class="py-output">1+50521/3628800*x^10+61/720*x^6+1/2*x^2+5/24*x^4+277/8064*x^8</span></pre>
+    For full documentation, see the docs at our web page: <a 
+    href="http://code.google.com/p/sympy/wiki/Documentation" 
+    target="_top">http://code.google.com/p/sympy/wiki/Documentation</a>
+  <h1 class="heading">Structure</h1>
+    <p>Sympy is basically divided in two modules: the core module, which 
+    contains the classes needed for basic symbolic manipulations, like the 
+    definition of Symbol or Rational number, and a some high-level modules,
+    that are responsable for high-level work done with sympy: limits, 
+    integration, solving, etc., and is the one you will have to look at if 
+    you are searching for examples on how to extend sympy</p>
+    <center><table border="0" cellpadding="0" cellspacing="0" 
+    class="graph">
+      <tr><td align="center">
+      <map id="package_tree_for_sympy" name="package_tree_for_sympy">
+    <area shape="rect" href="sympy.core.addmul&#45;module.html" 
+    title="sympy.core.addmul" alt="" coords="35,88,87,109" />
+    <area shape="rect" href="sympy.core.basic&#45;module.html" 
+    title="sympy.core.basic" alt="" coords="95,88,135,109" />
+    <area shape="rect" href="sympy.core.functions&#45;module.html" 
+    title="sympy.core.functions" alt="" coords="143,88,205,109" />
+    <area shape="rect" href="sympy.core.hashing&#45;module.html" 
+    title="sympy.core.hashing" alt="" coords="213,88,268,109" />
+    <area shape="rect" href="sympy.core.numbers&#45;module.html" 
+    title="sympy.core.numbers" alt="" coords="276,88,337,109" />
+    <area shape="rect" href="sympy.core.power&#45;module.html" 
+    title="sympy.core.power" alt="" coords="345,88,391,109" />
+    <area shape="rect" href="sympy.core.prettyprint&#45;module.html" 
+    title="sympy.core.prettyprint" alt="" coords="399,88,467,109" />
+    <area shape="rect" href="sympy.core.symbol&#45;module.html" 
+    title="sympy.core.symbol" alt="" coords="475,88,525,109" />
+    <area shape="rect" href="sympy.core&#45;module.html" title="sympy.core"
+    alt="" coords="25,55,535,119" />
+    <area shape="rect" href="sympy.modules.decorator&#45;module.html" 
+    title="sympy.modules.decorator" alt="" coords="35,173,155,195" />
+    <area shape="rect" href="sympy.modules.integrals&#45;module.html" 
+    title="sympy.modules.integrals" alt="" coords="163,173,276,195" />
+    <area shape="rect" href="sympy.modules.limits&#45;module.html" 
+    title="sympy.modules.limits" alt="" coords="284,173,377,195" />
+    <area shape="rect" href="sympy.modules.trigonometric&#45;module.html" 
+    title="sympy.modules.trigonometric" alt="" coords="385,173,525,195" />
+    <area shape="rect" href="sympy.modules&#45;module.html" 
+    title="sympy.modules" alt="" coords="25,140,535,204" />
+    <area shape="rect" href="sympy&#45;module.html" title="sympy" alt="" 
+    coords="16,21,544,213" />
+    <area shape="rect" href="sympy&#45;module.html" title="sympy" alt="" 
+    coords="5,5,555,219" />
+    </map>
+      <img src="package_tree_for_sympy.gif" alt='Package Tree for sympy' 
+    usemap="#package_tree_for_sympy" ismap="ismap" class="graph-with-title"
+    />
+      </td></tr>
+      <tr><td align='center'>
+    <span class="graph-title">Package Tree for sympy</span>
+      </td></tr>
+    </table><br/></center><br /><br />
 
-<!-- ==================== SUBMODULES ==================== -->
+<hr />
+<div class="fields">      <p><strong>Version:</strong>
+        0.2-pre
+      </p>
+</div><!-- ==================== SUBMODULES ==================== -->
 <a name="section-Submodules"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
@@ -91,7 +192,7 @@
 </tr>
   <tr><td class="summary">
   <ul class="nomargin">
-    <li> <strong class="uidlink"><a href="sympy.core-module.html">sympy.core</a></strong>
+    <li> <strong class="uidlink"><a href="sympy.core-module.html">sympy.core</a></strong>: <em class="summary">Core module.</em>
     <ul>
     <li> <strong class="uidlink"><a href="sympy.core.addmul-module.html">sympy.core.addmul</a></strong>    </li>
     <li> <strong class="uidlink"><a href="sympy.core.basic-module.html">sympy.core.basic</a></strong>    </li>
@@ -100,21 +201,17 @@
     <li> <strong class="uidlink"><a href="sympy.core.hashing-module.html">sympy.core.hashing</a></strong>: <em class="summary">This module provides hashing.</em>    </li>
     <li> <strong class="uidlink"><a href="sympy.core.numbers-module.html">sympy.core.numbers</a></strong>    </li>
     <li> <strong class="uidlink"><a href="sympy.core.power-module.html">sympy.core.power</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="sympy.core.prettyprint-module.html">sympy.core.prettyprint</a></strong>: <em class="summary">Prettyprinter idea by Jurjen Bos 2007 (I hate spammers: mail me 
-        at pietjepuk314 at the reverse of ku.oc.oohay).</em>    </li>
+    <li> <strong class="uidlink"><a href="sympy.core.prettyprint-module.html">sympy.core.prettyprint</a></strong>: <em class="summary">Prettyprinter idea by Jurjen Bos 2007</em>    </li>
     <li> <strong class="uidlink"><a href="sympy.core.symbol-module.html">sympy.core.symbol</a></strong>    </li>
     </ul>
     </li>
-    <li> <strong class="uidlink"><a href="sympy.modules-module.html">sympy.modules</a></strong>
+    <li> <strong class="uidlink"><a href="sympy.modules-module.html">sympy.modules</a></strong>: <em class="summary">Modules of sympy.</em>
     <ul>
     <li> <strong class="uidlink"><a href="sympy.modules.decorator-module.html">sympy.modules.decorator</a></strong>    </li>
     <li> <strong class="uidlink"><a href="sympy.modules.integrals-module.html">sympy.modules.integrals</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="sympy.modules.limits-module.html">sympy.modules.limits</a></strong>: <em class="summary">Limits
-======
-
-Implemented according to the PhD thesis
-http://www.cybertester.com/data/gruntz.pdf, which contains very thorough
-descriptions of the algorithm including many examples.</em>    </li>
+    <li> <strong class="uidlink"><a href="sympy.modules.limits-module.html">sympy.modules.limits</a></strong>: <em class="summary">Implemented according to the PhD thesis 
+        http://www.cybertester.com/data/gruntz.pdf, which contains very 
+        thorough descriptions of the algorithm including many examples.</em>    </li>
     <li> <strong class="uidlink"><a href="sympy.modules.trigonometric-module.html">sympy.modules.trigonometric</a></strong>    </li>
     </ul>
     </li>
@@ -122,45 +219,6 @@ descriptions of the algorithm including many examples.</em>    </li>
 </table>
 
 <br />
-<!-- ==================== VARIABLES ==================== -->
-<a name="section-Variables"></a>
-<table class="summary" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Variables</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-Variables"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="I"></a><span class="summary-name">I</span> = <code title="i">i</code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="infty"></a><span class="summary-name">infty</span> = <code title="Inf">Inf</code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="pi"></a><span class="summary-name">pi</span> = <code title="pi">pi</code>
-    </td>
-  </tr>
-</table>
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
@@ -192,7 +250,7 @@ descriptions of the algorithm including many examples.</em>    </li>
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Sat Mar 10 19:15:49 2007
+    Generated by Epydoc 3.0beta1 on Mon Mar 12 00:09:04 2007
     </td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>

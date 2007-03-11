@@ -65,7 +65,7 @@
 <a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-10" class="py-name" targets="Module sympy.core.prettyprint=sympy.core.prettyprint-module.html"><a title="sympy.core.prettyprint" class="py-name" href="#" onclick="return doclink('link-10', 'prettyprint', 'link-10');">prettyprint</a></tt> <tt class="py-keyword">import</tt> <tt id="link-11" class="py-name" targets="Class sympy.core.prettyprint.StringPict=sympy.core.prettyprint.StringPict-class.html"><a title="sympy.core.prettyprint.StringPict" class="py-name" href="#" onclick="return doclink('link-11', 'StringPict', 'link-11');">StringPict</a></tt> </tt>
 <a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"> </tt>
 <a name="Pair"></a><div id="Pair-def"><a name="L7"></a><tt class="py-lineno">  7</tt> <a class="py-toggle" href="#" id="Pair-toggle" onclick="return toggle('Pair');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sympy.core.addmul.Pair-class.html">Pair</a><tt class="py-op">(</tt><tt class="py-base-class">Basic</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-</div><div id="Pair-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Pair-expanded"><a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line">    <tt class="py-docstring">"""Contains common code to add and mul classes.</tt> </tt>
+</div><div id="Pair-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Pair-expanded"><a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line">    <tt class="py-docstring">"""Abstract class containing common code to add and mul classes.</tt> </tt>
 <a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-docstring">    Should not be used directly</tt> </tt>
 <a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
 <a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"> </tt>
@@ -93,13 +93,15 @@ sympy.modules.integrals.Integral.__init__" class="py-name" href="#" onclick="ret
 <a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">Exception</tt><tt class="py-op">(</tt><tt class="py-string">"accept only 1 or 2 arguments"</tt><tt class="py-op">)</tt> </tt>
 </div><a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line">         </tt>
 <a name="Pair.__lt__"></a><div id="Pair.__lt__-def"><a name="L22"></a><tt class="py-lineno"> 22</tt> <a class="py-toggle" href="#" id="Pair.__lt__-toggle" onclick="return toggle('Pair.__lt__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.core.addmul.Pair-class.html#__lt__">__lt__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">a</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
-</div><div id="Pair.__lt__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pair.__lt__-expanded"><a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method sympy.core.addmul.Add.evalf()=sympy.core.addmul.Add-class.html#evalf,Method sympy.core.addmul.Mul.evalf()=sympy.core.addmul.Mul-class.html#evalf,Method sympy.core.basic.Basic.evalf()=sympy.core.basic.Basic-class.html#evalf,Method sympy.core.functions.abs_.evalf()=sympy.core.functions.abs_-class.html#evalf,Method sympy.core.functions.exp.evalf()=sympy.core.functions.exp-class.html#evalf,Method sympy.core.functions.log.evalf()=sympy.core.functions.log-class.html#evalf,Method sympy.core.numbers.ConstPi.evalf()=sympy.core.numbers.ConstPi-class.html#evalf,Method sympy.core.numbers.Number.evalf()=sympy.core.numbers.Number-class.html#evalf,Method sympy.core.numbers.Rational.evalf()=sympy.core.numbers.Rational-class.html#evalf,Method sympy.core.numbers.Real.evalf()=sympy.core.numbers.Real-class.html#evalf,Method sympy.core.power.Pow.evalf()=sympy.core.power.Pow-class.html#evalf,Method sympy.modules.trigonometric.cos.evalf()=sympy.modules.trigonometric.cos-class.html#evalf,Method sympy.modules.trigonometric.sin.evalf()=sympy.modules.trigonometric.sin-class.html#evalf"><a title="sympy.core.addmul.Add.evalf
+</div><div id="Pair.__lt__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Pair.__lt__-expanded"><a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Method sympy.core.addmul.Add.evalf()=sympy.core.addmul.Add-class.html#evalf,Method sympy.core.addmul.Mul.evalf()=sympy.core.addmul.Mul-class.html#evalf,Method sympy.core.basic.Basic.evalf()=sympy.core.basic.Basic-class.html#evalf,Method sympy.core.functions.Function.evalf()=sympy.core.functions.Function-class.html#evalf,Method sympy.core.functions.abs_.evalf()=sympy.core.functions.abs_-class.html#evalf,Method sympy.core.functions.exp.evalf()=sympy.core.functions.exp-class.html#evalf,Method sympy.core.functions.log.evalf()=sympy.core.functions.log-class.html#evalf,Method sympy.core.numbers.ConstPi.evalf()=sympy.core.numbers.ConstPi-class.html#evalf,Method sympy.core.numbers.ImaginaryUnit.evalf()=sympy.core.numbers.ImaginaryUnit-class.html#evalf,Method sympy.core.numbers.Number.evalf()=sympy.core.numbers.Number-class.html#evalf,Method sympy.core.numbers.Rational.evalf()=sympy.core.numbers.Rational-class.html#evalf,Method sympy.core.numbers.Real.evalf()=sympy.core.numbers.Real-class.html#evalf,Method sympy.core.power.Pow.evalf()=sympy.core.power.Pow-class.html#evalf,Method sympy.modules.trigonometric.cos.evalf()=sympy.modules.trigonometric.cos-class.html#evalf,Method sympy.modules.trigonometric.sin.evalf()=sympy.modules.trigonometric.sin-class.html#evalf"><a title="sympy.core.addmul.Add.evalf
 sympy.core.addmul.Mul.evalf
 sympy.core.basic.Basic.evalf
+sympy.core.functions.Function.evalf
 sympy.core.functions.abs_.evalf
 sympy.core.functions.exp.evalf
 sympy.core.functions.log.evalf
 sympy.core.numbers.ConstPi.evalf
+sympy.core.numbers.ImaginaryUnit.evalf
 sympy.core.numbers.Number.evalf
 sympy.core.numbers.Rational.evalf
 sympy.core.numbers.Real.evalf
@@ -117,10 +119,10 @@ sympy.core.hashing.Mpython.addstr" class="py-name" href="#" onclick="return docl
 <a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">args</tt><tt class="py-op">:</tt> </tt>
 <a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="sympy.core.hashing.mhash" class="py-name" href="#" onclick="return doclink('link-22', 'mhash', 'link-15');">mhash</a></tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Method sympy.core.hashing.Mbernstein.add()=sympy.core.hashing.Mbernstein-class.html#add,Method sympy.core.hashing.Mmd5.add()=sympy.core.hashing.Mmd5-class.html#add,Method sympy.core.hashing.Mpython.add()=sympy.core.hashing.Mpython-class.html#add"><a title="sympy.core.hashing.Mbernstein.add
 sympy.core.hashing.Mmd5.add
-sympy.core.hashing.Mpython.add" class="py-name" href="#" onclick="return doclink('link-23', 'add', 'link-23');">add</a></tt><tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name" targets="Method sympy.core.addmul.Pair.hash()=sympy.core.addmul.Pair-class.html#hash,Method sympy.core.functions.Function.hash()=sympy.core.functions.Function-class.html#hash,Method sympy.core.numbers.Constant.hash()=sympy.core.numbers.Constant-class.html#hash,Method sympy.core.numbers.ImaginaryUnit.hash()=sympy.core.numbers.ImaginaryUnit-class.html#hash,Method sympy.core.numbers.Infinity.hash()=sympy.core.numbers.Infinity-class.html#hash,Method sympy.core.numbers.Rational.hash()=sympy.core.numbers.Rational-class.html#hash,Method sympy.core.numbers.Real.hash()=sympy.core.numbers.Real-class.html#hash,Method sympy.core.power.Pow.hash()=sympy.core.power.Pow-class.html#hash,Method sympy.core.symbol.Symbol.hash()=sympy.core.symbol.Symbol-class.html#hash"><a title="sympy.core.addmul.Pair.hash
+sympy.core.hashing.Mpython.add" class="py-name" href="#" onclick="return doclink('link-23', 'add', 'link-23');">add</a></tt><tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name" targets="Method sympy.core.addmul.Pair.hash()=sympy.core.addmul.Pair-class.html#hash,Method sympy.core.basic.Basic.hash()=sympy.core.basic.Basic-class.html#hash,Method sympy.core.functions.Function.hash()=sympy.core.functions.Function-class.html#hash,Method sympy.core.numbers.Constant.hash()=sympy.core.numbers.Constant-class.html#hash,Method sympy.core.numbers.Infinity.hash()=sympy.core.numbers.Infinity-class.html#hash,Method sympy.core.numbers.Rational.hash()=sympy.core.numbers.Rational-class.html#hash,Method sympy.core.numbers.Real.hash()=sympy.core.numbers.Real-class.html#hash,Method sympy.core.power.Pow.hash()=sympy.core.power.Pow-class.html#hash,Method sympy.core.symbol.Symbol.hash()=sympy.core.symbol.Symbol-class.html#hash"><a title="sympy.core.addmul.Pair.hash
+sympy.core.basic.Basic.hash
 sympy.core.functions.Function.hash
 sympy.core.numbers.Constant.hash
-sympy.core.numbers.ImaginaryUnit.hash
 sympy.core.numbers.Infinity.hash
 sympy.core.numbers.Rational.hash
 sympy.core.numbers.Real.hash
@@ -344,7 +346,7 @@ sympy.core.symbol.NCSymbol.commutative" class="py-name" href="#" onclick="return
 <a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">        <tt class="py-name">n</tt><tt class="py-op">,</tt><tt class="py-name">c_part</tt> <tt class="py-op">=</tt> <tt class="py-name">a</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">a</tt><tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> </tt>
 <a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line">        <tt class="py-comment">#so that now "n" is a Number and "c_part" doesn't contain any number</tt> </tt>
 <a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-keyword">if</tt> <tt class="py-name">n</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> <tt class="py-keyword">return</tt> <tt id="link-74" class="py-name"><a title="sympy.core.numbers.Rational" class="py-name" href="#" onclick="return doclink('link-74', 'Rational', 'link-5');">Rational</a></tt><tt class="py-op">(</tt><tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
-<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">        <tt class="py-name">c_part</tt><tt class="py-op">.</tt><tt class="py-name">sort</tt><tt class="py-op">(</tt><tt id="link-75" class="py-name"><a title="sympy.core.basic.Basic" class="py-name" href="#" onclick="return doclink('link-75', 'Basic', 'link-2');">Basic</a></tt><tt class="py-op">.</tt><tt id="link-76" class="py-name" targets="Method sympy.core.basic.Basic.cmphash()=sympy.core.basic.Basic-class.html#cmphash"><a title="sympy.core.basic.Basic.cmphash" class="py-name" href="#" onclick="return doclink('link-76', 'cmphash', 'link-76');">cmphash</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line">        <tt class="py-name">c_part</tt><tt class="py-op">.</tt><tt class="py-name">sort</tt><tt class="py-op">(</tt><tt id="link-75" class="py-name"><a title="sympy.core.basic.Basic" class="py-name" href="#" onclick="return doclink('link-75', 'Basic', 'link-2');">Basic</a></tt><tt class="py-op">.</tt><tt id="link-76" class="py-name" targets="Static Method sympy.core.basic.Basic.cmphash()=sympy.core.basic.Basic-class.html#cmphash"><a title="sympy.core.basic.Basic.cmphash" class="py-name" href="#" onclick="return doclink('link-76', 'cmphash', 'link-76');">cmphash</a></tt><tt class="py-op">)</tt> </tt>
 <a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line">        <tt class="py-comment">#this if is for multiplying Symbol*Matrix and Number*Matrix</tt> </tt>
 <a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line"><tt class="py-comment"></tt>        <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">nc_part</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
 <a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">c_part</tt><tt class="py-op">)</tt> <tt class="py-op">==</tt> <tt class="py-number">1</tt><tt class="py-op">:</tt> </tt>
@@ -623,10 +625,12 @@ sympy.core.addmul.Mul.getab" class="py-name" href="#" onclick="return doclink('l
 <a name="L437"></a><tt class="py-lineno">437</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt class="py-name">a</tt><tt class="py-op">.</tt><tt id="link-137" class="py-name"><a title="sympy.core.addmul.Add.evalf
 sympy.core.addmul.Mul.evalf
 sympy.core.basic.Basic.evalf
+sympy.core.functions.Function.evalf
 sympy.core.functions.abs_.evalf
 sympy.core.functions.exp.evalf
 sympy.core.functions.log.evalf
 sympy.core.numbers.ConstPi.evalf
+sympy.core.numbers.ImaginaryUnit.evalf
 sympy.core.numbers.Number.evalf
 sympy.core.numbers.Rational.evalf
 sympy.core.numbers.Real.evalf
@@ -635,10 +639,12 @@ sympy.modules.trigonometric.cos.evalf
 sympy.modules.trigonometric.sin.evalf" class="py-name" href="#" onclick="return doclink('link-137', 'evalf', 'link-14');">evalf</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> <tt class="py-op">+</tt> <tt class="py-name">b</tt><tt class="py-op">.</tt><tt id="link-138" class="py-name"><a title="sympy.core.addmul.Add.evalf
 sympy.core.addmul.Mul.evalf
 sympy.core.basic.Basic.evalf
+sympy.core.functions.Function.evalf
 sympy.core.functions.abs_.evalf
 sympy.core.functions.exp.evalf
 sympy.core.functions.log.evalf
 sympy.core.numbers.ConstPi.evalf
+sympy.core.numbers.ImaginaryUnit.evalf
 sympy.core.numbers.Number.evalf
 sympy.core.numbers.Rational.evalf
 sympy.core.numbers.Real.evalf
@@ -762,7 +768,7 @@ expandto(location.href);
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Sat Mar 10 19:15:52 2007
+    Generated by Epydoc 3.0beta1 on Mon Mar 12 00:09:05 2007
     </td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
