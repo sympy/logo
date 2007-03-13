@@ -25,3 +25,5 @@ Join the sympy mailinglist and tell us if you have any other ideas.
 
 Python Software Foundation (PSF)'s page for the 2007 summer of code is here:
 http://wiki.python.org/moin/SummerOfCode
+
+list of possible PSF's mentors: http://wiki.python.org/moin/SummerOfCode/Mentors
