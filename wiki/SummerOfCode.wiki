@@ -2,9 +2,11 @@
 
 == Detailed ideas ==
 
+  * See Issues for more details. 
+
   * Reach the capabilities of Ginac
   * symbolic matrices
-  * symbolic integration. See Issues for more details. 
+  * symbolic integration. 
   * implement factorisation
   * asymptotic expansion
   * equations solving
