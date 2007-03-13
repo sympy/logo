@@ -1,4 +1,4 @@
-#summary Some project ideas that might work for Google's summer of code.
+#summary Some project ideas that might work for the Google's summer of code.
 
 == Detailed ideas ==
 
