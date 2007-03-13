@@ -23,5 +23,5 @@ http://code.google.com/p/sympy/wiki/Motivation
 Join the sympy mailinglist and tell us if you have any other ideas.
 
 
-Python Software Foundation (PSF) for the 2007 summer of code is here:
+Python Software Foundation (PSF)'s page for the 2007 summer of code is here:
 http://wiki.python.org/moin/SummerOfCode
