@@ -22,8 +22,17 @@ http://code.google.com/p/sympy/wiki/Motivation
 
 Join the sympy mailinglist and tell us if you have any other ideas.
 
+== How to apply ==
 
-Python Software Foundation (PSF)'s page for the 2007 summer of code is here:
+!SymPy is participating under the umbrella of Python Software Foundation (PSF). 
+
+Go to: http://code.google.com/soc/student_step1.html
+
+and register. Then you should be able to send your application (send it to PSF).
+
+Main page: http://code.google.com/soc/
+Main page for students: http://groups.google.com/group/google-summer-of-code-announce/web/guide-to-the-gsoc-web-app-for-student-applicants
+Advice for students: http://code.google.com/p/google-summer-of-code/wiki/AdviceforStudents
+PSF's page for the 2007 summer of code:
 http://wiki.python.org/moin/SummerOfCode
-
 A list of possible PSF's mentors: http://wiki.python.org/moin/SummerOfCode/Mentors
