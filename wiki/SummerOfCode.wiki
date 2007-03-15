@@ -2,7 +2,7 @@
 
 == Detailed ideas ==
 
-  * See Issues for more details. 
+  * Anything in Issues
 
   * Reach the capabilities of Ginac
   * symbolic matrices
