@@ -20,9 +20,11 @@ Could be found here:
 http://code.google.com/p/sympy/wiki/Motivation
 
 
-Join the sympy mailinglist and tell us if you have any other ideas.
+Join the sympy mailinglist and tell us if you have any other ideas. If you choose any of the above, let us know as well, so we can ellaborate on the idea some more.
 
 == How to apply ==
+
+*Deadline*: March 24th, 2007
 
 !SymPy is participating under the umbrella of Python Software Foundation (PSF). 
 
