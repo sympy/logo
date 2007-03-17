@@ -28,11 +28,13 @@ Join the sympy mailinglist and tell us if you have any other ideas. If you choos
 
 *Deadline*: March 24th, 2007
 
-!SymPy is participating under the umbrella of Python Software Foundation (PSF). 
+Instructions how to apply are written here:
+
+http://groups.google.com/group/sympy/browse_thread/thread/3bce2d7cd8c8d0fd
 
 Go to: http://code.google.com/soc/student_step1.html
 
-and register. Then you should be able to send your application (send it to PSF).
+and register. Then you should be able to send your application (send it to organisations listed in the instructions).
 
 Main page: http://code.google.com/soc/
 
