@@ -27,14 +27,14 @@ class Basic(object):
     
     def __neg__(self):
         from numbers import Rational
-        return self.__mul__(-1, self)
+        return self._domul(Rational(-1),self)
         
     def __pos__(self):
         return self
         
     def __add__(self,a):
         from addmul import Add
-        return Add(self, self.simpify(a))
+        return Add(self, self.sympify(a))
     
     def __radd__(self,a):
         from addmul import Add
@@ -57,21 +57,28 @@ class Basic(object):
         from functions import abs_
         return abs_(self)
         
+    def __radd__(self,a):
+        return self._doadd(a, self)
+        
     def __sub__(self,a):
-        return self.__add__(-a)
+        return self._doadd(self, -a)
         
     def __rsub__(self,a):
         return self._doadd(a, -self)
         
     def __mul__(self,a):
+        try:
+            a=self.sympify(a)
+        except:
+            return a.__rmul__(self)
         return self._domul(self, a)
         
     def __rmul__(self,a):
-        return self.__mul__(a, self)
+        return self._domul(a, self)
         
     def __div__(self,a):
         from numbers import Rational
-        return self.__mul__(self,self.__pow__(a, -1))
+        return self._domul(self,self._dopow(a,Rational(-1)))
         
     def __rdiv__(self,a):
         from numbers import Rational
