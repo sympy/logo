@@ -44,3 +44,6 @@ PSF's page for the 2007 summer of code:
 http://wiki.python.org/moin/SummerOfCode
 
 A list of possible PSF's mentors: http://wiki.python.org/moin/SummerOfCode/Mentors
+
+STScI's page for the 2007 summer of code:
+http://www-int.stsci.edu/~aconti/GSoC.htm
