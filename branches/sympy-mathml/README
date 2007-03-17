@@ -83,4 +83,4 @@ doesn't work, so you need to download and install it by hand.
 
 Once you have a working copy of epydoc, execute from sympy's directory: 
 
-epydoc --config apidoc.conf
+epydoc --config doc/apidoc.conf
