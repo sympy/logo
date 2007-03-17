@@ -47,6 +47,16 @@ class Integral(Basic):
             self.x = args
             self.a , self.b = None, None
             
+    def mathml(self, headers=True):
+        s = "<apply><int/>" + "<bvar>" + self.x.mathml(headers=False) + "</bvar>" 
+        if not isinstance(self.a, type(None)): # if this is a definite integral, put the integration limits
+            s += "<lowlimit>" + self.a.mathml(headers=False) + "</lowlimit>"
+            s += "<uplimit>" + self.b.mathml(headers=False) + "</uplimit>"
+        s += self.f.mathml(headers=False) + "</apply>"
+        if headers == True:
+            s = self._add_mathml_headers(s)
+        return s
+            
     def diff(self,sym):
         if sym==self.x:
             raise IntegralError("Cannot differentiate the integration variable")

@@ -6,6 +6,8 @@ from prettyprint import StringPict
 dummycount=0
 
 class Symbol(Basic):
+    
+    _mathml_tag = "ci"
 
     def __init__(self,name,dummy=False, real=False, nametex=None):
         """if dummy==True, then this Symbol is totally unique, i.e.::
@@ -17,19 +19,19 @@ class Symbol(Basic):
 
         """
         Basic.__init__(self)
-        self.name=name
+        self.name = name
         if nametex:
             self.name_tex = nametex
         else:
             self.name_tex = name
-        self.dummy=dummy
+        self.dummy = dummy
         self.real = real
         if dummy:
             global dummycount
             dummycount+=1
             self.dummycount=dummycount
 
-    def print_sympy(self):
+    def __str__(self):
         return str(self.name)
 
     def print_tex(self):
@@ -37,7 +39,7 @@ class Symbol(Basic):
 
     def print_pretty(self):
 		return StringPict(self.print_sympy())
-
+        
     def hash(self):
         if self.mhash: 
             return self.mhash.value

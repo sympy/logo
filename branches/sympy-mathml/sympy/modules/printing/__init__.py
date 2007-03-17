@@ -1,0 +1,1 @@
+from gtk import print_gtk

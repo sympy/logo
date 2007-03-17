@@ -9,11 +9,12 @@ class AutomaticEvaluationType(type):
         if evaluate: return obj.eval()
         else: return obj
 
-outputType="sympy" #sympy, pretty, pygame, tex
 
 class Basic(object):
     
     __metaclass__ = AutomaticEvaluationType
+    
+    _mathml_tag = "ci"
     
     def __init__(self):
         self.mhash = 0
@@ -22,27 +23,23 @@ class Basic(object):
         return str(self)
 
     def __str__(self):
-        if outputType == "sympy":
-            return self.print_sympy()
-        elif outputType == "pretty":
-            return str(self.print_pretty())
-        elif outputType == "tex":
-            return self.print_tex()
-        elif outputType == "pygame":
-            return self.print_pygame()
-        else:
-            raise NotImplementedError("Unknown outputType=%s"%outputType)
+        return str(type(self))
     
     def __neg__(self):
         from numbers import Rational
-        return self._domul(Rational(-1),self)
+        return self.__mul__(-1, self)
         
     def __pos__(self):
         return self
         
     def __add__(self,a):
-        return self._doadd(self, a)
-   
+        from addmul import Add
+        return Add(self, self.simpify(a))
+    
+    def __radd__(self,a):
+        from addmul import Add
+        return Add(self.sympify(a), self)
+    
     def __float__(self):
         return float(self.evalf())
  
@@ -60,28 +57,21 @@ class Basic(object):
         from functions import abs_
         return abs_(self)
         
-    def __radd__(self,a):
-        return self._doadd(a, self)
-        
     def __sub__(self,a):
-        return self._doadd(self, -a)
+        return self.__add__(-a)
         
     def __rsub__(self,a):
         return self._doadd(a, -self)
         
     def __mul__(self,a):
-        try:
-            a=self.sympify(a)
-        except:
-            return a.__rmul__(self)
         return self._domul(self, a)
         
     def __rmul__(self,a):
-        return self._domul(a, self)
+        return self.__mul__(a, self)
         
     def __div__(self,a):
         from numbers import Rational
-        return self._domul(self,self._dopow(a,Rational(-1)))
+        return self.__mul__(self,self.__pow__(a, -1))
         
     def __rdiv__(self,a):
         from numbers import Rational
@@ -314,10 +304,6 @@ class Basic(object):
         except ValueError:
             return False
 
-    def print_sympy(self):
-        """The canonical sympy representation"""
-        return str(type(self))
-
     def print_pretty(self):
         """The pretty printing"""
         raise NotImplementedError("Pretty printing not implemented for %s"
@@ -329,6 +315,15 @@ class Basic(object):
         s=self.print_tex()
         print_pygame(s)
         return s
+    
+    def _get_mathml(self, headers=True):
+        """Returns a MathML expression representing the current object"""
+        s =  "<%s> %s </%s>" % (self._mathml_tag, str(self), self._mathml_tag)
+        if headers == True:
+            s = self._add_mathml_headers(s)
+        return s
+    
+    mathml = property(_get_mathml)
 
     def print_tex(self):
         """The TeX printing"""
@@ -338,6 +333,14 @@ class Basic(object):
     def print_tree(self):
         """The canonical tree representation"""
         return str(self)
+    
+    @staticmethod
+    def _add_mathml_headers(s):
+        return """<math xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.w3.org/1998/Math/MathML
+            http://www.w3.org/Math/XMLSchema/mathml2/mathml2.xsd">\n  """ + s + "\n</math>"
+
 
 def _isnumber(x):
     #don't use this function. Use x.isnumber() instead
