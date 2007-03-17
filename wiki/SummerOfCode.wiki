@@ -47,3 +47,6 @@ A list of possible PSF's mentors: http://wiki.python.org/moin/SummerOfCode/Mento
 
 STScI's page for the 2007 summer of code:
 http://www-int.stsci.edu/~aconti/GSoC.htm
+
+Detached Solutions' page for the 2007 summer of code:
+http://www.detachedsolutions.com/soc/2007/
