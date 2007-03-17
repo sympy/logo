@@ -50,3 +50,6 @@ http://www-int.stsci.edu/~aconti/GSoC.htm
 
 Detached Solutions' page for the 2007 summer of code:
 http://www.detachedsolutions.com/soc/2007/
+
+PSU's page for the 2007 summer of code:
+http://summer.cs.pdx.edu/ideas
