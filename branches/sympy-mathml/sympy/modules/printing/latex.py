@@ -1,6 +1,6 @@
 """ Some utility functions to convert sympy's objects to latex code"""
 
-from sympy.modules.mathml import mathml2latex
+from sympy.modules.mathml import mml2latex
 
 def print_latex(x):
     """Returns latex code representing the current object. 

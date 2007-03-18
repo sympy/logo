@@ -383,6 +383,7 @@ class Basic(object):
         return str(self)
 
 def _isnumber(x):
+    # TODO: remove
     #don't use this function. Use x.isnumber() instead
     from numbers import Number
     from basic import Basic
