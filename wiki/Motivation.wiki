@@ -4,7 +4,7 @@
 
 The motivation to work on sympy is given on the main page (http://code.google.com/p/sympy/) in the section Motivation. 
 
-Here are some ideas where sympy could be effectively used. All of those are things can can be done in Maple/Mathematica, but it is much more convenient and easier to have it in Python.
+Here are some ideas where sympy could be effectively used. All of those are things that can be done in Maple/Mathematica, but it is much more convenient and easier to have it in Python.
 
 
 = Geometry =
