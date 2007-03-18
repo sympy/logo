@@ -23,9 +23,6 @@ def apply_xsl(mml, xsl):
         file. This file name is relative to the PYTHONPATH
     """
     
-    if not mml.startswith('<math'):
-        mml = add_mathml_headers(mml)
-    
     s = get_resource(xsl).read()
     
     styledoc = libxml2.parseDoc(s)
@@ -41,17 +38,33 @@ def apply_xsl(mml, xsl):
     
     return s
     
-    
 def c2p(mml, simple=False):
     """Transforms a document in MathML content (like the one that sympy preduces)
     in one document in MathML presentation, more suitable for printing, and more
     widely accepted
     """
     
+    if not mml.startswith('<math'):
+        mml = add_mathml_headers(mml)
+    
     if simple:
         return apply_xsl(mml, 'mathml/data/simple_mmlctop.xsl')
     
     return apply_xsl(mml, 'mathml/data/mmlctop.xsl')
     
+def mml2latex(mml):
+    """Translate ContetMathML (like the one that sympy produces) into 
+    latex. 
     
+    Example
+    =======
+    >>> from sympy import *
+    >>> x = Symbol('x')
+    >>> from sympy.modules.mathml import mml2latex
+    >>> print mml2latex( integrate(x*y+1, x, evaluate=False).mathml)
+    $\int \left( 1 +yx\right)dx$
+
+    """
+    
+    return apply_xsl(c2p(mml), 'mathml/data/mmltex.xsl')
 
