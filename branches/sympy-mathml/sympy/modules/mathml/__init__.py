@@ -58,11 +58,11 @@ def mml2latex(mml):
     
     Example
     =======
-    >>> from sympy import *
-    >>> x = Symbol('x')
-    >>> from sympy.modules.mathml import mml2latex
-    >>> print mml2latex( integrate(x*y+1, x, evaluate=False).mathml)
-    $\int \left( 1 +yx\right)dx$
+        >>> from sympy import *
+        >>> x = Symbol('x')
+        >>> from sympy.modules.mathml import mml2latex
+        >>> print mml2latex( integrate(x*y+1, x, evaluate=False).mathml)
+        $\int \left( 1 +yx\right)dx$
 
     """
     

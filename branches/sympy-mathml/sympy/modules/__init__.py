@@ -16,5 +16,6 @@ from sympy.modules.trigonometric import sin, cos, tan, arctan
 from sympy.modules.limits import limit, limitinf, Limit
 from sympy.modules.integrals import integrate, IntegralError
 from sympy.modules.polynomials import ispoly
-from sympy.modules.matrices import Matrix, zero, one, gamma, sigma, \
-    minkowski_tensor
+from sympy.modules.matrices import Matrix, zero, one, gamma, sigma
+from sympy.modules.matrices import minkowski_tensor
+from sympy.modules.printing import print_latex

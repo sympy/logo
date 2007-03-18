@@ -3,6 +3,12 @@
 		xmlns:m="http://www.w3.org/1998/Math/MathML"
                 version='1.0'>
                 
+<!-- 
+Copyright (C) 2001, 2002 Vasil Yaroshevich
+
+Modified Fabian Seoane 2007 for sympy
+-->
+                
 <xsl:output method="text" indent="no" encoding="UTF-8"/>
 
 <!-- ====================================================================== -->

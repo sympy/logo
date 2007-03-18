@@ -11,6 +11,8 @@ command line options:
   -h : prints this help message
 """
 
+__author__ = "Fabian Seoane <fabian@fseoane.net>"
+
 welcome_msg = """
 Python console for sympy.
 
