@@ -27,12 +27,13 @@ class Pair(Basic):
     def _get_mathml(self, headers=True):
         s = "<apply>" + "<" + self._mathml_tag + "/>"
         for a in self.args:
-            for line in a.mathml(headers=False).split('\n'):
-                s += 2 * "  " + line + "\n"
+                s += a.mathml
         s += "</apply>"
         if headers: 
             s = self._add_mathml_headers(s)
         return s
+    
+    mathml = property(_get_mathml)
             
     def hash(self):
         if self.mhash: 
@@ -137,37 +138,6 @@ class Mul(Pair):
         return f % tuple([x.print_sympy() for x in a])
     
 
-    def print_tex(self):
-        f = ""
-        a = self.args
-        if isinstance(a[0],Rational):
-            if a[0].isminusone():
-                f = "-"
-                a = self.args[1:]
-            elif a[0].isone():
-                f = ""
-                a = self.args[1:]
-        for x in a:
-            if isinstance(x,Pair):
-                f += "(%s)"
-            else:
-                f += "%s "
-        f = f[:-1]
-        return f % tuple([x.print_tex() for x in a])
-
-    def print_pretty(self):
-        result = []
-        for arg in self.args:
-            argpretty = arg.print_pretty()
-            if result:
-                if argpretty.height()>1: result.append(" ")
-                result.append('*')
-                if argpretty.height()>1: result.append(" ")
-            if isinstance(arg, Add):
-                argpretty = argpretty.parens()
-            result.append(argpretty)
-        return StringPict.next(*result)
-        
     def print_prog(self):
         f = "Mul(%s"+",%s"*(len(self.args)-1)+")"
         return f % tuple([str(x) for x in self.args])
@@ -181,6 +151,7 @@ class Mul(Pair):
 
     @staticmethod
     def try_to_coerce(x, y):
+        #TODO: see __coerce__
         """Tries to multiply x * y in this order and see if it simplifies. 
         
         If it succeeds, returns (x*y, True)
@@ -370,16 +341,16 @@ class Add(Pair):
         f = "Add(%s"+",%s"*(len(self.args)-1)+")"
         return f % tuple([str(x) for x in self.args])
 
-    def print_sympy(self):
+    def __str__(self):
         """Returns a string representation of the expression in self."""
         
         f = "%s" % self.args[0].print_sympy()
         for i in range(1,len(self.args)):
             num_part = _extract_numeric(self.args[i])[0]
             if num_part < 0:
-              f += "%s" % self.args[i].print_sympy()
+              f += "%s" % self(self.args[i])
             else:
-              f += "+%s" % self.args[i].print_sympy()
+              f += "+%s" % str(self.args[i])
         return f    
 
     def print_tex(self):

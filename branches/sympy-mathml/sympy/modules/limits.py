@@ -84,7 +84,7 @@ which is the most difficult part of the algorithm.
 """
 
 import sympy as s
-from sympy import Basic, mhash
+from sympy.core import Basic, mhash
 from sympy.core.prettyprint import StringPict
 
 from decorator import decorator
@@ -204,13 +204,13 @@ def sign(e,x):
         e<0 ... -1
     """
     #print "sign:",e
-    if isinstance(e,s.Number):
+    if isinstance(e,s.core.Number):
         return e.sign()
     elif not e.has(x):
         return e.evalf() > 0
     elif e == x: 
         return 1
-    elif isinstance(e,s.Mul): 
+    elif isinstance(e,s.core.Mul): 
         a,b=e.getab()
         return sign(a,x)*sign(b,x)
 #    elif isinstance(e,s.add): 
@@ -218,19 +218,19 @@ def sign(e,x):
 #        return sign(a,x)*sign(b,x)
     elif isinstance(e,s.exp): 
         return 1 
-    elif isinstance(e,s.Pow):
+    elif isinstance(e, s.core.Pow):
         if sign(e.base,x) == 1: 
             return 1
-    elif isinstance(e,s.log): 
-        return sign(e.arg-1,x)
-    elif isinstance(e,s.Add):
+    elif isinstance(e, s.log): 
+        return sign(e.arg-1, x)
+    elif isinstance(e, s.core.Add):
         #print limitinf(e,x) 
         #print sign(limitinf(e,x),x) 
         return sign(limitinf(e,x),x) #FIXME this is wrong for -infty
     raise "cannot determine the sign of %s"%e
 
 def tryexpand(a):
-    if isinstance(a,s.Mul) or isinstance(a,s.Pow) or isinstance(a,s.Add):
+    if isinstance(a,s.core.Mul) or isinstance(a,s.core.Pow) or isinstance(a,s.core.Add):
         return a.expand()
     else:
         return a
@@ -315,13 +315,13 @@ def mrv(e,x):
     "Returns the list of most rapidly varying (mrv) subexpressions of 'e'"
     if not e.has(x): return []
     elif e == x: return [x]
-    elif isinstance(e, s.Mul): 
+    elif isinstance(e, s.core.Mul): 
         a,b = e.getab()
         return max(mrv(a,x),mrv(b,x),x)
-    elif isinstance(e, s.Add): 
+    elif isinstance(e, s.core.Add): 
         a,b = e.getab()
         return max(mrv(a,x),mrv(b,x),x)
-    elif isinstance(e, s.Pow):
+    elif isinstance(e, s.core.Pow):
         if e.exp.has(x):
             return mrv(s.exp(e.exp * s.log(e.base)),x)
         else:
@@ -333,7 +333,7 @@ def mrv(e,x):
             return max([e],mrv(e.arg, x), x)
         else:
             return mrv(e.arg,x)
-    elif isinstance(e, s.Function): 
+    elif isinstance(e, s.core.Function): 
         return mrv(e.arg,x)
     raise "unimplemented in mrv: %s"%e
 

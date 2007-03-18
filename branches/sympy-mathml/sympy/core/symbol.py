@@ -6,26 +6,41 @@ from prettyprint import StringPict
 dummycount=0
 
 class Symbol(Basic):
+    """
+    Assumptions: 
+       is_real = True
+       is_commutative = True
+       
+   You can override the default assumptions in the constructor:
+   >>> A = Symbol('A', is_commutative = False)
+   A
+   """
     
     _mathml_tag = "ci"
 
-    def __init__(self,name,dummy=False, real=False, nametex=None):
+    def __init__(self, name, dummy=False, *args, **kwargs):
         """if dummy==True, then this Symbol is totally unique, i.e.::
-            Symbol("x")==Symbol("x")
-        but::
-            Symbol("x",True)!=Symbol("x",True)
-
-            real ... does the symbol represent a real or complex number?
+        
+        >>> Symbol("x") == Symbol("x")
+        True
+        
+        but with the dummy variable ::
+        
+        >>> Symbol("x", dummy = True) == Symbol("x", dummy = True)
+        False
 
         """
-        Basic.__init__(self)
+        
+        __assumptions = {
+                         'is_commutative' : True, 
+                         }
+        
+        for k in kwargs.keys():
+            __assumptions[k] = kwargs[k]
+        
+        Basic.__init__(self, **__assumptions)
         self.name = name
-        if nametex:
-            self.name_tex = nametex
-        else:
-            self.name_tex = name
         self.dummy = dummy
-        self.real = real
         if dummy:
             global dummycount
             dummycount+=1

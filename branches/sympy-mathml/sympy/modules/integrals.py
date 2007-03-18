@@ -47,7 +47,7 @@ class Integral(Basic):
             self.x = args
             self.a , self.b = None, None
             
-    def mathml(self, headers=True):
+    def _get_mathml(self, headers=True):
         s = "<apply><int/>" + "<bvar>" + self.x.mathml(headers=False) + "</bvar>" 
         if not isinstance(self.a, type(None)): # if this is a definite integral, put the integration limits
             s += "<lowlimit>" + self.a.mathml(headers=False) + "</lowlimit>"

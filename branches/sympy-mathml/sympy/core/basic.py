@@ -11,13 +11,60 @@ class AutomaticEvaluationType(type):
 
 
 class Basic(object):
+    """
+    Base class for all objects in sympy
     
+    possible assumptions are: 
+        
+        - is_real
+        
+        - is_commutative
+        
+        - is_bounded
+        
+    Assumptions can have 3 possible values: 
+    
+        - True, when we are sure about a property. For example, when we are
+        working only with real numbers:
+        >>> x = Symbol('x', is_real = True)
+        x
+        
+        - False
+        
+        - None (if you don't know if the property is True or false)
+        
+    """
     __metaclass__ = AutomaticEvaluationType
     
-    _mathml_tag = "ci"
+    __mathml_tag = "ci"
     
-    def __init__(self):
+    __assumptions = {
+                     'is_real' : None, 
+                     'is_commutative' : None, 
+                     'is_bounded' : None, 
+                     }
+    
+    def __init__(self, *args, **kwargs):
         self.mhash = 0
+        for k in kwargs.keys():
+            if self.__assumptions.has_key(k):
+                self.__assumptions[k] = kwargs[k]
+            else:
+                raise NotImplementedError ( "Assumption not implemented" )
+        
+    def __add__(self,a):
+        from addmul import Add
+        return Add(self, self.sympify(a))
+    
+    def __radd__(self,a):
+        from addmul import Add
+        return Add(self.sympify(a), self)
+        
+    def __getattr__(self, name):
+        if self.__assumptions.has_key(name):
+            return self.__assumptions[name]
+        else:
+            raise AttributeError("Attribute not found in this class")
         
     def __repr__(self):
         return str(self)
@@ -31,14 +78,6 @@ class Basic(object):
         
     def __pos__(self):
         return self
-        
-    def __add__(self,a):
-        from addmul import Add
-        return Add(self, self.sympify(a))
-    
-    def __radd__(self,a):
-        from addmul import Add
-        return Add(self.sympify(a), self)
     
     def __float__(self):
         return float(self.evalf())
@@ -198,6 +237,7 @@ class Basic(object):
         return self.subs(sub,n)!=self
         
     def leadterm(self,x):
+        #TODO: move out of Basic
         """Returns the leading term c0*x^e0 of the power series 'self' in x
         with the lowest power of x in a form (c0,e0)
         """
@@ -212,6 +252,8 @@ class Basic(object):
             return x[0]
         
         def extract(t,x):
+            # TODO: move out of Basic
+            # 
             """Parses "t(x)", which is expected to be in the form c0*x^e0,
             and returns (c0,e0). It raises an exception, if "t(x)" is not
             in this form.
@@ -245,6 +287,7 @@ class Basic(object):
         return lowest[0].subs(l,-log(x)), lowest[1].subs(l,-log(x))
         
     def ldegree(self,sym):
+        #TODO: move out of Basic
         """Returns the lowest power of the sym
         """
         return self.leadterm(sym)[1]
@@ -262,6 +305,7 @@ class Basic(object):
         return self.subs(I,-I)
 
     def sqrt(self):
+        #TODO: move to functions
         """Returns square root of self."""
         from numbers import Rational
         return (self**(Rational(1)/2))

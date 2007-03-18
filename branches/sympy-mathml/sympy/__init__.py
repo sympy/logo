@@ -49,7 +49,8 @@ searching for examples on how to extend sympy
 G{packagetree sympy}
 """
 
-from core import *
-from modules import *
-
 __version__ = "0.3-pre"
+
+from sympy.core import Symbol, Rational, Real, exp, log, infty, pi
+from sympy.modules.limits import limit, limitinf
+from sympy.modules.trigonometric import sin, cos, tan
