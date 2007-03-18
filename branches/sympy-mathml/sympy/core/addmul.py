@@ -24,13 +24,11 @@ class Pair(Basic):
     def __lt__(self, a):
         return self.evalf() < a
     
-    def _get_mathml(self, headers=True):
+    def _get_mathml(self):
         s = "<apply>" + "<" + self._mathml_tag + "/>"
         for a in self.args:
                 s += a.mathml
         s += "</apply>"
-        if headers: 
-            s = self._add_mathml_headers(s)
         return s
     
     mathml = property(_get_mathml)

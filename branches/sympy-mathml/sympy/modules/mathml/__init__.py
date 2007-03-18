@@ -9,18 +9,25 @@ import libxml2
 import libxslt
 from sympy.modules.pkgdata import get_resource
 
+def add_mathml_headers(s):
+    return """<math xmlns:mml="http://www.w3.org/1998/Math/MathML"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.w3.org/1998/Math/MathML
+        http://www.w3.org/Math/XMLSchema/mathml2/mathml2.xsd">\n  """ + s + "\n</math>"
 
-def mathml_ctop(mml, simple=False):
-    """Transforms a document in MathML content (like the one that sympy preduces)
-    in one document in MathML presentation, more suitable for printing, and more
-    widely accepted
+
+def apply_xsl(mml, xsl):
+    """Apply a xsl to a MathML string
+    @param mml: a string with MathML code
+    @param xsl: a string representing a path to a xsl (xml sylesheet) 
+        file. This file name is relative to the PYTHONPATH
     """
     
-    if simple:
-        s = get_resource('mathml/data/simple_mmlctop.xsl').read()
-    else:
-        s = get_resource('mathml/data/mmlctop.xsl').read()
-
+    if not mml.startswith('<math'):
+        mml = add_mathml_headers(mml)
+    
+    s = get_resource(xsl).read()
+    
     styledoc = libxml2.parseDoc(s)
     style = libxslt.parseStylesheetDoc(styledoc)
     
@@ -33,6 +40,18 @@ def mathml_ctop(mml, simple=False):
     sourceDoc.freeDoc()
     
     return s
+    
+    
+def c2p(mml, simple=False):
+    """Transforms a document in MathML content (like the one that sympy preduces)
+    in one document in MathML presentation, more suitable for printing, and more
+    widely accepted
+    """
+    
+    if simple:
+        return apply_xsl(mml, 'mathml/data/simple_mmlctop.xsl')
+    
+    return apply_xsl(mml, 'mathml/data/mmlctop.xsl')
     
     
 

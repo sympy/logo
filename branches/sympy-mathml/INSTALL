@@ -8,15 +8,14 @@ The simplest way to compile this package is:
 
   1. `cd` to the directory containing the package's source code.
 
-  2. Type `./setup.py build` to build the package.
+  2. Type `python setup.py build` to build the package.
 
-  3. Type `su` to become the superuser
+  3. Type `sudo python setup.py install` to install the module.
 
-  4. Type `./setup.py install` to install the module.
-
-  5. You can remove the compiled extension modules and other installation
+  4. You can remove the compiled extension modules and other installation
      related files from the source code directory by typing
-     `./setup clean --all clean`. 
+     `sudo python setup.py clean --all clean`. 
+
 
 Operation Controls
 ==================

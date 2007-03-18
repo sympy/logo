@@ -23,7 +23,7 @@ class Number(Basic):
         
     def __int__(self):
         raise NotImplementedError
-        
+    
     def __float__(self):
         return float(self.evalf())
     
@@ -205,7 +205,7 @@ class Rational(Number):
             a, b = b, a % b
         return a
         
-    def print_sympy(self):
+    def __str__(self):
         if self.q == 1:
             f = "%d"
             return f % (self.p)

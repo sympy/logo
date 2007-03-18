@@ -15,7 +15,6 @@
 <!--                         London, Canada N6A 5B7.          -->
 <!--                                                          -->
 <!-- Modified: Fabian Seoane <fabian@fseoane> 2007 for sympy  -->
-<!-- removed some features not supported by mathmlviewer 0.75 -->
 <!--                                                          -->
 <!-- ******************************************************** -->
 
@@ -177,7 +176,7 @@ CONSTANT and SYMBOL ELEMENTS
 
 <!-- ***************** THE TOPMOST ELEMENT: MATH ***************** -->
 
-<xsl:template match = "mml:math">
+<xsl:template match = "math">
   <math>
     <xsl:copy-of select="@*"/>
     <xsl:choose>
@@ -209,21 +208,21 @@ CONSTANT and SYMBOL ELEMENTS
 <!-- value of SEM_SW parameter).  Then the actual template -->
 <!-- is applied to the node.                               -->
 
-<xsl:template match = "mml:*" mode = "semantics">
+<xsl:template match = "*" mode = "semantics">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
   <xsl:choose>
-    <xsl:when test="$SEM_SW=$SEM_STRIP and self::mml:semantics">
-      <xsl:apply-templates select="mml:annotation-xml[@encoding='MathML']">
+    <xsl:when test="$SEM_SW=$SEM_STRIP and self::semantics">
+      <xsl:apply-templates select="annotation-xml[@encoding='MathML']">
         <xsl:with-param name="IN_PREC" select="$IN_PREC"/>
         <xsl:with-param name="PARAM" select="$PARAM"/>
         <xsl:with-param name="PAREN" select="$PAREN"/>
         <xsl:with-param name="PAR_NO_IGNORE" select="$PAR_NO_IGNORE"/>
       </xsl:apply-templates>
     </xsl:when>
-    <xsl:when test="($SEM_SW=$SEM_PASS or $SEM_SW=$SEM_TOP) and self::mml:semantics">
+    <xsl:when test="($SEM_SW=$SEM_PASS or $SEM_SW=$SEM_TOP) and self::semantics">
       <semantics>
         <xsl:apply-templates select="*[1]">   
         <xsl:with-param name="IN_PREC" select="$IN_PREC"/>
@@ -231,20 +230,20 @@ CONSTANT and SYMBOL ELEMENTS
         <xsl:with-param name="PAREN" select="$PAREN"/>
         <xsl:with-param name="PAR_NO_IGNORE" select="$PAR_NO_IGNORE"/>
       </xsl:apply-templates>
-        <xsl:copy-of select="mml:annotation-xml"/>
+        <xsl:copy-of select="annotation-xml"/>
       </semantics>
     </xsl:when>
     <xsl:when test="$SEM_SW=$SEM_ALL">
       <semantics>
         <xsl:choose>
-          <xsl:when test="self::mml:semantics">
+          <xsl:when test="self::semantics">
             <xsl:apply-templates select="*[1]">
               <xsl:with-param name="IN_PREC" select="$IN_PREC"/>
               <xsl:with-param name="PARAM" select="$PARAM"/>
               <xsl:with-param name="PAREN" select="$PAREN"/>
               <xsl:with-param name="PAR_NO_IGNORE" select="$PAR_NO_IGNORE"/>
             </xsl:apply-templates>
-            <xsl:copy-of select="mml:annotation-xml"/>
+            <xsl:copy-of select="annotation-xml"/>
           </xsl:when>
           <xsl:otherwise>
             <xsl:apply-templates select=".">
@@ -262,14 +261,14 @@ CONSTANT and SYMBOL ELEMENTS
     </xsl:when>
     <xsl:when test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:choose>
-        <xsl:when test="self::mml:sematics">
+        <xsl:when test="self::sematics">
           <xsl:copy>
             <xsl:copy-of select="@*"/>
             <xsl:attribute name="xref">
               <xsl:value-of select="@id"/>
             </xsl:attribute>
             <xsl:copy-of select="*[1]"/>
-            <xsl:copy-of select="mml:annotation-xml"/>
+            <xsl:copy-of select="annotation-xml"/>
           </xsl:copy>
         </xsl:when>
         <xsl:otherwise>
@@ -294,7 +293,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:semantics">
+<xsl:template match = "semantics">
   <xsl:apply-templates select="*[1]" mode = "semantics"/>
 </xsl:template>
 
@@ -302,7 +301,7 @@ CONSTANT and SYMBOL ELEMENTS
 
 <!-- ***************** BASIC CONTAINER ELEMENTS ***************** -->
 
-<xsl:template match = "mml:cn">
+<xsl:template match = "cn">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
@@ -319,7 +318,7 @@ CONSTANT and SYMBOL ELEMENTS
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match = "mml:cn" mode="cn">
+<xsl:template match = "cn" mode="cn">
   <xsl:choose>
     <xsl:when test="(not(@type) or @type='integer' or @type='real') and @base">
       <msub>
@@ -352,7 +351,7 @@ CONSTANT and SYMBOL ELEMENTS
         <xsl:apply-templates mode = "semantics"/>
       </mn>
     </xsl:when>
-    <xsl:when test="@type='e-notation' and not(@base) and child::mml:sep[1]">
+    <xsl:when test="@type='e-notation' and not(@base) and child::sep[1]">
       <mrow>
         <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
           <xsl:attribute name="xref">
@@ -364,7 +363,7 @@ CONSTANT and SYMBOL ELEMENTS
         <mn> <xsl:apply-templates select="text()[2]" mode = "semantics"/> </mn>
       </mrow>
     </xsl:when>
-    <xsl:when test="@type='complex-cartesian' and not(@base) and child::mml:sep[1]">
+    <xsl:when test="@type='complex-cartesian' and not(@base) and child::sep[1]">
       <mfenced separators="">
         <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
           <xsl:attribute name="xref">
@@ -384,7 +383,7 @@ CONSTANT and SYMBOL ELEMENTS
         <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2148;</xsl:text> </mo>
       </mfenced>
     </xsl:when>
-    <xsl:when test="@type='complex-cartesian' and @base and child::mml:sep[1]">
+    <xsl:when test="@type='complex-cartesian' and @base and child::sep[1]">
       <msub>
         <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
           <xsl:attribute name="xref">
@@ -407,7 +406,7 @@ CONSTANT and SYMBOL ELEMENTS
         <mn> <xsl:value-of select="@base"/> </mn>
       </msub>
     </xsl:when>
-    <xsl:when test="@type='rational' and not(@base) and child::mml:sep[1]">
+    <xsl:when test="@type='rational' and not(@base) and child::sep[1]">
       <mfrac>
         <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
           <xsl:attribute name="xref">
@@ -418,7 +417,7 @@ CONSTANT and SYMBOL ELEMENTS
         <mn> <xsl:apply-templates select="text()[2]"/> </mn>
       </mfrac>
     </xsl:when>
-    <xsl:when test="@type='rational' and @base and child::mml:sep[1]">
+    <xsl:when test="@type='rational' and @base and child::sep[1]">
       <msub>
         <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
           <xsl:attribute name="xref">
@@ -434,7 +433,7 @@ CONSTANT and SYMBOL ELEMENTS
         <mn> <xsl:value-of select="@base"/> </mn>
       </msub>
     </xsl:when>
-    <xsl:when test="@type='complex-polar' and not(@base) and child::mml:sep[1]">
+    <xsl:when test="@type='complex-polar' and not(@base) and child::sep[1]">
       <mrow>
         <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
           <xsl:attribute name="xref">
@@ -449,7 +448,7 @@ CONSTANT and SYMBOL ELEMENTS
         </mfenced>
       </mrow>
     </xsl:when>
-    <xsl:when test="@type='complex-polar' and @base and child::mml:sep[1]">
+    <xsl:when test="@type='complex-polar' and @base and child::sep[1]">
       <msub>
         <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
           <xsl:attribute name="xref">
@@ -474,7 +473,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:ci">
+<xsl:template match = "ci">
   <xsl:choose>
     <xsl:when test="@type='vector' or @type='matrix' or @type='set'">
       <mi mathvariant="bold">
@@ -496,7 +495,7 @@ CONSTANT and SYMBOL ELEMENTS
         <xsl:apply-templates/>
       </mi>
     </xsl:when>
-    <xsl:when test="child::text() and *[1] and not(*[1]=mml:sep)">
+    <xsl:when test="child::text() and *[1] and not(*[1]=sep)">
       <mrow>
         <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
           <xsl:attribute name="xref">
@@ -524,12 +523,12 @@ CONSTANT and SYMBOL ELEMENTS
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match = "mml:ci/mml:*[not(self::mml:sep)]">
+<xsl:template match = "ci/*[not(self::sep)]">
   <xsl:copy-of select = "."/>
 </xsl:template>
 
 
-<xsl:template match = "mml:csymbol">
+<xsl:template match = "csymbol">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -546,7 +545,7 @@ CONSTANT and SYMBOL ELEMENTS
 
 <!-- General <apply> <AnyFunction/> ... </apply> -->
 <!-- Dependants: csymbol apply[fn inverse compose] -->
-<xsl:template match = "mml:apply">
+<xsl:template match = "apply">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -574,8 +573,8 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<!-- mml:fn is ***DEPRECATED*** -->
-<xsl:template match = "mml:fn">
+<!-- fn is ***DEPRECATED*** -->
+<xsl:template match = "fn">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -588,7 +587,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:interval">
+<xsl:template match = "interval">
   <mfenced>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -606,17 +605,17 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:*[1][self::mml:inverse]]">
+<xsl:template match = "apply[*[1][self::inverse]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
   <xsl:choose>
-    <xsl:when test="*[2]=mml:exp | *[2]=mml:ln | *[2]=mml:sin | *[2]=mml:cos |
-                    *[2]=mml:tan | *[2]=mml:sec | *[2]=mml:csc | *[2]=mml:cot |
-                    *[2]=mml:sinh | *[2]=mml:cosh | *[2]=mml:tanh | *[2]=mml:sech |
-                    *[2]=mml:csch | *[2]=mml:coth | *[2]=mml:arcsin |
-                    *[2]=mml:arccos | *[2]=mml:arctan">
+    <xsl:when test="*[2]=exp | *[2]=ln | *[2]=sin | *[2]=cos |
+                    *[2]=tan | *[2]=sec | *[2]=csc | *[2]=cot |
+                    *[2]=sinh | *[2]=cosh | *[2]=tanh | *[2]=sech |
+                    *[2]=csch | *[2]=coth | *[2]=arcsin |
+                    *[2]=arccos | *[2]=arctan">
       <mo>
         <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
           <xsl:attribute name="xref">
@@ -650,62 +649,62 @@ CONSTANT and SYMBOL ELEMENTS
 
 <xsl:template match = "*" mode="inverse">
   <xsl:choose>
-    <xsl:when test="self::mml:exp">
+    <xsl:when test="self::exp">
       <xsl:value-of select="'ln'"/>
     </xsl:when>
-    <xsl:when test="self::mml:ln">
+    <xsl:when test="self::ln">
       <xsl:value-of select="'exp'"/>
     </xsl:when>
-    <xsl:when test="self::mml:sin">
+    <xsl:when test="self::sin">
       <xsl:value-of select="'arcsin'"/>
     </xsl:when>
-    <xsl:when test="self::mml:cos">
+    <xsl:when test="self::cos">
       <xsl:value-of select="'arccos'"/>
     </xsl:when>
-    <xsl:when test="self::mml:tan">
+    <xsl:when test="self::tan">
       <xsl:value-of select="'arctan'"/>
     </xsl:when>
-    <xsl:when test="self::mml:sec">
+    <xsl:when test="self::sec">
       <xsl:value-of select="'arcsec'"/>
     </xsl:when>
-    <xsl:when test="self::mml:csc">
+    <xsl:when test="self::csc">
       <xsl:value-of select="'arccsc'"/>
     </xsl:when>
-    <xsl:when test="self::mml:cot">
+    <xsl:when test="self::cot">
       <xsl:value-of select="'arccot'"/>
     </xsl:when>
-    <xsl:when test="self::mml:sinh">
+    <xsl:when test="self::sinh">
       <xsl:value-of select="'arcsinh'"/>
     </xsl:when>
-    <xsl:when test="self::mml:cosh">
+    <xsl:when test="self::cosh">
       <xsl:value-of select="'arccosh'"/>
     </xsl:when>
-    <xsl:when test="self::mml:tanh">
+    <xsl:when test="self::tanh">
       <xsl:value-of select="'arctanh'"/>
     </xsl:when>
-    <xsl:when test="self::mml:sech">
+    <xsl:when test="self::sech">
       <xsl:value-of select="'arcsech'"/>
     </xsl:when>
-    <xsl:when test="self::mml:csch">
+    <xsl:when test="self::csch">
       <xsl:value-of select="'arccsch'"/>
     </xsl:when>
-    <xsl:when test="self::mml:coth">
+    <xsl:when test="self::coth">
       <xsl:value-of select="'arccoth'"/>
     </xsl:when>
-    <xsl:when test="self::mml:arcsin">
+    <xsl:when test="self::arcsin">
       <xsl:value-of select="'sin'"/>
     </xsl:when>
-    <xsl:when test="self::mml:arccos">
+    <xsl:when test="self::arccos">
       <xsl:value-of select="'cos'"/>
     </xsl:when>
-    <xsl:when test="self::mml:arctan">
+    <xsl:when test="self::arctan">
       <xsl:value-of select="'tan'"/>
     </xsl:when>
   </xsl:choose>
 </xsl:template>
 
 
-<xsl:template match = "mml:condition">
+<xsl:template match = "condition">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -717,10 +716,10 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:declare"/>
+<xsl:template match = "declare"/>
 
 
-<xsl:template match = "mml:lambda">
+<xsl:template match = "lambda">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -732,7 +731,7 @@ CONSTANT and SYMBOL ELEMENTS
     <mfenced>
       <xsl:for-each select = "*">
         <xsl:choose>
-          <xsl:when test="self::mml:ci or self::mml:cn">
+          <xsl:when test="self::ci or self::cn">
             <xsl:apply-templates select = "." mode="semantics"/>
           </xsl:when>
           <xsl:otherwise>
@@ -747,7 +746,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[*[1][self::mml:compose]]">
+<xsl:template match = "apply[*[1][self::compose]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
@@ -762,7 +761,7 @@ CONSTANT and SYMBOL ELEMENTS
           </xsl:attribute>
         </xsl:if>
         <xsl:apply-templates select = "*[2]" mode="semantics"/>
-        <xsl:for-each select = "mml:*[position()>2]">
+        <xsl:for-each select = "*[position()>2]">
           <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2218;</xsl:text> </mo>
           <xsl:apply-templates select = "." mode="semantics">
             <xsl:with-param name="IN_PREC" select="$FUNCTN_PREC"/>
@@ -794,7 +793,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:ident">
+<xsl:template match = "ident">
   <xsl:choose>
     <xsl:when test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <mtext xref="{@id}">id</mtext>
@@ -806,20 +805,20 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match="mml:apply[*[1]=mml:domain or *[1]=mml:codomain or *[1]=mml:image]">
+<xsl:template match="apply[*[1]=domain or *[1]=codomain or *[1]=image]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
         <xsl:value-of select="@id"/>
       </xsl:attribute>
     </xsl:if>
-	<xsl:if test="*[1]=mml:domain">
+	<xsl:if test="*[1]=domain">
       <mtext>domain</mtext>
 	</xsl:if>
-	<xsl:if test="*[1]=mml:codomain">
+	<xsl:if test="*[1]=codomain">
       <mtext>codomain</mtext>
 	</xsl:if>
-	<xsl:if test="*[1]=mml:image">
+	<xsl:if test="*[1]=image">
       <mtext>image</mtext>
 	</xsl:if>
     <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2061;</xsl:text> </mo>
@@ -830,7 +829,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:domainofapplication">
+<xsl:template match = "domainofapplication">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -842,7 +841,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
     
 
-<xsl:template match="mml:piecewise">
+<xsl:template match="piecewise">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -851,7 +850,7 @@ CONSTANT and SYMBOL ELEMENTS
     </xsl:if> 
     <mo stretchy="true"> { </mo>
     <mtable columnalign="left left">
-      <xsl:for-each select="mml:piece">
+      <xsl:for-each select="piece">
         <mtr>
           <mtd>
             <xsl:apply-templates select="*[position()=1]" mode = "semantics"/>
@@ -862,10 +861,10 @@ CONSTANT and SYMBOL ELEMENTS
           </mtd>
         </mtr>
       </xsl:for-each>
-      <xsl:if test="mml:otherwise">
+      <xsl:if test="otherwise">
         <mtr>
           <mtd>
-            <xsl:apply-templates select="mml:otherwise/*" mode = "semantics"/>
+            <xsl:apply-templates select="otherwise/*" mode = "semantics"/>
           </mtd>
           <mtd>
             <mtext>otherwise</mtext>
@@ -880,7 +879,7 @@ CONSTANT and SYMBOL ELEMENTS
 
 <!-- ***************** ARITHMETIC, ALGEBRA & LOGIC ***************** -->
 
-<xsl:template match = "mml:apply[mml:quotient[1]]">
+<xsl:template match = "apply[quotient[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -915,7 +914,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[*[1][self::mml:exp]]">
+<xsl:template match = "apply[*[1][self::exp]]">
   <msup>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -928,7 +927,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:factorial[1]]">
+<xsl:template match = "apply[factorial[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -944,7 +943,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:max[1] | mml:min[1]]">
+<xsl:template match = "apply[max[1] | min[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -952,41 +951,41 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
     <xsl:choose>
-      <xsl:when test="*[2]=mml:bvar">
+      <xsl:when test="*[2]=bvar">
         <munder>
-          <xsl:if test="*[1]=mml:max">
+          <xsl:if test="*[1]=max">
             <mo> max </mo>
           </xsl:if>
-          <xsl:if test="*[1]=mml:min">
+          <xsl:if test="*[1]=min">
             <mo> min </mo>
           </xsl:if>
           <xsl:apply-templates select="*[2]" mode = "semantics"/>
         </munder>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:if test="*[1]=mml:max">
+        <xsl:if test="*[1]=max">
           <mo> max </mo>
         </xsl:if>
-        <xsl:if test="*[1]=mml:min">
+        <xsl:if test="*[1]=min">
           <mo> min </mo>
         </xsl:if>
       </xsl:otherwise>
 	</xsl:choose>
     <mfenced open="{{" close="}}">
-      <xsl:if test="child::mml:condition">
+      <xsl:if test="child::condition">
         <xsl:attribute name="separators"/>
-        <xsl:if test="*[position()>1 and not(self::mml:bvar) and not(self::mml:condition)]">
+        <xsl:if test="*[position()>1 and not(self::bvar) and not(self::condition)]">
           <mfenced open="" close="" separators=",">
-            <xsl:for-each select = "*[position()>1 and not(self::mml:bvar) and not(self::mml:condition)]">
+            <xsl:for-each select = "*[position()>1 and not(self::bvar) and not(self::condition)]">
               <xsl:apply-templates select = "." mode="semantics"/>
             </xsl:for-each>
           </mfenced>
           <mo lspace="0.1666em" rspace="0.1666em"> | </mo>
         </xsl:if>
-        <xsl:apply-templates select="mml:condition" mode = "semantics"/>
+        <xsl:apply-templates select="condition" mode = "semantics"/>
       </xsl:if>
-      <xsl:if test="not(child::mml:condition)">
-        <xsl:for-each select = "*[position()>1 and not(self::mml:bvar)]">
+      <xsl:if test="not(child::condition)">
+        <xsl:for-each select = "*[position()>1 and not(self::bvar)]">
           <xsl:apply-templates select = "." mode="semantics"/>
         </xsl:for-each>
       </xsl:if>
@@ -995,7 +994,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:minus[1]]">
+<xsl:template match = "apply[minus[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -1042,7 +1041,7 @@ CONSTANT and SYMBOL ELEMENTS
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match = "mml:apply[mml:minus[1]]" mode="minus">
+<xsl:template match = "apply[minus[1]]" mode="minus">
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
@@ -1072,7 +1071,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:plus[1]]">
+<xsl:template match = "apply[plus[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -1119,7 +1118,7 @@ CONSTANT and SYMBOL ELEMENTS
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match = "mml:apply[mml:plus[1]]" mode="plus">
+<xsl:template match = "apply[plus[1]]" mode="plus">
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
@@ -1136,7 +1135,7 @@ CONSTANT and SYMBOL ELEMENTS
           <mo> - </mo>
           <mn> <xsl:value-of select="-."/> </mn>
         </xsl:when>
-        <xsl:when test="self::mml:apply[mml:minus[1]] and not(*[3])">
+        <xsl:when test="self::apply[minus[1]] and not(*[3])">
           <xsl:apply-templates select="." mode = "semantics">
             <xsl:with-param name="IN_PREC" select="$PLUS_PREC"/>
             <xsl:with-param name="PAREN" select="$PAREN"/>
@@ -1157,17 +1156,17 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[*[1][self::mml:power]]">
+<xsl:template match = "apply[*[1][self::power]]">
   <xsl:choose>
-    <xsl:when test="*[2]=mml:apply[mml:ln[1] | mml:log[1] | mml:abs[1] |
-                         mml:gcd[1] | mml:lcm[1] | mml:sin[1] | mml:cos[1] | mml:tan[1] |
-                         mml:sec[1] | mml:csc[1] | mml:cot[1] | mml:sinh[1] |
-                         mml:cosh[1] | mml:tanh[1] | mml:sech[1] | mml:csch[1] |
-                         mml:coth[1] | mml:arcsin[1] | mml:arccos[1] |
-                         mml:arctan[1] | mml:arcsec[1] | mml:arccsc[1] |
-                         mml:arccot[1] | mml:arcsinh[1] | mml:arccosh[1] |
-                         mml:arctanh[1] | mml:arcsech[1] | mml:arccsch [1] |
-                         mml:arccoth[1]]">
+    <xsl:when test="*[2]=apply[ln[1] | log[1] | abs[1] |
+                         gcd[1] | lcm[1] | sin[1] | cos[1] | tan[1] |
+                         sec[1] | csc[1] | cot[1] | sinh[1] |
+                         cosh[1] | tanh[1] | sech[1] | csch[1] |
+                         coth[1] | arcsin[1] | arccos[1] |
+                         arctan[1] | arcsec[1] | arccsc[1] |
+                         arccot[1] | arcsinh[1] | arccosh[1] |
+                         arctanh[1] | arcsech[1] | arccsch [1] |
+                         arccoth[1]]">
       <xsl:apply-templates select="*[2]" mode = "semantics"/>
     </xsl:when>
     <xsl:otherwise>
@@ -1188,7 +1187,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:divide[1]]">
+<xsl:template match = "apply[divide[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -1235,7 +1234,7 @@ CONSTANT and SYMBOL ELEMENTS
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match = "mml:apply[mml:divide[1]]" mode="div">
+<xsl:template match = "apply[divide[1]]" mode="div">
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
@@ -1260,7 +1259,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:rem[1]]">
+<xsl:template match = "apply[rem[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -1307,7 +1306,7 @@ CONSTANT and SYMBOL ELEMENTS
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match = "mml:apply[mml:rem[1]]" mode="rem">
+<xsl:template match = "apply[rem[1]]" mode="rem">
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
@@ -1327,7 +1326,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:times[1]]">
+<xsl:template match = "apply[times[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -1374,7 +1373,7 @@ CONSTANT and SYMBOL ELEMENTS
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match = "mml:apply[mml:times[1]]" mode="times">
+<xsl:template match = "apply[times[1]]" mode="times">
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
@@ -1397,7 +1396,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[*[1]=mml:root and *[2]=mml:degree]">
+<xsl:template match = "apply[*[1]=root and *[2]=degree]">
   <mroot>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -1412,7 +1411,7 @@ CONSTANT and SYMBOL ELEMENTS
   </mroot>
 </xsl:template>
 
-<xsl:template match = "mml:apply[*[1]=mml:root and not(*[2]=mml:degree)]">
+<xsl:template match = "apply[*[1]=root and not(*[2]=degree)]">
   <msqrt>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -1427,27 +1426,27 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:gcd[1] | mml:lcm[1]]">
+<xsl:template match = "apply[gcd[1] | lcm[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
         <xsl:value-of select="@id"/>
       </xsl:attribute>
     </xsl:if>
-    <xsl:if test="not(parent::mml:apply[mml:power[1]])">
-      <xsl:if test="mml:gcd[1]">
+    <xsl:if test="not(parent::apply[power[1]])">
+      <xsl:if test="gcd[1]">
         <mo> gcd </mo>
       </xsl:if>
-      <xsl:if test="mml:lcm[1]">
+      <xsl:if test="lcm[1]">
         <mo> lcm </mo>
       </xsl:if>
     </xsl:if>
-    <xsl:if test="parent::mml:apply[mml:power[1]]">
+    <xsl:if test="parent::apply[power[1]]">
       <msup>
-      <xsl:if test="mml:gcd[1]">
+      <xsl:if test="gcd[1]">
         <mo> gcd </mo>
       </xsl:if>
-      <xsl:if test="mml:lcm[1]">
+      <xsl:if test="lcm[1]">
         <mo> lcm </mo>
       </xsl:if>
         <xsl:apply-templates select = "../*[3]" mode = "semantics"/>
@@ -1463,7 +1462,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:and[1]]">
+<xsl:template match = "apply[and[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -1509,7 +1508,7 @@ CONSTANT and SYMBOL ELEMENTS
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match = "mml:apply[mml:and[1]]" mode="and">
+<xsl:template match = "apply[and[1]]" mode="and">
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
@@ -1531,7 +1530,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:or[1]]">
+<xsl:template match = "apply[or[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -1577,7 +1576,7 @@ CONSTANT and SYMBOL ELEMENTS
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match = "mml:apply[mml:or[1]]" mode="or">
+<xsl:template match = "apply[or[1]]" mode="or">
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
@@ -1599,7 +1598,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:xor[1]]">
+<xsl:template match = "apply[xor[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -1644,7 +1643,7 @@ CONSTANT and SYMBOL ELEMENTS
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match = "mml:apply[mml:xor[1]]" mode="xor">
+<xsl:template match = "apply[xor[1]]" mode="xor">
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
@@ -1666,7 +1665,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:not[1]]">
+<xsl:template match = "apply[not[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -1708,7 +1707,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:forall[1]]">
+<xsl:template match = "apply[forall[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -1716,30 +1715,30 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
     <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2200;</xsl:text> </mo>
-    <xsl:if test="count(mml:bvar)=1">
-      <xsl:apply-templates select = "mml:bvar" mode="semantics"/>
+    <xsl:if test="count(bvar)=1">
+      <xsl:apply-templates select = "bvar" mode="semantics"/>
     </xsl:if>
-    <xsl:if test="count(mml:bvar) &gt; 1">
+    <xsl:if test="count(bvar) &gt; 1">
       <mfenced open="" close="">
-        <xsl:for-each select = "mml:bvar">
+        <xsl:for-each select = "bvar">
           <xsl:apply-templates select = "." mode="semantics"/>
         </xsl:for-each>
       </mfenced>
     </xsl:if>
-	<xsl:if test="mml:condition">
+	<xsl:if test="condition">
       <mo> : </mo>
-      <xsl:apply-templates select = "mml:condition/*" mode = "semantics"/>
+      <xsl:apply-templates select = "condition/*" mode = "semantics"/>
     </xsl:if>
-	<xsl:if test="*[position()>1 and not(self::mml:bvar) and not(self::mml:condition)]">
+	<xsl:if test="*[position()>1 and not(self::bvar) and not(self::condition)]">
       <mo> , </mo>
-      <xsl:apply-templates select = "*[position()>1 and not(self::mml:bvar) and
-                                not(self::mml:condition)]" mode = "semantics"/>
+      <xsl:apply-templates select = "*[position()>1 and not(self::bvar) and
+                                not(self::condition)]" mode = "semantics"/>
     </xsl:if>
   </mrow>
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:exists[1]]">
+<xsl:template match = "apply[exists[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -1747,31 +1746,31 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
     <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2203;</xsl:text> </mo>
-    <xsl:if test="count(mml:bvar) &gt; 1">
+    <xsl:if test="count(bvar) &gt; 1">
       <mfenced open="" close="">
-        <xsl:for-each select = "mml:bvar">
+        <xsl:for-each select = "bvar">
           <xsl:apply-templates select = "." mode="semantics"/>
         </xsl:for-each>
       </mfenced>
     </xsl:if>
-    <xsl:if test="count(mml:bvar)=1">
-      <xsl:apply-templates select = "mml:bvar" mode="semantics"/>
+    <xsl:if test="count(bvar)=1">
+      <xsl:apply-templates select = "bvar" mode="semantics"/>
     </xsl:if>
-    <xsl:if test="mml:condition">
+    <xsl:if test="condition">
       <mo> : </mo>
-      <xsl:apply-templates select = "mml:condition/*" mode = "semantics"/>
+      <xsl:apply-templates select = "condition/*" mode = "semantics"/>
     </xsl:if>
-    <xsl:if test="*[position()>1 and not(self::mml:bvar) and not(self::mml:condition)]">
+    <xsl:if test="*[position()>1 and not(self::bvar) and not(self::condition)]">
       <mo> , </mo>
-      <xsl:apply-templates select = "*[position()>1 and not(self::mml:bvar) and
-                                not(self::mml:condition)]" mode = "semantics"/>
+      <xsl:apply-templates select = "*[position()>1 and not(self::bvar) and
+                                not(self::condition)]" mode = "semantics"/>
     </xsl:if>
   </mrow>
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:abs[1]]">
-  <xsl:if test="not(parent::mml:apply[mml:power[1]])">
+<xsl:template match = "apply[abs[1]]">
+  <xsl:if test="not(parent::apply[power[1]])">
     <mfenced open="&#x2223;" close="&#x2223;" separators="">
       <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
         <xsl:attribute name="xref">
@@ -1781,7 +1780,7 @@ CONSTANT and SYMBOL ELEMENTS
       <xsl:apply-templates select = "*[position()>1]" mode = "semantics"/>
     </mfenced>
   </xsl:if>
-  <xsl:if test="parent::mml:apply[mml:power[1]]">
+  <xsl:if test="parent::apply[power[1]]">
     <msup>
       <mfenced open="&#x2223;" close="&#x2223;" separators="">
         <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
@@ -1797,7 +1796,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:conjugate[1]]">
+<xsl:template match = "apply[conjugate[1]]">
   <mover>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -1812,7 +1811,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:arg[1] | mml:real[1] | mml:imaginary[1]]">
+<xsl:template match = "apply[arg[1] | real[1] | imaginary[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -1820,13 +1819,13 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
     <mo>
-      <xsl:if test="mml:arg">
+      <xsl:if test="arg">
         <xsl:value-of select="'arg'"/>
       </xsl:if>
-      <xsl:if test="mml:real">
+      <xsl:if test="real">
         <xsl:text disable-output-escaping='yes'>&amp;#x211C;</xsl:text>
       </xsl:if>
-      <xsl:if test="mml:imaginary">
+      <xsl:if test="imaginary">
         <xsl:text disable-output-escaping='yes'>&amp;#x2111;</xsl:text>
       </xsl:if>
     </mo>
@@ -1838,7 +1837,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:floor[1] or mml:ceiling[1]]">
+<xsl:template match = "apply[floor[1] or ceiling[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -1846,19 +1845,19 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
     <mo>
-      <xsl:if test="mml:floor[1]">
+      <xsl:if test="floor[1]">
         <xsl:text disable-output-escaping='yes'>&amp;#x230A;</xsl:text>
       </xsl:if>
-      <xsl:if test="mml:ceiling[1]">
+      <xsl:if test="ceiling[1]">
         <xsl:text disable-output-escaping='yes'>&amp;#x2308;</xsl:text>
       </xsl:if>
     </mo>
     <xsl:apply-templates select="*[position()>1]"  mode="semantics"/>
     <mo>
-      <xsl:if test="mml:floor[1]">
+      <xsl:if test="floor[1]">
         <xsl:text disable-output-escaping='yes'>&amp;#x230B;</xsl:text>
       </xsl:if>
-      <xsl:if test="mml:ceiling[1]">
+      <xsl:if test="ceiling[1]">
         <xsl:text disable-output-escaping='yes'>&amp;#x2309;</xsl:text>
       </xsl:if>
     </mo>
@@ -1869,10 +1868,10 @@ CONSTANT and SYMBOL ELEMENTS
 
 <!-- ***************** RELATIONS ***************** -->
 
-<xsl:template match = "mml:apply[mml:neq | mml:approx | mml:tendsto | mml:implies
-                     | mml:in | mml:notin | mml:notsubset | mml:notprsubset
-                     | mml:subset | mml:prsubset | mml:eq | mml:gt | mml:lt
-                     | mml:geq | mml:leq | mml:equivalent | mml:factorof]">
+<xsl:template match = "apply[neq | approx | tendsto | implies
+                     | in | notin | notsubset | notprsubset
+                     | subset | prsubset | eq | gt | lt
+                     | geq | leq | equivalent | factorof]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -1883,11 +1882,11 @@ CONSTANT and SYMBOL ELEMENTS
   </mrow>
 </xsl:template>
 
-<!-- mml:reln is ***DEPRECATED*** -->
-<xsl:template match = "mml:reln[mml:neq | mml:approx | mml:tendsto | mml:implies
-                     | mml:in | mml:notin | mml:notsubset | mml:notprsubset
-                     | mml:subset | mml:prsubset | mml:eq | mml:gt | mml:lt
-                     | mml:geq | mml:leq | mml:equivalent | mml:factorof]">
+<!-- reln is ***DEPRECATED*** -->
+<xsl:template match = "reln[neq | approx | tendsto | implies
+                     | in | notin | notsubset | notprsubset
+                     | subset | prsubset | eq | gt | lt
+                     | geq | leq | equivalent | factorof]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -1899,26 +1898,26 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 <xsl:template match = "*" mode="relations">
-  <xsl:if test="*[1]=mml:neq or *[1]=mml:approx or *[1]=mml:factorof or *[1]=mml:tendsto or
-                *[1]=mml:implies or *[1]=mml:in or *[1]=mml:notin or
-                *[1]=mml:notsubset or *[1]=mml:notprsubset">
+  <xsl:if test="*[1]=neq or *[1]=approx or *[1]=factorof or *[1]=tendsto or
+                *[1]=implies or *[1]=in or *[1]=notin or
+                *[1]=notsubset or *[1]=notprsubset">
     <xsl:apply-templates select = "*[2]" mode = "semantics"/>
     <mo>
-      <xsl:if test="*[1]=mml:neq">
+      <xsl:if test="*[1]=neq">
         <xsl:text disable-output-escaping='yes'>&amp;#x2260;</xsl:text>
       </xsl:if>
-      <xsl:if test="*[1]=mml:approx">
+      <xsl:if test="*[1]=approx">
         <xsl:text disable-output-escaping='yes'>&amp;#x2248;</xsl:text>
       </xsl:if>
-      <xsl:if test="*[1]=mml:factorof">
+      <xsl:if test="*[1]=factorof">
         <xsl:text disable-output-escaping='yes'>&amp;#x2223;</xsl:text>
       </xsl:if>
-      <xsl:if test="*[1]=mml:tendsto">
+      <xsl:if test="*[1]=tendsto">
         <xsl:choose>
-          <xsl:when test="mml:tendsto[@type='above']">
+          <xsl:when test="tendsto[@type='above']">
             <xsl:text disable-output-escaping='yes'>&amp;#x2198;</xsl:text>
           </xsl:when>
-          <xsl:when test="mml:tendsto[@type='below']">
+          <xsl:when test="tendsto[@type='below']">
             <xsl:text disable-output-escaping='yes'>&amp;#x2197;</xsl:text>
           </xsl:when>
 		  <xsl:otherwise>
@@ -1926,51 +1925,51 @@ CONSTANT and SYMBOL ELEMENTS
           </xsl:otherwise>
         </xsl:choose>
       </xsl:if>
-      <xsl:if test="*[1]=mml:implies">
+      <xsl:if test="*[1]=implies">
         <xsl:text disable-output-escaping='yes'>&amp;#x21D2;</xsl:text>
       </xsl:if>
-      <xsl:if test="*[1]=mml:in">
+      <xsl:if test="*[1]=in">
         <xsl:text disable-output-escaping='yes'>&amp;#x2208;</xsl:text>
       </xsl:if>
-      <xsl:if test="*[1]=mml:notin">
+      <xsl:if test="*[1]=notin">
         <xsl:text disable-output-escaping='yes'>&amp;#x2209;</xsl:text>
       </xsl:if>
-      <xsl:if test="*[1]=mml:notsubset">
+      <xsl:if test="*[1]=notsubset">
         <xsl:text disable-output-escaping='yes'>&amp;#x2284;</xsl:text>
       </xsl:if>
-      <xsl:if test="*[1]=mml:notprsubset">
+      <xsl:if test="*[1]=notprsubset">
         <xsl:text disable-output-escaping='yes'>&amp;#x2288;</xsl:text>
       </xsl:if>
     </mo>
     <xsl:apply-templates select = "*[3]" mode = "semantics"/>
   </xsl:if>
-  <xsl:if test="*[1]=mml:subset or *[1]=mml:prsubset or *[1]=mml:eq or *[1]=mml:gt
-             or *[1]=mml:lt or *[1]=mml:geq or *[1]=mml:leq or *[1]=mml:equivalent">
+  <xsl:if test="*[1]=subset or *[1]=prsubset or *[1]=eq or *[1]=gt
+             or *[1]=lt or *[1]=geq or *[1]=leq or *[1]=equivalent">
     <xsl:apply-templates select = "*[2]" mode="semantics"/>
     <xsl:for-each select = "*[position()>2]">
       <mo>
-        <xsl:if test="../*[self::mml:subset][1]">
+        <xsl:if test="../*[self::subset][1]">
           <xsl:text disable-output-escaping='yes'>&amp;#x2286;</xsl:text>
         </xsl:if>
-        <xsl:if test="../*[self::mml:prsubset][1]">
+        <xsl:if test="../*[self::prsubset][1]">
          <xsl:text disable-output-escaping='yes'>&amp;#x2282;</xsl:text>
         </xsl:if>
-        <xsl:if test="../*[self::mml:eq][1]">
+        <xsl:if test="../*[self::eq][1]">
           <xsl:value-of select="'='"/>
         </xsl:if>
-        <xsl:if test="../*[self::mml:gt][1]">
+        <xsl:if test="../*[self::gt][1]">
           <xsl:value-of select="'&gt;'"/>
         </xsl:if>
-        <xsl:if test="../*[self::mml:lt][1]">
+        <xsl:if test="../*[self::lt][1]">
           <xsl:value-of select="'&lt;'"/>
         </xsl:if>
-        <xsl:if test="../*[self::mml:geq][1]">
+        <xsl:if test="../*[self::geq][1]">
          <xsl:text disable-output-escaping='yes'>&amp;#x2265;</xsl:text>
         </xsl:if>
-        <xsl:if test="../*[self::mml:leq][1]">
+        <xsl:if test="../*[self::leq][1]">
          <xsl:text disable-output-escaping='yes'>&amp;#x2264;</xsl:text>
         </xsl:if>
-        <xsl:if test="../*[self::mml:equivalent][1]">
+        <xsl:if test="../*[self::equivalent][1]">
          <xsl:text disable-output-escaping='yes'>&amp;#x2261;</xsl:text>
         </xsl:if>
       </mo>
@@ -1983,7 +1982,7 @@ CONSTANT and SYMBOL ELEMENTS
 
 <!-- ***************** CALCULUS ***************** -->
 
-<xsl:template match = "mml:apply[*[1][self::mml:ln]]">
+<xsl:template match = "apply[*[1][self::ln]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -1991,7 +1990,7 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
     <xsl:choose>
-      <xsl:when test="parent::mml:apply[mml:power[1]]">
+      <xsl:when test="parent::apply[power[1]]">
         <msup>
           <mo> ln </mo>
           <xsl:apply-templates select = "../*[3]" mode = "semantics"/>
@@ -2009,7 +2008,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:log[1]]">
+<xsl:template match = "apply[log[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2017,40 +2016,40 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
     <xsl:choose>
-      <xsl:when test="parent::mml:apply[mml:power[1]]">
-        <xsl:if test="not(*[2]=mml:logbase)">
+      <xsl:when test="parent::apply[power[1]]">
+        <xsl:if test="not(*[2]=logbase)">
           <msup>
             <mo> log </mo>
             <xsl:apply-templates select = "../*[3]" mode = "semantics"/>
           </msup>
         </xsl:if>
-        <xsl:if test="*[2]=mml:logbase">
+        <xsl:if test="*[2]=logbase">
           <msubsup>
             <mo> log </mo>
             <xsl:apply-templates select = "../*[3]" mode = "semantics"/>
-            <xsl:apply-templates select = "mml:logbase" mode = "semantics"/>
+            <xsl:apply-templates select = "logbase" mode = "semantics"/>
           </msubsup>
         </xsl:if>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:if test="not(*[2]=mml:logbase)">
+        <xsl:if test="not(*[2]=logbase)">
           <mo rspace="thinmathspace"> log </mo>
         </xsl:if>
-        <xsl:if test="*[2]=mml:logbase">
+        <xsl:if test="*[2]=logbase">
           <msub>
             <mo> log </mo>
-            <xsl:apply-templates select = "mml:logbase" mode = "semantics"/>
+            <xsl:apply-templates select = "logbase" mode = "semantics"/>
           </msub>
         </xsl:if>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:if test="*[2]=mml:logbase">
+    <xsl:if test="*[2]=logbase">
       <xsl:apply-templates select = "*[3]" mode = "semantics">
         <xsl:with-param name="IN_PREC" select="$FUNCTN_PREC"/>
         <xsl:with-param name="PAR_NO_IGNORE" select="$NO"/>
       </xsl:apply-templates>
     </xsl:if>
-    <xsl:if test="not(*[2]=mml:logbase)">
+    <xsl:if test="not(*[2]=logbase)">
       <xsl:apply-templates select = "*[2]" mode = "semantics">
         <xsl:with-param name="IN_PREC" select="$FUNCTN_PREC"/>
         <xsl:with-param name="PAR_NO_IGNORE" select="$NO"/>
@@ -2060,7 +2059,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:diff[1]]">
+<xsl:template match = "apply[diff[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2068,27 +2067,27 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
 	<xsl:choose>
-      <xsl:when test="mml:bvar">
-        <xsl:if test="not(mml:bvar[*[2]=mml:degree])">
+      <xsl:when test="bvar">
+        <xsl:if test="not(bvar[*[2]=degree])">
           <mfrac>
             <mo> <xsl:text disable-output-escaping='yes'>d</xsl:text> </mo>
             <mrow>
               <mo> <xsl:text disable-output-escaping='yes'>d</xsl:text> </mo>
-              <xsl:apply-templates select = "mml:bvar/*[1]" mode = "semantics"/>
+              <xsl:apply-templates select = "bvar/*[1]" mode = "semantics"/>
             </mrow>
           </mfrac>
         </xsl:if>
-        <xsl:if test="mml:bvar[*[2]=mml:degree]">
+        <xsl:if test="bvar[*[2]=degree]">
           <mfrac>
             <msup>
               <mo> <xsl:text disable-output-escaping='yes'>d</xsl:text> </mo>
-              <xsl:apply-templates select = "mml:bvar/mml:degree" mode = "semantics"/>
+              <xsl:apply-templates select = "bvar/degree" mode = "semantics"/>
             </msup>
             <mrow>
               <mo> <xsl:text disable-output-escaping='yes'>d</xsl:text> </mo>
               <msup>
-                <xsl:apply-templates select = "mml:bvar/*[1]" mode = "semantics"/>
-                <xsl:apply-templates select = "mml:bvar/mml:degree" mode = "semantics"/>
+                <xsl:apply-templates select = "bvar/*[1]" mode = "semantics"/>
+                <xsl:apply-templates select = "bvar/degree" mode = "semantics"/>
               </msup>
             </mrow>
           </mfrac>
@@ -2110,7 +2109,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:partialdiff[1]]">
+<xsl:template match = "apply[partialdiff[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2118,53 +2117,53 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
     <xsl:choose>
-      <xsl:when test="mml:list">
+      <xsl:when test="list">
         <msub>
           <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2145;</xsl:text> </mo>
-          <xsl:apply-templates select = "mml:list" mode = "semantics"/>
+          <xsl:apply-templates select = "list" mode = "semantics"/>
         </msub>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:if test="mml:degree">
+        <xsl:if test="degree">
 		  <mfrac>
             <msup>
               <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2202;</xsl:text> </mo>
-              <xsl:apply-templates select = "mml:degree" mode = "semantics"/>
+              <xsl:apply-templates select = "degree" mode = "semantics"/>
             </msup>
             <mrow>
-              <xsl:for-each select = "mml:bvar">
+              <xsl:for-each select = "bvar">
                 <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2202;</xsl:text> </mo>
-                <xsl:if test="*[last()]=mml:degree">
+                <xsl:if test="*[last()]=degree">
                   <msup>
                     <xsl:apply-templates select = "*[1]" mode = "semantics"/>
-                    <xsl:apply-templates select = "mml:degree" mode = "semantics"/>
+                    <xsl:apply-templates select = "degree" mode = "semantics"/>
                   </msup>
                 </xsl:if>
-                <xsl:if test="not(*[last()]=mml:degree)">
+                <xsl:if test="not(*[last()]=degree)">
                   <xsl:apply-templates select = "*[1]" mode = "semantics"/>
                 </xsl:if>
               </xsl:for-each>
             </mrow>
 		  </mfrac>
 		</xsl:if>
-        <xsl:if test="not(mml:degree)">
-          <xsl:for-each select = "mml:bvar">
-            <xsl:if test="*[last()]=mml:degree">
+        <xsl:if test="not(degree)">
+          <xsl:for-each select = "bvar">
+            <xsl:if test="*[last()]=degree">
               <mfrac>
                 <msup>
                   <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2202;</xsl:text> </mo>
-                  <xsl:apply-templates select = "mml:degree" mode = "semantics"/>
+                  <xsl:apply-templates select = "degree" mode = "semantics"/>
                 </msup>
                 <mrow>
                   <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2202;</xsl:text> </mo>
                   <msup>
                     <xsl:apply-templates select = "*[1]" mode = "semantics"/>
-                    <xsl:apply-templates select = "mml:degree" mode = "semantics"/>
+                    <xsl:apply-templates select = "degree" mode = "semantics"/>
                   </msup>
                 </mrow>
               </mfrac>
             </xsl:if>
-            <xsl:if test="not(*[last()]=mml:degree)">
+            <xsl:if test="not(*[last()]=degree)">
               <mfrac>
                 <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2202;</xsl:text> </mo>
                 <mrow>
@@ -2185,7 +2184,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:lowlimit | mml:uplimit | mml:bvar | mml:degree | mml:logbase">
+<xsl:template match = "lowlimit | uplimit | bvar | degree | logbase">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2197,7 +2196,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:divergence[1] | mml:grad[1] | mml:curl[1]]">
+<xsl:template match = "apply[divergence[1] | grad[1] | curl[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2205,19 +2204,19 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
     <mo>
-      <xsl:if test="*[1]=mml:divergence">
+      <xsl:if test="*[1]=divergence">
         <xsl:value-of select="'div'"/>
       </xsl:if>
-      <xsl:if test="*[1]=mml:grad">
+      <xsl:if test="*[1]=grad">
         <xsl:value-of select="'grad'"/>
       </xsl:if>
-      <xsl:if test="*[1]=mml:curl">
+      <xsl:if test="*[1]=curl">
         <xsl:value-of select="'curl'"/>
       </xsl:if>
     </mo>
     <mspace width="0.01em" linebreak="nobreak"/>
     <xsl:choose>
-      <xsl:when test="*[2]=mml:ci">
+      <xsl:when test="*[2]=ci">
         <xsl:apply-templates select = "*[2]" mode = "semantics"/>
       </xsl:when>
       <xsl:otherwise>
@@ -2230,7 +2229,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:laplacian[1]]">
+<xsl:template match = "apply[laplacian[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2253,14 +2252,14 @@ CONSTANT and SYMBOL ELEMENTS
 
 <!-- ***************** SET THEORY ***************** -->
 
-<xsl:template match = "mml:set | mml:list">
+<xsl:template match = "set | list">
   <mfenced>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
         <xsl:value-of select="@id"/>
       </xsl:attribute>
     </xsl:if>
-	<xsl:if test="self::mml:set">
+	<xsl:if test="self::set">
       <xsl:attribute name="open">
         <xsl:value-of select="'{'"/>
       </xsl:attribute>
@@ -2268,7 +2267,7 @@ CONSTANT and SYMBOL ELEMENTS
         <xsl:value-of select="'}'"/>
       </xsl:attribute>
     </xsl:if>
-	<xsl:if test="self::mml:list">
+	<xsl:if test="self::list">
       <xsl:attribute name="open">
         <xsl:value-of select="'['"/>
       </xsl:attribute>
@@ -2277,21 +2276,21 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
     <xsl:choose>
-      <xsl:when test="not(child::mml:bvar) and not(child::mml:condition)">
+      <xsl:when test="not(child::bvar) and not(child::condition)">
         <xsl:apply-templates select = "*" mode="semantics"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:attribute name="separators"/>
-        <xsl:apply-templates select = "*[not(self::mml:condition) and not(self::mml:bvar)]" mode="semantics"/>
+        <xsl:apply-templates select = "*[not(self::condition) and not(self::bvar)]" mode="semantics"/>
         <mo lspace="0.1666em" rspace="0.1666em"> | </mo>
-        <xsl:apply-templates select="mml:condition" mode = "semantics"/>
+        <xsl:apply-templates select="condition" mode = "semantics"/>
       </xsl:otherwise>
     </xsl:choose>
   </mfenced>
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:union[1]]">
+<xsl:template match = "apply[union[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -2339,7 +2338,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:union[1]]" mode="union">
+<xsl:template match = "apply[union[1]]" mode="union">
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
@@ -2360,7 +2359,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:intersect[1]]">
+<xsl:template match = "apply[intersect[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -2407,7 +2406,7 @@ CONSTANT and SYMBOL ELEMENTS
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match = "mml:apply[mml:intersect[1]]" mode="intersect">
+<xsl:template match = "apply[intersect[1]]" mode="intersect">
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
@@ -2428,7 +2427,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:setdiff[1]]">
+<xsl:template match = "apply[setdiff[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -2475,7 +2474,7 @@ CONSTANT and SYMBOL ELEMENTS
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match = "mml:apply[mml:setdiff[1]]" mode="setdiff">
+<xsl:template match = "apply[setdiff[1]]" mode="setdiff">
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
   <xsl:param name="PAR_NO_IGNORE" select="$YES"/>
@@ -2495,7 +2494,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:cartesianproduct[1]]">
+<xsl:template match = "apply[cartesianproduct[1]]">
   <xsl:param name="IN_PREC" select="$NO_PREC"/>
   <xsl:param name="PARAM" select="$NO_PARAM"/>
   <xsl:param name="PAREN" select="$PAR_NO"/>
@@ -2564,7 +2563,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
   
 
-<xsl:template match = "mml:apply[mml:card[1]]">
+<xsl:template match = "apply[card[1]]">
   <mfenced open="&#x2223;" close="&#x2223;" separators=",">
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2581,7 +2580,7 @@ CONSTANT and SYMBOL ELEMENTS
 
 <!-- ***************** SEQUENCES AND SERIES ***************** -->
 
-<xsl:template match = "mml:apply[mml:sum[1] | mml:product[1]]">
+<xsl:template match = "apply[sum[1] | product[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2589,32 +2588,32 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
     <xsl:choose>
-      <xsl:when test="*[2]=mml:bvar and mml:lowlimit and mml:uplimit">
+      <xsl:when test="*[2]=bvar and lowlimit and uplimit">
         <munderover>
           <mo>
-            <xsl:if test="*[1]=mml:sum">
+            <xsl:if test="*[1]=sum">
              <xsl:text disable-output-escaping='yes'>&amp;#x2211;</xsl:text>
             </xsl:if>
-            <xsl:if test="*[1]=mml:product">
+            <xsl:if test="*[1]=product">
              <xsl:text disable-output-escaping='yes'>&amp;#x220F;</xsl:text>
             </xsl:if>
           </mo>
           <mrow>
             <xsl:apply-templates select = "*[2]" mode = "semantics"/>
             <mo> = </mo>
-            <xsl:apply-templates select = "mml:lowlimit" mode = "semantics"/>
+            <xsl:apply-templates select = "lowlimit" mode = "semantics"/>
           </mrow>
-          <xsl:apply-templates select = "mml:uplimit" mode = "semantics"/>
+          <xsl:apply-templates select = "uplimit" mode = "semantics"/>
         </munderover>
         <xsl:apply-templates select = "*[5]" mode = "semantics"/>
       </xsl:when>
-      <xsl:when test="*[2]=mml:bvar and *[3]=mml:condition">
+      <xsl:when test="*[2]=bvar and *[3]=condition">
         <munder>
           <mo>
-            <xsl:if test="*[1]=mml:sum">
+            <xsl:if test="*[1]=sum">
              <xsl:text disable-output-escaping='yes'>&amp;#x2211;</xsl:text>
             </xsl:if>
-            <xsl:if test="*[1]=mml:product">
+            <xsl:if test="*[1]=product">
              <xsl:text disable-output-escaping='yes'>&amp;#x220F;</xsl:text>
             </xsl:if>
           </mo>
@@ -2622,17 +2621,17 @@ CONSTANT and SYMBOL ELEMENTS
         </munder>
         <xsl:apply-templates select = "*[4]" mode = "semantics"/>
       </xsl:when>
-      <xsl:when test="*[2]=mml:domainofapplication">
+      <xsl:when test="*[2]=domainofapplication">
         <munder>
           <mo>
-            <xsl:if test="*[1]=mml:sum">
+            <xsl:if test="*[1]=sum">
               <xsl:text disable-output-escaping='yes'>&amp;#x2211;</xsl:text>
             </xsl:if>
-            <xsl:if test="*[1]=mml:product">
+            <xsl:if test="*[1]=product">
               <xsl:text disable-output-escaping='yes'>&amp;#x220F;</xsl:text>
             </xsl:if>
           </mo>
-          <xsl:apply-templates select="mml:domainofapplication" mode = "semantics"/>
+          <xsl:apply-templates select="domainofapplication" mode = "semantics"/>
         </munder>
         <mrow>
           <xsl:apply-templates select="*[position()=last()]" mode = "semantics"/>
@@ -2643,7 +2642,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match="mml:apply[*[1][self::mml:int]]">
+<xsl:template match="apply[*[1][self::int]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2651,37 +2650,37 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
 	<xsl:choose>
-	  <xsl:when test="mml:domainofapplication">
+	  <xsl:when test="domainofapplication">
         <munder>
           <mo> <xsl:text disable-output-escaping='yes'>&amp;#x222B;</xsl:text> </mo>
-          <xsl:apply-templates select="mml:domainofapplication" mode="semantics"/>
+          <xsl:apply-templates select="domainofapplication" mode="semantics"/>
         </munder>
       </xsl:when>
-	  <xsl:when test="mml:condition">
+	  <xsl:when test="condition">
         <munder>
           <mo> <xsl:text disable-output-escaping='yes'>&amp;#x222B;</xsl:text> </mo>
-          <xsl:apply-templates select="mml:condition" mode="semantics"/>
+          <xsl:apply-templates select="condition" mode="semantics"/>
         </munder>
       </xsl:when>
-      <xsl:when test="mml:interval">
+      <xsl:when test="interval">
         <munderover>
           <mo> <xsl:text disable-output-escaping='yes'>&amp;#x222B;</xsl:text> </mo>
           <mrow>
-            <xsl:apply-templates select="mml:interval/*[position()=1]" mode="semantics"/>
+            <xsl:apply-templates select="interval/*[position()=1]" mode="semantics"/>
           </mrow>
           <mrow>
             <mspace width="1em"/>
-            <xsl:apply-templates select="mml:interval/*[position()=2]" mode="semantics"/>
+            <xsl:apply-templates select="interval/*[position()=2]" mode="semantics"/>
           </mrow>
 		</munderover>
       </xsl:when>
-      <xsl:when test="mml:lowlimit | mml:uplimit">
+      <xsl:when test="lowlimit | uplimit">
         <munderover>
           <mo> <xsl:text disable-output-escaping='yes'>&amp;#x222B;</xsl:text> </mo>
-          <xsl:apply-templates select="mml:lowlimit" mode="semantics"/>
+          <xsl:apply-templates select="lowlimit" mode="semantics"/>
           <mrow>
             <mspace width="1em"/>
-            <xsl:apply-templates select="mml:uplimit" mode="semantics"/>
+            <xsl:apply-templates select="uplimit" mode="semantics"/>
           </mrow>
         </munderover>
       </xsl:when>
@@ -2689,21 +2688,21 @@ CONSTANT and SYMBOL ELEMENTS
         <mo> <xsl:text disable-output-escaping='yes'>&amp;#x222B;</xsl:text> </mo>
       </xsl:otherwise>
     </xsl:choose>
-    <xsl:apply-templates select="*[position()=last() and last()>1 and not(self::mml:domainofapplication) and not(self::mml:condition) and not(self::mml:interval) and not(self::mml:lowlimit) and not(self::mml:uplimit) and not(self::mml:bvar)]" mode="semantics">
+    <xsl:apply-templates select="*[position()=last() and last()>1 and not(self::domainofapplication) and not(self::condition) and not(self::interval) and not(self::lowlimit) and not(self::uplimit) and not(self::bvar)]" mode="semantics">
       <xsl:with-param name="IN_PREC" select="$FUNCTN_PREC"/>
       <xsl:with-param name="PAR_NO_IGNORE" select="$NO"/>
     </xsl:apply-templates>
-	<xsl:if test="mml:bvar">
+	<xsl:if test="bvar">
       <mrow>
         <mo> <xsl:text disable-output-escaping='yes'>d</xsl:text> </mo>
-        <xsl:apply-templates select="mml:bvar" mode="semantics"/>
+        <xsl:apply-templates select="bvar" mode="semantics"/>
       </mrow>
     </xsl:if>
   </mrow>
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:limit[1]]">
+<xsl:template match = "apply[limit[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2713,12 +2712,12 @@ CONSTANT and SYMBOL ELEMENTS
     <munder>
       <mo> lim </mo>
       <mrow>
-        <xsl:if test="*[2]=mml:bvar and *[3]=mml:lowlimit">
+        <xsl:if test="*[2]=bvar and *[3]=lowlimit">
             <xsl:apply-templates select = "*[2]" mode = "semantics"/>
             <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2192;</xsl:text> </mo>
             <xsl:apply-templates select = "*[3]" mode = "semantics"/>
         </xsl:if>
-        <xsl:if test="*[2]=mml:bvar and *[3]=mml:condition">
+        <xsl:if test="*[2]=bvar and *[3]=condition">
           <xsl:apply-templates select = "*[3]" mode = "semantics"/>
         </xsl:if>
       </mrow>
@@ -2731,25 +2730,25 @@ CONSTANT and SYMBOL ELEMENTS
 
 <!-- ***************** TRIGONOMETRY ***************** -->
 
-<xsl:template match = "mml:apply[*[1][self::mml:sin | self::mml:cos |
-                       self::mml:tan | self::mml:sec | self::mml:csc |
-                       self::mml:cot | self::mml:sinh | self::mml:cosh |
-                       self::mml:tanh | self::mml:sech | self::mml:csch |
-                       self::mml:coth | self::mml:arcsin | self::mml:arccos |
-                       self::mml:arctan | self::mml:arcsec | self::mml:arccsc |
-                       self::mml:arccot | self::mml:arcsinh | self::mml:arccosh |
-                       self::mml:arctanh | self::mml:arcsech | self::mml:arccsch |
-                       self::mml:arccoth]]">
+<xsl:template match = "apply[*[1][self::sin | self::cos |
+                       self::tan | self::sec | self::csc |
+                       self::cot | self::sinh | self::cosh |
+                       self::tanh | self::sech | self::csch |
+                       self::coth | self::arcsin | self::arccos |
+                       self::arctan | self::arcsec | self::arccsc |
+                       self::arccot | self::arcsinh | self::arccosh |
+                       self::arctanh | self::arcsech | self::arccsch |
+                       self::arccoth]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
         <xsl:value-of select="@id"/>
       </xsl:attribute>
     </xsl:if>
-    <xsl:if test="not(parent::mml:apply[mml:power[1]])">
+    <xsl:if test="not(parent::apply[power[1]])">
       <xsl:apply-templates select = "*[1]" mode = "trigonometry"/>
     </xsl:if>
-    <xsl:if test="parent::mml:apply[mml:power[1]]">
+    <xsl:if test="parent::apply[power[1]]">
       <msup>
         <xsl:apply-templates select = "*[1]" mode = "trigonometry"/>
         <xsl:apply-templates select = "../*[3]" mode = "semantics"/>
@@ -2763,15 +2762,15 @@ CONSTANT and SYMBOL ELEMENTS
   </mrow>
 </xsl:template>
 
-<xsl:template match = "mml:sin | mml:cos |
-                       mml:tan | mml:sec | mml:csc |
-                       mml:cot | mml:sinh | mml:cosh |
-                       mml:tanh | mml:sech | mml:csch |
-                       mml:coth | mml:arcsin | mml:arccos |
-                       mml:arctan | mml:arcsec | mml:arccsc |
-                       mml:arccot | mml:arcsinh | mml:arccosh |
-                       mml:arctanh | mml:arcsech | mml:arccsch |
-                       mml:arccoth">
+<xsl:template match = "sin | cos |
+                       tan | sec | csc |
+                       cot | sinh | cosh |
+                       tanh | sech | csch |
+                       coth | arcsin | arccos |
+                       arctan | arcsec | arccsc |
+                       arccot | arcsinh | arccosh |
+                       arctanh | arcsech | arccsch |
+                       arccoth">
   <xsl:apply-templates select = "." mode = "trigonometry"/>
 </xsl:template>
 
@@ -2783,76 +2782,76 @@ CONSTANT and SYMBOL ELEMENTS
       </xsl:attribute>
     </xsl:if>
     <xsl:choose>
-      <xsl:when test="self::mml:sin">
+      <xsl:when test="self::sin">
         <xsl:value-of select="'sin'"/>
       </xsl:when>
-      <xsl:when test="self::mml:cos">
+      <xsl:when test="self::cos">
         <xsl:value-of select="'cos'"/>
       </xsl:when>
-      <xsl:when test="self::mml:tan">
+      <xsl:when test="self::tan">
         <xsl:value-of select="'tan'"/>
       </xsl:when>
-      <xsl:when test="self::mml:sec">
+      <xsl:when test="self::sec">
         <xsl:value-of select="'sec'"/>
       </xsl:when>
-      <xsl:when test="self::mml:csc">
+      <xsl:when test="self::csc">
         <xsl:value-of select="'csc'"/>
       </xsl:when>
-      <xsl:when test="self::mml:cot">
+      <xsl:when test="self::cot">
         <xsl:value-of select="'cot'"/>
       </xsl:when>
-      <xsl:when test="self::mml:sinh">
+      <xsl:when test="self::sinh">
         <xsl:value-of select="'sinh'"/>
       </xsl:when>
-      <xsl:when test="self::mml:cosh">
+      <xsl:when test="self::cosh">
         <xsl:value-of select="'cosh'"/>
       </xsl:when>
-      <xsl:when test="self::mml:tanh">
+      <xsl:when test="self::tanh">
         <xsl:value-of select="'tanh'"/>
       </xsl:when>
-      <xsl:when test="self::mml:sech">
+      <xsl:when test="self::sech">
         <xsl:value-of select="'sech'"/>
       </xsl:when>
-      <xsl:when test="self::mml:csch">
+      <xsl:when test="self::csch">
         <xsl:value-of select="'csch'"/>
       </xsl:when>
-      <xsl:when test="self::mml:coth">
+      <xsl:when test="self::coth">
         <xsl:value-of select="'coth'"/>
       </xsl:when>
-      <xsl:when test="self::mml:arcsin">
+      <xsl:when test="self::arcsin">
         <xsl:value-of select="'arcsin'"/>
       </xsl:when>
-      <xsl:when test="self::mml:arccos">
+      <xsl:when test="self::arccos">
         <xsl:value-of select="'arccos'"/>
       </xsl:when>
-      <xsl:when test="self::mml:arctan">
+      <xsl:when test="self::arctan">
         <xsl:value-of select="'arctan'"/>
       </xsl:when>
-      <xsl:when test="self::mml:arcsec">
+      <xsl:when test="self::arcsec">
         <xsl:value-of select="'arcsec'"/>
       </xsl:when>
-      <xsl:when test="self::mml:arccsc">
+      <xsl:when test="self::arccsc">
         <xsl:value-of select="'arccsc'"/>
       </xsl:when>
-      <xsl:when test="self::mml:arccot">
+      <xsl:when test="self::arccot">
         <xsl:value-of select="'arccot'"/>
       </xsl:when>
-      <xsl:when test="self::mml:arcsinh">
+      <xsl:when test="self::arcsinh">
         <xsl:value-of select="'arcsinh'"/>
       </xsl:when>
-      <xsl:when test="self::mml:arccosh">
+      <xsl:when test="self::arccosh">
         <xsl:value-of select="'arccosh'"/>
       </xsl:when>
-      <xsl:when test="self::mml:arctanh">
+      <xsl:when test="self::arctanh">
         <xsl:value-of select="'arctanh'"/>
       </xsl:when>
-      <xsl:when test="self::mml:arcsech">
+      <xsl:when test="self::arcsech">
         <xsl:value-of select="'arcsech'"/>
       </xsl:when>
-      <xsl:when test="self::mml:arccsch">
+      <xsl:when test="self::arccsch">
         <xsl:value-of select="'arccsch'"/>
       </xsl:when>
-      <xsl:when test="self::mml:arccoth">
+      <xsl:when test="self::arccoth">
         <xsl:value-of select="'arccot'"/>
       </xsl:when>
     </xsl:choose>
@@ -2863,7 +2862,7 @@ CONSTANT and SYMBOL ELEMENTS
 
 <!-- ***************** STATISTICS ***************** -->
 
-<xsl:template match = "mml:apply[mml:mean[1]]">
+<xsl:template match = "apply[mean[1]]">
   <mfenced open="&#x2329;" close="&#x232A;" separators=",">
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2877,7 +2876,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:sdev[1]]">
+<xsl:template match = "apply[sdev[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2894,7 +2893,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:variance[1]]">
+<xsl:template match = "apply[variance[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2914,7 +2913,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:median[1]]">
+<xsl:template match = "apply[median[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2931,7 +2930,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:mode[1]]">
+<xsl:template match = "apply[mode[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -2948,31 +2947,31 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:moment[1]]">
+<xsl:template match = "apply[moment[1]]">
   <mfenced open="&#x2329;" close="&#x232A;" separators="">
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
         <xsl:value-of select="@id"/>
       </xsl:attribute>
     </xsl:if>
-    <xsl:if test="*[2]=mml:degree and not(*[3]=mml:momentabout)">
+    <xsl:if test="*[2]=degree and not(*[3]=momentabout)">
       <msup>
         <xsl:apply-templates select="*[3]" mode = "semantics"/>
         <xsl:apply-templates select="*[2]" mode = "semantics"/>
       </msup>
     </xsl:if>
-    <xsl:if test="*[2]=mml:degree and *[3]=mml:momentabout">
+    <xsl:if test="*[2]=degree and *[3]=momentabout">
       <msup>
         <xsl:apply-templates select="*[4]" mode = "semantics"/>
         <xsl:apply-templates select="*[2]" mode = "semantics"/>
       </msup>  
     </xsl:if>
-    <xsl:if test="not(*[2]=mml:degree) and *[2]=mml:momentabout">
+    <xsl:if test="not(*[2]=degree) and *[2]=momentabout">
       <xsl:for-each select = "*[position()>2]">
         <xsl:apply-templates select = "." mode="semantics"/>
       </xsl:for-each>
     </xsl:if>
-    <xsl:if test="not(*[2]=mml:degree) and not(*[2]=mml:momentabout)">
+    <xsl:if test="not(*[2]=degree) and not(*[2]=momentabout)">
       <xsl:for-each select = "*[position()>1]">
         <xsl:apply-templates select = "." mode="semantics"/>
       </xsl:for-each>
@@ -2984,7 +2983,7 @@ CONSTANT and SYMBOL ELEMENTS
 
 <!-- ***************** LINEAR ALGEBRA ***************** -->
 
-<xsl:template match="mml:vector">
+<xsl:template match="vector">
   <mfenced separators="">
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -3002,7 +3001,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:matrix">
+<xsl:template match = "matrix">
   <mfenced separators="">
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -3016,7 +3015,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:matrixrow">
+<xsl:template match = "matrixrow">
   <mtr>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -3032,7 +3031,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:determinant[1]]">
+<xsl:template match = "apply[determinant[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -3046,7 +3045,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:transpose[1]]">
+<xsl:template match = "apply[transpose[1]]">
   <msup>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -3059,7 +3058,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:selector[1]]">
+<xsl:template match = "apply[selector[1]]">
   <msub>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -3076,8 +3075,8 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 
-<xsl:template match = "mml:apply[mml:vectorproduct[1] |
-                                 mml:scalarproduct[1] | mml:outerproduct[1]]">
+<xsl:template match = "apply[vectorproduct[1] |
+                                 scalarproduct[1] | outerproduct[1]]">
   <mrow>
     <xsl:if test="($SEM_SW=$SEM_XREF or $SEM_SW=$SEM_XREF_EXT) and @id">
       <xsl:attribute name="xref">
@@ -3086,13 +3085,13 @@ CONSTANT and SYMBOL ELEMENTS
     </xsl:if>
     <xsl:apply-templates select="*[2]" mode = "semantics"/>
     <mo>
-      <xsl:if test="mml:vectorproduct[1]">
+      <xsl:if test="vectorproduct[1]">
         <xsl:text disable-output-escaping='yes'>&amp;#x00D7;</xsl:text>
       </xsl:if>
-      <xsl:if test="mml:scalarproduct[1]">
+      <xsl:if test="scalarproduct[1]">
         <xsl:text disable-output-escaping='yes'>&amp;#x22C5;</xsl:text>
       </xsl:if>
-      <xsl:if test="mml:outerproduct[1]">
+      <xsl:if test="outerproduct[1]">
         <xsl:text disable-output-escaping='yes'>&amp;#x2297;</xsl:text>
       </xsl:if>
     </mo>
@@ -3104,63 +3103,63 @@ CONSTANT and SYMBOL ELEMENTS
 
 <!-- ***************** CONSTANT and SYMBOL ELEMENTS ***************** -->
 
-<xsl:template match="mml:integers">
+<xsl:template match="integers">
   <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2124;</xsl:text> </mo>
 </xsl:template>
 
-<xsl:template match="mml:reals">
+<xsl:template match="reals">
   <mo> <xsl:text disable-output-escaping='yes'>&amp;#x211D;</xsl:text> </mo>
 </xsl:template>
 
-<xsl:template match="mml:rationals">
+<xsl:template match="rationals">
   <mo> <xsl:text disable-output-escaping='yes'>&amp;#x211A;</xsl:text> </mo>
 </xsl:template>
 
-<xsl:template match="mml:naturalnumbers">
+<xsl:template match="naturalnumbers">
   <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2115;</xsl:text> </mo> 
 </xsl:template>
 
-<xsl:template match="mml:complexes">
+<xsl:template match="complexes">
   <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2102;</xsl:text> </mo>
 </xsl:template>
 
-<xsl:template match="mml:primes">
+<xsl:template match="primes">
   <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2119;</xsl:text> </mo>
 </xsl:template>
 
-<xsl:template match="mml:exponentiale">
+<xsl:template match="exponentiale">
   <mn> <xsl:text disable-output-escaping='yes'>&amp;#x2147;</xsl:text> </mn>
 </xsl:template>
 
-<xsl:template match="mml:imaginaryi">
+<xsl:template match="imaginaryi">
   <mn> <xsl:text disable-output-escaping='yes'>&amp;#x2148;</xsl:text> </mn>
 </xsl:template>
 
-<xsl:template match="mml:notanumber">
+<xsl:template match="notanumber">
   <mo> NaN </mo>  
 </xsl:template>
 
-<xsl:template match="mml:true">
+<xsl:template match="true">
   <mo> true </mo>  
 </xsl:template>
 
-<xsl:template match="mml:false">
+<xsl:template match="false">
   <mo> false </mo>   
 </xsl:template>
 
-<xsl:template match="mml:emptyset">
+<xsl:template match="emptyset">
   <mo> <xsl:text disable-output-escaping='yes'>&amp;#x2205;</xsl:text> </mo>
 </xsl:template>
 
-<xsl:template match="mml:pi">
+<xsl:template match="pi">
   <mn> <xsl:text disable-output-escaping='yes'>&amp;#x03C0;</xsl:text> </mn>
 </xsl:template>
 
-<xsl:template match="mml:eulergamma">
+<xsl:template match="eulergamma">
   <mo> <xsl:text disable-output-escaping='yes'>&amp;#x213D;</xsl:text> </mo>
 </xsl:template>
 
-<xsl:template match="mml:infinity">
+<xsl:template match="infinity">
   <mo> <xsl:text disable-output-escaping='yes'>&amp;#x221E;</xsl:text> </mo>
 </xsl:template>
 

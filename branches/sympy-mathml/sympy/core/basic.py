@@ -367,12 +367,9 @@ class Basic(object):
         print_pygame(s)
         return s
     
-    def _get_mathml(self, headers=True):
+    def _get_mathml(self):
         """Returns a MathML expression representing the current object"""
-        s =  "<%s> %s </%s>" % (self._mathml_tag, str(self), self._mathml_tag)
-        if headers == True:
-            s = self._add_mathml_headers(s)
-        return s
+        return "<%s> %s </%s>" % (self._mathml_tag, str(self), self._mathml_tag)
     
     mathml = property(_get_mathml)
 
@@ -384,14 +381,6 @@ class Basic(object):
     def print_tree(self):
         """The canonical tree representation"""
         return str(self)
-    
-    @staticmethod
-    def _add_mathml_headers(s):
-        return """<math xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://www.w3.org/1998/Math/MathML
-            http://www.w3.org/Math/XMLSchema/mathml2/mathml2.xsd">\n  """ + s + "\n</math>"
-
 
 def _isnumber(x):
     #don't use this function. Use x.isnumber() instead
