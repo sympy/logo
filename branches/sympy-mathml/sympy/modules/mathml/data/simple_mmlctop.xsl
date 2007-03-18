@@ -921,7 +921,7 @@ CONSTANT and SYMBOL ELEMENTS
         <xsl:value-of select="@id"/>
       </xsl:attribute>
     </xsl:if>
-    <mn> <xsl:text disable-output-escaping='yes'>&amp;#x2147;</xsl:text> </mn>
+    <mn> <xsl:text disable-output-escaping='yes'>e</xsl:text> </mn>
     <xsl:apply-templates select = "*[2]" mode = "semantics"/>
   </msup>
 </xsl:template>
@@ -3128,7 +3128,7 @@ CONSTANT and SYMBOL ELEMENTS
 </xsl:template>
 
 <xsl:template match="exponentiale">
-  <mn> <xsl:text disable-output-escaping='yes'>&amp;#x2147;</xsl:text> </mn>
+  <mn> <xsl:text disable-output-escaping='yes'>e</xsl:text> </mn>
 </xsl:template>
 
 <xsl:template match="imaginaryi">

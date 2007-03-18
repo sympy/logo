@@ -16,7 +16,7 @@ class Symbol(Basic):
    A
    """
     
-    _mathml_tag = "ci"
+    mathml_tag = "ci"
 
     def __init__(self, name, dummy=False, *args, **kwargs):
         """if dummy==True, then this Symbol is totally unique, i.e.::

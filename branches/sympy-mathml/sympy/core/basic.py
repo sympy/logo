@@ -36,13 +36,18 @@ class Basic(object):
     """
     __metaclass__ = AutomaticEvaluationType
     
-    __mathml_tag = "ci"
-    
     __assumptions = {
                      'is_real' : None, 
+                     'is_integer' : None,
                      'is_commutative' : None, 
                      'is_bounded' : None, 
                      }
+    
+    mathml_tag = property(lambda self: self.__class__.__name__.lower() )
+            # usually this must be overriden
+            # if not overriden, it says to use
+            # the class name as the mathml_tag. This is the case sometimes,
+            # for example in the usual functions: sin, cos, exp, etc.
     
     def __init__(self, *args, **kwargs):
         self.mhash = 0
@@ -369,7 +374,7 @@ class Basic(object):
     
     def _get_mathml(self):
         """Returns a MathML expression representing the current object"""
-        return "<%s> %s </%s>" % (self._mathml_tag, str(self), self._mathml_tag)
+        return "<%s> %s </%s>" % (self.mathml_tag, str(self), self.mathml_tag)
     
     mathml = property(_get_mathml)
 

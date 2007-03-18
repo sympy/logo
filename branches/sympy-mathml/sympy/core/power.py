@@ -10,7 +10,7 @@ class pole_error(Exception):
 
 class Pow(Basic):
     
-    _mathml_tag = "power"
+    mathml_tag = "power"
 
     def __init__(self,a,b):
         Basic.__init__(self)

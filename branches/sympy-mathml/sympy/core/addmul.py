@@ -9,8 +9,6 @@ class Pair(Basic):
     Should not be used directly
     """
     
-    _mathml_tag = None
-    
     def __init__(self,*args):
         Basic.__init__(self)
         if len(args) == 2:
@@ -25,7 +23,7 @@ class Pair(Basic):
         return self.evalf() < a
     
     def _get_mathml(self):
-        s = "<apply>" + "<" + self._mathml_tag + "/>"
+        s = "<apply>" + "<" + self.mathml_tag + "/>"
         for a in self.args:
                 s += a.mathml
         s += "</apply>"
@@ -115,7 +113,7 @@ class Pair(Basic):
 
 class Mul(Pair):
     
-    _mathml_tag = "times"
+    mathml_tag = "times"
      
     def print_sympy(self):
         f = ""
@@ -333,7 +331,7 @@ class Mul(Pair):
     
 class Add(Pair):
     
-    _mathml_tag = "plus"
+    mathml_tag = "plus"
     
     def print_prog(self):
         f = "Add(%s"+",%s"*(len(self.args)-1)+")"

@@ -19,7 +19,3 @@ def print_gtk(x):
     
     os.system("mathmlviewer " + tmp)
     
-    file = open(tmp)
-    
-    print file.read()
-    

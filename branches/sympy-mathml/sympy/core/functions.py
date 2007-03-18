@@ -38,24 +38,14 @@ class Function(Basic):
         else:
             return e
         
-    def print_sympy(self):
+    def __str__(self):
         f = "%s(%s)"
-        return f%(self.getname(),self.arg.print_sympy())
+        return f % (self.getname(),self.arg.print_sympy())
 
-    def print_tex(self):
-        f = "%s(%s)"
-        return f%(self.getname_tex(),self.arg.print_tex())
-
-    def print_pretty(self):
-        from symbol import Symbol
-        result = self.arg.print_pretty()
-        if isinstance(self.arg, Symbol):
-            return result.left(self.getname(), ' ')
-        else:
-            return result.parens().left(self.getname())
-
-    def getname_tex(self):
-        return r"{\rm %s}"%self.getname()
+    def _get_mathml(self):
+        return "<apply><%s/> %s </apply>" % (self.mathml_tag, self.arg.mathml)
+        
+    mathml = property(_get_mathml)
     
     def series(self, sym, n):
         from power import pole_error
@@ -256,22 +246,3 @@ class sign(Function):
     def derivative(self):
         return Rational(0)
     
-
-class Derivative(Basic):
-
-    def __init__(self,f,x):
-        Basic.__init__(self)
-        self.f=self.sympify(f)
-        self.x=self.sympify(x)
-
-    def doit(self):
-        return self.f.diff(self.x)
-
-    def hash(self):
-        if self.mhash: 
-            return self.mhash.value
-        self.mhash = hashing.mhash()
-        self.mhash.addstr(str(type(self)))
-        self.mhash.addint(self.f.hash())
-        self.mhash.addint(self.x.hash())
-        return self.mhash.value
