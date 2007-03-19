@@ -236,7 +236,7 @@ class sign(Function):
                 return Rational(0)
             else:
                 return Rational(1)
-        return 
+        return self
             
     def evalf(self, precision=28):
         if isnumber(self.arg):
