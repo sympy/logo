@@ -1,7 +1,7 @@
 import hashing
 from basic import Basic
 from numbers import Rational
-from prettyprint import StringPict
+#from prettyprint import StringPict
 
 dummycount=0
 

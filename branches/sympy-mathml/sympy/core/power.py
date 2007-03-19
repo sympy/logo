@@ -3,7 +3,7 @@ from basic import Basic
 from symbol import Symbol
 from numbers import Rational,Real,Number,ImaginaryUnit
 from functions import log,exp
-from prettyprint import StringPict
+#from prettyprint import StringPict
 
 class pole_error(Exception):
     pass

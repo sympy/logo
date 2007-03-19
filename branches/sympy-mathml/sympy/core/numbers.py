@@ -1,7 +1,7 @@
 import hashing
 from basic import Basic
 import decimal
-from prettyprint import StringPict
+#from prettyprint import StringPict
 
 class Number(Basic):
     """Represents any kind of number in sympy.

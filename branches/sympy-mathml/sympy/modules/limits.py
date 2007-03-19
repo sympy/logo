@@ -85,7 +85,7 @@ which is the most difficult part of the algorithm.
 
 import sympy as s
 from sympy.core import Basic, mhash
-from sympy.core.prettyprint import StringPict
+#from sympy.core.prettyprint import StringPict
 
 from decorator import decorator
 
