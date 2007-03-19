@@ -174,6 +174,7 @@ ln = log
 class abs_(Function):
     """Return the absolute value of x"""
     
+    mathml_tag = "abs"
     
     def eval(self):
         from addmul import Mul,Add
