@@ -115,7 +115,7 @@ class Mul(Pair):
     
     mathml_tag = "times"
      
-    def print_sympy(self):
+    def __str__(self):
         f = ""
         a = self.args
         if isinstance(a[0],Rational):
@@ -131,7 +131,7 @@ class Mul(Pair):
             else:
                 f += "%s*"
         f = f[:-1]
-        return f % tuple([x.print_sympy() for x in a])
+        return f % tuple([str(x) for x in a])
     
 
     def print_prog(self):
@@ -340,11 +340,11 @@ class Add(Pair):
     def __str__(self):
         """Returns a string representation of the expression in self."""
         
-        f = "%s" % self.args[0].print_sympy()
+        f = "%s" % str(self.args[0])
         for i in range(1,len(self.args)):
             num_part = _extract_numeric(self.args[i])[0]
             if num_part < 0:
-              f += "%s" % self(self.args[i])
+              f += "%s" % str(self.args[i])
             else:
               f += "+%s" % str(self.args[i])
         return f    

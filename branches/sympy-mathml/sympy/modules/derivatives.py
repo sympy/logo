@@ -1,5 +1,5 @@
 
-from sympy.core import Basic
+from sympy.core import Basic, hashing
 
 class Derivative(Basic):
 

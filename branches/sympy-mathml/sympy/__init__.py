@@ -53,5 +53,6 @@ __version__ = "0.3-pre"
 
 from sympy.core import Symbol, Rational, Real, exp, log, sign, infty, pi
 from sympy.modules.limits import limit, limitinf
-from sympy.modules.trigonometric import sin, cos, tan
+from sympy.modules.trigonometric import sin, cos, tan, arctan
 from sympy.modules.integrals import integrate
+from sympy.modules.derivatives import Derivative

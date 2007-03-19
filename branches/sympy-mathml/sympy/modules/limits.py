@@ -382,14 +382,25 @@ class Limit(Basic):
         self.mhash.addint(self.x.hash())
         self.mhash.addint(self.x0.hash())
         return self.mhash.value
+    
+    def _get_mathml(self):
+        s = "<apply><limit/><bvar>" + self.x.mathml + "</bvar>"
+        s += "<lowlimit>" + self.x0.mathml + "</lowlimit>"
+        s += self.e.mathml
+        s += "</apply>"
+        return s
+        
+    mathml = property(_get_mathml)
 
     def print_pretty(self):
          e, x, t = [a.print_pretty() for a in (self.e,self.x,self.x0)]
          return StringPict('lim').below(StringPict.next(x, '->', t)) \
                  .right(' ', e)
 
-def limit(e,z,z0):
+def limit(e,z,z0, evaluate=True):
     """Currently only limit z->z0+"""
+    if not evaluate:
+        return Limit(e, z, z0)
     x=s.Symbol("x",True)
     e0=e.subs(z,z0+1/x)
     return limitinf(e0,x)
