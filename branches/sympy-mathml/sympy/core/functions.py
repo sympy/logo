@@ -40,7 +40,7 @@ class Function(Basic):
         
     def __str__(self):
         f = "%s(%s)"
-        return f % (self.getname(),self.arg.print_sympy())
+        return f % (self.getname(),str(self.arg))
 
     def _get_mathml(self):
         return "<apply><%s/> %s </apply>" % (self.mathml_tag, self.arg.mathml)
