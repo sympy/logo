@@ -43,7 +43,16 @@ class Basic(object):
                      'is_bounded' : None, 
                      }
     
-    mathml_tag = property(lambda self: self.__class__.__name__.lower() )
+    @property
+    def mathml_tag(self):
+        """Return the mathml tag of the current object. 
+        
+        For example, symbol x has a mathml representation as 
+           <ci>x</ci>
+        So x.mathml returns "ci"
+        """
+        
+        return self.__class__.__name__.lower()
             # usually this must be overriden
             # if not overriden, it says to use
             # the class name as the mathml_tag. This is the case sometimes,
@@ -360,17 +369,11 @@ class Basic(object):
         except ValueError:
             return False
 
-    def _get_mathml(self):
+    @property
+    def mathml(self):
         """Returns a MathML expression representing the current object"""
         return "<%s> %s </%s>" % (self.mathml_tag, str(self), self.mathml_tag)
     
-    mathml = property(_get_mathml)
-
-    def print_tex(self):
-        """The TeX printing"""
-        raise NotImplementedError("TeX printing not implemented for %s"
-                %self.__class__.__name__)
-        
     def print_tree(self):
         """The canonical tree representation"""
         return str(self)

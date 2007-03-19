@@ -47,7 +47,8 @@ class Integral(Basic):
             self.x = args
             self.a , self.b = None, None
             
-    def _get_mathml(self):
+    @property
+    def mathml(self):
         s = "<apply><int/>" + "<bvar>" + self.x.mathml + "</bvar>" 
         if not isinstance(self.a, type(None)): # if this is a definite integral, put the integration limits
             s += "<lowlimit>" + self.a.mathml + "</lowlimit>"
@@ -55,8 +56,6 @@ class Integral(Basic):
         s += self.f.mathml + "</apply>"
         return s
             
-    mathml = property(_get_mathml)
-        
     def diff(self,sym):
         if sym==self.x:
             raise IntegralError("Cannot differentiate the integration variable")

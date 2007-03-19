@@ -21,15 +21,14 @@ class Pair(Basic):
     def __lt__(self, a):
         return self.evalf() < a
     
-    def _get_mathml(self):
+    @property
+    def mathml(self):
         s = "<apply>" + "<" + self.mathml_tag + "/>"
         for a in self.args:
                 s += a.mathml
         s += "</apply>"
         return s
     
-    mathml = property(_get_mathml)
-            
     def hash(self):
         if self.mhash: 
             return self.mhash.value

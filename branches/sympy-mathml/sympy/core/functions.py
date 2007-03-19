@@ -42,11 +42,10 @@ class Function(Basic):
         f = "%s(%s)"
         return f % (self.getname(),str(self.arg))
 
-    def _get_mathml(self):
+    @property
+    def mathml(self):
         return "<apply><%s/> %s </apply>" % (self.mathml_tag, self.arg.mathml)
         
-    mathml = property(_get_mathml)
-    
     def series(self, sym, n):
         from power import pole_error
         from symbol import Symbol

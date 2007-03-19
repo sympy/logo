@@ -383,15 +383,14 @@ class Limit(Basic):
         self.mhash.addint(self.x0.hash())
         return self.mhash.value
     
-    def _get_mathml(self):
+    @property
+    def mathml(self):
         s = "<apply><limit/><bvar>" + self.x.mathml + "</bvar>"
         s += "<lowlimit>" + self.x0.mathml + "</lowlimit>"
         s += self.e.mathml
         s += "</apply>"
         return s
         
-    mathml = property(_get_mathml)
-
     def print_pretty(self):
          e, x, t = [a.print_pretty() for a in (self.e,self.x,self.x0)]
          return StringPict('lim').below(StringPict.next(x, '->', t)) \

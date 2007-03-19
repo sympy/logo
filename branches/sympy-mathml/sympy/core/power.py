@@ -43,44 +43,13 @@ class Pow(Basic):
             f += "%s"
         return f % (str(self.base), str(self.exp))
     
-    def _get_mathml(self):
+    @property
+    def mathml(self):
         s = "<apply>" + "<" + self.mathml_tag + "/>"
         for a in self.get_baseandexp():
                 s += a.mathml
         s += "</apply>"
         return s
-        
-    mathml = property(_get_mathml)
-    
-
-    def print_tex(self):
-        from addmul import Pair
-        f = ""
-        if isinstance(self.base,Pair) or isinstance(self.base,Pow):
-            f += "{(%s)}"
-        else:
-            f += "{%s}"
-        f += "^"
-        if isinstance(self.exp,Pair) or isinstance(self.exp,Pow) \
-            or (isinstance(self.exp,Rational) and \
-            (not self.exp.isinteger() or (self.exp.isinteger() and \
-            int(self.exp) < 0)) ):
-            f += "{(%s)}"
-        else:
-            f += "{%s}"
-        return f % (self.base.print_tex(),self.exp.print_tex())
-
-    def print_pretty(self):
-        a, b = self.base, self.exp
-        apretty = a.print_pretty()
-        if isinstance(b, Rational) and b.p==1 and b.q==2:
-            return apretty.root()
-        if not isinstance(a, Symbol):
-            apretty = apretty.parens()
-        bpretty = b.print_pretty()
-        exponent = bpretty.left(' '*apretty.width())
-        apretty = apretty.right(' '*bpretty.width())
-        return apretty.top(exponent)
         
     def get_baseandexp(self):
         return (self.base,self.exp)
