@@ -50,13 +50,13 @@ class Basic(object):
         For example, symbol x has a mathml representation as 
            <ci>x</ci>
         So x.mathml returns "ci"
+
+        Basic.mathml_tag() returns the class name as the mathml_tag, this is
+        the case sometimes (sin, cos, exp, etc.). Otherwise just override this
+        method in your class.
         """
         
         return self.__class__.__name__.lower()
-            # usually this must be overriden
-            # if not overriden, it says to use
-            # the class name as the mathml_tag. This is the case sometimes,
-            # for example in the usual functions: sin, cos, exp, etc.
     
     def __init__(self, *args, **kwargs):
         self.mhash = 0
