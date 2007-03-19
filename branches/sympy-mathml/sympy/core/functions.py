@@ -181,7 +181,7 @@ class abs_(Function):
         from numbers import I
         
         arg = self.arg
-        if arg.isnumber() or (isinstance(arg, Symbol) and arg.real):
+        if arg.isnumber() or (isinstance(arg, Symbol) and arg.is_real):
             return (arg*arg.conjugate()).expand()**Rational(1,2)
         elif isinstance(arg, Mul):
             _t = arg.getab()[0]
@@ -189,11 +189,11 @@ class abs_(Function):
                 return abs(-self.arg)
         elif isinstance(arg, Add):
             b,a = arg.getab()
-            if isinstance(a, Symbol) and a.real:
+            if isinstance(a, Symbol) and a.is_real:
                 if isinstance(b, Mul):
                     a,b=b.getab()
                     if a == I:
-                        if isinstance(b, Symbol) and b.real:
+                        if isinstance(b, Symbol) and b.is_real:
                             return (arg*arg.conjugate()).expand()**Rational(1,2)
         return self
         

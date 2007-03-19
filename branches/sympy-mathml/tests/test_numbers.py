@@ -60,7 +60,7 @@ def test_Real():
     a = g.Real(2) ** g.Real(3)
     assert a.evalf() == 8.0
     assert abs((g.pi ** -1).evalf() - 0.318309886184) < 0.0000001
-    a = g.Pow(g.Real(2), g.Real(4))
+    a = g.Real(2) ** g.Real(4)
     assert a.evalf() == g.Real(16.0)
 
 def test_inf():
@@ -76,7 +76,7 @@ def test_powers():
 
 def test_realbug():
     x=g.Symbol("x")
-    assert str(2.0*x*x) in ["(2.000*x)*x","2.000*x^2"]
+    assert str(2.0*x*x) in ["(2.000*x)*x","2.000*x**2"]
     assert str(2.1*x*x)!="(2.0*x)*x"
 
 def test_acceptint():
@@ -95,16 +95,16 @@ def test_complex():
     assert str(abs(a))=="abs(a)"
 
 def test_abs1():
-    a=Symbol("a", real=True)
-    b=Symbol("b", real=True)
+    a=Symbol("a", is_real=True)
+    b=Symbol("b", is_real=True)
     assert abs(a) == a
     assert abs(-a) == a
     assert abs(-a) != -a
     assert abs(a+g.I*b) == (a*a+b*b).sqrt()
 
 def test_abs2():
-    a=Symbol("a", real=False)
-    b=Symbol("b", real=False)
+    a=Symbol("a", is_real=False)
+    b=Symbol("b", is_real=False)
     assert abs(a) != a
     assert abs(-a) != a
     assert abs(a+g.I*b) != (a*a+b*b).sqrt()

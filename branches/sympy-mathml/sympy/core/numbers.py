@@ -96,7 +96,7 @@ class Real(Number):
         self.mhash.addfloat(self.num)
         return self.mhash.value
         
-    def print_sympy(self):
+    def __str__(self):
         if self.num < 0:
             f = "(%s)"
         else:
