@@ -213,19 +213,6 @@ class Rational(Number):
             f = "%d/%d"
             return f % (self.p,self.q)
 
-    def print_tex(self):
-        if self.q == 1:
-            f = "%d"
-            return f % (self.p)
-        else:
-            f = "{%d \over %d}"
-            return f % (self.p,self.q)
-
-    def print_pretty(self):
-        if self.q == 1:
-            return StringPict(self.print_sympy())
-        return StringPict.stack("%d"%self.p,StringPict.LINE,"%d"%self.q)
-            
     def __mul__(self,a):
         a=self.sympify(a)
         if isinstance(a, Rational):
@@ -327,8 +314,8 @@ class Constant(Basic):
 class ImaginaryUnit(Constant):
     """Imaginary unit "i"."""
 
-    def print_sympy(self):
-        return "i"
+    def __str__(self):
+        return "I"
     
     def evalf(self):
         """Evaluate to a float. By convention, will return 0, 
@@ -400,7 +387,7 @@ class ConstPi(Constant):
         # don't know how fiable it is
 
 
-    def print_sympy(self):
+    def __str__(self):
         return "pi"
 
 pi=ConstPi()

@@ -360,18 +360,6 @@ class Basic(object):
         except ValueError:
             return False
 
-    def print_pretty(self):
-        """The pretty printing"""
-        raise NotImplementedError("Pretty printing not implemented for %s"
-                %self.__class__.__name__)
-
-    def print_pygame(self):
-        """The pygame printing"""
-        from printpygame import print_pygame
-        s=self.print_tex()
-        print_pygame(s)
-        return s
-    
     def _get_mathml(self):
         """Returns a MathML expression representing the current object"""
         return "<%s> %s </%s>" % (self.mathml_tag, str(self), self.mathml_tag)

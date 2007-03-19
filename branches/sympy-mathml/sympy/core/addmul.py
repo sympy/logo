@@ -2,7 +2,6 @@ import hashing
 from basic import Basic
 from numbers import Number, Rational, Real
 from power import Pow,pole_error
-from prettyprint import StringPict
 
 class Pair(Basic):
     """Abstract class containing common code to add and mul classes.
@@ -348,24 +347,6 @@ class Add(Pair):
             else:
               f += "+%s" % str(self.args[i])
         return f    
-
-    def print_tex(self):
-        f = "%s" % self.args[0].print_tex()
-        for i in range(1,len(self.args)):
-            num_part = _extract_numeric(self.args[i])[0]
-            if num_part < 0:
-              f += "%s" % self.args[i].print_tex()
-            else:
-              f += "+%s" % self.args[i].print_tex()
-        return f    
-    
-    def print_pretty(self):
-        result = []
-        for arg in self.args:
-            if result:
-                result.append('+')
-            result.append(arg.print_pretty())
-        return StringPict.next(*result)
 
     def contains_ncobject(self,a):
         for x in a:
