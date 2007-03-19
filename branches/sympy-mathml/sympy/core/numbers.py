@@ -16,7 +16,7 @@ class Number(Basic):
     Rational(1) + Rational(2)**( Rational(1)/2 )
     """
     
-    mathml_tag = "mn"
+    mathml_tag = "cn"
     
     def __init__(self):
         Basic.__init__(self)

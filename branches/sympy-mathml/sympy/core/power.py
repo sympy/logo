@@ -26,14 +26,14 @@ class Pow(Basic):
         self.mhash.add(self.exp.hash())
         return self.mhash.value
         
-    def print_sympy(self):
+    def __str__(self):
         from addmul import Pair
         f = ""
         if isinstance(self.base,Pair) or isinstance(self.base,Pow):
             f += "(%s)"
         else:
             f += "%s"
-        f += "^"
+        f += "**"
         if isinstance(self.exp,Pair) or isinstance(self.exp,Pow) \
             or (isinstance(self.exp,Rational) and \
             (not self.exp.isinteger() or (self.exp.isinteger() and \
@@ -41,7 +41,17 @@ class Pow(Basic):
             f += "(%s)"
         else:
             f += "%s"
-        return f % (self.base.print_sympy(),self.exp.print_sympy())
+        return f % (str(self.base), str(self.exp))
+    
+    def _get_mathml(self):
+        s = "<apply>" + "<" + self.mathml_tag + "/>"
+        for a in self.get_baseandexp():
+                s += a.mathml
+        s += "</apply>"
+        return s
+        
+    mathml = property(_get_mathml)
+    
 
     def print_tex(self):
         from addmul import Pair
@@ -131,6 +141,7 @@ class Pow(Basic):
                         return (-self.base)**self.exp
         return self
         
+
     def evalf(self):
         if self.base.isnumber() and self.exp.isnumber():
             return Real(float(self.base)**float(self.exp))
