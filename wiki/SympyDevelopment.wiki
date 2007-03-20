@@ -17,11 +17,12 @@ If you think some other test case should be modified, please discuss it on the m
 
 This also means, that any refactoring is very easy to do, just make sure all the tests run. And because refactoring is so easy, we are not afraid of making huge changes if we think the code will be more readable or simpler. 
 
-To execute tests, use:
+To execute tests before a commit, use:
 {{{
 python setup.py test
-python setup.py test_doc
 }}}
+
+Optionally, when debugging, you may want to only execute some particular tests using `py.test`, or only the doctests using `python setup.py test_doc`. But before each commit, test the whole package including docstrings.
 
 = Lists =
 
