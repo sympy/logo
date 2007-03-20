@@ -26,3 +26,4 @@ the mathml into other formats or into other variants of mathml more suitable for
 printing). Currently it transforms mathml content -> mathml presentation and mathml
 content -> latex. 
 
+
