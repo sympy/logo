@@ -1,7 +1,20 @@
 #summary Description of sympy's printing system (since 0.3)
 
 = Introduction =
+
 The new printing system depends heavily on MathML
+
+MathML is the standard for math representation on the web (see http://www.w3.org/Math/)
+
+to see in sympy the mathml code of any object, just type it's mahtml attribute. For example:
+
+>>> from sympy import *
+
+>>> x = Symbol('x')
+
+>>> (1+x**2).mathml
+
+'<apply><plus/><cn> 1 </cn><apply><power/><ci> x </ci><cn> 2 </cn></apply></apply>'
 
 TODO
 
@@ -15,4 +28,5 @@ For printing, we make use of the modules sympy.modules.mathml (that transforms
 the mathml into other formats or into other variants of mathml more suitable for
 printing). Currently it transforms mathml content -> mathml presentation and mathml
 content -> latex. 
+
 
