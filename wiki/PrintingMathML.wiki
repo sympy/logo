@@ -27,5 +27,16 @@ the mathml into other formats or into other variants of mathml more suitable for
 printing). Currently it transforms mathml content -> mathml presentation and mathml
 content -> latex. 
 
+== The mathml module ==
 
-= Printing Module = 
+located at sympy.modules.mathml
+TODO
+
+
+== Printing Module ==
+
+located in sympy.modules.printing
+TODO
+
+
+
