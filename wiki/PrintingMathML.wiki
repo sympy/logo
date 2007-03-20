@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Description of sympy's printing system (since 0.3)
 
 = Introduction =
 The new printing system depends heavily on MathML
@@ -19,5 +19,4 @@ the correct mathml (see classes sin, cos, etc.)
 the mathml into other formats or into other variants of mathml more suitable for
 printing). Currently it transforms mathml content -> mathml presentation and mathml
 content -> latex. 
-
 
