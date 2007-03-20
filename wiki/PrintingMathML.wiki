@@ -16,7 +16,7 @@ to see in sympy the mathml code of any object, just type it's mahtml attribute. 
 
 As you can see, MathML is pretty ugly and is not meant to be read directly, that is why there's a module that takes this MathML representation and outputs something more suitable for printing. 
 
-= Details =
+== MathML implementation details ==
 
 conversion to latex and other formats is achieved using xslt stylesheets
 
@@ -27,3 +27,5 @@ the mathml into other formats or into other variants of mathml more suitable for
 printing). Currently it transforms mathml content -> mathml presentation and mathml
 content -> latex. 
 
+
+= Printing Module = 
