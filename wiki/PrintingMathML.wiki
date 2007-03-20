@@ -9,13 +9,10 @@ TODO
 
 conversion to latex and other formats is achieved using xslt stylesheets
 
- Each class has a mathml attribute that returns a string with the mathml code. 
-The implementation is very nice, and in most classes you only have to define 
-the attribute mathml_tag and it will output the correct mathml code (see classes Symbol,
-Add, Mul,...) and in some cases you don't have to define anything and it will output
-the correct mathml (see classes sin, cos, etc.)
+Each class has a mathml attribute that returns a string with the mathml code. The  implementation is very nice, and in most classes you only have to define the attribute mathml_tag and it will output the correct mathml code (see classes Symbol, Add, Mul,...) and in some cases you don't have to define anything and it will output the correct mathml (see classes sin, cos, etc.)
 
-  - For printing, we make use of the modules sympy.modules.mathml (that transforms
+For printing, we make use of the modules sympy.modules.mathml (that transforms
 the mathml into other formats or into other variants of mathml more suitable for
 printing). Currently it transforms mathml content -> mathml presentation and mathml
 content -> latex. 
+
