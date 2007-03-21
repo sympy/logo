@@ -16,37 +16,9 @@ not interested in such a low level stuff.
 
 = eval() =
 
-Evaluate after every op (in doadd, domul etc.) - no, because it would be slow
-imagine long lists like `a+b+a+b+a+b+a+b`, it is faster to evaluate at once
-also we want to be able to read the expression as fast as possible and
-return something, we can play with it later.
-on the other hand - from the user point of view - he shouldn't be forced to
-call `eval()` at all. it should be called automatically in methods like
-`isequal()` etc. check how ginac is doing it - at which moment exactly it is
-calling the `eval()`
+We used to call .eval() manually, but we switched to an automatic evaluation implemented using a metaclass, see the Documentation. This is much more elegant, it cleaned the source  code of the whole SymPy, so now not only the user doesn't need to know about the eval() at all, but even the developers don't have to think about it most of the time.
 
-policy: do not `eval()` in construtors `add()`, `mul()`, `pow()` ....,
-do however eval in other functions like `==`, `!=`, diff, so that the user
-don't have to know about `eval()` at all
-user should call: `*`,`/`,`==`,`!=` - those use `eval()`
-in the library we can use both `==` (does eval) and isequal (doesn't do
-eval)
-
-why: sometimes, we don't want to automatically run eval, when we know it
-would only slow down things. the user however should never know about such
-things.
-
-we should decide, which functions should return evaluated expressions, and
-which not - and say that in clear.
-
-decision:
-don't run eval():   add(), mul(), pow(), isequal()
-run eval() on all input parameters plus return evaluated result:
-all the other methods
-
-what about exp(a+b) and `ln(a*b)`?  right now,
-I am doing `ln(a*b)` in eval(), but sometimes, I *don't* want to expand
-exp(a+b) - e.g. in limits.py. maybe move to expand()? look at mathematica,
+What about exp(a+b) and `ln(a*b)`? Right now, we are doing `ln(a*b)` in eval(), but sometimes, we *don't* want to expand `exp(a+b)` - e.g. in limits.py. maybe move to `expand()`? Look at mathematica,
 maple, what they are doing. the same in series expansion. needs to be
 specified. I am rather skeptical, I don't want eval() to do any magic.
 my conclusion now i that `ln(a*b)` and exp(a+b) should be rewritten on
