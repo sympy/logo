@@ -56,7 +56,7 @@ Whenever you construct an expression, for example `Add(x,x)`, the instance of th
 {{{
 e=Add(x,x)
 }}}
-`e` actually is an instance of `Mul(2,x)`, because `Add.eval()` retuned `Mul`. This magic is done using the `AutomaticEvaluationType` metaclass, which is implemented in `basic.py` and the class `Basic`. This metaclass just constructs a given instance and returns the result of it's `eval()` method. All the other classes in sympy just don't have to care about it. All that is needed when you create a new sympy class is to optionally implement it's eval() method to simplify things like `cos(0)' to `1`. It's not mandatory, if you don't want any simplifications to happen, but then `cos(0)==1` would return `False`.
+`e` actually is an instance of `Mul(2,x)`, because `Add.eval()` retuned `Mul`. This magic is done using the `AutomaticEvaluationType` metaclass, which is implemented in `basic.py` and the class `Basic`. This metaclass just constructs a given instance and returns the result of it's `eval()` method. All the other classes in sympy just don't have to care about it. All that is needed when you create a new sympy class is to optionally implement it's eval() method to simplify things like `cos(0)` to `1`. It's not mandatory, if you don't want any simplifications to happen, but then `cos(0)==1` would return `False`.
 
 There is no place in the code, which needs to think about evaluation and
 `eval()`, with two exceptions:
