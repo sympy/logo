@@ -26,7 +26,7 @@ Join the sympy mailinglist and tell us if you have any other ideas. If you choos
 
 == How to apply ==
 
-*Deadline*: March 24th, 2007
+*Deadline*: March 26th, 2007
 
 Instructions how to apply are written here:
 
