@@ -40,7 +40,7 @@ Usage:
 >>> x = Symbol('x')
 >>> from sympy.modules.mathml import mml2latex
 >>> print mml2latex( integrate(x*y+1, x, evaluate=False).mathml)
-$\int \left( 1 +yx\right)dx$
+$\int \left(1+yx\right)dx$
 }}}
 
 
@@ -48,5 +48,4 @@ $\int \left( 1 +yx\right)dx$
 
 located in sympy.modules.printing
 TODO
-
 
