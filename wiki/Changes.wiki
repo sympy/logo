@@ -1,0 +1,15 @@
+#summary Changes since last release
+
+= Introduction =
+
+This page documents the major changes made to !SymPy since the last release.
+
+= Releases = 
+
+== 0.3 ==
+
+
+
+== 0.2 ==
+
+This is the firt release.
