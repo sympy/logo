@@ -48,6 +48,16 @@ $\int \left(1+yx\right)dx$
 
 Located in sympy.modules.printing. 
 
+
+=== Gtk ===
+
+Usage:
+{{{
+from sympy import *
+print_gtk(x**2 + 2*exp(x**3))
+}}}
+
+
 === Latex ===
 
 Usage:
@@ -66,12 +76,4 @@ Usage:
 {{{
 ...
 print_pygame(f)
-}}}
-
-=== Gtk ===
-
-Usage:
-{{{
-...
-print_gtk(f)
 }}}
