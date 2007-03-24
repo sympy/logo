@@ -3,6 +3,8 @@
 
 = Introduction =
 
+This is the central page for all documentation to SymPy.
+
 This document describes the main ideas of how sympy works. For examples of most features of sympy, look into [http://code.google.com/p/sympy/wiki/Examples Examples].
 
 API documentation is here:
