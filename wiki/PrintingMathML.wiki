@@ -48,6 +48,8 @@ $\int \left(1+yx\right)dx$
 
 Located in sympy.modules.printing. 
 
+=== Latex ===
+
 Usage:
 {{{
 >>> from sympy import *
@@ -56,4 +58,20 @@ Usage:
 >>> f = integrate(exp(x), x, evaluate=False)
 >>> print_latex(f)
 '$\\int {e}^{x}dx$'
+}}}
+
+=== Pygame ===
+
+Usage:
+{{{
+...
+print_pygame(f)
+}}}
+
+=== Gtk ===
+
+Usage:
+{{{
+...
+print_gtk(f)
 }}}
