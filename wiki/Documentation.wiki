@@ -9,7 +9,7 @@ For examples of most features of !SymPy, look into [http://code.google.com/p/sym
 
 How !SymPy works is described in HowItWorks.
 
-Description of !SymPy printing system is in PrintingMathML.
+Description of !SymPy printing system is in [http://code.google.com/p/sympy/wiki/PrintingMathML PrintingMathML].
 
 API documentation is here:
 http://sympy.googlecode.com/svn/api/index.html
