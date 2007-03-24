@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>sympy.modules.paulialgebra</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sympy-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/sympy">Sympy</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="sympy-module.html">Package&nbsp;sympy</a> ::
+        <a href="sympy.modules-module.html">Package&nbsp;modules</a> ::
+        Module&nbsp;paulialgebra
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="sympy.modules.paulialgebra-module.html">Module sympy.modules.paulialgebra</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno"> 1</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package sympy=sympy-module.html"><a title="sympy" class="py-name" href="#" onclick="return doclink('link-0', 'sympy', 'link-0');">sympy</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package sympy.core=sympy.core-module.html"><a title="sympy.core" class="py-name" href="#" onclick="return doclink('link-1', 'core', 'link-1');">core</a></tt> <tt class="py-keyword">import</tt> <tt id="link-2" class="py-name" targets="Class sympy.core.basic.Basic=sympy.core.basic.Basic-class.html"><a title="sympy.core.basic.Basic" class="py-name" href="#" onclick="return doclink('link-2', 'Basic', 'link-2');">Basic</a></tt><tt class="py-op">,</tt><tt id="link-3" class="py-name" targets="Class sympy.core.functions.exp=sympy.core.functions.exp-class.html,Variable sympy.core.power.Pow.exp=sympy.core.power.Pow-class.html#exp"><a title="sympy.core.functions.exp
+sympy.core.power.Pow.exp" class="py-name" href="#" onclick="return doclink('link-3', 'exp', 'link-3');">exp</a></tt><tt class="py-op">,</tt><tt id="link-4" class="py-name" targets="Class sympy.core.symbol.Symbol=sympy.core.symbol.Symbol-class.html"><a title="sympy.core.symbol.Symbol" class="py-name" href="#" onclick="return doclink('link-4', 'Symbol', 'link-4');">Symbol</a></tt><tt class="py-op">,</tt><tt id="link-5" class="py-name" targets="Class sympy.core.numbers.Rational=sympy.core.numbers.Rational-class.html"><a title="sympy.core.numbers.Rational" class="py-name" href="#" onclick="return doclink('link-5', 'Rational', 'link-5');">Rational</a></tt><tt class="py-op">,</tt><tt id="link-6" class="py-name" targets="Variable sympy.core.numbers.I=sympy.core.numbers-module.html#I"><a title="sympy.core.numbers.I" class="py-name" href="#" onclick="return doclink('link-6', 'I', 'link-6');">I</a></tt><tt class="py-op">,</tt><tt id="link-7" class="py-name" targets="Class sympy.core.addmul.Mul=sympy.core.addmul.Mul-class.html"><a title="sympy.core.addmul.Mul" class="py-name" href="#" onclick="return doclink('link-7', 'Mul', 'link-7');">Mul</a></tt><tt class="py-op">,</tt><tt id="link-8" class="py-name" targets="Class sympy.core.symbol.NCSymbol=sympy.core.symbol.NCSymbol-class.html"><a title="sympy.core.symbol.NCSymbol" class="py-name" href="#" onclick="return doclink('link-8', 'NCSymbol', 'link-8');">NCSymbol</a></tt> </tt>
+<a name="L2"></a><tt class="py-lineno"> 2</tt>  <tt class="py-line"> </tt>
+<a name="L3"></a><tt class="py-lineno"> 3</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
+<a name="L4"></a><tt class="py-lineno"> 4</tt>  <tt class="py-line"><tt class="py-string">This module implements Pauli algebra by subclassing NCSymbol. Only aglebraic</tt> </tt>
+<a name="L5"></a><tt class="py-lineno"> 5</tt>  <tt class="py-line"><tt class="py-string">properties of Pauli matrices are used (we don't use the Matrix class).</tt> </tt>
+<a name="L6"></a><tt class="py-lineno"> 6</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L7"></a><tt class="py-lineno"> 7</tt>  <tt class="py-line"><tt class="py-string">See the documentation to the class Pauli for examples.</tt> </tt>
+<a name="L8"></a><tt class="py-lineno"> 8</tt>  <tt class="py-line"><tt class="py-string"></tt> </tt>
+<a name="L9"></a><tt class="py-lineno"> 9</tt>  <tt class="py-line"><tt class="py-string">See also:</tt> </tt>
+<a name="L10"></a><tt class="py-lineno">10</tt>  <tt class="py-line"><tt class="py-string">    http://en.wikipedia.org/wiki/Pauli_matrices</tt> </tt>
+<a name="L11"></a><tt class="py-lineno">11</tt>  <tt class="py-line"><tt class="py-string">"""</tt> </tt>
+<a name="L12"></a><tt class="py-lineno">12</tt>  <tt class="py-line"> </tt>
+<a name="delta"></a><div id="delta-def"><a name="L13"></a><tt class="py-lineno">13</tt> <a class="py-toggle" href="#" id="delta-toggle" onclick="return toggle('delta');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.paulialgebra-module.html#delta">delta</a><tt class="py-op">(</tt><tt class="py-param">i</tt><tt class="py-op">,</tt><tt class="py-param">j</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="delta-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="delta-expanded"><a name="L14"></a><tt class="py-lineno">14</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-name">i</tt><tt class="py-op">==</tt><tt class="py-name">j</tt><tt class="py-op">:</tt> </tt>
+<a name="L15"></a><tt class="py-lineno">15</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-number">1</tt> </tt>
+<a name="L16"></a><tt class="py-lineno">16</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L17"></a><tt class="py-lineno">17</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-number">0</tt> </tt>
+</div><a name="L18"></a><tt class="py-lineno">18</tt>  <tt class="py-line"> </tt>
+<a name="epsilon"></a><div id="epsilon-def"><a name="L19"></a><tt class="py-lineno">19</tt> <a class="py-toggle" href="#" id="epsilon-toggle" onclick="return toggle('epsilon');">-</a><tt class="py-line"><tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.paulialgebra-module.html#epsilon">epsilon</a><tt class="py-op">(</tt><tt class="py-param">i</tt><tt class="py-op">,</tt><tt class="py-param">j</tt><tt class="py-op">,</tt><tt class="py-param">k</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="epsilon-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="epsilon-expanded"><a name="L20"></a><tt class="py-lineno">20</tt>  <tt class="py-line">    <tt class="py-keyword">if</tt> <tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">,</tt><tt class="py-name">j</tt><tt class="py-op">,</tt><tt class="py-name">k</tt><tt class="py-op">)</tt> <tt class="py-keyword">in</tt> <tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">,</tt><tt class="py-number">2</tt><tt class="py-op">,</tt><tt class="py-number">3</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-number">2</tt><tt class="py-op">,</tt><tt class="py-number">3</tt><tt class="py-op">,</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-number">3</tt><tt class="py-op">,</tt><tt class="py-number">1</tt><tt class="py-op">,</tt><tt class="py-number">2</tt><tt class="py-op">)</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L21"></a><tt class="py-lineno">21</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-number">1</tt> </tt>
+<a name="L22"></a><tt class="py-lineno">22</tt>  <tt class="py-line">    <tt class="py-keyword">elif</tt> <tt class="py-op">(</tt><tt class="py-name">i</tt><tt class="py-op">,</tt><tt class="py-name">j</tt><tt class="py-op">,</tt><tt class="py-name">k</tt><tt class="py-op">)</tt> <tt class="py-keyword">in</tt> <tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">,</tt><tt class="py-number">3</tt><tt class="py-op">,</tt><tt class="py-number">2</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-number">3</tt><tt class="py-op">,</tt><tt class="py-number">2</tt><tt class="py-op">,</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> <tt class="py-op">(</tt><tt class="py-number">2</tt><tt class="py-op">,</tt><tt class="py-number">1</tt><tt class="py-op">,</tt><tt class="py-number">3</tt><tt class="py-op">)</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L23"></a><tt class="py-lineno">23</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-op">-</tt><tt class="py-number">1</tt> </tt>
+<a name="L24"></a><tt class="py-lineno">24</tt>  <tt class="py-line">    <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L25"></a><tt class="py-lineno">25</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-number">0</tt> </tt>
+</div><a name="L26"></a><tt class="py-lineno">26</tt>  <tt class="py-line"> </tt>
+<a name="Pauli"></a><div id="Pauli-def"><a name="L27"></a><tt class="py-lineno">27</tt> <a class="py-toggle" href="#" id="Pauli-toggle" onclick="return toggle('Pauli');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="sympy.modules.paulialgebra.Pauli-class.html">Pauli</a><tt class="py-op">(</tt><tt class="py-base-class">NCSymbol</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pauli-collapsed" style="display:none;" pad="++" indent="++++"></div><div id="Pauli-expanded"><a name="L28"></a><tt class="py-lineno">28</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L29"></a><tt class="py-lineno">29</tt>  <tt class="py-line"><tt class="py-docstring">    &gt;&gt;&gt; from sympy import *</tt> </tt>
+<a name="L30"></a><tt class="py-lineno">30</tt>  <tt class="py-line"><tt class="py-docstring">    &gt;&gt;&gt; Pauli(1)</tt> </tt>
+<a name="L31"></a><tt class="py-lineno">31</tt>  <tt class="py-line"><tt class="py-docstring">    sigma1</tt> </tt>
+<a name="L32"></a><tt class="py-lineno">32</tt>  <tt class="py-line"><tt class="py-docstring">    &gt;&gt;&gt; Pauli(1)*Pauli(2)</tt> </tt>
+<a name="L33"></a><tt class="py-lineno">33</tt>  <tt class="py-line"><tt class="py-docstring">    I*sigma3</tt> </tt>
+<a name="L34"></a><tt class="py-lineno">34</tt>  <tt class="py-line"><tt class="py-docstring">    &gt;&gt;&gt; Pauli(1)*Pauli(1)</tt> </tt>
+<a name="L35"></a><tt class="py-lineno">35</tt>  <tt class="py-line"><tt class="py-docstring">    1</tt> </tt>
+<a name="L36"></a><tt class="py-lineno">36</tt>  <tt class="py-line"><tt class="py-docstring">    &gt;&gt;&gt; Pauli(3)**4</tt> </tt>
+<a name="L37"></a><tt class="py-lineno">37</tt>  <tt class="py-line"><tt class="py-docstring">    1</tt> </tt>
+<a name="L38"></a><tt class="py-lineno">38</tt>  <tt class="py-line"><tt class="py-docstring">    &gt;&gt;&gt; Pauli(1)*Pauli(2)*Pauli(3)</tt> </tt>
+<a name="L39"></a><tt class="py-lineno">39</tt>  <tt class="py-line"><tt class="py-docstring">    I</tt> </tt>
+<a name="L40"></a><tt class="py-lineno">40</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L41"></a><tt class="py-lineno">41</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L42"></a><tt class="py-lineno">42</tt>  <tt class="py-line"> </tt>
+<a name="Pauli.__init__"></a><div id="Pauli.__init__-def"><a name="L43"></a><tt class="py-lineno">43</tt> <a class="py-toggle" href="#" id="Pauli.__init__-toggle" onclick="return toggle('Pauli.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.paulialgebra.Pauli-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt><tt class="py-param">i</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pauli.__init__-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Pauli.__init__-expanded"><a name="L44"></a><tt class="py-lineno">44</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-keyword">not</tt> <tt class="py-name">i</tt> <tt class="py-keyword">in</tt> <tt class="py-op">[</tt><tt class="py-number">1</tt><tt class="py-op">,</tt><tt class="py-number">2</tt><tt class="py-op">,</tt><tt class="py-number">3</tt><tt class="py-op">]</tt><tt class="py-op">:</tt> </tt>
+<a name="L45"></a><tt class="py-lineno">45</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-string">"Invalid Pauli index"</tt> </tt>
+<a name="L46"></a><tt class="py-lineno">46</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">i</tt><tt class="py-op">=</tt><tt class="py-name">i</tt> </tt>
+<a name="L47"></a><tt class="py-lineno">47</tt>  <tt class="py-line">        <tt id="link-9" class="py-name"><a title="sympy.core.symbol.NCSymbol" class="py-name" href="#" onclick="return doclink('link-9', 'NCSymbol', 'link-8');">NCSymbol</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Method sympy.core.addmul.Pair.__init__()=sympy.core.addmul.Pair-class.html#__init__,Method sympy.core.basic.Basic.__init__()=sympy.core.basic.Basic-class.html#__init__,Method sympy.core.functions.Derivative.__init__()=sympy.core.functions.Derivative-class.html#__init__,Method sympy.core.functions.Function.__init__()=sympy.core.functions.Function-class.html#__init__,Method sympy.core.hashing.Mbernstein.__init__()=sympy.core.hashing.Mbernstein-class.html#__init__,Method sympy.core.hashing.Mmd5.__init__()=sympy.core.hashing.Mmd5-class.html#__init__,Method sympy.core.hashing.Mpython.__init__()=sympy.core.hashing.Mpython-class.html#__init__,Method sympy.core.numbers.Constant.__init__()=sympy.core.numbers.Constant-class.html#__init__,Method sympy.core.numbers.Infinity.__init__()=sympy.core.numbers.Infinity-class.html#__init__,Method sympy.core.numbers.Number.__init__()=sympy.core.numbers.Number-class.html#__init__,Method sympy.core.numbers.Rational.__init__()=sympy.core.numbers.Rational-class.html#__init__,Method sympy.core.numbers.Real.__init__()=sympy.core.numbers.Real-class.html#__init__,Method sympy.core.power.Pow.__init__()=sympy.core.power.Pow-class.html#__init__,Method sympy.core.symbol.Symbol.__init__()=sympy.core.symbol.Symbol-class.html#__init__,Method sympy.modules.derivatives.xDerivative.__init__()=sympy.modules.derivatives.xDerivative-class.html#__init__,Method sympy.modules.integrals.Integral.__init__()=sympy.modules.integrals.Integral-class.html#__init__,Method sympy.modules.limits.Limit.__init__()=sympy.modules.limits.Limit-class.html#__init__,Method sympy.modules.matrices.Matrix.__init__()=sympy.modules.matrices.Matrix-class.html#__init__,Method sympy.modules.paulialgebra.Pauli.__init__()=sympy.modules.paulialgebra.Pauli-class.html#__init__,Method sympy.modules.printing.pretty.StringPict.__init__()=sympy.modules.printing.pretty.StringPict-class.html#__init__"><a title="sympy.core.addmul.Pair.__init__
+sympy.core.basic.Basic.__init__
+sympy.core.functions.Derivative.__init__
+sympy.core.functions.Function.__init__
+sympy.core.hashing.Mbernstein.__init__
+sympy.core.hashing.Mmd5.__init__
+sympy.core.hashing.Mpython.__init__
+sympy.core.numbers.Constant.__init__
+sympy.core.numbers.Infinity.__init__
+sympy.core.numbers.Number.__init__
+sympy.core.numbers.Rational.__init__
+sympy.core.numbers.Real.__init__
+sympy.core.power.Pow.__init__
+sympy.core.symbol.Symbol.__init__
+sympy.modules.derivatives.xDerivative.__init__
+sympy.modules.integrals.Integral.__init__
+sympy.modules.limits.Limit.__init__
+sympy.modules.matrices.Matrix.__init__
+sympy.modules.paulialgebra.Pauli.__init__
+sympy.modules.printing.pretty.StringPict.__init__" class="py-name" href="#" onclick="return doclink('link-10', '__init__', 'link-10');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-string">"sigma%d"</tt><tt class="py-op">%</tt><tt class="py-name">i</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L48"></a><tt class="py-lineno">48</tt>  <tt class="py-line"> </tt>
+<a name="L49"></a><tt class="py-lineno">49</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">staticmethod</tt> </tt>
+<a name="Pauli.muleval"></a><div id="Pauli.muleval-def"><a name="L50"></a><tt class="py-lineno">50</tt> <a class="py-toggle" href="#" id="Pauli.muleval-toggle" onclick="return toggle('Pauli.muleval');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="sympy.modules.paulialgebra.Pauli-class.html#muleval">muleval</a><tt class="py-op">(</tt><tt class="py-param">x</tt><tt class="py-op">,</tt> <tt class="py-param">y</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Pauli.muleval-collapsed" style="display:none;" pad="++" indent="++++++++"></div><div id="Pauli.muleval-expanded"><a name="L51"></a><tt class="py-lineno">51</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">x</tt><tt class="py-op">,</tt> <tt id="link-11" class="py-name" targets="Class sympy.modules.paulialgebra.Pauli=sympy.modules.paulialgebra.Pauli-class.html"><a title="sympy.modules.paulialgebra.Pauli" class="py-name" href="#" onclick="return doclink('link-11', 'Pauli', 'link-11');">Pauli</a></tt><tt class="py-op">)</tt> <tt class="py-keyword">and</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">y</tt><tt class="py-op">,</tt> <tt id="link-12" class="py-name"><a title="sympy.modules.paulialgebra.Pauli" class="py-name" href="#" onclick="return doclink('link-12', 'Pauli', 'link-11');">Pauli</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L52"></a><tt class="py-lineno">52</tt>  <tt class="py-line">            <tt class="py-name">j</tt><tt class="py-op">=</tt><tt class="py-name">x</tt><tt class="py-op">.</tt><tt class="py-name">i</tt> </tt>
+<a name="L53"></a><tt class="py-lineno">53</tt>  <tt class="py-line">            <tt class="py-name">k</tt><tt class="py-op">=</tt><tt class="py-name">y</tt><tt class="py-op">.</tt><tt class="py-name">i</tt> </tt>
+<a name="L54"></a><tt class="py-lineno">54</tt>  <tt class="py-line">            <tt class="py-keyword">return</tt> <tt id="link-13" class="py-name" targets="Function sympy.modules.paulialgebra.delta()=sympy.modules.paulialgebra-module.html#delta"><a title="sympy.modules.paulialgebra.delta" class="py-name" href="#" onclick="return doclink('link-13', 'delta', 'link-13');">delta</a></tt><tt class="py-op">(</tt><tt class="py-name">j</tt><tt class="py-op">,</tt><tt class="py-name">k</tt><tt class="py-op">)</tt> \ </tt>
+<a name="L55"></a><tt class="py-lineno">55</tt>  <tt class="py-line">                <tt class="py-op">+</tt><tt id="link-14" class="py-name"><a title="sympy.core.numbers.I" class="py-name" href="#" onclick="return doclink('link-14', 'I', 'link-6');">I</a></tt><tt class="py-op">*</tt><tt id="link-15" class="py-name" targets="Function sympy.modules.paulialgebra.epsilon()=sympy.modules.paulialgebra-module.html#epsilon"><a title="sympy.modules.paulialgebra.epsilon" class="py-name" href="#" onclick="return doclink('link-15', 'epsilon', 'link-15');">epsilon</a></tt><tt class="py-op">(</tt><tt class="py-name">j</tt><tt class="py-op">,</tt><tt class="py-name">k</tt><tt class="py-op">,</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">*</tt><tt id="link-16" class="py-name"><a title="sympy.modules.paulialgebra.Pauli" class="py-name" href="#" onclick="return doclink('link-16', 'Pauli', 'link-11');">Pauli</a></tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> \ </tt>
+<a name="L56"></a><tt class="py-lineno">56</tt>  <tt class="py-line">                <tt class="py-op">+</tt><tt id="link-17" class="py-name"><a title="sympy.core.numbers.I" class="py-name" href="#" onclick="return doclink('link-17', 'I', 'link-6');">I</a></tt><tt class="py-op">*</tt><tt id="link-18" class="py-name"><a title="sympy.modules.paulialgebra.epsilon" class="py-name" href="#" onclick="return doclink('link-18', 'epsilon', 'link-15');">epsilon</a></tt><tt class="py-op">(</tt><tt class="py-name">j</tt><tt class="py-op">,</tt><tt class="py-name">k</tt><tt class="py-op">,</tt><tt class="py-number">2</tt><tt class="py-op">)</tt><tt class="py-op">*</tt><tt id="link-19" class="py-name"><a title="sympy.modules.paulialgebra.Pauli" class="py-name" href="#" onclick="return doclink('link-19', 'Pauli', 'link-11');">Pauli</a></tt><tt class="py-op">(</tt><tt class="py-number">2</tt><tt class="py-op">)</tt> \ </tt>
+<a name="L57"></a><tt class="py-lineno">57</tt>  <tt class="py-line">                <tt class="py-op">+</tt><tt id="link-20" class="py-name"><a title="sympy.core.numbers.I" class="py-name" href="#" onclick="return doclink('link-20', 'I', 'link-6');">I</a></tt><tt class="py-op">*</tt><tt id="link-21" class="py-name"><a title="sympy.modules.paulialgebra.epsilon" class="py-name" href="#" onclick="return doclink('link-21', 'epsilon', 'link-15');">epsilon</a></tt><tt class="py-op">(</tt><tt class="py-name">j</tt><tt class="py-op">,</tt><tt class="py-name">k</tt><tt class="py-op">,</tt><tt class="py-number">3</tt><tt class="py-op">)</tt><tt class="py-op">*</tt><tt id="link-22" class="py-name"><a title="sympy.modules.paulialgebra.Pauli" class="py-name" href="#" onclick="return doclink('link-22', 'Pauli', 'link-11');">Pauli</a></tt><tt class="py-op">(</tt><tt class="py-number">3</tt><tt class="py-op">)</tt> </tt>
+<a name="L58"></a><tt class="py-lineno">58</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">None</tt> </tt>
+</div></div><a name="L59"></a><tt class="py-lineno">59</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="sympy-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://code.google.com/p/sympy">Sympy</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0beta1 on Sat Mar 24 23:01:29 2007
+    </td>
+    <td align="right" class="footer">
+      <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie()
+  // -->
+</script>
+  
+</body>
+</html>
