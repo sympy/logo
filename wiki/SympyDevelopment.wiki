@@ -33,3 +33,9 @@ http://groups.google.com/group/sympy-issues
 So if you want to be notified of any change, subscribe to the list. Then there is a list which receives all subversion commits:
 
 http://groups.google.com/group/sympy-commits
+
+= Links =
+
+Some ideas why we chose this way and not that way are in:
+
+http://code.google.com/p/sympy/wiki/Discussion
