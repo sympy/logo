@@ -39,3 +39,7 @@ http://groups.google.com/group/sympy-commits
 Some ideas why we chose this way and not that way are in:
 
 http://code.google.com/p/sympy/wiki/Discussion
+
+Ideas for symbolic integration are at:
+
+http://code.google.com/p/sympy/wiki/SymbolicIntegration
