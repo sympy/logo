@@ -29,11 +29,11 @@ content -> latex.
 
 == The mathml module ==
 
-Located at sympy.modules.mathml.
+Located in sympy.modules.mathml.
 
 On Debian, install the "python-libxslt1" package.
 
-Usage:
+You don't need to use this module directly, but if you want, use it like this:
 
 {{{
 >>> from sympy import *
@@ -46,6 +46,14 @@ $\int \left(1+yx\right)dx$
 
 == Printing Module ==
 
-located in sympy.modules.printing
-TODO
+Located in sympy.modules.printing. 
 
+Usage:
+{{{
+>>> from sympy import *
+>>> from sympy.modules.printing import *
+>>> x = Symbol('x')
+>>> f = integrate(exp(x), x, evaluate=False)
+>>> print_latex(f)
+'$\\int {e}^{x}dx$'
+}}}
