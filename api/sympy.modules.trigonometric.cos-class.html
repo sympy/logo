@@ -120,22 +120,6 @@ Return the cosine of x (measured in radians)<br /><br />
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="getname"></a><span class="summary-sig-name">getname</span>(<span class="summary-sig-arg">self</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.modules.trigonometric-pysrc.html#cos.getname">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
           <td><span class="summary-sig"><a href="sympy.modules.trigonometric.cos-class.html#derivative" class="summary-sig-name">derivative</a>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="sympy.modules.trigonometric-pysrc.html#cos.derivative">source&nbsp;code</a></span>
@@ -152,9 +136,7 @@ Return the cosine of x (measured in radians)<br /><br />
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="sympy.modules.trigonometric.cos-class.html#bounded" class="summary-sig-name">bounded</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Is &quot;self&quot; bounded for all possible values of 
-      symbols?</td>
+          <td><span class="summary-sig"><a name="bounded"></a><span class="summary-sig-name">bounded</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="sympy.modules.trigonometric-pysrc.html#cos.bounded">source&nbsp;code</a></span>
             
@@ -199,14 +181,32 @@ Return the cosine of x (measured in radians)<br /><br />
       
     </td>
   </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="sympy.modules.trigonometric.cos-class.html#evalc" class="summary-sig-name">evalc</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Rewrites self in the form x+i*y.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.modules.trigonometric-pysrc.html#cos.evalc">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
   <tr>
     <td colspan="2" class="summary">
     <p class="indent-wrapped-lines"><b>Inherited from <code><a href="sympy.core.functions.Function-class.html">core.functions.Function</a></code></b>:
+      <code><a href="sympy.core.functions.Function-class.html#__getitem__">__getitem__</a></code>,
       <code><a href="sympy.core.functions.Function-class.html#__init__">__init__</a></code>,
+      <code><a href="sympy.core.functions.Function-class.html#__str__">__str__</a></code>,
       <code><a href="sympy.core.functions.Function-class.html#diff">diff</a></code>,
+      <code><a href="sympy.core.functions.Function-class.html#getname">getname</a></code>,
       <code><a href="sympy.core.functions.Function-class.html#hash">hash</a></code>,
-      <code><a href="sympy.core.functions.Function-class.html#print_pretty">print_pretty</a></code>,
-      <code><a href="sympy.core.functions.Function-class.html#print_sympy">print_sympy</a></code>,
       <code><a href="sympy.core.functions.Function-class.html#series">series</a></code>,
       <code><a href="sympy.core.functions.Function-class.html#subs">subs</a></code>
       </p>
@@ -216,7 +216,9 @@ Return the cosine of x (measured in radians)<br /><br />
       <code><a href="sympy.core.basic.Basic-class.html#__div__">__div__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__eq__">__eq__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__float__">__float__</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#__getattr__">__getattr__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__gt__">__gt__</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#__len__">__len__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__lt__">__lt__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__mul__">__mul__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__ne__">__ne__</a></code>,
@@ -229,12 +231,12 @@ Return the cosine of x (measured in radians)<br /><br />
       <code><a href="sympy.core.basic.Basic-class.html#__rmul__">__rmul__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__rpow__">__rpow__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__rsub__">__rsub__</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#__str__">__str__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__sub__">__sub__</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#commutative">commutative</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#atoms">atoms</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#conjugate">conjugate</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#diffn">diffn</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#expand">expand</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#get_re_im">get_re_im</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#has">has</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#isequal">isequal</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#isnumber">isnumber</a></code>,
@@ -283,7 +285,9 @@ Return the cosine of x (measured in radians)<br /><br />
     <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="sympy.core.basic.Basic-class.html">core.basic.Basic</a></code></b> (private):
       <code><a href="sympy.core.basic.Basic-class.html#_doadd">_doadd</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#_domul">_domul</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#_dopow">_dopow</a></code>
+      <code><a href="sympy.core.basic.Basic-class.html#_dopow">_dopow</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#_isnumber">_isnumber</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#_sign">_sign</a></code>
       </p></div>
     </td>
   </tr>
@@ -307,6 +311,12 @@ Return the cosine of x (measured in radians)<br /><br />
 </tr>
   <tr>
     <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="sympy.core.functions.Function-class.html">core.functions.Function</a></code></b>:
+      <code><a href="sympy.core.functions.Function-class.html#mathml">mathml</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="sympy.core.basic.Basic-class.html">core.basic.Basic</a></code></b>:
+      <code><a href="sympy.core.basic.Basic-class.html#mathml_tag">mathml_tag</a></code>
+      </p>
     <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
       <code>__class__</code>
       </p>
@@ -349,30 +359,6 @@ Return the cosine of x (measured in radians)<br /><br />
   <dl class="fields">
     <dt>Overrides:
       <a href="sympy.core.functions.Function-class.html#derivative">core.functions.Function.derivative</a>
-    </dt>
-  </dl>
-</td></tr></table>
-</div>
-<a name="bounded"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">bounded</span>(<span class="sig-arg">self</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="sympy.modules.trigonometric-pysrc.html#cos.bounded">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </table>
-  
-  <p>Is &quot;self&quot; bounded for all possible values of symbols?</p>
-  Generally not, but sin(x) and cos(x) are.
-  <dl class="fields">
-    <dt>Overrides:
-      <a href="sympy.core.basic.Basic-class.html#bounded">core.basic.Basic.bounded</a>
-        <dd><em class="note">(inherited documentation)</em></dd>
     </dt>
   </dl>
 </td></tr></table>
@@ -428,6 +414,30 @@ Return the cosine of x (measured in radians)<br /><br />
   </dl>
 </td></tr></table>
 </div>
+<a name="evalc"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">evalc</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="sympy.modules.trigonometric-pysrc.html#cos.evalc">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  <p>Rewrites self in the form x+i*y.</p>
+  It should raise an exceptin, if this is not possible.
+  <dl class="fields">
+    <dt>Overrides:
+      <a href="sympy.core.basic.Basic-class.html#evalc">core.basic.Basic.evalc</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
 <br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
@@ -460,7 +470,7 @@ Return the cosine of x (measured in radians)<br /><br />
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Mon Mar 12 00:09:04 2007
+    Generated by Epydoc 3.0beta1 on Sat Mar 24 23:01:28 2007
     </td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>

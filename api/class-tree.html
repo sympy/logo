@@ -59,17 +59,62 @@
     <li> <strong class="uidlink">exceptions.Exception</strong>:
       <em class="summary">Common base class for all exceptions.</em>
     <ul>
-    <li> <strong class="uidlink"><a href="sympy.modules.integrals.IntegralError-class.html">sympy.modules.integrals.IntegralError</a></strong>
-    </li>
     <li> <strong class="uidlink"><a href="sympy.core.power.pole_error-class.html">sympy.core.power.pole_error</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.modules.polynomials.PolynomialException-class.html">sympy.modules.polynomials.PolynomialException</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.modules.integrals.IntegralError-class.html">sympy.modules.integrals.IntegralError</a></strong>
     </li>
     </ul>
     </li>
     <li> <strong class="uidlink">object</strong>:
       <em class="summary">The most base type</em>
     <ul>
-    <li> <strong class="uidlink"><a href="sympy.core.basic.Basic-class.html">sympy.core.basic.Basic</a></strong>
+    <li> <strong class="uidlink"><a href="sympy.core.basic.Basic-class.html">sympy.core.basic.Basic</a></strong>:
+      <em class="summary">Base class for all objects in sympy</em>
     <ul>
+    <li> <strong class="uidlink"><a href="sympy.core.functions.Function-class.html">sympy.core.functions.Function</a></strong>:
+      <em class="summary">Abstract class representing a mathematical function.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sympy.modules.trigonometric.cos-class.html">sympy.modules.trigonometric.cos</a></strong>:
+      <em class="summary">Return the cosine of x (measured in radians)</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.modules.trigonometric.tan-class.html">sympy.modules.trigonometric.tan</a></strong>:
+      <em class="summary">Return the tangent of x (measured in radians)</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.core.functions.sign-class.html">sympy.core.functions.sign</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.core.functions.abs_-class.html">sympy.core.functions.abs_</a></strong>:
+      <em class="summary">Return the absolute value of x</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.modules.trigonometric.arctan-class.html">sympy.modules.trigonometric.arctan</a></strong>:
+      <em class="summary">Return the tangent of x (measured in radians)</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.core.functions.log-class.html">sympy.core.functions.log</a></strong>:
+      <em class="summary">Return the natural logarithm (base e) of x</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.modules.trigonometric.sin-class.html">sympy.modules.trigonometric.sin</a></strong>:
+      <em class="summary">sin(x) -&gt; Returns the sine of x (measured in radians)</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.core.functions.exp-class.html">sympy.core.functions.exp</a></strong>:
+      <em class="summary">Return e raised to the power of x</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.core.symbol.Symbol-class.html">sympy.core.symbol.Symbol</a></strong>:
+      <em class="summary">Assumptions: ...</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sympy.core.symbol.NCSymbol-class.html">sympy.core.symbol.NCSymbol</a></strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="sympy.modules.paulialgebra.Pauli-class.html">sympy.modules.paulialgebra.Pauli</a></strong>:
+      <em class="summary">&nbsp;</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.modules.derivatives.xDerivative-class.html">sympy.modules.derivatives.xDerivative</a></strong>
+    </li>
     <li> <strong class="uidlink"><a href="sympy.core.addmul.Pair-class.html">sympy.core.addmul.Pair</a></strong>:
       <em class="summary">Abstract class containing common code to add and mul 
         classes.</em>
@@ -77,20 +122,6 @@
     <li> <strong class="uidlink"><a href="sympy.core.addmul.Mul-class.html">sympy.core.addmul.Mul</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="sympy.core.addmul.Add-class.html">sympy.core.addmul.Add</a></strong>
-    </li>
-    </ul>
-    </li>
-    <li> <strong class="uidlink"><a href="sympy.core.power.Pow-class.html">sympy.core.power.Pow</a></strong>
-    </li>
-    <li> <strong class="uidlink"><a href="sympy.core.numbers.Constant-class.html">sympy.core.numbers.Constant</a></strong>:
-      <em class="summary">Mathematical constant abstract class.</em>
-    <ul>
-    <li> <strong class="uidlink"><a href="sympy.core.numbers.ImaginaryUnit-class.html">sympy.core.numbers.ImaginaryUnit</a></strong>:
-      <em class="summary">Imaginary unit &quot;i&quot;.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="sympy.core.numbers.ConstPi-class.html">sympy.core.numbers.ConstPi</a></strong>:
-      <em class="summary">pi -&gt; Returns the mathematical constant pi pi() -&gt; Returns
-        a numerical aproximation for pi</em>
     </li>
     </ul>
     </li>
@@ -108,51 +139,41 @@
     </li>
     </ul>
     </li>
-    <li> <strong class="uidlink"><a href="sympy.core.functions.Function-class.html">sympy.core.functions.Function</a></strong>:
-      <em class="summary">Abstract class representing a mathematical function.</em>
+    <li> <strong class="uidlink"><a href="sympy.core.numbers.Constant-class.html">sympy.core.numbers.Constant</a></strong>:
+      <em class="summary">Mathematical constant abstract class.</em>
     <ul>
-    <li> <strong class="uidlink"><a href="sympy.modules.trigonometric.sin-class.html">sympy.modules.trigonometric.sin</a></strong>:
-      <em class="summary">sin(x) -&gt; Returns the sine of x (measured in radians)</em>
+    <li> <strong class="uidlink"><a href="sympy.core.numbers.ImaginaryUnit-class.html">sympy.core.numbers.ImaginaryUnit</a></strong>:
+      <em class="summary">Imaginary unit &quot;i&quot;.</em>
     </li>
-    <li> <strong class="uidlink"><a href="sympy.core.functions.abs_-class.html">sympy.core.functions.abs_</a></strong>:
-      <em class="summary">Return the absolute value of x</em>
-    </li>
-    <li> <strong class="uidlink"><a href="sympy.modules.trigonometric.cos-class.html">sympy.modules.trigonometric.cos</a></strong>:
-      <em class="summary">Return the cosine of x (measured in radians)</em>
-    </li>
-    <li> <strong class="uidlink"><a href="sympy.core.functions.log-class.html">sympy.core.functions.log</a></strong>:
-      <em class="summary">Return the natural logarithm (base e) of x</em>
-    </li>
-    <li> <strong class="uidlink"><a href="sympy.modules.trigonometric.tan-class.html">sympy.modules.trigonometric.tan</a></strong>:
-      <em class="summary">Return the tangent of x (measured in radians)</em>
-    </li>
-    <li> <strong class="uidlink"><a href="sympy.core.functions.exp-class.html">sympy.core.functions.exp</a></strong>:
-      <em class="summary">Return e raised to the power of x</em>
+    <li> <strong class="uidlink"><a href="sympy.core.numbers.ConstPi-class.html">sympy.core.numbers.ConstPi</a></strong>:
+      <em class="summary">pi -&gt; Returns the mathematical constant pi pi() -&gt; Returns
+        a numerical aproximation for pi</em>
     </li>
     </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.core.power.Pow-class.html">sympy.core.power.Pow</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.core.functions.Derivative-class.html">sympy.core.functions.Derivative</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.modules.limits.Limit-class.html">sympy.modules.limits.Limit</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="sympy.modules.integrals.Integral-class.html">sympy.modules.integrals.Integral</a></strong>:
       <em class="summary">Definite integral.</em>
     </li>
-    <li> <strong class="uidlink"><a href="sympy.core.symbol.Symbol-class.html">sympy.core.symbol.Symbol</a></strong>
-    <ul>
-    <li> <strong class="uidlink"><a href="sympy.core.symbol.NCSymbol-class.html">sympy.core.symbol.NCSymbol</a></strong>
-    </li>
     </ul>
     </li>
-    </ul>
-    </li>
-    <li> <strong class="uidlink"><a href="sympy.core.hashing.HashAlgorithm-class.html">sympy.core.hashing.HashAlgorithm</a></strong>
+    <li> <strong class="uidlink"><a href="sympy.core.hashing.HashAlgorithm-class.html">sympy.core.hashing.HashAlgorithm</a></strong>:
+      <em class="summary">Abstract class for varios implementatios of a hash algorithm</em>
     <ul>
     <li> <strong class="uidlink"><a href="sympy.core.hashing.Mmd5-class.html">sympy.core.hashing.Mmd5</a></strong>:
       <em class="summary">MD5 algorithm, this works fine (so far :).</em>
     </li>
+    <li> <strong class="uidlink"><a href="sympy.core.hashing.Mbernstein-class.html">sympy.core.hashing.Mbernstein</a></strong>:
+      <em class="summary">An algorithm produced by Professor Daniel J.</em>
+    </li>
     <li> <strong class="uidlink"><a href="sympy.core.hashing.Mpython-class.html">sympy.core.hashing.Mpython</a></strong>:
       <em class="summary">An algorithm used in python, the result is a 4 byte hash 
         value.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="sympy.core.hashing.Mbernstein-class.html">sympy.core.hashing.Mbernstein</a></strong>:
-      <em class="summary">An algorithm produced by Professor Daniel J.</em>
     </li>
     </ul>
     </li>
@@ -160,13 +181,17 @@
       <em class="summary">type(object) -&gt; the object's type type(name, bases, dict) 
         -&gt; a new type</em>
     <ul>
-    <li> <strong class="uidlink"><a href="sympy.core.basic.AutomaticEvaluationType-class.html">sympy.core.basic.AutomaticEvaluationType</a></strong>
+    <li> <strong class="uidlink"><a href="sympy.core.basic.AutomaticEvaluationType-class.html">sympy.core.basic.AutomaticEvaluationType</a></strong>:
+      <em class="summary">Metaclass for all objects in sympy It evaluates the object just 
+        after creation, so that for example x+2*x becomes 3*x</em>
     </li>
     </ul>
     </li>
+    <li> <strong class="uidlink"><a href="sympy.modules.matrices.Matrix-class.html">sympy.modules.matrices.Matrix</a></strong>
+    </li>
     </ul>
     </li>
-    <li> <strong class="uidlink"><a href="sympy.core.prettyprint.StringPict-class.html">sympy.core.prettyprint.StringPict</a></strong>:
+    <li> <strong class="uidlink"><a href="sympy.modules.printing.pretty.StringPict-class.html">sympy.modules.printing.pretty.StringPict</a></strong>:
       <em class="summary">A ASCII picture.</em>
     </li>
 </ul>
@@ -201,7 +226,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Mon Mar 12 00:09:03 2007
+    Generated by Epydoc 3.0beta1 on Sat Mar 24 23:01:27 2007
     </td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>

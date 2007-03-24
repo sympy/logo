@@ -67,16 +67,47 @@ object --+
 
 <dl><dt>Known Subclasses:</dt>
 <dd>
-    <a href="sympy.core.functions.Function-class.html">functions.Function</a>,
-    <a href="sympy.modules.integrals.Integral-class.html">modules.integrals.Integral</a>,
+    <a href="sympy.modules.limits.Limit-class.html">modules.limits.Limit</a>,
     <a href="sympy.core.symbol.Symbol-class.html">symbol.Symbol</a>,
+    <a href="sympy.modules.integrals.Integral-class.html">modules.integrals.Integral</a>,
+    <a href="sympy.core.functions.Function-class.html">functions.Function</a>,
+    <a href="sympy.modules.derivatives.xDerivative-class.html">modules.derivatives.xDerivative</a>,
     <a href="sympy.core.power.Pow-class.html">power.Pow</a>,
     <a href="sympy.core.addmul.Pair-class.html">addmul.Pair</a>,
     <a href="sympy.core.numbers.Constant-class.html">numbers.Constant</a>,
-    <a href="sympy.core.numbers.Number-class.html">numbers.Number</a>
+    <a href="sympy.core.numbers.Number-class.html">numbers.Number</a>,
+    <a href="sympy.core.functions.Derivative-class.html">functions.Derivative</a>
 </dd></dl>
 
 <hr />
+<p>Base class for all objects in sympy</p>
+  possible assumptions are:
+  <ul>
+    <li>
+      is_real
+    </li>
+    <li>
+      is_commutative
+    </li>
+    <li>
+      is_bounded
+    </li>
+  </ul>
+  Assumptions can have 3 possible values:
+  <ul>
+    <li>
+      True, when we are sure about a property. For example, when we are 
+      working only with real numbers: &gt;&gt;&gt; from sympy import * 
+      &gt;&gt;&gt; Symbol('x', is_real = True) x
+    </li>
+    <li>
+      False
+    </li>
+    <li>
+      None (if you don't know if the property is True or false)
+    </li>
+  </ul><br /><br />
+
 <!-- ==================== NESTED CLASSES ==================== -->
 <a name="section-NestedClasses"></a>
 <table class="summary" border="1" cellpadding="3"
@@ -98,7 +129,9 @@ object --+
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="sympy.core.basic.AutomaticEvaluationType-class.html" class="summary-name">__metaclass__</a>
+        <a href="sympy.core.basic.AutomaticEvaluationType-class.html" class="summary-name">__metaclass__</a><br />
+      Metaclass for all objects in sympy It evaluates the object just 
+        after creation, so that for example x+2*x becomes 3*x
     </td>
   </tr>
 </table>
@@ -125,7 +158,144 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__abs__" class="summary-sig-name">__abs__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns the absolute value of self.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__abs__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__add__"></a><span class="summary-sig-name">__add__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">a</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__add__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__div__"></a><span class="summary-sig-name">__div__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">a</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__div__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__eq__"></a><span class="summary-sig-name">__eq__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">a</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__eq__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__float__"></a><span class="summary-sig-name">__float__</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__float__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__getattr__"></a><span class="summary-sig-name">__getattr__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">name</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__getattr__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__getitem__"></a><span class="summary-sig-name">__getitem__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">iter</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__getitem__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__gt__"></a><span class="summary-sig-name">__gt__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">a</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__gt__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">*args</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
       x.__init__(...) initializes x; see x.__class__.__doc__ for 
       signature</td>
           <td align="right" valign="top">
@@ -143,10 +313,9 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      repr(x)</td>
+          <td><span class="summary-sig"><a name="__len__"></a><span class="summary-sig-name">__len__</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__repr__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__len__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -160,10 +329,44 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      str(x)</td>
+          <td><span class="summary-sig"><a name="__lt__"></a><span class="summary-sig-name">__lt__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">a</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__str__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__lt__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__mul__"></a><span class="summary-sig-name">__mul__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">a</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__mul__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__ne__"></a><span class="summary-sig-name">__ne__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">a</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__ne__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -209,43 +412,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="__add__"></a><span class="summary-sig-name">__add__</span>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a name="__pow__"></a><span class="summary-sig-name">__pow__</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">a</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__add__">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="__float__"></a><span class="summary-sig-name">__float__</span>(<span class="summary-sig-arg">self</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__float__">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__abs__" class="summary-sig-name">__abs__</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Returns the absolute value of self.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__abs__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__pow__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -276,10 +446,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="__sub__"></a><span class="summary-sig-name">__sub__</span>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a name="__rdiv__"></a><span class="summary-sig-name">__rdiv__</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">a</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__sub__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__rdiv__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -293,27 +463,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="__rsub__"></a><span class="summary-sig-name">__rsub__</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">a</span>)</span></td>
+          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      repr(x)</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__rsub__">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="__mul__"></a><span class="summary-sig-name">__mul__</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">a</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__mul__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__repr__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -344,57 +497,6 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="__div__"></a><span class="summary-sig-name">__div__</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">a</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__div__">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="__rdiv__"></a><span class="summary-sig-name">__rdiv__</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">a</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__rdiv__">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="__pow__"></a><span class="summary-sig-name">__pow__</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">a</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__pow__">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
           <td><span class="summary-sig"><a name="__rpow__"></a><span class="summary-sig-name">__rpow__</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">a</span>)</span></td>
           <td align="right" valign="top">
@@ -412,10 +514,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="__eq__"></a><span class="summary-sig-name">__eq__</span>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a name="__rsub__"></a><span class="summary-sig-name">__rsub__</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">a</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__eq__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__rsub__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -429,10 +531,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="__ne__"></a><span class="summary-sig-name">__ne__</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">a</span>)</span></td>
+          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      str(x)</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__ne__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__str__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -446,10 +548,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="__lt__"></a><span class="summary-sig-name">__lt__</span>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a name="__sub__"></a><span class="summary-sig-name">__sub__</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">a</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__lt__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__sub__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -463,10 +565,48 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="__gt__"></a><span class="summary-sig-name">__gt__</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">a</span>)</span></td>
+          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#atoms" class="summary-sig-name">atoms</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">s</span>=<span class="summary-sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>,
+        <span class="summary-sig-arg">type</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Returns the atoms (objects of length 1) that form current 
+      object.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__gt__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.atoms">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#conjugate" class="summary-sig-name">conjugate</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns a  complex conjugate of self.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.conjugate">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="diffn"></a><span class="summary-sig-name">diffn</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">sym</span>,
+        <span class="summary-sig-arg">n</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.diffn">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -497,9 +637,76 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#evalc" class="summary-sig-name">evalc</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Rewrites self in the form x+i*y.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.evalc">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a name="evalf"></a><span class="summary-sig-name">evalf</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.evalf">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="expand"></a><span class="summary-sig-name">expand</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.expand">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="get_re_im"></a><span class="summary-sig-name">get_re_im</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      Returns (x,y) where self=x+i*y</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.get_re_im">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="has"></a><span class="summary-sig-name">has</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">sub</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.has">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -546,11 +753,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="diffn"></a><span class="summary-sig-name">diffn</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">sym</span>,
-        <span class="summary-sig-arg">n</span>)</span></td>
+          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#isnumber" class="summary-sig-name">isnumber</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      Return True if self is a number.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.diffn">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.isnumber">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -564,46 +770,11 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="series"></a><span class="summary-sig-name">series</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">sym</span>,
-        <span class="summary-sig-arg">n</span>)</span></td>
+          <td><span class="summary-sig"><a name="ldegree"></a><span class="summary-sig-name">ldegree</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">sym</span>)</span><br />
+      Returns the lowest power of the sym</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.series">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="subs"></a><span class="summary-sig-name">subs</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">old</span>,
-        <span class="summary-sig-arg">new</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.subs">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="has"></a><span class="summary-sig-name">has</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">sub</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.has">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.ldegree">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -636,11 +807,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="ldegree"></a><span class="summary-sig-name">ldegree</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">sym</span>)</span><br />
-      Returns the lowest power of the sym</td>
+          <td><span class="summary-sig"><a name="print_tree"></a><span class="summary-sig-name">print_tree</span>(<span class="summary-sig-arg">self</span>)</span><br />
+      The canonical tree representation</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.ldegree">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.print_tree">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -654,26 +824,11 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="expand"></a><span class="summary-sig-name">expand</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td><span class="summary-sig"><a name="series"></a><span class="summary-sig-name">series</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">sym</span>,
+        <span class="summary-sig-arg">n</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.expand">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#conjugate" class="summary-sig-name">conjugate</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Returns a  complex conjugate of self.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.conjugate">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.series">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -704,96 +859,11 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#bounded" class="summary-sig-name">bounded</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Is &quot;self&quot; bounded for all possible values of 
-      symbols?</td>
+          <td><span class="summary-sig"><a name="subs"></a><span class="summary-sig-name">subs</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">old</span>,
+        <span class="summary-sig-arg">new</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.bounded">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="commutative"></a><span class="summary-sig-name">commutative</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      All subclasses of Basic are commutative by default</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.commutative">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#isnumber" class="summary-sig-name">isnumber</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      Return True if self is a number.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.isnumber">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="print_sympy"></a><span class="summary-sig-name">print_sympy</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      The canonical sympy representation</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.print_sympy">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="print_pretty"></a><span class="summary-sig-name">print_pretty</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      The pretty printing</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.print_pretty">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="print_tree"></a><span class="summary-sig-name">print_tree</span>(<span class="summary-sig-arg">self</span>)</span><br />
-      The canonical tree representation</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.print_tree">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.subs">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -841,7 +911,7 @@ object --+
           <td><span class="summary-sig"><a name="_doadd"></a><span class="summary-sig-name">_doadd</span>(<span class="summary-sig-arg">a</span>,
         <span class="summary-sig-arg">b</span>)</span></td>
           <td align="right" valign="top">
-            
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic._doadd">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -858,7 +928,7 @@ object --+
           <td><span class="summary-sig"><a name="_domul"></a><span class="summary-sig-name">_domul</span>(<span class="summary-sig-arg">a</span>,
         <span class="summary-sig-arg">b</span>)</span></td>
           <td align="right" valign="top">
-            
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic._domul">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -875,7 +945,41 @@ object --+
           <td><span class="summary-sig"><a name="_dopow"></a><span class="summary-sig-name">_dopow</span>(<span class="summary-sig-arg">a</span>,
         <span class="summary-sig-arg">b</span>)</span></td>
           <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic._dopow">source&nbsp;code</a></span>
             
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_isnumber"></a><span class="summary-sig-name">_isnumber</span>(<span class="summary-sig-arg">x</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic._isnumber">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="_sign"></a><span class="summary-sig-name">_sign</span>(<span class="summary-sig-arg">x</span>)</span><br />
+      Return the sign of x, that is, 1 if x is positive, 0 if x == 0 and
+      -1 if x is negative</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic._sign">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -889,12 +993,11 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="sympify"></a><span class="summary-sig-name">sympify</span>(<span class="summary-sig-arg">a</span>)</span><br />
-      for &quot;a&quot; int, returns Rational(a), for &quot;a&quot; 
-      float returns real, otherwise &quot;a&quot; (=it's a Basic 
-      subclass).</td>
+          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#addeval" class="summary-sig-name">addeval</a>(<span class="summary-sig-arg">x</span>,
+        <span class="summary-sig-arg">y</span>)</span><br />
+      Try to simplify x+y in this order.</td>
           <td align="right" valign="top">
-            
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.addeval">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -911,7 +1014,7 @@ object --+
           <td><span class="summary-sig"><a name="cmphash"></a><span class="summary-sig-name">cmphash</span>(<span class="summary-sig-arg">a</span>,
         <span class="summary-sig-arg">b</span>)</span></td>
           <td align="right" valign="top">
-            
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.cmphash">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -930,7 +1033,7 @@ object --+
       See 
       http://groups.google.com/group/sympy/browse_thread/thread/aadbef6e2a4ae335</td>
           <td align="right" valign="top">
-            
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.muleval">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -944,11 +1047,12 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#addeval" class="summary-sig-name">addeval</a>(<span class="summary-sig-arg">x</span>,
-        <span class="summary-sig-arg">y</span>)</span><br />
-      Try to simplify x+y in this order.</td>
+          <td><span class="summary-sig"><a name="sympify"></a><span class="summary-sig-name">sympify</span>(<span class="summary-sig-arg">a</span>)</span><br />
+      for &quot;a&quot; int, returns Rational(a), for &quot;a&quot; 
+      float returns real, otherwise &quot;a&quot; (=it's a Basic 
+      subclass).</td>
           <td align="right" valign="top">
-            
+            <span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.sympify">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -974,6 +1078,20 @@ object --+
     </table>
   </td>
 </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="sympy.core.basic.Basic-class.html#mathml" class="summary-name">mathml</a>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="sympy.core.basic.Basic-class.html#mathml_tag" class="summary-name">mathml_tag</a>
+    </td>
+  </tr>
   <tr>
     <td colspan="2" class="summary">
     <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
@@ -1000,6 +1118,33 @@ object --+
   </td>
 </tr>
 </table>
+<a name="__abs__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__abs__</span>(<span class="sig-arg">self</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__abs__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  <p>Returns the absolute value of self.</p>
+  Example usage:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>abs(1+2*I)
+<span class="py-output">5**(1/2)</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>abs(-x)
+<span class="py-output">abs(x)</span></pre>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="__init__"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1007,7 +1152,9 @@ object --+
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">*args</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
@@ -1073,45 +1220,56 @@ object --+
   </dl>
 </td></tr></table>
 </div>
-<a name="__abs__"></a>
+<a name="addeval"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__abs__</span>(<span class="sig-arg">self</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">addeval</span>(<span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>)</span>
+    <br /><em class="fname">Static Method</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.__abs__">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.addeval">source&nbsp;code</a></span>&nbsp;
     </td>
   </table>
   
-  <p>Returns the absolute value of self.</p>
-  Example usage: &gt;&gt;&gt; from sympy import * &gt;&gt;&gt; 
-  abs(1+2*I) 5^(1/2) &gt;&gt;&gt; x = Symbol('x') &gt;&gt;&gt; abs(-x) 
-  abs(x)
+  Try to simplify x+y in this order. You can either return a simplified 
+  expression or None.
   <dl class="fields">
   </dl>
 </td></tr></table>
 </div>
-<a name="eval"></a>
+<a name="atoms"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">eval</span>(<span class="sig-arg">self</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">atoms</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">s</span>=<span class="sig-default"><code class="variable-group">[</code><code class="variable-group">]</code></span>,
+        <span class="sig-arg">type</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.eval">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.atoms">source&nbsp;code</a></span>&nbsp;
     </td>
   </table>
   
-  <p>Returns canonical form of myself.</p>
-  The eval() method should alway return a new object (following the 
-  general rule of not changing)
+  <p>Returns the atoms (objects of length 1) that form current object.</p>
+  <p>Example: &gt;&gt;&gt; from sympy import * &gt;&gt;&gt; x = Symbol('x')
+  &gt;&gt;&gt; y = Symbol('y') &gt;&gt;&gt; (x+y**2+ 2*x*y).atoms() [y, 2, 
+  x]</p>
+  You can also filter the results by a given type of object &gt;&gt;&gt;
+  (x+y+2+y**2*sin(x)).atoms(type=sin) [sin(x)]
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>(x+y+2+y**2*sin(x)).atoms(type=Symbol)
+<span class="py-output">[y, x]</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>(x+y+2+y**2*sin(x)).atoms(type=Number)
+<span class="py-output">[2]</span></pre>
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -1137,68 +1295,43 @@ object --+
   </dl>
 </td></tr></table>
 </div>
-<a name="bounded"></a>
+<a name="eval"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">bounded</span>(<span class="sig-arg">self</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">eval</span>(<span class="sig-arg">self</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.bounded">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.eval">source&nbsp;code</a></span>&nbsp;
     </td>
   </table>
   
-  <p>Is &quot;self&quot; bounded for all possible values of symbols?</p>
-  Generally not, but sin(x) and cos(x) are.
+  <p>Returns canonical form of myself.</p>
+  The eval() method should alway return a new object (following the 
+  general rule of not changing)
   <dl class="fields">
   </dl>
 </td></tr></table>
 </div>
-<a name="muleval"></a>
+<a name="evalc"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">muleval</span>(<span class="sig-arg">x</span>,
-        <span class="sig-arg">y</span>)</span>
-    <br /><em class="fname">Static Method</em>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">evalc</span>(<span class="sig-arg">self</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    >&nbsp;
+    ><span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.evalc">source&nbsp;code</a></span>&nbsp;
     </td>
   </table>
   
-  <p>See 
-  http://groups.google.com/group/sympy/browse_thread/thread/aadbef6e2a4ae335</p>
-  Try to simplify x*y. You can either return a simplified expression or 
-  None.
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
-<a name="addeval"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">addeval</span>(<span class="sig-arg">x</span>,
-        <span class="sig-arg">y</span>)</span>
-    <br /><em class="fname">Static Method</em>
-  </h3>
-  </td><td align="right" valign="top"
-    >&nbsp;
-    </td>
-  </table>
-  
-  Try to simplify x+y in this order. You can either return a simplified 
-  expression or None.
+  <p>Rewrites self in the form x+i*y.</p>
+  It should raise an exceptin, if this is not possible.
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -1219,6 +1352,79 @@ object --+
   
   Return True if self is a number. False otherwise.
   <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="muleval"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">muleval</span>(<span class="sig-arg">x</span>,
+        <span class="sig-arg">y</span>)</span>
+    <br /><em class="fname">Static Method</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="sympy.core.basic-pysrc.html#Basic.muleval">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  <p>See 
+  http://groups.google.com/group/sympy/browse_thread/thread/aadbef6e2a4ae335</p>
+  Try to simplify x*y. You can either return a simplified expression or 
+  None.
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Property Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-PropertyDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="mathml"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">mathml</h3>
+  
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.mathml(<span class="summary-sig-arg">self</span>)</span>
+        - Returns a MathML expression representing the current object
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="mathml_tag"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">mathml_tag</h3>
+  
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.mathml_tag(<span class="summary-sig-arg">self</span>)</span>
+        - Return the mathml tag of the current object.
+    </dd>
   </dl>
 </td></tr></table>
 </div>
@@ -1254,7 +1460,7 @@ object --+
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Mon Mar 12 00:09:04 2007
+    Generated by Epydoc 3.0beta1 on Sat Mar 24 23:01:28 2007
     </td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>

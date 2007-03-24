@@ -124,6 +124,24 @@ Mathematical constant abstract class.<br /><br />
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
+          <td><span class="summary-sig"><a href="sympy.core.numbers.Constant-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      x.__init__(...) initializes x; see x.__class__.__doc__ for 
+      signature</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.numbers-pysrc.html#Constant.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
           <td><span class="summary-sig"><a name="__call__"></a><span class="summary-sig-name">__call__</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">precision</span>=<span class="summary-sig-default">28</span>)</span></td>
           <td align="right" valign="top">
@@ -227,8 +245,10 @@ Mathematical constant abstract class.<br /><br />
       <code><a href="sympy.core.basic.Basic-class.html#__div__">__div__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__eq__">__eq__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__float__">__float__</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#__getattr__">__getattr__</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#__getitem__">__getitem__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__gt__">__gt__</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#__init__">__init__</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#__len__">__len__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__lt__">__lt__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__mul__">__mul__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__ne__">__ne__</a></code>,
@@ -243,19 +263,18 @@ Mathematical constant abstract class.<br /><br />
       <code><a href="sympy.core.basic.Basic-class.html#__rsub__">__rsub__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__str__">__str__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__sub__">__sub__</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#bounded">bounded</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#commutative">commutative</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#atoms">atoms</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#conjugate">conjugate</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#diffn">diffn</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#evalc">evalc</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#evalf">evalf</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#expand">expand</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#get_re_im">get_re_im</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#has">has</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#isequal">isequal</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#isnumber">isnumber</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#ldegree">ldegree</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#leadterm">leadterm</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#print_pretty">print_pretty</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#print_sympy">print_sympy</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#print_tree">print_tree</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#series">series</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#sqrt">sqrt</a></code>,
@@ -301,7 +320,9 @@ Mathematical constant abstract class.<br /><br />
     <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="sympy.core.basic.Basic-class.html">basic.Basic</a></code></b> (private):
       <code><a href="sympy.core.basic.Basic-class.html#_doadd">_doadd</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#_domul">_domul</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#_dopow">_dopow</a></code>
+      <code><a href="sympy.core.basic.Basic-class.html#_dopow">_dopow</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#_isnumber">_isnumber</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#_sign">_sign</a></code>
       </p></div>
     </td>
   </tr>
@@ -325,6 +346,10 @@ Mathematical constant abstract class.<br /><br />
 </tr>
   <tr>
     <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="sympy.core.basic.Basic-class.html">basic.Basic</a></code></b>:
+      <code><a href="sympy.core.basic.Basic-class.html#mathml">mathml</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#mathml_tag">mathml_tag</a></code>
+      </p>
     <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
       <code>__class__</code>
       </p>
@@ -349,6 +374,30 @@ Mathematical constant abstract class.<br /><br />
   </td>
 </tr>
 </table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="sympy.core.numbers-pysrc.html#Constant.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  x.__init__(...) initializes x; see x.__class__.__doc__ for 
+  signature
+  <dl class="fields">
+    <dt>Overrides:
+      <a href="sympy.core.basic.Basic-class.html#__init__">basic.Basic.__init__</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
 <a name="eval"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -428,7 +477,7 @@ Mathematical constant abstract class.<br /><br />
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Mon Mar 12 00:09:04 2007
+    Generated by Epydoc 3.0beta1 on Sat Mar 24 23:01:28 2007
     </td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>

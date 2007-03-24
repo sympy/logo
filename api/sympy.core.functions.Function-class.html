@@ -69,12 +69,14 @@
 
 <dl><dt>Known Subclasses:</dt>
 <dd>
+    <a href="sympy.modules.trigonometric.arctan-class.html">modules.trigonometric.arctan</a>,
     <a href="sympy.modules.trigonometric.cos-class.html">modules.trigonometric.cos</a>,
     <a href="sympy.modules.trigonometric.sin-class.html">modules.trigonometric.sin</a>,
     <a href="sympy.modules.trigonometric.tan-class.html">modules.trigonometric.tan</a>,
     <a href="sympy.core.functions.abs_-class.html">abs_</a>,
     <a href="sympy.core.functions.exp-class.html">exp</a>,
-    <a href="sympy.core.functions.log-class.html">log</a>
+    <a href="sympy.core.functions.log-class.html">log</a>,
+    <a href="sympy.core.functions.sign-class.html">sign</a>
 </dd></dl>
 
 <hr />
@@ -135,6 +137,39 @@ Abstract class representing a mathematical function. It is the base
       signature</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="sympy.core.functions-pysrc.html#Function.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="getname"></a><span class="summary-sig-name">getname</span>(<span class="summary-sig-arg">self</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.functions-pysrc.html#Function.getname">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="sympy.core.functions.Function-class.html#__getitem__" class="summary-sig-name">__getitem__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">iter</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="sympy.core.functions-pysrc.html#Function.__getitem__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -215,27 +250,10 @@ Abstract class representing a mathematical function. It is the base
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="sympy.core.functions.Function-class.html#print_sympy" class="summary-sig-name">print_sympy</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      The canonical sympy representation</td>
+          <td><span class="summary-sig"><a href="sympy.core.functions.Function-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      str(x)</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.functions-pysrc.html#Function.print_sympy">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="sympy.core.functions.Function-class.html#print_pretty" class="summary-sig-name">print_pretty</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      The pretty printing</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="sympy.core.functions-pysrc.html#Function.print_pretty">source&nbsp;code</a></span>
+            <span class="codelink"><a href="sympy.core.functions-pysrc.html#Function.__str__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -287,7 +305,9 @@ Abstract class representing a mathematical function. It is the base
       <code><a href="sympy.core.basic.Basic-class.html#__div__">__div__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__eq__">__eq__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__float__">__float__</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#__getattr__">__getattr__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__gt__">__gt__</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#__len__">__len__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__lt__">__lt__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__mul__">__mul__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__ne__">__ne__</a></code>,
@@ -300,14 +320,14 @@ Abstract class representing a mathematical function. It is the base
       <code><a href="sympy.core.basic.Basic-class.html#__rmul__">__rmul__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__rpow__">__rpow__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__rsub__">__rsub__</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#__str__">__str__</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#__sub__">__sub__</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#bounded">bounded</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#commutative">commutative</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#atoms">atoms</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#conjugate">conjugate</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#diffn">diffn</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#eval">eval</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#evalc">evalc</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#expand">expand</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#get_re_im">get_re_im</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#has">has</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#isequal">isequal</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#isnumber">isnumber</a></code>,
@@ -356,7 +376,9 @@ Abstract class representing a mathematical function. It is the base
     <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="sympy.core.basic.Basic-class.html">basic.Basic</a></code></b> (private):
       <code><a href="sympy.core.basic.Basic-class.html#_doadd">_doadd</a></code>,
       <code><a href="sympy.core.basic.Basic-class.html#_domul">_domul</a></code>,
-      <code><a href="sympy.core.basic.Basic-class.html#_dopow">_dopow</a></code>
+      <code><a href="sympy.core.basic.Basic-class.html#_dopow">_dopow</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#_isnumber">_isnumber</a></code>,
+      <code><a href="sympy.core.basic.Basic-class.html#_sign">_sign</a></code>
       </p></div>
     </td>
   </tr>
@@ -378,8 +400,18 @@ Abstract class representing a mathematical function. It is the base
     </table>
   </td>
 </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="sympy.core.functions.Function-class.html#mathml" class="summary-name">mathml</a>
+    </td>
+  </tr>
   <tr>
     <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="sympy.core.basic.Basic-class.html">basic.Basic</a></code></b>:
+      <code><a href="sympy.core.basic.Basic-class.html#mathml_tag">mathml_tag</a></code>
+      </p>
     <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
       <code>__class__</code>
       </p>
@@ -425,6 +457,30 @@ Abstract class representing a mathematical function. It is the base
   <dl class="fields">
     <dt>Overrides:
       <a href="sympy.core.basic.Basic-class.html#__init__">basic.Basic.__init__</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__getitem__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__getitem__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">iter</span>)</span>
+    <br /><em class="fname">(Indexing operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="sympy.core.functions-pysrc.html#Function.__getitem__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+      <a href="sympy.core.basic.Basic-class.html#__getitem__">basic.Basic.__getitem__</a>
     </dt>
   </dl>
 </td></tr></table>
@@ -475,48 +531,25 @@ Abstract class representing a mathematical function. It is the base
   </dl>
 </td></tr></table>
 </div>
-<a name="print_sympy"></a>
+<a name="__str__"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">print_sympy</span>(<span class="sig-arg">self</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__str__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Informal representation operator)</em>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="sympy.core.functions-pysrc.html#Function.print_sympy">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="sympy.core.functions-pysrc.html#Function.__str__">source&nbsp;code</a></span>&nbsp;
     </td>
   </table>
   
-  The canonical sympy representation
+  str(x)
   <dl class="fields">
     <dt>Overrides:
-      <a href="sympy.core.basic.Basic-class.html#print_sympy">basic.Basic.print_sympy</a>
-        <dd><em class="note">(inherited documentation)</em></dd>
-    </dt>
-  </dl>
-</td></tr></table>
-</div>
-<a name="print_pretty"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">print_pretty</span>(<span class="sig-arg">self</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="sympy.core.functions-pysrc.html#Function.print_pretty">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </table>
-  
-  The pretty printing
-  <dl class="fields">
-    <dt>Overrides:
-      <a href="sympy.core.basic.Basic-class.html#print_pretty">basic.Basic.print_pretty</a>
-        <dd><em class="note">(inherited documentation)</em></dd>
+      <a href="sympy.core.basic.Basic-class.html#__str__">basic.Basic.__str__</a>
     </dt>
   </dl>
 </td></tr></table>
@@ -575,6 +608,39 @@ Abstract class representing a mathematical function. It is the base
 </td></tr></table>
 </div>
 <br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Property Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-PropertyDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>
+<a name="mathml"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">mathml</h3>
+  
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.mathml(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
@@ -606,7 +672,7 @@ Abstract class representing a mathematical function. It is the base
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Mon Mar 12 00:09:04 2007
+    Generated by Epydoc 3.0beta1 on Sat Mar 24 23:01:28 2007
     </td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
