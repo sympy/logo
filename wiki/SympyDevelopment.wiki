@@ -44,4 +44,4 @@ Ideas for symbolic integration are at:
 
 http://code.google.com/p/sympy/wiki/SymbolicIntegration
 
-2007 Google Summer of Code page is SummerOfCode.
+!SymPy's involvement in the Google Summer of Code 2007 page is described at SummerOfCode.
