@@ -1,8 +1,4 @@
-#summary How SymPy works
-
-= Introduction =
-
-This document describes the main ideas of how sympy works. 
+#summary This document describes the main ideas of how SymPy works.
 
 = Basics =
 
