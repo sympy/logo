@@ -1,4 +1,4 @@
-#summary How !SymPy works
+#summary How SymPy works
 
 = Introduction =
 
