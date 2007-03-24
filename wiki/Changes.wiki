@@ -9,7 +9,16 @@ This page documents the major changes made to !SymPy since the last release.
 == 0.3 ==
 
 
+  * implement slices on sympy's objects. Slices is now the recomended way to access all of sympy's nested objects. Examples: 
+    * know the arguments of a function: `sin(x*y)[:] -- > (x*y,)`
+    * arguments of Mul, Add, Pow, etc. : `(1+x)[:] --> (1,x)`
+    * see also the new atoms function
 
 == 0.2 ==
 
-This is the firt release.
+This is the first release.
+
+
+
+
+
