@@ -56,64 +56,147 @@
 </table>
 <!-- ==================== PACKAGE DESCRIPTION ==================== -->
 <h1 class="epydoc">Package sympy</h1><span class="codelink"><a href="sympy-pysrc.html">source&nbsp;code</a></span><br /><br />
-<pre class="literalblock">
-
-Computer Algebra System (CAS) in Python
-=======================================
-
-Sympy is a symbolic manipulation package, written in pure Python. Its aim is to
-become a full featured CAS in Python, while keeping the code as simple as
-possible in order to be comprehensible and easily extensible.
-
-Features
-========
-
-Currently, SymPy core has only around 1500 lines of code (including extensive
-comments) and its capabilities include:
-
-    * basic arithmetics *,/,+,-
-    * basic simplification (like a*b*b + 2*b*a*b -&gt; 3*a*b^2)
-    * expansion (like (a+b)^2 -&gt; a^2 + 2*a*b + b^2)
-    * functions (exp, ln, sin, cos, tan, ...)
-    * complex numbers (like exp(I*x).evalc() -&gt;
-    * cos(x)+I*sin(x))
-    * differentiation
-    * taylor series
-    * basic substitution (like x-&gt; ln(x))
-    * arbitrary precision integers,
-    * rationals and floats 
-
-Then there are SymPy modules (1000 lines) for these tasks:
-
-    * limits (like limit(x*log(x), x, 0) -&gt; 0)
-    * integration (currently it can only do very simple integrals)
-    * polynomials (division, gcd, square free decomposition)
-    * symbolic matrices 
-
-To help you get started, here is a simple example in the python
-interpreter:
-
-    &gt;&gt;&gt; from sympy import Symbol, cos
-    &gt;&gt;&gt; x = Symbol('x')
-    &gt;&gt;&gt; e = 1/cos(x)
-    &gt;&gt;&gt; print e.series(x,10)
-    1+50521/3628800*x**10+61/720*x**6+1/2*x**2+5/24*x**4+277/8064*x**8
-
-For full documentation, see the docs at our web page:
-U{http://code.google.com/p/sympy/wiki/Documentation}
-
-Structure
-=========
-
-Sympy is basically divided in two modules: the core module, which contains 
-the classes needed for basic symbolic manipulations, like the definition of a
-Symbol or a Rational number, and sympy.modules, a high-level module that 
-contains algorithms for symbolic computations, like limit, integration, etc.
-
-
-G{packagetree sympy}
-
-</pre><br /><br />
+<h1 class="heading">Computer Algebra System (CAS) in Python</h1>
+    Sympy is a symbolic manipulation package, written in pure Python. 
+    Its aim is to become a full featured CAS in Python, while keeping the 
+    code as simple as possible in order to be comprehensible and easily 
+    extensible.
+  <h1 class="heading">Features</h1>
+    Currently, SymPy core has only around 1500 lines of code (including 
+    extensive comments) and its capabilities include:
+    <ul>
+      <li>
+        basic arithmetics *,/,+,-
+      </li>
+      <li>
+        basic simplification (like a*b*b + 2*b*a*b -&gt; 3*a*b^2)
+      </li>
+      <li>
+        expansion (like (a+b)^2 -&gt; a^2 + 2*a*b + b^2)
+      </li>
+      <li>
+        functions (exp, ln, sin, cos, tan, ...)
+      </li>
+      <li>
+        complex numbers (like exp(I*x).evalc() -&gt;
+      </li>
+      <li>
+        cos(x)+I*sin(x))
+      </li>
+      <li>
+        differentiation
+      </li>
+      <li>
+        taylor series
+      </li>
+      <li>
+        basic substitution (like x-&gt; ln(x))
+      </li>
+      <li>
+        arbitrary precision integers,
+      </li>
+      <li>
+        rationals and floats
+      </li>
+    </ul>
+    Then there are SymPy modules (1000 lines) for these tasks:
+    <ul>
+      <li>
+        limits (like limit(x*log(x), x, 0) -&gt; 0)
+      </li>
+      <li>
+        integration (currently it can only do very simple integrals)
+      </li>
+      <li>
+        polynomials (division, gcd, square free decomposition)
+      </li>
+      <li>
+        symbolic matrices
+      </li>
+    </ul>
+    To help you get started, here is a simple example in the python 
+    interpreter:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol, cos
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>e = 1/cos(x)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> e.series(x,10)
+<span class="py-output">1+50521/3628800*x**10+61/720*x**6+1/2*x**2+5/24*x**4+277/8064*x**8</span></pre>
+    For full documentation, see the docs at our web page: <a 
+    href="http://code.google.com/p/sympy/wiki/Documentation" 
+    target="_top">http://code.google.com/p/sympy/wiki/Documentation</a>
+  <h1 class="heading">Structure</h1>
+    <p>Sympy is basically divided in two modules: the core module, which 
+    contains the classes needed for basic symbolic manipulations, like the 
+    definition of a Symbol or a Rational number, and sympy.modules, a 
+    high-level module that contains algorithms for symbolic computations, 
+    like limit, integration, etc.</p>
+    <center><table border="0" cellpadding="0" cellspacing="0" 
+    class="graph">
+      <tr><td align="center">
+      <map id="package_tree_for_sympy" name="package_tree_for_sympy">
+    <area shape="rect" href="sympy.core.addmul&#45;module.html" 
+    title="sympy.core.addmul" alt="" coords="35,88,94,109" />
+    <area shape="rect" href="sympy.core.basic&#45;module.html" 
+    title="sympy.core.basic" alt="" coords="102,88,148,109" />
+    <area shape="rect" href="sympy.core.functions&#45;module.html" 
+    title="sympy.core.functions" alt="" coords="156,88,226,109" />
+    <area shape="rect" href="sympy.core.hashing&#45;module.html" 
+    title="sympy.core.hashing" alt="" coords="234,88,295,109" />
+    <area shape="rect" href="sympy.core.numbers&#45;module.html" 
+    title="sympy.core.numbers" alt="" coords="303,88,371,109" />
+    <area shape="rect" href="sympy.core.power&#45;module.html" 
+    title="sympy.core.power" alt="" coords="379,88,431,109" />
+    <area shape="rect" href="sympy.core.symbol&#45;module.html" 
+    title="sympy.core.symbol" alt="" coords="439,88,496,109" />
+    <area shape="rect" href="sympy.core&#45;module.html" title="sympy.core"
+    alt="" coords="26,55,506,119" />
+    <area shape="rect" href="sympy.modules.decorator&#45;module.html" 
+    title="sympy.modules.decorator" alt="" coords="35,173,100,195" />
+    <area shape="rect" href="sympy.modules.integrals&#45;module.html" 
+    title="sympy.modules.integrals" alt="" coords="108,173,167,195" />
+    <area shape="rect" href="sympy.modules.limits&#45;module.html" 
+    title="sympy.modules.limits" alt="" coords="175,173,214,195" />
+    <area shape="rect" href="sympy.modules.mathml&#45;module.html" 
+    title="sympy.modules.mathml" alt="" coords="222,173,275,195" />
+    <area shape="rect" href="sympy.modules.matrices&#45;module.html" 
+    title="sympy.modules.matrices" alt="" coords="283,173,343,195" />
+    <area shape="rect" href="sympy.modules.paulialgebra&#45;module.html" 
+    title="sympy.modules.paulialgebra" alt="" coords="351,173,432,195" />
+    <area shape="rect" href="sympy.modules.pkgdata&#45;module.html" 
+    title="sympy.modules.pkgdata" alt="" coords="440,173,496,195" />
+    <area shape="rect" href="sympy.modules.polynomials&#45;module.html" 
+    title="sympy.modules.polynomials" alt="" coords="35,237,136,280" />
+    <area shape="rect" href="sympy.modules.printing.gtk&#45;module.html" 
+    title="sympy.modules.printing.gtk" alt="" coords="154,249,187,271" />
+    <area shape="rect" href="sympy.modules.printing.latex&#45;module.html" 
+    title="sympy.modules.printing.latex" alt="" coords="195,249,238,271" />
+    <area shape="rect" href="sympy.modules.printing.pretty&#45;module.html"
+    title="sympy.modules.printing.pretty" alt="" coords="246,249,294,271" 
+    />
+    <area shape="rect" 
+    href="sympy.modules.printing.pygame_&#45;module.html" 
+    title="sympy.modules.printing.pygame_" alt="" coords="302,249,371,271" 
+    />
+    <area shape="rect" href="sympy.modules.printing&#45;module.html" 
+    title="sympy.modules.printing" alt="" coords="144,216,380,280" />
+    <area shape="rect" href="sympy.modules.trigonometric&#45;module.html" 
+    title="sympy.modules.trigonometric" alt="" coords="388,237,496,280" />
+    <area shape="rect" href="sympy.modules&#45;module.html" 
+    title="sympy.modules" alt="" coords="26,140,506,289" />
+    <area shape="rect" href="sympy&#45;module.html" title="sympy" alt="" 
+    coords="16,21,515,299" />
+    <area shape="rect" href="sympy&#45;module.html" title="sympy" alt="" 
+    coords="6,5,526,304" />
+    </map>
+      <img src="package_tree_for_sympy.gif" alt='Package Tree for sympy' 
+    usemap="#package_tree_for_sympy" ismap="ismap" class="graph-with-title"
+    />
+      </td></tr>
+      <tr><td align='center'>
+    <span class="graph-title">Package Tree for sympy</span>
+      </td></tr>
+    </table><br/></center><br /><br />
 
 <hr />
 <div class="fields">      <p><strong>Version:</strong>
@@ -161,8 +244,8 @@ G{packagetree sympy}
         content in MathML presentation.</em>    </li>
     <li> <strong class="uidlink"><a href="sympy.modules.matrices-module.html">sympy.modules.matrices</a></strong>    </li>
     <li> <strong class="uidlink"><a href="sympy.modules.paulialgebra-module.html">sympy.modules.paulialgebra</a></strong>    </li>
-    <li> <strong class="uidlink"><a href="sympy.modules.pkgdata-module.html">sympy.modules.pkgdata</a></strong>: <em class="summary">pkgdata is a simple, extensible way for a package to acquire data file 
-resources.</em>    </li>
+    <li> <strong class="uidlink"><a href="sympy.modules.pkgdata-module.html">sympy.modules.pkgdata</a></strong>: <em class="summary">pkgdata is a simple, extensible way for a package to acquire 
+        data file resources.</em>    </li>
     <li> <strong class="uidlink"><a href="sympy.modules.polynomials-module.html">sympy.modules.polynomials</a></strong>: <em class="summary">Module with some routines for polynomials</em>    </li>
     <li> <strong class="uidlink"><a href="sympy.modules.printing-module.html">sympy.modules.printing</a></strong>: <em class="summary">Module for printing.</em>
     <ul>
@@ -211,7 +294,7 @@ resources.</em>    </li>
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Sun Mar 25 00:24:02 2007
+    Generated by Epydoc 3.0beta1 on Sun Mar 25 01:31:00 2007
     </td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>

@@ -59,11 +59,11 @@
     <li> <strong class="uidlink">exceptions.Exception</strong>:
       <em class="summary">Common base class for all exceptions.</em>
     <ul>
-    <li> <strong class="uidlink"><a href="sympy.modules.polynomials.PolynomialException-class.html">sympy.modules.polynomials.PolynomialException</a></strong>
-    </li>
     <li> <strong class="uidlink"><a href="sympy.core.power.pole_error-class.html">sympy.core.power.pole_error</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="sympy.modules.integrals.IntegralError-class.html">sympy.modules.integrals.IntegralError</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.modules.polynomials.PolynomialException-class.html">sympy.modules.polynomials.PolynomialException</a></strong>
     </li>
     </ul>
     </li>
@@ -73,10 +73,35 @@
     <li> <strong class="uidlink"><a href="sympy.core.basic.Basic-class.html">sympy.core.basic.Basic</a></strong>:
       <em class="summary">Base class for all objects in sympy</em>
     <ul>
-    <li> <strong class="uidlink"><a href="sympy.modules.integrals.Integral-class.html">sympy.modules.integrals.Integral</a></strong>:
-      <em class="summary">Definite integral.</em>
+    <li> <strong class="uidlink"><a href="sympy.core.numbers.Number-class.html">sympy.core.numbers.Number</a></strong>:
+      <em class="summary">Represents any kind of number in sympy.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sympy.core.numbers.Rational-class.html">sympy.core.numbers.Rational</a></strong>:
+      <em class="summary">Represents integers and rational numbers (p/q) of any size.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.core.numbers.Infinity-class.html">sympy.core.numbers.Infinity</a></strong>:
+      <em class="summary">Infinity.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.core.numbers.Real-class.html">sympy.core.numbers.Real</a></strong>:
+      <em class="summary">Represents a floating point number.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.core.symbol.Symbol-class.html">sympy.core.symbol.Symbol</a></strong>:
+      <em class="summary">Assumptions:</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sympy.core.symbol.NCSymbol-class.html">sympy.core.symbol.NCSymbol</a></strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="sympy.modules.paulialgebra.Pauli-class.html">sympy.modules.paulialgebra.Pauli</a></strong>:
+      <em class="summary">&nbsp;</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
     </li>
     <li> <strong class="uidlink"><a href="sympy.modules.limits.Limit-class.html">sympy.modules.limits.Limit</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="sympy.core.power.Pow-class.html">sympy.core.power.Pow</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="sympy.core.functions.Function-class.html">sympy.core.functions.Function</a></strong>:
       <em class="summary">Abstract class representing a mathematical function.</em>
@@ -106,8 +131,6 @@
     </li>
     </ul>
     </li>
-    <li> <strong class="uidlink"><a href="sympy.core.power.Pow-class.html">sympy.core.power.Pow</a></strong>
-    </li>
     <li> <strong class="uidlink"><a href="sympy.core.numbers.Constant-class.html">sympy.core.numbers.Constant</a></strong>:
       <em class="summary">Mathematical constant abstract class.</em>
     <ul>
@@ -120,31 +143,8 @@
     </li>
     </ul>
     </li>
-    <li> <strong class="uidlink"><a href="sympy.core.numbers.Number-class.html">sympy.core.numbers.Number</a></strong>:
-      <em class="summary">Represents any kind of number in sympy.</em>
-    <ul>
-    <li> <strong class="uidlink"><a href="sympy.core.numbers.Rational-class.html">sympy.core.numbers.Rational</a></strong>:
-      <em class="summary">Represents integers and rational numbers (p/q) of any size.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="sympy.core.numbers.Infinity-class.html">sympy.core.numbers.Infinity</a></strong>:
-      <em class="summary">Infinity.</em>
-    </li>
-    <li> <strong class="uidlink"><a href="sympy.core.numbers.Real-class.html">sympy.core.numbers.Real</a></strong>:
-      <em class="summary">Represents a floating point number.</em>
-    </li>
-    </ul>
-    </li>
-    <li> <strong class="uidlink"><a href="sympy.core.symbol.Symbol-class.html">sympy.core.symbol.Symbol</a></strong>:
-      <em class="summary">Assumptions: ...</em>
-    <ul>
-    <li> <strong class="uidlink"><a href="sympy.core.symbol.NCSymbol-class.html">sympy.core.symbol.NCSymbol</a></strong>
-    <ul>
-    <li> <strong class="uidlink"><a href="sympy.modules.paulialgebra.Pauli-class.html">sympy.modules.paulialgebra.Pauli</a></strong>:
-      <em class="summary">&nbsp;</em>
-    </li>
-    </ul>
-    </li>
-    </ul>
+    <li> <strong class="uidlink"><a href="sympy.modules.integrals.Integral-class.html">sympy.modules.integrals.Integral</a></strong>:
+      <em class="summary">Definite integral.</em>
     </li>
     <li> <strong class="uidlink"><a href="sympy.core.addmul.Pair-class.html">sympy.core.addmul.Pair</a></strong>:
       <em class="summary">Abstract class containing common code to add and mul 
@@ -157,6 +157,16 @@
     </ul>
     </li>
     <li> <strong class="uidlink"><a href="sympy.core.functions.Derivative-class.html">sympy.core.functions.Derivative</a></strong>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">type</strong>:
+      <em class="summary">type(object) -&gt; the object's type type(name, bases, dict) 
+        -&gt; a new type</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="sympy.core.basic.AutomaticEvaluationType-class.html">sympy.core.basic.AutomaticEvaluationType</a></strong>:
+      <em class="summary">Metaclass for all objects in sympy It evaluates the object just 
+        after creation, so that for example x+2*x becomes 3*x</em>
     </li>
     </ul>
     </li>
@@ -174,16 +184,6 @@
     </li>
     <li> <strong class="uidlink"><a href="sympy.core.hashing.Mbernstein-class.html">sympy.core.hashing.Mbernstein</a></strong>:
       <em class="summary">An algorithm produced by Professor Daniel J.</em>
-    </li>
-    </ul>
-    </li>
-    <li> <strong class="uidlink">type</strong>:
-      <em class="summary">type(object) -&gt; the object's type type(name, bases, dict) 
-        -&gt; a new type</em>
-    <ul>
-    <li> <strong class="uidlink"><a href="sympy.core.basic.AutomaticEvaluationType-class.html">sympy.core.basic.AutomaticEvaluationType</a></strong>:
-      <em class="summary">Metaclass for all objects in sympy It evaluates the object just 
-        after creation, so that for example x+2*x becomes 3*x</em>
     </li>
     </ul>
     </li>
@@ -224,7 +224,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0beta1 on Sun Mar 25 00:24:02 2007
+    Generated by Epydoc 3.0beta1 on Sun Mar 25 01:31:00 2007
     </td>
     <td align="right" class="footer">
       <a href="http://epydoc.sourceforge.net">http://epydoc.sourceforge.net</a>
