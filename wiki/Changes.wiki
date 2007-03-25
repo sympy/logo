@@ -4,8 +4,6 @@
 
 This page documents the major changes made to !SymPy since the last release.
 
-= Releases = 
-
 == svn ==
 
 Currently the same as 0.3.
