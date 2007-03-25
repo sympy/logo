@@ -6,7 +6,7 @@ This page documents the major changes made to !SymPy since the last release.
 
 == svn ==
 
-Currently the same as 0.3.
+  * Matrix now (optionally) accepts a generating function: Matrix(2, 2, lambda i,j: i*j )
 
 == 0.3 ==
 
