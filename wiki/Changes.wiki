@@ -16,7 +16,8 @@ This page documents the major changes made to !SymPy since the last release.
     * know the arguments of a function: `sin(x*y)[:] -- > (x*y,)`
     * arguments of Mul, Add, Pow, etc. : `(1+x)[:] --> (1,x)`
     * see also the new atoms function
-  * easy usage of unknown functions, see examples/relativity.py
+  * Derivative and Limit class
+  * easy usage (differentiation and other stuff) of unknown functions, see examples/relativity.py
   * complex numbers work for `exp(I*x)` and stuff. evalc() method 
   * a lot of refactorings and small fixes
 
