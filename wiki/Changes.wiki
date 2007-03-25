@@ -17,10 +17,11 @@ Currently the same as 0.3.
   * implemented slices on sympy's objects. Slices are now the recomended way to access all of sympy's nested objects. Examples: 
     * know the arguments of a function: `sin(x*y)[:] -- > (x*y,)`
     * arguments of Mul, Add, Pow, etc. : `(1+x)[:] --> (1,x)`
-    * see also the new atoms function
+    * see also the new Basic.atoms function
   * Derivative and Limit class
   * easy usage (differentiation and other stuff) of unknown functions, see examples/relativity.py
   * complex numbers work for `exp(I*x)` and stuff. evalc() method 
+  * Initial support for assumptions (for example: x = Symbol('x', is_real=True) )
   * a lot of refactorings and small fixes
 
 == 0.2 ==
