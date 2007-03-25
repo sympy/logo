@@ -10,6 +10,7 @@ This page documents the major changes made to !SymPy since the last release.
 
   * symbolic matrices (normal operations like `+`, `*`, dirac and pauli matrices)
   * NCSymbol class
+  * polynomials (division, gcd, square free decomposition)
   * moved printing advanced stuff out of the core (see http://code.google.com/p/sympy/wiki/PrintingMathML)
   * implemented slices on sympy's objects. Slices are now the recomended way to access all of sympy's nested objects. Examples: 
     * know the arguments of a function: `sin(x*y)[:] -- > (x*y,)`
@@ -20,4 +21,3 @@ This page documents the major changes made to !SymPy since the last release.
 == 0.2 ==
 
 This is the first release.
-
