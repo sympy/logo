@@ -16,6 +16,7 @@ This page documents the major changes made to !SymPy since the last release.
     * know the arguments of a function: `sin(x*y)[:] -- > (x*y,)`
     * arguments of Mul, Add, Pow, etc. : `(1+x)[:] --> (1,x)`
     * see also the new atoms function
+  * easy usage of unknown functions, see examples/relativity.py
   * a lot of refactorings and small fixes
 
 == 0.2 ==
