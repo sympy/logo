@@ -9,7 +9,7 @@ This page documents the major changes made to !SymPy since the last release.
 == 0.3 ==
 
   * symbolic matrices (normal operations like `+`, `*`, dirac and pauli matrices)
-  * NCSymbol class
+  * Pauli algebra implemented using the NCSymbol class
   * polynomials (division, gcd, square free decomposition)
   * moved printing advanced stuff out of the core (see http://code.google.com/p/sympy/wiki/PrintingMathML)
   * implemented slices on sympy's objects. Slices are now the recomended way to access all of sympy's nested objects. Examples: 
