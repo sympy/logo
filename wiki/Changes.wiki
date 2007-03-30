@@ -8,6 +8,8 @@ This page documents the major changes made to !SymPy since the last release.
 
   * Matrix now (optionally) accepts a generating function: Matrix(2, 2, lambda i,j: i*j )
   * The class Order added
+  * Pattern matching implemented (see the match() method).
+  * A table of integrals implemented
 
 == 0.3 ==
 
