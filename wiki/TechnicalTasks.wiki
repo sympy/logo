@@ -8,8 +8,16 @@ python setup.py --help-commands
 }}}
 This will print a summary of all commands that `setup.py` understands.
 
+= Cleaning =
+
+To clean the sources (so that `svn st` returns nothing), do 
+{{{
+python setup.py clean
+}}}
 
 = Debian package =
+
+This is how to create a deb package and check that it's correct:
 
 {{{
 wajig install docbook2x lintian linda
