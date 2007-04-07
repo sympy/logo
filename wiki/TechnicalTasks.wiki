@@ -40,6 +40,8 @@ Check it with pbuilder:
 {{{
 wajig install pbuilder cdebootstrap
 sudo pbuilder create --mirror http://ftp.cz.debian.org/debian
+sudo pbuilder update --mirror http://ftp.cz.debian.org/debian
+sudo pbuilder build --mirror http://ftp.cz.debian.org/debian python-sympy_0.3-2_all.deb
 }}}
 
 Check the checklists at:
