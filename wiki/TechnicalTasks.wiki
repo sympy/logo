@@ -1,0 +1,19 @@
+#summary How to work with setup.py
+
+= Introduction =
+
+This wiki describes how to work with setup.py. Help:
+{{{
+python setup.py --help-commands
+}}}
+This will print a summary of all commands that `setup.py` understands.
+
+
+= Debian package =
+
+Execute
+{{{
+python setup.py bdist_dpkg
+}}}
+
+This creates
