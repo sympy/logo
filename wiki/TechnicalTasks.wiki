@@ -57,7 +57,10 @@ Upload to mentors.debian.net with:
 dupload -t mentors sympy_0.3-2_i386.changes
 }}}
 
+More info at:
+
+http://wiki.debian.org/HowToPackageForDebian
+
 = Man page =
 
 The man page is in `doc/man/isympy.1`. To edit it, edit just a file `doc/man/isympy.xml` and then rebuild the debian package. This will update the manpage.
-
