@@ -30,7 +30,7 @@ sympy_0.3_i386.changes
 python-sympy_0.3_all.deb
 }}}
 
-Check it with:
+Check it with lintian and linda:
 {{{
 lintian -i sympy_0.3-2_i386.changes
 linda -i sympy_0.3-2_i386.changes
@@ -39,7 +39,6 @@ linda -i sympy_0.3-2_i386.changes
 Check it with pbuilder:
 {{{
 wajig install pbuilder cdebootstrap
-cd /tmp
 sudo pbuilder create
 }}}
 
