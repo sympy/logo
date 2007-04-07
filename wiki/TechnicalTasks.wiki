@@ -20,4 +20,10 @@ Execute
 python setup.py bdist_dpkg
 }}}
 
-This creates
+This creates these 4 files in the parent directory:
+{{{
+sympy_0.3.dsc
+sympy_0.3.tar.gz
+sympy_0.3_i386.changes
+python-sympy_0.3_all.deb
+}}}
