@@ -52,7 +52,7 @@ Uninstall with
 wajig purge python-sympy
 }}}
 
-Upload to mentors.debian.net with:
+Upload to http://mentors.debian.net/ with:
 {{{
 dupload -t mentors sympy_0.3-2_i386.changes
 }}}
