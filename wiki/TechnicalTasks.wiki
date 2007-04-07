@@ -11,6 +11,10 @@ This will print a summary of all commands that `setup.py` understands.
 
 = Debian package =
 
+{{{
+wajig install docbook2x
+}}}
+
 Execute
 {{{
 python setup.py bdist_dpkg
