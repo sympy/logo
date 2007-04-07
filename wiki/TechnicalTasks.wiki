@@ -39,7 +39,7 @@ linda -i sympy_0.3-2_i386.changes
 Check it with pbuilder:
 {{{
 wajig install pbuilder cdebootstrap
-sudo pbuilder create
+sudo pbuilder create --mirror http://ftp.cz.debian.org/debian
 }}}
 
 Check the checklists at:
