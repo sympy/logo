@@ -41,7 +41,7 @@ Check it with pbuilder (the create command can be skipped if you alrady did it):
 wajig install pbuilder cdebootstrap
 sudo pbuilder create --mirror http://ftp.cz.debian.org/debian
 sudo pbuilder update --mirror http://ftp.cz.debian.org/debian
-sudo pbuilder build --mirror http://ftp.cz.debian.org/debian python-sympy_0.3-2_all.deb
+sudo pbuilder build --mirror http://ftp.cz.debian.org/debian sympy_0.3-2.dsc
 }}}
 
 Check the checklists at:
