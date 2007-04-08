@@ -78,8 +78,25 @@ wajig purge python-sympy
 
 Upload to http://mentors.debian.net/ with:
 {{{
+wajig install dupload
 dupload -t mentors sympy_0.3-2_i386.changes
 }}}
+
+(You need to have `~/.dupload.conf`:
+{{{
+package config;
+
+$cfg{'mentors'} =
+{
+   fqdn => 'mentors.debian.net',
+   incoming => '/',
+   dinstall_runs => 1,
+   passive => 1,
+};
+
+1;
+}}}
+)
 
 More info at:
 
