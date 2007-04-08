@@ -51,7 +51,7 @@ sudo pbuilder create --mirror http://ftp.cz.debian.org/debian
 sudo pbuilder update
 sudo pbuilder build sympy_0.3-2.dsc
 }}}
-The sympy source package should build without errors. This is to check that the build dependencies are correct. Note: pbuilder works in the directory /var/cache/pbuilder/, so the above commands can be executed anywhere.
+The sympy source package should build without errors (the build command runs for 3 minutes on my computer). This is to check that the build dependencies are correct. Note: pbuilder works in the directory /var/cache/pbuilder/, so the above commands can be executed anywhere.
 
 Check with piuparts:
 {{{
