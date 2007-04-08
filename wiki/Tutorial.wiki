@@ -49,6 +49,15 @@ proceed with caution while working with python int's since they truncate integer
 
 }}}
 
+You can however do:
+{{{
+In [1]: from __future__ import division
+
+In [2]: 1/2
+Out[2]: 0.5
+}}}
+It's going to be standard in python, hopefully soon....
+
 TODO: Real, Inifinity
 
 = Matrices =
@@ -79,7 +88,6 @@ Out[17]:
 
 
 }}}
-
 
 
 
