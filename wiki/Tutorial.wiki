@@ -1,0 +1,61 @@
+#summary First steps with sympy
+
+= Introduction = 
+TODO
+
+== Installation ==
+
+ - debian
+
+ - source
+
+ - windows
+
+== What you'll need to follow this tutorial ==
+
+ - isympy: all examples are made within isympy. If you can't run isympy, then you'll have to run the following code at the beginning of each session: 
+
+{{{
+   >>> from isympy import *
+   >>> x = Symbol('x')
+   >>> y = Symbol('y')
+   >>> z = Symbol('z')
+}}}
+
+= Using SymPy as a calculator =
+
+Sympy has two built-in numeric types: [http://sympy.googlecode.com/svn/api/sympy.core.numbers.Real-class.html Real] and [http://sympy.googlecode.com/svn/api/sympy.core.numbers.Rational-class.html Rational]. 
+
+The Rational class represents a rational number as a pair of two integers: the numerator and the denominator, so Rational(1,2) represents 1/2, Rational(5,2) 5/2 and so on. 
+
+{{{
+  In [0]: a = Rational(1,2)
+
+  In [1]: a
+  Out[1]: 1/2
+
+  In [2]: a*2
+  Out[2]: 1
+}}}
+
+proceed with caution while working with python int's since they truncate integer division, and that's why: 
+
+{{{
+   In [2]: 1/2
+   Out[2]: 0
+
+   In [3]: 1.0/2
+   Out[3]: 0.5
+
+}}}
+
+TODO: Real, Inifinity
+
+
+
+
+
+
+
+
+
