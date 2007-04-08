@@ -51,6 +51,35 @@ proceed with caution while working with python int's since they truncate integer
 
 TODO: Real, Inifinity
 
+= Matrices =
+
+Matrices are created as instances from the [http://sympy.googlecode.com/svn/api/sympy.modules.matrices.Matrix-class.html Matrix] class: 
+
+{{{
+In [13]: Matrix([[1,0],[0,1]])
+Out[13]: 
+1 0 
+0 1 
+}}}
+
+you can also put Symbols in it: 
+{{{
+In [15]: A = Matrix([[1,x],[y,1]])
+
+In [16]: A
+Out[16]: 
+1 x 
+y 1 
+
+In [17]: A**2
+Out[17]: 
+1+y*x 2*x 
+2*y 1+y*x 
+}}}
+
+
+}}}
+
 
 
 
