@@ -58,7 +58,7 @@ Check with piuparts:
 wajig install piuparts
 sudo piuparts -p /tmp/python-sympy_0.3-2_all.deb
 }}}
-The sympy binary package should cleanly install and purge, without leaving any trash behind. Note: piuparts work in /tmp, and the `-p` switch tells it to use the pbuilder base image, so it can be executed anywhere.
+The sympy binary package should cleanly install and purge, without leaving any trash behind (again, it takes around 3 minutes on my computer). Note: piuparts work in /tmp, and the `-p` switch tells it to use the pbuilder base image, so it can be executed anywhere.
 
 Check the checklists at:
 
