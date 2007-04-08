@@ -58,6 +58,7 @@ Check with piuparts:
 wajig install piuparts
 sudo piuparts -p /tmp/python-sympy_0.3-2_all.deb
 }}}
+Note: piuparts work in /tmp, and the `-p` switch tells it to use the pbuilder base image, so it can be executed anywhere.
 
 Check the checklists at:
 
