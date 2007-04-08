@@ -25,17 +25,16 @@ wajig install docbook2x lintian linda cdbs
 
 Execute in the root sympy directory:
 {{{
-svn export . /tmp/sympy
-cd /tmp/sympy
 python setup.py bdist_dpkg
 }}}
 
-This creates these 4 files in /tmp:
+This creates these 5 files in /tmp:
 {{{
-sympy_0.3.dsc
-sympy_0.3.tar.gz
-sympy_0.3_i386.changes
-python-sympy_0.3_all.deb
+sympy_0.3.orig.tar.gz
+sympy_0.3-2_i386.changes
+sympy_0.3-2.diff.gz
+sympy_0.3-2.dsc
+python-sympy_0.3-2_all.deb
 }}}
 
 Check it with lintian and linda:
