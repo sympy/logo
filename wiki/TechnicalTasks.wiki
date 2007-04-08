@@ -53,6 +53,12 @@ sudo pbuilder build sympy_0.3-2.dsc
 }}}
 Note: pbuilder works in the directory /var/cache/pbuilder/, so the above commands can be executed anywhere.
 
+Check with piuparts:
+{{{
+wajig install piuparts
+sudo piuparts -p /tmp/python-sympy_0.3-2_all.deb
+}}}
+
 Check the checklists at:
 
 http://people.debian.org/~neilm/sponsorship.html
