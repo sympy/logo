@@ -98,6 +98,11 @@ $cfg{'mentors'} =
 }}}
 )
 
+To update a changelog, use:
+{{{
+dch -i debian/changelog
+}}}
+
 More info at:
 
 http://wiki.debian.org/HowToPackageForDebian
