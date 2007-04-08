@@ -16,7 +16,7 @@ TODO
  - isympy: all examples are made within isympy. If you can't run isympy, then you'll have to run the following code at the beginning of each session: 
 
 {{{
-   >>> from isympy import *
+   >>> from sympy import *
    >>> x = Symbol('x')
    >>> y = Symbol('y')
    >>> z = Symbol('z')
@@ -79,7 +79,6 @@ Out[17]:
 
 
 }}}
-
 
 
 
