@@ -90,6 +90,11 @@ $cfg{'mentors'} =
 }}}
 )
 
+To download the source package:
+{{{
+dget http://mentors.debian.net/debian/pool/main/s/sympy/sympy_0.4-pre+svn765-1.dsc
+}}}
+
 To update a changelog, use (either in the debian or the root directory):
 {{{
 dch -v 0.4-pre~svn739
