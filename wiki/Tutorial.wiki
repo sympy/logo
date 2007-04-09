@@ -60,6 +60,16 @@ It's going to be standard in python, hopefully soon....
 
 TODO: Real, Inifinity
 
+= Limits = 
+
+limits are easy to use in sympy, they follow the syntax, limit(function, variable, point), so to compute the limit of f(x) as x -> 0, you would issue limit(f, x, 0)
+
+{{{
+   In [1]: limit(sin(x)/x, x, 0)
+   Out[1]: 1
+
+}}}
+
 = Matrices =
 
 Matrices are created as instances from the [http://sympy.googlecode.com/svn/api/sympy.modules.matrices.Matrix-class.html Matrix] class: 
@@ -88,7 +98,6 @@ Out[17]:
 
 
 }}}
-
 
 
 
