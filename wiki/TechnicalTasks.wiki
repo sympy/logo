@@ -23,24 +23,16 @@ This is how to create a deb package and check that it's correct:
 wajig install docbook2x lintian linda cdbs
 }}}
 
-Execute in the root sympy directory:
+Execute in the sympy root directory:
 {{{
 python setup.py bdist_dpkg
 }}}
-
-This creates these 5 files in /tmp:
-{{{
-sympy_0.3.orig.tar.gz
-sympy_0.3-2_i386.changes
-sympy_0.3-2.diff.gz
-sympy_0.3-2.dsc
-python-sympy_0.3-2_all.deb
-}}}
+This creates the package and related files in `dist/`.
 
 Check it with lintian and linda:
 {{{
-lintian -i sympy_0.3-2_i386.changes
-linda -i sympy_0.3-2_i386.changes
+lintian -i dist/sympy_0.4-pre~svn745-1_i386.changes
+linda -i dist/sympy_0.4-pre~svn745-1_i386.changes
 }}}
 Nothing should be printed (= lintian&linda clean).
 
@@ -49,16 +41,16 @@ Check it with pbuilder (the create command can be skipped if you alrady did it):
 wajig install pbuilder cdebootstrap
 sudo pbuilder create --mirror http://ftp.cz.debian.org/debian
 sudo pbuilder update
-sudo pbuilder build sympy_0.3-2.dsc
+sudo pbuilder build dist/sympy_0.4-pre~svn745-1.dsc
 }}}
-The sympy source package should build without errors (the build command runs for 3 minutes on my computer). This is to check that the build dependencies are correct. Note: pbuilder works in the directory /var/cache/pbuilder/, so the above commands can be executed anywhere.
+The sympy source package should build without errors (the build command runs for 3 minutes on my computer). This is to check that the build dependencies are correct. Note: pbuilder works in the directory /var/cache/pbuilder/, so don't worry about any trash.
 
 Check with piuparts:
 {{{
 wajig install piuparts
-sudo piuparts -p /tmp/python-sympy_0.3-2_all.deb
+sudo piuparts -p dist/python-sympy_0.4-pre~svn745-1_all.deb
 }}}
-The sympy binary package should cleanly install and purge, without leaving any trash behind (again, it takes around 3 minutes on my computer). Note: piuparts work in /tmp, and the `-p` switch tells it to use the pbuilder base image, so it can be executed anywhere.
+The sympy binary package should cleanly install and purge, without leaving any trash behind (again, it takes around 3 minutes on my computer). Note: piuparts work in /tmp, and the `-p` switch tells it to use the pbuilder base image, so again don't worry about any trash.
 
 Check the checklists at:
 
@@ -68,7 +60,7 @@ http://people.debian.org/~mpalmer/sponsorship_checklist.html
 
 Install it with
 {{{
-wajig install python-sympy_0.3_all.deb
+wajig install dist/python-sympy_0.4-pre~svn745-1_all.deb
 }}}
 
 Uninstall with
@@ -79,7 +71,7 @@ wajig purge python-sympy
 Upload to http://mentors.debian.net/ with:
 {{{
 wajig install dupload
-dupload -t mentors sympy_0.3-2_i386.changes
+dupload -t mentors dist/sympy_0.4-pre~svn745-1_i386.changes
 }}}
 
 (You need to have `~/.dupload.conf`:
