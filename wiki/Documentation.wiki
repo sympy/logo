@@ -5,13 +5,17 @@
 
 This is the central page for all documentation to !SymPy.
 
-For examples of most features of !SymPy, look into [http://code.google.com/p/sympy/wiki/Examples Examples].
+= Main documentation =
 
-Driving ideas behind !SymPy are described in HowItWorks.
+If you are new to SymPy, start looking at the examples: [http://code.google.com/p/sympy/wiki/Examples Examples].
+
+Then read the driving ideas behind !SymPy that are described in HowItWorks.
+
+And finally, read the sources itself or the API documentation:
+http://sympy.googlecode.com/svn/api/index.html
+
+= Other =
 
 Description of !SymPy printing system is in [http://code.google.com/p/sympy/wiki/PrintingMathML PrintingMathML].
-
-API documentation is here:
-http://sympy.googlecode.com/svn/api/index.html
 
 For some ideas, where Sympy can be used, see http://code.google.com/p/sympy/wiki/Motivation.
