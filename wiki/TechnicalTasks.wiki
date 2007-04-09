@@ -102,7 +102,7 @@ To update a changelog, use (either in the debian or the root directory):
 {{{
 dch -v 0.4-pre~svn739
 }}}
-We'll write a script for that later (just by copyting the rules:tarball rule).
+We'll write a script for that later (just by copying the rules:tarball rule).
 
 More info at:
 
