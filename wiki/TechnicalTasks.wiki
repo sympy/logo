@@ -20,7 +20,7 @@ python setup.py clean
 This is how to create a deb package and check that it's correct:
 
 {{{
-wajig install docbook2x lintian linda cdbs
+wajig install docbook2x lintian linda cdbs devscripts
 }}}
 
 Execute in the sympy root directory:
