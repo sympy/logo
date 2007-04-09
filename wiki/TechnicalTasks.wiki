@@ -98,9 +98,9 @@ $cfg{'mentors'} =
 }}}
 )
 
-To update a changelog, use:
+To update a changelog, use (either in the debian or the root directory):
 {{{
-dch -i debian/changelog
+dch -v 0.4-pre~svn739
 }}}
 
 More info at:
