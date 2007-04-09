@@ -58,8 +58,9 @@ Out[2]: 0.5
 }}}
 It's going to be standard in python, hopefully soon....
 
+= Calculus = 
 
-= Limits =
+== Limits ==
 
 limits are easy to use in sympy. They follow the syntax limit(function, variable, point), so to compute the limit of f(x) as x -> 0, you would issue limit(f, x, 0)
 
@@ -69,7 +70,15 @@ limits are easy to use in sympy. They follow the syntax limit(function, variable
 
 }}}
 
-= Matrices =
+== Differentiation ==
+
+use the .diff(var) function. TODO
+
+
+
+= Linear Algebra =
+
+== Matrices ==
 
 Matrices are created as instances from the [http://sympy.googlecode.com/svn/api/sympy.modules.matrices.Matrix-class.html Matrix] class: 
 
@@ -97,7 +106,6 @@ Out[17]:
 
 
 }}}
-
 
 
 
