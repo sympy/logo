@@ -74,7 +74,11 @@ limits are easy to use in sympy. They follow the syntax limit(function, variable
 
 use the .diff(var) function. TODO
 
+== Integration ==
 
+see http://sympy.googlecode.com/svn/api/sympy.modules.integrals-module.html#integrate
+
+TODO
 
 = Linear Algebra =
 
@@ -106,7 +110,6 @@ Out[17]:
 
 
 }}}
-
 
 
 
