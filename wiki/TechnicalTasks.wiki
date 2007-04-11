@@ -29,6 +29,12 @@ python setup.py bdist_dpkg
 }}}
 This creates the package and related files in `dist/`.
 
+Now execute:
+{{{
+python setup.py test_dpkg
+}}}
+This will run lintian, linda, pbuilder and piupart tests. You are done now. However, if you want, you can read some more details below.
+
 Check it with lintian and linda:
 {{{
 lintian -i dist/sympy_0.4-pre~svn745-1_i386.changes
