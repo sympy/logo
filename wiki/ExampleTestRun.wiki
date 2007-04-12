@@ -84,7 +84,8 @@ tests/test_subs.py[5] .....
 tests/test_symbol.py[1] .
 tests/test_trigonometric.py[2] ..
 
-____________________________________________________________________________________________________________ entrypoint: test_abs1 _____________________________
+________________________________________________________________________________
+____________________________ entrypoint: test_abs1 _____________________________
     def test_abs1():
         a=Symbol("a", is_real=True)
         b=Symbol("b", is_real=True)
@@ -97,14 +98,16 @@ E       assert abs(a+I*b) == (a*a+b*b).sqrt()
          +  and   (a**2+b**2)**(1/2) = ((a * a) + (b * b)).sqrt()
 
 [/home/ondra/sympy/tests/test_complex.py:24]
-__________________________________________________________________________________________________________ entrypoint: test_mathml_1 ___________________________
+________________________________________________________________________________
+__________________________ entrypoint: test_mathml_1 ___________________________
     def test_mathml_1():
         assert f.mathml == '<apply><int/><bvar><ci> x </ci></bvar><lowlimit><cn> 1 </cn></lowlimit><uplimit><cn> 2 </cn></uplimit><apply><log/> <ci> x </ci> </apply></apply>'
 E       assert (x**2 + x +1/x).mathml == '<apply><plus/><apply><power/><ci> x </ci><cn> 2 </cn></apply><apply><power/><ci> x </ci><cn> -1 </cn></apply><ci> x </ci></apply>'
 >       assert (((x ** 2) + x) + (1 / x)).mathml == '<apply><plus/><apply><power/><ci> x </ci><cn> 2 </cn></apply><apply><power/><ci> x </ci><cn> -1 </cn></apply><ci> x </ci></apply>'
 
 [/home/ondra/sympy/tests/test_mathml.py:12]
-____________________________________________________________________________________________________________ entrypoint: test_abs1 _____________________________
+________________________________________________________________________________
+____________________________ entrypoint: test_abs1 _____________________________
     def test_abs1():
         a=Symbol("a", is_real=True)
         b=Symbol("b", is_real=True)
