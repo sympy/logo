@@ -3,7 +3,8 @@
 {{{
 ondra@syslik:~/sympy$ python setup.py test
 running test
-============================= test process starts ==============================executable:   /usr/bin/python  (2.4.4-final-0)
+============================= test process starts ==============================
+executable:   /usr/bin/python  (2.4.4-final-0)
 using py lib: /usr/lib/python2.4/site-packages/py <rev unknown>
 
 tests/test_arit.py[8] ........
@@ -31,7 +32,8 @@ tests/test_subs.py[5] .....
 tests/test_symbol.py[1] .
 tests/test_trigonometric.py[2] ..
 
-================= tests finished: 138 passed in 15.22 seconds ==================sympy/core.py
+================= tests finished: 138 passed in 15.22 seconds ==================
+sympy/core.py
 sympy/modules.py
 sympy/modules/mathml.py
 sympy/modules/printing.py
