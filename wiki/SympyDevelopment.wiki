@@ -21,6 +21,7 @@ To execute tests before a commit, use:
 {{{
 python setup.py test
 }}}
+The result should look like the ExampleTestRun.
 
 Optionally, when debugging, you may want to only execute some particular tests using `py.test`, or only the doctests using `python setup.py test_doc`. But before each commit, test the whole package including docstrings.
 
