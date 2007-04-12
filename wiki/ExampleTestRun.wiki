@@ -35,6 +35,7 @@ tests/test_symbol.py[1] .
 tests/test_trigonometric.py[2] ..
 
 ================= tests finished: 138 passed in 15.22 seconds ==================
+Testing docstrings.
 sympy/core.py
 sympy/modules.py
 sympy/modules/mathml.py
