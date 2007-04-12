@@ -1,5 +1,7 @@
 #summary Shows how the tests should look like when everything is ok.
 
+= All tests pass - ok to commit =
+
 {{{
 ondra@syslik:~/sympy$ python setup.py test
 running test
@@ -43,4 +45,80 @@ Ran 29 tests in 2.893s
 
 OK
 ondra@syslik:~/sympy$
+}}}
+
+= Failing tests =
+
+This is how it looks like when some tests fail.
+
+{{{
+ondra@dakol:~/sympy$ python setup.py test
+running test
+============================= test process starts ==============================
+testing-mode: inprocess
+executable:   /usr/bin/python  (2.4.4-final-0)
+using py lib: /home/ondra/py-dist/py <rev 25083>
+
+tests/test_arit.py[8] ........
+tests/test_basic.py[6] ......
+tests/test_complex.py[4] .F..
+tests/test_demidovich.py[2] ..
+tests/test_diff.py[2] ..
+tests/test_equal.py[2] ..
+tests/test_eval.py[3] ...
+tests/test_evalf.py[3] ...
+tests/test_functions.py[13] .............
+tests/test_hashing.py[9] .........
+tests/test_integrals.py[4] ....
+tests/test_limits.py[16] ................
+tests/test_match.py[7] .......
+tests/test_mathml.py[2] F.
+tests/test_matrices.py[5] .....
+tests/test_numbers.py[13] ........F....
+tests/test_paulialgebra.py[1] .
+tests/test_polynomials.py[8] ........
+tests/test_series.py[11] ...........
+tests/test_solvers.py[4] ....
+tests/test_str.py[7] .......
+tests/test_subs.py[5] .....
+tests/test_symbol.py[1] .
+tests/test_trigonometric.py[2] ..
+
+____________________________________________________________________________________________________________ entrypoint: test_abs1 _____________________________
+    def test_abs1():
+        a=Symbol("a", is_real=True)
+        b=Symbol("b", is_real=True)
+        assert abs(a) == a
+        assert abs(-a) == a
+        assert abs(-a) != -a
+E       assert abs(a+I*b) == (a*a+b*b).sqrt()
+>       assert abs(b*I+a) == (a**2+b**2)**(1/2)
+         +  where abs(b*I+a) = abs((a + (I * b)))
+         +  and   (a**2+b**2)**(1/2) = ((a * a) + (b * b)).sqrt()
+
+[/home/ondra/sympy/tests/test_complex.py:24]
+__________________________________________________________________________________________________________ entrypoint: test_mathml_1 ___________________________
+    def test_mathml_1():
+        assert f.mathml == '<apply><int/><bvar><ci> x </ci></bvar><lowlimit><cn> 1 </cn></lowlimit><uplimit><cn> 2 </cn></uplimit><apply><log/> <ci> x </ci> </apply></apply>'
+E       assert (x**2 + x +1/x).mathml == '<apply><plus/><apply><power/><ci> x </ci><cn> 2 </cn></apply><apply><power/><ci> x </ci><cn> -1 </cn></apply><ci> x </ci></apply>'
+>       assert (((x ** 2) + x) + (1 / x)).mathml == '<apply><plus/><apply><power/><ci> x </ci><cn> 2 </cn></apply><apply><power/><ci> x </ci><cn> -1 </cn></apply><ci> x </ci></apply>'
+
+[/home/ondra/sympy/tests/test_mathml.py:12]
+____________________________________________________________________________________________________________ entrypoint: test_abs1 _____________________________
+    def test_abs1():
+        a=Symbol("a", is_real=True)
+        b=Symbol("b", is_real=True)
+        assert abs(a) == a
+        assert abs(-a) == a
+        assert abs(-a) != -a
+E       assert abs(a+g.I*b) == (a*a+b*b).sqrt()
+>       assert abs(b*I+a) == (a**2+b**2)**(1/2)
+         +  where abs(b*I+a) = abs((a + (I * b)))
+         +    where I = g.I
+         +  and   (a**2+b**2)**(1/2) = ((a * a) + (b * b)).sqrt()
+
+[/home/ondra/sympy/tests/test_numbers.py:108]
+============ tests finished: 135 passed, 3 failed in 11.39 seconds =============
+ondra@dakol:~/sympy$
+
 }}}
