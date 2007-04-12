@@ -13,7 +13,7 @@ TODO
 
 == What you'll need to follow this tutorial ==
 
- - isympy: all examples are made within isympy. If you can't run isympy, then you'll have to run the following code at the beginning of each session: 
+ - isympy: all examples are made within isympy. isympy is just a standard python shell that has already imported the relevant sympy modules and defined the symbols x, y and z. So if you can't run isympy, then you'll have to run the following code at the beginning of each session: 
 
 {{{
    >>> from sympy import *
@@ -110,7 +110,6 @@ Out[17]:
 
 
 }}}
-
 
 
 
