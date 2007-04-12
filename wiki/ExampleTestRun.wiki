@@ -1,4 +1,4 @@
-#summary Shows how the tests look like when everything is ok.
+#summary Shows how the tests should look like when everything is ok.
 
 {{{
 ondra@syslik:~/sympy$ python setup.py test
