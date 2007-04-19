@@ -1,0 +1,12 @@
+#summary Information about the 2007 Google Summer of Code and SymPy
+
+= Introduction =
+
+Five students were accepted for this year's GSoC. See
+
+http://groups.google.com/group/sympy/browse_thread/thread/b68a42be34923a4
+
+= Details =
+
+
+
