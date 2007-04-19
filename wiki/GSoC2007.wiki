@@ -8,3 +8,11 @@ http://groups.google.com/group/sympy/browse_thread/thread/b68a42be34923a4
 http://groups.google.com/group/sympy/browse_thread/thread/a63896b7d8a5fc90
 
 
+= Details =
+
+|| *student* || *mentor* || *mentoring organisation* ||
+|| Robert Schwarz || Fabian Seoane || PSF ||
+|| Mateusz Paprocki || Ondrej Certik || STScI ||
+|| Brian Jorgensen || Ondrej Certik || at PSF ||
+|| Chris Wu || Mike Haertel || PSU ||
+|| Jason Gedge || Jim Jewett || PSF ||
