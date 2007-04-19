@@ -77,3 +77,6 @@ Usage:
 ...
 print_pygame(f)
 }}}
+
+
+more info on mathml content: http://www.w3.org/TR/MathML2/chapter4.html
