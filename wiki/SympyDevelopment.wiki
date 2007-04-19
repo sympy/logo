@@ -3,7 +3,9 @@
 = Introduction =
 
 Sympy development discussion takes place on the mailing list
-http://groups.google.com/group/sympy. You can send your patch there, or you can use the issue system http://code.google.com/p/sympy/issues/list.
+http://groups.google.com/group/sympy and in the issues http://code.google.com/p/sympy/issues/list. You can send your patch to either of them.
+
+Then there is a [http://grupododo.com/planetsympy/ Planet SymPy], that aggregates blogs of all developers of !SymPy, so you can read what they are doing at one place.
 
 
 = Rules =
