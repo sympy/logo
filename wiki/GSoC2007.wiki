@@ -13,6 +13,12 @@ http://groups.google.com/group/sympy/browse_thread/thread/a63896b7d8a5fc90
 || *student* || *mentor* || *mentoring organisation* ||
 || Robert Schwarz || Fabian Seoane || PSF ||
 || Mateusz Paprocki || Ondrej Certik || STScI ||
-|| Brian Jorgensen || Ondrej Certik || at PSF ||
+|| Brian Jorgensen || Ondrej Certik || PSF ||
 || Chris Wu || Mike Haertel || PSU ||
 || Jason Gedge || Jim Jewett || PSF ||
+
+== students and mentors blogs ==
+
+Are all aggregated at: http://grupododo.com/planetsympy/
+
+You can also find links to the individual blogs from there.
