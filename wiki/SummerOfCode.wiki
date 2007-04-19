@@ -1,6 +1,6 @@
 #summary Some project ideas that might work for the Google's summer of code.
 
-This page served for applying for 2007 GSoC. See [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007] for information about SymPy's involvemed in 2007 GSoC.
+This page served for applying for 2007 GSoC. See [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007] for information about !SymPy's involvement in 2007 GSoC.
 
 !SymPy is a symbolic manipulation package, written in pure Python. Its aim is to become a full featured CAS in Python, while keeping the code as simple as possible in order to be comprehensible and easily extensible. See http://code.google.com/p/sympy for more details.
 
