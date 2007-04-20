@@ -1,7 +1,5 @@
 #summary First steps with sympy
 
-= Introduction = 
-TODO
 
 == Installation ==
 
@@ -134,8 +132,9 @@ Out[17]:
 }}}
 
 
-}}}
+= Pattern matching =
 
+use the .match() function. TODO
 
 
 
