@@ -5,11 +5,13 @@ TODO
 
 == Installation ==
 
- - debian
+ * debian. Download the deb file from the project's homepage, and then install in with the command "sudo dpkg -i python-sympy_$version_all.deb", where $version must be replaced with the version number. 
 
- - source
+  Hopefully, we'll have soon these packages in the official debian repositories. 
 
- - windows
+ * source. Download the source archive, (something like sympy-$version.tar.gz), extract it, issueing the command "tar xvvzf sympy-$version.tar.gz", and follow the README located in the sympy directory
+
+ * windows
 
 == What you'll need to follow this tutorial ==
 
@@ -110,6 +112,7 @@ Out[17]:
 
 
 }}}
+
 
 
 
