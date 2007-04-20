@@ -4,7 +4,7 @@
 
 This wiki describes how to work with setup.py. Help:
 {{{
-python setup.py --help-commands
+./setup.py --help-commands
 }}}
 This will print a summary of all commands that `setup.py` understands.
 
@@ -12,7 +12,7 @@ This will print a summary of all commands that `setup.py` understands.
 
 To clean the sources (so that `svn st` returns nothing), do 
 {{{
-python setup.py clean
+./setup.py clean
 }}}
 
 = Debian package =
@@ -25,13 +25,13 @@ wajig install docbook2x lintian linda cdbs devscripts python-all-dev
 
 Execute in the sympy root directory:
 {{{
-python setup.py bdist_dpkg
+./setup.py bdist_dpkg
 }}}
 This creates the package and related files in `dist/`.
 
 Now execute:
 {{{
-python setup.py test_dpkg
+./setup.py test_dpkg
 }}}
 This will run lintian, linda, pbuilder and piupart tests. You are done now. However, if you want, you can read some more details below.
 
