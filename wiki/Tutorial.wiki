@@ -73,7 +73,9 @@ True
 
 == Limits ==
 
-limits are easy to use in sympy. They follow the syntax limit(function, variable, point), so to compute the limit of f(x) as x -> 0, you would issue limit(f, x, 0)
+Limits are implemented in the module sympy.modules.limits, but if you use isympy it's already imported for you.
+
+limits are easy to use in sympy, they follow the syntax limit(function, variable, point), so to compute the limit of f(x) as x -> 0, you would issue limit(f, x, 0)
 
 {{{
    In [1]: limit(sin(x)/x, x, 0)
@@ -133,7 +135,6 @@ Out[17]:
 
 
 }}}
-
 
 
 
