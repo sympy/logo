@@ -149,8 +149,7 @@ Out[17]:
 
 = Pattern matching =
 
-use the .match() function. TODO
-
+use the .match() function (available in 0.4). TODO
 
 
 
