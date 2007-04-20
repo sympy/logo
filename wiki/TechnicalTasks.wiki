@@ -115,7 +115,7 @@ http://wiki.debian.org/HowToPackageForDebian
 
 The man page is in `doc/man/isympy.1`. To edit it, edit just a file `doc/man/isympy.xml` and then rebuild the debian package. This will update the manpage.
 
-= How to make a new release = 
+= How to make a new release =
 
 Create a deb package first (see above) and rename
 `sympy_0.4-pre+svn745.orig.tar.gz` to `sympy_0.4-pre.tar.gz` and put it on the web. (also change the `__version__` variable to "4.0")
