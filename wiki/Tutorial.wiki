@@ -52,12 +52,27 @@ proceed with caution while working with python int's since they truncate integer
 
 You can however do:
 {{{
-In [1]: from __future__ import division
+  In [1]: from __future__ import division
 
-In [2]: 1/2
-Out[2]: 0.5
+  In [2]: 1/2 
+  Out[2]: 0.5
 }}}
 It's going to be standard in python, hopefully soon....
+
+we also have some special constants, like e and pi, that are treated as symbols (1+pi won't evaluate to something numeric, rather it will remain as 1+pi), and have arbitrary precission: 
+
+{{{
+   In [1]: pi**2
+   Out[1]: pi**2
+
+   In [2]: pi.evalf()
+   Out[2]: 3.1416...
+
+   In [2]: (pi+e).evalf()
+   Out[2]: ...
+}}}
+
+as you see, evalf evaluates the expression to a floating-point number
 
 There is also a class representing mathematical infinity, and we call it infty, however, you can't do normal arithmetic operations for infinity, as it is only used for comparisions, like
 
@@ -135,7 +150,6 @@ Out[17]:
 = Pattern matching =
 
 use the .match() function. TODO
-
 
 
 
