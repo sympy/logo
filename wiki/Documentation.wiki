@@ -9,6 +9,7 @@ This is the central page for all documentation to !SymPy.
 
 If you are new to !SymPy, you can try to follow the 
 [http://code.google.com/p/sympy/wiki/Tutorial Tutorial] or you can start looking at the examples: [http://code.google.com/p/sympy/wiki/Examples Examples].
+
 Then read the driving ideas behind !SymPy that are described in HowItWorks.
 
 And finally, read the sources itself or the API documentation:
