@@ -91,6 +91,8 @@ you can also calculate the limit at infinity:
    Out[2]: 0
 }}}
 
+for some non-trivial examples on limits, you can read the test file [http://sympy.googlecode.com/svn/trunk/tests/test_demidovich.py test_demidovich.py]
+
 == Differentiation ==
 
 use the .diff(var) function. TODO
@@ -131,7 +133,6 @@ Out[17]:
 
 
 }}}
-
 
 
 
