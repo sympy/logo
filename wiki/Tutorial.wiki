@@ -61,6 +61,14 @@ Out[2]: 0.5
 }}}
 It's going to be standard in python, hopefully soon....
 
+There is also a class representing mathematical infinity, and we call it infty, however, you can't do normal arithmetic operations for infinity, as it is only used for comparisions, like
+
+{{{
+In [1]: infty != 2
+True
+}}}
+
+
 = Calculus =
 
 == Limits ==
@@ -71,6 +79,16 @@ limits are easy to use in sympy. They follow the syntax limit(function, variable
    In [1]: limit(sin(x)/x, x, 0)
    Out[1]: 1
 
+}}}
+
+you can also calculate the limit at infinity: 
+
+{{{
+   In [1]: limit(x, x, infty)
+   Out[1]: Infinity
+
+   In [2]: limit(1/x, x, infty)
+   Out[2]: 0
 }}}
 
 == Differentiation ==
