@@ -5,7 +5,7 @@
 
  * debian. Download the deb file from the project's homepage, and then install in with the command `"sudo dpkg -i python-sympy_$version_all.deb"`, where `$version` must be replaced with the version number. 
 
-  Hopefully, we'll have soon these packages in the official debian repositories. 
+  Hopefully, we'll have soon this package in the official debian main repository.
 
  * source. 
     # unix systems (linux, BSD, cygwin, etc.). Download the source archive, (something like `sympy-$version.tar.gz`), extract it with the command `"tar xvvzf sympy-$version.tar.gz"`, and follow the README located in the sympy directory
@@ -150,5 +150,4 @@ Out[17]:
 = Pattern matching =
 
 use the .match() function (available in 0.4). TODO
-
 
