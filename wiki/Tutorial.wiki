@@ -135,9 +135,7 @@ Out[6]: cos(x)**(-2)
 
 == Integration ==
 
-see http://sympy.googlecode.com/svn/api/sympy.modules.integrals-module.html#integrate
-
-TODO
+Documentation and examples are at http://sympy.googlecode.com/svn/api/sympy.modules.integrals-module.html#integrate
 
 = Linear Algebra =
 
