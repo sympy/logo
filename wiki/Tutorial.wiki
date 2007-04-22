@@ -86,7 +86,7 @@ True
 
 == Limits ==
 
-Limits are implemented in the module sympy.modules.limits and are imported by `from sympy import *`.
+Limits are implemented in the module sympy.modules.limits and are imported by `from sympy import *`, that is automatically executed by `isympy`, so you don't have to worry about it.
 
 Limits are easy to use in sympy, they follow the syntax limit(function, variable, point), so to compute the limit of f(x) as x -> 0, you would issue limit(f, x, 0)
 
