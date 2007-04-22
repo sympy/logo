@@ -113,7 +113,18 @@ for some non-trivial examples on limits, you can read the test file [http://symp
 
 == Differentiation ==
 
-use the .diff(var) function. TODO
+You can differentiate any !SymPy expression using `.diff(var)`. Examples:
+
+{{{
+In [1]: sin(x).diff(x)
+Out[1]: cos(x)
+
+In [2]: sin(2*x).diff(x)
+Out[2]: 2*cos(2*x)
+
+In [3]: tan(x).diff(x)
+Out[3]: cos(x)**(-2)
+}}}
 
 == Integration ==
 
