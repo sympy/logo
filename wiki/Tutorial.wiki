@@ -151,6 +151,8 @@ Out[7]: -8*cos(2*x)
 
 == Series expansion ==
 
+Use `.series(var, order)`:
+
 {{{
 In [1]: cos(x).series(x,10)
 Out[1]: 1-1/3628800*x**10+1/40320*x**8+1/24*x**4-1/720*x**6-1/2*x**2
