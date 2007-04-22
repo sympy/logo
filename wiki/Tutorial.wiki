@@ -150,6 +150,8 @@ Out[7]: -8*cos(2*x)
 
 Documentation and examples are at http://sympy.googlecode.com/svn/api/sympy.modules.integrals-module.html#integrate
 
+Currently, !SymPy can only do some simple integrals. 
+
 = Linear Algebra =
 
 == Matrices ==
