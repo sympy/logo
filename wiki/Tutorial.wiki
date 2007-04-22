@@ -144,7 +144,7 @@ Documentation and examples are at http://sympy.googlecode.com/svn/api/sympy.modu
 Matrices are created as instances from the [http://sympy.googlecode.com/svn/api/sympy.modules.matrices.Matrix-class.html Matrix] class. This class is located in sympy.modules.matrices, but at usual, isympy imports this for you: 
 
 {{{
-In [13]: Matrix([[1,0],[0,1]])
+In [13]: Matrix([[1,0], [0,1]])
 Out[13]: 
 1 0 
 0 1 
@@ -152,7 +152,7 @@ Out[13]:
 
 you can also put Symbols in it: 
 {{{
-In [15]: A = Matrix([[1,x],[y,1]])
+In [15]: A = Matrix([[1,x], [y,1]])
 
 In [16]: A
 Out[16]: 
@@ -171,9 +171,9 @@ Out[17]:
 Use the `.match()` method (available in 0.4). Examples:
 
 {{{
-In [1]: (3*x**2+x).match(y*x**2+z*x,[y,z])
+In [1]: (3*x**2+x).match(y*x**2 + z*x, [y,z])
 Out[1]: {y: 3, z: 1}
 
-In [2]: (x**2).match(y*x**z,[y,z])
+In [2]: (x**2).match(y*x**z, [y,z])
 Out[2]: {y: 1, z: 2}
 }}}
