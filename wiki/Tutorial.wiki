@@ -126,6 +126,13 @@ In [3]: tan(x).diff(x)
 Out[3]: cos(x)**(-2)
 }}}
 
+You can check, that it is correct by:
+
+{{{
+In [6]: limit((tan(x+y)-tan(x))/y, y, 0)
+Out[6]: cos(x)**(-2)
+}}}
+
 == Integration ==
 
 see http://sympy.googlecode.com/svn/api/sympy.modules.integrals-module.html#integrate
