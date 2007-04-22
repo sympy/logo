@@ -37,6 +37,9 @@ The Rational class represents a rational number as a pair of two integers: the n
 
   In [2]: a*2
   Out[2]: 1
+
+  In [3]: Rational(2)**50/Rational(10)**50
+  Out[3]: 1/88817841970012523233890533447265625
 }}}
 
 proceed with caution while working with python int's since they truncate integer division, and that's why: 
