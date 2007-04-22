@@ -129,8 +129,21 @@ Out[3]: cos(x)**(-2)
 You can check, that it is correct by:
 
 {{{
-In [6]: limit((tan(x+y)-tan(x))/y, y, 0)
-Out[6]: cos(x)**(-2)
+In [4]: limit((tan(x+y)-tan(x))/y, y, 0)
+Out[4]: cos(x)**(-2)
+}}}
+
+Higher derivatives can be calculated using the `.diffn(var, n)` method:
+
+{{{
+In [5]: sin(2*x).diffn(x,1)
+Out[5]: 2*cos(2*x)
+
+In [6]: sin(2*x).diffn(x,2)
+Out[6]: -4*sin(2*x)
+
+In [7]: sin(2*x).diffn(x,3)
+Out[7]: -8*cos(2*x)
 }}}
 
 == Integration ==
