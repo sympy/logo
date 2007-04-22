@@ -7,8 +7,7 @@ This is the central page for all documentation to !SymPy.
 
 = Main documentation =
 
-If you are new to !SymPy, you can try to follow the 
-[http://code.google.com/p/sympy/wiki/Tutorial Tutorial] or you can start looking at the examples: [http://code.google.com/p/sympy/wiki/Examples Examples].
+If you are new to !SymPy, start with the [http://code.google.com/p/sympy/wiki/Tutorial Tutorial].
 
 Then read the driving ideas behind !SymPy that are described in HowItWorks.
 
