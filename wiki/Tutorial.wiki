@@ -104,6 +104,9 @@ you can also calculate the limit at infinity:
 
    In [2]: limit(1/x, x, infty)
    Out[2]: 0
+
+   In [3]: limit((5**x+3**x)**(1/x), x, infty)
+   Out[3]: 5
 }}}
 
 for some non-trivial examples on limits, you can read the test file [http://sympy.googlecode.com/svn/trunk/tests/test_demidovich.py test_demidovich.py]
