@@ -1,4 +1,5 @@
 #summary First steps with sympy
+#labels Featured
 
 
 == Installation ==
