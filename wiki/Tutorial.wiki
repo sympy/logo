@@ -173,4 +173,7 @@ Use the `.match()` method (available in 0.4). Examples:
 {{{
 In [1]: (3*x**2+x).match(y*x**2+z*x,[y,z])
 Out[1]: {y: 3, z: 1}
+
+In [2]: (x**2).match(y*x**z,[y,z])
+Out[2]: {y: 1, z: 2}
 }}}
