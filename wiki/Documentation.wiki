@@ -11,8 +11,8 @@ If you are new to !SymPy, start with the [http://code.google.com/p/sympy/wiki/Tu
 
 Then read the driving ideas behind !SymPy that are described in HowItWorks.
 
-And finally, read the sources itself or the API documentation:
-http://sympy.googlecode.com/svn/api/index.html
+And finally, read the [http://sympy.googlecode.com/svn/trunk/sympy/ sources] itself or just the [http://sympy.googlecode.com/svn/api/index.html API] documentation, that is automatically generated from the sources.
+
 
 = Other =
 
