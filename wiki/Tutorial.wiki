@@ -222,7 +222,7 @@ Out[17]:
 
 = Pattern matching =
 
-Use the `.match()` method (available in 0.4). Examples:
+Use the `.match()` method (available in 0.4), that returns a dictionary. Examples:
 
 {{{
 In [1]: (3*x**2 + x).match(y*x**2 + z*x, [y,z])
@@ -230,4 +230,22 @@ Out[1]: {y: 3, z: 1}
 
 In [2]: (x**2).match(y*x**z, [y,z])
 Out[2]: {y: 1, z: 2}
+}}}
+
+If the match is unsuccessful, it returns `None`:
+
+{{{
+In [25]: (x**2).match(y*x**3, [y,z])
+
+In [26]: print (x**2).match(y*x**3, [y,z])
+None
+}}}
+
+If the match is successful, but the variables are not matched, they are simply not returned in the dictionary:
+{{{ 
+In [27]: (x**2).match(y*x**2, [y,z])
+Out[27]: {y: 1}
+
+In [28]: (x**2).match(x**2, [y,z])
+Out[28]: {}
 }}}
