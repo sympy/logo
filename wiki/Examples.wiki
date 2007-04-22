@@ -1,8 +1,8 @@
 #summary Examples of most features of sympy
 
-= Introduction =
-
 *Note*: This document was superseded by [http://code.google.com/p/sympy/wiki/Tutorial Tutorial], that contains everything here plus much more.
+
+= Introduction =
 
 This document contains examples of most of the features of sympy.
 
