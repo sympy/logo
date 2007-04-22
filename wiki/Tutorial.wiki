@@ -84,6 +84,28 @@ In [1]: infty != 2
 True
 }}}
 
+You can play with symbols:
+
+{{{
+In [1]: x+y+x-y
+Out[1]: 2*x
+
+In [2]: (x+y)**2
+Out[2]: (x+y)**2
+
+In [3]: ((x+y)**2).expand()
+Out[3]: 2*x*y+y**2+x**2
+}}}
+
+And substitute them for other symbols or numbers using `subs(var, substitution)`:
+
+{{{
+In [1]: ((x+y)**2).subs(x, 1)
+Out[1]: (1+y)**2
+
+In [2]: ((x+y)**2).subs(x, y)
+Out[2]: 4*y**2
+}}}
 
 = Calculus =
 
