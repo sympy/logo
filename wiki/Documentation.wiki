@@ -11,7 +11,7 @@ If you are new to !SymPy, start with the [http://code.google.com/p/sympy/wiki/Tu
 
 Then read the driving ideas behind !SymPy that are described in HowItWorks.
 
-And finally, read the [http://sympy.googlecode.com/svn/trunk/sympy/ sources] itself or just the [http://sympy.googlecode.com/svn/api/index.html API] documentation, that is automatically generated from the sources.
+And finally, read the [http://sympy.googlecode.com/svn/trunk/sympy/ sources] itself or just the [http://sympy.googlecode.com/svn/api/index.html API] documentation, that is automatically generated from the sources. Because every feature of !SymPy must have a test case, when you are not sure how to use something, just look into the `tests/` directory, find that feature and read the tests for it, that will tell you everything you need to know.
 
 
 = Other =
