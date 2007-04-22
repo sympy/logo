@@ -1,7 +1,8 @@
 #summary Examples of most features of sympy
-#labels Featured
 
 = Introduction =
+
+*Note*: This document was superseded by [http://code.google.com/p/sympy/wiki/Tutorial Tutorial], that contains everything here plus much more.
 
 This document contains examples of most of the features of sympy.
 
