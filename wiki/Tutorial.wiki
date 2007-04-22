@@ -149,6 +149,18 @@ In [7]: sin(2*x).diffn(x,3)
 Out[7]: -8*cos(2*x)
 }}}
 
+== Series expansion ==
+
+{{{
+In [1]: cos(x).series(x,10)
+Out[1]: 1-1/3628800*x**10+1/40320*x**8+1/24*x**4-1/720*x**6-1/2*x**2
+
+In [2]: (1/cos(x)).series(x,10)
+Out[2]: 1+5/24*x**4+277/8064*x**8+50521/3628800*x**10+61/720*x**6+1/2*x**2
+}}}
+
+The terms are ordered according to their hashes, that's why they look random.
+
 == Integration ==
 
 Currently, !SymPy can only do some simple integrals. 
