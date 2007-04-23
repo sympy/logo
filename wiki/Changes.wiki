@@ -6,6 +6,7 @@ This page documents the major changes made to !SymPy since the last release.
 
 == svn ==
 
+  * pretty printing
   * `infty` renamed to `oo`
   * Experimental plotting support via matplotlib
   * Removed class NCSymbol, use Symbol(name, is_commutative=False) instead
