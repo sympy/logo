@@ -54,7 +54,7 @@ So if you want to be notified of any change, subscribe to the list. Then there i
 
 http://groups.google.com/group/sympy-commits
 
-= Links =
+= Other =
 
 Some ideas why we chose this way and not that way are in:
 
@@ -65,3 +65,5 @@ Ideas for symbolic integration are at:
 http://code.google.com/p/sympy/wiki/SymbolicIntegration
 
 !SymPy's involvement in the Google Summer of Code 2007 page is described at SummerOfCode.
+
+How to create a release and a Debian package is described in TechnicalTasks.
