@@ -22,6 +22,7 @@ As an example, why Sympy is a better approach than Maple, look into http://sympy
 
   * port [http://grtensor.phy.queensu.ca/ GRTensorII] to !SymPy
   * port [http://metric.iem.csic.es/Martin-Garcia/xAct/ xTensor] to !SymPy
+  * port all of this: http://metric.iem.csic.es/Martin-Garcia/xAct/xPert/index.html
 
   * anything, where the calculation is standard, but tedious. Examples:
     * computing an area of a surface that is given parametrically
