@@ -21,6 +21,7 @@ As an example, why Sympy is a better approach than Maple, look into http://sympy
   * for a real world example, look at the sources of http://www.feyncalc.org/ for doing quantum field theory (QFT) calculations, it's a larger library, written in a comletely messy Mathematica language. Another thing is, that even though feyncalc is opensource, it depends on Mathematica, which is a very expensive product. To have some feeling what kind of equations need to be solved in QFT, look here: http://www.feyncalc.org/download/examples/vacuumselfenergy/ or http://www.feyncalc.org/download/examples/csaba/qQ-VV.html
 
   * port [http://grtensor.phy.queensu.ca/ GRTensorII] to !SymPy
+  * port [http://metric.iem.csic.es/Martin-Garcia/xAct/ xTensor] to !SymPy
 
   * anything, where the calculation is standard, but tedious. Examples:
     * computing an area of a surface that is given parametrically
