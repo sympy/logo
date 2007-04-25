@@ -31,7 +31,7 @@ Optionally, when debugging, you may want to only execute some particular tests u
 
 = How to work with svn and commit (or create a patch) =
 
-Go to the "Source" tab and follow the instructions how to get the newest svn revision. Then do some modifications in your local copy (implement a new feature, fix a bug, etc.). Then follow this list:
+Go to the "Source" tab and follow the instructions how to get the newest svn revision. Then do some modifications in your local copy (implement a new feature, fix a bug, add some new files using `svn add` etc.). Then follow this list:
 
   * `./setup test` to make sure all the tests pass
   * `./setup clean` (optional), it's just that the next command prints less garbage
