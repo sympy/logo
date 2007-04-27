@@ -13,7 +13,7 @@
 
  * windows. Downlad the windows installer from the homepage and execute it. 
 
-= Importing !SymPy = 
+== Importing !SymPy ==
 
 to import !SymPy from the standard python shell, just type
 {{{
@@ -89,24 +89,27 @@ There is also a class representing mathematical infinity, and we call it infty, 
 You can play with symbols:
 
 {{{
+    >>> from sympy import *
+    >>> x = Symbol('x')
+    >>> y = Symbol('y)
     >>> x+y+x-y
-Out[1]: 2*x
+    2*x
 
-In [2]: (x+y)**2
-Out[2]: (x+y)**2
+    >>> (x+y)**2
+    (x+y)**2
 
-In [3]: ((x+y)**2).expand()
-Out[3]: 2*x*y+y**2+x**2
+    >>> ((x+y)**2).expand()
+    2*x*y+y**2+x**2
 }}}
 
 And substitute them for other symbols or numbers using `subs(var, substitution)`:
 
 {{{
-In [1]: ((x+y)**2).subs(x, 1)
-Out[1]: (1+y)**2
+    >>> ((x+y)**2).subs(x, 1)
+    (1+y)**2
 
-In [2]: ((x+y)**2).subs(x, y)
-Out[2]: 4*y**2
+    >>> ((x+y)**2).subs(x, y)
+    4*y**2
 }}}
 
 = Calculus =
@@ -118,22 +121,24 @@ Limits are implemented in the module sympy.modules.limits and are imported by `f
 Limits are easy to use in sympy, they follow the syntax limit(function, variable, point), so to compute the limit of f(x) as x -> 0, you would issue limit(f, x, 0)
 
 {{{
-   In [1]: limit(sin(x)/x, x, 0)
-   Out[1]: 1
+   >>> from sympy import *
+   >>> from sympy.modules.limits import limit
+   >>> limit(sin(x)/x, x, 0)
+   1
 
 }}}
 
 you can also calculate the limit at infinity: 
 
 {{{
-   In [1]: limit(x, x, infty)
-   Out[1]: Infinity
+   >>> limit(x, x, infty)
+   Infinity
 
-   In [2]: limit(1/x, x, infty)
-   Out[2]: 0
+   >>> limit(1/x, x, infty)
+   0
 
-   In [3]: limit((5**x+3**x)**(1/x), x, infty)
-   Out[3]: 5
+   >>> limit((5**x+3**x)**(1/x), x, infty)
+   5
 }}}
 
 for some non-trivial examples on limits, you can read the test file [http://sympy.googlecode.com/svn/trunk/tests/test_demidovich.py test_demidovich.py]
