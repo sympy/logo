@@ -1,5 +1,7 @@
 #summary Description of sympy's printing system (starting with 0.3)
 
+*NOTE: as of 0.4, the printing system has changed once again to support pretty printing, and latex printing is done inside classes and not via xsl transformations*
+
 = MathML =
 
 The new printing system depends heavily on MathML
