@@ -13,7 +13,7 @@
 
  * windows. Downlad the windows installer from the homepage and execute it. 
 
-== Importing !SymPy ==
+== Importing SymPy ==
 
 to import !SymPy from the standard python shell, just type
 {{{
@@ -145,37 +145,39 @@ for some non-trivial examples on limits, you can read the test file [http://symp
 
 == Differentiation ==
 
-You can differentiate any !SymPy expression using `.diff(var)`. Examples:
+You can differentiate any !SymPy expression using `diff(func, var)`. Examples:
 
 {{{
-In [1]: sin(x).diff(x)
-Out[1]: cos(x)
+    >>> from sympy import *
+    >>> x = Symbol('x')
+    >>> diff(sin(x), x)
+    >>> cos(x)
 
-In [2]: sin(2*x).diff(x)
-Out[2]: 2*cos(2*x)
+    >>> diff(sin(2*x), x)
+    2*cos(2*x)
 
-In [3]: tan(x).diff(x)
-Out[3]: cos(x)**(-2)
+    >>> diff(tan(x), x)
+    cos(x)**(-2)
 }}}
 
 You can check, that it is correct by:
 
 {{{
-In [4]: limit((tan(x+y)-tan(x))/y, y, 0)
-Out[4]: cos(x)**(-2)
+    >>> limit((tan(x+y)-tan(x))/y, y, 0)
+    cos(x)**(-2)
 }}}
 
-Higher derivatives can be calculated using the `.diffn(var, n)` method:
+Higher derivatives can be calculated using the `diff(func, var, n)` method:
 
 {{{
-In [5]: sin(2*x).diffn(x,1)
-Out[5]: 2*cos(2*x)
+    >>> diff(sin(2*x), x,1)
+    2*cos(2*x)
 
-In [6]: sin(2*x).diffn(x,2)
-Out[6]: -4*sin(2*x)
+    >>>In [6]: diff(sin(2*x), x,2)
+    -4*sin(2*x)
 
-In [7]: sin(2*x).diffn(x,3)
-Out[7]: -8*cos(2*x)
+    >>> diff(sin(2*x), x,3)
+    -8*cos(2*x)
 }}}
 
 == Series expansion ==
