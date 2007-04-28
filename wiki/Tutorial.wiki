@@ -178,7 +178,7 @@ Higher derivatives can be calculated using the `diff(func, var, n)` method:
     >>> diff(sin(2*x), x,1)
     2*cos(2*x)
 
-    >>>In [6]: diff(sin(2*x), x,2)
+    >>> diff(sin(2*x), x,2)
     -4*sin(2*x)
 
     >>> diff(sin(2*x), x,3)
