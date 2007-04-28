@@ -79,10 +79,10 @@ we also have some special constants, like e and pi, that are treated as symbols 
 
 as you see, evalf evaluates the expression to a floating-point number
 
-There is also a class representing mathematical infinity, and we call it infty, however, you can't do normal arithmetic operations for infinity, as it is only used for comparisions, like
+There is also a class representing mathematical infinity, and we call it `oo`, however, you can't do normal arithmetic operations for infinity, as it is only used for comparisions, like
 
 {{{
-    >>> infty != 2
+    >>> oo != 2
     True
 }}}
 
@@ -136,13 +136,13 @@ Limits are easy to use in sympy, they follow the syntax limit(function, variable
 you can also calculate the limit at infinity: 
 
 {{{
-   >>> limit(x, x, infty)
+   >>> limit(x, x, oo)
    Infinity
 
-   >>> limit(1/x, x, infty)
+   >>> limit(1/x, x, oo)
    0
 
-   >>> limit((5**x+3**x)**(1/x), x, infty)
+   >>> limit((5**x+3**x)**(1/x), x, oo)
    5
 }}}
 
