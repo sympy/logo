@@ -164,19 +164,22 @@ class Order(Basic):
          U{Big O notation<http://en.wikipedia.org/wiki/Big_O_notation>}
     """
 
-    def __init__(self, f):
+    def __init__(self, f, sym=None):
         """O(f) at the point x = 0"""
         Basic.__init__(self)
         self._args = [self.sympify(f)]
-        self.sym = self._args[0].atoms(type = Symbol)
-        if len(self.sym) == 1:
-            self.sym = self.sym[0]
+        if sym:
+            self.sym = sym
         else:
-            #well, let's try to guess
-            if self.sym == []:
-                self.sym = Rational(1)
+            self.sym = self._args[0].atoms(type = Symbol)
+            if len(self.sym) == 1:
+                self.sym = self.sym[0]
             else:
-                raise "Don't know the variable in Order"
+                #well, let's try to guess
+                if self.sym == []:
+                    self.sym = Rational(1)
+                else:
+                    raise "Don't know the variable in Order"
 
     def eval(self):
         from addmul import Mul, Add
@@ -186,6 +189,12 @@ class Order(Basic):
             if isinstance(f[0], (Real, Rational)):
                 assert len(f[:]) == 2
                 return Order(f[1])
+            if not f[0].has(self.sym):
+                assert len(f[:]) == 2
+                return Order(f[1])
+            if not f[1].has(self.sym):
+                assert len(f[:]) == 2
+                return Order(f[0])
         if isinstance(f, Add):
             if isinstance(f[0], (Real, Rational)):
                 assert len(f[:]) == 2
@@ -200,7 +209,7 @@ class Order(Basic):
         if isinstance(x, Order) and isinstance(y, Order):
             return Order(x[0]*y[0])
         if isinstance(y, Order):
-            return Order(x*y[0])
+            return Order(x*y[0],sym = y.sym)
         return None
 
     @staticmethod

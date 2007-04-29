@@ -298,12 +298,15 @@ def mrv_leadterm(e,x,Omega=[]):
         return movedown(mrv_leadterm(moveup([e],x)[0],x,moveup(Omega,x)),x)
     wsym = s.Symbol("w", is_dummy=True)
     f,logw=rewrite(e,Omega,x,wsym)
-    series=f.expand().series(wsym,1)
-    n = 2
-    while series==0 and n<10:
+    series=f.expand().series(wsym,2)
+    n = 3
+    from sympy import Order,Add
+    while series==0 or isinstance(series,Order) and n<10:
         series=f.series(wsym,n)
         n += 1
     assert series!=0
+    if isinstance(series,Add):
+        series = series.removeOrder()
     series=series.subs(s.log(wsym),logw)
     return series.leadterm(wsym)
 

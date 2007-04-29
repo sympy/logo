@@ -1,5 +1,5 @@
 from basic import Basic
-from symbol import Symbol
+from symbol import Symbol, Order
 from numbers import Rational, Real, ImaginaryUnit
 from functions import log, exp
 from sympy.core.stringPict import prettyForm, stringPict
@@ -191,6 +191,7 @@ class Pow(Basic):
         return (self*(g*log(f)).diff(sym))
         
     def series(self,sym,n):
+        from addmul import Add
         if not self.exp.has(sym):
             if isinstance(self.base,Symbol): return self
             try:
@@ -199,6 +200,10 @@ class Pow(Basic):
                 #self=self.expand()
                 if isinstance(self.exp,Rational) and self.exp.isminusone():
                     g = self.base.series(sym,n)
+                    if isinstance(g, Add):
+                        g = g.removeOrder()
+                    elif isinstance(g, Order):
+                        g = Rational(0)
                     #write g as g=c0*w^e0*(1+Phi)
                     #1/g is then 1/g=c0*w^(-e0)/(1+Phi)
                     #plus we expand 1/(1+Phi)=1-Phi+Phi**2-Phi**3...

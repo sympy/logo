@@ -380,7 +380,9 @@ class Basic(object):
         from numbers import Rational
         from power import Pow
         from addmul import Add,Mul
-        from symbol import Symbol
+        from symbol import Symbol, Order
+        if isinstance(self,Add):
+            self = self.removeOrder()
         
         def domul(x):
             if len(x) > 1:

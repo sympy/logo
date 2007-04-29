@@ -13,8 +13,11 @@ x=Symbol("x")
 w=Symbol("w")
 
 #some limits need this series expansion to work:
-e=(w**(-log(5)/log(3))-1/w)**(1/x)
-print  e.series(w,1)
+#e=(w**(-log(5)/log(3))-1/w)**(1/x)
+#print  e.series(w,1)
+
+print Order(x)*w
+print w*Order(x)
 
 #assert e.series(w,1).subs(w,0)==2
 #print Order(w**2).diff(w)
@@ -32,6 +35,10 @@ print  e.series(w,1)
 #raises exception:
 #e=(sin(2*w)/w)**(1+w)
 #print e.series(w,3)
+
+#returns just Order(w)
+#e=(sin(2*w)/w)**(1+w)
+#assert e.series(w,1) == 2 + Order(w)
 
 #test this:
 

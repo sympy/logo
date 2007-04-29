@@ -121,10 +121,9 @@ def test_seriesbug2():
 
     #more complicated case, but sin(x)~x, so the result is the same as in (1)
     e=(sin(2*w)/w)**(1+w)
-    #correct:
-    #assert e.series(w,2) == 2 + Order(w)
-    #this is wrong!!:
-    assert e.series(w,2) == 2 + Order(w**2)
+    #this doesn't work:
+    #assert e.series(w,1) == 2 + Order(w)
+    assert e.series(w,2) == 2 + 2*w*log(2)+Order(w**2)
     assert e.series(w,2).subs(w,0)==2
 
 def test_seriesbug3():
@@ -176,6 +175,8 @@ def test_order():
     assert Order(1).diff(x) == Order(1)
     assert Order(x).diff(x) == Order(1)
     assert Order(x**2).diff(x) == Order(x)
+
+    assert Order(x)*Symbol("m") == Order(x)
 
     x = Symbol("w")
     assert Order(x)+1 != Order(x)
