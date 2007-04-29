@@ -46,6 +46,19 @@ Otherwise create a patch:
 
   * `svn di > /tmp/patch` and send this patch to either Issues, or the mailinglist, and we will review it and either commit it, or help you improve it.
 
+== How to create a branch ==
+
+When working on something bigger, that affects the whole project and you are not able to finish it in couple of hours, create a new branch:
+{{{
+svn checkout https://sympy.googlecode.com/svn/ sympy --username ondrej.certik
+cd sympy
+svn copy trunk branches/sympy-order
+}}}
+Work in this branch, commit normally and when you are ready to merge it with the trunk, do:
+{{{
+svn merge ....
+}}}
+
 = Lists =
 
 Besides the mailing list, there is a list where all issue changes are sent:
