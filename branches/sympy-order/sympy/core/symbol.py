@@ -252,7 +252,7 @@ class Order(Basic):
                 if new == 0:
                     return Rational(0)
                 else:
-                    raise "Invalid substitution in series"
+                    raise "Invalid substitution in Order"
         return e
 
     def diff(self, var):

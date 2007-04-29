@@ -726,6 +726,25 @@ class Add(Pair):
                 return -2*Symbol("y")
             return e/(denum/denum[0])
         return num/denum
+
+    def removeOrder(self):
+        """Removes the O(...) from the expression.
+        
+        Example:
+
+        assert (2+Order(x)) != 2
+        assert (2+Order(x)).removeOrder() == 2
+        assert (2+x+Order(x**2)).removeOrder() == x+2
+        """
+        from symbol import Order
+        for x in self:
+            if isinstance(x, Order):
+                a = list(self[:])
+                a.remove(x)
+                return Add(*a)
+        return self
+        raise "the Order not found, cannot remove"
+
     
     def subs(self,old,new):
         d = Rational(0)

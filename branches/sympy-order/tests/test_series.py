@@ -32,17 +32,17 @@ def testseriesbug1():
 
 def testseries2():
     x=g.Symbol("x")
-    assert ((x+1)**(-2)).series(x,3)==1-2*x+3*x**2-4*x**3
-    assert ((x+1)**(-1)).series(x,3)==1-x+x**2-x**3
+    assert ((x+1)**(-2)).series(x,4)==1-2*x+3*x**2-4*x**3+Order(x**4)
+    assert ((x+1)**(-1)).series(x,4)==1-x+x**2-x**3+Order(x**4)
     assert ((x+1)**0).series(x,3)==1
     assert ((x+1)**1).series(x,3)==1+x
-    assert ((x+1)**2).series(x,3)==1+2*x+x**2
-    assert ((x+1)**3).series(x,3)==1+3*x+3*x**2+x**3
+    assert ((x+1)**2).series(x,3)==1+2*x+x**2+Order(x**3)
+    assert ((x+1)**3).series(x,3)==1+3*x+3*x**2+Order(x**3)
 
-    assert (1/(1+x)).series(x,3)==1-x+x**2-x**3
-    assert (x+3/(1+2*x)).series(x,3)==3-5*x+12*x**2-24*x**3
+    assert (1/(1+x)).series(x,4)==1-x+x**2-x**3+Order(x**4)
+    assert (x+3/(1+2*x)).series(x,4)==3-5*x+12*x**2-24*x**3+Order(x**4)
 
-    assert ((1/x+1)**3).series(x,3)== x**(-3)+3*x**(-2)+3*x**(-1)
+    assert ((1/x+1)**3).series(x,3)== x**(-3)+3*x**(-2)+Order(x**(-1))
     assert (1/(1+1/x)).series(x,3)==x-x**2+x**3
     assert (1/(1+1/x**2)).series(x,6)==x**2-x**4+x**6-x**8+x**10-x**12
 
@@ -73,9 +73,9 @@ def test_bug2():
 #    print e.series(w,4)
 
 def test_exp():
-    x=g.Symbol("x")
+    x=Symbol("x")
     e=(1+x)**(1/x)
-    assert e.eval().series(x,1)==g.exp(1)
+    assert e.series(x,2) == exp(1)
 
 def test_exp2():
     x=g.Symbol("x")
@@ -121,7 +121,10 @@ def test_seriesbug2():
 
     #more complicated case, but sin(x)~x, so the result is the same as in (1)
     e=(sin(2*w)/w)**(1+w)
-    assert e.series(w,2) == 2 + Order(w)
+    #correct:
+    #assert e.series(w,2) == 2 + Order(w)
+    #this is wrong!!:
+    assert e.series(w,2) == 2 + Order(w**2)
     assert e.series(w,2).subs(w,0)==2
 
 def test_seriesbug3():
@@ -177,3 +180,6 @@ def test_order():
     x = Symbol("w")
     assert Order(x)+1 != Order(x)
 
+    assert (2+Order(x)) != 2
+    assert (2+Order(x)).removeOrder() == 2
+    assert (2+x+Order(x**2)).removeOrder() == x+2

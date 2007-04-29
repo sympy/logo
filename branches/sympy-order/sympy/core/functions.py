@@ -64,13 +64,16 @@ class Function(Basic):
             pass
         #this only works, if arg(0) -> 0, otherwise we are in trouble
         arg = self._args.series(sym,n)
+        arg = arg.removeOrder()
         l = Symbol("l", is_dummy=True)
         #the arg(0) goes to z0
         z0 = arg.subs(log(sym),l).subs(sym,0)
         w = Symbol("w",True)
         e = type(self)(w)
+        from addmul import Add
         if arg.has(sym):
             e = e.series(w,n)
+            e = e.removeOrder()
         e = e.subs(w,arg-z0)
 
         #this only works for exp 
