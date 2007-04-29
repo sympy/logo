@@ -20,7 +20,7 @@ http://groups.google.com/group/sympy/browse_thread/thread/a63896b7d8a5fc90
 
 == students and mentors blogs ==
 
-Are all aggregated at: http://grupododo.com/planetsympy/
+All are aggregated at: http://grupododo.com/planetsympy/
 
 You can also find links to the individual blogs there. Thus if you want to see what is happening, it's enough to follow the planetsympy.
 
