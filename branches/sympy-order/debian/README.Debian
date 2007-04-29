@@ -1,0 +1,24 @@
+SymPy for Debian
+----------------
+
+Web page of SymPy: http://code.google.com/p/sympy
+
+This package contains the sympy Python package, so in Python you can do
+
+import sympy
+
+and it will just work. It also contains the 
+
+isympy
+
+program, that is basically just a python/ipython shell, that imports the
+frequently used commands. It's highly recommended for playing with SymPy. See
+"man isympy" for more info. 
+
+All the documentation for SymPy can be found on the home page.
+
+Examples can be found in 
+
+/usr/share/doc/python-sympy/examples
+
+Ondrej Certik <ondrej@certik.cz>

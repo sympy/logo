@@ -1,0 +1,49 @@
+import sys
+sys.path.append(".")
+
+from sympy import *
+
+def test_complex():
+    a=Symbol("a")
+    b=Symbol("b")
+    e=(a+I*b)*(a-I*b)
+    assert e.expand() == a**2+b**2
+    assert e.expand() != a**2-b**2
+
+    assert (a+I*b).conjugate() !=  a+I*b
+    assert (a+I*b).conjugate() ==  a-I*b
+
+    assert str(abs(a))=="abs(a)"
+
+def test_abs1():
+    a=Symbol("a", is_real=True)
+    b=Symbol("b", is_real=True)
+    assert abs(a) == a
+    assert abs(-a) == a
+    assert abs(-a) != -a
+    assert abs(a+I*b) == sqrt(a*a+b*b)
+
+def test_abs2():
+    a=Symbol("a", is_real=False)
+    b=Symbol("b", is_real=False)
+    assert abs(a) != a
+    assert abs(-a) != a
+    assert abs(a+I*b) != sqrt(a*a+b*b)
+
+def test_evalc():
+    x=Symbol("x", is_real=True)
+    y=Symbol("y", is_real=True)
+    assert ((x+I*y)**2).evalc() == x**2+2*I*x*y - y**2
+
+    assert exp(I*x) != cos(x)+I*sin(x)
+    assert exp(I*x).evalc() == cos(x)+I*sin(x)
+
+    assert exp(I*x+y).evalc() == exp(y)*cos(x)+I*sin(x)*exp(y)
+
+    assert sin(I*x).evalc() == I * (exp(x)-exp(-x))/2
+    assert sin(x+I*y).evalc() == sin(x)*(exp(y)+exp(-y))/2 + \
+            I * (exp(y)-exp(-y))/2 * cos(x)
+
+    assert cos(I*x).evalc() == (exp(x)+exp(-x))/2
+    assert cos(x+I*y).evalc() == cos(x)*(exp(y)+exp(-y))/2 - \
+            I * (exp(y)-exp(-y))/2 * sin(x)
