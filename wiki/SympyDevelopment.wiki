@@ -59,6 +59,10 @@ Work in this branch, commit normally and when you are ready to merge it with the
 svn merge ....
 }}}
 
+More information about subversion can be found in the online book:
+
+http://svnbook.red-bean.com/en/1.1/index.html
+
 = Lists =
 
 Besides the mailing list, there is a list where all issue changes are sent:
