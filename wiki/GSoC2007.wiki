@@ -5,6 +5,7 @@
 Five students were accepted for this year's GSoC. See also:
 
 http://groups.google.com/group/sympy/browse_thread/thread/b68a42be34923a4
+
 http://groups.google.com/group/sympy/browse_thread/thread/a63896b7d8a5fc90
 
 
