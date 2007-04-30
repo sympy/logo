@@ -616,11 +616,13 @@ class Add(Pair):
         """
 
         def _add(exp,x):
+            print "_add:",exp,x
             an, a = _extract_numeric(x)
             e = []
             ok = False
             for y in exp:
                 bn, b = _extract_numeric(y)
+                print "E",an, a, bn, b
                 if (not ok) and a == b:
                     if isinstance(a, Infinity) or isinstance(b, Infinity):
                         # case oo - oo
@@ -637,12 +639,14 @@ class Add(Pair):
                             from symbol import Order
                             if not isinstance(z1,Order):
                                 assert z1 == z2
+                        print "1", e, y, x, z1, z2
                         if z1:
                             e.append(z1)
                             ok = True
                         elif z2:
                             e.append(z2)
                             ok = True
+                        print "2", e
                     else:
                         e.append(y)
             if not ok: e.append(x)
@@ -765,6 +769,8 @@ class Add(Pair):
             a,b = self.getab()
             #there is a cancelation problem here:
             #implement the class Order
+            #print a.series(sym,n)
+            #print b.series(sym,n)
             return (a.series(sym,n)+b.series(sym,n))
         
     def __pretty__(self):

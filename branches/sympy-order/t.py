@@ -16,8 +16,16 @@ w=Symbol("w")
 #e=(w**(-log(5)/log(3))-1/w)**(1/x)
 #print  e.series(w,1)
 
-print Order(x)*w
-print w*Order(x)
+a = 1/3+w**(-2)+Order(w)
+b = 1/6-w**(-2)+Order(w)
+print a+b
+
+e= cos(w)**(-1)*sin(w)*w**(-3)-sin(w)*w**(-3)
+#e= cos(w)**(-1)*sin(w)-sin(w)
+#print e
+#print e.series(w,3)
+#print e.series(w,4)
+#print e.series(w,6)
 
 #assert e.series(w,1).subs(w,0)==2
 #print Order(w**2).diff(w)

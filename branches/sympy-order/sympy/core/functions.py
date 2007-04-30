@@ -58,13 +58,15 @@ class Function(Basic):
     def series(self, sym, n=6):
         from power import pole_error
         from symbol import Symbol
+        from addmul import Add
         try:
             return Basic.series(self,sym,n)
         except pole_error:
             pass
         #this only works, if arg(0) -> 0, otherwise we are in trouble
         arg = self._args.series(sym,n)
-        arg = arg.removeOrder()
+        if isinstance(arg,Add):
+            arg = arg.removeOrder()
         l = Symbol("l", is_dummy=True)
         #the arg(0) goes to z0
         z0 = arg.subs(log(sym),l).subs(sym,0)

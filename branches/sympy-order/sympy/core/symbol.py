@@ -229,6 +229,7 @@ class Order(Basic):
                 (y[0]/x[0]).subs(sym,0)
             except pole_error:
                 inf = True
+            #print x,y,inf
             if inf:
                 return y
             else:

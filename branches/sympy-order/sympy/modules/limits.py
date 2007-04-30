@@ -305,9 +305,13 @@ def mrv_leadterm(e,x,Omega=[]):
         series=f.series(wsym,n)
         n += 1
     assert series!=0
+    assert not isinstance(series,Order)
+    print "sss1",series,type(series)
     if isinstance(series,Add):
         series = series.removeOrder()
+    print "sss2",series,type(series)
     series=series.subs(s.log(wsym),logw)
+    print "sss3",series,type(series)
     return series.leadterm(wsym)
 
 #@decorator(maketree)
