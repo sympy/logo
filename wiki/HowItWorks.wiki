@@ -29,7 +29,7 @@ point of view, we just need the classes `Add`, `Mul`, `Pow`, `Rational`.
 
 = Automatic evaluation to canonical form: eval() =
 
-For computation, all expressions needs to be in a
+For computation, all expressions need to be in a
 canonical form, this is achieved using the method `eval()`, which  only performs
 unexpensive operations necessary to put the expression in the canonical form.
 So the canonical form doesn't mean the simplest possible expresion. The exact
@@ -124,5 +124,4 @@ So, those are the main ideas behind sympy, which we try to obey. The rest depend
 
 very interesting link describing the algorithms used by mathematica: 
 [http://documents.wolfram.com/v5/TheMathematicaBook/MathematicaReferenceGuide/SomeNotesOnInternalImplementation/A.9.5.html here]
-
 
