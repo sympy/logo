@@ -16,6 +16,7 @@ w=Symbol("w")
 #e=(w**(-log(5)/log(3))-1/w)**(1/x)
 #print  e.series(w,1)
 
+#the problem is in add.eval(), retuns O(w)+O(w), see the debug prints...
 a = 1/3+w**(-2)+Order(w)
 b = 1/6-w**(-2)+Order(w)
 print a+b
