@@ -90,12 +90,14 @@ Output latex code from expressions is possible
 done via the classmethod `__latex__`
 
 
-== Printing Module ==
 
-Located in sympy.modules.printing. 
-
+= Printing to other devices =
 
 === Gtk ===
+
+you can print to a grkmathview widget using the function print_gtk located in sympy.modules.printing.gtk (it requires to have installed gtkmatmatview and libgtkmathview-bin in some systems). 
+
+GtkMathView accepts MathML, so this rendering depends on the mathml representation of the expression
 
 Usage:
 {{{
@@ -103,18 +105,6 @@ from sympy import *
 print_gtk(x**2 + 2*exp(x**3))
 }}}
 
-
-=== Latex ===
-
-Usage:
-{{{
->>> from sympy import *
->>> from sympy.modules.printing import *
->>> x = Symbol('x')
->>> f = integrate(exp(x), x, evaluate=False)
->>> print_latex(f)
-'$\\int {e}^{x}dx$'
-}}}
 
 === Pygame ===
 
