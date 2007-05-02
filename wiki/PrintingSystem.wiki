@@ -1,4 +1,5 @@
 #summary Description of sympy's printing system (starting with 0.4)
+#labels Phase-Design
 
 
 Sympy uses a number of formats for printing: pretty printing, latex, mathml and plain string representation. 
@@ -6,6 +7,8 @@ Sympy uses a number of formats for printing: pretty printing, latex, mathml and 
 = String representation =
 
 This is the standard python representation and is implemented in the classmethod `__str__`
+
+To view this representation, simply use the standard python command `print`
 
 Examples: 
 
@@ -18,7 +21,24 @@ Examples:
 
 = Pretty =
   
-   Pretty printing is implemented in the classmethod `__pretty__` and relies on the module sympy.core.stringPict for rendering nice-looking formulas
+   Pretty printing is a printing method that outputs a plain string with nice formatting that is somewhat more readable that plain string representation for complicated formulas. 
+
+Examples: 
+
+{{{
+   >>> from sympy import *
+   >>> pprint( x**2 + 1 )
+    2
+   x + 1
+   >>> pprint(Rational(1,2))
+   1
+   -
+   2
+}}}
+
+== Implementation details ==
+  
+   Pretty printing is implemented in the classmethod `__pretty__` and relies on the module sympy.core.stringPict for rendering nice-looking formulas. 
 
 
 = MathML =
