@@ -9,9 +9,12 @@ This is the standard python representation and is implemented in the classmethod
 
 Examples: 
 
-  print 1+x
-  print x**2
-  etc
+{{{
+    >>> print 1+x
+    1+x
+    >>> print x**2
+    x**2
+}}}
 
 = Pretty =
   
