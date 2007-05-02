@@ -5,7 +5,7 @@ Sympy uses a number of formats for printing: pretty printing, latex, mathml and 
 
 = String representation =
 
-This is the standard python representation and is implemented in the classmethod __str__
+This is the standard python representation and is implemented in the classmethod `__str__`
 
 Examples: 
 
@@ -13,9 +13,9 @@ Examples:
   print x**2
   etc
 
-= Pretty = 
+= Pretty =
   
-   Pretty printing is implemented in the classmethod __pretty__ and relies on the module sympy.core.stringPict for rendering nice-looking formulas
+   Pretty printing is implemented in the classmethod `__pretty__` and relies on the module sympy.core.stringPict for rendering nice-looking formulas
 
 
 = MathML =
