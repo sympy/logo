@@ -23,6 +23,8 @@ Examples:
   
    Pretty printing is a printing method that outputs a plain string with nice formatting that is somewhat more readable that plain string representation for complex formulas. 
 
+   You can see the result using the method pretty_print (or it's alias pprint) located in sympy.modules.printing. 
+
 Examples: 
 
 {{{
@@ -38,9 +40,9 @@ Examples:
 
 == Implementation details ==
   
-   Pretty printing is implemented in the classmethod `__pretty__` and relies on the module sympy.core.stringPict for rendering nice-looking formulas. 
+   Pretty printing is implemented using the classmethod `__pretty__` and relies on the module sympy.core.stringPict for rendering nice-looking formulas. 
 
-   The module 
+   The module sympy.core.stringPict provides a base class stringPict and a derived class prettyForm that ease the creation and manipulation of formulas that span across multiple lines. 
 
 
 = MathML =
