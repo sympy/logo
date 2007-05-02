@@ -1,10 +1,24 @@
-#summary Description of sympy's printing system (starting with 0.3)
+#summary Description of sympy's printing system (starting with 0.4)
 
-*NOTE: as of 0.4, the printing system has changed once again to support pretty printing, and latex printing is done inside classes and not via xsl transformations*
+
+Sympy uses a number of formats for printing: pretty printing, latex, mathml and plain string representation. 
+
+= String representation = 
+
+This is the standard python representation and is implemented in the classmethod __str__
+
+Examples: 
+
+  print 1+x
+  print x**2
+  etc
+
+= Pretty = 
+  
+   Pretty printing is implemented in the classmethod __pretty__ and relies on the module sympy.core.stringPict for rendering nice-looking formulas
+
 
 = MathML =
-
-The new printing system depends heavily on MathML
 
 MathML is the standard for math representation on the web (see http://www.w3.org/Math/)
 
