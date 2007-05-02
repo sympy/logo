@@ -49,7 +49,7 @@ The module sympy.core.stringPict provides a base class stringPict and a derived 
 
 MathML is the standard for math representation on the web (see http://www.w3.org/Math/)
 
-*This is about to change, since we are renaming .mathml to __mathml__*
+*This is about to change, since we are renaming .mathml to `__mathml__`*
 
 to see in sympy the mathml code of any object, just type it's mahtml attribute. For example:
 {{{
@@ -63,9 +63,7 @@ As you can see, MathML is pretty ugly and is not meant to be read directly, that
 
 == MathML implementation details ==
 
-conversion to latex and other formats is achieved using xslt stylesheets
-
-Each class has a mathml attribute that returns a string with the mathml code. The  implementation is very nice, and in most classes you only have to define the attribute mathml_tag and it will output the correct mathml code (see classes Symbol, Add, Mul,...) and in some cases you don't have to define anything and it will output the correct mathml (see classes sin, cos, etc.)
+Each class has a `__mathml__` method that returns a string with the mathml code. The  implementation is very nice, and in most classes you only have to define the attribute mathml_tag and it will output the correct mathml code (see classes Symbol, Add, Mul,...) and in some cases you don't have to define anything and it will output the correct mathml (see classes sin, cos, etc.)
 
 For printing, we make use of the modules sympy.modules.mathml (that transforms
 the mathml into other formats or into other variants of mathml more suitable for
@@ -87,7 +85,7 @@ Output latex code from expressions is possible
 
 == Implementation details ==
 
-done via the classmethod `__latex__`
+done via the classmethod `__latex__`. It still needs some work. 
 
 
 
