@@ -21,7 +21,7 @@ Examples:
 
 = Pretty =
   
-   Pretty printing is a printing method that outputs a plain string with nice formatting that is somewhat more readable that plain string representation for complicated formulas. 
+   Pretty printing is a printing method that outputs a plain string with nice formatting that is somewhat more readable that plain string representation for complex formulas. 
 
 Examples: 
 
@@ -40,10 +40,14 @@ Examples:
   
    Pretty printing is implemented in the classmethod `__pretty__` and relies on the module sympy.core.stringPict for rendering nice-looking formulas. 
 
+   The module 
+
 
 = MathML =
 
 MathML is the standard for math representation on the web (see http://www.w3.org/Math/)
+
+*This is about to change, since we are renaming .mathml to __mathml__*
 
 to see in sympy the mathml code of any object, just type it's mahtml attribute. For example:
 {{{
@@ -63,24 +67,25 @@ Each class has a mathml attribute that returns a string with the mathml code. Th
 
 For printing, we make use of the modules sympy.modules.mathml (that transforms
 the mathml into other formats or into other variants of mathml more suitable for
-printing). Currently it transforms mathml content -> mathml presentation and mathml
-content -> latex. 
+printing). Currently it transforms mathml content -> mathml presentation.
 
 == The mathml module ==
 
 Located in sympy.modules.mathml.
 
-On Debian, install the "python-libxslt1" package.
+it does some transformations on the mathml. 
 
-You don't need to use this module directly, but if you want, use it like this:
+it relies on libxslt. On Debian, install the "python-libxslt1" package.
 
-{{{
->>> from sympy import *
->>> x = Symbol('x')
->>> from sympy.modules.mathml import mml2latex
->>> print mml2latex( integrate(x*y+1, x, evaluate=False).mathml)
-$\int \left(1+yx\right)dx$
-}}}
+
+
+= Latex =
+
+Output latex code from expressions is possible
+
+== Implementation details ==
+
+done via the classmethod `__latex__`
 
 
 == Printing Module ==
