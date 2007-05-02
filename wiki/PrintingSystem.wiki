@@ -3,7 +3,7 @@
 
 Sympy uses a number of formats for printing: pretty printing, latex, mathml and plain string representation. 
 
-= String representation = 
+= String representation =
 
 This is the standard python representation and is implemented in the classmethod __str__
 
