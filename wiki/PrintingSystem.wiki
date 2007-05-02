@@ -21,9 +21,9 @@ Examples:
 
 = Pretty =
   
-   Pretty printing is a printing method that outputs a plain string with nice formatting that is somewhat more readable that plain string representation for complex formulas. 
+Pretty printing is a printing method that outputs a plain string with nice formatting that is somewhat more readable that plain string representation for complex formulas. 
 
-   You can see the result using the method pretty_print (or it's alias pprint) located in sympy.modules.printing. 
+You can see the result using the method pretty_print (or it's alias pprint) located in sympy.modules.printing. 
 
 Examples: 
 
