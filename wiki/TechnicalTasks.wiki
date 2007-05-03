@@ -113,13 +113,21 @@ http://wiki.debian.org/HowToPackageForDebian
 
 = Man page =
 
-The man page is in `doc/man/isympy.1`. To edit it, edit just a file `doc/man/isympy.xml` and then rebuild the debian package. This will update the manpage.
+The man page is in `doc/man/isympy.1`, and it is generated from the file `doc/man/isympy.xml`. To edit it, edit just the file `doc/man/isympy.xml` and then rebuild the man page with
 
-Or:
 {{{
-docbook2x-man doc/man/isympy.xml
+  docbook2x-man doc/man/isympy.xml
+  mv isympy.1 doc/man/isympy.1
 }}}
-will create `isympy.1` in the root directory.
+
+
+= Generating the (html) documentation for the api =
+
+you'll need epydoc. The output is written to ../api/ (you can change this editing the variable gen_doc.target_dir )
+
+{{{
+  python setup.py gen_doc
+}}}
 
 = How to make a new release =
 
