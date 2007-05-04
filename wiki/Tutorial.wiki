@@ -1,4 +1,4 @@
-#summary First steps with sympy
+﻿#summary First steps with sympy
 #labels Featured
 
 
@@ -16,9 +16,9 @@
 == Importing SymPy ==
 
 to import !SymPy from the standard python shell, just type
-{{{
-   >>> from sympy import *
-}}}
+    {{{
+    >>> from sympy import *
+    }}}
 and most common functions will be imported. Other modules of interest include sympy.modules, sympy.modules.limits, sympy.modules.solvers, etc.
 
 There is also a little app called isympy (located in bin/isympy if you are running from the source directory) which is just a standard python shell that has already imported the relevant sympy modules and defined the symbols x, y and z. 
@@ -30,7 +30,7 @@ Sympy has two built-in numeric types: [http://sympy.googlecode.com/svn/api/sympy
 
 The Rational class represents a rational number as a pair of two integers: the numerator and the denominator, so Rational(1,2) represents 1/2, Rational(5,2) 5/2 and so on. 
 
-{{{
+  {{{
   >>> from sympy import *
   >>> a = Rational(1,2)
 
@@ -42,7 +42,7 @@ The Rational class represents a rational number as a pair of two integers: the n
 
   >>> Rational(2)**50/Rational(10)**50
   1/88817841970012523233890533447265625
-}}}
+  }}}
 
 proceed with caution while working with python int's since they truncate integer division, and that's why: 
 
