@@ -16,9 +16,11 @@
 == Importing SymPy ==
 
 to import !SymPy from the standard python shell, just type
-    {{{
+
+{{{
     >>> from sympy import *
-    }}}
+
+}}}
 and most common functions will be imported. Other modules of interest include sympy.modules, sympy.modules.limits, sympy.modules.solvers, etc.
 
 There is also a little app called isympy (located in bin/isympy if you are running from the source directory) which is just a standard python shell that has already imported the relevant sympy modules and defined the symbols x, y and z. 
@@ -30,19 +32,20 @@ Sympy has two built-in numeric types: [http://sympy.googlecode.com/svn/api/sympy
 
 The Rational class represents a rational number as a pair of two integers: the numerator and the denominator, so Rational(1,2) represents 1/2, Rational(5,2) 5/2 and so on. 
 
-  {{{
-  >>> from sympy import *
-  >>> a = Rational(1,2)
+{{{
+    >>> from sympy import *
+    >>> a = Rational(1,2)
 
-  >>> a
-  1/2
+    >>> a
+    1/2
 
-  >>> a*2
-  1
+    >>> a*2
+    1
 
-  >>> Rational(2)**50/Rational(10)**50
-  1/88817841970012523233890533447265625
-  }}}
+    >>> Rational(2)**50/Rational(10)**50
+    1/88817841970012523233890533447265625
+
+}}}
 
 proceed with caution while working with python int's since they truncate integer division, and that's why: 
 
@@ -56,11 +59,13 @@ proceed with caution while working with python int's since they truncate integer
 }}}
 
 You can however do:
+
 {{{
   >>> from __future__ import division
 
-  >>> 1/2 
+  >>> 1/2 #doctest: +SKIP 
   0.5
+
 }}}
 It's going to be standard in python, hopefully soon....
 
@@ -71,10 +76,11 @@ we also have some special constants, like e and pi, that are treated as symbols 
     pi**2
 
     >>> pi.evalf()
-    3.1416...
+    3.141592653589793238462643383
 
-    >>> (pi+e).evalf()
-    ...
+    >>> (pi+exp(1)).evalf()
+    5.859874482049203234066343309
+
 }}}
 
 as you see, evalf evaluates the expression to a floating-point number
@@ -84,6 +90,7 @@ There is also a class representing mathematical infinity, and we call it `oo`, h
 {{{
     >>> oo != 2
     True
+
 }}}
 
 == Symbols ==
@@ -94,6 +101,7 @@ In contrast to other Computer Algebra Systems, in !SymPy you have to declare sym
     >>> from sympy import *
     >>> x = Symbol('x')
     >>> y = Symbol('y')
+
 }}}
 
 Then you can play with them:
@@ -106,7 +114,8 @@ Then you can play with them:
     (x+y)**2
 
     >>> ((x+y)**2).expand()
-    2*x*y+y**2+x**2
+    2*x*y+x**2+y**2
+
 }}}
 
 And substitute them for other symbols or numbers using `subs(var, substitution)`:
@@ -117,6 +126,7 @@ And substitute them for other symbols or numbers using `subs(var, substitution)`
 
     >>> ((x+y)**2).subs(x, y)
     4*y**2
+
 }}}
 
 = Calculus =
@@ -137,13 +147,14 @@ you can also calculate the limit at infinity:
 
 {{{
    >>> limit(x, x, oo)
-   Infinity
+   Infinity()
 
    >>> limit(1/x, x, oo)
    0
 
    >>> limit((5**x+3**x)**(1/x), x, oo)
    5
+
 }}}
 
 for some non-trivial examples on limits, you can read the test file [http://sympy.googlecode.com/svn/trunk/tests/test_demidovich.py test_demidovich.py]
@@ -156,13 +167,13 @@ You can differentiate any !SymPy expression using `diff(func, var)`. Examples:
     >>> from sympy import *
     >>> x = Symbol('x')
     >>> diff(sin(x), x)
-    >>> cos(x)
-
+    cos(x)
     >>> diff(sin(2*x), x)
     2*cos(2*x)
 
     >>> diff(tan(x), x)
     cos(x)**(-2)
+
 }}}
 
 You can check, that it is correct by:
@@ -170,6 +181,7 @@ You can check, that it is correct by:
 {{{
     >>> limit((tan(x+y)-tan(x))/y, y, 0)
     cos(x)**(-2)
+
 }}}
 
 Higher derivatives can be calculated using the `diff(func, var, n)` method:
@@ -183,6 +195,7 @@ Higher derivatives can be calculated using the `diff(func, var, n)` method:
 
     >>> diff(sin(2*x), x,3)
     -8*cos(2*x)
+
 }}}
 
 == Series expansion ==
@@ -190,13 +203,14 @@ Higher derivatives can be calculated using the `diff(func, var, n)` method:
 Use `.series(var, order)`:
 
 {{{
-   >>> from sympy import *
-   >>> x = Symbol('x')
-   >>> cos(x).series(x,10)
-   1-1/3628800*x**10+1/40320*x**8+1/24*x**4-1/720*x**6-1/2*x**2
+    >>> from sympy import *
+    >>> x = Symbol('x')
+    >>> cos(x).series(x,10)
+    1-1/3628800*x**10-1/720*x**6-1/2*x**2+1/40320*x**8+1/24*x**4
 
-   >>> (1/cos(x)).series(x,10)
-   1+5/24*x**4+277/8064*x**8+50521/3628800*x**10+61/720*x**6+1/2*x**2
+    >>> (1/cos(x)).series(x,10)
+    1+1/2*x**2+50521/3628800*x**10+5/24*x**4+61/720*x**6+277/8064*x**8
+
 }}}
 
 The terms are ordered according to their hashes, that's why they look random.
@@ -216,9 +230,10 @@ Matrices are created as instances from the [http://sympy.googlecode.com/svn/api/
 {{{
     >>> from sympy import *
     >>> from sympy.modules.matrices import Matrix
-    >>> Matrix([[1,0], [0,1]]) 
+    >>> Matrix([[1,0], [0,1]]) #doctest: +NORMALIZE_WHITESPACE 
     1 0 
-    0 1 
+    0 1
+ 
 }}}
 
 you can also put Symbols in it: 
@@ -226,14 +241,17 @@ you can also put Symbols in it:
     >>> x = Symbol('x')
     >>> y = Symbol('y')
     >>> A = Matrix([[1,x], [y,1]])
-
-    >>> A
+    >>> A #doctest: +NORMALIZE_WHITESPACE
     1 x 
-    y 1 
+    y 1
+ 
+    >>> A**2 #doctest: +NORMALIZE_WHITESPACE
+    1+x*y 2*x 
+    2*y 1+x*y 
+ 
+    >>> 1
+    1
 
-    >>> A**2
-    1+y*x 2*x 
-    2*y 1+y*x 
 }}}
 
 
@@ -247,26 +265,27 @@ Use the `.match()` method (available in 0.4), that returns a dictionary. Example
     >>> y = Symbol('y')
     >>> z = Symbol('z')
     >>> (3*x**2 + x).match(y*x**2 + z*x, [y,z])
-    {y: 3, z: 1}
+    {z: 1, y: 3}
 
     >>> (x**2).match(y*x**z, [y,z])
-    {y: 1, z: 2}
+    {z: 2, y: 1}
+
 }}}
 
 If the match is unsuccessful, it returns `None`:
 
 {{{
     >>> (x**2).match(y*x**3, [y,z])
-
     >>> print (x**2).match(y*x**3, [y,z])
     None
+
 }}}
 
 If the match is successful, but the variables are not matched, they are simply not returned in the dictionary:
-{{{ 
+{{{
     >>> (x**2).match(y*x**2, [y,z])
     {y: 1}
-
     >>> (x**2).match(x**2, [y,z])
     {}
+
 }}}
