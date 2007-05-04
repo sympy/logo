@@ -6,7 +6,8 @@ This page documents the major changes made to !SymPy since the last release.
 
 == svn ==
 
-  * ratsimp() for simplifying fractions added
+  * MathML refactoring, renamed to __mathml__ and now uses xml.dom.minidom
+  * ratsimp() for simplifying fractions added to sympy.modules.simplify
   * `exp(x+y).expand()` and `(exp(x)*exp(y)).combine()`, the same for `log`.
   * pretty printing
   * `infty` renamed to `oo`
