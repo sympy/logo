@@ -1,6 +1,9 @@
 ﻿#summary First steps with sympy
 #labels Featured
 
+= Introduction =
+
+This tutorial gives an overview and introduction to !SymPy. Read this to have an idea what !SymPy can do for you (and how) and if you want to know more, read the [http://sympy.googlecode.com/svn/api/index.html API] documentation (that is generated from the sources) or the [http://sympy.googlecode.com/svn/trunk/ sources] directly.
 
 == Installation ==
 
