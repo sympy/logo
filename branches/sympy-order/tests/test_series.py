@@ -177,9 +177,9 @@ def test_order():
     assert Order(x**2).diff(x) == Order(x)
 
     assert Order(x)*Symbol("m") == Order(x)
-    a = 1/3+x**(-2)+Order(x)
-    b = 1/6-x**(-2)+Order(x)
-    assert a+b == 1/2 + Order(x)
+    a = Rational(1,3)+x**(-2)+Order(x)
+    b = Rational(1,6)-x**(-2)+Order(x)
+    assert a+b == Rational(1,2) + Order(x)
 
     x = Symbol("w")
     assert Order(x)+1 != Order(x)
