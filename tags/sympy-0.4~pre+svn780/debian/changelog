@@ -1,0 +1,5 @@
+sympy (0.4~pre+svn779-1) unstable; urgency=low
+
+  * Initial Debian release (closes: #418410) 
+
+ -- Ondrej Certik <ondrej@certik.cz>  Mon, 09 Apr 2007 17:52:55 +0200
