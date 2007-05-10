@@ -131,13 +131,20 @@ you'll need epydoc. The output is written to ../api/ (you can change this editin
 
 = How to make a new release =
 
-Create a deb package first (see above) and rename
-`sympy_0.4-pre+svn745.orig.tar.gz` to `sympy_0.4-pre.tar.gz` and put it on the web. (also change the `__version__` variable to "4.0")
+Create a new branch:
 
-this is another possible way:
+{{{
+svn checkout https://sympy.googlecode.com/svn/ sympy --username ondrej.certik
+cd sympy
+svn copy trunk tags/sympy-0.4
+}}}
 
-  * create sympy-x.y.tar.gz file every time we release a new version (without the debian dir inside)
+Then in this branch:
+
+  * create sympy-x.y.tar.gz file every time we release a new version (without the debian dir inside), using `./setup.py sdist`
   * put it on the website
   * mv sympy-x.y.tar.gz sympy_x.y.orig.tar.gz
   * `dch -v x.y-1 -m "New upstream release"`
   * debuild
+
+and possibly merge the changes in the debian/ directory with the trunk.
