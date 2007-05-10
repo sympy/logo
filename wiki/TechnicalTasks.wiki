@@ -96,9 +96,16 @@ $cfg{'mentors'} =
 }}}
 )
 
-To download and unpack the source package:
+To download and unpack the source package (and test it):
 {{{
 dget -x http://mentors.debian.net/debian/pool/main/s/sympy/sympy_0.4-pre+svn765-1.dsc
+cd sympy-0.4~pre+svn780
+debuild
+cd ..
+lintian -i *.changes
+linda -i *.changes
+sudo pbuilder build *.dsc
+sudo piuparts -p *.deb
 }}}
 
 To update a changelog, use (either in the debian or the root directory):
