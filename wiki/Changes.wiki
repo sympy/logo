@@ -34,7 +34,7 @@ This page documents the major changes made to !SymPy since the last release.
   * easy usage (differentiation and other stuff) of unknown functions, see examples/relativity.py
   * complex numbers work for `exp(I*x)` and stuff. evalc() method 
   * Initial support for assumptions (for example: x = Symbol('x', is_real=True) )
-  * a lot of refactorings and small fixes
+  * a lot of refactorings and small fixes (the c() was renamed to Basic.sympify())
   * debian package
 
 == 0.2 ==
