@@ -16,7 +16,7 @@ Downlad the windows installer from the homepage and execute it.
 
 === latest release ===
 
-On unix systems (linux, BSD, cygwin, etc.): Download the source archive, (something like `sympy-$version.tar.gz`), extract it with the command `"tar xvvzf sympy-$version.tar.gz"`, and follow the README located in the sympy directory
+On unix systems (linux, BSD, cygwin, etc.): Download the source archive, (something like `sympy-0.3.tar.gz`), extract it with the command `"tar xvvzf sympy-$version.tar.gz"`, and follow the README located in the sympy directory
 
 === svn version ===
 
