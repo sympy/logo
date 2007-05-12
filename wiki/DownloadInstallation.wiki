@@ -4,7 +4,7 @@
 
 == Debian ==
 
-Download the deb file from the project's homepage, and then install in with the command `"sudo dpkg -i python-sympy_$version_all.deb"`, where `$version` must be replaced with the version number. 
+Download the deb file from the project's homepage, and then install it with the command `"sudo dpkg -i python-sympy_$version_all.deb"`, where `$version` must be replaced with the version number. 
 
 Hopefully, we'll soon (couple of weeks) have this package in the official debian main repository.
 
@@ -16,10 +16,11 @@ Downlad the windows installer from the homepage and execute it.
 
 === latest release ===
 
-On unix systems (linux, BSD, cygwin, etc.): Download the source archive (something like `sympy-0.3.tar.gz`), extract it with the command `"tar xvvzf sympy-0.3.tar.gz"`, and follow the README located in the sympy directory
+On unix systems (linux, BSD, cygwin, etc.): Download the source archive (something like `sympy-0.3.tar.gz`), extract it with the command `"tar xvvzf sympy-0.3.tar.gz"` and follow the README located in the sympy directory.
 
 === svn version ===
 
+On unix systems:
 {{{
 svn checkout http://sympy.googlecode.com/svn/trunk/ sympy 
 }}}
