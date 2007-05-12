@@ -12,7 +12,7 @@ Hopefully, we'll soon (couple of weeks) have this package in the official debian
 
 Downlad the windows installer from the homepage and execute it.
 
-== Sources == 
+== Sources ==
 
 === latest release ===
 
