@@ -621,7 +621,7 @@ class Add(Pair):
             e = []
             ok = False
             for y in exp:
-	        # try to put all numeric togehter together
+	        # try to put all numeric parts together
                 bn, b = _extract_numeric(y)
                 print "E",an, a, bn, b
                 if (not ok) and a == b:
