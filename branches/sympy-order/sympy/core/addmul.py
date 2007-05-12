@@ -621,13 +621,16 @@ class Add(Pair):
             e = []
             ok = False
             for y in exp:
+	        # try to put all numeric togehter together
                 bn, b = _extract_numeric(y)
                 print "E",an, a, bn, b
                 if (not ok) and a == b:
                     if isinstance(a, Infinity) or isinstance(b, Infinity):
                         # case oo - oo
                         raise ArithmeticError("Cannot compute this")
-                    e.append(Mul(an + bn,a))
+		    _m = Mul(an+bn, a)
+		    if _m != 0:
+                        e.append(_m)
                     ok = True
                 else:
                     z1 = x.addeval(y,x)
