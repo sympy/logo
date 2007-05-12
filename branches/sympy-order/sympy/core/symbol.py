@@ -261,8 +261,10 @@ class Order(Basic):
             if old == self.sym:
                 if new == 0:
                     return Rational(0)
+		elif isinstance(new, Symbol):
+		    return Order(new)
                 else:
-                    raise "Invalid substitution in Order"
+                    raise ValueError("Cannot substitute (%s, %s) in Order" % (new, old) )
         return e
 
     def diff(self, var):
