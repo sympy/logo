@@ -55,7 +55,7 @@ All the documentation is in the wiki [http://code.google.com/p/sympy/wiki/Docume
 
 ==Motivation==
 
-Why another CAS? What is the SymPy's relationship to SAGE?
+Why another CAS? What is the !SymPy's relationship to SAGE?
 
 Everything is explained in the [http://code.google.com/p/sympy/wiki/Motivation Motivation].
 
