@@ -47,18 +47,9 @@ Then there are !SymPy modules (1000 lines) for these tasks:
 
 ==Download and installation==
 
-Download the latest release from the Featured Downloads section, or if you want the very latest version, obtain !SymPy through the svn repository (see the Source tab):
-{{{
-svn checkout http://sympy.googlecode.com/svn/trunk/ sympy 
-}}}
-The only prerequisite is python 2.4 or newer. Test that !SymPy works:
-{{{
-cd sympy
-cd examples
-python basic.py
-}}}
+See the [DownloadInstallation instructions].
 
-To test the whole !SymPy package, run `python setup.py test` in the `sympy` directory. You will need `py.test` that is part of the [http://codespeak.net/py/current/doc/test.html py lib]. If you use Debian, install the `python-codespeak-lib` package.
+
 
 ==Documentation==
 
