@@ -49,14 +49,9 @@ Then there are !SymPy modules (1000 lines) for these tasks:
 
 See the [DownloadInstallation instructions].
 
-
-
 ==Documentation==
 
-All the documentation is in the wiki:
-
-http://code.google.com/p/sympy/wiki/Documentation
-
+All the documentation is in the wiki [http://code.google.com/p/sympy/wiki/Documentation Documentation].
 
 ==Motivation==
 
