@@ -14,6 +14,8 @@ Downlad the windows installer from the homepage and execute it.
 
 == Sources ==
 
+The only prerequisite is python 2.4 or newer.
+
 === latest release ===
 
 On unix systems (linux, BSD, cygwin, etc.): Download the source archive (something like `sympy-0.3.tar.gz`), extract it with the command `"tar xvvzf sympy-0.3.tar.gz"` and follow the README located in the sympy directory.
@@ -24,3 +26,15 @@ On unix systems:
 {{{
 svn checkout http://sympy.googlecode.com/svn/trunk/ sympy 
 }}}
+
+
+= Test it =
+
+Test that !SymPy works:
+{{{
+cd sympy
+cd examples
+python basic.py
+}}}
+
+To test the whole !SymPy package, run `python setup.py test` in the `sympy` directory. You will need `py.test` that is part of the [http://codespeak.net/py/current/doc/test.html py lib]. If you use Debian, install the `python-codespeak-lib` package.
