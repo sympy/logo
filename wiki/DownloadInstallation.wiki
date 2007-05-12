@@ -1,14 +1,25 @@
 #summary How to install SymPy
 
-= Introduction =
+!SymPy is packaged for the following systems, so if you use one of them, simply follow the instructions. Otherwise (or if you prefer), you can install the sources directly.
 
-Add your content here.
+== Debian ==
 
+Download the deb file from the project's homepage, and then install in with the command `"sudo dpkg -i python-sympy_$version_all.deb"`, where `$version` must be replaced with the version number. 
 
-= Details =
+Hopefully, we'll soon (couple of weeks) have this package in the official debian main repository.
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Windows ==
 
+Downlad the windows installer from the homepage and execute it.
+
+== Sources == 
+
+=== latest release ===
+
+On unix systems (linux, BSD, cygwin, etc.): Download the source archive, (something like `sympy-$version.tar.gz`), extract it with the command `"tar xvvzf sympy-$version.tar.gz"`, and follow the README located in the sympy directory
+
+=== svn version ===
+
+{{{
+svn checkout http://sympy.googlecode.com/svn/trunk/ sympy 
+}}}
