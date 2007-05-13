@@ -98,7 +98,7 @@ class cos(Function):
 
 That's all - now it can be normally used, for instance in the series
 expansion, as in the first example. It can differentiate itself and
-can evaluate cos(0) and cos(2*pi) to 1, cos(pi) to -1. More complex behaviour (like cos(n*2*pi)=1) can of course be implemented (it actually already is in !SymPy), it's easy.
+can evaluate cos(0) and cos(2*pi) to 1, cos(pi) to -1. More complex behavior (like cos(n*2*pi)=1) can of course be implemented (it actually already is in !SymPy), it's easy.
 
 Read the [http://code.google.com/p/sympy/wiki/Tutorial tutorial] for more examples.
 
