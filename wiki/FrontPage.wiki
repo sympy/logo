@@ -1,6 +1,6 @@
 #summary A wiki for the frontpage (this line will not be visible on the front page)
 
-!SymPy is a Python module for symbolic manipulation, written in pure Python. Its
+!SymPy is a Python package for symbolic manipulation, written in pure Python. Its
 aim is to become a full featured CAS in Python, while keeping the
 code as simple as possible in order to be comprehensible and
 easily extensible.
