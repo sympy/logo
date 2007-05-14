@@ -11,6 +11,10 @@ problemas resueltos, Ed. URSS"
 x=Symbol("x")
 h=Symbol("h")
 
+def test_leadterm():
+    x=Symbol("x")
+    assert (3+2*x**(log(3)/log(2)-1)).leadterm(x)==(3,0)
+
 def sqrt3(x):
     return x**Rational(1,3)
 

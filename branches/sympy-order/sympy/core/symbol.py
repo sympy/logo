@@ -195,10 +195,22 @@ class Order(Basic):
             if not f[1].has(self.sym):
                 assert len(f[:]) == 2
                 return Order(f[0])
+            e = f.expand()
+            if isinstance(e, Add):
+                r=0
+                for x in e:
+                    r+=Order(x)
+                return r
         if isinstance(f, Add):
             if isinstance(f[0], (Real, Rational)):
-                assert len(f[:]) == 2
-                return Order(f[1])
+                if len(f[:]) == 2:
+                    return Order(f[1])
+            r=0
+            for x in f:
+                r+=Order(x)
+            return r
+        if isinstance(f, (Real, Rational)) and f!=0 and f!=1:
+            return Order(Rational(1))
         return self
 
     def __str__(self):

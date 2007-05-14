@@ -187,3 +187,16 @@ def test_order():
     assert (2+Order(x)) != 2
     assert (2+Order(x)).removeOrder() == 2
     assert (2+x+Order(x**2)).removeOrder() == x+2
+
+def test_order_bug():
+    x = Symbol("x")
+    a = -4
+    b = -3/x
+    e1 = Order(x)*a+Order(x)*b
+    e2 = Order(x)*(a+b)
+    assert e1==Order(1)
+    assert e1==e2
+
+    assert Order(x**2)*(1+2/x+3/x**2) == Order(1)
+
+    assert Order(1+2/x+3/x**2) == Order(1/x**2)

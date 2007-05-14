@@ -383,6 +383,8 @@ class Basic(object):
         from symbol import Symbol, Order
         if isinstance(self,Add):
             self = self.removeOrder()
+        if isinstance(self,Order):
+            self = Rational(0)
         
         def domul(x):
             if len(x) > 1:
