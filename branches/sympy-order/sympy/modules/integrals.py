@@ -1,6 +1,6 @@
 from sympy.core import Basic, Symbol, Number, Mul, Pow, log, Add
 from sympy.modules import cos, sin
-from sympy.core.stringPict import stringPict
+from sympy.core.stringPict import stringPict, prettyForm
 
 class IntegralError(Exception):
     pass
@@ -31,6 +31,8 @@ class Integral(Basic):
     of the primitive_function() function.
 
     """
+    
+    mathml_tag = 'int'
 
     def __init__(self, f, args):
         "int_a^b f(x)  dx"
@@ -61,24 +63,36 @@ class Integral(Basic):
         
     def __pretty__(self):
         if self.a is not None:
-            a = stringPict("|")
-            a = stringPict(*a.below("/ %s" % self.a))
-            a = stringPict(*a.top("/ %s" % self.b))
+            a = prettyForm('|')
+            a = prettyForm(*a.below("/ %s" % self.a))
+            a = prettyForm(*a.top("/ %s" % self.b))
         else: 
-            a = stringPict("|")
-            a = stringPict(*a.below("/"))
-            a = stringPict(*a.top("/"))
-        a = stringPict( *a.right(" %s d%s" % (self.f.__pretty__(), self.x) ) )
+            a = prettyForm("|")
+            a = prettyForm(*a.below("/"))
+            a = prettyForm(*a.top("/"))
+        a = prettyForm( *stringPict.next(a, " ",  self.f.__pretty__(), " d" , self.x.__pretty__() ) )
         return a
             
-    @property
-    def mathml(self):
-        s = "<apply><int/>" + "<bvar>" + self.x.mathml + "</bvar>" 
-        if not isinstance(self.a, type(None)): # if this is a definite integral, put the integration limits
-            s += "<lowlimit>" + self.a.mathml + "</lowlimit>"
-            s += "<uplimit>" + self.b.mathml + "</uplimit>"
-        s += self.f.mathml + "</apply>"
-        return s
+    def __mathml__(self):
+        if self._mathml:
+            return self._mathml
+        import xml.dom.minidom
+        dom = xml.dom.minidom.Document()
+        x = dom.createElement("apply")
+        x.appendChild(dom.createElement(self.mathml_tag))
+        
+        x_1 = dom.createElement('bvar')
+        x_2 = dom.createElement('lowlimit')
+        x_3 = dom.createElement('uplimit')
+        
+        x.appendChild(x_1)
+        x.appendChild(x_2)
+        x.appendChild(x_3)
+        x.appendChild( self.f.__mathml__() )
+        #TODO: add lowlimit, uplimit
+        self._mathml = x
+        
+        return self._mathml
             
     def diff(self,sym):
         if sym==self.x:
@@ -118,11 +132,20 @@ class Integral(Basic):
         if not f.has(x): return f*x
         if f==x: return x**2/2
         if isinstance(f,Pow):
-            if f.base==x and isinstance(f.exp,Number):
-                if f.exp==-1: return log(abs(x))
-                else: return x**(f.exp+1)/(f.exp+1)
+            if isinstance(f.exp,Number):
+                if x == f.base:
+                    if f.exp==-1: return log(abs(x))
+                    else: return x**(f.exp+1)/(f.exp+1)
+                elif x in f.base and isinstance(f.base, Mul):
+                    other = 1
+                    for b in f.base:
+                        if b != x: other *= b
+                    other = other ** f.exp
+                    
+                    if f.exp==-1: return log(abs(x)) * other
+                    else: return x**(f.exp+1)/(f.exp+1) * other
 
-        a,b,c = [Symbol(s, is_dummy = True) for s in ["a","b","c"]]
+        a,b,c = [Symbol(s, dummy = True) for s in ["a","b","c"]]
         integral_table = {
                 a/(b*x+c): a/b * log(abs(b*x+c)),
                 a*sin(b*x): -a/b * cos(b*x),
@@ -185,7 +208,7 @@ def integrate(f, *args, **kargs):
       >>> integrate(y*x, y)
       1/2*x*y**2
       >>> integrate(y*x, x, y)
-      1/4*x**2*y**2
+      1/4*(x*y)**2
       >>> integrate(x*y**2 , (x,1,2), y)
       1/2*y**3
       >>> integrate(x , (x,1,2), evaluate=False)

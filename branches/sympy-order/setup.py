@@ -31,7 +31,6 @@ sympy@googlegroups.com and ask for help.
 from distutils.core import setup
 from distutils.core import Command
 import sys
-import os
 
 import sympy
 
@@ -41,31 +40,6 @@ if sys.version_info[1] < 4:
           sys.version_info[:2]
     sys.exit(-1)
 
-class test_sympy(Command):
-    """Runs all tests under the tests/ folder
-    """
-    
-    description = "Automatically run the test suite for Sympy."
-    user_options = []  # distutils complains if this is not here.
-
-
-    def initialize_options(self):  # distutils wants this
-        pass
-    
-    def finalize_options(self):    # this too
-        pass
-    
-    def run(self):
-        try:
-            import py
-        except ImportError:
-            print """In order to run the tests, you need codespeak's py.lib
-            web page: http://codespeak.net/py/dist/
-            If you are on debian systems, the package is named python-codespeak-lib
-            """
-            sys.exit(-1)
-        py.test.cmdline.main(args=["tests"])
-        test_sympy_doc.run_doctest() # run also the doc test suite
         
 class bdist_dpkg(Command):
     """Make a nice .deb package
@@ -220,6 +194,28 @@ class clean(Command):
         os.system("rm -rf build")
         os.system("rm -rf dist")
 
+class gen_doc(Command):
+    """Generate the (html) api documentation using epydoc
+
+    output is sent to the directory ../api/
+    """
+    
+    description = "generate the api doc"
+    user_options = []
+    
+    target_dir = "../api/" 
+
+    def initialize_options(self):  
+        self.all = None
+    
+    def finalize_options(self):   
+        pass
+
+    def run(self):
+        import os
+        os.system("epydoc --no-frames -o %s sympy" % self.target_dir)
+
+
 class test_sympy_core(Command):
     """Run only the tests concerning features of sympy.core.
     It's a lot faster than running the complete test suite.
@@ -254,6 +250,37 @@ class test_sympy_core(Command):
             """
             sys.exit(-1)
         py.test.cmdline.main(args=self.tests_to_run)
+        
+
+class test_sympy(Command):
+    """Runs all tests under the tests/ folder
+    """
+    
+    description = "Automatically run the test suite for Sympy."
+    user_options = []  # distutils complains if this is not here.
+
+    def __init__(self, *args):
+        self.args = args[0] # so we can pass it to other classes
+        Command.__init__(self, *args)
+
+    def initialize_options(self):  # distutils wants this
+        pass
+    
+    def finalize_options(self):    # this too
+        pass
+    
+    def run(self):
+        try:
+            import py as pylib
+        except ImportError:
+            print """In order to run the tests, you need codespeak's py.lib
+            web page: http://codespeak.net/py/dist/
+            If you are on debian systems, the package is named python-codespeak-lib
+            """
+            sys.exit(-1)
+        pylib.test.cmdline.main(args=["tests", "--nomagic"])
+        tdoc = test_sympy_doc(self.args)
+        tdoc.run() # run also the doc test suite
 
 class test_sympy_dpkg(Command):
     
@@ -303,8 +330,7 @@ class test_sympy_doc(Command):
     def finalize_options(self):    # this too
         pass
     
-    @staticmethod
-    def run_doctest():
+    def run(self):
         
         import unittest
         import doctest
@@ -330,7 +356,7 @@ class test_sympy_doc(Command):
             files.remove('sympy/modules/printing/latex.py')
             files.remove('sympy/modules/printing/__init__.py')
         try:
-            import matplotlib
+            import pylab
         except ImportError:
             files.remove('sympy/modules/graphing.py')
 
@@ -351,9 +377,6 @@ class test_sympy_doc(Command):
         runner = unittest.TextTestRunner()
         runner.run(suite)
 
-    def run(self):
-        self.run_doctest()
-        
 import sympy
 
 setup(
@@ -374,6 +397,7 @@ setup(
                      'test_doc' : test_sympy_doc,
                      'bdist_dpkg' : bdist_dpkg, 
                      'test_dpkg' : test_sympy_dpkg,
+                     'gen_doc' : gen_doc,
                      'clean' : clean, 
                      },
       )

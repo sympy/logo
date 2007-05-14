@@ -5,6 +5,8 @@ from sympy import Rational, Symbol, cos, solve, dsolve, Function, diff, \
         log, sin, exp
 from sympy.core.functions import Derivative
 
+import decimal
+
 def test_linear():
     x = Symbol("x")
     assert solve(3*x-2, x) == Rational(2,3)
@@ -14,6 +16,17 @@ def test_quadratic():
     assert solve(x**2-1, x) == [1, -1]
     assert solve(((x-1)*(x-2)).expand(), x) in [[1,2], [2,1]]
     assert solve(((x-1)*(x-1)).expand(), x) == [1]
+    
+def test_cubic():
+    x = Symbol('x')
+    f = x**3 - x**2 + x +1
+  #  for root in solve(f, x):
+  #      assert f.subs(x, root).evalf() < decimal.Decimal("1e-10")
+  
+def test_linear_system():
+    x, y, z, u = Symbol('x'), Symbol('y'), Symbol('z'), Symbol('t')
+    
+    assert solve([x+5*y-2, -3*x+6*y-15], [x, y]) == {x: -3, y: 1} 
 
 def test_ODE_first_order():
     x = Symbol("x")

@@ -5,7 +5,8 @@ that sympy uses
 Examples
 ========
     >>> from sympy import *
-    >>> from sympy.modules.printing import *
+    >>> from sympy.modules.printing.gtk import print_gtk
+    >>> from sympy.modules.printing.latex import latex
     
     >>> x = Symbol('x')
     >>> f = integrate(exp(x), x, evaluate=False)
@@ -16,8 +17,4 @@ Examples
 
 """
 
-from pretty import pretty_print, pprint, pretty
-from gtk import print_gtk
-from latex import latex, print_latex
-from pygame_ import print_pygame, view
-from xml_ import print_xml
+__all__ = ["mathml", "gtk", "latex", "mathml", "pretty", "pygame_"]

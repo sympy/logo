@@ -6,7 +6,7 @@ This is a central part of the core
 """
 
 from sympy.core.basic import Basic
-from sympy.core.numbers import Number, Rational, Real, Infinity
+from sympy.core.numbers import Rational, Real, Infinity
 from sympy.core.power import Pow, pole_error
 
 from sympy.core.stringPict import prettyForm
@@ -22,14 +22,19 @@ class Pair(Basic):
             assert isinstance(arg, Basic)
         self._args = args
         
-    
-    @property
-    def mathml(self):
-        s = "<apply>" + "<" + self.mathml_tag + "/>"
-        for a in self._args:
-            s += a.mathml
-        s += "</apply>"
-        return s
+    def __mathml__(self):
+        """Returns a MathML expression representing the current object"""
+        import xml.dom.minidom
+        if self._mathml:
+            return self._mathml
+        dom = xml.dom.minidom.Document()
+        x = dom.createElement('apply')
+        x_1 = dom.createElement(self.mathml_tag)
+        x.appendChild(x_1)
+        for arg in self._args:
+            x.appendChild( arg.__mathml__() )
+        self._mathml = x
+        return self._mathml
     
     def tryexpand(self, a):
         if isinstance(a,Mul) or isinstance(a,Pow):
@@ -196,7 +201,10 @@ class Pair(Basic):
         if global_wildcard:
             if len(ops) == 0:
                 #return None
-                rst = Rational(1)
+                if isinstance(self, Add):
+                    rst = Rational(0)
+                else:
+                    rst = Rational(1)
             else:
                 rst = type(self)(*ops)
             r2.update({global_wildcard: rst})
@@ -218,13 +226,28 @@ class Mul(Pair):
             elif a[0].isone():
                 f = ""
                 a = self._args[1:]
+
+        num = [] # items in numerator
+        den = [] # items in denominator
         for x in a:
-            if isinstance(x, Pair):
-                f += "(%s)*"
+            if isinstance(x, Pow) and x.exp == -1:
+                if isinstance(x.base, Pair):
+                    den.append( "(" + str(x.base) + ")" )
+                else:
+                    den.append( str(x.base) )
             else:
-                f += "%s*"
-        f = f[:-1]
-        return f % tuple([str(x) for x in a])
+                if isinstance(x, Pair):
+                    num.append( "(" + str(x) + ")" )
+                else:
+                    num.append( str(x) )
+
+        snum = str.join('*', num)
+        if len(den) == 0:
+            return "%s%s" % (f, snum)
+        else:
+            sden = str.join('*', den)
+            if len(den) > 1: sden = "(" + sden + ")"
+            return "%s%s/%s" % (f, snum, sden)
     
     def __float__(self):
         a = 1
@@ -279,7 +302,8 @@ class Mul(Pair):
             if z2:
                 return z2, True
         
-        if isinstance(x, Infinity) or isinstance(y, Infinity):
+        # if it contains infinity
+        if (x.atoms(type=Infinity) != []) or y.atoms(type=Infinity) != []:
             return x, False
 
         if isinstance(x,(Real, Rational)) and isinstance(y, (Real, Rational)):
@@ -294,8 +318,19 @@ class Mul(Pair):
                 e = Add(xexp,yexp)
                 if e != 0:
                     return Pow(xbase,e,evaluate=False), True
-
             return Pow(xbase,Add(xexp,yexp)), True
+        elif xexp == 1 or yexp == 1 or xexp == -1 or yexp == -1:
+            return x, False
+        elif xexp.is_number and yexp.is_number:
+            if xexp == yexp:
+                return Pow(xbase*ybase, xexp, evaluate=False), True
+            elif xexp == -yexp:
+                if xexp > 0:
+                    return Pow(xbase/ybase, xexp), True
+                else:
+                    return Pow(ybase/xbase, yexp), True
+            else:
+                return x, False
         else:
             return x, False
             
@@ -452,7 +487,7 @@ class Mul(Pair):
         a,b = self.getab()
         a = self.tryexpand(a)
         b = self.tryexpand(b)
-        if isinstance(a,Add):
+        if isinstance(a, Add):
             d = Rational(0)
             for t in a[:]:
                 d += (t*b).expand()
@@ -491,7 +526,20 @@ class Mul(Pair):
             return e
 
     def __pretty__(self):
-        return prettyForm.__mul__(*[arg.__pretty__() for arg in self._args])
+        a = [] # items in the numerator
+        b = [] # items that are in the denominator (if any)
+        for item in self._args:
+            if isinstance(item, Pow) and item.exp == -1:
+                b.append( item.base.__pretty__() )
+            #elif item == -1:
+             #   a.append(prettyForm("-"))
+                #pass
+            else:
+                a.append(item.__pretty__())
+        if len(b) == 0:
+            return prettyForm.__mul__(*a)
+        else:
+            return prettyForm.__mul__(*a) / prettyForm.__mul__(*b)
 
 class Add(Pair):
     """
@@ -554,14 +602,6 @@ class Add(Pair):
             else:
               f += "+%s" % self[i].__latex__()
         return f    
-
-    @property
-    def mathml(self):
-        s = "<apply>" + "<" + self.mathml_tag + "/>"
-        for a in self._args:
-            s += a.mathml
-        s += "</apply>"
-        return s              
 
     def getab(self):
         """Pretend that self = a+b and return a,b
@@ -702,34 +742,6 @@ class Add(Pair):
             r+=x.combine()
         return r
 
-    def ratsimp(self):
-        from symbol import Symbol
-        from power import Pow
-        def get_num_denum(x):
-            """Matches x = a/b and returns a/b."""
-            a = Symbol("a", is_dummy = True)
-            b = Symbol("b", is_dummy = True)
-            r = x.match(a/b,[a,b])
-            if len(r) == 2:
-                return r[a],r[b]
-            return x, 1
-        x,y = self.getab()
-        a,b = get_num_denum(x.ratsimp())
-        c,d = get_num_denum(y.ratsimp())
-        num = a*d+b*c
-        denum = b*d
-        #we need to cancel common factors from numerator and denumerator
-        #but SymPy doesn't yet have a multivariate polynomial factorisation
-        #so until we have it, we are just returning the correct results here
-        #to pass all tests... 
-        if isinstance(denum,Pow):
-            e = (num/denum[0]).expand()
-            f = (e/(-2*Symbol("y"))).expand()
-            if f == denum/denum[0]:
-                return -2*Symbol("y")
-            return e/(denum/denum[0])
-        return num/denum
-
     def removeOrder(self):
         """Removes the O(...) from the expression.
         
@@ -774,6 +786,7 @@ class Add(Pair):
         
     def __pretty__(self):
         return prettyForm.__add__(*[arg.__pretty__() for arg in self._args])
+
 
 def _extract_numeric(x):
     """Returns the numeric and symbolic part of x.

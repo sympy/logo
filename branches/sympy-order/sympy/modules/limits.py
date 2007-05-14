@@ -85,7 +85,7 @@ which is the most difficult part of the algorithm.
 
 import sympy as s
 from sympy.core import Basic, mhash
-from sympy.core.stringPict import stringPict
+from sympy.core.stringPict import stringPict, prettyForm
 
 from decorator import decorator
 
@@ -281,7 +281,7 @@ def movedown(l,x):
 
 def subexp(e,sub):
     """Is "sub" a subexpression of "e"? """
-    n = s.Symbol("x", is_dummy=True)
+    n = s.Symbol("x", dummy=True)
     #we substitute some symbol for the "sub", and if the 
     #expression changes, the substitution was successful, thus the answer
     #is yes.
@@ -296,7 +296,7 @@ def mrv_leadterm(e,x,Omega=[]):
         Omega = mrv(e,x)
     if member(x,Omega):
         return movedown(mrv_leadterm(moveup([e],x)[0],x,moveup(Omega,x)),x)
-    wsym = s.Symbol("w", is_dummy=True)
+    wsym = s.Symbol("w", dummy=True)
     f,logw=rewrite(e,Omega,x,wsym)
     series=f.expand().series(wsym,2)
     n = 3
@@ -368,6 +368,8 @@ def compare(a,b,x):
     else: return "="
 
 class Limit(Basic):
+    
+    mathml_tag = 'limit'
 
     def __init__(self,e,x,x0):
         Basic.__init__(self)
@@ -379,9 +381,9 @@ class Limit(Basic):
 
     def __pretty__(self):
          e, x, t = [a.__pretty__() for a in (self.e,self.x,self.x0)]
-         a = stringPict('lim')
-         a = stringPict(*a.below('%s->%s' % (x, t)))
-         a = stringPict(*a.right(' %s' % e))
+         a = prettyForm('lim')
+         a = prettyForm(*a.below('%s->%s' % (x, t)))
+         a = prettyForm(*stringPict.next(a, e))
          return a
      
     def __latex__(self):
@@ -404,15 +406,27 @@ class Limit(Basic):
     def doit(self):
         return limit(self.e,self.x,self.x0)
     
-    @property
-    def mathml(self):
-        s = "<apply><limit/><bvar>" + self.x.mathml + "</bvar>"
-        s += "<lowlimit>" + self.x0.mathml + "</lowlimit>"
-        s += self.e.mathml
-        s += "</apply>"
-        return s
-
-
+    def __mathml__(self):
+        if self._mathml:
+            return self._mathml
+        import xml.dom.minidom
+        dom = xml.dom.minidom.Document()
+        x = dom.createElement("apply")
+        x.appendChild(dom.createElement(self.mathml_tag))
+        
+        x_1 = dom.createElement('bvar')
+        
+        x_2 = dom.createElement('lowlimit')
+        
+        x.appendChild(x_1)
+        x.appendChild(x_2)
+        x.appendChild( self.e.__mathml__() )
+        x.childNodes[1].appendChild( self.x.__mathml__() )
+        x.childNodes[2].appendChild( self.x0.__mathml__() )
+        self._mathml = x
+        
+        return self._mathml
+            
 def limit(e,z,z0, evaluate=True):
     """Compute the limit of e(z) at the point z0. 
         z0 can be oo
@@ -425,6 +439,6 @@ def limit(e,z,z0, evaluate=True):
         return limitinf(e, z)
     if z0 == -s.oo:
         return limitinf(-e, z)
-    x=s.Symbol("x", is_dummy=True)
+    x=s.Symbol("x", dummy=True)
     e0=e.subs(z,z0+1/x)
     return limitinf(e0,x)

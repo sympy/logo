@@ -19,6 +19,7 @@ class stringPict:
         self.picture = stringPict.equalLengths(s.splitlines())
         #baseline is the line number of the "base line"
         self.baseline = baseline
+        self.binding = None
         
     def __len__(self):
         return len(str(self))
@@ -63,7 +64,7 @@ class stringPict:
                 oneEmptyLine * (totalPadding-basePadding))
 
         result = [''.join(lines) for lines in zip(*pictures)]
-        return '\n'.join(result),newBaseline
+        return '\n'.join(result), newBaseline
 
     def right(self, *args):
         """Put pictures next to this one.
@@ -240,9 +241,11 @@ class prettyForm(stringPict):
         result = [arg]
         for arg in others:
             #add parentheses for weak binders
-            if arg.binding > prettyForm.NEG: arg = stringPict(*arg.parens())
+            if arg.binding > prettyForm.NEG: 
+                arg = stringPict(*arg.parens())
             #use existing minus sign if available
-            if arg.binding != prettyForm.NEG: result.append('+')
+            if arg.binding != prettyForm.NEG:
+                result.append('+')
             result.append(arg)
         return prettyForm(binding=prettyForm.ADD, *stringPict.next(*result))
 
@@ -263,15 +266,27 @@ class prettyForm(stringPict):
         """Make a pretty multiplication.
         Parentheses are needed around +, - and neg.
         """
-        arg = self
-        if arg.binding > prettyForm.MUL: arg = stringPict(*arg.parens())
-        result = [arg]
+        args = self
+        if args.binding > prettyForm.MUL: arg = stringPict(*args.parens())
+        result = [args]
         for arg in others:
             result.append('*')
             #add parentheses for weak binders
             if arg.binding > prettyForm.MUL: arg = stringPict(*arg.parens())
             result.append(arg)
-        return prettyForm(binding=prettyForm.MUL, *stringPict.next(*result))
+        len_res = len(result)
+        for i in xrange(len_res):
+            if i < len_res-1 and str(result[i]) == '-1' and result[i+1] == "*":
+                # substitute -1 by -, like in -1*x -> -x
+                result.pop(i)
+                result.pop(i)
+                result.insert(i, '-')
+        if str(result[0])[0] == '-':
+            # if there is a - sign in front of all
+            bin = prettyForm.NEG
+        else:
+            bin = prettyForm.MUL
+        return prettyForm(binding=bin, *stringPict.next(*result))
 
     def __repr__(self):
         return "prettyForm(%r,%d,%d)"%(
