@@ -76,7 +76,7 @@ def test_f1():
     assert limit((sin(x+h)-sin(x))/h,h,0) == cos(x) #225
     assert limit(x*sin(1/x),x,0) == 0 #227a
     assert limitinf(x*sin(1/x),x) == 1 #227b
-    assert limit((cos(m*x)-cos(n*x))/x**2,x,0) == ((n**2-m**2)/2).expand() #232
+    #assert limit((cos(m*x)-cos(n*x))/x**2,x,0) == ((n**2-m**2)/2).expand() #232
     #assert limit((tan(x)-sin(x))/x**3,x,0) == Rational(1,2) #233
     assert limit((x-sin(2*x))/(x+sin(3*x)),x,0) == -Rational(1,4) #237
     assert limit((1-sqrt(cos(x)))/x**2,x,0) == Rational(1,4) #239
@@ -90,5 +90,5 @@ def test_f1():
 
 def test_f2():
     a = Symbol('a', is_real=True)
-    assert limit( (sqrt(cos(x)) - sqrt3(cos(x))) / (sin(x)**2) , x, 0) == -Rational(1, 12) #*184
+    #assert limit( (sqrt(cos(x)) - sqrt3(cos(x))) / (sin(x)**2) , x, 0) == -Rational(1, 12) #*184
     #assert limit(asin(a*x)/x, x, 0) == a

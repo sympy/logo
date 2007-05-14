@@ -302,11 +302,11 @@ def mrv_leadterm(e,x,Omega=[]):
     n = 3
     from sympy import Order,Add
     while series==0 or isinstance(series,Order) and n<10:
-        series = f.series(wsym,n)
+        series = f.expand().series(wsym,n)
         n += 1
     assert series!=0
     assert not isinstance(series,Order)
-    print "sss1",series,type(series)
+    print "sss1",series,type(series),f,n
     if isinstance(series,Add):
         series = series.removeOrder()
     print "sss2",series,type(series)
