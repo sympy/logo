@@ -1,27 +1,24 @@
 from sympy import *
+#from sympy.modules.limits import rewrite
 
 x = Symbol("x")
+y = Symbol("y")
 w = Symbol("w")
-#e=((2*w)/w)**(1+w)
-#print e.series(w,1)
 
-#e=(sin(2*w)/w)
-#print e.series(w,2)
-
-
-x=Symbol("x")
-w=Symbol("w")
+f = sqrt(1/(y*((1/y)+((1/y)+y**(-Rational(1)/2))**(Rational(1)/2))))
+print f
+f.series(y,2)
 
 #some limits need this series expansion to work:
 #e=(w**(-log(5)/log(3))-1/w)**(1/x)
 #print  e.series(w,1)
 
 #the problem is in add.eval(), retuns O(w)+O(w), see the debug prints...
-a = 1/3+w**(-2)+Order(w)
-b = 1/6-w**(-2)+Order(w)
-print a+b
+#a = 1/3+w**(-2)+Order(w)
+#b = 1/6-w**(-2)+Order(w)
+#print a+b
 
-e= cos(w)**(-1)*sin(w)*w**(-3)-sin(w)*w**(-3)
+#e= cos(w)**(-1)*sin(w)*w**(-3)-sin(w)*w**(-3)
 #e= cos(w)**(-1)*sin(w)-sin(w)
 #print e
 #print e.series(w,3)

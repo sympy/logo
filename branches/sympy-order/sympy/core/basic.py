@@ -349,7 +349,7 @@ class Basic(object):
             >>> from sympy import *
             >>> x = Symbol('x')
             >>> sin(x).series(x, 5)
-            1/120*x**5+x-1/6*x**3
+            x+O(x**5)-1/6*x**3
         """
         from numbers import Rational
         from symbol import Symbol, Order
