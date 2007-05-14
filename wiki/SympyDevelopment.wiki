@@ -56,8 +56,9 @@ svn copy trunk branches/sympy-order
 }}}
 Work in this branch, commit normally and when you are ready to merge it with the trunk, do:
 {{{
-svn merge ....
+svn merge --dry-run https://sympy.googlecode.com/svn/branches/sympy-order https://sympy.googlecode.com/svn/trunk 
 }}}
+And if you are satisfied, run it without the --dry-run. It will update your branch to be consistent with the trunk. Then you check that everything works again. And then you just copy the changes from the branch into the trunk in the same way.
 
 More information about subversion can be found in the online book:
 
