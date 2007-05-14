@@ -220,6 +220,8 @@ class Pow(Basic):
                     return e.series(sym,n)
                 #self.base is kind of:  1/x^2 + 1/x + 1 + x + ...
                 e = self.base.series(sym,n)
+                if isinstance(e, Add):
+                    e = e.removeOrder()
                 ldeg = e.ldegree(sym)
                 #print "power:",e,self.exp,ldeg,e.eval()
                 s= ((e*sym**(-ldeg)).expand()**self.exp).series(sym,n+
