@@ -6,9 +6,11 @@
 
 == Debian ==
 
-Download the deb file from the project's homepage, and then install it with the command `"sudo dpkg -i python-sympy_$version_all.deb"`, where `$version` must be replaced with the version number. 
+{{{
+apt-get install python-sympy
+}}}
 
-Hopefully, we'll soon (couple of weeks) have this package in the official debian main repository.
+You can also download the deb package from the project's homepage, and then install it with the command `"sudo dpkg -i python-sympy_$version_all.deb"`, where `$version` must be replaced with the version number. 
 
 == Windows ==
 
@@ -37,6 +39,15 @@ Test that !SymPy works:
 cd sympy
 cd examples
 python basic.py
+}}}
+
+or using the example from the front page:
+{{{
+>>> from sympy import Symbol, cos
+>>> x=Symbol('x')
+>>> e=1/cos(x)
+>>> print e.series(x,10)
+1+1/2*x^2+5/24*x^4+61/720*x^6+277/8064*x^8+50521/3628800*x^10
 }}}
 
 To test the whole !SymPy package, run `python setup.py test` in the `sympy` directory. You will need `py.test` that is part of the [http://codespeak.net/py/current/doc/test.html py lib]. If you use Debian, install the `python-codespeak-lib` package.
