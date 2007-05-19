@@ -6,6 +6,9 @@
 
 == Debian ==
 
+!SymPy is in debian unstable: http://packages.debian.org/python-sympy
+
+so just add the unstable among your sources and
 {{{
 apt-get install python-sympy
 }}}
