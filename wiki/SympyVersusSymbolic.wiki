@@ -1,4 +1,5 @@
 #summary Compares implementation details of symbolic and sympy.
+#labels Phase-Design
 
 = Introduction =
 
@@ -21,3 +22,5 @@ The above comes from implementation. symbolic uses __new__ to create symbolic ob
 = Evaluating hash values =
 
 sympy calculates hash value of a symbolic object when its instance is created. symbolic calculates hash values when hash value is requested.  This saves operations when the code does not use hash values.
+
+Is there a reason why sympy cannot use Python hash calculations?
