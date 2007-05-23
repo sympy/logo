@@ -1,53 +1,39 @@
 """Base class for all objects in sympy"""
 
-class Basic(object):
+# used in canonical ordering of symbolic sequences
+# via compare method:
+ordering_of_classes = [
+    # singleton numbers
+    'Zero', 'One',
+    # numbers
+    'Integer','Rational',
+    # singleton symbols
+    # symbols
+    'Symbol'
+    # arithmetic operations
+    'Power', 'Mul', 'Add',
+    # singleton functions
+    # functions
+    # relational operations
+    'Equality', 'Inequality', 'StrictInequality', 'UnEquality'
+    ]
+
+from assumptions import AssumeMeths
+
+class Basic(AssumeMeths):
     """
     Base class for all objects in sympy
-    
-    possible assumptions are: 
-        
-        - is_real
-        
-        - is_commutative
-        
-        - is_number
-        
-        - is_bounded
-        
-    Assumptions can have 3 possible values: 
-    
-        - True, when we are sure about a property. For example, when we are
-        working only with real numbers:
-        >>> from sympy import *
-        >>> Symbol('x', real = True)
-        x
-        
-        - False
-        
-        - None (if you don't know if the property is True or false)
 
     """
 
     interactive = False        # defines the output of repr()
     singleton_classes = {}     # singleton class mapping
 
-    _default_assumption_names = ['is_real',
-                                 'is_integer',
-                                 'is_commutative',
-                                 'is_bounded',
-                                 'is_dummy']
-
     def __new__(cls, *args, **kwargs):
         obj = object.__new__(cls)
-        assumptions = kwargs.copy()
-        for a in assumptions.keys():
-            if a not in cls._default_assumption_names:
-                raise NotImplementedError('Assumption %r' % (a))
-        for a in cls._default_assumption_names:
-            if not assumptions.has_key(a):
-                assumptions[a] = None
+        obj._assumptions = kwargs.copy()
         obj._mhash = None
-        obj._args = []
+        obj._args = args
         return obj
 
     def __hash__(self):
@@ -59,7 +45,11 @@ class Basic(object):
     def _hashable_content(self):
         # If class defines additional attributes, like name in Symbol,
         # then this method should be updated accordingly.
-        return tuple(self._args)
+        return self._args
+
+    @property
+    def precedence(self):
+        return 0
 
     def tostr(self, level=0):
         return self.torepr()
@@ -83,13 +73,6 @@ class Basic(object):
 
     def __getitem__(self, iter):
         return self._args[iter]
-
-    def __getattr__(self, name):
-        if self._assumptions.has_key(name):
-            return self._assumptions[name]
-        else:
-            raise AttributeError("'%s' object has no attribute '%s'"%
-                                 (self.__class__.__name__, name))
 
     @staticmethod
     def sympify(a):
@@ -146,6 +129,10 @@ class Singleton(Basic):
     """
 
     def __new__(cls,*args,**kws):
+        # if you need to overload __new__, then
+        # use the same code as below to ensure
+        # that only one instance of Singleton
+        # class is created.
         obj = Singleton.__dict__.get(cls.__name__)
         if obj is None:
             obj = Basic.__new__(cls,*args,**kws)

@@ -1,7 +1,8 @@
 
 from basic import Basic
+from methods import RelMeths, ArithMeths
 
-class Symbol(Basic):
+class Symbol(Basic, RelMeths, ArithMeths):
     """
     Assumptions::
        is_real = True
@@ -32,7 +33,10 @@ class Symbol(Basic):
 
         """
         assert not args,`args`
-        obj = Basic.__new__(cls, name, is_commutative=commutative, is_dummy=dummy, is_real=dummy,
+        obj = Basic.__new__(cls,
+                            commutative=commutative,
+                            dummy=dummy,
+                            real=real,
                             **kwargs)
         if dummy:
             Symbol.dummycount += 1
@@ -43,10 +47,12 @@ class Symbol(Basic):
     def _hashable_content(self):
         return (self.name,)
 
-    def __repr__(self):
+    def tostr(self, level=0):
+        return self.name
+
+    def torepr(self):
         return '%s(%r)' % (self.__class__.__name__, self.name)
 
-    def __str__(self):
-        return self.name
+
 
 Basic.Symbol = Symbol
