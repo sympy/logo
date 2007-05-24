@@ -1,7 +1,9 @@
 """Base class for all objects in sympy"""
 
+import decimal
+
 # used in canonical ordering of symbolic sequences
-# via compare method:
+# via __cmp__ method:
 ordering_of_classes = [
     # singleton numbers
     'Zero', 'One',
@@ -29,9 +31,9 @@ class Basic(AssumeMeths):
     interactive = False        # defines the output of repr()
     singleton_classes = {}     # singleton class mapping
 
-    def __new__(cls, *args, **kwargs):
+    def __new__(cls, *args, **assumptions):
         obj = object.__new__(cls)
-        obj._assumptions = kwargs.copy()
+        obj._assumptions = assumptions.copy()
         obj._mhash = None
         obj._args = args
         return obj
@@ -73,6 +75,53 @@ class Basic(AssumeMeths):
 
     def __getitem__(self, iter):
         return self._args[iter]
+
+    def __nonzero__(self):
+        # avoid using constructs like:
+        #   a = Symbol('a')
+        #   if a: ..
+        raise AssertionError("only Equality|Unequality can define __nonzero__ method")
+
+    def compare_classes(self, other):
+        n1 = self.__class__.__name__
+        n2 = other.__class__.__name__
+        c = cmp(n1,n2)
+        if not c: return 0
+        try:
+            i1 = ordering_of_classes.index(n1)
+        except ValueError:
+            print 'Add',n1,'to basic.ordering_of_classes list'
+            return c
+        try:
+            i2 = ordering_of_classes.index(n2)
+        except ValueError:
+            print 'Add',n2,'to basic.ordering_of_classes list'
+            return c
+        return cmp(i1,i2)
+
+    def __cmp__(self, other):
+        """
+        Return -1,0,1 if the object is smaller, equal, or greater than other
+        (not always in mathematical sense).
+        If the object is of different type from other then their classes
+        are ordered according to sorted_classes list.
+        """
+        # all redefinitions of __cmp__ method should start with the
+        # following three lines:
+        if self is other: return 0
+        c = self.compare_classes(other)
+        if c: return c
+        #
+        #if self.__class__.__cmp__ is not Basic.__cmp__:
+        #    return self.__cmp__(other)
+        st = self._hashable_content()
+        ot = other._hashable_content()
+        c = cmp(len(st),len(ot))
+        if c: return c
+        for l,r in zip(st,ot)[1:]:
+            c = cmp(l, r)
+            if c: return c
+        return 0
 
     @staticmethod
     def sympify(a):

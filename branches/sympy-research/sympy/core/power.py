@@ -30,6 +30,9 @@ class Pow(Basic, ArithMeths, RelMeths):
                 return Pow(self.base, self.exp * other)
         return
 
+    def _calc_commutative(self):
+        return self.base.is_commutative and self.exp.is_commutative
+
     def tostr(self, level=0):
         precedence = self.precedence
         r = '%s ** %s' % (self.base.tostr(precedence),

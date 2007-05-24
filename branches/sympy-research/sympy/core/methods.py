@@ -77,7 +77,7 @@ class RelMeths(object):
     def __eq__(self, other):
         return Basic.Equality(self, other)
     def __ne__(self, other):
-        return Basic.Not(self == other)
+        return Basic.Unequality(self, other)
     def __lt__(self, other):
         return Basic.StrictInequality(self, other)
     def __gt__(self, other):
@@ -89,10 +89,6 @@ class RelMeths(object):
 
 class NoRelMeths(object):
 
-    def __eq__(self, other):
-        raise TypeError, _no_binary_operation('==', self, other)
-    def __ne__(self, other):
-        raise TypeError, _no_binary_operation('!=', self, other)
     def __lt__(self, other):
         raise TypeError, _no_binary_operation('<', self, other)
     def __gt__(self, other):
@@ -101,8 +97,10 @@ class NoRelMeths(object):
         raise TypeError, _no_binary_operation('<=', self, other)
     def __ge__(self, other):
         raise TypeError, _no_binary_operation('>=', self, other)
-
-
+    def __eq__(self, other):
+        return not bool(cmp(self, other))
+    def __ne__(self, other):
+        return bool(cmp(self, other))
 
 Basic.ArithMeths = ArithMeths
 Basic.NoArithMeths = NoArithMeths

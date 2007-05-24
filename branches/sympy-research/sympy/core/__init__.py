@@ -8,3 +8,6 @@ from basic import Basic
 from symbol import Symbol
 from numbers import Rational, Integer
 from power import Pow
+from mul import Mul
+from add import Add
+from relational import Equality

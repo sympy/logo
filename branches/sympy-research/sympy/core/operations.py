@@ -9,35 +9,34 @@ class AssocOp(Basic):
     Base class for Add and Mul.
     """
 
-    commutative = None
+    is_commutative = None
     
     def __new__(cls, *args):
         if len(args)==0:
-            return Basic.sympify(cls.identity)
+            return cls.identity
         if len(args)==1:
             return args[0]
         c_part, nc_part = cls.flatten(map(Basic.sympify, args))
-        obj = Basic.__new__(cls, *(c_part + nc_part))
+        if len(c_part) + len(nc_part) <= 1:
+            if c_part: return c_part[0]
+            if nc_part: return nc_part[0]
+            return cls.identity
+        obj = Basic.__new__(cls, commutative=not nc_part, *(c_part + nc_part))
         return obj
 
-    @property
-    @staticmethod
-    def identity():
-        raise NotImplementedError,"%s.identity not defined" % (self.__class__.__name__)
+    @classmethod
+    def identity(cls):
+        if cls is Basic.Mul: return Basic.One()
+        raise NotImplementedError,"identity not defined for class %r" % (cls.__name__)
 
-    @classcmethod
+    @classmethod
     def flatten(cls, seq):
-        # apply associativity and separate commutative and noncommutative parts
+        # apply associativity, no commutativity property is used
         new_seq = []
-        commutative_part = []
-        noncommutative_part = []
         while seq:
             o = seq.pop(0)
             if o.__class__ is cls: # classes must match exactly
-                seq = o[:] + seq
+                seq = list(o[:]) + seq
                 continue
-            if o.is_commutative:
-                commutative_part.append(o)
-            else:
-                non_commutative_part.append(o)
-        return commutative_part, noncommutative_part
+            new_seq.append(o)
+        return [], new_seq

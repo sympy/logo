@@ -76,6 +76,17 @@ class Rational(Number):
     def _calc_negative(self): return self.p < 0
     def _calc_nonnegative(self): return self.p >= 0
 
+    def __mul__(self, other):
+        other = Basic.sympify(other)
+        if isinstance(other, Rational):
+            return Rational(self.p * other.p, self.q * other.q)
+        return Number.__mul__(self, other)
+
+    def __add__(self, other):
+        other = Basic.sympify(other)
+        if isinstance(other, Rational):
+            return Rational(self.p * other.q + self.q * other.p, self.q * other.q)
+        return Number.__add__(self, other)
 
 class Integer(Rational):
 
@@ -98,6 +109,14 @@ class Integer(Rational):
         if self.p < 0:
             return 40 # same as Add
         return 30
+
+    def tostr(self, level=0):
+        if self.precedence<=level:
+            return '(%s)' % (self.p)
+        return str(self.p)
+
+    def torepr(self):
+        return '%s(%r)' % (self.__class__.__name__, self.p)
 
 class Zero(Singleton, Integer):
 
