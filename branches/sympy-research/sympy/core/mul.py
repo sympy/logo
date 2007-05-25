@@ -79,7 +79,8 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             elif isinstance(e, Basic.Integer):
                 coeff, rest = b.as_coeff_term()
                 l = [s**e for s in rest]
-                l.reverse()
+                if e.is_negative:
+                    l.reverse()
                 return coeff**e * Mul(*l)
         return
 
