@@ -9,7 +9,6 @@ def _no_binary_operation(op, obj1, obj2):
     return 'binary operation `%s` not defined between %s and %s' \
            % (op, obj1.__class__.__name__, obj2.__class__.__name__)
 
-
 class ArithMeths(object):
 
     def __pos__(self):
@@ -102,7 +101,4 @@ class NoRelMeths(object):
     def __ne__(self, other):
         return bool(cmp(self, other))
 
-Basic.ArithMeths = ArithMeths
-Basic.NoArithMeths = NoArithMeths
-Basic.RelMeths = RelMeths
-Basic.NoRelMeths = NoRelMeths
+

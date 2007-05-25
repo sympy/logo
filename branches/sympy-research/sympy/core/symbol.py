@@ -1,8 +1,8 @@
 
-from basic import Basic
+from basic import Basic, Atom
 from methods import RelMeths, ArithMeths
 
-class Symbol(Basic, RelMeths, ArithMeths):
+class Symbol(Atom, RelMeths, ArithMeths):
     """
     Assumptions::
        is_real = True
@@ -55,6 +55,3 @@ class Symbol(Basic, RelMeths, ArithMeths):
     #def __mathml__(self): ..
     #def __latex__(self): ..
     #def __pretty__(self): ..
-
-
-Basic.Symbol = Symbol

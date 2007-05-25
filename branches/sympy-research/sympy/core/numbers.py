@@ -1,5 +1,5 @@
 
-from basic import Basic, Singleton
+from basic import Basic, Atom, Singleton
 from methods import RelMeths, ArithMeths
 
 def gcd(a, b):
@@ -10,7 +10,7 @@ def gcd(a, b):
     return b
 
 
-class Number(Basic, RelMeths, ArithMeths):
+class Number(Atom, RelMeths, ArithMeths):
     """Represents any kind of number in sympy.
 
 
@@ -128,10 +128,3 @@ class One(Singleton, Integer):
     p = 1
     q = 1
 
-Basic.Number = Number
-Basic.Rational = Rational
-Basic.Integer = Integer
-Basic.Zero = Zero
-Basic.One = One
-Basic.singleton_classes['Zero'] = Zero
-Basic.singleton_classes['One'] = One

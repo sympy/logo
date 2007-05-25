@@ -60,4 +60,3 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             c_part.insert(0, coeff)
         return c_part, nc_part
 
-Basic.Mul = Mul

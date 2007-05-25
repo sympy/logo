@@ -67,8 +67,3 @@ class Inequality(Relational):
 
     rel_op = '<='
 
-Basic.Relational = Relational
-Basic.Equality = Equality
-Basic.Unequality = Unequality
-Basic.Inequality = Inequality
-Basic.StrictInequality = StrictInequality

@@ -47,5 +47,3 @@ class Pow(Basic, ArithMeths, RelMeths):
         if self==old: return new
         #elif exp(self.exp * log(self.base)) == old: return new
         return self.base.subs(old, new) ** self.exp.subs(old, new)
-
-Basic.Pow = Pow

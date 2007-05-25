@@ -12,4 +12,4 @@ from mul import Mul
 from add import Add
 from relational import Equality
 
-Basic._initialize()
+print '__init__ imported'

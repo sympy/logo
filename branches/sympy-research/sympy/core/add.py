@@ -50,5 +50,3 @@ class Add(AssocOp, RelMeths, ArithMeths):
         if noncommutative:
             return [],newseq
         return newseq,[]
-        
-Basic.Add = Add

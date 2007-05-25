@@ -69,21 +69,6 @@ class AssumeMeths(object):
                       % (k, type(v))
         return
 
-    def __getattr__(self, name):
-        if name.startswith('is_'):
-            # default implementation for assumptions
-            name = name[3:]
-            assumptions = self._assumptions
-            try: return assumptions[name]
-            except KeyError: pass
-            if hasattr(self, '_calc_'+name):
-                a = assumptions[name] = getattr(self,'_calc_'+name)()
-                return a
-            return None
-        else:
-            raise AttributeError("'%s' object has no attribute '%s'"%
-                                 (self.__class__.__name__, name))
-
     @property
     def is_commutative(self):
         assumptions = self._assumptions
