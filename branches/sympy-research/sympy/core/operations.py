@@ -21,6 +21,7 @@ class AssocOp(Basic):
             if c_part: return c_part[0]
             if nc_part: return nc_part[0]
             return cls.identity()
+        c_part.sort(Basic.compare)
         obj = Basic.__new__(cls, commutative=not nc_part, *(c_part + nc_part))
         return obj
 
