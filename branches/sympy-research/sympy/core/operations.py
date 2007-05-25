@@ -42,12 +42,6 @@ class AssocOp(Basic):
             new_seq.append(o)
         return [], new_seq
 
-    def _coeff_rest(self):
-        coeff = self[0]
-        if isinstance(coeff, Basic.Number):
-            return coeff, self[1:]
-        return self.identity(), self[:]
-
     def subs(self, old, new):
         old = Basic.sympify(old)
         new = Basic.sympify(new)

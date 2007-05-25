@@ -97,8 +97,8 @@ class NoRelMeths(object):
     def __ge__(self, other):
         raise TypeError, _no_binary_operation('>=', self, other)
     def __eq__(self, other):
-        return not bool(cmp(self, other))
+        return self.compare(other)==0
     def __ne__(self, other):
-        return bool(cmp(self, other))
+        return self.compare(other)!=0
 
 

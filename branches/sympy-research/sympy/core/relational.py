@@ -50,14 +50,14 @@ class Equality(Relational):
     rel_op = '=='
 
     def __nonzero__(self):
-        return not (cmp(self.lhs, self.rhs))
+        return self.lhs.compare(self.rhs)==0
 
 class Unequality(Relational):
 
     rel_op = '!='
 
     def __nonzero__(self):
-        return bool(cmp(self.lhs, self.rhs))
+        return self.lhs.compare(self.rhs)!=0
 
 class StrictInequality(Relational):
 

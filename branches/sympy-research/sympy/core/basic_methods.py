@@ -14,7 +14,7 @@ ordering_of_classes = [
     # symbols
     'Symbol',
     # arithmetic operations
-    'Power', 'Mul', 'Add',
+    'Pow', 'Mul', 'Add',
     # singleton functions
     # functions
     # relational operations
@@ -122,9 +122,9 @@ class BasicMeths(AssumeMeths):
         # prevent using constructs like:
         #   a = Symbol('a')
         #   if a: ..
-        raise AssertionError("only Equality|Unequality can define __nonzero__ method")
+        raise AssertionError("only Equality|Unequality can define __nonzero__ method, %r" % (self.__class__))
 
-    def __cmp__(self, other):
+    def compare(self, other):
         """
         Return -1,0,1 if the object is smaller, equal, or greater than other
         (not always in mathematical sense).
@@ -141,8 +141,12 @@ class BasicMeths(AssumeMeths):
         ot = other._hashable_content()
         c = cmp(len(st),len(ot))
         if c: return c
-        for l,r in zip(st,ot)[1:]:
-            c = cmp(l, r)
+        Basic = self.__class__.Basic
+        for l,r in zip(st,ot):
+            if isinstance(l, Basic):
+                c = l.compare(r)
+            else:
+                c = cmp(l, r)
             if c: return c
         return 0
 

@@ -96,6 +96,18 @@ class Basic(BasicMeths):
             return Basic.sympify(new)
         return self
 
+    def as_base_exp(self):
+        # a -> b ** e
+        return self, Basic.One()
+
+    def as_coeff_term(self):
+        # a -> c * t
+        return Basic.One(), self
+
+    def as_coeff_factor(self):
+        # a -> c + f
+        return Basic.Zero(), self
+
 class Atom(Basic):
 
     precedence = 1000

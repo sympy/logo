@@ -54,7 +54,7 @@ class Add(AssocOp, RelMeths, ArithMeths):
         return newseq,[]
 
     def tostr(self, level=0):
-        coeff, rest = self._coeff_rest()
+        coeff, rest = self.as_coeff_factor()
         l = []
         precedence = self.precedence
         if not isinstance(coeff, Basic.Zero):
