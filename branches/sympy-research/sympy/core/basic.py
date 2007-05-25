@@ -5,8 +5,7 @@ from basic_methods import BasicMeths
 
 class Basic(BasicMeths):
     """
-    Base class for all objects in sympy
-
+    Base class for all objects in sympy.
     """
 
     def __new__(cls, *args, **assumptions):
@@ -98,13 +97,14 @@ class Basic(BasicMeths):
         return self
 
 class Atom(Basic):
-    pass
+
+    precedence = 1000
 
 class Singleton(Basic):
     """ Singleton object.
     """
 
-    def __new__(cls,*args,**assumptions):
+    def __new__(cls, *args, **assumptions):
         # if you need to overload __new__, then
         # use the same code as below to ensure
         # that only one instance of Singleton

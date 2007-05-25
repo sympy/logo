@@ -12,4 +12,5 @@ from mul import Mul
 from add import Add
 from relational import Equality
 
-print '__init__ imported'
+# set repr output to pretty output:
+Basic.interactive = True

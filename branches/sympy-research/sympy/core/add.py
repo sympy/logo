@@ -5,6 +5,8 @@ from methods import RelMeths, ArithMeths
 
 class Add(AssocOp, RelMeths, ArithMeths):
 
+    precedence = 40
+
     @classmethod
     def flatten(cls, seq):
         # apply associativity, all terms are commutable with respect to addition
@@ -50,3 +52,21 @@ class Add(AssocOp, RelMeths, ArithMeths):
         if noncommutative:
             return [],newseq
         return newseq,[]
+
+    def tostr(self, level=0):
+        coeff, rest = self._coeff_rest()
+        l = []
+        precedence = self.precedence
+        if not isinstance(coeff, Basic.Zero):
+            l.append(coeff.tostr(precedence))
+        for factor in rest:
+            f = factor.tostr(precedence)
+            if f.startswith('-'):
+                l.extend(['-',f[1:]])
+            else:
+                l.extend(['+',f])
+        if l[0]=='+': l.pop(0)
+        r = ' '.join(l)
+        if precedence<=level:
+            return '(%s)' % r
+        return r

@@ -4,6 +4,8 @@ from methods import ArithMeths, RelMeths
 
 class Pow(Basic, ArithMeths, RelMeths):
 
+    precedence = 60
+
     def __new__(cls, a, b):
         a = Basic.sympify(a)
         b = Basic.sympify(b)
@@ -27,6 +29,7 @@ class Pow(Basic, ArithMeths, RelMeths):
     def _eval_power(self, other):
         if isinstance(other, Basic.Number):
             if isinstance(self.exp, Basic.Number):
+                # (a ** 2) ** 3 -> a ** (2 * 3)
                 return Pow(self.base, self.exp * other)
         return
 

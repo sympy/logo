@@ -76,6 +76,8 @@ class Rational(Number):
     def _calc_negative(self): return self.p < 0
     def _calc_nonnegative(self): return self.p >= 0
 
+    def __neg__(self): return Rational(-self.p, self.q)
+
     def __mul__(self, other):
         other = Basic.sympify(other)
         if isinstance(other, Rational):
@@ -87,6 +89,22 @@ class Rational(Number):
         if isinstance(other, Rational):
             return Rational(self.p * other.q + self.q * other.p, self.q * other.q)
         return Number.__add__(self, other)
+
+    def _eval_power(b, e):
+        if isinstance(e, Number):
+            if e.is_negative:
+                if isinstance(-e, One):
+                    # (3/4)**-1 -> 4/3
+                    return Rational(b.q, b.p)
+                # (3/4)**-2 -> (4/3)**2
+                return Rational(b.q, b.p) ** (-e)
+            if isinstance(e, Integer):
+                # (4/3)**2 -> 4**2 / 3**2
+                return Rational(b.p ** e.p, b.q ** e.p)
+            if isinstance(e, Rational):
+                # (4/3)**(5/6) -> 4**(5/6) * 3**(-5/6)
+                return Integer(b.p) ** e * Integer(b.q) ** (-e)
+        return
 
 class Integer(Rational):
 
@@ -108,7 +126,7 @@ class Integer(Rational):
     def precedence(self):
         if self.p < 0:
             return 40 # same as Add
-        return 30
+        return Atom.precedence
 
     def tostr(self, level=0):
         if self.precedence<=level:
