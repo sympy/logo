@@ -44,7 +44,7 @@ class AssumeMeths(object):
         - None (if you don't know if the property is True or false)
     """
 
-    def assume(self, **kwds):
+    def assume(self, **assumptions):
         """ Modify object assumptions in-situ.
 
         Usage examples:
@@ -56,8 +56,9 @@ class AssumeMeths(object):
 
         User is responsible for setting reasonable assumptions.
         """
+        #XXX: ensure that assumptions like negative, positive, nonnegative, nonpositive are exclusive
         assumptions = self._assumptions
-        for k, v in kwds.items():
+        for k, v in assumptions.items():
             if isinstance(v, (bool, int, long)):
                 assumptions[k] = bool(v)
             elif v is None:

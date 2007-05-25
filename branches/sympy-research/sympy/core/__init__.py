@@ -11,3 +11,5 @@ from power import Pow
 from mul import Mul
 from add import Add
 from relational import Equality
+
+Basic._initialize()

@@ -1,26 +1,28 @@
 """Base class for all objects in sympy"""
 
 import decimal
+from assumptions import AssumeMeths
 
-# used in canonical ordering of symbolic sequences
+# used for canonical ordering of symbolic sequences
 # via __cmp__ method:
-ordering_of_classes = [
+ordering_of_classes = (
     # singleton numbers
     'Zero', 'One',
     # numbers
     'Integer','Rational',
     # singleton symbols
     # symbols
-    'Symbol'
+    'Symbol',
     # arithmetic operations
     'Power', 'Mul', 'Add',
     # singleton functions
     # functions
     # relational operations
-    'Equality', 'Inequality', 'StrictInequality', 'UnEquality'
-    ]
+    'Equality', 'Unequality', 'StrictInequality', 'Inequality', 
+    )
 
-from assumptions import AssumeMeths
+#
+atom_class_names = ('Symbol', 'Number')
 
 class Basic(AssumeMeths):
     """
@@ -30,6 +32,14 @@ class Basic(AssumeMeths):
 
     interactive = False        # defines the output of repr()
     singleton_classes = {}     # singleton class mapping
+
+    @staticmethod
+    def _initialize():
+        # initialize Basic attributes, call after all modules
+        # are imported.
+        Basic.atom_classes = tuple([getattr(Basic, n) for n in atom_class_names])
+
+        return
 
     def __new__(cls, *args, **assumptions):
         obj = object.__new__(cls)
@@ -82,7 +92,7 @@ class Basic(AssumeMeths):
         #   if a: ..
         raise AssertionError("only Equality|Unequality can define __nonzero__ method")
 
-    def compare_classes(self, other):
+    def _compare_classes(self, other):
         n1 = self.__class__.__name__
         n2 = other.__class__.__name__
         c = cmp(n1,n2)
@@ -109,11 +119,9 @@ class Basic(AssumeMeths):
         # all redefinitions of __cmp__ method should start with the
         # following three lines:
         if self is other: return 0
-        c = self.compare_classes(other)
+        c = self._compare_classes(other)
         if c: return c
         #
-        #if self.__class__.__cmp__ is not Basic.__cmp__:
-        #    return self.__cmp__(other)
         st = self._hashable_content()
         ot = other._hashable_content()
         c = cmp(len(st),len(ot))
@@ -172,6 +180,38 @@ class Basic(AssumeMeths):
             raise NotImplementedError("parsing string")
         raise ValueError("%r must be a subclass of Basic" % (a))
 
+    def atoms(self, type=None):
+        """Returns the atoms that form current object. 
+        
+        Example: 
+        >>> from sympy import *
+        >>> x = Symbol('x')
+        >>> y = Symbol('y')
+        >>> (x+y**2+ 2*x*y).atoms()
+        set([2, x, y])
+        
+        You can also filter the results by a given type of object
+        >>> (x+y+2+y**2*sin(x)).atoms(type=Symbol)
+        set([x, y])
+        
+        >>> (x+y+2+y**2*sin(x)).atoms(type=Number)
+        set([2])
+        """
+        atom_classes = Basic.atom_classes
+        result = set()
+        if isinstance(self, atom_classes):
+            if type is None or isinstance(self, type):
+                result.add(self)
+        else:
+            for obj in self:
+                result = result.union(obj.atoms(type=type))
+        return result
+
+    def subs(self, old, new):
+        """Substitutes an expression old -> new."""
+        if self==old:
+            return Basic.sympify(new)
+        return self
 
 class Singleton(Basic):
     """ Singleton object.
@@ -189,3 +229,4 @@ class Singleton(Basic):
         return obj
 
 Basic.Singleton = Singleton
+

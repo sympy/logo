@@ -41,4 +41,11 @@ class Pow(Basic, ArithMeths, RelMeths):
             return '(%s)' % (r)
         return r
 
+    def subs(self, old, new):
+        old = Basic.sympify(old)
+        new = Basic.sympify(new)
+        if self==old: return new
+        #elif exp(self.exp * log(self.base)) == old: return new
+        return self.base.subs(old, new) ** self.exp.subs(old, new)
+
 Basic.Pow = Pow

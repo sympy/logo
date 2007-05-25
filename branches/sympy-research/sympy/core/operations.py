@@ -40,3 +40,8 @@ class AssocOp(Basic):
                 continue
             new_seq.append(o)
         return [], new_seq
+
+    def subs(self, old, new):
+        old = Basic.sympify(old)
+        new = Basic.sympify(new)
+        return self.__class__(*[s.subs(old, new) for s in self])

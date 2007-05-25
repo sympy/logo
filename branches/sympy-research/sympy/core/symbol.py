@@ -20,7 +20,7 @@ class Symbol(Basic, RelMeths, ArithMeths):
     dummycount = 0
 
     def __new__(cls, name, commutative=True, dummy=False, real=False, 
-                *args, **kwargs):
+                **assumptions):
         """if dummy == True, then this Symbol is totally unique, i.e.::
         
         >>> (Symbol("x") == Symbol("x")) == True
@@ -32,12 +32,11 @@ class Symbol(Basic, RelMeths, ArithMeths):
         False
 
         """
-        assert not args,`args`
         obj = Basic.__new__(cls,
                             commutative=commutative,
                             dummy=dummy,
                             real=real,
-                            **kwargs)
+                            **assumptions)
         if dummy:
             Symbol.dummycount += 1
             name + '__' + str(Symbol.dummycount)
@@ -53,6 +52,9 @@ class Symbol(Basic, RelMeths, ArithMeths):
     def torepr(self):
         return '%s(%r)' % (self.__class__.__name__, self.name)
 
+    #def __mathml__(self): ..
+    #def __latex__(self): ..
+    #def __pretty__(self): ..
 
 
 Basic.Symbol = Symbol

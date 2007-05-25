@@ -50,7 +50,7 @@ class Equality(Relational):
     rel_op = '=='
 
     def __nonzero__(self):
-        return not bool(cmp(self.lhs, self.rhs))
+        return not (cmp(self.lhs, self.rhs))
 
 class Unequality(Relational):
 
@@ -67,6 +67,7 @@ class Inequality(Relational):
 
     rel_op = '<='
 
+Basic.Relational = Relational
 Basic.Equality = Equality
 Basic.Unequality = Unequality
 Basic.Inequality = Inequality
