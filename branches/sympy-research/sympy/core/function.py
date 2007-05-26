@@ -183,6 +183,21 @@ class Lambda(Function):
 
         (f**g)(x) -> f(g(x))
         """
-        raise NotImplementedError
+        if b.nofargs != 1:
+            raise TypeError("composition of functions with more than 1 argument is not supported")
+        if isinstance(e, Function):
+            if e.nofargs != 1:
+                raise TypeError("composition of functions with more than 1 argument is not supported")
+            a = b.args[0]
+            d = a.as_dummy()
+            return Lambda(b.body.subs(a,e(d)),d)
+        if isinstance(e, Basic.Integer):
+            if e.is_positive:
+                r = b
+                for i in range(e.p-1):
+                    r = r**b
+                return r
+        return
+
 
 Basic.singleton['exp'] = Exp    

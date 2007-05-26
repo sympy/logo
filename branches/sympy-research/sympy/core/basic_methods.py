@@ -15,8 +15,14 @@ ordering_of_classes = [
     'Symbol',
     # arithmetic operations
     'Pow', 'Mul', 'Add',
+    # function values
+    'Apply',
     # singleton functions
-    # functions
+    'Exp',
+    # undefined functions
+    'Function',
+    # anonymous functions
+    'Lambda',
     # relational operations
     'Equality', 'Unequality', 'StrictInequality', 'Inequality', 
     ]
