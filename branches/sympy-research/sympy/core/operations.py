@@ -2,7 +2,8 @@
 from basic import Basic
 
 class AssocOp(Basic):
-    """ Associative operations, checks for commutativity.
+    """ Associative operations, can separate noncommutative and
+    commutative parts.
     
     (a op b) op c == a op (b op c) == a op b op c.
     

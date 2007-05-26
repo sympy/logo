@@ -12,7 +12,7 @@ class Basic(BasicMeths):
         obj = object.__new__(cls)
         obj._assumptions = assumptions.copy()
         obj._mhash = None # will be set by BasicMeths.__hash__ method.
-        obj._args = args
+        obj._args = args  # all items in args must be Basic objects
         return obj
 
     @staticmethod
@@ -100,13 +100,13 @@ class Basic(BasicMeths):
         # a -> b ** e
         return self, Basic.One()
 
-    def as_coeff_term(self):
+    def as_coeff_terms(self):
         # a -> c * t
-        return Basic.One(), self
+        return Basic.One(), [self]
 
-    def as_coeff_factor(self):
+    def as_coeff_factors(self):
         # a -> c + f
-        return Basic.Zero(), self
+        return Basic.Zero(), [self]
 
 class Atom(Basic):
 

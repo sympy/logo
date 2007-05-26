@@ -72,12 +72,12 @@ class Mul(AssocOp, RelMeths, ArithMeths):
                 if isinstance(e, Basic.Integer):
                     # (a*b)**2 -> a**2 * b**2
                     return Mul(*[s**e for s in b])
-                coeff, rest = b.as_coeff_term()
+                coeff, rest = b.as_coeff_terms()
                 if not isinstance(coeff, Basic.One):
                     # (2*a)**3 -> 2**3 * a**3
                     return coeff**e * Mul(*[s**e for s in rest])
             elif isinstance(e, Basic.Integer):
-                coeff, rest = b.as_coeff_term()
+                coeff, rest = b.as_coeff_terms()
                 l = [s**e for s in rest]
                 if e.is_negative:
                     l.reverse()
@@ -86,14 +86,14 @@ class Mul(AssocOp, RelMeths, ArithMeths):
 
     @property
     def precedence(self):
-        coeff, rest = self.as_coeff_term()
+        coeff, rest = self.as_coeff_terms()
         if coeff.is_negative: return 40 # same as default Add
         return 50
 
     def tostr(self, level = 0):
         delim = ' * '
         precedence = self.precedence
-        coeff, rest = self.as_coeff_term()
+        coeff, rest = self.as_coeff_terms()
         r = delim.join([s.tostr(precedence) for s in rest])
         if isinstance(coeff, Basic.One):
             pass
@@ -107,8 +107,8 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             return '(%s)' % r
         return r
 
-    def as_coeff_term(self):
+    def as_coeff_terms(self):
         coeff = self[0]
         if isinstance(coeff, Basic.Number):
-            return coeff, Mul(*self[1:])
+            return coeff, self[1:]
         return Basic.One(), self

@@ -27,9 +27,9 @@ class MetaBasicMeths(type):
 
     classnamespace = {}
     interactive = False        # defines the output of repr()
+    singleton = {}
 
     def __init__(cls,*args,**kws):
-        print 'initializing',cls
         MetaBasicMeths.classnamespace[cls.__name__] = cls
         type.__init__(cls, *args, **kws)
         

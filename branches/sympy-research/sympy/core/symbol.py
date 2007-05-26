@@ -39,18 +39,27 @@ class Symbol(Atom, RelMeths, ArithMeths):
                             **assumptions)
         if dummy:
             Symbol.dummycount += 1
-            name + '__' + str(Symbol.dummycount)
+            obj.dummy_index = Symbol.dummycount
         obj.name = name
         return obj
 
     def _hashable_content(self):
+        if self.is_dummy:
+            return (self.name, self.dummy_index)
         return (self.name,)
 
     def tostr(self, level=0):
+        if self.is_dummy:
+            return '_' + self.name
         return self.name
 
     def torepr(self):
+        if self.is_dummy:
+            return '%s(%r, dummy=True)' % (self.__class__.__name__, self.name)
         return '%s(%r)' % (self.__class__.__name__, self.name)
+
+    def as_dummy(self):
+        return self.__class__(self.name, dummy=True)
 
     #def __mathml__(self): ..
     #def __latex__(self): ..
