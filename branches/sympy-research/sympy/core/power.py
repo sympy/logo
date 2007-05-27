@@ -53,3 +53,45 @@ class Pow(Basic, ArithMeths, RelMeths):
 
     def as_base_exp(self):
         return self.base, self.exp
+
+    def expand(self):
+        """
+        (a*b)**n -> a**n * b**n
+        (a+b+..) ** n -> a**n + n*a**(n-1)*b + .., n is positive integer
+        """
+        base = self.base.expand()
+        exponent = self.exp.expand()
+        result = base ** exponent
+        if isinstance(result, Pow):
+            base = result.base
+            exponent = result.exp
+        else:
+            return result
+        if isinstance(exponent, Basic.Integer):
+            if isinstance(base, Basic.Mul):
+                return Basic.Mul(*[t**exponent for t in base])
+            if exponent.is_positive and isinstance(base, Basic.Add):
+                ## Consider polynomial
+                ##   P(x) = sum_{i=0}^n p_i x^k
+                ## and its m-th exponent
+                ##   P(x)^m = sum_{k=0}^{m n} a(m,k) x^k
+                ## The coefficients a(m,k) can be computed using the
+                ## J.C.P. Miller Pure Recurrence [see D.E.Knuth,
+                ## Seminumerical Algorithms, The art of Computer                
+                ## Programming v.2, Addison Wesley, Reading, 1981;]:
+                ##  a(m,k) = 1/(k p_0) sum_{i=1}^n p_i ((m+1)i-k) a(m,k-i),
+                ## where a(m,0) = p_0^m.
+                m = int(exponent)
+                p = base[:]
+                n = len(p)-1
+                cache = {0: p[0] ** m}
+                p0 = [t/p[0] for t in p]
+                for k in range(1, m * n + 1):
+                    a = []
+                    for i in range(1,n+1):
+                        if i<=k:
+                            a.append(Basic.Mul(Basic.Rational((m+1)*i-k, k),
+                                               p0[i], cache[k-i]).expand())
+                    cache[k] = Basic.Add(*a)
+                return Basic.Add(*cache.values())
+        return result

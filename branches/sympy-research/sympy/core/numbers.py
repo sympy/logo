@@ -1,4 +1,7 @@
 
+import math
+import decimal
+import decimal_math
 from basic import Basic, Atom, Singleton
 from methods import RelMeths, ArithMeths
 
@@ -23,6 +26,162 @@ class Number(Atom, RelMeths, ArithMeths):
     Rational(1) + sqrt(Rational(2))
     """
     is_commutative = True
+
+    def __new__(cls, *obj):
+        if len(obj)==1: obj=obj[0]
+        if isinstance(obj, (int, long)):
+            return Integer(obj)
+        if isinstance(obj,tuple) and len(obj)==2:
+            return Rational(*obj)
+        if isinstance(obj, (str,float,decimal.Decimal)):
+            return Real(obj)
+        if isinstance(obj, Number):
+            return obj
+        raise TypeError("expected str|int|long|float|Decimal|Number object but got %r" % (obj))
+
+    def eval(self):
+        return self
+
+    def evalf(self):
+        return Real(self._as_decimal())
+
+    def __float__(self):
+        return float(self._as_decimal())
+
+    def _as_decimal(self):
+        raise NotImplementedError('%s needs ._as_decimal() method' % (self.__class__.__name__))
+
+decimal_to_Number_cls = {
+    decimal.Decimal('0').as_tuple():'Zero',
+    decimal.Decimal('1').as_tuple():'One',
+    decimal.Decimal('-1').as_tuple():'NegativeOne',
+    decimal.Decimal('Infinity').as_tuple():'Infinity',
+    decimal.Decimal('-Infinity').as_tuple():'NegativeInfinity',
+    decimal.Decimal('NaN').as_tuple():'NaN',
+    }
+
+
+class Real(Number):
+    """Represents a floating point number. It is capable of representing
+    arbitrary-precision floating-point numbers
+
+    Usage:
+
+    Real(3.5)   .... 3.5 (the 3.5 was converted from a python float)
+    Real("3.0000000000000005")
+    
+    """
+    is_real = True
+    is_commutative = True
+    
+    def __new__(cls, num):
+        if isinstance(num, (str, int, long)):
+            num = decimal.Decimal(num)
+        elif isinstance(num, float):
+            num = Real.float_to_decimal(num)
+        if isinstance(num, decimal.Decimal):
+            singleton_cls_name = decimal_to_Number_cls.get(num.as_tuple(), None)
+            if singleton_cls_name is not None:
+                return getattr(Basic, singleton_cls_name)()
+            obj = Basic.__new__(cls)
+            obj.num = num
+            return obj
+        raise TypeError("expected str|int|long|float|Decimal but got %r" % (num))
+
+    @staticmethod
+    def float_to_decimal(f):
+        "Convert a floating point number to a Decimal with no loss of information"
+        # Transform (exactly) a float to a mantissa (0.5 <= abs(m) < 1.0) and an
+        # exponent.  Double the mantissa until it is an integer.  Use the integer
+        # mantissa and exponent to compute an equivalent Decimal.  If this cannot
+        # be done exactly, then retry with more precision.
+
+        mantissa, exponent = math.frexp(f)
+        while mantissa != int(mantissa):
+            mantissa *= 2.0
+            exponent -= 1
+        mantissa = int(mantissa)
+
+        oldcontext = decimal.getcontext()
+        decimal.setcontext(decimal.Context(traps=[decimal.Inexact]))
+        try:
+            while True:
+                try:
+                    return mantissa * decimal.Decimal(2) ** exponent
+                except decimal.Inexact:
+                    decimal.getcontext().prec += 1
+        finally:
+            decimal.setcontext(oldcontext)
+
+    def _hashable_content(self):
+        return (self.num,)
+
+    def tostr(self, level=0):
+        r = str(self.num.normalize())
+        if self.precedence<=level:
+            return '(%s)' % (r)
+        return r
+
+    def torepr(self):
+        return '%s(%r)' % (self.__class__.__name__, str(self.num))
+
+    def _calc_positive(self): return self.num.as_tuple()[0] == 0
+    def _calc_nonpositive(self): return self.num.as_tuple()[0] == 1
+    def _calc_negative(self): return self.num.as_tuple()[0] == 1
+    def _calc_nonnegative(self): return self.num.as_tuple()[0] == 0
+
+    def evalf(self):
+        return self
+
+    def _as_decimal(self):
+        return self.num
+
+    def __neg__(self):
+        return Real(-self.num)
+
+    def __mul__(self, other):
+        other = Basic.sympify(other)
+        if isinstance(other, Number):
+            return Real(self.num * other._as_decimal())
+        return Number.__mul__(self, other)
+
+    def __add__(self, other):
+        other = Basic.sympify(other)
+        if isinstance(other, Number):
+            return Real(self.num + other._as_decimal())
+        return Number.__add__(self, other)
+
+    def _eval_power(b, e):
+        """
+        b is Real but not equal to rationals, integers, 0.5, oo, -oo, nan
+        e is symbolic object but not equal to 0, 1
+
+        (-p) ** r -> exp(r * log(-p)) -> exp(r * (log(p) + I*Pi)) ->
+                  -> p ** r * (sin(Pi*r) + cos(Pi*r) * I)
+        """
+        if isinstance(e, Number):
+            if isinstance(e, Integer):
+                e = e.p
+            else:
+                e = e._as_decimal()
+            if b.is_negative:
+                m = decimal_math.pow(-b.num, e)
+                a = decimal_math.pi() * e
+                s = m * decimal_math.sin(a)
+                c = m * decimal_math.cos(a)
+                return Real(s) + Real(c) * ImaginaryUnit()
+            return Real(decimal_math.pow(b.num, e))
+        return
+
+    def __abs__(self):
+        return Real(abs(self.num))
+
+    def __int__(self):
+        return int(self.num)
+
+    def __float__(self):
+        return float(self.num)
+
 
 class Rational(Number):
     """Represents integers and rational numbers (p/q) of any size.
@@ -117,6 +276,15 @@ class Rational(Number):
                 # (4/3)**(5/6) -> 4**(5/6) * 3**(-5/6)
                 return Integer(b.p) ** e * Integer(b.q) ** (-e)
         return
+
+    def _as_decimal(self):
+        return decimal.Decimal(self.p) / decimal.Decimal(self.q)
+
+    def __abs__(self):
+        return Rational(abs(self.p), self.q)
+
+    def __int__(self):
+        return int(self.p//self.q)
 
 class Integer(Rational):
 
@@ -258,6 +426,8 @@ class Exp1(NumberSymbol):
     def tostr(self, level=0):
         return 'E'
 
+    def evalf(self):
+        return Real(decimal_math.e())
 
 class Pi(NumberSymbol):
     is_real = True
@@ -266,6 +436,9 @@ class Pi(NumberSymbol):
 
     def tostr(self, level=0):
         return 'Pi'
+
+    def evalf(self):
+        return Real(decimal_math.pi())
 
 class ImaginaryUnit(Singleton, Atom, RelMeths, ArithMeths):
 

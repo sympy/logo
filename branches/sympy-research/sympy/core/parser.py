@@ -677,7 +677,7 @@ class Float_Literal(NumberBase):
     match = staticmethod(match)
 
     def tosymbolic(self, commutative=True):
-        return Basic.Number(self.items[0])
+        return Basic.Real(self.items[0])
 
 class Logical_Literal(NumberBase):
     """
