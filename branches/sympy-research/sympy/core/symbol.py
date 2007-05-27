@@ -32,6 +32,9 @@ class Symbol(Atom, RelMeths, ArithMeths):
         False
 
         """
+        obj = Basic.singleton.get(name)
+        if obj is not None:
+            return obj()
         obj = Basic.__new__(cls,
                             commutative=commutative,
                             dummy=dummy,
@@ -40,6 +43,7 @@ class Symbol(Atom, RelMeths, ArithMeths):
         if dummy:
             Symbol.dummycount += 1
             obj.dummy_index = Symbol.dummycount
+
         obj.name = name
         return obj
 
@@ -62,6 +66,9 @@ class Symbol(Atom, RelMeths, ArithMeths):
         assumptions = self._assumptions.copy()
         assumptions['dummy'] = True
         return self.__class__(self.name, **assumptions)
+
+    def __call__(self, *args, **assumptions):
+        return Basic.Function(self.name, nofargs=len(args))(*args, **assumptions)
 
     #def __mathml__(self): ..
     #def __latex__(self): ..

@@ -300,7 +300,7 @@ class ImaginaryUnit(Singleton, Atom, RelMeths, ArithMeths):
                 if e==1: return ImaginaryUnit()
                 if e==2: return -One()
                 return -ImaginaryUnit()
-            return -One() ** (e/2)
+            return -One() ** (e * Half())
         return
 
     def as_base_exp(self):
@@ -310,3 +310,4 @@ Basic.singleton['E'] = Exp1
 Basic.singleton['Pi'] = Pi
 Basic.singleton['I'] = ImaginaryUnit
 Basic.singleton['oo'] = Infinity
+Basic.singleton['nan'] = NaN

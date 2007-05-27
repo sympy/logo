@@ -61,7 +61,7 @@ class Basic(BasicMeths):
             real, imag = Basic.sympify(a.real), Basic.sympify(a.imag)
             return real + Basic.I * imag
         if isinstance(a, str):
-            raise NotImplementedError("parsing string")
+            return parser.Expr(a).tosymbolic()
         raise ValueError("%r must be a subclass of Basic" % (a))
 
     def atoms(self, type=None):
@@ -127,4 +127,4 @@ class Singleton(Basic):
             setattr(Singleton, cls.__name__, obj)
         return obj
 
-
+import parser

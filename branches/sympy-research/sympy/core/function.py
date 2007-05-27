@@ -82,12 +82,31 @@ class Apply(Basic, ArithMeths, RelMeths):
 
 
 class Function(Basic, ArithMeths, NoRelMeths):
-    """ Base class for function objects.
+    """ Base class for function objects, represents also undefined functions.
     """
 
     nofargs = None
     args = None
     body = None
+
+    def __new__(cls, name, nofargs = None, **assumptions):
+        obj = Basic.singleton.get(name)
+        if obj is not None:
+            return obj()
+        obj = Basic.__new__(cls, **assumptions)
+        obj.name = name
+        if nofargs is not None:
+            obj.nofargs = nofargs
+        return obj
+
+    def _hashable_content(self):
+        return (self.name, self.nofargs)
+
+    def tostr(self, level=0):
+        return self.name
+
+    def torepr(self):
+        return '%s(%r, nofargs = %r)' % (self.__class__.__name__, self.name, self.nofargs)
 
     def __call__(self, *args, **assumptions):
         n = self.nofargs
@@ -111,13 +130,13 @@ class DefinedFunction(Function, Singleton, Atom):
     """ Base class for defined functions.
     """
     def __new__(cls, **assumptions):
-        return Basic.__new__(cls,**assumptions)
-
-    def tostr(self, level=0):
-        return self.__class__.__name__.lower()
+        obj = Basic.__new__(cls,**assumptions)
+        obj.name = obj.__class__.__name__.lower()
+        return obj
 
     def torepr(self):
         return '%s()' % (self.__class__.__name__)
+
 
 class Exp(DefinedFunction):
     """ Exp() -> exp
@@ -147,6 +166,7 @@ class Lambda(Function):
     Lambda instance has the same assumptions as its body.
     """
     precedence = 1
+    name = None
 
     def __new__(cls, expr, *args):
         expr = Basic.sympify(expr)
@@ -160,7 +180,8 @@ class Lambda(Function):
             d = a.as_dummy()
             expr = expr.subs(a, d)
             dummy_args.append(d)
-        return Function.__new__(cls, expr, *dummy_args, **expr._assumptions)
+        obj = Basic.__new__(cls, expr, *dummy_args, **expr._assumptions)
+        return obj
 
     @property
     def nofargs(self):
