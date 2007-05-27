@@ -116,4 +116,26 @@ class Mul(AssocOp, RelMeths, ArithMeths):
         coeff = self[0]
         if isinstance(coeff, Basic.Number):
             return coeff, self[1:]
-        return Basic.One(), self
+        return Basic.One(), self[:]
+
+    def expand(self):
+        """
+        (a + b + ..) * c -> a * c + b * c + ..
+        """
+        seq = []
+        for t in self:
+            t = t.expand()
+            if not seq:
+                if isinstance(t, Basic.Add):
+                    seq = list(t)
+                else:
+                    seq.append(t)
+            elif isinstance(t, Basic.Add):
+                new_seq = []
+                for f1 in seq:
+                    for f2 in t:
+                        new_seq.append(f1 * f2)
+                seq = new_seq
+            else:
+                seq = [f*t for f in seq]
+        return Basic.Add(*seq, **self._assumptions)

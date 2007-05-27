@@ -78,4 +78,4 @@ class Add(AssocOp, RelMeths, ArithMeths):
         coeff = self[0]
         if isinstance(coeff, Basic.Number):
             return coeff, self[1:]
-        return Basic.Zero(), self
+        return Basic.Zero(), self[:]

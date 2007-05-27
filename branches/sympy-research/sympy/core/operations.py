@@ -10,7 +10,7 @@ class AssocOp(Basic):
     Base class for Add and Mul.
     """
     
-    def __new__(cls, *args):
+    def __new__(cls, *args, **assumptions):
         if len(args)==0:
             return cls.identity
         if len(args)==1:
@@ -22,7 +22,8 @@ class AssocOp(Basic):
             else: obj = cls.identity()
         else:
             c_part.sort(Basic.compare)
-            obj = Basic.__new__(cls, commutative=not nc_part, *(c_part + nc_part))
+            obj = Basic.__new__(cls, commutative=not nc_part, *(c_part + nc_part),
+                                **assumptions)
         if lambda_args is not None:
             obj = Basic.Lambda(obj, *lambda_args)
         return obj

@@ -96,6 +96,11 @@ class Basic(BasicMeths):
             return Basic.sympify(new)
         return self
 
+    def expand(self):
+        if isinstance(self, Atom):
+            return self
+        return self.__class__(*[t.expand() for t in self], **self._assumptions)
+
     def as_base_exp(self):
         # a -> b ** e
         return self, Basic.One()
@@ -107,6 +112,17 @@ class Basic(BasicMeths):
     def as_coeff_factors(self):
         # a -> c + f
         return Basic.Zero(), [self]
+
+    def has(self, *symbols):
+        if len(symbols)>1:
+            for s in symbols:
+                if self.has(s):
+                    return True
+            return False
+        elif not symbols:
+            raise TypeError("has() requires at least 1 argument (got none)")
+        s = Basic.sympify(symbols[0])
+        return not self.subs(s,s.as_dummy())==self
 
 class Atom(Basic):
 

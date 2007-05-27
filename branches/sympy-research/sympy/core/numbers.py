@@ -480,7 +480,7 @@ class ImaginaryUnit(Singleton, Atom, RelMeths, ArithMeths):
         return -One(),Rational(1,2)
 
 Basic.singleton['E'] = Exp1
-Basic.singleton['Pi'] = Pi
+Basic.singleton['pi'] = Pi
 Basic.singleton['I'] = ImaginaryUnit
 Basic.singleton['oo'] = Infinity
 Basic.singleton['nan'] = NaN

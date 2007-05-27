@@ -175,5 +175,3 @@ class BasicMeths(AssumeMeths):
     def eval(self):
         return self
 
-    def expand(self):
-        return self

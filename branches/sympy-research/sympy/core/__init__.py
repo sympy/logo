@@ -12,6 +12,7 @@ from mul import Mul
 from add import Add
 from relational import Equality, Inequality, Unequality, StrictInequality
 from function import Lambda
+from order import Order
 
 # set repr output to pretty output:
 Basic.interactive = True

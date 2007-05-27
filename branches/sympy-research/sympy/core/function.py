@@ -58,7 +58,11 @@ class Apply(Basic, ArithMeths, RelMeths):
     precedence = 70
 
     def __new__(cls, *args, **assumptions):
-        return Basic.__new__(cls, *(map(Basic.sympify,args)),**assumptions)
+        args = map(Basic.sympify,args)
+        obj = args[0]._eval_apply(*args[1:])
+        if obj is None:
+            obj = Basic.__new__(cls, *args,**assumptions)
+        return obj
 
     @property
     def func(self):
@@ -108,6 +112,9 @@ class Function(Basic, ArithMeths, NoRelMeths):
     def torepr(self):
         return '%s(%r, nofargs = %r)' % (self.__class__.__name__, self.name, self.nofargs)
 
+    def _eval_apply(self, *args):
+        return
+
     def __call__(self, *args, **assumptions):
         n = self.nofargs
         if n is not None and n!=len(args):
@@ -125,6 +132,9 @@ class Function(Basic, ArithMeths, NoRelMeths):
         if args is None:
             args = tuple([Basic.Symbol('x%s'%(i+1),dummy=True) for i in range(self.nofargs)])
         return self(*args), args
+
+    def expand(self):
+        return self
 
 class DefinedFunction(Function, Singleton, Atom):
     """ Base class for defined functions.
@@ -158,6 +168,7 @@ class Exp(DefinedFunction):
         if isinstance(arg, Basic.Zero):
             return Basic.One()
         return Function.__call__(self, arg, **assumptions)
+
 
 class Lambda(Function):
     """
@@ -240,5 +251,10 @@ class Lambda(Function):
         for a,na in zip(self.args, args):
             expr = expr.subs(a, na)
         return expr, args
+
+    def expand(self):
+        return Lambda(self.body.expand(), *self.args)
+
+
 
 Basic.singleton['exp'] = Exp
