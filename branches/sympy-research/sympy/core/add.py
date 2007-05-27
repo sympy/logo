@@ -12,8 +12,11 @@ class Add(AssocOp, RelMeths, ArithMeths):
         # apply associativity, all terms are commutable with respect to addition
         terms = {}
         coeff = Basic.Zero()
+        lambda_args = None
         while seq:
             o = seq.pop(0)
+            if isinstance(o, Basic.Function):
+                o, lambda_args = o.with_dummy_arguments(lambda_args)
             if isinstance(o, Basic.Number):
                 coeff += o
                 continue
@@ -50,8 +53,8 @@ class Add(AssocOp, RelMeths, ArithMeths):
         if not isinstance(coeff, Basic.Zero):
             newseq.insert(0, coeff)
         if noncommutative:
-            return [],newseq
-        return newseq,[]
+            return [],newseq,lambda_args
+        return newseq,[],lambda_args
 
     def tostr(self, level=0):
         coeff, rest = self.as_coeff_factors()
@@ -71,3 +74,8 @@ class Add(AssocOp, RelMeths, ArithMeths):
             return '(%s)' % r
         return r
 
+    def as_coeff_factors(self):
+        coeff = self[0]
+        if isinstance(coeff, Basic.Number):
+            return coeff, self[1:]
+        return Basic.Zero(), self

@@ -59,7 +59,9 @@ class Symbol(Atom, RelMeths, ArithMeths):
         return '%s(%r)' % (self.__class__.__name__, self.name)
 
     def as_dummy(self):
-        return self.__class__(self.name, dummy=True)
+        assumptions = self._assumptions.copy()
+        assumptions['dummy'] = True
+        return self.__class__(self.name, **assumptions)
 
     #def __mathml__(self): ..
     #def __latex__(self): ..

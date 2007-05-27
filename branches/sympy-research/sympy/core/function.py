@@ -75,6 +75,11 @@ class Apply(Basic, ArithMeths, RelMeths):
             return '(%s)' % (r)
         return r
 
+    def subs(self, old, new):
+        old = Basic.sympify(old)
+        new = Basic.sympify(new)
+        return self.__class__(*[s.subs(old, new) for s in self])
+
 
 class Function(Basic, ArithMeths, NoRelMeths):
     """ Base class for function objects.
@@ -91,6 +96,16 @@ class Function(Basic, ArithMeths, NoRelMeths):
                             % (self, n, len(args)))
         return Apply(self, *args, **assumptions)
 
+    def _eval_power(b,e):
+        expr, args = b.with_dummy_arguments()
+        return Lambda(expr**e, *args)
+
+    def with_dummy_arguments(self, args = None):
+        """ Return a function value with dummy arguments.
+        """
+        if args is None:
+            args = tuple([Basic.Symbol('x%s'%(i+1),dummy=True) for i in range(self.nofargs)])
+        return self(*args), args
 
 class DefinedFunction(Function, Singleton, Atom):
     """ Base class for defined functions.
@@ -103,8 +118,7 @@ class DefinedFunction(Function, Singleton, Atom):
 
     def torepr(self):
         return '%s()' % (self.__class__.__name__)
-    
-        
+
 class Exp(DefinedFunction):
     """ Exp() -> exp
     """
@@ -117,6 +131,9 @@ class Exp(DefinedFunction):
     def antiderivative(self, argindex=1):
         return self
 
+    def inverse(self, argindex=1):
+        return Log()
+
     def __call__(self, arg, **assumptions):
         arg = Basic.sympify(arg)
         if isinstance(arg, Basic.Zero):
@@ -125,11 +142,13 @@ class Exp(DefinedFunction):
 
 class Lambda(Function):
     """
-    Lambda(expr, arg1, arg2, ..., **assumptions) -> lambda arg1, arg2,...,**assumptions : expr
+    Lambda(expr, arg1, arg2, ...) -> lambda arg1, arg2,... : expr
+
+    Lambda instance has the same assumptions as its body.
     """
     precedence = 1
 
-    def __new__(cls, expr, *args, **assumptions):
+    def __new__(cls, expr, *args):
         expr = Basic.sympify(expr)
         args = map(Basic.sympify, args)
         dummy_args = []
@@ -141,7 +160,7 @@ class Lambda(Function):
             d = a.as_dummy()
             expr = expr.subs(a, d)
             dummy_args.append(d)
-        return Function.__new__(cls, expr, *dummy_args, **assumptions)
+        return Function.__new__(cls, expr, *dummy_args, **expr._assumptions)
 
     @property
     def nofargs(self):
@@ -154,6 +173,9 @@ class Lambda(Function):
     @property
     def body(self):
         return self._args[0]
+
+    def _calc_commutative(self):
+        return self.body.is_commutative
 
     def tostr(self, level=0):
         precedence = self.precedence
@@ -176,28 +198,26 @@ class Lambda(Function):
         c,t = self.body.as_coeff_terms()
         return c, [Lambda(Basic.Mul(*t),*self.args)]
 
+    def compose(self, other):
+        """ Composition of self and other:
+        (f.compose(g))(x) is f(g(x)).
+        """
+
     def _eval_power(b, e):
         """
-        (lambda x:f(x)) ** e -> (lambda x:f(x)**e)
-        (lambda x:f(x)) ** func -> lambda x:f(func(x))
-
-        (f**g)(x) -> f(g(x))
+        (lambda x:f(x))**e -> (lambda x:f(x)**e)
         """
-        if b.nofargs != 1:
-            raise TypeError("composition of functions with more than 1 argument is not supported")
-        if isinstance(e, Function):
-            if e.nofargs != 1:
-                raise TypeError("composition of functions with more than 1 argument is not supported")
-            a = b.args[0]
-            d = a.as_dummy()
-            return Lambda(b.body.subs(a,e(d)),d)
-        if isinstance(e, Basic.Integer):
-            if e.is_positive:
-                r = b
-                for i in range(e.p-1):
-                    r = r**b
-                return r
-        return
+        return Lambda(self.body**e, *self.args)
 
+    def with_dummy_arguments(self, args = None):
+        if args is None:
+            args = tuple([a.as_dummy() for a in self.args])
+        if len(args) != len(self.args):
+            raise TypeError("different number of arguments in Lambda functions: %s, %s"\
+                            (len(args), len(self.args)))
+        expr = self.body
+        for a,na in zip(self.args, args):
+            expr = expr.subs(a, na)
+        return expr, args
 
-Basic.singleton['exp'] = Exp    
+Basic.singleton['exp'] = Exp

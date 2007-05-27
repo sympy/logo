@@ -9,21 +9,22 @@ class AssocOp(Basic):
     
     Base class for Add and Mul.
     """
-
-    is_commutative = None
     
     def __new__(cls, *args):
         if len(args)==0:
             return cls.identity
         if len(args)==1:
             return args[0]
-        c_part, nc_part = cls.flatten(map(Basic.sympify, args))
+        c_part, nc_part, lambda_args = cls.flatten(map(Basic.sympify, args))
         if len(c_part) + len(nc_part) <= 1:
-            if c_part: return c_part[0]
-            if nc_part: return nc_part[0]
-            return cls.identity()
-        c_part.sort(Basic.compare)
-        obj = Basic.__new__(cls, commutative=not nc_part, *(c_part + nc_part))
+            if c_part: obj = c_part[0]
+            elif nc_part: obj = nc_part[0]
+            else: obj = cls.identity()
+        else:
+            c_part.sort(Basic.compare)
+            obj = Basic.__new__(cls, commutative=not nc_part, *(c_part + nc_part))
+        if lambda_args is not None:
+            obj = Basic.Lambda(obj, *lambda_args)
         return obj
 
     @classmethod

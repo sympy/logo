@@ -6,7 +6,7 @@ class Pow(Basic, ArithMeths, RelMeths):
 
     precedence = 60
 
-    def __new__(cls, a, b):
+    def __new__(cls, a, b, **assumptions):
         a = Basic.sympify(a)
         b = Basic.sympify(b)
         if isinstance(b, Basic.Zero):
@@ -15,7 +15,7 @@ class Pow(Basic, ArithMeths, RelMeths):
             return a
         obj = a._eval_power(b)
         if obj is None:
-            obj = Basic.__new__(cls, a, b)
+            obj = Basic.__new__(cls, a, b, **assumptions)
         return obj
 
     @property
