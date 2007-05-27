@@ -52,9 +52,10 @@ class Add(AssocOp, RelMeths, ArithMeths):
             noncommutative = noncommutative or not s.is_commutative
         if not isinstance(coeff, Basic.Zero):
             newseq.insert(0, coeff)
+        print newseq
         if noncommutative:
-            return [],newseq,lambda_args
-        return newseq,[],lambda_args
+            return [],newseq,lambda_args,None
+        return newseq,[],lambda_args,None
 
     def tostr(self, level=0):
         coeff, rest = self.as_coeff_factors()

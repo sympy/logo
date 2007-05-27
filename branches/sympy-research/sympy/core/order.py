@@ -1,8 +1,8 @@
 
 from basic import Basic
-from methods import ArithMeths
+from methods import ArithMeths, RelMeths
 
-class Order(Basic, ArithMeths):
+class Order(Basic, ArithMeths, RelMeths):
     """
     Represents O(f(x)) at the point x = 0.
 
@@ -61,7 +61,8 @@ class Order(Basic, ArithMeths):
         if symbols:
             symbols = map(Basic.sympify, symbols)
         else:
-            symbols = tuple(expr.atoms(Basic.Symbol))
+            symbols = list(expr.atoms(Basic.Symbol))
+        symbols.sort(Basic.compare)
         obj = cls._evaluate(expr.expand(), *symbols)
         if obj is None:
             obj = Basic.__new__(cls, expr, *symbols, **assumptions)
@@ -107,3 +108,12 @@ class Order(Basic, ArithMeths):
         if isinstance(e, Basic.Number):
             return Order(b.expr ** e, *b.symbols)
         return
+
+    def as_expr_symbols(self, order_symbols):
+        if order_symbols is None:
+            order_symbols = self.symbols
+        else:
+            for s in self.symbols:
+                if s not in order_symbols:
+                    order_symbols = order_symbols + (s,)
+        return self.expr, order_symbols

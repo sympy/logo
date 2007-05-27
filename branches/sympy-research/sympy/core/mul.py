@@ -15,12 +15,15 @@ class Mul(AssocOp, RelMeths, ArithMeths):
         nc_seq = seq
         c_powers = {}
         lambda_args = None
+        order_symbols = None
         while c_seq or nc_seq:
             if c_seq:
                 # first process commutative objects
                 o = c_seq.pop(0)
                 if isinstance(o, Basic.Function):
                     o, lambda_args = o.with_dummy_arguments(lambda_args)
+                if isinstance(o, Basic.Order):
+                    o, order_symbols = o.as_expr_symbols(order_symbols)
                 if o.__class__ is cls:
                     # associativity
                     c_seq = list(o._args) + c_seq
@@ -37,6 +40,8 @@ class Mul(AssocOp, RelMeths, ArithMeths):
                 o = nc_seq.pop(0)
                 if isinstance(o, Basic.Function):
                     o, lambda_args = o.with_dummy_arguments(lambda_args)
+                if isinstance(o, Basic.Order):
+                    o, order_symbols = o.as_expr_symbols(order_symbols)
                 if o.is_commutative:
                     # separate commutative symbols
                     c_seq.append(o)
@@ -69,7 +74,7 @@ class Mul(AssocOp, RelMeths, ArithMeths):
                 c_part.append(Basic.Pow(b, e))
         if not isinstance(coeff, Basic.One):
             c_part.insert(0, coeff)
-        return c_part, nc_part, lambda_args
+        return c_part, nc_part, lambda_args, order_symbols
 
     def _eval_power(b, e):
         if isinstance(e, Basic.Number):

@@ -15,7 +15,7 @@ class AssocOp(Basic):
             return cls.identity
         if len(args)==1:
             return args[0]
-        c_part, nc_part, lambda_args = cls.flatten(map(Basic.sympify, args))
+        c_part, nc_part, lambda_args, order_symbols = cls.flatten(map(Basic.sympify, args))
         if len(c_part) + len(nc_part) <= 1:
             if c_part: obj = c_part[0]
             elif nc_part: obj = nc_part[0]
@@ -24,6 +24,8 @@ class AssocOp(Basic):
             c_part.sort(Basic.compare)
             obj = Basic.__new__(cls, commutative=not nc_part, *(c_part + nc_part),
                                 **assumptions)
+        if order_symbols is not None:
+            obj = Basic.Order(obj, *order_symbols)
         if lambda_args is not None:
             obj = Basic.Lambda(obj, *lambda_args)
         return obj
