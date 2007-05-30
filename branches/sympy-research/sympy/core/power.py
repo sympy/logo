@@ -98,7 +98,7 @@ class Pow(Basic, ArithMeths, RelMeths):
                 else:
                     if m==2:
                         return Basic.Add(*[t1*t2 for t1 in p for t2 in p])
-                    return Basic.Mul(base, Power(base, m-1).expand()).expand()                        
+                    return Basic.Mul(base, Pow(base, m-1).expand()).expand()                        
         return result
 
     def _eval_derivative(self, s):

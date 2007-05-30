@@ -21,7 +21,6 @@ class AssocOp(Basic):
             elif nc_part: obj = nc_part[0]
             else: obj = cls.identity()
         else:
-            c_part.sort(Basic.compare)
             assumptions['commutative'] = not nc_part
             obj = Basic.__new__(cls, *(c_part + nc_part), **assumptions)
         if order_symbols is not None:
