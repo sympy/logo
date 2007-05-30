@@ -2,7 +2,8 @@ import sys
 sys.path.append(".")
 
 import sympy as g
-from sympy import Symbol, Rational, sin, exp
+from sympy import Symbol, Rational, sin, exp, Basic
+Basic.interactive = False
 
 def dotest(s):
     x = g.Symbol("x")
@@ -69,10 +70,16 @@ def test_print_tree():
 def test_atoms():
    x = Symbol('x')
    y = Symbol('y')
-   assert (1+x).atoms() == [1,x]
-   assert x.atoms() == [x]
-   assert (1+2*g.cos(x)).atoms() == [1,2,x]
-   assert (2*(x**(y**x))).atoms() == [2,x,y]
-   assert g.Rational(1,2).atoms() == [g.Rational(1,2)]
+   r = Rational
+   assert (1+x).atoms() == set([r(1),x]),`(1+x).atoms()`
+   assert x.atoms() == set([x])
+   assert (1+2*g.cos(x)).atoms() == set([1,2,x])
+   assert (2*(x**(y**x))).atoms() == set([2,x,y])
+   assert g.Rational(1,2).atoms() == set([g.Rational(1,2)])
    
-   assert g.Rational(1,2).atoms(type=(g.core.numbers.Infinity)) == []
+   assert g.Rational(1,2).atoms(type=(g.core.numbers.Infinity)) == set([])
+
+if __name__=='__main__':
+    test_basic()
+    test_ibasic()
+    test_atoms()

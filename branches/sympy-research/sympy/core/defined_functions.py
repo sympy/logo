@@ -87,10 +87,67 @@ class Sqrt(DefinedFunction):
         s = Basic.Symbol('x',dummy=True)
         return Lambda(s**2, s)
 
-    def _eval_apply(self, arg, base=None):
+    def _eval_apply(self, arg):
+        return
+
+class Sin(DefinedFunction):
+    
+    nofargs = 1
+
+    def fdiff(self, argindex=1):
+        if argindex==1:
+            return Cos()
+        raise TypeError("argindex=%s is out of range [1,1] for %s" % (argindex,self))
+
+    def inverse(self, argindex=1):
+        return ASin()
+
+    def _eval_apply(self, arg):
+        if isinstance(arg, Basic.Number):
+            if isinstance(arg, Basic.Zero):
+                return arg
+        return
+
+class Cos(DefinedFunction):
+    
+    nofargs = 1
+
+    def fdiff(self, argindex=1):
+        if argindex==1:
+            return -Sin()
+        raise TypeError("argindex=%s is out of range [1,1] for %s" % (argindex,self))
+
+    def inverse(self, argindex=1):
+        return ACos()
+
+    def _eval_apply(self, arg):
+        if isinstance(arg, Basic.Number):
+            if isinstance(arg, Basic.Zero):
+                return Basic.One()
+        return
+
+class Tan(DefinedFunction):
+    
+    nofargs = 1
+
+    def fdiff(self, argindex=1):
+        if argindex==1:
+            raise NotImplementedError('tan derivative')
+        raise TypeError("argindex=%s is out of range [1,1] for %s" % (argindex,self))
+
+    def inverse(self, argindex=1):
+        return ATan()
+
+    def _eval_apply(self, arg):
+        if isinstance(arg, Basic.Number):
+            if isinstance(arg, Basic.Zero):
+                return arg
         return
 
 Basic.singleton['exp'] = Exp
 Basic.singleton['log'] = Log
 Basic.singleton['ln'] = Log
+Basic.singleton['sin'] = Sin
+Basic.singleton['cos'] = Cos
+Basic.singleton['tan'] = Tan
 Basic.singleton['sqrt'] = Sqrt

@@ -237,10 +237,8 @@ class Rational(Number):
             if n>1:
                 p /= n
                 q /= n
-            if q==1:
-                return Integer(p)
-            if p==1 and q==2:
-                return Half()
+            if q==1: return Integer(p)
+            if p==1 and q==2: return Half()
             obj = Basic.__new__(cls)
             obj.p = p
             obj.q = q
@@ -273,23 +271,31 @@ class Rational(Number):
 
     def __mul__(self, other):
         other = Basic.sympify(other)
+        if isinstance(other, Real):
+            return Real(self._as_decimal() * other.num)
         if isinstance(other, Rational):
             return Rational(self.p * other.p, self.q * other.q)
         return Number.__mul__(self, other)
 
     def __add__(self, other):
         other = Basic.sympify(other)
+        if isinstance(other, Real):
+            return Real(self._as_decimal() + other.num)
         if isinstance(other, Rational):
             return Rational(self.p * other.q + self.q * other.p, self.q * other.q)
         return Number.__add__(self, other)
 
     def _eval_power(b, e):
         if isinstance(e, Number):
-            if isinstance(e, NaN):
-                return NaN()
+            if isinstance(e, NaN): return NaN()
+            if isinstance(e, Real):
+                return Real(decimal_math.pow(b._as_decimal(), e.num))
             if e.is_negative:
                 # (3/4)**-2 -> (4/3)**2
-                return Rational(b.q, b.p) ** (-e)
+                ne = -e
+                if isinstance(ne, One):
+                    return Rational(b.q, b.p)
+                return Rational(b.q, b.p) ** ne
             if isinstance(e, Infinity):
                 if b.p > b.q:
                     # (3/2)**oo -> oo
@@ -301,7 +307,7 @@ class Rational(Number):
             if isinstance(e, Integer):
                 # (4/3)**2 -> 4**2 / 3**2
                 return Rational(b.p ** e.p, b.q ** e.p)
-            if isinstance(e, Rational) and not isinstance(b, Integer):
+            if isinstance(e, Rational):
                 # (4/3)**(5/6) -> 4**(5/6) * 3**(-5/6)
                 return Integer(b.p) ** e * Integer(b.q) ** (-e)
         return
@@ -354,17 +360,51 @@ class Integer(Rational):
     def torepr(self):
         return '%s(%r)' % (self.__class__.__name__, self.p)
 
+    def _eval_power(b, e):
+        if isinstance(e, Number):
+            if isinstance(e, NaN): return NaN()
+            if isinstance(e, Real):
+                return Real(decimal_math.pow(b._as_decimal(), e.num))
+            if e.is_negative:
+                # (3/4)**-2 -> (4/3)**2
+                ne = -e
+                if isinstance(ne, One):
+                    return Rational(1, b.p)
+                return Rational(1, b.p) ** ne
+            if isinstance(e, Infinity):
+                if b.p > 1:
+                    # (3)**oo -> oo
+                    return Infinity()
+                if b.p < -1:
+                    # (-3)**oo -> oo + I*oo
+                    return Infinity() + Infinity() * ImaginaryUnit()
+                return Zero()
+            if isinstance(e, Integer):
+                # (4/3)**2 -> 4**2 / 3**2
+                return Integer(b.p ** e.p)
+            if isinstance(e, Rational):
+                i = int(e)
+                if i:
+                    i = Integer(i)
+                    return b ** i * b ** (e - q)
+        return
+
 class Zero(Singleton, Integer):
 
     p = 0
     q = 1
 
     def _eval_power(b, e):
-        if isinstance(e, NaN): return NaN()
-        if isinstance(e, Zero): return One()
-        if e.is_negative: return Infinity()
-        return b
-
+        if e.is_negative:
+            return Infinity()
+        if e.is_positive:
+            return b
+        d = e.evalf()
+        if isinstance(d, Number):
+            if d.is_negative:
+                return Infinity()
+            return b
+    
 class One(Singleton, Integer):
 
     p = 1
@@ -380,6 +420,11 @@ class NegativeOne(Singleton, Integer):
 
     def _eval_power(b, e):
         if isinstance(e, Number):
+            if isinstance(e, Real):
+                a = exponent.num * decimal_math.pi()
+                s = decimal_math,sin(a)
+                c = decimal_math,cos(a)
+                return Real(s) + Real(c) * ImaginaryUnit()
             if isinstance(e, NaN):
                 return NaN()
             if isinstance(e, (Infinity, NegativeInfinity)):
@@ -416,6 +461,25 @@ class Infinity(Singleton, Rational):
     def tostr(self, level=0):
         return 'oo'
 
+    def _eval_power(b, e):
+        """
+        e is symbolic object but not equal to 0, 1
+
+        oo ** nan -> nan
+        oo ** (-p) -> 0, p is number, oo
+        """
+        if isinstance(e, Number):
+            if isinstance(e, NaN):
+                return NaN()
+            if e.is_negative:
+                return Zero()
+            if e.is_positive:
+                return Infinity()
+        d = e.evalf()
+        if isinstance(d, Number):
+            return b ** d
+        return
+
 
 class NegativeInfinity(Singleton, Rational):
 
@@ -432,6 +496,28 @@ class NegativeInfinity(Singleton, Rational):
     def tostr(self, level=0):
         return '-oo'
 
+    def _eval_power(b, e):
+        """
+        e is symbolic object but not equal to 0, 1
+
+        (-oo) ** nan -> nan
+        (-oo) ** oo  -> nan
+        (-oo) ** (-oo) -> nan
+        (-oo) ** e -> oo, e is positive even integer
+        (-oo) ** o -> -oo, o is positive odd integer
+        
+        """
+        if isinstance(e, Number):
+            if isinstance(e, (NaN, Infinity, NegativeInfinity)):
+                return NaN()
+            if isinstance(e, Integer):
+                if e.is_positive:
+                    if e.is_odd:
+                        return NegativeInfinity()
+                    return Infinity()
+            return NegativeOne()**e * Infinity() ** e
+        return
+
 
 class NaN(Singleton, Rational):
 
@@ -445,6 +531,9 @@ class NaN(Singleton, Rational):
 
     def tostr(self, level=0):
         return 'nan'
+
+    def _as_decimal(self):
+        return decimal.Decimal('NaN')
 
 
 class NumberSymbol(Singleton, Atom, RelMeths, ArithMeths):

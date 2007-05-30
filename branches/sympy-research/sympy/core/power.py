@@ -72,7 +72,6 @@ class Pow(Basic, ArithMeths, RelMeths):
                 return Basic.Mul(*[t**exponent for t in base])
             if exponent.is_positive and isinstance(base, Basic.Add):
                 m = int(exponent)
-                p = base[:]
                 if base.is_commutative:
                 ## Consider polynomial
                 ##   P(x) = sum_{i=0}^n p_i x^k
@@ -84,6 +83,7 @@ class Pow(Basic, ArithMeths, RelMeths):
                 ## Programming v.2, Addison Wesley, Reading, 1981;]:
                 ##  a(m,k) = 1/(k p_0) sum_{i=1}^n p_i ((m+1)i-k) a(m,k-i),
                 ## where a(m,0) = p_0^m.
+                    p = base[:]
                     n = len(p)-1
                     cache = {0: p[0] ** m}
                     p0 = [t/p[0] for t in p]
@@ -97,6 +97,7 @@ class Pow(Basic, ArithMeths, RelMeths):
                     return Basic.Add(*cache.values())
                 else:
                     if m==2:
+                        p = base[:]
                         return Basic.Add(*[t1*t2 for t1 in p for t2 in p])
                     return Basic.Mul(base, Pow(base, m-1).expand()).expand()                        
         return result
