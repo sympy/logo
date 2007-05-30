@@ -74,6 +74,8 @@ class Mul(AssocOp, RelMeths, ArithMeths):
                 c_part.append(Basic.Pow(b, e))
         if not isinstance(coeff, Basic.One):
             c_part.insert(0, coeff)
+        if isinstance(coeff, Basic.Zero):
+            c_part, nc_part = [coeff],[]
         return c_part, nc_part, lambda_args, order_symbols
 
     def _eval_power(b, e):
@@ -144,3 +146,13 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             else:
                 seq = [f*t for f in seq]
         return Basic.Add(*seq, **self._assumptions)
+
+    def _eval_derivative(self, s):
+        terms = list(self)
+        factors = []
+        for i in range(len(terms)):
+            t = terms[i].diff(s)
+            if isinstance(t, Basic.Zero):
+                continue
+            factors.append(Mul(*(terms[:i]+[t]+terms[i+1:])))
+        return Basic.Add(*factors)

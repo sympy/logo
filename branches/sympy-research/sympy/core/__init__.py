@@ -11,7 +11,8 @@ from power import Pow
 from mul import Mul
 from add import Add
 from relational import Equality, Inequality, Unequality, StrictInequality
-from function import Lambda
+from function import Lambda, Function, Apply, FApply, Composition
+
 from order import Order
 
 # set repr output to pretty output:
@@ -20,3 +21,5 @@ Basic.interactive = True
 # expose singletons like exp, log, oo, I, etc.
 for _n,_cls in Basic.singleton.items():
     exec _n + ' = _cls()'
+
+sympify = Basic.sympify

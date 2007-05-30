@@ -62,7 +62,7 @@ class Basic(BasicMeths):
             return real + Basic.I * imag
         if isinstance(a, str):
             return parser.Expr(a).tosymbolic()
-        raise ValueError("%r must be a subclass of Basic" % (a))
+        raise ValueError("%s must be a subclass of Basic" % (`a`))
 
     def atoms(self, type=None):
         """Returns the atoms that form current object. 
@@ -96,6 +96,14 @@ class Basic(BasicMeths):
             return Basic.sympify(new)
         return self
 
+    def _seq_subs(self, old, new):
+        old = Basic.sympify(old)
+        new = Basic.sympify(new)
+        r = self.__class__(*[s.subs(old, new) for s in self])
+        if r==self:
+            r = self
+        return r
+
     def expand(self):
         if isinstance(self, Atom):
             return self
@@ -124,9 +132,52 @@ class Basic(BasicMeths):
         s = Basic.sympify(symbols[0])
         return not self.subs(s,s.as_dummy())==self
 
+    def _eval_derivative(self, s):
+        return
+
+    def _eval_apply(self, *args, **assumptions):
+        return
+
+    def _eval_fapply(self, *args, **assumptions):
+        return
+
+    def _eval_fpower(b, e):
+        return
+
+    def _eval_apply_power(self,b,e):
+        return
+
+    def diff(self, *symbols):
+        return Basic.Derivative(self, *symbols)
+
+    def fdiff(self, *indices):
+        return Basic.FApply(Basic.FDerivative(*indices), self)
+
+    def __call__(self, *args):
+        return Basic.Apply(self, *args)
+
+    def order(self, s):
+        if isinstance(self, Atom):
+            if self==s:
+                return Basic.Order(s,s)
+            return Basic.Order(1,s)
+        expr = self
+        r = expr.subs(s, 0)
+        n = 0
+        while not isinstance(r, Basic.Zero):
+            expr = expr.diff(s)
+            r = expr.subs(s, 0)
+            n += 1
+        return Basic.Order(s**n, s)
+
 class Atom(Basic):
 
     precedence = 1000
+
+    def _eval_derivative(self, s):
+        if self==s: return Basic.One()
+        return Basic.Zero()
+
 
 class Singleton(Basic):
     """ Singleton object.

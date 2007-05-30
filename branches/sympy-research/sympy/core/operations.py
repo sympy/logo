@@ -22,8 +22,8 @@ class AssocOp(Basic):
             else: obj = cls.identity()
         else:
             c_part.sort(Basic.compare)
-            obj = Basic.__new__(cls, commutative=not nc_part, *(c_part + nc_part),
-                                **assumptions)
+            assumptions['commutative'] = not nc_part
+            obj = Basic.__new__(cls, *(c_part + nc_part), **assumptions)
         if order_symbols is not None:
             obj = Basic.Order(obj, *order_symbols)
         if lambda_args is not None:
@@ -34,6 +34,9 @@ class AssocOp(Basic):
     def identity(cls):
         if cls is Basic.Mul: return Basic.One()
         if cls is Basic.Add: return Basic.Zero()
+        if cls is Basic.Composition:
+            s = Basic.Symbol('x',dummy=True)
+            return Basic.Lambda(s,s)
         raise NotImplementedError,"identity not defined for class %r" % (cls.__name__)
 
     @classmethod
@@ -46,9 +49,6 @@ class AssocOp(Basic):
                 seq = list(o[:]) + seq
                 continue
             new_seq.append(o)
-        return [], new_seq
+        return [], new_seq, None, None
 
-    def subs(self, old, new):
-        old = Basic.sympify(old)
-        new = Basic.sympify(new)
-        return self.__class__(*[s.subs(old, new) for s in self])
+    subs = Basic._seq_subs

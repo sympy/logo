@@ -51,6 +51,12 @@ class Number(Atom, RelMeths, ArithMeths):
     def _as_decimal(self):
         raise NotImplementedError('%s needs ._as_decimal() method' % (self.__class__.__name__))
 
+    def _eval_derivative(self, s):
+        return Zero()
+
+    def _eval_apply(self, a):
+        return self*a
+
 decimal_to_Number_cls = {
     decimal.Decimal('0').as_tuple():'Zero',
     decimal.Decimal('1').as_tuple():'One',
@@ -204,6 +210,9 @@ class Rational(Number):
                 if p==0: return NaN()
                 if p<0: return NegativeInfinity()
                 return Infinity()
+            if q<0:
+                q = -q
+                p = -p
             n = gcd(abs(p), q)
             if n>1:
                 p /= n
@@ -416,6 +425,8 @@ class NumberSymbol(Singleton, Atom, RelMeths, ArithMeths):
 
     is_commutative = True
 
+    def _eval_derivative(self, s):
+        return Zero()
 
 class Exp1(NumberSymbol):
 
@@ -449,6 +460,9 @@ class ImaginaryUnit(Singleton, Atom, RelMeths, ArithMeths):
 
     def tostr(self, level=0):
         return 'I'
+
+    def _eval_derivative(self, s):
+        return Zero()
 
     def _eval_power(b, e):
         """

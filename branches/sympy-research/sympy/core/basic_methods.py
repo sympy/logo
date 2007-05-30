@@ -18,13 +18,19 @@ ordering_of_classes = [
     # arithmetic operations
     'Pow', 'Mul', 'Add',
     # function values
-    'Apply',
+    'Apply','Derivative',
     # singleton functions
-    'Exp',
+    'Exp','Log',
     # undefined functions
     'Function',
     # anonymous functions
     'Lambda',
+    # operators
+    'FDerivative','FApply',
+    # composition of functions
+    'FPow', 'Composition',
+    # Landau O symbol
+    'Order',
     # relational operations
     'Equality', 'Unequality', 'StrictInequality', 'Inequality', 
     ]

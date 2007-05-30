@@ -1,6 +1,6 @@
 
 from basic import Basic
-from methods import ArithMeths, RelMeths
+from methods import ArithMeths, RelMeths, NoRelMeths
 
 class Pow(Basic, ArithMeths, RelMeths):
 
@@ -95,3 +95,9 @@ class Pow(Basic, ArithMeths, RelMeths):
                     cache[k] = Basic.Add(*a)
                 return Basic.Add(*cache.values())
         return result
+
+    def _eval_derivative(self, s):
+        dbase = self.base.diff(s)
+        dexp = self.exp.diff(s)
+        return self * (dexp * Basic.Log()(self.base) + dbase * self.exp/self.base)
+

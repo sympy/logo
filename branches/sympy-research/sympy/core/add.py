@@ -42,17 +42,20 @@ class Add(AssocOp, RelMeths, ArithMeths):
                 terms[s] = c
         newseq = []
         noncommutative = False
+        orders = []
         for s,c in terms.items():
             if isinstance(c, Basic.Zero):
                 continue
-            if isinstance(c, Basic.One):
+            if isinstance(s, Basic.Order):
+                orders.append(s)
+            elif isinstance(c, Basic.One):
                 newseq.append(s)
             else:
                 newseq.append(Basic.Mul(c,s))
             noncommutative = noncommutative or not s.is_commutative
         if not isinstance(coeff, Basic.Zero):
             newseq.insert(0, coeff)
-        print newseq
+        print newseq, orders
         if noncommutative:
             return [],newseq,lambda_args,None
         return newseq,[],lambda_args,None
@@ -80,3 +83,6 @@ class Add(AssocOp, RelMeths, ArithMeths):
         if isinstance(coeff, Basic.Number):
             return coeff, self[1:]
         return Basic.Zero(), self[:]
+
+    def _eval_derivative(self, s):
+        return Add(*[f.diff(s) for f in self])
