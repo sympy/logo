@@ -9,7 +9,8 @@ Created: February, 2007
 
 __all__ = ['acos', 'asin', 'atan', 'atan2', 'ceil', 'cos', 'cosh', 'degrees',
            'e', 'exp', 'floor', 'golden_ratio', 'hypot', 'log', 'log10', 'pi',
-           'pow', 'radians', 'sign', 'sin', 'sinh', 'sqrt', 'tan', 'tanh']
+           'pow', 'radians', 'sign', 'sin', 'sinh', 'sqrt', 'tan', 'tanh',
+           'cot','coth']
 
 import math
 
@@ -149,6 +150,14 @@ def tan(x):
 def tanh(x):
     """Return the hyperbolic tangent of Decimal x."""
     return +(sinh(x) / cosh(x))
+
+def cot(x):
+    """Return the cotangent of Decimal x (measured in radians)."""
+    return +(cos(x) / sin(x))
+
+def coth(x):
+    """Return the hyperbolic cotangent of Decimal x."""
+    return +(cosh(x) / sinh(x))
 
 def atan(x):
     """Return the arc tangent (measured in radians) of Decimal x."""

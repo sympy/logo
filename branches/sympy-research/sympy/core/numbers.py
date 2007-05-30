@@ -57,6 +57,27 @@ class Number(Atom, RelMeths, ArithMeths):
     def _eval_apply(self, a):
         return self*a
 
+    def sqrt(self): return Real(decimal_math.sqrt(self._as_decimal()))
+    def exp(self): return Real(decimal_math.exp(self._as_decimal()))
+    def log(self): return Real(decimal_math.log(self._as_decimal()))
+    def sin(self): return Real(decimal_math.sin(self._as_decimal()))
+    def cos(self): return Real(decimal_math.cos(self._as_decimal()))
+    def tan(self): return Real(decimal_math.tan(self._as_decimal()))
+    def cot(self): return Real(decimal_math.cot(self._as_decimal()))
+    def asin(self): return Real(decimal_math.asin(self._as_decimal()))
+    def acos(self): return Real(decimal_math.acos(self._as_decimal()))
+    def atan(self): return Real(decimal_math.atan(self._as_decimal()))
+    def acot(self): return Real(decimal_math.acot(self._as_decimal()))
+    def sinh(self): return Real(decimal_math.sinh(self._as_decimal()))
+    def cosh(self): return Real(decimal_math.cosh(self._as_decimal()))
+    def tanh(self): return Real(decimal_math.tanh(self._as_decimal()))
+    def coth(self): return Real(decimal_math.coth(self._as_decimal()))
+    def asinh(self): return Real(decimal_math.asinh(self._as_decimal()))
+    def acosh(self): return Real(decimal_math.acosh(self._as_decimal()))
+    def atanh(self): return Real(decimal_math.atanh(self._as_decimal()))
+    def acoth(self): return Real(decimal_math.acoth(self._as_decimal()))
+
+
 decimal_to_Number_cls = {
     decimal.Decimal('0').as_tuple():'Zero',
     decimal.Decimal('1').as_tuple():'One',
@@ -187,7 +208,6 @@ class Real(Number):
 
     def __float__(self):
         return float(self.num)
-
 
 class Rational(Number):
     """Represents integers and rational numbers (p/q) of any size.

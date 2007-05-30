@@ -1,5 +1,5 @@
 """
-There are three types of functions:
+There are different types of functions:
 1) defined function like exp or sin that has a name and body
    (in the sense that function can be evaluated).
     e = exp
@@ -15,17 +15,18 @@ There are three types of functions:
     f = Lambda(x, exp(x)*x)
     f = Lambda(exp(x)*x)  # free symbols in the expression define the number of arguments
     f = exp * Lambda(x,x)
+4) composition of functions, inverse functions
 
 One can perform certain operations with functions, the
 result will be a lambda function. Allowed operations are
 addition and multiplication. Function multiplication is
 elementise ie (f*g)(x) is equivalent to f(x) * g(x).
-Multiplication by a number is equivalent to muliplication
+Multiplication by a number is equivalent to multiplication
 by a constant function.
-Composition of functions is achived via ** operation.
+Composition of functions is achived via Composition class@
 Eg
 
-  f+2*exp**sin -> lambda _x: f(x)+2*exp(sin(x))
+  f+Composition(2,exp,sin) -> lambda _x: f(x)+2*exp(sin(x))
 
 In the above functions did not have arguments, then
 it is said that functions are in unevaluated form.
@@ -36,14 +37,14 @@ an instance of the function value. Eg
   (2*f)(x)  -> 2 * f(x)
   Lambda(x, exp(x)*x)(y) -> exp(y)*y
 
-One can construct undefined function values by from Symbol
+One can construct undefined function values from Symbol
 object:
   f = Symbol('f')
   fx = f(x)
   fx.func -> Function('f')
   fx.args -> (Symbol('x'),)
-As seen above, function values have attributes .func
-and .args.
+As seen above, function values are Apply instances and
+have attributes .func and .args.
 """
 
 from basic import Basic, Singleton, Atom
@@ -82,6 +83,9 @@ class Apply(Basic, ArithMeths, RelMeths):
 
     subs = Basic._seq_subs
 
+    def evalf(self):
+        return self.func._eval_apply_evalf(*self.args)
+
     def _eval_derivative(self, s):
         # Apply(f(x), x).diff(s) -> x.diff(s) * f.fdiff(1)(s)
         i = 0
@@ -101,37 +105,6 @@ class Apply(Basic, ArithMeths, RelMeths):
             return b.func._eval_apply_power(b.args[0], e)
         return
 
-class FApply(Basic, ArithMeths, NoRelMeths):
-    """ Defines n-ary operator that acts on symbolic functions.
-
-    DF(1)(f) -> FApply(DF(1), f)
-    DF(2)(FApply(DF(1), f)) -> FApply(DF(2), FApply(DF(1),f)) -> FApply(DF(1,2), f)
-    """
-    
-    def __new__(cls, operator, *funcs, **assumptions):
-        operator = Basic.sympify(operator)
-        funcs = map(Basic.sympify, funcs)
-        obj = operator._eval_fapply(*funcs, **assumptions)
-        if obj is not None:
-            return obj
-        return Basic.__new__(cls, operator, *funcs, **assumptions)
-
-    @property
-    def operator(self):
-        return self._args[0]
-
-    @property
-    def funcs(self):
-        return self._args[1:]
-
-    def tostr(self, level=0):
-        p = self.precedence
-        r = '%s(%s)' % (self.operator.tostr(p), ', '.join([a.tostr() for a in self.funcs]))
-        if p <= level:
-            return '(%s)' % (r)
-        return r
-
-    subs = Basic._seq_subs
 
 
 class Function(Basic, ArithMeths, NoRelMeths):
@@ -229,6 +202,41 @@ class Function(Basic, ArithMeths, NoRelMeths):
     def _eval_power(b, e):
         body, args = b.with_dummy_arguments()
         return Lambda(body**e, *args)
+
+    def inverse(self):
+        return FPow(self, -1)
+
+class FApply(Function):
+    """ Defines n-ary operator that acts on symbolic functions.
+
+    DF(1)(f) -> FApply(DF(1), f)
+    DF(2)(FApply(DF(1), f)) -> FApply(DF(2), FApply(DF(1),f)) -> FApply(DF(1,2), f)
+    """
+    
+    def __new__(cls, operator, *funcs, **assumptions):
+        operator = Basic.sympify(operator)
+        funcs = map(Basic.sympify, funcs)
+        obj = operator._eval_fapply(*funcs, **assumptions)
+        if obj is not None:
+            return obj
+        return Basic.__new__(cls, operator, *funcs, **assumptions)
+
+    @property
+    def operator(self):
+        return self._args[0]
+
+    @property
+    def funcs(self):
+        return self._args[1:]
+
+    def tostr(self, level=0):
+        p = self.precedence
+        r = '%s(%s)' % (self.operator.tostr(p), ', '.join([a.tostr() for a in self.funcs]))
+        if p <= level:
+            return '(%s)' % (r)
+        return r
+
+    subs = Basic._seq_subs
 
 
 class Lambda(Function):
@@ -397,6 +405,7 @@ class FPow(Function):
 
     def as_base_exp(self):
         return self.base, self.exp
+
 
 class Composition(AssocOp, Function):
     """ Composition of functions.
@@ -598,73 +607,5 @@ class DefinedFunction(Function, Singleton, Atom):
         return '%s()' % (self.__class__.__name__)
 
 
-class Exp(DefinedFunction):
-    """ Exp() -> exp
-    """
-
-    nofargs = 1
-
-    def fdiff(self, argindex=1):
-        if argindex==1:
-            return self
-        if isinstance(argindex, (Basic.Integer,int,long)):
-            raise TypeError("argindex=%s is out of range [1,1] for %s" % (argindex,self))
-        return
-
-    def inverse(self, argindex=1):
-        return Log()
-
-    def _eval_apply(self, arg):
-        arg = Basic.sympify(arg)
-        if isinstance(arg, Basic.Zero):
-            return Basic.One()
-        elif isinstance(arg, Apply) and isinstance(arg.func, Log):
-            return arg.args[0]
-
-    def _eval_apply_power(self, arg, exp):
-        return self(arg * exp)
-        
-
-class Log(DefinedFunction):
-    """ Log() -> log
-    """
-
-    nofargs = 1
-
-    def fdiff(self, argindex=1):
-        if argindex==1:
-            s = Basic.Symbol('x',dummy=True)
-            return Lambda(s**(-1),s)
-        if isinstance(argindex, (Basic.Integer,int,long)):
-            raise TypeError("argindex=%s is out of range [1,1] for %s" % (argindex,self))
-        return
-
-    def inverse(self, argindex=1):
-        return Exp()
-
-    def _eval_apply(self, arg, base=None):
-        if base is not None:
-            base = Basic.sympify(base)
-            if not isinstance(base, Basic.Exp1):
-                return self(arg)/self(base)
-        arg = Basic.sympify(arg)
-        if isinstance(arg, Basic.Number):
-            if isinstance(arg, Basic.Exp1):
-                return Basic.One()
-            if isinstance(arg, Basic.One):
-                return Basic.Zero()
-            if arg.is_negative:
-                return Basic.Pi() * Basic.ImaginaryUnit() + self(-arg)
-        elif isinstance(arg, Basic.Pow) and isinstance(arg.exp, Basic.Number):
-            return arg.exp * self(arg.base)
-        elif isinstance(arg, Apply) and isinstance(arg.func, Exp):
-            return arg.args[0]
-
-    def as_base_exp(self):
-        return Exp(),Basic.Integer(-1)
-
-
-Basic.singleton['exp'] = Exp
-Basic.singleton['log'] = Log
 Basic.singleton['D'] = lambda : Derivative
 Basic.singleton['FD'] = lambda : FDerivative

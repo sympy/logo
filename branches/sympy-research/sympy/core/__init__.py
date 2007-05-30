@@ -11,7 +11,8 @@ from power import Pow
 from mul import Mul
 from add import Add
 from relational import Equality, Inequality, Unequality, StrictInequality
-from function import Lambda, Function, Apply, FApply, Composition
+from function import Lambda, Function, Apply, FApply, Composition, FPow
+import defined_functions
 
 from order import Order
 

@@ -104,6 +104,9 @@ class Basic(BasicMeths):
             r = self
         return r
 
+    def _seq_evalf(self):
+        return self.__class__(*[s.evalf() for s in self])
+
     def expand(self):
         if isinstance(self, Atom):
             return self
@@ -145,6 +148,9 @@ class Basic(BasicMeths):
         return
 
     def _eval_apply_power(self,b,e):
+        return
+
+    def _eval_apply_evalf(self,*args):
         return
 
     def diff(self, *symbols):
