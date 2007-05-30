@@ -55,7 +55,6 @@ class Add(AssocOp, RelMeths, ArithMeths):
             noncommutative = noncommutative or not s.is_commutative
         if not isinstance(coeff, Basic.Zero):
             newseq.insert(0, coeff)
-        print newseq, orders
         if noncommutative:
             return [],newseq,lambda_args,None
         return newseq,[],lambda_args,None
