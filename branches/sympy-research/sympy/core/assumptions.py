@@ -73,6 +73,10 @@ class AssumeMeths(object):
     def is_commutative(self):
         assumptions = self._assumptions
         name = 'commutative'
+        # for backward compatibilty:
+        try: return assumptions['is_'+name]
+        except KeyError: pass
+        #
         try: return assumptions[name]
         except KeyError: pass
         if self.is_real:
@@ -176,3 +180,4 @@ class AssumeMeths(object):
             a = assumptions[name] = getattr(self,'_calc_'+name)()
             return a
         return None
+

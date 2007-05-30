@@ -301,7 +301,7 @@ class Rational(Number):
             if isinstance(e, Integer):
                 # (4/3)**2 -> 4**2 / 3**2
                 return Rational(b.p ** e.p, b.q ** e.p)
-            if isinstance(e, Rational):
+            if isinstance(e, Rational) and not isinstance(b, Integer):
                 # (4/3)**(5/6) -> 4**(5/6) * 3**(-5/6)
                 return Integer(b.p) ** e * Integer(b.q) ** (-e)
         return
@@ -358,6 +358,12 @@ class Zero(Singleton, Integer):
 
     p = 0
     q = 1
+
+    def _eval_power(b, e):
+        if isinstance(e, NaN): return NaN()
+        if isinstance(e, Zero): return One()
+        if e.is_negative: return Infinity()
+        return b
 
 class One(Singleton, Integer):
 
