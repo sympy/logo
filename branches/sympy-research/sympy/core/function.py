@@ -221,6 +221,9 @@ class FApply(Function):
             return obj
         return Basic.__new__(cls, operator, *funcs, **assumptions)
 
+    def _hashable_content(self):
+        return self._args
+
     @property
     def operator(self):
         return self._args[0]
@@ -368,6 +371,9 @@ class FPow(Function):
             obj = Basic.__new__(cls, a, b, **assumptions)
         return obj
 
+    def _hashable_content(self):
+        return self._args
+
     @property
     def base(self):
         return self._args[0]
@@ -464,6 +470,9 @@ class Composition(AssocOp, Function):
         while l:
             r = l.pop()(r)
         return r
+
+    def _hashable_content(self):
+        return self._args
 
 class FDerivative(Function):
 

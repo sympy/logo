@@ -92,4 +92,5 @@ class Sqrt(DefinedFunction):
 
 Basic.singleton['exp'] = Exp
 Basic.singleton['log'] = Log
+Basic.singleton['ln'] = Log
 Basic.singleton['sqrt'] = Sqrt

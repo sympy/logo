@@ -518,3 +518,8 @@ Basic.singleton['pi'] = Pi
 Basic.singleton['I'] = ImaginaryUnit
 Basic.singleton['oo'] = Infinity
 Basic.singleton['nan'] = NaN
+
+# backward compatibility code, to be removed:
+pi = Pi()
+I = ImaginaryUnit()
+oo = Infinity()

@@ -6,7 +6,7 @@
 
 from basic import Basic
 from symbol import Symbol
-from numbers import Real, Rational, Integer
+from numbers import Number, Real, Rational, Integer
 from power import Pow
 from mul import Mul
 from add import Add
@@ -24,3 +24,7 @@ for _n,_cls in Basic.singleton.items():
     exec _n + ' = _cls()'
 
 sympify = Basic.sympify
+
+# this is for backward compatibilty, to be removed:
+mhash = lambda obj: hash(obj)
+hashing = lambda obj: hash(obj)
