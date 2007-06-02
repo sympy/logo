@@ -73,3 +73,29 @@ class Symbol(Atom, RelMeths, ArithMeths):
     #def __mathml__(self): ..
     #def __latex__(self): ..
     #def __pretty__(self): ..
+
+class Wild(Symbol):
+    """
+    Wild() matches any expression but another Wild().
+    """
+
+    def __new__(cls, name = None, **assumptions):
+        assumptions['dummy'] = True
+        if name is None:
+            name = 'W%s' % (Symbol.dummycount+1)
+        return Symbol.__new__(cls, name, **assumptions)
+
+    def matches(pattern, expr, repl_dict):
+        for p,v in repl_dict.items():
+            if p==pattern:
+                if v==expr: return repl_dict
+                return None
+        repl_dict = repl_dict.copy()
+        repl_dict[pattern] = expr
+        return repl_dict
+
+    def __call__(self, *args, **assumptions):
+        return Basic.WildFunction(self.name, nofargs=len(args))(*args, **assumptions)
+
+    def tostr(self, level=0):
+        return self.name + '_'

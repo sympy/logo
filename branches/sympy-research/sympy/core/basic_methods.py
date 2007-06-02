@@ -14,15 +14,17 @@ ordering_of_classes = [
     # singleton symbols
     'Exp1','Pi','ImaginaryUnit',
     # symbols
-    'Symbol',
+    'Symbol','Wild',
     # arithmetic operations
     'Pow', 'Mul', 'Add',
     # function values
     'Apply','Derivative',
-    # singleton functions
-    'Exp','Log',
+    # defined singleton functions
+    'Abs','Sign','Sqrt','Exp','Log',
+    'Sin','Cos','Tan','Cot','ASin','ACos','ATan','ACot',
+    'Sinh','Cosh','Tanh','Coth','ASinh','ACosh','ATanh','ACoth',
     # undefined functions
-    'Function',
+    'Function','WildFunction',
     # anonymous functions
     'Lambda',
     # operators
@@ -44,7 +46,12 @@ class MetaBasicMeths(type):
     singleton = {}
 
     def __init__(cls,*args,**kws):
-        MetaBasicMeths.classnamespace[cls.__name__] = cls
+        n = cls.__name__
+        c = MetaBasicMeths.classnamespace.get(n)
+        if c is None:
+            MetaBasicMeths.classnamespace[n] = cls
+        else:
+            print 'Ignoring redefinition of %s: %s defined earlier than %s' % (n, c, cls)
         type.__init__(cls, *args, **kws)
         
     def __getattr__(cls, name):

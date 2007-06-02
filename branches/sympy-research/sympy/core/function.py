@@ -105,6 +105,10 @@ class Apply(Basic, ArithMeths, RelMeths):
             return b.func._eval_apply_power(b.args[0], e)
         return
 
+    def _calc_commutative(self):
+        for a in self._args:
+            if not a.is_commutative: return a.is_commutative
+        return True
 
 
 class Function(Basic, ArithMeths, NoRelMeths):
@@ -206,6 +210,21 @@ class Function(Basic, ArithMeths, NoRelMeths):
     def inverse(self):
         return FPow(self, -1)
 
+
+class WildFunction(Function):
+
+    def matches(pattern, expr, repl_dict):
+        for p,v in repl_dict.items():
+            if p==pattern:
+                if v==expr: return repl_dict
+                return None
+        repl_dict = repl_dict.copy()
+        repl_dict[pattern] = expr
+        return repl_dict
+
+    def tostr(self, level=0):
+        return self.name + '_'
+
 class FApply(Function):
     """ Defines n-ary operator that acts on symbolic functions.
 
@@ -240,6 +259,7 @@ class FApply(Function):
         return r
 
     subs = Basic._seq_subs
+
 
 
 class Lambda(Function):
@@ -606,7 +626,8 @@ class DefinedFunction(Function, Singleton, Atom):
     """ Base class for defined functions.
     """
     
-    has_derivative = True    
+    is_commutative = True # the values of functions are commutative
+
     def __new__(cls, **assumptions):
         obj = Basic.__new__(cls,**assumptions)
         obj.name = obj.__class__.__name__.lower()

@@ -48,7 +48,7 @@ class Pow(Basic, ArithMeths, RelMeths):
         old = Basic.sympify(old)
         new = Basic.sympify(new)
         if self==old: return new
-        #elif exp(self.exp * log(self.base)) == old: return new
+        elif Basic.Exp()(self.exp * Basic.Log()(self.base)) == old: return new
         return self.base.subs(old, new) ** self.exp.subs(old, new)
 
     def as_base_exp(self):

@@ -10,7 +10,11 @@ from sympy.core.functions import Derivative, diff
 from sympy.modules.polynomials import collect
 from sympy.modules.matrices import zeronm
 
-class Equation(Basic):
+Equation = Basic.Equality
+Inequality = Basic.Inequality
+StrictInequality = Basic.StrictInequality
+
+class _Equation(Basic):
 
     def __init__(self, lhs, rhs):
         Basic.__init__(self)
@@ -80,7 +84,7 @@ class Equation(Basic):
     def __latex__(self):
         return "%s = %s" % (self.lhs.__latex__(), self.rhs.__latex__())
 
-class Inequality(Basic):
+class _Inequality(Basic):
 
     def __init__(self, lhs, rhs):
         Basic.__init__(self)
@@ -110,7 +114,7 @@ class Inequality(Basic):
     def __latex__(self):
         return "%s < %s" % (self.lhs.__latex__(), self.rhs.__latex__())
 
-class StrictInequality(Inequality):
+class _StrictInequality(_Inequality):
 
     @staticmethod
     def addeval(x, y):

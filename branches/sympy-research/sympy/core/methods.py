@@ -15,6 +15,8 @@ class ArithMeths(object):
         return self
     def __neg__(self):
         return Basic.Integer(-1) * self
+    def __abs__(self):
+        return Basic.Abs()(self)
     def __add__(self, other):
         return Basic.Add(self, other)
     def __radd__(self, other):
@@ -88,6 +90,10 @@ class RelMeths(object):
 
 class NoRelMeths(object):
 
+    def __eq__(self, other):
+        return Basic.Equality(self, other)
+    def __ne__(self, other):
+        return Basic.Unequality(self, other)
     def __lt__(self, other):
         raise TypeError, _no_binary_operation('<', self, other)
     def __gt__(self, other):
@@ -96,9 +102,3 @@ class NoRelMeths(object):
         raise TypeError, _no_binary_operation('<=', self, other)
     def __ge__(self, other):
         raise TypeError, _no_binary_operation('>=', self, other)
-    def __eq__(self, other):
-        return self.compare(other)==0
-    def __ne__(self, other):
-        return self.compare(other)!=0
-
-

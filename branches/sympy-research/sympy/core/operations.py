@@ -51,3 +51,62 @@ class AssocOp(Basic):
         return [], new_seq, None, None
 
     subs = Basic._seq_subs
+
+    def _matches_commutative(pattern, expr, repl_dict):
+        # cache pattern specific calculations
+        if not hasattr(pattern, '_wilds'):
+            pattern._wilds = wilds = []
+            pattern._notwilds = rest = []
+            for o in pattern[:]:
+                if isinstance(o, Basic.Wild):
+                    wilds.append(o)
+                else:
+                    rest.append(o)
+        else:
+            wilds = pattern._wilds
+            rest = pattern._notwilds
+        if len(wilds)==0:
+            return Basic.matches(pattern, expr, repl_dict)
+
+        # look for a free wild symbol
+        d = repl_dict.copy()
+        wild = None
+        for w in wilds:
+            if not d.has_key(w):
+                if wild is None:
+                    wild = w
+                else:
+                    d[w] = pattern.__class__.identity()
+        if wild is None or len(wilds)>1:
+            patexpr = pattern
+            for w in wilds:
+                if w is wild: continue
+                patexpr = patexpr.subs(w, d[w])
+            return patexpr.matches(expr, d)
+
+        # pattern contains exactly one free wild symbol
+        expr = Basic.sympify(expr)
+        if isinstance(expr, pattern.__class__):
+            expr_list = list(expr)
+        else:
+            expr_list = [expr]
+        for o in rest:
+            d1 = None
+            for e in expr_list:
+                d1 = o.matches(e,d)
+                if d1 is not None:
+                    break
+            if d1 is None:
+                return None
+            expr_list.remove(e)
+            d = d1
+
+        # check if wild value matches with one in repl_dict
+        wv = pattern.__class__(*expr_list)
+        for k,v in d.items():
+            if k==wild:
+                if v!=wv:
+                    return None
+                return d
+        d[wild] = wv
+        return d

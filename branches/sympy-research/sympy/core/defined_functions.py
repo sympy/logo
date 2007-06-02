@@ -90,6 +90,26 @@ class Sqrt(DefinedFunction):
     def _eval_apply(self, arg):
         return
 
+    def _eval_apply_power(self, arg, exp):
+        if isinstance(exp, Basic.Number):
+            return arg ** (exp/2)
+
+class Abs(DefinedFunction):
+
+    nofargs = 1
+    
+    def fdiff(self, argindex=1):
+        if argindex==1:
+            raise NotImplementedError("Abs.fdiff()")
+        raise TypeError("argindex=%s is out of range [1,1] for %s" % (argindex,self))
+
+    def _eval_apply(self, arg):
+        if arg.is_positive:
+            return arg
+        if arg.is_negative:
+            return -arg
+        return
+
 class Sin(DefinedFunction):
     
     nofargs = 1
@@ -151,3 +171,4 @@ Basic.singleton['sin'] = Sin
 Basic.singleton['cos'] = Cos
 Basic.singleton['tan'] = Tan
 Basic.singleton['sqrt'] = Sqrt
+Basic.singleton['abs_'] = Abs

@@ -86,3 +86,6 @@ class Add(AssocOp, RelMeths, ArithMeths):
 
     def _eval_derivative(self, s):
         return Add(*[f.diff(s) for f in self])
+
+    matches = AssocOp._matches_commutative
+

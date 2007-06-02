@@ -157,3 +157,9 @@ class Mul(AssocOp, RelMeths, ArithMeths):
                 continue
             factors.append(Mul(*(terms[:i]+[t]+terms[i+1:])))
         return Basic.Add(*factors)
+
+    def matches(pattern, expr, repl_dict):
+        if pattern.is_commutative and expr.is_commutative:
+            return AssocOp._matches_commutative(pattern, expr, repl_dict)
+        # todo, until then use the default matches method for non-commutative products
+        return Basic.matches(pattern, expr, repl_dict)

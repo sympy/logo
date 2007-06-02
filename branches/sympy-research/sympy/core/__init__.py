@@ -5,13 +5,13 @@
 # Created: May 2007
 
 from basic import Basic
-from symbol import Symbol
+from symbol import Symbol, Wild
 from numbers import Number, Real, Rational, Integer
 from power import Pow
 from mul import Mul
 from add import Add
 from relational import Equality, Inequality, Unequality, StrictInequality
-from function import Lambda, Function, Apply, FApply, Composition, FPow
+from function import Lambda, Function, Apply, FApply, Composition, FPow, WildFunction
 import defined_functions
 
 from order import Order
@@ -28,3 +28,4 @@ sympify = Basic.sympify
 # this is for backward compatibilty, to be removed:
 mhash = lambda obj: hash(obj)
 hashing = lambda obj: hash(obj)
+#

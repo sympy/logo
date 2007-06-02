@@ -26,6 +26,10 @@ class Number(Atom, RelMeths, ArithMeths):
     Rational(1) + sqrt(Rational(2))
     """
     is_commutative = True
+    
+    # for backward compatibility, will be removed:
+    is_number = True
+    #
 
     def __new__(cls, *obj):
         if len(obj)==1: obj=obj[0]

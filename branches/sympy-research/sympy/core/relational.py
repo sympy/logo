@@ -44,7 +44,6 @@ class Relational(Basic, NoRelMeths):
             return '(%s)' % r
         return r
 
-
 class Equality(Relational):
 
     rel_op = '=='
@@ -63,7 +62,12 @@ class StrictInequality(Relational):
 
     rel_op = '<'
 
+    def __nonzero__(self):
+        return self.lhs.compare(self.rhs)==-1
+
 class Inequality(Relational):
 
     rel_op = '<='
 
+    def __nonzero__(self):
+        return self.lhs.compare(self.rhs)<=0

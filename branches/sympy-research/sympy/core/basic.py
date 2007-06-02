@@ -8,6 +8,10 @@ class Basic(BasicMeths):
     Base class for all objects in sympy.
     """
 
+    # for backward compatibility, will be removed:
+    is_number = False
+    #
+
     def __new__(cls, *args, **assumptions):
         obj = object.__new__(cls)
         obj._assumptions = assumptions.copy()
@@ -99,10 +103,9 @@ class Basic(BasicMeths):
     def _seq_subs(self, old, new):
         old = Basic.sympify(old)
         new = Basic.sympify(new)
-        r = self.__class__(*[s.subs(old, new) for s in self])
-        if r==self:
-            r = self
-        return r
+        if self==old:
+            return new
+        return self.__class__(*[s.subs(old, new) for s in self])
 
     def _seq_evalf(self):
         return self.__class__(*[s.evalf() for s in self])
@@ -153,8 +156,8 @@ class Basic(BasicMeths):
     def _eval_apply_evalf(self,*args):
         return
 
-    def diff(self, *symbols):
-        return Basic.Derivative(self, *symbols)
+    def diff(self, *symbols, **assumptions):
+        return Basic.Derivative(self, *symbols, **assumptions)
 
     def fdiff(self, *indices):
         return Basic.FApply(Basic.FDerivative(*indices), self)
@@ -176,6 +179,59 @@ class Basic(BasicMeths):
             n += 1
         return Basic.Order(s**n, s)
 
+    def subs_dict(self, old_new_dict):
+        r = self
+        for old,new in old_new_dict.items():
+            r = r.subs(old,new)
+        return r
+
+    def matches(pattern, expr, repl_dict):
+        """
+        Helper method to match().
+        """
+        expr = Basic.sympify(expr)
+        if not isinstance(expr, pattern.__class__):
+            return None
+        if len(expr[:]) != len(pattern[:]):
+            return None
+        if len(pattern[:])==0:
+            if pattern==expr:
+                return repl_dict
+            return None
+        d = repl_dict.copy()
+        for p,e in zip(pattern, expr):
+            d = p.matches(e, d)
+            if d is None:
+                return None
+        return d
+
+    def match(self, pattern, syms = None):
+        """
+        Pattern matching. See GiNaC tutorial for details.
+
+        Return None when expression (self) does not match
+        with pattern. Otherwise return a dictionary such that
+
+          pattern.subs_dict(self.match(pattern)) == self
+
+        """
+        # syms argument is used for backward compatibility, will be removed
+        if syms is not None:
+            pat = pattern
+            wilds = []
+            for s in syms:
+                w = Basic.Wild(s.name)
+                pat = pat.subs(s,w)
+                wilds.append(w)
+            result = self.match(pat)
+            if result is not None:
+                for w,s in zip(wilds, syms):
+                    result[s] = result[w]
+                    del result[w]
+            return result
+        #
+        return Basic.sympify(pattern).matches(self, {})
+
 class Atom(Basic):
 
     precedence = 1000
@@ -184,6 +240,10 @@ class Atom(Basic):
         if self==s: return Basic.One()
         return Basic.Zero()
 
+    def pattern_match(pattern, expr, repl_dict):
+        if pattern==expr:
+            return repl_dict
+        return None
 
 class Singleton(Basic):
     """ Singleton object.
@@ -200,4 +260,7 @@ class Singleton(Basic):
             setattr(Singleton, cls.__name__, obj)
         return obj
 
+
 import parser
+
+

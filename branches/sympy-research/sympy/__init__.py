@@ -63,7 +63,8 @@ from sympy.core import pi, I, Add, Mul
 from sympy.core.functions import Function, diff, Derivative, exp, log, sign, sqrt
 
 from sympy.modules.limits import limit, limitinf
-from sympy.modules.trigonometric import sin, cos, tan, atan
+#from sympy.modules.trigonometric import sin, cos, tan, atan
+from sympy.core import sin, cos, tan
 from sympy.modules.integrals import integrate
 from sympy.modules.matrices import Matrix
 from sympy.modules.solvers import solve, dsolve
