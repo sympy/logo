@@ -81,14 +81,17 @@ class AssocOp(Basic):
 
         # now to real work ;)
         if isinstance(expr, pattern.__class__):
-            last_op = expr[-1]
+            expr_list = list(expr)
         else:
-            last_op = expr
-        while wild_part:
-            w = wild_part.pop()
-            d1 = w.matches(last_op, repl_dict)
-            if d1 is not None:
-                d2 = pattern.matches(expr, d1, evaluate=True)
-                if d2 is not None:
-                    return d2
+            expr_list = [expr]
+        while expr_list:
+            last_op = expr_list.pop()
+            tmp = wild_part[:]
+            while tmp:
+                w = tmp.pop()
+                d1 = w.matches(last_op, repl_dict)
+                if d1 is not None:
+                    d2 = pattern.matches(expr, d1, evaluate=True)
+                    if d2 is not None:
+                        return d2
         return

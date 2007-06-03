@@ -77,6 +77,10 @@ class Mul(AssocOp, RelMeths, ArithMeths):
         if isinstance(coeff, Basic.Zero):
             c_part, nc_part = [coeff],[]
         c_part.sort(Basic.compare)
+        if len(c_part)==2 and isinstance(c_part[0], Basic.Number) and isinstance(c_part[1], Basic.Add):
+            # 2*(1+a) -> 2 + 2 * a
+            coeff = c_part[0]
+            c_part = [Basic.Add(*[coeff*f for f in c_part[1]])]
         return c_part, nc_part, lambda_args, order_symbols
 
     def _eval_power(b, e):
