@@ -213,7 +213,7 @@ class Function(Basic, ArithMeths, NoRelMeths):
 
 class WildFunction(Function):
 
-    def matches(pattern, expr, repl_dict):
+    def matches(pattern, expr, repl_dict, evaluate=False):
         for p,v in repl_dict.items():
             if p==pattern:
                 if v==expr: return repl_dict

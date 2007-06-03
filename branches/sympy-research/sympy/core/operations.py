@@ -12,7 +12,7 @@ class AssocOp(Basic):
     
     def __new__(cls, *args, **assumptions):
         if len(args)==0:
-            return cls.identity
+            return cls.identity()
         if len(args)==1:
             return args[0]
         c_part, nc_part, lambda_args, order_symbols = cls.flatten(map(Basic.sympify, args))
@@ -52,61 +52,43 @@ class AssocOp(Basic):
 
     subs = Basic._seq_subs
 
-    def _matches_commutative(pattern, expr, repl_dict):
-        # cache pattern specific calculations
-        if not hasattr(pattern, '_wilds'):
-            pattern._wilds = wilds = []
-            pattern._notwilds = rest = []
-            for o in pattern[:]:
-                if isinstance(o, Basic.Wild):
-                    wilds.append(o)
-                else:
-                    rest.append(o)
-        else:
-            wilds = pattern._wilds
-            rest = pattern._notwilds
-        if len(wilds)==0:
-            return Basic.matches(pattern, expr, repl_dict)
+    def _matches_commutative(pattern, expr, repl_dict, evaluate=False):
+        # apply repl_dict to pattern to eliminate fixed wild parts
+        if evaluate:
+            pat = pattern
+            for old,new in repl_dict.items():
+                pat = pat.subs(old, new)
+            if pat!=pattern:
+                return pat.matches(expr, repl_dict)
 
-        # look for a free wild symbol
-        d = repl_dict.copy()
-        wild = None
-        for w in wilds:
-            if not d.has_key(w):
-                if wild is None:
-                    wild = w
-                else:
-                    d[w] = pattern.__class__.identity()
-        if wild is None or len(wilds)>1:
-            patexpr = pattern
-            for w in wilds:
-                if w is wild: continue
-                patexpr = patexpr.subs(w, d[w])
-            return patexpr.matches(expr, d)
+        # handle simple patterns
+        d = pattern._matches_simple(expr, repl_dict)
+        if d is not None:
+            return d
+        
+        # eliminate exact part from pattern: (2+a+w1+w2).matches(expr) -> (w1+w2).matches(expr-a-2)
+        wild_part = []
+        exact_part = []
+        for p in pattern:
+            if p.atoms(type=Basic.Wild):
+                wild_part.append(p)
+            else:
+                exact_part.append(p)
+        if exact_part:
+            newpattern = pattern.__class__(*wild_part)
+            newexpr = pattern.__class__._combine_inverse(expr, pattern.__class__(*exact_part))
+            return newpattern.matches(newexpr, repl_dict)
 
-        # pattern contains exactly one free wild symbol
-        expr = Basic.sympify(expr)
+        # now to real work ;)
         if isinstance(expr, pattern.__class__):
-            expr_list = list(expr)
+            last_op = expr[-1]
         else:
-            expr_list = [expr]
-        for o in rest:
-            d1 = None
-            for e in expr_list:
-                d1 = o.matches(e,d)
-                if d1 is not None:
-                    break
-            if d1 is None:
-                return None
-            expr_list.remove(e)
-            d = d1
-
-        # check if wild value matches with one in repl_dict
-        wv = pattern.__class__(*expr_list)
-        for k,v in d.items():
-            if k==wild:
-                if v!=wv:
-                    return None
-                return d
-        d[wild] = wv
-        return d
+            last_op = expr
+        while wild_part:
+            w = wild_part.pop()
+            d1 = w.matches(last_op, repl_dict)
+            if d1 is not None:
+                d2 = pattern.matches(expr, d1, evaluate=True)
+                if d2 is not None:
+                    return d2
+        return

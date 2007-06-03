@@ -87,5 +87,15 @@ class Add(AssocOp, RelMeths, ArithMeths):
     def _eval_derivative(self, s):
         return Add(*[f.diff(s) for f in self])
 
+    def _matches_simple(pattern, expr, repl_dict):
+        # handle (w+3).matches('x+5') -> {w: x+2}
+        coeff, factors = pattern.as_coeff_factors()
+        if len(factors)==1:
+            return factors[0].matches(expr - coeff, repl_dict)
+        return
+
     matches = AssocOp._matches_commutative
 
+    @staticmethod
+    def _combine_inverse(lhs, rhs):
+        return lhs - rhs

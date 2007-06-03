@@ -85,7 +85,7 @@ class Wild(Symbol):
             name = 'W%s' % (Symbol.dummycount+1)
         return Symbol.__new__(cls, name, **assumptions)
 
-    def matches(pattern, expr, repl_dict):
+    def matches(pattern, expr, repl_dict, evaluate=False):
         for p,v in repl_dict.items():
             if p==pattern:
                 if v==expr: return repl_dict

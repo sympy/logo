@@ -185,10 +185,19 @@ class Basic(BasicMeths):
             r = r.subs(old,new)
         return r
 
-    def matches(pattern, expr, repl_dict):
+    def _matches_simple(pattern, expr, repl_dict):
+        return
+
+    def matches(pattern, expr, repl_dict, evaluate=False):
         """
         Helper method to match().
         """
+        if evaluate:
+            pat = pattern
+            for old,new in repl_dict.items():
+                pat = pat.subs(old, new)
+            if pat!=pattern:
+                return pat.matches(expr, repl_dict)
         expr = Basic.sympify(expr)
         if not isinstance(expr, pattern.__class__):
             return None
@@ -199,8 +208,10 @@ class Basic(BasicMeths):
                 return repl_dict
             return None
         d = repl_dict.copy()
+        i = 0
         for p,e in zip(pattern, expr):
-            d = p.matches(e, d)
+            d = p.matches(e, d, evaluate=not i)
+            i += 1
             if d is None:
                 return None
         return d
