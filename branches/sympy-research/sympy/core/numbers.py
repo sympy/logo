@@ -12,6 +12,42 @@ def gcd(a, b):
         a, b = b%a, a
     return b
 
+def factor_trial_division(n):
+    """
+    Factor any integer into a product of primes, 0, 1, and -1.
+    Returns a dictionary {<prime: exponent>}.
+    """
+    if not n: return {0:1}
+    factors = {}
+    if n < 0:
+        factors[-1] = 1
+        n = -n
+    if n==1:
+        factors[1] = 1
+        return factors
+    d = 2
+    while n % d == 0:
+        try:
+            factors[d] += 1
+        except KeyError:
+            factors[d] = 1
+        n //= d
+    d = 3
+    while n > 1 and d*d <= n:
+        if n % d:
+            d += 2
+        else:
+            try:
+                factors[d] += 1
+            except KeyError:
+                factors[d] = 1
+            n //= d
+    if n>1:
+        try:
+            factors[n] += 1
+        except KeyError:
+            factors[n] = 1
+    return factors
 
 class Number(Atom, RelMeths, ArithMeths):
     """Represents any kind of number in sympy.
@@ -26,6 +62,7 @@ class Number(Atom, RelMeths, ArithMeths):
     Rational(1) + sqrt(Rational(2))
     """
     is_commutative = True
+    is_comparable = True
     
     # for backward compatibility, will be removed:
     is_number = True
@@ -252,6 +289,8 @@ class Real(Number):
             return bool(self._as_decimal()<=other._as_decimal())
         return RelMeths.__le__(self, other)
 
+
+
 class Rational(Number):
     """Represents integers and rational numbers (p/q) of any size.
 
@@ -397,6 +436,24 @@ class Rational(Number):
                 return bool(self._as_decimal()<=other._as_decimal())
             return bool(self.p * other.q <= self.q * other.p)
         return RelMeths.__le__(self, other)
+
+    def factors(self):
+        f = factor_trial_division(self.p)
+        for p,e in factor_trial_division(self.q).items():
+            try: f[p] += -e
+            except KeyError: f[p] = -e
+        fi = {}
+        for p,e in f.items():
+            if e==0:
+                del f[p]
+            else:
+                try: fi[e] *= p
+                except KeyError: fi[e] = p
+        f = {}
+        for e,p in fi.items():
+            f[p] = e
+        if len(f)>1 and f.has_key(1): del f[1]
+        return f
 
 class Integer(Rational):
 
@@ -679,6 +736,7 @@ class ImaginaryUnit(Singleton, Atom, RelMeths, ArithMeths):
     is_real = False
     is_positive = is_nonnegative = False
     is_nonpositive = is_negative = False
+    is_comparable = False
 
     def tostr(self, level=0):
         return 'I'

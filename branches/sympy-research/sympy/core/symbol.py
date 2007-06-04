@@ -17,6 +17,7 @@ class Symbol(Atom, RelMeths, ArithMeths):
        True
     """
 
+    is_comparable = False
     dummycount = 0
 
     def __new__(cls, name, commutative=True, dummy=False, real=False, 

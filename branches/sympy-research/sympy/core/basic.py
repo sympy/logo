@@ -10,8 +10,8 @@ class Basic(BasicMeths):
 
     # for backward compatibility, will be removed:
     is_number = False
+    def hash(self): return self.__hash__()
     #
-    is_comparable = None
 
     def __new__(cls, *args, **assumptions):
         obj = object.__new__(cls)
@@ -166,7 +166,18 @@ class Basic(BasicMeths):
         return
 
     def diff(self, *symbols, **assumptions):
-        return Basic.Derivative(self, *symbols, **assumptions)
+        new_symbols = []
+        for s in symbols:
+            s = Basic.sympify(s)
+            if isinstance(s, Basic.Integer) and new_symbols:
+                last_s = new_symbols[-1]
+                i = int(s)
+                new_symbols += [last_s] * (i-1)
+            elif isinstance(s, Basic.Symbol):
+                new_symbols.append(s)
+            else:
+                raise TypeError("diff argument must be Symbol|Integer instance (got %s)" % (s.__class__.__name__))
+        return Basic.Derivative(self, *new_symbols, **assumptions)
 
     def fdiff(self, *indices):
         return Basic.FApply(Basic.FDerivative(*indices), self)
@@ -299,9 +310,7 @@ class Basic(BasicMeths):
         result = self._calc_leadterm(x)
         if result is not None:
             return result
-        # XXX: need to expand self to series
-        
-        raise NotImplementedError("Failed to determine the lead term of %r with respect to %r" % (self, x))
+        raise ValueError("unable to compute leading term %s at %s=0" % (self, x))
 
     def ldegree(self, x):
         return self.leadterm(x)[1]

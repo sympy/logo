@@ -55,6 +55,8 @@ class Pow(Basic, ArithMeths, RelMeths):
         return self.base.subs(old, new) ** self.exp.subs(old, new)
 
     def as_base_exp(self):
+        if isinstance(self.base, Basic.Rational) and self.base.p==1:
+            return 1/self.base, -self.exp
         return self.base, self.exp
 
     def expand(self):
@@ -124,3 +126,9 @@ class Pow(Basic, ArithMeths, RelMeths):
         # TODO: (1+x)*(2*x) -> ((1+x)**2)**x
         # TODO: (1+x)**x -> exp(x*log(1+x))
         return
+
+    @property
+    def is_comparable(self):
+        return self.exp.is_comparable and self.base.is_comparable
+
+    evalf = Basic._seq_evalf

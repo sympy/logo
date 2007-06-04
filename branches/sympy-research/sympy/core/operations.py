@@ -95,3 +95,13 @@ class AssocOp(Basic):
                     if d2 is not None:
                         return d2
         return
+
+    @property
+    def is_comparable(self):
+        for s in self:
+            if not s.is_comparable:
+                return
+        return True
+
+    evalf = Basic._seq_evalf
+    

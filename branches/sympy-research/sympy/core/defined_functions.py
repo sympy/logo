@@ -5,7 +5,7 @@ from function import DefinedFunction, Apply, Lambda
 class Exp(DefinedFunction):
     """ Exp() -> exp
     """
-
+    is_comparable = True
     nofargs = 1
 
     def fdiff(self, argindex=1):
@@ -44,7 +44,7 @@ class Exp(DefinedFunction):
 class Log(DefinedFunction):
     """ Log() -> log
     """
-
+    is_comparable = True
     nofargs = 1
 
     def fdiff(self, argindex=1):
@@ -92,7 +92,7 @@ class Log(DefinedFunction):
             # log(2+x) -> log(2)
             return self(c0), Basic.Zero()
         # log(2*x) -> log(2) + log(x) - not handeled
-        raise ValueError("unable to compute series %s(%s) at %s=0" % (self, arg, x))
+        raise ValueError("unable to compute leading term %s(%s) at %s=0" % (self, arg, x))
 
 
 class Sqrt(DefinedFunction):
@@ -110,7 +110,18 @@ class Sqrt(DefinedFunction):
         return Lambda(s**2, s)
 
     def _eval_apply(self, arg):
-        return
+        if isinstance(arg, Basic.Number):
+            if isinstance(arg, Basic.Rational):
+                factors = arg.factors()
+                sqrt_factors = {}
+                eval_factors = {}
+                n = Basic.One()
+                for k,v in factors.items():
+                    n *= Basic.Integer(k) ** (v//2)
+                    if v % 2:
+                        n *= Basic.Integer(k) ** Basic.Half()
+                return n
+            return arg ** Basic.Half()
 
     def _eval_apply_power(self, arg, exp):
         if isinstance(exp, Basic.Number):
@@ -143,7 +154,7 @@ class Abs(DefinedFunction):
         c0, e0 = arg.leadterm(x)
         if isinstance(e0, Basic.Zero):
             return self(c0), Basic.Zero()
-        raise ValueError("unable to compute series %s(%s) at %s=0" % (self, arg, x))
+        raise ValueError("unable to compute leading term %s(%s) at %s=0" % (self, arg, x))
 
 class Sin(DefinedFunction):
     
@@ -171,12 +182,12 @@ class Sin(DefinedFunction):
             if not isinstance(c0, Basic.Zero):
                 return c0, e0
             # sin(Pi+x) -> sin(-x)
-            raise NotImplementedError("compute series %s(%s) at %s=0" % (self, arg, x))
+            raise NotImplementedError("compute leading term %s(%s) at %s=0" % (self, arg, x))
         if e0.is_positive:
             # sin(2*x) -> 2 * x
             return c0, e0
         # sin(1/x)
-        raise ValueError("unable to compute series %s(%s) at %s=0" % (self, arg, x))
+        raise ValueError("unable to compute leading term %s(%s) at %s=0" % (self, arg, x))
 
 
 class Cos(DefinedFunction):
@@ -205,12 +216,12 @@ class Cos(DefinedFunction):
             if not isinstance(c0, Basic.Zero):
                 return c0, e0
             # cos(Pi+x) -> cos(x)
-            raise NotImplementedError("compute series %s(%s) at %s=0" % (self, arg, x))
+            raise NotImplementedError("compute leading term %s(%s) at %s=0" % (self, arg, x))
         if e0.is_positive:
             # cos(2*x) -> 1
             return Basic.One(), Basic.Zero()
         # cos(1/x)
-        raise ValueError("unable to compute series %s(%s) at %s=0" % (self, arg, x))
+        raise ValueError("unable to compute leading term %s(%s) at %s=0" % (self, arg, x))
 
 class Tan(DefinedFunction):
     
@@ -218,7 +229,7 @@ class Tan(DefinedFunction):
 
     def fdiff(self, argindex=1):
         if argindex==1:
-            raise NotImplementedError('tan derivative')
+            return 1+self**2
         raise TypeError("argindex=%s is out of range [1,1] for %s" % (argindex,self))
 
     def inverse(self, argindex=1):
@@ -238,12 +249,12 @@ class Tan(DefinedFunction):
             if not isinstance(c0, Basic.Zero):
                 return c0, e0
             # tan(Pi+x) -> tan(-x)
-            raise NotImplementedError("compute series %s(%s) at %s=0" % (self, arg, x))
+            raise NotImplementedError("compute leading term %s(%s) at %s=0" % (self, arg, x))
         if e0.is_positive:
             # tan(2*x) -> 2 * x
             return c0, e0
         # tan(1/x)
-        raise ValueError("unable to compute series %s(%s) at %s=0" % (self, arg, x))
+        raise ValueError("unable to compute leading term %s(%s) at %s=0" % (self, arg, x))
 
 
 Basic.singleton['exp'] = Exp

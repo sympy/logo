@@ -106,7 +106,7 @@ class Add(AssocOp, RelMeths, ArithMeths):
             raise TypeError("cannot determine lead term with respect to %r of a sum with symbolic exponents: %r" % (x,self))
         for f in self[1:]:
             c,e = f.leadterm(x)
-            if not isinstance(e, Basic.Number):
+            if not e.is_comparable:
                 raise TypeError("cannot determine lead term with respect to %r of a sum with symbolic exponents: %r" % (x,self))
             if e < e0:
                 c0,e0 = c,e

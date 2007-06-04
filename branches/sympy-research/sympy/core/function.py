@@ -86,6 +86,13 @@ class Apply(Basic, ArithMeths, RelMeths):
     def evalf(self):
         return self.func._eval_apply_evalf(*self.args)
 
+    @property
+    def is_comparable(self):
+        for s in self:
+            if not s.is_comparable:
+                return
+        return True
+
     def _eval_derivative(self, s):
         # Apply(f(x), x).diff(s) -> x.diff(s) * f.fdiff(1)(s)
         i = 0
