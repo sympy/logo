@@ -259,6 +259,7 @@ class Basic(BasicMeths):
         return Basic.sympify(pattern).matches(self, {})
 
     def _calc_leadterm(self, x):
+        raise NotImplementedError("%s._calc_leadterm()" % (self.__class__.__name__))
         # try if self is in the form c0*x^e0, handles Mul and Pow instances
         c0 = Basic.Wild('c0')
         e0 = Basic.Wild('e0')
@@ -280,16 +281,27 @@ class Basic(BasicMeths):
         with the lowest power of x in a form (c0,e0).
         """
         x = Basic.sympify(x)
-        if x.__class__ is not Basic.Symbol:
-            raise TypeError("leadterm() argument must be Symbol instance, got %r" % (x.__class__.__name__))
+        if not isinstance(x, Basic.Symbol):
+            # f(x).leadterm(1+3*x) -> f((x-1)/3).leadterm(x)
+            s = x.atoms(type=Basic.Symbol)
+            if len(s)==1:
+                s = s.pop()
+                w = Basic.Wild()
+                y = Basic.Symbol('y',dummy=True)
+                d = x.subs(s,w).matches(y) # solve linear equation y-x(s)=0 for symbol s
+                if d is not None:
+                    return self.subs(s, d[w]).leadterm(y)
+            raise TypeError("cannot determine lead term with respect to nonlinear expression %r" % (x))
         if not self.has(x):
             return (self,Basic.Zero())
+        if self==x:
+            return Basic.One(),Basic.One()
         result = self._calc_leadterm(x)
         if result is not None:
             return result
-
         # XXX: need to expand self to series
-        raise NotImplementedError("Failed to determine lead term %r with respect to %r" % (self, x))
+        
+        raise NotImplementedError("Failed to determine the lead term of %r with respect to %r" % (self, x))
 
     def ldegree(self, x):
         return self.leadterm(x)[1]

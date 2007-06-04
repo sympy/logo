@@ -351,8 +351,9 @@ class Rational(Number):
                 # (4/3)**2 -> 4**2 / 3**2
                 return Rational(b.p ** e.p, b.q ** e.p)
             if isinstance(e, Rational):
-                # (4/3)**(5/6) -> 4**(5/6) * 3**(-5/6)
-                return Integer(b.p) ** e * Integer(b.q) ** (-e)
+                if b.p!= 1:
+                    # (4/3)**(5/6) -> 4**(5/6) * 3**(-5/6)
+                    return Integer(b.p) ** e * Integer(b.q) ** (-e)
         return
 
     def _as_decimal(self):

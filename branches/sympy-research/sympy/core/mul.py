@@ -178,3 +178,11 @@ class Mul(AssocOp, RelMeths, ArithMeths):
     @staticmethod
     def _combine_inverse(lhs, rhs):
         return lhs / rhs
+
+    def _calc_leadterm(self, x):
+        c0,e0 = self[0].leadterm(x)
+        for t in self[1:]:
+            c,e = t.leadterm(x)
+            c0 *= c
+            e0 += e
+        return c0,e0

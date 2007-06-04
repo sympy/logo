@@ -110,3 +110,17 @@ class Pow(Basic, ArithMeths, RelMeths):
         dexp = self.exp.diff(s)
         return self * (dexp * Basic.Log()(self.base) + dbase * self.exp/self.base)
 
+    def _calc_leadterm(self, x):
+        if isinstance(self.exp, Basic.Integer) or not self.exp.has(x):
+            c0,e0 = self.base.leadterm(x)
+            return c0**self.exp, e0*self.exp
+        if isinstance(self.exp, Basic.Add):
+            # handle (1+x)**(2+x)
+            c0,e0 = Basic.One(),Basic.Zero()
+            for c,e in [(self.base**f).leadterm(x) for f in self.exp]:
+                c0 *= c
+                e0 += e
+            return c0,e0
+        # TODO: (1+x)*(2*x) -> ((1+x)**2)**x
+        # TODO: (1+x)**x -> exp(x*log(1+x))
+        return

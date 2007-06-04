@@ -32,6 +32,15 @@ class Exp(DefinedFunction):
         if isinstance(arg, Basic.Number):
             return arg.exp()
 
+    def _eval_apply_leadterm(self, x, arg):
+        c0, e0 = arg.leadterm(x)
+        if isinstance(e0, Basic.Zero):
+            # exp(5+x) -> exp(5)
+            return self(c0), Basic.One()
+        # exp(2*x) -> 1
+        return Basic.One(), Basic.Zero()
+
+
 class Log(DefinedFunction):
     """ Log() -> log
     """
@@ -73,6 +82,19 @@ class Log(DefinedFunction):
         if isinstance(arg, Basic.Number):
             return arg.log()
 
+    def _eval_apply_leadterm(self, x, arg):
+        c0, e0 = arg.leadterm(x)
+        if isinstance(e0, Basic.Zero):
+            if isinstance(c0, Basic.One):
+                # log(1+2*x) -> 2 * x
+                c0, e0 = (arg-Basic.One()).leadterm(x)
+                return c0, Basic.One()
+            # log(2+x) -> log(2)
+            return self(c0), Basic.Zero()
+        # log(2*x) -> log(2) + log(x) - not handeled
+        raise ValueError("undefined %s(%r) leading term with respect to %r" % (self, arg, x))
+
+
 class Sqrt(DefinedFunction):
 
     nofargs = 1
@@ -94,6 +116,13 @@ class Sqrt(DefinedFunction):
         if isinstance(exp, Basic.Number):
             return arg ** (exp/2)
 
+    def _eval_apply_leadterm(self, x, arg):
+        c0, e0 = arg.leadterm(x)
+        if isinstance(e0, Basic.Zero):
+            return self(c0), Basic.Zero()
+        return self(c0), e0/2
+
+
 class Abs(DefinedFunction):
 
     nofargs = 1
@@ -109,6 +138,12 @@ class Abs(DefinedFunction):
         if arg.is_negative:
             return -arg
         return
+
+    def _eval_apply_leadterm(self, x, arg):
+        c0, e0 = arg.leadterm(x)
+        if isinstance(e0, Basic.Zero):
+            return self(c0), Basic.Zero()
+        raise ValueError("%s(%s) has no leading term at %s=0" % (self, arg, x))
 
 class Sin(DefinedFunction):
     
@@ -128,6 +163,15 @@ class Sin(DefinedFunction):
                 return arg
         return
 
+    def _eval_apply_leadterm(self, x, arg):
+        c0, e0 = arg.leadterm(x)
+        if isinstance(e0, Basic.Zero):
+            # sin(5+x) -> sin(5)
+            return self(c0), e0
+        # sin(2*x) -> 2 * x
+        return c0, Basic.One()
+
+
 class Cos(DefinedFunction):
     
     nofargs = 1
@@ -146,6 +190,10 @@ class Cos(DefinedFunction):
                 return Basic.One()
         return
 
+    def _eval_apply_leadterm(self, x, arg):
+        c0, e0 = arg.leadterm(x)
+        return Basic.One(), Basic.Zero()
+
 class Tan(DefinedFunction):
     
     nofargs = 1
@@ -163,6 +211,10 @@ class Tan(DefinedFunction):
             if isinstance(arg, Basic.Zero):
                 return arg
         return
+
+    def _eval_apply_leadterm(self, x, arg):
+        c0, e0 = arg.leadterm(x)
+        return c0, e0
 
 Basic.singleton['exp'] = Exp
 Basic.singleton['log'] = Log

@@ -110,6 +110,9 @@ class Apply(Basic, ArithMeths, RelMeths):
             if not a.is_commutative: return a.is_commutative
         return True
 
+    def _calc_leadterm(self, x):
+        if hasattr(self.func,'_eval_apply_leadterm'):
+            return self.func._eval_apply_leadterm(x, *self.args)
 
 class Function(Basic, ArithMeths, NoRelMeths):
     """ Base class for function objects, represents also undefined functions.
@@ -210,6 +213,7 @@ class Function(Basic, ArithMeths, NoRelMeths):
     def inverse(self):
         return FPow(self, -1)
 
+    # functions can define leadterm0() and leadterm1() methods
 
 class WildFunction(Function):
 
@@ -639,6 +643,7 @@ class DefinedFunction(Function, Singleton, Atom):
 
     def torepr(self):
         return '%s()' % (self.__class__.__name__)
+
 
 
 Basic.singleton['D'] = lambda : Derivative
