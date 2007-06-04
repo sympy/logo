@@ -52,7 +52,7 @@ class AssocOp(Basic):
 
     subs = Basic._seq_subs
 
-    def _matches_commutative(pattern, expr, repl_dict, evaluate=False):
+    def _matches_commutative(pattern, expr, repl_dict={}, evaluate=False):
         # apply repl_dict to pattern to eliminate fixed wild parts
         if evaluate:
             pat = pattern

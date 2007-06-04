@@ -169,10 +169,10 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             return terms[0].matches(expr / coeff, repl_dict)
         return
 
-    def matches(pattern, expr, repl_dict, evaluate=False):
+    def matches(pattern, expr, repl_dict={}, evaluate=False):
         if pattern.is_commutative and expr.is_commutative:
             return AssocOp._matches_commutative(pattern, expr, repl_dict, evaluate)
-        # todo, until then use the default matches method for non-commutative products
+        # todo for commutative parts, until then use the default matches method for non-commutative products
         return Basic.matches(pattern, expr, repl_dict, evaluate)
 
     @staticmethod

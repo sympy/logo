@@ -99,3 +99,17 @@ class Add(AssocOp, RelMeths, ArithMeths):
     @staticmethod
     def _combine_inverse(lhs, rhs):
         return lhs - rhs
+
+    def _calc_leadterm(self, x):
+        c0,e0 = self[0].leadterm(x)
+        if not isinstance(e0, Basic.Number):
+            raise TypeError("cannot determine lead term with respect to %r of a sum with symbolic exponents: %r" % (x,self))
+        for f in self[1:]:
+            c,e = f.leadterm(x)
+            if not isinstance(e, Basic.Number):
+                raise TypeError("cannot determine lead term with respect to %r of a sum with symbolic exponents: %r" % (x,self))
+            if e < e0:
+                c0,e0 = c,e
+            elif e==e0:
+                c0,e0 = c0+c,e
+        return c0,e0

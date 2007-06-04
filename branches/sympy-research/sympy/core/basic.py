@@ -11,6 +11,7 @@ class Basic(BasicMeths):
     # for backward compatibility, will be removed:
     is_number = False
     #
+    is_comparable = None
 
     def __new__(cls, *args, **assumptions):
         obj = object.__new__(cls)
@@ -127,16 +128,24 @@ class Basic(BasicMeths):
         # a -> c + f
         return Basic.Zero(), [self]
 
-    def has(self, *symbols):
-        if len(symbols)>1:
-            for s in symbols:
-                if self.has(s):
+    def has(self, *patterns):
+        """
+        Return True if self has any of the patterns.
+        """
+        if len(patterns)>1:
+            for p in patterns:
+                if self.has(p):
                     return True
             return False
-        elif not symbols:
+        elif not patterns:
             raise TypeError("has() requires at least 1 argument (got none)")
-        s = Basic.sympify(symbols[0])
-        return not self.subs(s,s.as_dummy())==self
+        p = Basic.sympify(patterns[0])
+        if p.matches(self) is not None:
+            return True
+        for e in self:
+            if e.has(p):
+                return True
+        return False
 
     def _eval_derivative(self, s):
         return
@@ -185,12 +194,16 @@ class Basic(BasicMeths):
             r = r.subs(old,new)
         return r
 
-    def _matches_simple(pattern, expr, repl_dict):
-        return
-
-    def matches(pattern, expr, repl_dict, evaluate=False):
+    def matches(pattern, expr, repl_dict={}, evaluate=False):
         """
-        Helper method to match().
+        Helper method for match() - switches the pattern and expr.
+
+        Can be used to solve linear equations:
+
+          >>> x=Wild('x')
+          >>> (a+b*x).matches(0)
+          {x_: -a * b ** (-1)}
+
         """
         if evaluate:
             pat = pattern
@@ -218,7 +231,9 @@ class Basic(BasicMeths):
 
     def match(self, pattern, syms = None):
         """
-        Pattern matching. See GiNaC tutorial for details.
+        Pattern matching.
+
+        Wild symbols match all.
 
         Return None when expression (self) does not match
         with pattern. Otherwise return a dictionary such that
@@ -242,6 +257,42 @@ class Basic(BasicMeths):
             return result
         #
         return Basic.sympify(pattern).matches(self, {})
+
+    def _calc_leadterm(self, x):
+        # try if self is in the form c0*x^e0, handles Mul and Pow instances
+        c0 = Basic.Wild('c0')
+        e0 = Basic.Wild('e0')
+        d = (c0 * x ** e0).matches(self)
+        if d:
+            c0,e0 = d[c0],d[e0]
+        else:
+            d = (c0 * x).matches(self)
+            if d:
+                c0,e0 = d[c0],Basic.One()
+            else:
+                c0,e0 = self, Basic.Zero()
+        if not (c0.has(x) or e0.has(x)):
+            return c0,e0        
+        return None
+
+    def leadterm(self, x):
+        """Returns the leading term c0*x^e0 of the power series 'self' in x
+        with the lowest power of x in a form (c0,e0).
+        """
+        x = Basic.sympify(x)
+        if x.__class__ is not Basic.Symbol:
+            raise TypeError("leadterm() argument must be Symbol instance, got %r" % (x.__class__.__name__))
+        if not self.has(x):
+            return (self,Basic.Zero())
+        result = self._calc_leadterm(x)
+        if result is not None:
+            return result
+
+        # XXX: need to expand self to series
+        raise NotImplementedError("Failed to determine lead term %r with respect to %r" % (self, x))
+
+    def ldegree(self, x):
+        return self.leadterm(x)[1]
 
 class Atom(Basic):
 

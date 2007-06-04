@@ -213,7 +213,7 @@ class Function(Basic, ArithMeths, NoRelMeths):
 
 class WildFunction(Function):
 
-    def matches(pattern, expr, repl_dict, evaluate=False):
+    def matches(pattern, expr, repl_dict={}, evaluate=False):
         for p,v in repl_dict.items():
             if p==pattern:
                 if v==expr: return repl_dict
@@ -493,6 +493,10 @@ class Composition(AssocOp, Function):
 
     def _hashable_content(self):
         return self._args
+
+    def _matches_simple(pattern, expr, repl_dict):        
+        return
+
 
 class FDerivative(Function):
 

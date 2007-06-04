@@ -26,6 +26,7 @@ class AssumeMeths(object):
         - nonnegative   - object can have only non-negative values
         - negative
         - nonpositive
+        - comparable    - object.evalf() returns Number object.
 
     Implementation note: assumption values are stored in
     ._assumption dictionary or are returned by getter methods (with

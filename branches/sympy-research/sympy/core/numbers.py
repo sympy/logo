@@ -81,6 +81,20 @@ class Number(Atom, RelMeths, ArithMeths):
     def atanh(self): return Real(decimal_math.atanh(self._as_decimal()))
     def acoth(self): return Real(decimal_math.acoth(self._as_decimal()))
 
+    def __eq__(self, other):
+        raise NotImplementedError,'%s needs .__eq__() method' % (self.__class__.__name__)
+    def __ne__(self, other):
+        raise NotImplementedError,'%s needs .__ne__() method' % (self.__class__.__name__)
+    def __lt__(self, other):
+        raise NotImplementedError,'%s needs .__lt__() method' % (self.__class__.__name__)
+    def __le__(self, other):
+        raise NotImplementedError,'%s needs .__le__() method' % (self.__class__.__name__)
+
+    def __gt__(self, other):
+        return Basic.sympify(other).__lt__(self)
+    def __ge__(self, other):
+        return Basic.sympify(other).__le__(self)
+
 
 decimal_to_Number_cls = {
     decimal.Decimal('0').as_tuple():'Zero',
@@ -213,6 +227,31 @@ class Real(Number):
     def __float__(self):
         return float(self.num)
 
+    def __eq__(self, other):
+        other = Basic.sympify(other)
+        if other.is_comparable: other = other.evalf()
+        if isinstance(other, Basic.Number):
+            return bool(self._as_decimal()==other._as_decimal())
+        return RelMeths.__eq__(self, other)
+    def __ne__(self, other):
+        other = Basic.sympify(other)
+        if other.is_comparable: other = other.evalf()
+        if isinstance(other, Basic.Number):
+            return bool(self._as_decimal()!=other._as_decimal())
+        return RelMeths.__ne__(self, other)
+    def __lt__(self, other):
+        other = Basic.sympify(other)
+        if other.is_comparable: other = other.evalf()
+        if isinstance(other, Basic.Number):
+            return bool(self._as_decimal() < other._as_decimal())
+        return RelMeths.__lt__(self, other)
+    def __le__(self, other):
+        other = Basic.sympify(other)
+        if other.is_comparable: other = other.evalf()
+        if isinstance(other, Basic.Number):
+            return bool(self._as_decimal()<=other._as_decimal())
+        return RelMeths.__le__(self, other)
+
 class Rational(Number):
     """Represents integers and rational numbers (p/q) of any size.
 
@@ -324,6 +363,39 @@ class Rational(Number):
 
     def __int__(self):
         return int(self.p//self.q)
+
+    def __eq__(self, other):
+        other = Basic.sympify(other)
+        if other.is_comparable: other = other.evalf()
+        if isinstance(other, Basic.Number):
+            if isinstance(other, Basic.Real):
+                return bool(self._as_decimal()==other._as_decimal())
+            return bool(self.p==other.p and self.q==other.q)
+        return RelMeths.__eq__(self, other)
+    def __ne__(self, other):
+        other = Basic.sympify(other)
+        if other.is_comparable: other = other.evalf()
+        if isinstance(other, Basic.Number):
+            if isinstance(other, Basic.Real):
+                return bool(self._as_decimal()!=other._as_decimal())
+            return bool(self.p!=other.p or self.q!=other.q)
+        return RelMeths.__ne__(self, other)
+    def __lt__(self, other):
+        other = Basic.sympify(other)
+        if other.is_comparable: other = other.evalf()
+        if isinstance(other, Basic.Number):
+            if isinstance(other, Basic.Real):
+                return bool(self._as_decimal() < other._as_decimal())
+            return bool(self.p * other.q < self.q * other.p)
+        return RelMeths.__lt__(self, other)
+    def __le__(self, other):
+        other = Basic.sympify(other)
+        if other.is_comparable: other = other.evalf()
+        if isinstance(other, Basic.Number):
+            if isinstance(other, Basic.Real):
+                return bool(self._as_decimal()<=other._as_decimal())
+            return bool(self.p * other.q <= self.q * other.p)
+        return RelMeths.__le__(self, other)
 
 class Integer(Rational):
 
@@ -543,9 +615,39 @@ class NaN(Singleton, Rational):
 class NumberSymbol(Singleton, Atom, RelMeths, ArithMeths):
 
     is_commutative = True
+    is_comparable = True
 
     def _eval_derivative(self, s):
         return Zero()
+    def __eq__(self, other):
+        other = Basic.sympify(other)
+        if other.is_comparable: other = other.evalf()
+        if isinstance(other, Number):
+            return self.evalf()==other
+        return RelMeths.__eq__(self, other)
+    def __ne__(self, other):
+        other = Basic.sympify(other)
+        if other.is_comparable: other = other.evalf()
+        if isinstance(other, Number):
+            return self.evalf()!=other
+        return RelMeths.__ne__(self, other)
+    def __lt__(self, other):
+        other = Basic.sympify(other)
+        if other.is_comparable: other = other.evalf()
+        if isinstance(other, Number):
+            return self.evalf()<other
+        return RelMeths.__lt__(self, other)
+    def __le__(self, other):
+        other = Basic.sympify(other)
+        if other.is_comparable: other = other.evalf()
+        if isinstance(other, Number):
+            return self.evalf()<=other
+        return RelMeths.__le__(self, other)
+    def __gt__(self, other):
+        return Basic.sympify(other).__lt__(self)
+    def __ge__(self, other):
+        return Basic.sympify(other).__le__(self)
+
 
 class Exp1(NumberSymbol):
 
