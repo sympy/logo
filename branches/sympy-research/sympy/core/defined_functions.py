@@ -92,7 +92,7 @@ class Log(DefinedFunction):
             # log(2+x) -> log(2)
             return self(c0), Basic.Zero()
         # log(2*x) -> log(2) + log(x) - not handeled
-        raise ValueError("undefined %s(%r) leading term with respect to %r" % (self, arg, x))
+        raise ValueError("unable to compute series %s(%s) at %s=0" % (self, arg, x))
 
 
 class Sqrt(DefinedFunction):
@@ -119,7 +119,7 @@ class Sqrt(DefinedFunction):
     def _eval_apply_leadterm(self, x, arg):
         c0, e0 = arg.leadterm(x)
         if isinstance(e0, Basic.Zero):
-            return self(c0), Basic.Zero()
+            return self(c0), e0
         return self(c0), e0/2
 
 
@@ -143,7 +143,7 @@ class Abs(DefinedFunction):
         c0, e0 = arg.leadterm(x)
         if isinstance(e0, Basic.Zero):
             return self(c0), Basic.Zero()
-        raise ValueError("%s(%s) has no leading term at %s=0" % (self, arg, x))
+        raise ValueError("unable to compute series %s(%s) at %s=0" % (self, arg, x))
 
 class Sin(DefinedFunction):
     
@@ -167,9 +167,16 @@ class Sin(DefinedFunction):
         c0, e0 = arg.leadterm(x)
         if isinstance(e0, Basic.Zero):
             # sin(5+x) -> sin(5)
-            return self(c0), e0
-        # sin(2*x) -> 2 * x
-        return c0, Basic.One()
+            c0 = self(c0)
+            if not isinstance(c0, Basic.Zero):
+                return c0, e0
+            # sin(Pi+x) -> sin(-x)
+            raise NotImplementedError("compute series %s(%s) at %s=0" % (self, arg, x))
+        if e0.is_positive:
+            # sin(2*x) -> 2 * x
+            return c0, e0
+        # sin(1/x)
+        raise ValueError("unable to compute series %s(%s) at %s=0" % (self, arg, x))
 
 
 class Cos(DefinedFunction):
@@ -192,7 +199,18 @@ class Cos(DefinedFunction):
 
     def _eval_apply_leadterm(self, x, arg):
         c0, e0 = arg.leadterm(x)
-        return Basic.One(), Basic.Zero()
+        if isinstance(e0, Basic.Zero):
+            # cos(5+x) -> cos(5)
+            c0 = self(c0)
+            if not isinstance(c0, Basic.Zero):
+                return c0, e0
+            # cos(Pi+x) -> cos(x)
+            raise NotImplementedError("compute series %s(%s) at %s=0" % (self, arg, x))
+        if e0.is_positive:
+            # cos(2*x) -> 1
+            return Basic.One(), Basic.Zero()
+        # cos(1/x)
+        raise ValueError("unable to compute series %s(%s) at %s=0" % (self, arg, x))
 
 class Tan(DefinedFunction):
     
@@ -214,7 +232,19 @@ class Tan(DefinedFunction):
 
     def _eval_apply_leadterm(self, x, arg):
         c0, e0 = arg.leadterm(x)
-        return c0, e0
+        if isinstance(e0, Basic.Zero):
+            # tan(5+x) -> tan(5)
+            c0 = self(c0)
+            if not isinstance(c0, Basic.Zero):
+                return c0, e0
+            # tan(Pi+x) -> tan(-x)
+            raise NotImplementedError("compute series %s(%s) at %s=0" % (self, arg, x))
+        if e0.is_positive:
+            # tan(2*x) -> 2 * x
+            return c0, e0
+        # tan(1/x)
+        raise ValueError("unable to compute series %s(%s) at %s=0" % (self, arg, x))
+
 
 Basic.singleton['exp'] = Exp
 Basic.singleton['log'] = Log
