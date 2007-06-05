@@ -132,24 +132,10 @@ class Order(Basic, ArithMeths, RelMeths):
                     order_symbols = order_symbols + (s,)
         return self.expr, order_symbols
 
-    @staticmethod
-    def _eval_add(expr, other):
-        assert isinstance(other, Order),`other`
-        if isinstance(expr, Basic.Add):
-            return expr + other
-        if isinstance(expr, Order):
-            l = list(expr.symbols)
-            l = l + [s for s in other.symbols if s not in l]
-            e = expr.expr / other.expr
-            for s in l:
-                r = e.subs(s,0)
-
-    def add_orders(self, other):
-        if isinstance(other, Order):
-            common_symbols = [s for s in self.symbols if s in other.symbols]
-            if not common_symbols:
-                return False
-            s1 = Order(self.expr, *common_symbols)
-            s2 = Order(other.expr, *common_symbols)
+    def contains(self, expr):
+        ldegree = self.expr.ldegree(*self.symbols)
+        if expr.ldegree(*self.symbols) >= ldegree:
+            return True
+        return False
             
 Basic.singleton['O'] = lambda : Order

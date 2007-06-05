@@ -63,24 +63,32 @@ class Add(AssocOp, RelMeths, ArithMeths):
         if not isinstance(coeff, Basic.Zero):
             newseq.insert(0, coeff)
 
-        lowest_degree = None        
-        lorder_terms = {}
-        for symbols, expr in order_terms.items():
-            ld = expr.ldegree(*symbols)
-            if lowest_degree is None:
-                lowest_degree = ld
-                lorder_terms = {symbols: expr}
-            elif ld == lowest_degree:
-                if lorder_terms.has_key(symbols):
-                    lorder_terms[symbols] += expr
-                else:
-                    lorder_terms[symbols] = expr
-            elif ld < lowest_degree:
-                lowest_degree = ld
-                lorder_terms = {symbols: expr}
-        for symbols, expr in lorder_terms.items():
-            newseq.append(Basic.Order(expr.leading_term(*symbols), *symbols))
-
+        if order_terms:
+            lowest_degree = None        
+            lorder_terms = {}
+            for symbols, expr in order_terms.items():
+                ld = expr.ldegree(*symbols)
+                if lowest_degree is None:
+                    lowest_degree = ld
+                    lorder_terms = {symbols: expr}
+                elif ld == lowest_degree:
+                    if lorder_terms.has_key(symbols):
+                        lorder_terms[symbols] += expr
+                    else:
+                        lorder_terms[symbols] = expr
+                elif ld < lowest_degree:
+                    lowest_degree = ld
+                    lorder_terms = {symbols: expr}
+            order_list = [Basic.Order(expr.leading_term(*symbols), *symbols) for symbols, expr in lorder_terms.items()]
+            newseq2 = []
+            for t in newseq:
+                for oterm in order_list:
+                    if oterm.contains(t):
+                        t = None
+                        break
+                if t is not None:
+                    newseq2.append(t)
+            newseq = newseq2 + order_list
         newseq.sort(Basic.compare)
         if noncommutative:
             return [],newseq,lambda_args,None
