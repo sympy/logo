@@ -98,6 +98,10 @@ class Number(Atom, RelMeths, ArithMeths):
     def _eval_apply(self, a):
         return self*a
 
+    def _eval_order(self, *symbols):
+        # Order(5, x, y) -> Order(1,x,y)
+        return Basic.Order(Basic.One(),*symbols)
+
     def sqrt(self): return Real(decimal_math.sqrt(self._as_decimal()))
     def exp(self): return Real(decimal_math.exp(self._as_decimal()))
     def log(self): return Real(decimal_math.log(self._as_decimal()))
@@ -538,6 +542,10 @@ class Zero(Singleton, Integer):
             if d.is_negative:
                 return Infinity()
             return b
+
+    def _eval_order(self, *symbols):
+        # Order(0,x) -> 0
+        return self
     
 class One(Singleton, Integer):
 
@@ -546,6 +554,9 @@ class One(Singleton, Integer):
 
     def _eval_power(b, e):
         return b
+
+    def _eval_order(self, *symbols):
+        return
 
 class NegativeOne(Singleton, Integer):
 
@@ -614,6 +625,8 @@ class Infinity(Singleton, Rational):
             return b ** d
         return
 
+    def _as_decimal(self):
+        return decimal.Decimal('Infinity')
 
 class NegativeInfinity(Singleton, Rational):
 
@@ -652,6 +665,8 @@ class NegativeInfinity(Singleton, Rational):
             return NegativeOne()**e * Infinity() ** e
         return
 
+    def _as_decimal(self):
+        return decimal.Decimal('-Infinity')
 
 class NaN(Singleton, Rational):
 

@@ -54,33 +54,26 @@ class Order(Basic, ArithMeths, RelMeths):
          U{Big O notation<http://en.wikipedia.org/wiki/Big_O_notation>}
 
     Properties:
+    ===========
 
       g(x) = O(f(x)) as x->0  <->  |g(x)|<=M|f(x)| near x=0  <->  lim_{x->0}  |g(x)/f(x)|  < oo
 
       g(x,y) = O(f(x,y))  <->  lim_{x,y->0}  |g(x,y)/f(x,y)|  < oo, will assume that limits commute.
 
-       r = sqrt(x**2+y**2), lim_{r->0}  |g(x,y)/f(x,y)| < oo.
-       x = a * r, y = b * r, a**2+b**2=1
-       g(x,y) = O(f(a*r,b*r))
-       
+    Notes:
+    ======
     
-      f1(x)=O(g1(x)), f2(x)=O(g2(x))  -> f1(x)*f2(x)=O(g1(x)*g2(x))
-      h(x)=f(x)O(g(x)) -> h(x)=O(f(x)*g(x))
-      O(g1(x))+O(g2(x)) = O(max(|g1(x)|,|g2(x)|))
-      h(x)=f(x)+O(g(x)) -> h(x)=O(f(x)+g(x))
-      f1(x), f2(x) in O(g(x)) -> f1(x)+f2(x) in O(g(x))
-      O(k*g(x)) = O(g(x)), k!=0
+      In O(f(x),x) the expression f(x) is assumed to have a leading term.
+      O(f(x),x) is automatically transformed to O(f(x).leading_term(x),x).
+      O(expr*f(x),x) is O(f(x),x)
+      O(expr,x) is O(1,e)
+      O(0, x) is 0.
 
-      O = Order
-      Order(f(x),x) == O(f(x)), x->0
-      Order(f(x),x) * g(x) -> Order(f(x)*g(x))
-      Order(f(x),x) ** g -> Order(f(x)**g)
-      Order(f(x),x) + g(x) -> Order(f(x),x) if leading order of g(x) is Order(f(x),x)
-      Order(k*f(x),x) -> Order(f(x),x), k!=0
-      Order(k) -> Order(1)
-      Order(0) -> raise ValueError
+      Multivariate O is also supported:
+        O(f(x,y),x,y) is transformed to O(f(x,y).leading_term(x,y).leading_term(y), x, y)
 
-      
+      If O is used with only expression argument then the symbols are
+      all symbols in the expression.
     """
 
     precedence = 70
@@ -92,10 +85,20 @@ class Order(Basic, ArithMeths, RelMeths):
         else:
             symbols = list(expr.atoms(Basic.Symbol))
         symbols.sort(Basic.compare)
-        obj = cls._evaluate(expr.expand(), *symbols)
-        if obj is None:
-            obj = Basic.__new__(cls, expr, *symbols, **assumptions)
-        return obj
+        if isinstance(expr, Order):
+            new_symbols = list(expr.symbols)
+            for s in symbols:
+                if s not in new_symbols:
+                    new_symbols.append(s)
+            if len(new_symbols)==len(expr.symbols):
+                return expr
+            symbols = new_symbols
+        else:
+            for s in symbols:
+                expr = expr.leading_term(s)
+            coeff, terms = expr.as_coeff_terms()
+            expr = Basic.Mul(*[t for t in terms if t.has(*symbols)])
+        return Basic.__new__(cls, expr, *symbols, **assumptions)
 
     @property
     def expr(self):
@@ -106,32 +109,10 @@ class Order(Basic, ArithMeths, RelMeths):
         return self._args[1:]
 
     def tostr(self, level = 0):
-        r = 'O(%s)' % (self.expr.tostr())
+        r = 'O(%s)' % (', '.join([s.tostr() for s in self]))
         if self.precedence <= level:
             r = '(%s)' % (r)
         return r
-
-    def torepr(self):
-        return '%s%r' % (self.__class__.__name__, self[:])
-
-    @staticmethod
-    def _evaluate(expr, *symbols):
-        if isinstance(expr, Order):
-            return expr
-        if isinstance(expr, Basic.Number) and not isinstance(expr, (Basic.One, Basic.Zero)):
-            return Order(expr, *symbols)
-        if isinstance(expr, Basic.Add):
-            coeff, factors = expr.as_coeff_factors()
-            return Basic.Add(*[Order(t,*symbols) for t in factors])
-        if isinstance(expr, Basic.Mul):
-            coeff, terms = expr.as_coeff_terms()
-            l = []
-            for t in terms:
-                if t.has(*symbols):
-                    l.append(t)
-            if len(l)!=len(terms) or not isinstance(coeff, Basic.One):
-                return Order(Basic.Mul(*l), *symbols)
-        return
 
     def _eval_power(b, e):
         if isinstance(e, Basic.Number):
@@ -167,3 +148,4 @@ class Order(Basic, ArithMeths, RelMeths):
             s1 = Order(self.expr, *common_symbols)
             s2 = Order(other.expr, *common_symbols)
             
+Basic.singleton['O'] = lambda : Order

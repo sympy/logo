@@ -49,6 +49,10 @@ class Equality(Relational):
     rel_op = '=='
 
     def __nonzero__(self):
+        if self.lhs.is_comparable and self.rhs.is_comparable:
+            if isinstance(self.lhs, Basic.Number) and isinstance(self.rhs, Basic.Number):
+                return self.lhs == self.rhs
+            return self.lhs.evalf()==self.rhs.evalf()
         return self.lhs.compare(self.rhs)==0
 
 class Unequality(Relational):
@@ -56,6 +60,10 @@ class Unequality(Relational):
     rel_op = '!='
 
     def __nonzero__(self):
+        if self.lhs.is_comparable and self.rhs.is_comparable:
+            if isinstance(self.lhs, Basic.Number) and isinstance(self.rhs, Basic.Number):
+                return self.lhs != self.rhs
+            return self.lhs.evalf()!=self.rhs.evalf()
         return self.lhs.compare(self.rhs)!=0
 
 class StrictInequality(Relational):
@@ -63,6 +71,10 @@ class StrictInequality(Relational):
     rel_op = '<'
 
     def __nonzero__(self):
+        if self.lhs.is_comparable and self.rhs.is_comparable:
+            if isinstance(self.lhs, Basic.Number) and isinstance(self.rhs, Basic.Number):
+                return self.lhs < self.rhs
+            return self.lhs.evalf()<self.rhs.evalf()
         return self.lhs.compare(self.rhs)==-1
 
 class Inequality(Relational):
@@ -70,4 +82,8 @@ class Inequality(Relational):
     rel_op = '<='
 
     def __nonzero__(self):
+        if self.lhs.is_comparable and self.rhs.is_comparable:
+            if isinstance(self.lhs, Basic.Number) and isinstance(self.rhs, Basic.Number):
+                return self.lhs <= self.rhs
+            return self.lhs.evalf()<=self.rhs.evalf()
         return self.lhs.compare(self.rhs)<=0

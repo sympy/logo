@@ -64,7 +64,7 @@ class Basic(BasicMeths):
             return Basic.Real(a)
         if isinstance(a, complex):
             real, imag = Basic.sympify(a.real), Basic.sympify(a.imag)
-            return real + Basic.I * imag
+            return real + Basic.ImaginaryUnit() * imag
         if isinstance(a, str):
             return parser.Expr(a).tosymbolic()
         raise ValueError("%s must be a subclass of Basic" % (`a`))
@@ -185,20 +185,6 @@ class Basic(BasicMeths):
     def __call__(self, *args):
         return Basic.Apply(self, *args)
 
-    def order(self, s):
-        if isinstance(self, Atom):
-            if self==s:
-                return Basic.Order(s,s)
-            return Basic.Order(1,s)
-        expr = self
-        r = expr.subs(s, 0)
-        n = 0
-        while not isinstance(r, Basic.Zero):
-            expr = expr.diff(s)
-            r = expr.subs(s, 0)
-            n += 1
-        return Basic.Order(s**n, s)
-
     def subs_dict(self, old_new_dict):
         r = self
         for old,new in old_new_dict.items():
@@ -271,21 +257,6 @@ class Basic(BasicMeths):
 
     def _calc_leadterm(self, x):
         raise NotImplementedError("%s._calc_leadterm()" % (self.__class__.__name__))
-        # try if self is in the form c0*x^e0, handles Mul and Pow instances
-        c0 = Basic.Wild('c0')
-        e0 = Basic.Wild('e0')
-        d = (c0 * x ** e0).matches(self)
-        if d:
-            c0,e0 = d[c0],d[e0]
-        else:
-            d = (c0 * x).matches(self)
-            if d:
-                c0,e0 = d[c0],Basic.One()
-            else:
-                c0,e0 = self, Basic.Zero()
-        if not (c0.has(x) or e0.has(x)):
-            return c0,e0        
-        return None
 
     def leadterm(self, x):
         """Returns the leading term c0*x^e0 of the power series 'self' in x
@@ -314,6 +285,10 @@ class Basic(BasicMeths):
 
     def ldegree(self, x):
         return self.leadterm(x)[1]
+
+    def leading_term(self, x):
+        c0,e0 = self.leadterm(x)
+        return c0 * x ** e0
 
 class Atom(Basic):
 
