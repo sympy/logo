@@ -93,11 +93,15 @@ class Order(Basic, ArithMeths, RelMeths):
             if len(new_symbols)==len(expr.symbols):
                 return expr
             symbols = new_symbols
-        else:
-            for s in symbols:
-                expr = expr.leading_term(s)
+        elif symbols:
+            if isinstance(expr, Basic.Add):
+                return Basic.Add(*[Order(f,*symbols, **assumptions) for f in expr])
+            expr = expr.leading_term(*symbols)
             coeff, terms = expr.as_coeff_terms()
             expr = Basic.Mul(*[t for t in terms if t.has(*symbols)])
+        else:
+            expr = Basic.One()
+        symbols = [s for s in symbols if expr.has(s)]
         return Basic.__new__(cls, expr, *symbols, **assumptions)
 
     @property

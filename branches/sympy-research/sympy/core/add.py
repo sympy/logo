@@ -13,10 +13,17 @@ class Add(AssocOp, RelMeths, ArithMeths):
         terms = {}
         coeff = Basic.Zero()
         lambda_args = None
+        order_terms = {}
         while seq:
             o = seq.pop(0)
             if isinstance(o, Basic.Function):
                 o, lambda_args = o.with_dummy_arguments(lambda_args)
+            if isinstance(o, Basic.Order):
+                if order_terms.has_key(o.symbols):
+                    order_terms[o.symbols] += o.expr
+                else:
+                    order_terms[o.symbols] = o.expr
+                continue
             if isinstance(o, Basic.Number):
                 coeff += o
                 continue
@@ -55,6 +62,25 @@ class Add(AssocOp, RelMeths, ArithMeths):
             noncommutative = noncommutative or not s.is_commutative
         if not isinstance(coeff, Basic.Zero):
             newseq.insert(0, coeff)
+
+        lowest_degree = None        
+        lorder_terms = {}
+        for symbols, expr in order_terms.items():
+            ld = expr.ldegree(*symbols)
+            if lowest_degree is None:
+                lowest_degree = ld
+                lorder_terms = {symbols: expr}
+            elif ld == lowest_degree:
+                if lorder_terms.has_key(symbols):
+                    lorder_terms[symbols] += expr
+                else:
+                    lorder_terms[symbols] = expr
+            elif ld < lowest_degree:
+                lowest_degree = ld
+                lorder_terms = {symbols: expr}
+        for symbols, expr in lorder_terms.items():
+            newseq.append(Basic.Order(expr.leading_term(*symbols), *symbols))
+
         newseq.sort(Basic.compare)
         if noncommutative:
             return [],newseq,lambda_args,None

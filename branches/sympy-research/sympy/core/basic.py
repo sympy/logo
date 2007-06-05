@@ -283,12 +283,22 @@ class Basic(BasicMeths):
             return result
         raise ValueError("unable to compute leading term %s at %s=0" % (self, x))
 
-    def ldegree(self, x):
-        return self.leadterm(x)[1]
+    def ldegree(self, *symbols):
+        s = Basic.Zero()
+        c0 = self
+        for x in symbols:
+            c0,e0 = c0.leadterm(x)
+            s += e0
+        return s
 
-    def leading_term(self, x):
-        c0,e0 = self.leadterm(x)
-        return c0 * x ** e0
+    def leading_term(self, *symbols):
+        l = []
+        c0 = self
+        for x in symbols:
+            c0,e0 = c0.leadterm(x)
+            l.append(x ** e0)
+        l.append(c0)
+        return Basic.Mul(*l)
 
 class Atom(Basic):
 
