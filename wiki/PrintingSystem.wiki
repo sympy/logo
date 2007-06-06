@@ -101,7 +101,7 @@ Done via the classmethod `__latex__`.
 
 you can print to a grkmathview widget using the function print_gtk located in sympy.modules.printing.gtk (it requires to have installed gtkmatmatview and libgtkmathview-bin in some systems). 
 
-GtkMathView accepts MathML, so this rendering depends on the mathml representation of the expression
+!GtkMathView accepts MathML, so this rendering depends on the mathml representation of the expression
 
 Usage:
 {{{
