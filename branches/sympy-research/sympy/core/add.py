@@ -71,24 +71,25 @@ class Add(AssocOp, RelMeths, ArithMeths):
                 if lowest_degree is None:
                     lowest_degree = ld
                     lorder_terms = {symbols: expr}
-                elif ld == lowest_degree:
+                elif ld == lowest_degree: # O(x**2) + O(x*y) -> O(x**2+x*y)
                     if lorder_terms.has_key(symbols):
                         lorder_terms[symbols] += expr
                     else:
                         lorder_terms[symbols] = expr
-                elif ld < lowest_degree:
+                elif ld < lowest_degree: # O(x**2) + O(x) -> O(x)
                     lowest_degree = ld
                     lorder_terms = {symbols: expr}
             order_list = [Basic.Order(expr.leading_term(*symbols), *symbols) for symbols, expr in lorder_terms.items()]
             newseq2 = []
             for t in newseq:
                 for oterm in order_list:
-                    if oterm.contains(t):
+                    if oterm.contains(t): # x + x**2 + O(x**2) -> x + O(x**2)
                         t = None
                         break
                 if t is not None:
                     newseq2.append(t)
             newseq = newseq2 + order_list
+
         newseq.sort(Basic.compare)
         if noncommutative:
             return [],newseq,lambda_args,None

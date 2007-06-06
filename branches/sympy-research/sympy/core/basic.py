@@ -258,22 +258,37 @@ class Basic(BasicMeths):
     def _calc_leadterm(self, x):
         raise NotImplementedError("%s._calc_leadterm()" % (self.__class__.__name__))
 
+    def solve4linearsymbol(eqn, rhs):
+        """ Solve equation
+          eqn == rhs
+        with respect to some linear symbol in eqn.
+        Returns (symbol, solution). If eqn is nonlinear
+        with respect to all symbols, then return
+        trivial solution (eqn, rhs).
+        """
+        if isinstance(eqn, Basic.Symbol):
+            return (eqn, rhs)
+        symbols = eqn.atoms(type=Basic.Symbol)
+        if symbols:
+            # find  symbol
+            for s in symbols:
+                deqn = eqn.diff(s)
+                if isinstance(deqn.diff(s), Basic.Zero):
+                    # eqn = a + b*c, a=eqn(c=0),b=deqn(c=0)
+                    return s, (rhs - eqn.subs(s,0))/deqn.subs(s,0)
+        # no linear symbol, return trivial solution
+        return eqn, rhs
+
     def leadterm(self, x):
         """Returns the leading term c0*x^e0 of the power series 'self' in x
         with the lowest power of x in a form (c0,e0).
         """
         x = Basic.sympify(x)
         if not isinstance(x, Basic.Symbol):
-            # f(x).leadterm(1+3*x) -> f((x-1)/3).leadterm(x)
-            s = x.atoms(type=Basic.Symbol)
-            if len(s)==1:
-                s = s.pop()
-                w = Basic.Wild()
-                y = Basic.Symbol('y',dummy=True)
-                d = x.subs(s,w).matches(y) # solve linear equation y-x(s)=0 for symbol s
-                if d is not None:
-                    return self.subs(s, d[w]).leadterm(y)
-            raise TypeError("cannot determine lead term with respect to nonlinear expression %r" % (x))
+            # f(x).leadterm(1+3*x) -> f((z-1)/3).leadterm(z)
+            z = Basic.Symbol('z',dummy=True)
+            x1, s1 = x.solve4linearsymbol(z)
+            return self.subs(x1, s1).leadterm(z)
         if not self.has(x):
             return (self,Basic.Zero())
         if self==x:
@@ -281,7 +296,7 @@ class Basic(BasicMeths):
         result = self._calc_leadterm(x)
         if result is not None:
             return result
-        raise ValueError("unable to compute leading term %s at %s=0" % (self, x))
+        raise ValueError("unable to compute leading term of %s at %s=0" % (self, x))
 
     def ldegree(self, *symbols):
         s = Basic.Zero()
@@ -299,6 +314,35 @@ class Basic(BasicMeths):
             l.append(x ** e0)
         l.append(c0)
         return Basic.Mul(*l)
+
+    def taylor_series(self, x, n=6):
+        """
+        Usage
+        =====
+            Return the Taylor series around 0 of self with respect to x until
+            the n-th term (default n is 6).
+        
+        Examples
+        ========
+
+        """
+        f = self
+        s = f.subs(x,0)
+        j = 1
+        for i in range(1,n):
+            j *= i
+            f = f.diff(x)
+            s += (f.subs(x,0)/j)*(x**i)
+        if s==self:
+            return s
+        return s + Basic.Order(x**n)
+
+    def series(self, *args, **parameters):
+        kind = parameters.pop('kind','taylor')
+        mth = getattr(self, kind+'_series', None)
+        if mth is None:
+            raise ValueError("%s does not define %s_series method" % (self.__class__,kind))
+        return mth(*args, **parameters)
 
 class Atom(Basic):
 

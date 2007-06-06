@@ -78,6 +78,18 @@ class Pow(Basic, ArithMeths, RelMeths):
             if exponent.is_positive and isinstance(base, Basic.Add):
                 m = int(exponent)
                 if base.is_commutative:
+                    p = []
+                    order_terms = []
+                    for o in base:
+                        if isinstance(o, Basic.Order):
+                            order_terms.append(o)
+                        else:
+                            p.append(o)
+                    if order_terms:
+                        # (f(x) + O(x^n))^m -> f(x)^m + m*f(x)^{m-1} *O(x^n)
+                        f = Basic.Add(*p)
+                        fm1 = (f**(m-1)).expand()
+                        return (f*fm1).expand() + m*fm1*Basic.Add(*order_terms)
                 ## Consider polynomial
                 ##   P(x) = sum_{i=0}^n p_i x^k
                 ## and its m-th exponent
@@ -88,7 +100,6 @@ class Pow(Basic, ArithMeths, RelMeths):
                 ## Programming v.2, Addison Wesley, Reading, 1981;]:
                 ##  a(m,k) = 1/(k p_0) sum_{i=1}^n p_i ((m+1)i-k) a(m,k-i),
                 ## where a(m,0) = p_0^m.
-                    p = base[:]
                     n = len(p)-1
                     cache = {0: p[0] ** m}
                     p0 = [t/p[0] for t in p]

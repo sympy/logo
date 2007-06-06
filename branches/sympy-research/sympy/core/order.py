@@ -94,6 +94,28 @@ class Order(Basic, ArithMeths, RelMeths):
                 return expr
             symbols = new_symbols
         elif symbols:
+            symbol_map = {}
+            new_symbols = []
+            for s in symbols:
+                if isinstance(s, Basic.Symbol):
+                    new_symbols.append(s)
+                    continue
+                z = Basic.Symbol('z',dummy=True)
+                x1,s1 = s.solve4linearsymbol(z)
+                expr = expr.subs(x1,s1)
+                symbol_map[z] = s
+                new_symbols.append(z)
+            if symbol_map:
+                r = Order(expr, *new_symbols, **assumptions)
+                expr = r.expr.subs_dict(symbol_map)
+                symbols = []
+                for s in r.symbols:
+                    if symbol_map.has_key(s):
+                        symbols.append(symbol_map[s])
+                    else:
+                        symbols.append(s)
+                return Basic.__new__(cls, expr, *symbols, **assumptions)
+            
             if isinstance(expr, Basic.Add):
                 return Basic.Add(*[Order(f,*symbols, **assumptions) for f in expr])
             expr = expr.leading_term(*symbols)
@@ -137,5 +159,10 @@ class Order(Basic, ArithMeths, RelMeths):
         if expr.ldegree(*self.symbols) >= ldegree:
             return True
         return False
+
+    subs = Basic._seq_subs
+
+    def _calc_leadterm(self, x):
+        return self.expr.leadterm(x)
             
 Basic.singleton['O'] = lambda : Order
