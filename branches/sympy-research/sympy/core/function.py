@@ -88,11 +88,13 @@ class Apply(Basic, ArithMeths, RelMeths):
 
     @property
     def is_comparable(self):
-        for s in self:
-            if not s.is_comparable:
-                return
-        return True
-
+        if isinstance(self.func, DefinedFunction):
+            for s in self.args:
+                if not s.is_comparable:
+                    return
+            return True
+        return
+        
     def _eval_derivative(self, s):
         # Apply(f(x), x).diff(s) -> x.diff(s) * f.fdiff(1)(s)
         i = 0
@@ -120,6 +122,19 @@ class Apply(Basic, ArithMeths, RelMeths):
     def _calc_leadterm(self, x):
         if hasattr(self.func,'_eval_apply_leadterm'):
             return self.func._eval_apply_leadterm(x, *self.args)
+
+
+    def _eval_eq_nonzero(self, other):
+        if isinstance(other.func, self.func.__class__) and len(self.args)==len(other.args):
+            for a1,a2 in zip(self.args,other.args):
+                if not (a1==a2):
+                    return False
+            return True
+
+    def as_base_exp(self):
+        if isinstance(self.func, Basic.Exp):
+            return Basic.Exp1(), self.args[0]
+        return self, Basic.One()
 
 class Function(Basic, ArithMeths, NoRelMeths):
     """ Base class for function objects, represents also undefined functions.

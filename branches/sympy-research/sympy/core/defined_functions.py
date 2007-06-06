@@ -5,7 +5,6 @@ from function import DefinedFunction, Apply, Lambda
 class Exp(DefinedFunction):
     """ Exp() -> exp
     """
-    is_comparable = True
     nofargs = 1
 
     def fdiff(self, argindex=1):
@@ -21,6 +20,9 @@ class Exp(DefinedFunction):
         if isinstance(arg, Basic.Number):
             if isinstance(arg, Basic.Zero):
                 return Basic.One()
+            if isinstance(arg, Basic.One):
+                return Basic.Exp1()
+            #return Basic.Exp1()**arg
         elif isinstance(arg, Apply) and isinstance(arg.func, Log):
             return arg.args[0]
 
@@ -62,9 +64,9 @@ class Log(DefinedFunction):
             if not isinstance(base, Basic.Exp1):
                 return self(arg)/self(base)
         arg = Basic.sympify(arg)
-        if isinstance(arg, Basic.Number):
-            if isinstance(arg, Basic.Exp1):
-                return Basic.One()
+        if isinstance(arg, Basic.Exp1):
+            return Basic.One()
+        elif isinstance(arg, Basic.Number):
             if isinstance(arg, Basic.One):
                 return Basic.Zero()
             if arg.is_negative:

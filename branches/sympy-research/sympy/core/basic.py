@@ -165,6 +165,9 @@ class Basic(BasicMeths):
     def _eval_apply_evalf(self,*args):
         return
 
+    def _eval_eq_nonzero(self, other):
+        return
+
     def diff(self, *symbols, **assumptions):
         new_symbols = []
         for s in symbols:
@@ -343,6 +346,7 @@ class Basic(BasicMeths):
         if mth is None:
             raise ValueError("%s does not define %s_series method" % (self.__class__,kind))
         return mth(*args, **parameters)
+
 
 class Atom(Basic):
 
