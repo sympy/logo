@@ -81,13 +81,19 @@ it relies on libxslt. On Debian, install the "python-libxslt1" package.
 
 = Latex =
 
-Output latex code from expressions is possible
+Output latex code from expressions is possible. Use it like this:
+
+{{{
+In [1]: Symbol("gamma")
+Out[1]: gamma
+
+In [2]: latex(Symbol("gamma"))
+Out[2]: '$\\gamma$'
+}}}
 
 == Implementation details ==
 
-done via the classmethod `__latex__`. It still needs some work. 
-
-
+Done via the classmethod `__latex__`. 
 
 = Printing to other devices =
 
