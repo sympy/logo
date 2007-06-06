@@ -18,7 +18,7 @@ And finally, read the [http://sympy.googlecode.com/svn/trunk/ sources] itself or
 
 Useful information can also be found on our blog [http://grupododo.com/planetsympy/ Planet SymPy].
 
-Description of !SymPy printing system is in [http://code.google.com/p/sympy/wiki/PrintingMathML PrintingMathML].
+Description of !SymPy printing system is in PrintingSystem.
 
 For some ideas, where Sympy can be used, see http://code.google.com/p/sympy/wiki/Motivation.
 
