@@ -124,6 +124,7 @@ class Sqrt(DefinedFunction):
                         n *= Basic.Integer(k) ** Basic.Half()
                 return n
             return arg ** Basic.Half()
+        
 
     def _eval_apply_power(self, arg, exp):
         if isinstance(exp, Basic.Number):
@@ -134,6 +135,11 @@ class Sqrt(DefinedFunction):
         if isinstance(e0, Basic.Zero):
             return self(c0), e0
         return self(c0), e0/2
+
+    def _eval_apply_evalf(self, arg):
+        arg = arg.evalf()
+        if isinstance(arg, Basic.Number):
+            return arg.sqrt()
 
 
 class Abs(DefinedFunction):
