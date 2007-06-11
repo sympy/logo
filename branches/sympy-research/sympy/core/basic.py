@@ -128,6 +128,15 @@ class Basic(BasicMeths):
         # a -> c + f
         return Basic.Zero(), [self]
 
+    def as_numer_denom(self):
+        # a/b -> a,b
+        base, exp = self.as_base_exp()
+        coeff, terms = exp.as_coeff_terms()
+        if coeff.is_negative:
+            # b**-e -> 1, b**e
+            return Basic.One(), base ** (-exp)
+        return self, Basic.One()
+
     def has(self, *patterns):
         """
         Return True if self has any of the patterns.
@@ -297,9 +306,7 @@ class Basic(BasicMeths):
         if self==x:
             return Basic.One(),Basic.One()
         result = self._calc_leadterm(x)
-        if result is not None:
-            return result
-        raise ValueError("unable to compute leading term of %s at %s=0" % (self, x))
+        return result
 
     def ldegree(self, *symbols):
         s = Basic.Zero()
@@ -330,22 +337,66 @@ class Basic(BasicMeths):
 
         """
         f = self
-        s = f.subs(x,0)
+        s = Basic.Zero()
         j = 1
-        for i in range(1,n):
-            j *= i
-            f = f.diff(x)
-            s += (f.subs(x,0)/j)*(x**i)
+        for i in range(0,n):
+            if i:
+                j *= i
+                f = f.diff(x)
+            t = (f.subs(x,0)/j)*(x**i)
+            if t.has(Basic.NaN()):
+                raise TypeError("cannot expand %s into Taylor series around %s=0, got nan term." % (self, x))                
+            s += t
         if s==self:
             return s
-        return s + Basic.Order(x**n)
+        return s + Basic.Order(x**(n))
 
+    def power_series(self, x, n=6):
+        raise NotImplementedError
+        expr = self
+        s = Basic.Zero()
+        j = 1
+        for i in range(0,n):
+            ldi = expr.leading_term(x)/j
+            expr = expr - ldi
+            s += ldi
+            if i:
+                j *= i
+        return s
+        
     def series(self, *args, **parameters):
         kind = parameters.pop('kind','taylor')
         mth = getattr(self, kind+'_series', None)
         if mth is None:
             raise ValueError("%s does not define %s_series method" % (self.__class__,kind))
         return mth(*args, **parameters)
+
+    def _calc_splitter(self, d):
+        if d.has_key(self):
+            return d[self]
+        r = self.__class__(*[t._calc_splitter(d) for t in self])
+        if d.has_key(r):
+            return d[r]
+        s = d[r] = Basic.Temporary()
+        return s
+
+    def splitter(self):
+        d = {}
+        r = self._calc_splitter(d)
+        l = [(s.dummy_index,s,e) for e,s in d.items()]
+        l.sort()
+        return [(s,e) for i,s,e in l]
+
+    def count_ops(self):
+        """ Return the number of operations in expressions.
+
+        Examples:
+        >>> (1+a+b**2).count_ops()
+        POW + 2 * ADD
+        >>> (sin(x)*x+sin(x)**2).count_ops()
+        ADD + MUL + POW + 2 * SIN
+        """
+        return Basic.Integer(len(self[:])-1) + sum([t.count_ops() for t in self])
 
 
 class Atom(Basic):
@@ -360,6 +411,15 @@ class Atom(Basic):
         if pattern==expr:
             return repl_dict
         return None
+
+    def as_numer_denom(self):
+        return self, Basic.One()
+
+    def _calc_splitter(self, d):
+        return self
+
+    def count_ops(self):
+        return Basic.Zero()
 
 class Singleton(Basic):
     """ Singleton object.

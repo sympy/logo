@@ -135,16 +135,56 @@ class Add(AssocOp, RelMeths, ArithMeths):
     def _combine_inverse(lhs, rhs):
         return lhs - rhs
 
-    def _calc_leadterm(self, x):
-        c0,e0 = self[0].leadterm(x)
-        if not isinstance(e0, Basic.Number):
-            raise TypeError("cannot determine lead term with respect to %r of a sum with symbolic exponents: %r" % (x,self))
-        for f in self[1:]:
+    @staticmethod
+    def _calc_leadterm_simple(expr, x):
+        if not isinstance(expr, Add):
+            return expr.leadterm(x)
+        d = {}
+        for f in expr:
             c,e = f.leadterm(x)
             if not e.is_comparable:
-                raise TypeError("cannot determine lead term with respect to %r of a sum with symbolic exponents: %r" % (x,self))
-            if e < e0:
-                c0,e0 = c,e
-            elif e==e0:
-                c0,e0 = c0+c,e
+                raise TypeError("cannot determine lead term with respect to %r of a sum with symbolic exponents: %r" % (x,expr))
+            if d.has_key(e):
+                d[e] += c
+            else:
+                d[e] = c
+        l = d.items()
+        l.sort()
+        e0,c0 = l.pop(0)
         return c0,e0
+
+    def _calc_leadterm(self, x):
+        numer, denom = self.as_numer_denom()
+        nc0,ne0 = Add._calc_leadterm_simple(numer,x)
+        dc0,de0 = Add._calc_leadterm_simple(denom,x)
+        if isinstance(nc0, Basic.Zero):
+            raise `numer,denom`
+        return nc0/dc0, ne0-de0
+
+    def as_numer_denom(self):
+        numers, denoms = [],[]
+        for n,d in [f.as_numer_denom() for f in self]:
+            numers.append(n)
+            denoms.append(d)
+        r = range(len(numers))
+        return Add(*[Basic.Mul(*(denoms[:i]+[numers[i]]+denoms[i+1:])) for i in r]),Basic.Mul(*denoms)
+
+    def _calc_splitter(self, d):
+        if d.has_key(self):
+            return d[self]
+        coeff, factors = self.as_coeff_factors()
+        r = self.__class__(*[t._calc_splitter(d) for t in factors])
+        if isinstance(r,Add) and 0:
+            for e,t in d.items():
+                w = Basic.Wild()
+                d1 = r.match(e+w)
+                if d1 is not None:
+                    r1 = t + d1[w]
+                    break
+        if d.has_key(r):
+            return coeff + d[r]
+        s = d[r] = Basic.Temporary()
+        return s + coeff
+
+    def count_ops(self):
+        return Add(*[t.count_ops() for t in self[:]]) + Basic.Symbol('ADD') * (len(self[:])-1)

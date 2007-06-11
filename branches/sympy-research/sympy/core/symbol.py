@@ -100,3 +100,12 @@ class Wild(Symbol):
 
     def tostr(self, level=0):
         return self.name + '_'
+
+class Temporary(Symbol):
+    """
+    Indexed dummy symbol.
+    """
+    def __new__(cls, **assumptions):
+        assumptions['dummy'] = True
+        name = 'T%s' % (Symbol.dummycount+1)
+        return Symbol.__new__(cls, name, **assumptions)

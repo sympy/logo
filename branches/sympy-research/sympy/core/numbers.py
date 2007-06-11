@@ -136,6 +136,9 @@ class Number(Atom, RelMeths, ArithMeths):
     def __ge__(self, other):
         return Basic.sympify(other).__le__(self)
 
+    def as_coeff_terms(self):
+        # a -> c * t
+        return self, []
 
 decimal_to_Number_cls = {
     decimal.Decimal('0').as_tuple():'Zero',
@@ -159,6 +162,7 @@ class Real(Number):
     """
     is_real = True
     is_commutative = True
+    is_irrational = False
     
     def __new__(cls, num):
         if isinstance(num, (str, int, long)):
@@ -270,26 +274,36 @@ class Real(Number):
 
     def __eq__(self, other):
         other = Basic.sympify(other)
+        if isinstance(other, NumberSymbol):
+            if other.is_irrational: return False
+            return other.__eq__(self)
         if other.is_comparable: other = other.evalf()
-        if isinstance(other, Basic.Number):
+        if isinstance(other, Number):
             return bool(self._as_decimal()==other._as_decimal())
         return RelMeths.__eq__(self, other)
     def __ne__(self, other):
         other = Basic.sympify(other)
+        if isinstance(other, NumberSymbol):
+            if other.is_irrational: return True
+            return other.__ne__(self)
         if other.is_comparable: other = other.evalf()
-        if isinstance(other, Basic.Number):
+        if isinstance(other, Number):
             return bool(self._as_decimal()!=other._as_decimal())
         return RelMeths.__ne__(self, other)
     def __lt__(self, other):
         other = Basic.sympify(other)
+        if isinstance(other, NumberSymbol):
+            return other.__ge__(self)
         if other.is_comparable: other = other.evalf()
-        if isinstance(other, Basic.Number):
+        if isinstance(other, Number):
             return bool(self._as_decimal() < other._as_decimal())
         return RelMeths.__lt__(self, other)
     def __le__(self, other):
         other = Basic.sympify(other)
+        if isinstance(other, NumberSymbol):
+            return other.__gt__(self)
         if other.is_comparable: other = other.evalf()
-        if isinstance(other, Basic.Number):
+        if isinstance(other, Number):
             return bool(self._as_decimal()<=other._as_decimal())
         return RelMeths.__le__(self, other)
 
@@ -307,6 +321,7 @@ class Rational(Number):
     """
     is_real = True
     is_integer = False
+    is_irrational = False
 
     def __new__(cls, p, q = None):
         if q is None:
@@ -410,33 +425,43 @@ class Rational(Number):
 
     def __eq__(self, other):
         other = Basic.sympify(other)
-        if other.is_comparable: other = other.evalf()
-        if isinstance(other, Basic.Number):
-            if isinstance(other, Basic.Real):
+        if isinstance(other, NumberSymbol):
+            if other.is_irrational: return False
+            return other.__eq__(self)
+        if other.is_comparable and not isinstance(other, Rational): other = other.evalf()
+        if isinstance(other, Number):
+            if isinstance(other, Real):
                 return bool(self._as_decimal()==other._as_decimal())
             return bool(self.p==other.p and self.q==other.q)
         return RelMeths.__eq__(self, other)
     def __ne__(self, other):
         other = Basic.sympify(other)
-        if other.is_comparable: other = other.evalf()
-        if isinstance(other, Basic.Number):
-            if isinstance(other, Basic.Real):
+        if isinstance(other, NumberSymbol):
+            if other.is_irrational: return True
+            return other.__ne__(self)
+        if other.is_comparable and not isinstance(other, Rational): other = other.evalf()
+        if isinstance(other, Number):
+            if isinstance(other, Real):
                 return bool(self._as_decimal()!=other._as_decimal())
             return bool(self.p!=other.p or self.q!=other.q)
         return RelMeths.__ne__(self, other)
     def __lt__(self, other):
         other = Basic.sympify(other)
-        if other.is_comparable: other = other.evalf()
-        if isinstance(other, Basic.Number):
-            if isinstance(other, Basic.Real):
+        if isinstance(other, NumberSymbol):
+            return other.__ge__(self)
+        if other.is_comparable and not isinstance(other, Rational): other = other.evalf()
+        if isinstance(other, Number):
+            if isinstance(other, Real):
                 return bool(self._as_decimal() < other._as_decimal())
             return bool(self.p * other.q < self.q * other.p)
         return RelMeths.__lt__(self, other)
     def __le__(self, other):
         other = Basic.sympify(other)
-        if other.is_comparable: other = other.evalf()
-        if isinstance(other, Basic.Number):
-            if isinstance(other, Basic.Real):
+        if isinstance(other, NumberSymbol):
+            return other.__gt__(self)
+        if other.is_comparable and not isinstance(other, Rational): other = other.evalf()
+        if isinstance(other, Number):
+            if isinstance(other, Real):
                 return bool(self._as_decimal()<=other._as_decimal())
             return bool(self.p * other.q <= self.q * other.p)
         return RelMeths.__le__(self, other)
@@ -458,6 +483,9 @@ class Rational(Number):
             f[p] = e
         if len(f)>1 and f.has_key(1): del f[1]
         return f
+
+    def as_numer_denom(self):
+        return Integer(self.p), Integer(self.q)
 
 class Integer(Rational):
 
@@ -527,6 +555,9 @@ class Integer(Rational):
                     return b ** i * b ** (e - q)
         return
 
+    def as_numer_denom(self):
+        return self, One()
+
 class Zero(Singleton, Integer):
 
     p = 0
@@ -546,7 +577,7 @@ class Zero(Singleton, Integer):
     def _eval_order(self, *symbols):
         # Order(0,x) -> 0
         return self
-    
+
 class One(Singleton, Integer):
 
     p = 1
@@ -690,28 +721,41 @@ class NumberSymbol(Singleton, Atom, RelMeths, ArithMeths):
     is_commutative = True
     is_comparable = True
 
+    def approximation(self, number_cls):
+        """ Return an interval with number_cls endpoints
+        that contains the value of NumberSymbol.
+        If not implemented, then return None.
+        """
+
     def _eval_derivative(self, s):
         return Zero()
     def __eq__(self, other):
         other = Basic.sympify(other)
-        if other.is_comparable: other = other.evalf()
-        if isinstance(other, Number):
-            return self.evalf()==other
+        if self is other: return True
+        if isinstance(other, Number) and self.is_irrational: return False
         return RelMeths.__eq__(self, other)
     def __ne__(self, other):
         other = Basic.sympify(other)
-        if other.is_comparable: other = other.evalf()
-        if isinstance(other, Number):
-            return self.evalf()!=other
+        if self is other: return False
+        if isinstance(other, Number) and self.is_irrational: return True
         return RelMeths.__ne__(self, other)
     def __lt__(self, other):
         other = Basic.sympify(other)
-        if other.is_comparable: other = other.evalf()
+        if self is other: return False
         if isinstance(other, Number):
+            approx = self.approximation_interval(other.__class__)
+            if approx is not None:
+                l,u = approx
+                if other < l: return False
+                if other > u: return True
+            return self.evalf()<other
+        if other.is_comparable:
+            other = other.evalf()
             return self.evalf()<other
         return RelMeths.__lt__(self, other)
     def __le__(self, other):
         other = Basic.sympify(other)
+        if self is other: return True
         if other.is_comparable: other = other.evalf()
         if isinstance(other, Number):
             return self.evalf()<=other
@@ -727,6 +771,7 @@ class Exp1(NumberSymbol):
     is_real = True
     is_positive = is_nonnegative = True
     is_nonpositive = is_negative = False
+    is_irrational = True
 
     def tostr(self, level=0):
         return 'E'
@@ -734,10 +779,23 @@ class Exp1(NumberSymbol):
     def evalf(self):
         return Real(decimal_math.e())
 
+    def approximation_interval(self, number_cls):
+        if issubclass(number_cls,Integer):
+            return (Integer(2),Integer(3))
+        elif issubclass(number_cls,Rational):
+            pass
+
 class Pi(NumberSymbol):
     is_real = True
     is_positive = is_nonnegative = True
     is_nonpositive = is_negative = False    
+    is_irrational = True
+
+    def approximation_interval(self, number_cls):
+        if issubclass(number_cls,Integer):
+            return (Integer(3),Integer(4))
+        elif issubclass(number_cls,Rational):
+            pass
 
     def tostr(self, level=0):
         return 'Pi'

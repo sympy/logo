@@ -84,8 +84,11 @@ class Apply(Basic, ArithMeths, RelMeths):
     subs = Basic._seq_subs
 
     def evalf(self):
-        return self.func._eval_apply_evalf(*self.args)
-
+        obj = self.func._eval_apply_evalf(*self.args)
+        if obj is None:
+            return self
+        return obj
+        
     @property
     def is_comparable(self):
         if isinstance(self.func, DefinedFunction):
@@ -135,6 +138,10 @@ class Apply(Basic, ArithMeths, RelMeths):
         if isinstance(self.func, Basic.Exp):
             return Basic.Exp1(), self.args[0]
         return self, Basic.One()
+
+    def count_ops(self):
+        return Basic.Add(*[t.count_ops() for t in self])
+
 
 class Function(Basic, ArithMeths, NoRelMeths):
     """ Base class for function objects, represents also undefined functions.
@@ -235,7 +242,12 @@ class Function(Basic, ArithMeths, NoRelMeths):
     def inverse(self):
         return FPow(self, -1)
 
-    # functions can define leadterm0() and leadterm1() methods
+    def _calc_splitter(self, d):
+        return self
+
+    def count_ops(self):
+        return Basic.Symbol(self.__class__.__name__.upper())
+
 
 class WildFunction(Function):
 
@@ -665,8 +677,6 @@ class DefinedFunction(Function, Singleton, Atom):
 
     def torepr(self):
         return '%s()' % (self.__class__.__name__)
-
-
 
 Basic.singleton['D'] = lambda : Derivative
 Basic.singleton['FD'] = lambda : FDerivative

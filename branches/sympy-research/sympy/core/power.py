@@ -134,12 +134,44 @@ class Pow(Basic, ArithMeths, RelMeths):
                 c0 *= c
                 e0 += e
             return c0,e0
+        if self.exp==x and not self.base.has(x):
+            return Basic.One(), Basic.Zero()
         # TODO: (1+x)*(2*x) -> ((1+x)**2)**x
-        # TODO: (1+x)**x -> exp(x*log(1+x))
-        return
+        # TODO: (1+x)**x -> exp(x*log(1+x))        
+        raise ValueError("unable to compute leading term of %s at %s=0" % (self, x))
+
 
     @property
     def is_comparable(self):
         return self.exp.is_comparable and self.base.is_comparable
 
     evalf = Basic._seq_evalf
+
+    def _calc_splitter(self, d):
+        if d.has_key(self):
+            return d[self]
+        base = self.base._calc_splitter(d)
+        exp = self.exp._calc_splitter(d)
+        if isinstance(exp, Basic.Integer):
+            if abs(exp.p)>2:
+                n = exp.p//2
+                r = exp.p - n
+                if n!=r:
+                    p1 = (base ** n)._calc_splitter(d)
+                    p2 = (base ** r)._calc_splitter(d)
+                    r = p1*p2
+                else:
+                    r = (base ** n)._calc_splitter(d) ** 2
+            elif exp.p==-2:
+                r = (1/base)._calc_splitter(d) ** 2
+            else:
+                r = base ** exp
+        else:
+            r = base ** exp
+        if d.has_key(r):
+            return d[r]
+        s = d[r] = Basic.Temporary()
+        return s
+
+    def count_ops(self):
+        return Basic.Add(*[t.count_ops() for t in self[:]]) + Basic.Symbol('POW')

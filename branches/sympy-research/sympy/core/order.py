@@ -114,15 +114,18 @@ class Order(Basic, ArithMeths, RelMeths):
                         symbols.append(symbol_map[s])
                     else:
                         symbols.append(s)
-                return Basic.__new__(cls, expr, *symbols, **assumptions)
-            
-            if isinstance(expr, Basic.Add):
-                return Basic.Add(*[Order(f,*symbols, **assumptions) for f in expr])
-            expr = expr.leading_term(*symbols)
-            coeff, terms = expr.as_coeff_terms()
-            expr = Basic.Mul(*[t for t in terms if t.has(*symbols)])
-        else:
+            else:
+                if isinstance(expr, Basic.Add):
+                    return Basic.Add(*[Order(f,*symbols, **assumptions) for f in expr])
+                expr = expr.leading_term(*symbols)
+                coeff, terms = expr.as_coeff_terms()
+                if isinstance(coeff, Basic.Zero):
+                    return coeff
+                expr = Basic.Mul(*[t for t in terms if t.has(*symbols)])
+        elif not isinstance(expr, Basic.Zero):
             expr = Basic.One()
+        if isinstance(expr, Basic.Zero):
+            return expr
         symbols = [s for s in symbols if expr.has(s)]
         return Basic.__new__(cls, expr, *symbols, **assumptions)
 
@@ -160,9 +163,16 @@ class Order(Basic, ArithMeths, RelMeths):
             return True
         return False
 
-    subs = Basic._seq_subs
+    def subs(self, old, new):
+        old = Basic.sympify(old)
+        if self==old:
+            return Basic.sympify(new)
+        return Order(self.expr.subs(old, new), *self.symbols)
 
     def _calc_leadterm(self, x):
         return self.expr.leadterm(x)
+
+    def _calc_splitter(self, d):
+        return Basic.Zero()
             
 Basic.singleton['O'] = lambda : Order

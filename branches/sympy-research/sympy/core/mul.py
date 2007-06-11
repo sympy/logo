@@ -108,18 +108,25 @@ class Mul(AssocOp, RelMeths, ArithMeths):
         return 50
 
     def tostr(self, level = 0):
-        delim = ' * '
+        numer,denom = self.as_numer_denom()
         precedence = self.precedence
-        coeff, rest = self.as_coeff_terms()
-        r = delim.join([s.tostr(precedence) for s in rest])
-        if isinstance(coeff, Basic.One):
-            pass
-        elif isinstance(-coeff, Basic.One):
-            r = '-' + r
-        elif coeff.is_negative:
-            r = '-' + (-coeff).tostr() + delim + r
+        if isinstance(denom, Basic.One):
+            delim = ' * '
+            coeff, rest = self.as_coeff_terms()
+            r = delim.join([s.tostr(precedence) for s in rest])
+            if isinstance(coeff, Basic.One):
+                pass
+            elif isinstance(-coeff, Basic.One):
+                r = '-' + r
+            elif coeff.is_negative:
+                r = '-' + (-coeff).tostr() + delim + r
+            else:
+                r = coeff.tostr() + delim + r
         else:
-            r = coeff.tostr() + delim + r
+            if len(denom[:])>1:
+                r = numer.tostr() + ' / (' + denom.tostr() + ')'
+            else:
+                r = numer.tostr() + ' / ' + denom.tostr()
         if precedence<=level:
             return '(%s)' % r
         return r
@@ -186,3 +193,17 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             c0 *= c
             e0 += e
         return c0,e0
+
+    def as_numer_denom(self):
+        numers,denoms = [],[]
+        for t in self:
+            if isinstance(t, Basic.Number):
+                numers.append(t)
+                continue
+            n,d = t.as_numer_denom()
+            numers.append(n)
+            denoms.append(d)
+        return Mul(*numers), Mul(*denoms)
+
+    def count_ops(self):
+        return Basic.Add(*[t.count_ops() for t in self[:]]) + Basic.Symbol('MUL') * (len(self[:])-1)

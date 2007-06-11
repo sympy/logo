@@ -27,6 +27,7 @@ class AssumeMeths(object):
         - negative
         - nonpositive
         - comparable    - object.evalf() returns Number object.
+        - irrational    - object value cannot be represented exactly by Rational
 
     Implementation note: assumption values are stored in
     ._assumption dictionary or are returned by getter methods (with

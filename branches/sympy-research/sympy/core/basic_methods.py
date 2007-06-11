@@ -14,7 +14,7 @@ ordering_of_classes = [
     # singleton symbols
     'Exp1','Pi','ImaginaryUnit',
     # symbols
-    'Symbol','Wild',
+    'Symbol','Wild','Temporary',
     # arithmetic operations
     'Pow', 'Mul', 'Add',
     # function values
