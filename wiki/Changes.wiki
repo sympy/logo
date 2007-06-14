@@ -9,7 +9,11 @@ This page documents the major changes made to !SymPy since the last release.
   * determinants
   * groebner bases (initial implementation). multivariate division, gcd
   * Fraction free Gaussian elimination
-  * resultant
+  * resultant of polynomials
+  * graphing support
+  * geometry module
+  * prime numbers
+  * special functions (factorials)
   * renamed arguments is_commutative to commutative, is_dummy to dummy
   * MathML refactoring, renamed to __mathml__ and now uses xml.dom.minidom
   * ratsimp() for simplifying fractions added to sympy.modules.simplify
