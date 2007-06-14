@@ -6,6 +6,9 @@ This page documents the major changes made to !SymPy since the last release.
 
 == svn ==
 
+  * determinants
+  * groebner bases (initial implementation). multivariate division, gcd
+  * Fraction free Gaussian elimination
   * renamed arguments is_commutative to commutative, is_dummy to dummy
   * MathML refactoring, renamed to __mathml__ and now uses xml.dom.minidom
   * ratsimp() for simplifying fractions added to sympy.modules.simplify
