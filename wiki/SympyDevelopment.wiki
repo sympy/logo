@@ -86,4 +86,4 @@ http://code.google.com/p/sympy/wiki/Discussion
 
 !SymPy's involvement in the Google Summer of Code 2007 page is described at SummerOfCode.
 
-How to create a release and a Debian package is described in TechnicalTasks.
+How to create a release, man page and some other stuff is described in TechnicalTasks.
