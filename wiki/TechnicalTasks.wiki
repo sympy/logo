@@ -150,10 +150,8 @@ svn copy trunk tags/sympy-0.4
 
 Then in this branch:
 
-  * create sympy-x.y.tar.gz file every time we release a new version (without the debian dir inside), using `./setup.py sdist`
-  * put it on the website
-  * mv sympy-x.y.tar.gz sympy_x.y.orig.tar.gz
-  * `dch -v x.y-1 -m "New upstream release"`
-  * debuild
+{{{
+./setup.py sdist
+}}}
 
-and possibly merge the changes in the debian/ directory with the trunk.
+and put the dist/sympy-0.4-pre.tar.gz on the website.
