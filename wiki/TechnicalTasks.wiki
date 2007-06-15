@@ -34,6 +34,7 @@ svn checkout https://sympy.googlecode.com/svn/ sympy --username ondrej.certik
 cd sympy/trunk
 ./setup.py gen_doc
 cd ../api
+svn propset svn:mime-type text/html *.html
 svn ci
 }}}
 
