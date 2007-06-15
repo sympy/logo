@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>sympy.modules.geometry.polygon.Triangle</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css"></link>
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="sympy-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <font size="-1"><b class="breadcrumbs">
+        <a href="sympy-module.html">Package&nbsp;sympy</a> ::
+        <a href="sympy.modules-module.html">Package&nbsp;modules</a> ::
+        <a href="sympy.modules.geometry-module.html">Package&nbsp;geometry</a> ::
+        <a href="sympy.modules.geometry.polygon-module.html">Module&nbsp;polygon</a> ::
+        Class&nbsp;Triangle
+      </b></font></br>
+    </td>
+    <td><table cellpadding="0" cellspacing="0">
+      <tr><td align="right"><font size="-2">[<a href="../private/sympy.modules.geometry.polygon.Triangle-class.html">show&nbsp;private</a>&nbsp;|&nbsp;hide&nbsp;private]</font></td></tr>
+      <tr><td align="right"><font size="-2">[<a href="frames.html"target="_top">frames</a>&nbsp;|&nbsp;<a href="sympy.modules.geometry.polygon.Triangle-class.html" target="_top">no&nbsp;frames</a>]</font></td></tr>
+    </table></td>
+</tr></table>
+
+<!-- =========== START OF CLASS DESCRIPTION =========== -->
+<h2 class="class">Type Triangle</h2>
+
+<pre class="base-tree">
+    <a href="__builtin__.object-class.html"><code>object</code></a> --+        
+             |        
+<a href="sympy.modules.geometry.entity.GeometryEntity-class.html"><code>GeometryEntity</code></a> --+    
+                 |    
+           <a href="sympy.modules.geometry.polygon.Polygon-class.html"><code>Polygon</code></a> --+
+                     |
+                    <b>Triangle</b>
+</pre><br />
+
+<hr/>
+
+A triangle (3 sided polygon).
+<hr/>
+
+
+<!-- =========== START OF METHOD SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Method Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="__init__"></a><span class="summary-sig"><span class="summary-sig-name">__init__</span>(<span class=summary-sig-arg>self</span>,
+          <span class="summary-sig-vararg">*args</span>,
+          <span class="summary-sig-kwarg">**kwargs</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="__str__"></a><span class="summary-sig"><span class="summary-sig-name">__str__</span>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.polygon.Triangle-class.html#are_similar" class="summary-sig-name"><code>are_similar</code></a>(<span class=summary-sig-arg>t1</span>,
+          <span class=summary-sig-arg>t2</span>)</span></code>
+<br />
+Returns the True if triangles t1 and t2 are similar, False 
+otherwise.    <i>(Static method)</i>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.polygon.Triangle-class.html#is_equilateral" class="summary-sig-name"><code>is_equilateral</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Returns True if the triangle is equilateral, False otherwise.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.polygon.Triangle-class.html#is_right" class="summary-sig-name"><code>is_right</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Returns True if the triangle is right-angled, False otherwise.</td></tr>
+<tr bgcolor="#e8f0f8" class="group">
+  <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;Inherited from Polygon</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.polygon.Polygon-class.html#__contains__" class="summary-sig-name"><code>__contains__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>o</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.polygon.Polygon-class.html#__eq__" class="summary-sig-name"><code>__eq__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>o</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.polygon.Polygon-class.html#__getitem__" class="summary-sig-name"><code>__getitem__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>ind</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.polygon.Polygon-class.html#__len__" class="summary-sig-name"><code>__len__</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.polygon.Polygon-class.html#intersection" class="summary-sig-name"><code>intersection</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>o</span>)</span></code>
+<br />
+Returns the intersection of this entity and another entity, or None if 
+there is no intersection.</td></tr>
+<tr bgcolor="#e8f0f8" class="group">
+  <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;Inherited from GeometryEntity</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.entity.GeometryEntity-class.html#__hash__" class="summary-sig-name"><code>__hash__</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.entity.GeometryEntity-class.html#__ne__" class="summary-sig-name"><code>__ne__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>o</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.entity.GeometryEntity-class.html#__radd__" class="summary-sig-name"><code>__radd__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.entity.GeometryEntity-class.html#__rdiv__" class="summary-sig-name"><code>__rdiv__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.entity.GeometryEntity-class.html#__repr__" class="summary-sig-name"><code>__repr__</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.entity.GeometryEntity-class.html#__rmul__" class="summary-sig-name"><code>__rmul__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.entity.GeometryEntity-class.html#__rsub__" class="summary-sig-name"><code>__rsub__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.geometry.entity.GeometryEntity-class.html#do_intersection" class="summary-sig-name"><code>do_intersection</code></a>(<span class=summary-sig-arg>e1</span>,
+          <span class=summary-sig-arg>e2</span>)</span></code>
+<br />
+Determine the intersection between two geometrical entities    <i>(Static method)</i>
+</td></tr>
+<tr bgcolor="#e8f0f8" class="group">
+  <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;Inherited from object</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__delattr__" class="summary-sig-name"><code>__delattr__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+x.__delattr__('name') &lt;==&gt; del x.name</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__getattribute__" class="summary-sig-name"><code>__getattribute__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+x.__getattribute__('name') &lt;==&gt; x.name</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__new__" class="summary-sig-name"><code>__new__</code></a>(<span class=summary-sig-arg>T</span>,
+          <span class=summary-sig-arg>S</span>,
+          <span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+T.__new__(S, ...) -&gt; a new object with type S, a subtype of T</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__reduce__" class="summary-sig-name"><code>__reduce__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+helper for pickle</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__reduce_ex__" class="summary-sig-name"><code>__reduce_ex__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+helper for pickle</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__setattr__" class="summary-sig-name"><code>__setattr__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+x.__setattr__('name', value) &lt;==&gt; x.name = value</td></tr>
+</table><br />
+
+
+<!-- =========== START OF PROPERTY SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Property Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Triangle-class.html#altitudes"><code>altitudes</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Triangle-class.html#bisectors"><code>bisectors</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Triangle-class.html#circumcenter"><code>circumcenter</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Triangle-class.html#circumcircle"><code>circumcircle</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Triangle-class.html#circumradius"><code>circumradius</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Triangle-class.html#excircles"><code>excircles</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Triangle-class.html#incenter"><code>incenter</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Triangle-class.html#incircle"><code>incircle</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Triangle-class.html#inradius"><code>inradius</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Triangle-class.html#medial"><code>medial</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Triangle-class.html#medians"><code>medians</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Triangle-class.html#orthocenter"><code>orthocenter</code></a></b></td></tr><tr bgcolor="#e8f0f8" class="group">
+  <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;Inherited from Polygon</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Polygon-class.html#area"><code>area</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Polygon-class.html#centroid"><code>centroid</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Polygon-class.html#perimeter"><code>perimeter</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Polygon-class.html#sides"><code>sides</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.modules.geometry.polygon.Polygon-class.html#vertices"><code>vertices</code></a></b></td></tr></table><br />
+
+
+<!-- =========== START OF INSTANCE METHOD DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Instance Method Details</th></tr>
+</table>
+
+<a name="is_equilateral"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">is_equilateral</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  Returns True if the triangle is equilateral, False otherwise.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="is_right"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">is_right</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  Returns True if the triangle is right-angled, False otherwise.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+<br />
+
+
+<!-- =========== START OF STATIC METHOD DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Static Method Details</th></tr>
+</table>
+
+<a name="are_similar"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">are_similar</span>(<span class=sig-arg>t1</span>,
+          <span class=sig-arg>t2</span>)</span>
+  </h3>
+  Returns the True if triangles t1 and t2 are similar, False 
+  otherwise.
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+<br />
+
+
+<!-- =========== START OF PROPERTY DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Property Details</th></tr>
+</table>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+
+<a name="altitudes"></a>
+<h3>altitudes</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Get Method:</b></dt>
+      <dd><span class="summary-sig"><span class="summary-sig-name">altitudes</span>(...)</span>
+      </dd>
+    </dl>
+  </dd>
+</dl></td></tr></table><table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+
+<a name="bisectors"></a>
+<h3>bisectors</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Get Method:</b></dt>
+      <dd><span class="summary-sig"><span class="summary-sig-name">bisectors</span>(...)</span>
+      </dd>
+    </dl>
+  </dd>
+</dl></td></tr></table><table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+
+<a name="circumcenter"></a>
+<h3>circumcenter</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Get Method:</b></dt>
+      <dd><span class="summary-sig"><span class="summary-sig-name">circumcenter</span>(...)</span>
+      </dd>
+    </dl>
+  </dd>
+</dl></td></tr></table><table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+
+<a name="circumcircle"></a>
+<h3>circumcircle</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Get Method:</b></dt>
+      <dd><span class="summary-sig"><span class="summary-sig-name">circumcircle</span>(...)</span>
+      </dd>
+    </dl>
+  </dd>
+</dl></td></tr></table><table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+
+<a name="circumradius"></a>
+<h3>circumradius</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Get Method:</b></dt>
+      <dd><span class="summary-sig"><span class="summary-sig-name">circumradius</span>(...)</span>
+      </dd>
+    </dl>
+  </dd>
+</dl></td></tr></table><table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+
+<a name="excircles"></a>
+<h3>excircles</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Get Method:</b></dt>
+      <dd><span class="summary-sig"><span class="summary-sig-name">excircles</span>(...)</span>
+      </dd>
+    </dl>
+  </dd>
+</dl></td></tr></table><table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+
+<a name="incenter"></a>
+<h3>incenter</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Get Method:</b></dt>
+      <dd><span class="summary-sig"><span class="summary-sig-name">incenter</span>(...)</span>
+      </dd>
+    </dl>
+  </dd>
+</dl></td></tr></table><table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+
+<a name="incircle"></a>
+<h3>incircle</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Get Method:</b></dt>
+      <dd><span class="summary-sig"><span class="summary-sig-name">incircle</span>(...)</span>
+      </dd>
+    </dl>
+  </dd>
+</dl></td></tr></table><table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+
+<a name="inradius"></a>
+<h3>inradius</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Get Method:</b></dt>
+      <dd><span class="summary-sig"><span class="summary-sig-name">inradius</span>(...)</span>
+      </dd>
+    </dl>
+  </dd>
+</dl></td></tr></table><table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+
+<a name="medial"></a>
+<h3>medial</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Get Method:</b></dt>
+      <dd><span class="summary-sig"><span class="summary-sig-name">medial</span>(...)</span>
+      </dd>
+    </dl>
+  </dd>
+</dl></td></tr></table><table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+
+<a name="medians"></a>
+<h3>medians</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Get Method:</b></dt>
+      <dd><span class="summary-sig"><span class="summary-sig-name">medians</span>(...)</span>
+      </dd>
+    </dl>
+  </dd>
+</dl></td></tr></table><table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+
+<a name="orthocenter"></a>
+<h3>orthocenter</h3>
+<dl>
+  <dt></dt>
+  <dd>
+    <dl>
+      <dt><b>Get Method:</b></dt>
+      <dd><span class="summary-sig"><span class="summary-sig-name">orthocenter</span>(...)</span>
+      </dd>
+    </dl>
+  </dd>
+</dl></td></tr></table><br />
+
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="sympy-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="left"><font size="-2">Generated by Epydoc 2.1 on Fri Jun 15 14:31:52 2007</font></td>
+    <td align="right"><a href="http://epydoc.sourceforge.net"
+                      ><font size="-2">http://epydoc.sf.net</font></a></td>
+  </tr>
+</table>
+</body>
+</html>

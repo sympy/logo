@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>sympy.modules.simplify</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css"></link>
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="sympy-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <font size="-1"><b class="breadcrumbs">
+        <a href="sympy-module.html">Package&nbsp;sympy</a> ::
+        <a href="sympy.modules-module.html">Package&nbsp;modules</a> ::
+        Module&nbsp;simplify
+      </b></font></br>
+    </td>
+    <td><table cellpadding="0" cellspacing="0">
+      <tr><td align="right"><font size="-2">[show&nbsp;private&nbsp;|&nbsp;<a href="../public/sympy.modules.simplify-module.html">hide&nbsp;private</a>]</font></td></tr>
+      <tr><td align="right"><font size="-2">[<a href="frames.html"target="_top">frames</a>&nbsp;|&nbsp;<a href="sympy.modules.simplify-module.html" target="_top">no&nbsp;frames</a>]</font></td></tr>
+    </table></td>
+</tr></table>
+
+<!-- =========== START OF MODULE DESCRIPTION =========== -->
+<h2 class="module">Module sympy.modules.simplify</h2>
+
+
+<!-- =========== START OF FUNCTION SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Function Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="denom"></a><span class="summary-sig"><span class="summary-sig-name">denom</span>(<span class=summary-sig-arg>expr</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="denom_expand"></a><span class="summary-sig"><span class="summary-sig-name">denom_expand</span>(<span class=summary-sig-arg>expr</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.simplify-module.html#fraction" class="summary-sig-name"><code>fraction</code></a>(<span class=summary-sig-arg>expr</span>)</span></code>
+<br />
+Returns a pair with expression's numerator and denominator.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="numer"></a><span class="summary-sig"><span class="summary-sig-name">numer</span>(<span class=summary-sig-arg>expr</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="numer_expand"></a><span class="summary-sig"><span class="summary-sig-name">numer_expand</span>(<span class=summary-sig-arg>expr</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.simplify-module.html#ratsimp" class="summary-sig-name"><code>ratsimp</code></a>(<span class=summary-sig-arg>expr</span>)</span></code>
+<br />
+ratsimp(expr) -&gt; joins two rational expressions and returns the 
+simples form</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="simplify"></a><span class="summary-sig"><span class="summary-sig-name">simplify</span>(<span class=summary-sig-arg>expr</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.simplify-module.html#together" class="summary-sig-name"><code>together</code></a>(<span class=summary-sig-arg>expr</span>)</span></code>
+<br />
+Combine together and denest rational functions into a single 
+fraction.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.modules.simplify-module.html#trigsimp" class="summary-sig-name"><code>trigsimp</code></a>(<span class=summary-sig-arg>expr</span>)</span></code>
+<br />
+trig(expr) -&gt; reduces expression by using known trig identities</td></tr>
+</table><br />
+
+
+<!-- =========== START OF FUNCTION DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Function Details</th></tr>
+</table>
+
+<a name="fraction"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">fraction</span>(<span class=sig-arg>expr</span>)</span>
+  </h3>
+  <p>Returns a pair with expression's numerator and denominator. If the 
+  given expression is not a fraction then this function will assume 
+  denominator equal to one.</p>
+  <p>This function will not make any attempt to simplify nested fractions 
+  or to do any term rewriting at all.</p>
+  If only one of the numerator/denominator pair is needed then use 
+  numer(expr) or denom(expr) functions respectively.
+<pre class="doctestblock">
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = Symbol(<span class="py-string">'x'</span>), Symbol(<span class="py-string">'y'</span>)</span></pre>
+<pre class="doctestblock">
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span>fraction(x/y)</span>
+<span class="py-output">(x, y)</span>
+
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span>fraction(x)</span>
+<span class="py-output">(x, 1)</span>
+
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span>fraction(Rational(1, 2))</span>
+<span class="py-output">(1, 2)</span></pre>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="ratsimp"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">ratsimp</span>(<span class=sig-arg>expr</span>)</span>
+  </h3>
+  <h1 class="heading">Usage</h1>
+    ratsimp(expr) -&gt; joins two rational expressions and returns the 
+    simples form
+  <h1 class="heading">Notes</h1>
+    Currently can simplify only simple expressions, for this to be 
+    really usefull multivariate polynomial algorithms are needed
+  <h1 class="heading">Examples</h1>
+<pre class="doctestblock">
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>y = Symbol(<span class="py-string">'y'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>e = ratsimp(1/x + 1/y)</span></pre>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="together"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">together</span>(<span class=sig-arg>expr</span>)</span>
+  </h3>
+  Combine together and denest rational functions into a single 
+  fraction. No futher expansion is performed, use appropriate functions 
+  respectively.
+<pre class="doctestblock">
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = Symbol(<span class="py-string">'x'</span>), Symbol(<span class="py-string">'y'</span>)</span></pre>
+<pre class="doctestblock">
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span>together(1/x + 1/y)</span>
+<span class="py-output">(x+y)/(y*x)</span>
+
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span>together(1/(1 + 1/x))</span>
+<span class="py-output">x/(1+x)</span></pre>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+
+<a name="trigsimp"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">trigsimp</span>(<span class=sig-arg>expr</span>)</span>
+  </h3>
+  <h1 class="heading">Usage</h1>
+    trig(expr) -&gt; reduces expression by using known trig 
+    identities
+  <h1 class="heading">Notes</h1>
+  <h1 class="heading">Examples</h1>
+<pre class="doctestblock">
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>y = Symbol(<span class="py-string">'y'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>trigsimp(2*sin(x)**2 + 2*cos(x)**2)</span>
+<span class="py-output">2</span></pre>
+  <dl><dt></dt><dd>
+  </dd></dl>
+</td></tr></table>
+<br />
+
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="sympy-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="left"><font size="-2">Generated by Epydoc 2.1 on Fri Jun 15 14:31:52 2007</font></td>
+    <td align="right"><a href="http://epydoc.sourceforge.net"
+                      ><font size="-2">http://epydoc.sf.net</font></a></td>
+  </tr>
+</table>
+</body>
+</html>

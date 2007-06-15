@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>sympy.core.symbol.O</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css"></link>
+</head>
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="sympy-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <font size="-1"><b class="breadcrumbs">
+        <a href="sympy-module.html">Package&nbsp;sympy</a> ::
+        <a href="sympy.core-module.html">Package&nbsp;core</a> ::
+        <a href="sympy.core.symbol-module.html">Module&nbsp;symbol</a> ::
+        Class&nbsp;O
+      </b></font></br>
+    </td>
+    <td><table cellpadding="0" cellspacing="0">
+      <tr><td align="right"><font size="-2">[show&nbsp;private&nbsp;|&nbsp;<a href="../public/sympy.core.symbol.O-class.html">hide&nbsp;private</a>]</font></td></tr>
+      <tr><td align="right"><font size="-2">[<a href="frames.html"target="_top">frames</a>&nbsp;|&nbsp;<a href="sympy.core.symbol.O-class.html" target="_top">no&nbsp;frames</a>]</font></td></tr>
+    </table></td>
+</tr></table>
+
+<!-- =========== START OF CLASS DESCRIPTION =========== -->
+<h2 class="class">Type O</h2>
+
+<pre class="base-tree">
+<a href="__builtin__.object-class.html"><code>object</code></a> --+    
+         |    
+     <a href="sympy.core.basic.Basic-class.html"><code>Basic</code></a> --+
+             |
+            <b>O</b>
+</pre><br />
+
+<hr/>
+
+Represents O(f(x)) at the point x = 0.
+<h1 class="heading">Definition</h1>
+  <p>g(x) = O(f(x)) as x-&gt;a if and only if |g(x)|&lt;=M|f(x)| near x=a 
+  (1)</p>
+  <p>In our case O is for a=0. An equivalent way of saying (1) is:</p>
+  <p>lim_{x-&gt;a} |g(x)/f(x)| &lt; oo</p>
+  <p>Let's illustrate it on the following example:</p>
+  <p>sin x = x - x**3/3! + O(x**5)</p>
+  <p>where in this case O(x**5) = x**5/5! - x**7/7! + .... and the 
+  definition of O means:</p>
+  <p>|x**5/5! - x**7/7! + ....| &lt;= M|x**5| near x=0</p>
+  <p>or equivalently:</p>
+  <p>lim_{x-&gt;0} |x**5/5! - x**7/7! + .... / x**5| &lt; oo</p>
+  <p>which surely is true, because</p>
+  <p>lim_{x-&gt;0} |x**5/5! - x**7/7! + .... / x**5| = 1/5!</p>
+  So intuitively O(x**3) means (in our case): all terms x**3, x**4 and 
+  higher. But not x**2, x or 1.
+<h1 class="heading">Examples:</h1>
+<pre class="doctestblock">
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">&quot;x&quot;</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>O(x)</span>
+<span class="py-output">O(x)</span>
+
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span>O(x)*x</span>
+<span class="py-output">O(x**2)</span>
+
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span>O(x)-O(x)</span>
+<span class="py-output">O(x)</span></pre>
+  <h2 class="heading">External links</h2>
+    <a href="http://en.wikipedia.org/wiki/Big_O_notation">Big O 
+    notation</a>
+<hr/>
+
+
+<!-- =========== START OF METHOD SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Method Summary</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.symbol.O-class.html#__init__" class="summary-sig-name"><code>__init__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>f</span>,
+          <span class=summary-sig-arg>sym</span>)</span></code>
+<br />
+O(f) at the point x = 0</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="__str__"></a><span class="summary-sig"><span class="summary-sig-name">__str__</span>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="addeval"></a><span class="summary-sig"><span class="summary-sig-name">addeval</span>(<span class=summary-sig-arg>x</span>,
+          <span class=summary-sig-arg>y</span>)</span></code>
+<br />
+    <i>(Static method)</i>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="diff"></a><span class="summary-sig"><span class="summary-sig-name">diff</span>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>var</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.symbol.O-class.html#eval" class="summary-sig-name"><code>eval</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Returns canonical form of myself.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><a name="muleval"></a><span class="summary-sig"><span class="summary-sig-name">muleval</span>(<span class=summary-sig-arg>x</span>,
+          <span class=summary-sig-arg>y</span>)</span></code>
+<br />
+    <i>(Static method)</i>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.symbol.O-class.html#subs" class="summary-sig-name"><code>subs</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>old</span>,
+          <span class=summary-sig-arg>new</span>)</span></code>
+<br />
+Substitutes an expression old -&gt; new.</td></tr>
+<tr bgcolor="#e8f0f8" class="group">
+  <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;Inherited from Basic</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__abs__" class="summary-sig-name"><code>__abs__</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Returns the absolute value of self.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__add__" class="summary-sig-name"><code>__add__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__div__" class="summary-sig-name"><code>__div__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__eq__" class="summary-sig-name"><code>__eq__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+<br />
+Return new equation with lhs set to 'self' and rhs set to 'a'.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__float__" class="summary-sig-name"><code>__float__</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__ge__" class="summary-sig-name"><code>__ge__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__getattr__" class="summary-sig-name"><code>__getattr__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>name</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__getitem__" class="summary-sig-name"><code>__getitem__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>iter</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__gt__" class="summary-sig-name"><code>__gt__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__hash__" class="summary-sig-name"><code>__hash__</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__latex__" class="summary-sig-name"><code>__latex__</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__le__" class="summary-sig-name"><code>__le__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__lt__" class="summary-sig-name"><code>__lt__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+<br />
+Make boolean comparison when both 'self' and 'a' are numbers or else 
+return new inequlaity with lhs and rhs set respectively.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__mathml__" class="summary-sig-name"><code>__mathml__</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Returns a MathML expression representing the current object</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__mul__" class="summary-sig-name"><code>__mul__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__ne__" class="summary-sig-name"><code>__ne__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__neg__" class="summary-sig-name"><code>__neg__</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__pos__" class="summary-sig-name"><code>__pos__</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__pow__" class="summary-sig-name"><code>__pow__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__pretty__" class="summary-sig-name"><code>__pretty__</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Make representation as prettyForm: to be overridden for everything 
+that looks better in 2D.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__radd__" class="summary-sig-name"><code>__radd__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__rdiv__" class="summary-sig-name"><code>__rdiv__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__repr__" class="summary-sig-name"><code>__repr__</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__rmul__" class="summary-sig-name"><code>__rmul__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__rpow__" class="summary-sig-name"><code>__rpow__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__rsub__" class="summary-sig-name"><code>__rsub__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#__sub__" class="summary-sig-name"><code>__sub__</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>a</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#atoms" class="summary-sig-name"><code>atoms</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>s</span>,
+          <span class=summary-sig-arg>type</span>)</span></code>
+<br />
+Returns the atoms that form current object.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#cmphash" class="summary-sig-name"><code>cmphash</code></a>(<span class=summary-sig-arg>a</span>,
+          <span class=summary-sig-arg>b</span>)</span></code>
+<br />
+    <i>(Static method)</i>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#combine" class="summary-sig-name"><code>combine</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#conjugate" class="summary-sig-name"><code>conjugate</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Returns a complex conjugate of self.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#doit" class="summary-sig-name"><code>doit</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Calls recursively doit() on every element in the expression tree.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#evalc" class="summary-sig-name"><code>evalc</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Rewrites self in the form x+i*y.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#evalf" class="summary-sig-name"><code>evalf</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#expand" class="summary-sig-name"><code>expand</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#get_re_im" class="summary-sig-name"><code>get_re_im</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+Returns (x,y) where self=x+i*y</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#has" class="summary-sig-name"><code>has</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>sub</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#has_any" class="summary-sig-name"><code>has_any</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>subs</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#hash" class="summary-sig-name"><code>hash</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#ldegree" class="summary-sig-name"><code>ldegree</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>sym</span>)</span></code>
+<br />
+Returns the lowest power of the sym</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#leadterm" class="summary-sig-name"><code>leadterm</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>x</span>)</span></code>
+<br />
+Returns the leading term c0*x^e0 of the power series 'self' in x with 
+the lowest power of x in a form (c0,e0)</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#match" class="summary-sig-name"><code>match</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>pattern</span>,
+          <span class=summary-sig-arg>syms</span>)</span></code>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#print_tree" class="summary-sig-name"><code>print_tree</code></a>(<span class=summary-sig-arg>self</span>)</span></code>
+<br />
+The canonical tree representation</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#series" class="summary-sig-name"><code>series</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>sym</span>,
+          <span class=summary-sig-arg>n</span>)</span></code>
+<br />
+Return the Taylor series around 0 of self with respect to sym until 
+the n-th term.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#subs_dict" class="summary-sig-name"><code>subs_dict</code></a>(<span class=summary-sig-arg>self</span>,
+          <span class=summary-sig-arg>di</span>)</span></code>
+<br />
+Substitutes all old -&gt; new defined in the dictionary 
+&quot;di&quot;.</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="sympy.core.basic.Basic-class.html#sympify" class="summary-sig-name"><code>sympify</code></a>(<span class=summary-sig-arg>a</span>)</span></code>
+<br />
+Converts an arbitrary expression to a type that can be used inside 
+sympy.    <i>(Static method)</i>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="../private/sympy.core.basic.Basic-class.html#_doadd" class="summary-sig-name"><code>_doadd</code></a>(<span class=summary-sig-arg>a</span>,
+          <span class=summary-sig-arg>b</span>)</span></code>
+<br />
+    <i>(Static method)</i>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="../private/sympy.core.basic.Basic-class.html#_domul" class="summary-sig-name"><code>_domul</code></a>(<span class=summary-sig-arg>a</span>,
+          <span class=summary-sig-arg>b</span>)</span></code>
+<br />
+    <i>(Static method)</i>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="../private/sympy.core.basic.Basic-class.html#_dopow" class="summary-sig-name"><code>_dopow</code></a>(<span class=summary-sig-arg>a</span>,
+          <span class=summary-sig-arg>b</span>)</span></code>
+<br />
+    <i>(Static method)</i>
+</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="../private/sympy.core.basic.Basic-class.html#_sign" class="summary-sig-name"><code>_sign</code></a>(<span class=summary-sig-arg>x</span>)</span></code>
+<br />
+Return the sign of x, that is, 1 if x is positive, 0 if x == 0 and -1 
+if x is negative    <i>(Static method)</i>
+</td></tr>
+<tr bgcolor="#e8f0f8" class="group">
+  <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;Inherited from object</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__delattr__" class="summary-sig-name"><code>__delattr__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+x.__delattr__('name') &lt;==&gt; del x.name</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__getattribute__" class="summary-sig-name"><code>__getattribute__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+x.__getattribute__('name') &lt;==&gt; x.name</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__new__" class="summary-sig-name"><code>__new__</code></a>(<span class=summary-sig-arg>T</span>,
+          <span class=summary-sig-arg>S</span>,
+          <span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+T.__new__(S, ...) -&gt; a new object with type S, a subtype of T</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__reduce__" class="summary-sig-name"><code>__reduce__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+helper for pickle</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__reduce_ex__" class="summary-sig-name"><code>__reduce_ex__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+helper for pickle</td></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><code><span class="summary-sig"><a href="__builtin__.object-class.html#__setattr__" class="summary-sig-name"><code>__setattr__</code></a>(<span class="summary-sig-vararg">...</span>)</span></code>
+<br />
+x.__setattr__('name', value) &lt;==&gt; x.name = value</td></tr>
+</table><br />
+
+
+<!-- =========== START OF PROPERTY SUMMARY =========== -->
+<table class="summary" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="summary">
+  <th colspan="2">Property Summary</th></tr>
+<tr bgcolor="#e8f0f8" class="group">
+  <th colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;Inherited from Basic</th></tr>
+<tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.core.basic.Basic-class.html#is_number"><code>is_number</code></a></b></td></tr><tr><td align="right" valign="top" width="15%"><font size="-1">&nbsp;</font></td>
+  <td><b><a href="sympy.core.basic.Basic-class.html#mathml_tag"><code>mathml_tag</code></a></b></td></tr></table><br />
+
+
+<!-- =========== START OF INSTANCE METHOD DETAILS =========== -->
+<table class="details" border="1" cellpadding="3" cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="details">
+  <th colspan="2">Instance Method Details</th></tr>
+</table>
+
+<a name="__init__"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">__init__</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>f</span>,
+          <span class=sig-arg>sym</span>=<span class=sig-default>None</span>)</span>
+    <br /><i>(Constructor)</i>
+  </h3>
+  O(f) at the point x = 0
+  <dl><dt></dt><dd>
+    <dl><dt><b>Overrides:</b></dt>
+      <dd><a href="sympy.core.basic.Basic-class.html#__init__"><code>sympy.core.basic.Basic.__init__</code></a></dd>
+    </dl>
+  </dd></dl>
+</td></tr></table>
+
+<a name="eval"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">eval</span>(<span class=sig-arg>self</span>)</span>
+  </h3>
+  <p>Returns canonical form of myself.</p>
+  The eval() method should alway return a new object (following the 
+  general rule of not changing)
+  <dl><dt></dt><dd>
+    <dl><dt><b>Overrides:</b></dt>
+      <dd><a href="sympy.core.basic.Basic-class.html#eval"><code>sympy.core.basic.Basic.eval</code></a> <i>(inherited documentation)</i>
+</dd>
+    </dl>
+  </dd></dl>
+</td></tr></table>
+
+<a name="subs"></a>
+<table width="100%" class="func-details" bgcolor="#e0e0e0"><tr><td>
+  <h3><span class="sig"><span class="sig-name">subs</span>(<span class=sig-arg>self</span>,
+          <span class=sig-arg>old</span>,
+          <span class=sig-arg>new</span>)</span>
+  </h3>
+  Substitutes an expression old -&gt; new.
+  <dl><dt></dt><dd>
+    <dl><dt><b>Overrides:</b></dt>
+      <dd><a href="sympy.core.basic.Basic-class.html#subs"><code>sympy.core.basic.Basic.subs</code></a></dd>
+    </dl>
+  </dd></dl>
+</td></tr></table>
+<br />
+
+
+<!-- =========== START OF NAVBAR =========== -->
+<table class="navbar" border="0" width="100%" cellpadding="0" bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="center">
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="sympy-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="trees.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="indices.html">Index</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar">&nbsp;&nbsp;&nbsp;<a class="navbar" href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+    <th class="navbar" width="100%"></th>
+  </tr>
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tr>
+    <td align="left"><font size="-2">Generated by Epydoc 2.1 on Fri Jun 15 14:31:53 2007</font></td>
+    <td align="right"><a href="http://epydoc.sourceforge.net"
+                      ><font size="-2">http://epydoc.sf.net</font></a></td>
+  </tr>
+</table>
+</body>
+</html>
