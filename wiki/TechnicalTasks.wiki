@@ -27,9 +27,7 @@ The man page is in `doc/man/isympy.1`, and it is generated from the file `doc/ma
 
 = Generating the (html) documentation for the api =
 
-you'll need epydoc. 
-
-The output is written to ../api/ (you can change this editing the variable gen_doc.target_dir )
+You'll need epydoc (wajig install python-epydoc). (The output is written to ../api/ (you can change this editing the variable gen_doc.target_dir ))
 
 {{{
 svn checkout https://sympy.googlecode.com/svn/ sympy --username ondrej.certik
