@@ -40,6 +40,14 @@ http://www.ccas.ru/sabramov/ps/PCS56.pdf
 
 says, that it can be implemented in just 100 (!) lines of code.
 
+= Polynomials =
+
+Readable article describing factorization (square-free decomposition, Berlekamp's
+algorithm), integration of rational functions, summation, Grobner
+bases and some other things:
+
+http://arxiv.org/abs/hep-ph/0209234
+
 = General =
 
 These two sites contain articles concerning almost every aspect of CAS.
