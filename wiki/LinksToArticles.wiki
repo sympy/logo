@@ -48,9 +48,7 @@ bases and some other things:
 
 http://arxiv.org/abs/hep-ph/0209234
 
-This book (available online) also contains many algorithms for polynomials:
-
-http://shoup.net/ntb/ 
+See also the Computational Introduction to Number Theory and Algebra below.
 
 = General =
 
@@ -59,3 +57,7 @@ These two sites contain articles concerning almost every aspect of CAS.
 http://http.cs.berkeley.edu/~fateman/papers/
 
 http://www.math.u-psud.fr/~vdhoeven/
+
+"A Computational Introduction to Number Theory and Algebra" book (available online) contains many algorithms for polynomials, probabilistic primality testing and some other stuff:
+
+http://shoup.net/ntb/ 
