@@ -10,10 +10,12 @@ The best limit algorithm is described in the thesis by Gruntz:
 
 http://www.cybertester.com/data/gruntz.pdf
 
-= Other =
+= General =
 
+These two sites contains articles concerning almost every aspect of CAS.
 
 http://http.cs.berkeley.edu/~fateman/papers/
+
 http://www.math.u-psud.fr/~vdhoeven/
 
 
