@@ -140,7 +140,7 @@ Limits are easy to use in sympy, they follow the syntax limit(function, variable
 
 {{{
    >>> from sympy import *
-   >>> from sympy.modules.limits import limit
+   >>> x=Symbol("x")
    >>> limit(sin(x)/x, x, 0)
    1
 
