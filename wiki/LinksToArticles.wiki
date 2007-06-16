@@ -4,11 +4,17 @@
 
 There are many nice articles explaining CAS algorithms freely available on the web, but sometimes they are hard to find. This page provides links to them.
 
-= Limits =
+= Limits and asymptotic expansion =
 
-The best limit algorithm is described in the thesis by Gruntz:
+The best algorithm is described in the thesis by Gruntz:
 
 http://www.cybertester.com/data/gruntz.pdf
+
+= Power series =
+
+State of the art algorithms are described in the "Relax, but don't be too lazy" article:
+
+http://www.math.u-psud.fr/~vdhoeven/Publs/2002/relax4.ps.gz
 
 = General =
 
@@ -19,4 +25,3 @@ http://http.cs.berkeley.edu/~fateman/papers/
 http://www.math.u-psud.fr/~vdhoeven/
 
 
-http://www.math.u-psud.fr/~vdhoeven/Publs/2002/relax4.ps.gz
