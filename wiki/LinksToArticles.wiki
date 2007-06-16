@@ -1,0 +1,11 @@
+#summary Contains links to interesting articles about CAS
+
+= Introduction =
+
+There are many nice articles explaining CAS algorithms freely available on the web, but sometimes they are hard to find. This page provides links to them.
+
+= Limits =
+
+The best limit algorithm is described in the thesis by Gruntz:
+
+http://www.cybertester.com/data/gruntz.pdf
