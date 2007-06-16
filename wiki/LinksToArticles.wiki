@@ -30,7 +30,11 @@ can be at least partially viewed here:
 
 http://books.google.com/books?id=8SAaSd89sSkC&printsec=frontcover&dq=Parallel+Integration++M.+Bronstein
 
-Another approach is "parallel integration" which is described in the chapter 10 in the above book. The article 
+Another approach is "parallel integration" which is described in the chapter 10 in the above book and also in the article
+
+http://springerlink.metapress.com/content/ag2u372705324332/?p=a75a0e3fbcc444cb9d289aa039bfe212&pi=6
+
+This article 
 
 http://www.ccas.ru/sabramov/ps/PCS56.pdf
 
