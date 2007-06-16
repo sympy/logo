@@ -30,6 +30,12 @@ can be at least partially viewed here:
 
 http://books.google.com/books?id=8SAaSd89sSkC&printsec=frontcover&dq=Parallel+Integration++M.+Bronstein
 
+Another approach is "parallel integration" which is described in the chapter 10 in the above book. The article 
+
+http://www.ccas.ru/sabramov/ps/PCS56.pdf
+
+says, that it can be implemented in just 100 (!) lines of code.
+
 = General =
 
 These two sites contain articles concerning almost every aspect of CAS.
