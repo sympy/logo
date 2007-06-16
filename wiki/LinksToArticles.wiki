@@ -16,6 +16,20 @@ State of the art algorithms are described in the "Relax, but don't be too lazy" 
 
 http://www.math.u-psud.fr/~vdhoeven/Publs/2002/relax4.ps.gz
 
+= Integration =
+
+Article from M. Bronstein describes the Risch algorithm:
+
+http://www-sop.inria.fr/cafe/Manuel.Bronstein/publications/issac98.pdf
+
+A book from the same author:
+
+http://books.google.com/books?vid=ISBN3540214933&id=8SAaSd89sSkC&dq=Parallel+Integration++M.+Bronstein
+
+can be at least partially viewed here:
+
+http://books.google.com/books?id=8SAaSd89sSkC&printsec=frontcover&dq=Parallel+Integration++M.+Bronstein
+
 = General =
 
 These two sites contains articles concerning almost every aspect of CAS.
@@ -23,5 +37,4 @@ These two sites contains articles concerning almost every aspect of CAS.
 http://http.cs.berkeley.edu/~fateman/papers/
 
 http://www.math.u-psud.fr/~vdhoeven/
-
 
