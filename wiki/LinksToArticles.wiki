@@ -32,9 +32,8 @@ http://books.google.com/books?id=8SAaSd89sSkC&printsec=frontcover&dq=Parallel+In
 
 = General =
 
-These two sites contains articles concerning almost every aspect of CAS.
+These two sites contain articles concerning almost every aspect of CAS.
 
 http://http.cs.berkeley.edu/~fateman/papers/
 
 http://www.math.u-psud.fr/~vdhoeven/
-
