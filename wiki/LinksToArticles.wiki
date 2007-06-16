@@ -9,3 +9,12 @@ There are many nice articles explaining CAS algorithms freely available on the w
 The best limit algorithm is described in the thesis by Gruntz:
 
 http://www.cybertester.com/data/gruntz.pdf
+
+= Other =
+
+
+http://http.cs.berkeley.edu/~fateman/papers/
+http://www.math.u-psud.fr/~vdhoeven/
+
+
+http://www.math.u-psud.fr/~vdhoeven/Publs/2002/relax4.ps.gz
