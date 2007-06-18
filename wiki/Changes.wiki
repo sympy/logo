@@ -6,6 +6,10 @@ This page documents the major changes made to !SymPy since the last release.
 
 == svn ==
 
+Currently the same as 0.4.0 version.
+
+== 0.4.0 ==
+
   * determinants
   * groebner bases (initial implementation). multivariate division, gcd
   * Fraction free Gaussian elimination
