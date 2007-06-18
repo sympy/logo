@@ -27,7 +27,7 @@ The only prerequisite is python 2.4 or newer.
 
 === latest release ===
 
-On unix systems (linux, BSD, cygwin, etc.): Download the source archive (something like `sympy-0.3.tar.gz`), extract it with the command `"tar xvvzf sympy-0.3.tar.gz"` and follow the README located in the sympy directory.
+On unix systems (linux, BSD, cygwin, etc.): Download the source archive (something like `sympy-0.4.0.tar.gz`), extract it with the command `"tar xzf sympy-0.3.tar.gz"` and follow the README located in the sympy directory.
 
 === svn version ===
 
