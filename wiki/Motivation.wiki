@@ -10,10 +10,8 @@ complicated (thousands lines of code) and difficult to extend, unfortunately. !S
 tries to be as simple as possible while remaining a full
 featured CAS. This means that we prefer the algorithm that is
 implemented by the least amount of lines; also, we try to avoid
-implementing one feature several times - a special
-multiplication algorithm for polynomials, for instance - if it works with the
-general algorithm. It will not be as fast (it wouldn't be anyway,
-it's written in Python) as it could, but it will be easy to extend with your own new algorithms or symbolic functions. And your code is just a regular Python program, calling !SymPy as a regular module, so you are not stuck in a language of the CAS system, which is not well designed for real programming.
+implementing one feature several times. It will not be as fast (it wouldn't be anyway,
+it's written in Python) as it could if we used C++, but it will be easy to extend with your own new algorithms or symbolic functions. And your code is just a regular Python program, calling !SymPy as a regular module, so you are not stuck in a language of the CAS system, which is not well designed for real programming.
 
 Later, we might implement special algorithms for special cases to
 make it faster and also rewrite it in C++. It is not certain though, that
