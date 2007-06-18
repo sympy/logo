@@ -1,5 +1,7 @@
 #summary A wiki for the frontpage (this line will not be visible on the front page)
 
+http://sympy.googlecode.com/svn/trunk/doc/logo/sympy-160px.png
+
 !SymPy is a Python library for symbolic mathematics. It aims to become a full-featured computer algebra system (CAS) while keeping the code as simple as possible in order to be comprehensible and easily extensible. !SymPy is written entirely in Python and does not require any external libraries, except optionally for plotting support.
 
 !SymPy is easy to install and get started with. See the [DownloadInstallation download instructions] for more information.
@@ -104,6 +106,7 @@ You are welcomed to join the development. If you find a bug or just want to say 
 as you would expect or if you created some algorithm using !SymPy and would like it to become part of !SymPy (so that others can easily use your code as well).
 
 More information can be found in SympyDevelopment.
+
 
 
 
