@@ -15,26 +15,31 @@ http://sympy.googlecode.com/svn/trunk/doc/logo/sympy-160px.png
 
 ==Features==
 
-Currently, !SymPy core has only around 1500 lines of code (including extensive comments) and its capabilities include:
+Currently, !SymPy core has around 3200 lines of code (including extensive comments and docstrings) and its capabilities include:
 
-  * basic arithmetics `*,/,+,-`
+  * basic arithmetics `*,/,+,-,**`
   * basic simplification (like `a*b*b + 2*b*a*b  -> 3*a*b^2`)
   * expansion (like `(a+b)^2 -> a^2 + 2*a*b + b^2`)
-  * functions (exp, ln, sin, cos, tan, ...)
+  * functions (exp, ln, ...)
   * complex numbers (like `exp(I*x).evalc()  -> cos(x)+I*sin(x)`)
   * differentiation
-  * taylor series
+  * taylor (laurent) series
   * basic substitution (like x-> ln(x))
   * arbitrary precision integers, rationals and floats
   * noncommutative symbols
+  * pattern matching
  
-Then there are !SymPy modules (1000 lines) for these tasks:
+Then there are !SymPy modules (5700 lines including documentation) for these tasks:
 
+  * more functions (sin, cos, tan, atan, asin, acos, factorial, zeta, legendre)
   * limits (like `limit(x*log(x), x, 0) -> 0`)
   * integration (currently it can only do very simple integrals)
-  * polynomials (division, gcd, square free decomposition)
-  * symbolic matrices
+  * polynomials (division, gcd, square free decomposition, groebner bases, factorisation)
+  * symbolic matrices (determinants, LU decomposition...)
   * Pauli and Dirac algebra
+  * solvers (some algebraic and differential equations)
+  * geometry module
+  * plotting (2D and 3D)
 
 
 ===Things we are working on===
@@ -80,7 +85,6 @@ You are welcomed to join the development. If you find a bug or just want to say 
 as you would expect or if you created some algorithm using !SymPy and would like it to become part of !SymPy (so that others can easily use your code as well).
 
 More information can be found in SympyDevelopment.
-
 
 
 
