@@ -8,6 +8,7 @@ http://sympy.googlecode.com/svn/trunk/doc/logo/sympy-160px.png
 
 ==News==
 
+  * *18 Jun 2007* Version 0.4.0 released. See [http://code.google.com/p/sympy/wiki/Changes changes].
   * *12 Apr 2007* The Google Summer of Code applications results are available. See [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007]
   * *25 Mar 2007* Version 0.3 released. Look at [http://code.google.com/p/sympy/wiki/Changes changes] since the last release.
   * *15 Mar 2007* We are accepting applications for the Google Summer of Code, see SummerOfCode. Deadline is March 26th.
@@ -86,7 +87,6 @@ You are welcomed to join the development. If you find a bug or just want to say 
 as you would expect or if you created some algorithm using !SymPy and would like it to become part of !SymPy (so that others can easily use your code as well).
 
 More information can be found in SympyDevelopment.
-
 
 
 
