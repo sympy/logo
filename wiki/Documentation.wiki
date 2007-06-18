@@ -5,6 +5,10 @@
 
 This is the central page for all documentation to !SymPy.
 
+= Download & Installation =
+
+DownloadInstallation
+
 = Main documentation =
 
 If you are new to !SymPy, start with the [http://code.google.com/p/sympy/wiki/Tutorial Tutorial].
