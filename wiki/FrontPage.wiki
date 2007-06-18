@@ -45,12 +45,17 @@ Then there are !SymPy modules (5700 lines including documentation) for these tas
 
 ===Things we are working on===
  
-  * Implement featues of GiNaC that !SymPy cannot yet do (we are almost there)
-  * See [http://code.google.com/p/sympy/issues/list Issues] for details and other things
+  * See [http://code.google.com/p/sympy/issues/list Issues] for details
+  * You can also check our blogs: [http://grupododo.com/planetsympy/ PlanetSympy]
 
 ===Some ideas for future development===
 
-  * implement factorisation, Risch integration algorithm (see our [http://code.google.com/p/sympy/wiki/SymbolicIntegration notes]), asymptotic expansion, equations solving, linear algebra, objects with indices (tensors) and more...
+  * improve the current functionality
+  * Risch integration algorithm
+  * asymptotic expansion
+  * objects with indices (tensors) 
+
+and more...
 
 ==Documentation==
 
@@ -87,7 +92,6 @@ You are welcomed to join the development. If you find a bug or just want to say 
 as you would expect or if you created some algorithm using !SymPy and would like it to become part of !SymPy (so that others can easily use your code as well).
 
 More information can be found in SympyDevelopment.
-
 
 
 
