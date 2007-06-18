@@ -71,30 +71,6 @@ There is a nice console `isympy` (in the `bin` directory, or if you installed th
 (1/cos(x)).series(x,10)
 }}}
 
-To fire you up, here is a piece of code that defines the function cos:
-
-{{{
-class cos(Function):
-    '''Return the cosine of x (measured in radians)
-    '''
-
-    def derivative(self):
-        return -sin(self.arg)
-
-    def eval(self):
-        if self.arg == 0:
-            return Rational(1)
-        if self.arg == pi:
-            return -Rational(1)
-        if self.arg == 2*pi:
-            return Rational(1)
-        return self
-}}}
-
-That's all - now it can be normally used, for instance in the series
-expansion, as in the first example. It can differentiate itself and
-can evaluate cos(0) and cos(2*pi) to 1, cos(pi) to -1. More complex behavior (like cos(n*2*pi)=1) can of course be implemented (it actually already is in !SymPy), it's easy.
-
 Read the [http://code.google.com/p/sympy/wiki/Tutorial tutorial] for more examples.
 
 
@@ -104,7 +80,6 @@ You are welcomed to join the development. If you find a bug or just want to say 
 as you would expect or if you created some algorithm using !SymPy and would like it to become part of !SymPy (so that others can easily use your code as well).
 
 More information can be found in SympyDevelopment.
-
 
 
 
