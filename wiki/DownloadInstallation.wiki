@@ -6,14 +6,16 @@
 
 == Debian ==
 
-!SymPy is in debian unstable: http://packages.debian.org/python-sympy
+!SymPy is in debian unstable and testing. The exact !SymPy versions are here: http://packages.debian.org/python-sympy
 
-so just add the unstable among your sources and
+So just add the unstable (or testing) among your sources and
 {{{
 apt-get install python-sympy
 }}}
 
-You can also download the deb package from the project's homepage, and then install it with the command `"sudo dpkg -i python-sympy_$version_all.deb"`, where `$version` must be replaced with the version number. 
+== Ubuntu ==
+
+!SymPy is in Gutsy. The exact !SymPy versions are here:  https://launchpad.net/ubuntu/+source/sympy
 
 == Windows ==
 
