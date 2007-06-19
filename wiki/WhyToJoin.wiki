@@ -6,7 +6,7 @@ So you are playing with the idea to become a !SymPy developer, but are not yet c
 
 === Nice team ===
 
-We are scattered all over the world and none of us has ever seen anyone else face to face (except Ondrej and Mateusz), so to become a developer is really as simple as contributing a good code. It's fun to work in a team.
+We are scattered all over the world and none of us has ever seen anyone else face to face (except Ondrej and Mateusz), so to become a developer is really as simple as contributing a good code. So you can learn how to work in a team and it's fun.
 
 === Your code gets to everyone ===
 
