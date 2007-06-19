@@ -6,7 +6,11 @@ This page documents the major changes made to !SymPy since the last release.
 
 == svn ==
 
-Currently the same as 0.4.0 version.
+Currently the same as 0.4.1 version.
+
+== 0.4.1 ==
+
+  * added sympy.modules.plotting.renderables and sympy.modules.plotting.scene modules
 
 == 0.4.0 ==
 
