@@ -6,7 +6,7 @@
 
 == Debian ==
 
-!SymPy is in debian unstable and testing. The exact !SymPy versions are here: http://packages.debian.org/python-sympy
+!SymPy is in Debian unstable and testing. The exact !SymPy versions are here: http://packages.debian.org/python-sympy
 
 So just add the unstable (or testing) among your sources and
 {{{
