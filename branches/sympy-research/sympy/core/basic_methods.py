@@ -18,7 +18,8 @@ ordering_of_classes = [
     # arithmetic operations
     'Pow', 'Mul', 'Add',
     # function values
-    'Apply','Derivative',
+    'Apply','ApplyExp','ApplyLog','ApplySin','ApplyCos','ApplySqrt','ApplyAbs','ApplySign',
+    'Derivative','Integral',
     # defined singleton functions
     'Abs','Sign','Sqrt','Exp','Log',
     'Sin','Cos','Tan','Cot','ASin','ACos','ATan','ACot',
@@ -54,10 +55,20 @@ class MetaBasicMeths(type):
             print 'Ignoring redefinition of %s: %s defined earlier than %s' % (n, c, cls)
         type.__init__(cls, *args, **kws)
         
+        # initialize default_assumptions dictionary
+        default_assumptions = {}
+        for k in dir(cls):
+            if not k.startswith('is_'):
+                continue
+            v = getattr(cls, k)
+            k = k[3:]
+            if isinstance(v,(bool,int,long)):
+                default_assumptions[k] = bool(v)
+        cls.default_assumptions = default_assumptions
+        
     def __getattr__(cls, name):
-        c = MetaBasicMeths.classnamespace.get(name)
-        if c is not None:
-            return c
+        try: return MetaBasicMeths.classnamespace[name]
+        except KeyError: pass
         raise AttributeError("'%s' object has no attribute '%s'"%
                              (cls.__name__, name))
 
@@ -86,13 +97,16 @@ class BasicMeths(AssumeMeths):
     def __getattr__(self, name):
         if name.startswith('is_'):
             # default implementation for assumptions
-            name = name[3:]
+            k = name[3:]
             assumptions = self._assumptions
-            try: return assumptions[name]
+            try: return assumptions[k]
             except KeyError: pass
-            if hasattr(self, '_calc_'+name):
-                a = assumptions[name] = getattr(self,'_calc_'+name)()
-                return a
+            if hasattr(self, '_eval_'+name):
+                a = getattr(self,'_eval_'+name)()
+                if a is not None:
+                    self.assume(**{k:a})
+                    return getattr(self, name)
+                return a      
             return None
         elif BasicMeths.classnamespace.has_key(name):
             return BasicMeths.classnamespace[name]

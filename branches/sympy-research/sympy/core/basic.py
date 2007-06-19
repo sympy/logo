@@ -9,13 +9,14 @@ class Basic(BasicMeths):
     """
 
     # for backward compatibility, will be removed:
-    is_number = False
+    @property
+    def is_number(self): return False
     def hash(self): return self.__hash__()
     #
 
     def __new__(cls, *args, **assumptions):
         obj = object.__new__(cls)
-        obj._assumptions = assumptions.copy()
+        obj.assume(**assumptions)
         obj._mhash = None # will be set by BasicMeths.__hash__ method.
         obj._args = args  # all items in args must be Basic objects
         return obj
@@ -67,6 +68,8 @@ class Basic(BasicMeths):
             return real + Basic.ImaginaryUnit() * imag
         if isinstance(a, str):
             return parser.Expr(a).tosymbolic()
+        if isinstance(a, (list,tuple)) and len(a)==2:
+            return Basic.Interval(*a)
         raise ValueError("%s must be a subclass of Basic" % (`a`))
 
     def atoms(self, type=None):
@@ -159,6 +162,12 @@ class Basic(BasicMeths):
     def _eval_derivative(self, s):
         return
 
+    def _eval_integral(self, s):
+        return
+
+    def _eval_defined_integral(self, s, a, b):
+        return
+
     def _eval_apply(self, *args, **assumptions):
         return
 
@@ -177,6 +186,15 @@ class Basic(BasicMeths):
     def _eval_eq_nonzero(self, other):
         return
 
+    def _eval_apply_subs(self, *args):
+        return
+
+    def _calc_apply_positive(self, *args):
+        return
+
+    def _calc_apply_real(self, *args):
+        return
+
     def diff(self, *symbols, **assumptions):
         new_symbols = []
         for s in symbols:
@@ -188,11 +206,26 @@ class Basic(BasicMeths):
             elif isinstance(s, Basic.Symbol):
                 new_symbols.append(s)
             else:
-                raise TypeError("diff argument must be Symbol|Integer instance (got %s)" % (s.__class__.__name__))
-        return Basic.Derivative(self, *new_symbols, **assumptions)
+                raise TypeError(".diff() argument must be Symbol|Integer instance (got %s)" % (s.__class__.__name__))
+        ret = Basic.Derivative(self, *new_symbols, **assumptions)
+        return ret
 
     def fdiff(self, *indices):
         return Basic.FApply(Basic.FDerivative(*indices), self)
+
+    def integral(self, *symbols, **assumptions):
+        new_symbols = []
+        for s in symbols:
+            s = Basic.sympify(s)
+            if isinstance(s, Basic.Integer) and new_symbols:
+                last_s = new_symbols[-1]
+                i = int(s)
+                new_symbols += [last_s] * (i-1)
+            elif isinstance(s, (Basic.Symbol, Basic.Equality)):
+                new_symbols.append(s)
+            else:
+                raise TypeError(".integral() argument must be Symbol|Integer|Equality instance (got %s)" % (s.__class__.__name__))
+        return Basic.Integral(self, *new_symbols, **assumptions)
 
     def __call__(self, *args):
         return Basic.Apply(self, *args)
@@ -267,10 +300,7 @@ class Basic(BasicMeths):
         #
         return Basic.sympify(pattern).matches(self, {})
 
-    def _calc_leadterm(self, x):
-        raise NotImplementedError("%s._calc_leadterm()" % (self.__class__.__name__))
-
-    def solve4linearsymbol(eqn, rhs):
+    def solve4linearsymbol(eqn, rhs, symbols = None):
         """ Solve equation
           eqn == rhs
         with respect to some linear symbol in eqn.
@@ -280,7 +310,8 @@ class Basic(BasicMeths):
         """
         if isinstance(eqn, Basic.Symbol):
             return (eqn, rhs)
-        symbols = eqn.atoms(type=Basic.Symbol)
+        if symbols is None:
+            symbols = eqn.atoms(type=Basic.Symbol)
         if symbols:
             # find  symbol
             for s in symbols:
@@ -291,28 +322,12 @@ class Basic(BasicMeths):
         # no linear symbol, return trivial solution
         return eqn, rhs
 
-    def leadterm(self, x):
-        """Returns the leading term c0*x^e0 of the power series 'self' in x
-        with the lowest power of x in a form (c0,e0).
-        """
-        x = Basic.sympify(x)
-        if not isinstance(x, Basic.Symbol):
-            # f(x).leadterm(1+3*x) -> f((z-1)/3).leadterm(z)
-            z = Basic.Symbol('z',dummy=True)
-            x1, s1 = x.solve4linearsymbol(z)
-            return self.subs(x1, s1).leadterm(z)
-        if not self.has(x):
-            return (self,Basic.Zero())
-        if self==x:
-            return Basic.One(),Basic.One()
-        result = self._calc_leadterm(x)
-        return result
-
     def ldegree(self, *symbols):
         s = Basic.Zero()
         c0 = self
         for x in symbols:
-            c0,e0 = c0.leadterm(x)
+            c0,e0,f0 = c0.as_coeff_leadterm(x)
+            assert f0==0,`c0,e0,f0`
             s += e0
         return s
 
@@ -320,10 +335,64 @@ class Basic(BasicMeths):
         l = []
         c0 = self
         for x in symbols:
-            c0,e0 = c0.leadterm(x)
+            c0,e0,f0 = c0.as_coeff_leadterm(x)
             l.append(x ** e0)
+            l.append(Basic.Log()(x)**f0)
         l.append(c0)
         return Basic.Mul(*l)
+
+    def _calc_as_coeff_leadterm(self, x):
+        raise NotImplementedError("%s._calc_as_coeff_leadterm(x)" % (self.__class__.__name__))
+
+    def as_coeff_leadterm(self, x):
+        """ Return (c, e, f) such that the leading term of an expression is c * x**e * ln(x)**f.
+        Here e,f are arbitrary real numbers.
+
+        In the limiting process x->0+ the leading terms are ordered as
+        follows
+        
+          0 < x**n < x < x**(1/n) < 1 < |ln(x)| < |ln(x)|^m < x**(-1/n) < 1/x < x**(-n) < +oo
+
+        for any positive integers n,m.
+        """
+        x = Basic.sympify(x)
+        if not isinstance(x, Basic.Symbol):
+            # f(x).leadterm(1+3*x) -> f((z-1)/3).leadterm(z)
+            z = Basic.Symbol('z',dummy=True)
+            x1, s1 = x.solve4linearsymbol(z)
+            res = self.subs(x1, s1).as_coeff_leadterm(z)
+            return res
+
+        numer, denom = self.as_numer_denom()
+
+        if denom.has(x):
+            nc,ne,nf = numer.as_coeff_leadterm(x)
+            dc,de,df = denom.as_coeff_leadterm(x)
+            res = nc/dc, ne-de, nf-df
+            return res
+
+        dc,de,df = denom, Basic.Zero(), Basic.Zero()
+        assert dc!=0,`denom,dc`
+        
+        if not numer.has(x):
+            nc,ne,nf = numer, Basic.Zero(), Basic.Zero()
+        elif numer==x:
+            nc,ne,nf = Basic.One(), Basic.One(), Basic.Zero()
+        else:
+            nc,ne,nf = numer._calc_as_coeff_leadterm(x)
+
+        if nc==0 and not isinstance(numer, Basic.Zero):
+            assert nf==0 and ne>=0,`nc,ne,nf`
+            ne = Basic.Zero()
+            r = numer
+            while isinstance(nc, Basic.Zero):
+                ne += 1
+                r = r.diff(x)
+                nc = r.subs(x,0)
+            nc /= Basic.Factorial()(ne)
+
+        res = nc/dc, ne-de, nf-df
+        return res
 
     def taylor_series(self, x, n=6):
         """
@@ -352,16 +421,13 @@ class Basic(BasicMeths):
         return s + Basic.Order(x**(n))
 
     def power_series(self, x, n=6):
-        raise NotImplementedError
         expr = self
         s = Basic.Zero()
         j = 1
         for i in range(0,n):
-            ldi = expr.leading_term(x)/j
+            ldi = expr.leading_term(x)
             expr = expr - ldi
             s += ldi
-            if i:
-                j *= i
         return s
         
     def series(self, *args, **parameters):
@@ -398,6 +464,8 @@ class Basic(BasicMeths):
         """
         return Basic.Integer(len(self[:])-1) + sum([t.count_ops() for t in self])
 
+    def limit(self, x, xlim, direction='<', **assumptions):
+        return Basic.Limit(self, x, xlim, direction=direction, **assumptions)
 
 class Atom(Basic):
 
@@ -421,6 +489,16 @@ class Atom(Basic):
     def count_ops(self):
         return Basic.Zero()
 
+    def _eval_integral(self, s):
+        if s==self:
+            return self**2/2
+        return self*s
+
+    def _eval_defined_integral(self, s, a, b):
+        if s==self:
+            return (b**2-a**2)/2
+        return self*(b-a)
+
 class Singleton(Basic):
     """ Singleton object.
     """
@@ -438,5 +516,3 @@ class Singleton(Basic):
 
 
 import parser
-
-

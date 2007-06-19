@@ -11,10 +11,13 @@ from power import Pow
 from mul import Mul
 from add import Add
 from relational import Equality, Inequality, Unequality, StrictInequality
-from function import Lambda, Function, Apply, FApply, Composition, FPow, WildFunction
+from function import Lambda, Function, Apply, FApply, Composition, FPow, WildFunction, Integral, Derivative
+from interval import Interval
+
 import defined_functions
 
 from order import Order
+from limit import Limit
 
 # set repr output to pretty output:
 Basic.interactive = True

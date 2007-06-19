@@ -63,7 +63,9 @@ class Apply(Basic, ArithMeths, RelMeths):
         args = map(Basic.sympify,args)
         obj = args[0]._eval_apply(*args[1:])
         if obj is None:
-            obj = Basic.__new__(cls, *args,**assumptions)
+            assert isinstance(args[0], Function),`args`
+            cls = getattr(Basic,'Apply'+args[0].__class__.__name__, cls)
+            obj = Basic.__new__(cls, *args, **assumptions)
         return obj
 
     @property
@@ -81,21 +83,29 @@ class Apply(Basic, ArithMeths, RelMeths):
             return '(%s)' % (r)
         return r
 
-    subs = Basic._seq_subs
-
+    def subs(self, old, new):
+        old = Basic.sympify(old)
+        new = Basic.sympify(new)
+        if self==old: return new
+        obj = self.func._eval_apply_subs(*(self.args + (old,) + (new,)))
+        if obj is not None:
+            return obj
+        return Basic._seq_subs(self, old, new)
+    
     def evalf(self):
         obj = self.func._eval_apply_evalf(*self.args)
         if obj is None:
             return self
         return obj
         
-    @property
-    def is_comparable(self):
+    def _eval_is_comparable(self):
         if isinstance(self.func, DefinedFunction):
+            r = True
             for s in self.args:
-                if not s.is_comparable:
-                    return
-            return True
+                c = s.is_comparable
+                if c is None: return
+                if not c: r = False
+            return r
         return
         
     def _eval_derivative(self, s):
@@ -117,15 +127,22 @@ class Apply(Basic, ArithMeths, RelMeths):
             return b.func._eval_apply_power(b.args[0], e)
         return
 
-    def _calc_commutative(self):
+    def _eval_is_commutative(self):
+        r = True
         for a in self._args:
-            if not a.is_commutative: return a.is_commutative
-        return True
+            c = a.is_commutative
+            if c is None: return None
+            if not c: r = False
+        return r
 
-    def _calc_leadterm(self, x):
-        if hasattr(self.func,'_eval_apply_leadterm'):
-            return self.func._eval_apply_leadterm(x, *self.args)
+    def _calc_positive(self):
+        return self.func._calc_apply_positive(*self.args)
 
+    def _calc_real(self):
+        return self.func._calc_apply_real(*self.args)
+
+    def _calc_unbounded(self):
+        return self.func._calc_apply_unbounded(*self.args)
 
     def _eval_eq_nonzero(self, other):
         if isinstance(other.func, self.func.__class__) and len(self.args)==len(other.args):
@@ -135,13 +152,15 @@ class Apply(Basic, ArithMeths, RelMeths):
             return True
 
     def as_base_exp(self):
-        if isinstance(self.func, Basic.Exp):
-            return Basic.Exp1(), self.args[0]
         return self, Basic.One()
 
     def count_ops(self):
         return Basic.Add(*[t.count_ops() for t in self])
 
+    def _calc_as_coeff_leadterm(self, x):
+        raise NotImplementedError("Apply%s._calc_as_coeff_leadterm(x)" % (self.func.__class__.__name__))
+
+        
 
 class Function(Basic, ArithMeths, NoRelMeths):
     """ Base class for function objects, represents also undefined functions.
@@ -664,6 +683,44 @@ class Derivative(Basic, ArithMeths, RelMeths):
         return self.__class__(*[s.subs(old, new) for s in self])
 
 
+class Integral(Basic, ArithMeths, RelMeths):
+    """
+    Carries out integration of the given expression with respect to symbols.
+
+    expr must define ._eval_integral(symbol) method that returns integration result or None.
+
+    Integral(Integral(expr, x), y) -> Integral(expr, x, y)
+
+    Defined integral is represented as
+      Integral(expr, x==[a,b])
+    """
+
+    precedence = 70
+
+    def __new__(cls, expr, *symbols, **assumptions):
+        expr = Basic.sympify(expr)
+        if not symbols: return expr
+        symbols = map(Basic.sympify, symbols)
+        unevaluated_symbols = []
+        for s in symbols:
+            if isinstance(s, Basic.Equality):
+                obj = expr._eval_defined_integral(s.lhs, s.rhs.start, s.rhs.end)
+            else:
+                obj = expr._eval_integral(s)
+            if obj is None:
+                unevaluated_symbols.append(s)
+            else:
+                expr = obj
+        if not unevaluated_symbols:
+            return expr
+        return Basic.__new__(cls, expr, *unevaluated_symbols)
+
+    def tostr(self, level=0):
+        r = 'Int' + `tuple(self)`
+        if self.precedence <= level:
+            r = '(%s)' % (r)
+        return r
+
 class DefinedFunction(Function, Singleton, Atom):
     """ Base class for defined functions.
     """
@@ -680,3 +737,4 @@ class DefinedFunction(Function, Singleton, Atom):
 
 Basic.singleton['D'] = lambda : Derivative
 Basic.singleton['FD'] = lambda : FDerivative
+Basic.singleton['Int'] = lambda : Integral

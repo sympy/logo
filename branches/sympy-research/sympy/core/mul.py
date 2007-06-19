@@ -124,9 +124,9 @@ class Mul(AssocOp, RelMeths, ArithMeths):
                 r = coeff.tostr() + delim + r
         else:
             if len(denom[:])>1:
-                r = numer.tostr() + ' / (' + denom.tostr() + ')'
+                r = '(' + numer.tostr() + ') / (' + denom.tostr() + ')'
             else:
-                r = numer.tostr() + ' / ' + denom.tostr()
+                r = '(' + numer.tostr() + ') / ' + denom.tostr()
         if precedence<=level:
             return '(%s)' % r
         return r
@@ -134,8 +134,8 @@ class Mul(AssocOp, RelMeths, ArithMeths):
     def as_coeff_terms(self):
         coeff = self[0]
         if isinstance(coeff, Basic.Number):
-            return coeff, self[1:]
-        return Basic.One(), self[:]
+            return coeff, list(self[1:])
+        return Basic.One(), list(self[:])
 
     def expand(self):
         """
@@ -186,13 +186,17 @@ class Mul(AssocOp, RelMeths, ArithMeths):
     def _combine_inverse(lhs, rhs):
         return lhs / rhs
 
-    def _calc_leadterm(self, x):
-        c0,e0 = self[0].leadterm(x)
-        for t in self[1:]:
-            c,e = t.leadterm(x)
+    def _calc_as_coeff_leadterm(self, x):
+        return self._seq_as_coeff_leadterm([t.as_coeff_leadterm(x) for t in self])
+
+    @staticmethod
+    def _seq_as_coeff_leadterm(seq):
+        c0,e0,f0 = Basic.One(), Basic.Zero(), Basic.Zero()
+        for (c,e,f) in seq:
             c0 *= c
             e0 += e
-        return c0,e0
+            f0 += f
+        return c0,e0,f0        
 
     def as_numer_denom(self):
         numers,denoms = [],[]
@@ -207,3 +211,76 @@ class Mul(AssocOp, RelMeths, ArithMeths):
 
     def count_ops(self):
         return Basic.Add(*[t.count_ops() for t in self[:]]) + Basic.Symbol('MUL') * (len(self[:])-1)
+
+    def _eval_integral(self, s):
+        coeffs = []
+        terms = []
+        for t in self:
+            if not t.has(s): coeffs.append(t)
+            else: terms.append(t)
+        if coeffs:
+            return Mul(*coeffs) * Mul(*terms).integral(s)
+        u = self[0].integral(s)
+        v = Mul(*(self[1:]))
+        uv = u * v
+        return uv - (u*v.diff(s)).integral(s)
+        
+    def _eval_defined_integral(self, s, a, b):
+        coeffs = []
+        terms = []
+        for t in self:
+            if not t.has(s): coeffs.append(t)
+            else: terms.append(t)
+        if coeffs:
+            return Mul(*coeffs) * Mul(*terms).integral(s==[a,b])
+        # (u'v) -> (uv) - (uv')
+        u = self[0].integral(s)
+        v = Mul(*(self[1:]))
+        uv = u * v
+        return (uv.subs(s,b) - uv.subs(s,a)) - (u*v.diff(s)).integral(s==[a,b])
+
+    _eval_is_real = lambda self: self._eval_template_is_attr('is_real')
+    _eval_is_bounded = lambda self: self._eval_template_is_attr('is_bounded')
+    _eval_is_commutative = lambda self: self._eval_template_is_attr('is_commutative')
+    _eval_is_integer = lambda self: self._eval_template_is_attr('is_integer')
+    _eval_is_comparable = lambda self: self._eval_template_is_attr('is_comparable')
+    def _eval_is_irrational(self):
+        for t in self:
+            a = t.is_irrational
+            if a: return True
+            if a is None: return
+        return False
+
+    def _eval_is_positive(self):
+        r = True
+        for t in self:
+            a = t.is_positive
+            if a is None: return
+            if a: continue
+            r = not r
+        return r
+    def _eval_is_even(self):
+        r = False
+        for t in self:
+            a = t.is_even
+            if a is None: return
+            if a: r = True
+        return r
+
+    def subs(self, old, new):
+        old = Basic.sympify(old)
+        new = Basic.sympify(new)
+        if self==old:
+            return new
+        coeff1,terms1 = self.as_coeff_terms()
+        coeff2,terms2 = old.as_coeff_terms()
+        if terms1==terms2: # (2*a).subs(3*a,y) -> 2/3*y
+            return new * coeff1/coeff2
+        l1,l2 = len(terms1),len(terms2)
+        if l2<l1: # (a*b*c*d).subs(b*c,x) -> a*x*d 
+            for i in range(l1-l2+1):
+                if terms2==terms1[i:i+l2]:
+                    m1 = Mul(*terms1[:i]).subs(old,new)
+                    m2 = Mul(*terms1[i+l2:]).subs(old,new)
+                    return Mul(*([coeff1/coeff2,m1,new,m2]))
+        return self.__class__(*[s.subs(old, new) for s in self])

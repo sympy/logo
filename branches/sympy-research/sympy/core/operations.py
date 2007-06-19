@@ -14,7 +14,7 @@ class AssocOp(Basic):
         if len(args)==0:
             return cls.identity()
         if len(args)==1:
-            return args[0]
+            return args[0]        
         c_part, nc_part, lambda_args, order_symbols = cls.flatten(map(Basic.sympify, args))
         if len(c_part) + len(nc_part) <= 1:
             if c_part: obj = c_part[0]
@@ -96,12 +96,14 @@ class AssocOp(Basic):
                         return d2
         return
 
-    @property
-    def is_comparable(self):
-        for s in self:
-            if not s.is_comparable:
-                return
-        return True
+    def _eval_template_is_attr(self, is_attr):
+        # return True if all elements have the property
+        r = True
+        for t in self:
+            a = getattr(t, is_attr)
+            if a is None: return
+            if r and not a: r = False
+        return r
 
     evalf = Basic._seq_evalf
     

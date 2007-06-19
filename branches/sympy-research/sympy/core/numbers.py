@@ -63,9 +63,11 @@ class Number(Atom, RelMeths, ArithMeths):
     """
     is_commutative = True
     is_comparable = True
+    is_bounded = True
     
     # for backward compatibility, will be removed:
-    is_number = True
+    @property
+    def is_number(self): return True
     #
 
     def __new__(cls, *obj):
@@ -161,8 +163,8 @@ class Real(Number):
     
     """
     is_real = True
-    is_commutative = True
     is_irrational = False
+    is_integer = False
     
     def __new__(cls, num):
         if isinstance(num, (str, int, long)):
@@ -215,13 +217,9 @@ class Real(Number):
     def torepr(self):
         return '%s(%r)' % (self.__class__.__name__, str(self.num))
 
-    def _calc_positive(self): return self.num.as_tuple()[0] == 0
-    def _calc_nonpositive(self): return self.num.as_tuple()[0] == 1
-    def _calc_negative(self): return self.num.as_tuple()[0] == 1
-    def _calc_nonnegative(self): return self.num.as_tuple()[0] == 0
+    def _eval_is_positive(self): return self.num.as_tuple()[0] == 0
 
-    def evalf(self):
-        return self
+    def evalf(self): return self
 
     def _as_decimal(self):
         return self.num
@@ -363,10 +361,7 @@ class Rational(Number):
             return 40 # same as Add
         return 50 # same as Mul
 
-    def _calc_positive(self): return self.p > 0
-    def _calc_nonpositive(self): return self.p <= 0
-    def _calc_negative(self): return self.p < 0
-    def _calc_nonnegative(self): return self.p >= 0
+    def _eval_is_positive(self): return self.p > 0
 
     def __neg__(self): return Rational(-self.p, self.q)
 
@@ -504,12 +499,7 @@ class Integer(Rational):
             return i
         raise TypeError("Expected integer but got %r" % (i))
 
-    @property
-    def is_odd(self):
-        return bool(self.p % 2)
-
-    @property
-    def is_even(self):
+    def _eval_is_even(self):
         return not (self.p % 2)
 
     @property
@@ -562,6 +552,7 @@ class Zero(Singleton, Integer):
 
     p = 0
     q = 1
+    is_positive = is_negative = False
 
     def _eval_power(b, e):
         if e.is_negative:
@@ -595,19 +586,18 @@ class NegativeOne(Singleton, Integer):
     q = 1
 
     def _eval_power(b, e):
+        if e.is_odd: return NegativeOne()
+        if e.is_even: return One()
         if isinstance(e, Number):
             if isinstance(e, Real):
-                a = exponent.num * decimal_math.pi()
-                s = decimal_math,sin(a)
-                c = decimal_math,cos(a)
+                a = e.num * decimal_math.pi()
+                s = decimal_math.sin(a)
+                c = decimal_math.cos(a)
                 return Real(s) + Real(c) * ImaginaryUnit()
             if isinstance(e, NaN):
                 return NaN()
             if isinstance(e, (Infinity, NegativeInfinity)):
                 return NaN()
-            if isinstance(e, Integer):
-                if e.is_odd: return NegativeOne()
-                return One()
             if isinstance(e, Half):
                 return ImaginaryUnit()
             if isinstance(e, Rational):
@@ -630,9 +620,8 @@ class Infinity(Singleton, Rational):
     q = 0
 
     is_commutative = True
-    is_real = True
-    is_positive = is_nonnegative = True
-    is_nonpositive = is_negative = False
+    is_positive = True
+    is_bounded = False
 
     def tostr(self, level=0):
         return 'oo'
@@ -666,8 +655,8 @@ class NegativeInfinity(Singleton, Rational):
 
     is_commutative = True
     is_real = True
-    is_positive = is_nonnegative = False
-    is_nonpositive = is_negative = True
+    is_positive = False
+    is_bounded = False
 
     precedence = 40 # same as Add
 
@@ -706,8 +695,10 @@ class NaN(Singleton, Rational):
 
     is_commutative = True
     is_real = False
-    is_positive = is_nonnegative = False
-    is_nonpositive = is_negative = False
+    is_integer = False
+    is_comparable = False
+    is_bounded = False
+    is_unbounded = False
 
     def tostr(self, level=0):
         return 'nan'
@@ -761,17 +752,17 @@ class NumberSymbol(Singleton, Atom, RelMeths, ArithMeths):
             return self.evalf()<=other
         return RelMeths.__le__(self, other)
     def __gt__(self, other):
-        return Basic.sympify(other).__lt__(self)
+        return (-self) < (-other)
     def __ge__(self, other):
-        return Basic.sympify(other).__le__(self)
+        return (-self) <= (-other)
 
 
 class Exp1(NumberSymbol):
 
     is_real = True
-    is_positive = is_nonnegative = True
-    is_nonpositive = is_negative = False
+    is_positive = True
     is_irrational = True
+    is_integer = False
 
     def tostr(self, level=0):
         return 'E'
@@ -785,11 +776,15 @@ class Exp1(NumberSymbol):
         elif issubclass(number_cls,Rational):
             pass
 
+    def _eval_power(self, exp):
+        return Basic.Exp()(exp)
+
 class Pi(NumberSymbol):
+
     is_real = True
-    is_positive = is_nonnegative = True
-    is_nonpositive = is_negative = False    
+    is_positive = True
     is_irrational = True
+    is_integer = False
 
     def approximation_interval(self, number_cls):
         if issubclass(number_cls,Integer):
@@ -807,9 +802,8 @@ class ImaginaryUnit(Singleton, Atom, RelMeths, ArithMeths):
 
     is_commutative = True
     is_real = False
-    is_positive = is_nonnegative = False
-    is_nonpositive = is_negative = False
     is_comparable = False
+    is_negative = is_positive = None
 
     def tostr(self, level=0):
         return 'I'

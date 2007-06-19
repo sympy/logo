@@ -135,32 +135,6 @@ class Add(AssocOp, RelMeths, ArithMeths):
     def _combine_inverse(lhs, rhs):
         return lhs - rhs
 
-    @staticmethod
-    def _calc_leadterm_simple(expr, x):
-        if not isinstance(expr, Add):
-            return expr.leadterm(x)
-        d = {}
-        for f in expr:
-            c,e = f.leadterm(x)
-            if not e.is_comparable:
-                raise TypeError("cannot determine lead term with respect to %r of a sum with symbolic exponents: %r" % (x,expr))
-            if d.has_key(e):
-                d[e] += c
-            else:
-                d[e] = c
-        l = d.items()
-        l.sort()
-        e0,c0 = l.pop(0)
-        return c0,e0
-
-    def _calc_leadterm(self, x):
-        numer, denom = self.as_numer_denom()
-        nc0,ne0 = Add._calc_leadterm_simple(numer,x)
-        dc0,de0 = Add._calc_leadterm_simple(denom,x)
-        if isinstance(nc0, Basic.Zero):
-            raise `numer,denom`
-        return nc0/dc0, ne0-de0
-
     def as_numer_denom(self):
         numers, denoms = [],[]
         for n,d in [f.as_numer_denom() for f in self]:
@@ -188,3 +162,71 @@ class Add(AssocOp, RelMeths, ArithMeths):
 
     def count_ops(self):
         return Add(*[t.count_ops() for t in self[:]]) + Basic.Symbol('ADD') * (len(self[:])-1)
+
+    def _eval_integral(self, s):
+        return Add(*[f.integral(s) for f in self])
+
+    def _eval_defined_integral(self, s,a,b):
+        return Add(*[f.integral(s==[a,b]) for f in self])
+
+    # assumption methods
+    _eval_is_real = lambda self: self._eval_template_is_attr('is_real')
+    _eval_is_positive = lambda self: self._eval_template_is_attr('is_positive')
+    _eval_is_bounded = lambda self: self._eval_template_is_attr('is_bounded')
+    _eval_is_commutative = lambda self: self._eval_template_is_attr('is_commutative')
+    _eval_is_integer = lambda self: self._eval_template_is_attr('is_integer')
+    _eval_is_comparable = lambda self: self._eval_template_is_attr('is_comparable')
+
+    def _eval_is_even(self):
+        r = True
+        for t in self:
+            a = t.is_even
+            if a is None: return
+            if a: continue
+            r = not r
+        return r
+
+    def _eval_is_irrational(self):
+        for t in self:
+            a = t.is_irrational
+            if a: return True
+            if a is None: return
+        return False
+
+    #
+    def _calc_as_coeff_leadterm(self, x):
+        return self._seq_as_coeff_leadterm([f.as_coeff_leadterm(x) for f in self])
+
+    @staticmethod
+    def _seq_as_coeff_leadterm(seq):
+        d = {}
+        for (c,e,f) in seq:
+            if c==0: continue
+            if isinstance(abs(c),Basic.Infinity):
+                return c,e,f # essential singularity
+            if not (e.is_comparable and f.is_comparable):
+                raise TypeError("cannot determine lead term of a sequence with symbolic exponents: %r" % (seq))
+            try: d[(e,f)] += c
+            except KeyError: d[(e,f)] = c
+        l = d.items()
+        l.sort(cmp_pow_log)
+        (e,f),c = l[0]
+        return c,e,f        
+
+    def subs(self, old, new):
+        old = Basic.sympify(old)
+        new = Basic.sympify(new)
+        if self==old: return new
+        coeff1,factors1 = self.as_coeff_factors()
+        coeff2,factors2 = old.as_coeff_factors()
+        if factors1==factors2: # (2+a).subs(3+a,y) -> 2-3+y
+            return new + coeff1 - coeff2
+        l1,l2 = len(factors1),len(factors2)
+        if l2<l1: # (a+b+c+d).subs(b+c,x) -> a+x+d 
+            for i in range(l1-l2+1):
+                if factors2==factors1[i:i+l2]:
+                    return Add(*([coeff1-coeff2]+factors1[:i]+[new]+factors1[i+l2:]))
+        return self.__class__(*[s.subs(old, new) for s in self])
+
+def cmp_pow_log(((e1,f1),c1),((e2,f2),c2)):
+    return cmp(e1,e2) or cmp(f2,f1) or cmp(c1,c2)

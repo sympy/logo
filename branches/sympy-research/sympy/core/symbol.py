@@ -44,7 +44,7 @@ class Symbol(Atom, RelMeths, ArithMeths):
         if dummy:
             Symbol.dummycount += 1
             obj.dummy_index = Symbol.dummycount
-
+        assert isinstance(name, str),`type(name)`
         obj.name = name
         return obj
 
@@ -74,6 +74,16 @@ class Symbol(Atom, RelMeths, ArithMeths):
     #def __mathml__(self): ..
     #def __latex__(self): ..
     #def __pretty__(self): ..
+
+    def _eval_integral(self, s):
+        if self==s:
+            return self**2/2
+        return self*s
+
+    def _eval_defined_integral(self, s, a, b):
+        if self==s:
+            return (b**2-a**2)/2
+        return self*(b-a)
 
 class Wild(Symbol):
     """
@@ -109,3 +119,4 @@ class Temporary(Symbol):
         assumptions['dummy'] = True
         name = 'T%s' % (Symbol.dummycount+1)
         return Symbol.__new__(cls, name, **assumptions)
+

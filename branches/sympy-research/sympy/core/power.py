@@ -36,8 +36,55 @@ class Pow(Basic, ArithMeths, RelMeths):
                 return Pow(self.base, self.exp * other)
         return
 
-    def _calc_commutative(self):
-        return self.base.is_commutative and self.exp.is_commutative
+    def _eval_is_commutative(self):
+        c1 = self.base.is_commutative
+        if c1 is None: return
+        c2 = self.base.is_commutative
+        if c2 is None: return
+        return c1 and c2
+
+    def _eval_is_comparable(self):
+        c1 = self.base.is_comparable
+        if c1 is None: return
+        c2 = self.base.is_comparable
+        if c2 is None: return
+        return c1 and c2
+
+    def _eval_is_positive(self):
+        if self.base.is_positive:
+            if self.exp.is_real:
+                return True
+        elif self.base.is_real:
+            if self.exp.is_even:
+                return True
+
+    def _eval_is_integer(self):
+        c1 = self.base.is_integer
+        if c1 is None: return
+        c2 = self.exp.is_integer
+        if c2 is None: return
+        if c1 and c2 and self.exp.is_positive:
+            return True
+
+    def _eval_is_real(self):
+        c1 = self.base.is_real
+        if c1 is None: return
+        c2 = self.exp.is_real
+        if c2 is None: return
+        if c1 and c2 and self.base.is_positive:
+            return True
+
+    def _eval_is_even(self):
+        if not (self.is_integer and self.exp.is_positive): return
+        return self.base.is_even
+
+    def _eval_is_bounded(self):
+        if self.exp.is_negative: return True
+        c1 = self.base.is_bounded
+        if c1 is None: return
+        c2 = self.exp.is_bounded
+        if c2 is None: return
+        if c1 and c2: return True
 
     def tostr(self, level=0):
         precedence = self.precedence
@@ -51,7 +98,11 @@ class Pow(Basic, ArithMeths, RelMeths):
         old = Basic.sympify(old)
         new = Basic.sympify(new)
         if self==old: return new
-        elif Basic.Exp()(self.exp * Basic.Log()(self.base)) == old: return new
+        if isinstance(old, self.__class__) and self.base==old.base:
+            coeff1,terms1 = self.exp.as_coeff_terms()
+            coeff2,terms2 = old.exp.as_coeff_terms()
+            if terms1==terms2: return new ** (coeff1/coeff2)
+        #if Basic.Exp()(self.exp * Basic.Log()(self.base)) == old: return new
         return self.base.subs(old, new) ** self.exp.subs(old, new)
 
     def as_base_exp(self):
@@ -123,27 +174,13 @@ class Pow(Basic, ArithMeths, RelMeths):
         dexp = self.exp.diff(s)
         return self * (dexp * Basic.Log()(self.base) + dbase * self.exp/self.base)
 
-    def _calc_leadterm(self, x):
-        if isinstance(self.exp, Basic.Integer) or not self.exp.has(x):
-            c0,e0 = self.base.leadterm(x)
-            return c0**self.exp, e0*self.exp
+    def _calc_as_coeff_leadterm(self, x):
+        if not self.exp.has(x):
+            c,e,f = self.base.as_coeff_leadterm(x)
+            return c**self.exp, e*self.exp, f*self.exp
         if isinstance(self.exp, Basic.Add):
-            # handle (1+x)**(2+x)
-            c0,e0 = Basic.One(),Basic.Zero()
-            for c,e in [(self.base**f).leadterm(x) for f in self.exp]:
-                c0 *= c
-                e0 += e
-            return c0,e0
-        if self.exp==x and not self.base.has(x):
-            return Basic.One(), Basic.Zero()
-        # TODO: (1+x)*(2*x) -> ((1+x)**2)**x
-        # TODO: (1+x)**x -> exp(x*log(1+x))        
-        raise ValueError("unable to compute leading term of %s at %s=0" % (self, x))
-
-
-    @property
-    def is_comparable(self):
-        return self.exp.is_comparable and self.base.is_comparable
+            return Basic.Mul._seq_as_coeff_leadterm([(self.base**f).as_coeff_leadterm(x) for f in self.exp])
+        raise NotImplementedError("leading term of %s at %s=0" % (self, x))
 
     evalf = Basic._seq_evalf
 
@@ -175,3 +212,28 @@ class Pow(Basic, ArithMeths, RelMeths):
 
     def count_ops(self):
         return Basic.Add(*[t.count_ops() for t in self[:]]) + Basic.Symbol('POW')
+
+    def _eval_integral(self, s):
+        if not self.exp.has(s):
+            if self.base==s:
+                n = self.exp+1
+                return self.base ** n/n
+            y = Basic.Symbol('y',dummy=True)
+            x,ix = self.base.solve4linearsymbol(y,symbols=set([s]))
+            if isinstance(x, Basic.Symbol):
+                dx = 1/self.base.diff(x)
+                if not dx.has(s):
+                    return (y**self.exp*dx).integral(y).subs(y, self.base)
+        
+    def _eval_defined_integral(self, s, a, b):
+        if not self.exp.has(s):
+            if self.base==s:
+                n = self.exp+1
+                return (b**n-a**n)/n
+            x,ix = self.base.solve4linearsymbol(s)
+            if isinstance(x, Basic.Symbol):
+                dx = ix.diff(x)
+                if isinstance(dx, Basic.Number):
+                    y = Basic.Symbol('y',dummy=True)
+                    return (y**self.exp*dx).integral(y==[self.base.subs(s,a), self.base.subs(s,b)])
+
