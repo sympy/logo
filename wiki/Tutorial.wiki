@@ -88,11 +88,13 @@ we also have some special constants, like e and pi, that are treated as symbols 
 
 as you see, evalf evaluates the expression to a floating-point number
 
-There is also a class representing mathematical infinity, and we call it `oo`, however, you can't do normal arithmetic operations for infinity, as it is only used for comparisions, like
+There is also a class representing mathematical infinity, called `oo`:
 
 {{{
-    >>> oo != 2
+    >>> oo > 99999
     True
+    >>> oo + 1
+    oo
 
 }}}
 
