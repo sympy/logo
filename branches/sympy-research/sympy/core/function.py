@@ -154,8 +154,8 @@ class Apply(Basic, ArithMeths, RelMeths):
     def as_base_exp(self):
         return self, Basic.One()
 
-    def count_ops(self):
-        return Basic.Add(*[t.count_ops() for t in self])
+    def count_ops(self, symbolic=True):
+        return Basic.Add(*[t.count_ops(symbolic) for t in self])
 
     def _calc_as_coeff_leadterm(self, x):
         raise NotImplementedError("Apply%s._calc_as_coeff_leadterm(x)" % (self.func.__class__.__name__))
@@ -264,9 +264,10 @@ class Function(Basic, ArithMeths, NoRelMeths):
     def _calc_splitter(self, d):
         return self
 
-    def count_ops(self):
-        return Basic.Symbol(self.__class__.__name__.upper())
-
+    def count_ops(self, symbolic):
+        if symbolic:
+            return Basic.Symbol(self.__class__.__name__.upper())
+        return Basic.Integer(self.nofargs or 1)
 
 class WildFunction(Function):
 

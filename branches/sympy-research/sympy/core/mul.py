@@ -31,7 +31,12 @@ class Mul(AssocOp, RelMeths, ArithMeths):
                 if isinstance(o, Basic.Number):
                     coeff *= o
                     continue
-                b, e = o.as_base_exp()
+                if isinstance(o, Basic.ApplyExp):
+                    # exp(x) / exp(y) -> exp(x-y)
+                    b = Basic.Exp1()
+                    e = o.args[0]
+                else:
+                    b, e = o.as_base_exp()
                 if c_powers.has_key(b):
                     c_powers[b] += e
                 else:
@@ -99,6 +104,8 @@ class Mul(AssocOp, RelMeths, ArithMeths):
                 if e.is_negative:
                     l.reverse()
                 return coeff**e * Mul(*l)
+        if e.atoms(Basic.Wild):
+            return Mul(*[t**e for t in b])
         return
 
     @property
@@ -108,8 +115,21 @@ class Mul(AssocOp, RelMeths, ArithMeths):
         return 50
 
     def tostr(self, level = 0):
-        numer,denom = self.as_numer_denom()
         precedence = self.precedence
+        coeff, terms = self.as_coeff_terms()
+        if coeff.is_negative:
+            coeff = -coeff
+            if not isinstance(coeff, Basic.One):
+                terms.insert(0, coeff)
+            r = '-' + ' * '.join([t.tostr(precedence) for t in terms])
+        else:
+            r = ' * '.join([t.tostr(precedence) for t in self])
+        r = r.replace(' * 1 / ',' / ')
+        if precedence<=level:
+            return '(%s)' % r
+        return r
+    
+        numer,denom = self.as_numer_denom()
         if isinstance(denom, Basic.One):
             delim = ' * '
             coeff, rest = self.as_coeff_terms()
@@ -209,8 +229,10 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             denoms.append(d)
         return Mul(*numers), Mul(*denoms)
 
-    def count_ops(self):
-        return Basic.Add(*[t.count_ops() for t in self[:]]) + Basic.Symbol('MUL') * (len(self[:])-1)
+    def count_ops(self, symbolic=True):
+        if symbolic:
+            return Basic.Add(*[t.count_ops(symbolic) for t in self[:]]) + Basic.Symbol('MUL') * (len(self[:])-1)
+        return Basic.Add(*[t.count_ops(symbolic) for t in self[:]]) + (len(self[:])-1)
 
     def _eval_integral(self, s):
         coeffs = []

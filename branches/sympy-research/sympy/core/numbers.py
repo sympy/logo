@@ -64,6 +64,7 @@ class Number(Atom, RelMeths, ArithMeths):
     is_commutative = True
     is_comparable = True
     is_bounded = True
+    is_infinitesimal = False
     
     # for backward compatibility, will be removed:
     @property
@@ -553,6 +554,7 @@ class Zero(Singleton, Integer):
     p = 0
     q = 1
     is_positive = is_negative = False
+    is_infinitesimal = True
 
     def _eval_power(b, e):
         if e.is_negative:

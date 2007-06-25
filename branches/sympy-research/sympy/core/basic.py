@@ -127,8 +127,22 @@ class Basic(BasicMeths):
         # a -> c * t
         return Basic.One(), [self]
 
-    def as_coeff_factors(self):
+    def as_indep_terms(self, x):
+        coeff, terms = self.as_coeff_terms()
+        indeps = [coeff]
+        new_terms = []
+        for t in terms:
+            if t.has(x):
+                new_terms.append(x)
+            else:
+                indeps.append(x)
+        return Mul(*indeps), Mul(*new_terms)
+
+    def as_coeff_factors(self, x=None):
         # a -> c + f
+        if x is not None:
+            if not self.has(x):
+                return self, []
         return Basic.Zero(), [self]
 
     def as_numer_denom(self):
@@ -157,6 +171,8 @@ class Basic(BasicMeths):
         for e in self:
             if e.has(p):
                 return True
+        #if self.subs(p, Basic.Symbol('x',dummy=True))!=self:
+        #    return True
         return False
 
     def _eval_derivative(self, s):
@@ -324,11 +340,13 @@ class Basic(BasicMeths):
 
     def ldegree(self, *symbols):
         s = Basic.Zero()
+        f = Basic.Zero()
         c0 = self
         for x in symbols:
             c0,e0,f0 = c0.as_coeff_leadterm(x)
             assert f0==0,`c0,e0,f0`
             s += e0
+            f += f0
         return s
 
     def leading_term(self, *symbols):
@@ -372,7 +390,7 @@ class Basic(BasicMeths):
             return res
 
         dc,de,df = denom, Basic.Zero(), Basic.Zero()
-        assert dc!=0,`denom,dc`
+        #assert dc!=0,`denom,dc, self`
         
         if not numer.has(x):
             nc,ne,nf = numer, Basic.Zero(), Basic.Zero()
@@ -382,12 +400,14 @@ class Basic(BasicMeths):
             nc,ne,nf = numer._calc_as_coeff_leadterm(x)
 
         if nc==0 and not isinstance(numer, Basic.Zero):
-            assert nf==0 and ne>=0,`nc,ne,nf`
+            assert nf==0 and ne>=0,`nc,ne,nf, self`
             ne = Basic.Zero()
             r = numer
             while isinstance(nc, Basic.Zero):
                 ne += 1
                 r = r.diff(x)
+                #nc, e1,f1 = r.as_coeff_leadterm(x)
+                #nc = r.limit(x, 0)
                 nc = r.subs(x,0)
             nc /= Basic.Factorial()(ne)
 
@@ -453,7 +473,7 @@ class Basic(BasicMeths):
         l.sort()
         return [(s,e) for i,s,e in l]
 
-    def count_ops(self):
+    def count_ops(self, symbolic=True):
         """ Return the number of operations in expressions.
 
         Examples:
@@ -462,10 +482,48 @@ class Basic(BasicMeths):
         >>> (sin(x)*x+sin(x)**2).count_ops()
         ADD + MUL + POW + 2 * SIN
         """
-        return Basic.Integer(len(self[:])-1) + sum([t.count_ops() for t in self])
+        return Basic.Integer(len(self[:])-1) + sum([t.count_ops(symbolic=symbolic) for t in self])
 
     def limit(self, x, xlim, direction='<', **assumptions):
+        if isinstance(self, Basic.Apply) and self.func.nofargs==1:
+            arg = Basic.Limit(self.args[0], x, xlim, direction, **assumptions)
+            return self.func(arg)
         return Basic.Limit(self, x, xlim, direction=direction, **assumptions)
+
+    def normal(self):
+        n, d = self.as_numer_denom()
+        if isinstance(d, Basic.One):
+            return n
+        return n/d
+
+    def as_coeff_exponent(self, x):
+        """ c*x**e -> c,e where x can be any symbolic expression.
+        """
+        x = Basic.sympify(x)
+        wc = Basic.Wild()
+        we = Basic.Wild()
+        p  = wc*x**we
+        d = self.match(p)
+        if d is not None:
+            return d[wc], d[we]
+        return self, Basic.Zero()
+
+    def as_expr_orders(self):
+        """ Split expr + Order(..) to (expr, Order(..)).
+        """
+        l1 = []
+        l2 = []
+        if isinstance(self, Basic.Add):
+            for f in self:
+                if isinstance(f, Basic.Order):
+                    l2.append(f)
+                else:
+                    l1.append(f)
+        elif isinstance(self, Basic.Order):
+            l2.append(self)
+        else:
+            l1.append(self)
+        return Basic.Add(*l1), Basic.Add(*l2)
 
 class Atom(Basic):
 
@@ -486,7 +544,7 @@ class Atom(Basic):
     def _calc_splitter(self, d):
         return self
 
-    def count_ops(self):
+    def count_ops(self, symbolic=True):
         return Basic.Zero()
 
     def _eval_integral(self, s):

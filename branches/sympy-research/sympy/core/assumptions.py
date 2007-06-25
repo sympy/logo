@@ -27,6 +27,7 @@ class AssumeMeths(object):
         - comparable    - object.evalf() returns Number object.
         - irrational    - object value cannot be represented exactly by Rational
         - unbounded     - object value is arbitrarily large
+        - infinitesimal - object value is infinitesimal
 
     Example rules:
 
@@ -127,14 +128,25 @@ class AssumeMeths(object):
                 if v is None:
                     self._change_assumption(d, 'bounded', None)
                     self._change_assumption(d, 'unbounded', None, extra_msg)
+                    self._change_assumption(d, 'infinitesimal', None, extra_msg)
                 else:
                     self._change_assumption(d, 'bounded', v)
                     self._change_assumption(d, 'unbounded', get_unset('unbounded', not v), extra_msg)
+                    if not v:
+                        self._change_assumption(d, 'infinitesimal', get_unset('infinitesimal', False), extra_msg)
             elif k=='unbounded':
                 if v is None:
                     assumptions['bounded'] = None
                 else:
                     assumptions['bounded'] = get_unset('bounded', not v)
+            elif k=='infinitesimal':
+                if v is None:
+                    self._change_assumption(d, 'infinitesimal', None)
+                else:
+                    self._change_assumption(d, 'infinitesimal', v)
+                    if v:
+                        self._change_assumption(d, 'bounded', get_unset('bounded', True), extra_msg)
+                        self._change_assumption(d, 'unbounded', get_unset('unbounded', False), extra_msg)
             elif k=='irrational':
                 if v is None:
                     self._change_assumption(d, 'irrational', None)

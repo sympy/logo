@@ -14,15 +14,22 @@ class Add(AssocOp, RelMeths, ArithMeths):
         coeff = Basic.Zero()
         lambda_args = None
         order_terms = {}
+        Order1 = [f for f in seq if isinstance(f, Basic.Order) and f.expr==1]
+        if Order1: Order1 = Order1[0]
+        else: Order1=None
         while seq:
             o = seq.pop(0)
             if isinstance(o, Basic.Function):
                 o, lambda_args = o.with_dummy_arguments(lambda_args)
             if isinstance(o, Basic.Order):
+                if Order1 is not None and not order_terms.has_key(o.symbols):
+                    order_terms[o.symbols] = Order1
                 if order_terms.has_key(o.symbols):
-                    order_terms[o.symbols] += o.expr
+                    obj = order_terms[o.symbols]
+                    if o.contains(obj):
+                        order_terms[o.symbols] = o
                 else:
-                    order_terms[o.symbols] = o.expr
+                    order_terms[o.symbols] = o
                 continue
             if isinstance(o, Basic.Number):
                 coeff += o
@@ -64,9 +71,28 @@ class Add(AssocOp, RelMeths, ArithMeths):
             newseq.insert(0, coeff)
 
         if order_terms:
-            lowest_degree = None        
+            if Order1 is not None:
+                del order_terms[Order1.symbols]
+            newseq2 = []
+            for t in newseq:
+                for symbols, obj in order_terms.items():
+                    if obj.contains(t):
+                        t = None
+                        break
+                if t is not None:
+                    newseq2.append(t)
+            newseq = newseq2 + order_terms.values()
+        if 0:
+            lowest_order = order_factors[0]
+            for o in order_factors:
+                if lowest_order.contains(o):
+                    continue
+                lowest_order = o
+            lowest_degree = None
             lorder_terms = {}
-            for symbols, expr in order_terms.items():
+            print order_terms
+            for symbols, obj in order_terms.items():
+                expr = obj.expr
                 ld = expr.ldegree(*symbols)
                 if lowest_degree is None:
                     lowest_degree = ld
@@ -79,7 +105,8 @@ class Add(AssocOp, RelMeths, ArithMeths):
                 elif ld < lowest_degree: # O(x**2) + O(x) -> O(x)
                     lowest_degree = ld
                     lorder_terms = {symbols: expr}
-            order_list = [Basic.Order(expr.leading_term(*symbols), *symbols) for symbols, expr in lorder_terms.items()]
+            
+            order_list = [Basic.Order(expr.leading_term(*symbols), *symbols) for symbols, expr in order_terms.items()]
             newseq2 = []
             for t in newseq:
                 for oterm in order_list:
@@ -102,9 +129,12 @@ class Add(AssocOp, RelMeths, ArithMeths):
         if not isinstance(coeff, Basic.Zero):
             l.append(coeff.tostr(precedence))
         for factor in rest:
-            f = factor.tostr(precedence)
+            f = factor.tostr()
             if f.startswith('-'):
-                l.extend(['-',f[1:]])
+                if l:
+                    l.extend(['-',f[1:]])
+                else:
+                    l.append(f)
             else:
                 l.extend(['+',f])
         if l[0]=='+': l.pop(0)
@@ -113,7 +143,16 @@ class Add(AssocOp, RelMeths, ArithMeths):
             return '(%s)' % r
         return r
 
-    def as_coeff_factors(self):
+    def as_coeff_factors(self, x=None):
+        if x is not None:
+            l1 = []
+            l2 = []
+            for f in self:
+                if f.has(x):
+                    l2.append(f)
+                else:
+                    l1.append(f)
+            return Add(*l1), l2
         coeff = self[0]
         if isinstance(coeff, Basic.Number):
             return coeff, self[1:]
@@ -160,8 +199,10 @@ class Add(AssocOp, RelMeths, ArithMeths):
         s = d[r] = Basic.Temporary()
         return s + coeff
 
-    def count_ops(self):
-        return Add(*[t.count_ops() for t in self[:]]) + Basic.Symbol('ADD') * (len(self[:])-1)
+    def count_ops(self, symbolic=True):
+        if symbolic:
+            return Add(*[t.count_ops(symbolic) for t in self[:]]) + Basic.Symbol('ADD') * (len(self[:])-1)
+        return Add(*[t.count_ops(symbolic) for t in self[:]]) + (len(self[:])-1)
 
     def _eval_integral(self, s):
         return Add(*[f.integral(s) for f in self])
@@ -171,7 +212,6 @@ class Add(AssocOp, RelMeths, ArithMeths):
 
     # assumption methods
     _eval_is_real = lambda self: self._eval_template_is_attr('is_real')
-    _eval_is_positive = lambda self: self._eval_template_is_attr('is_positive')
     _eval_is_bounded = lambda self: self._eval_template_is_attr('is_bounded')
     _eval_is_commutative = lambda self: self._eval_template_is_attr('is_commutative')
     _eval_is_integer = lambda self: self._eval_template_is_attr('is_integer')
@@ -193,6 +233,30 @@ class Add(AssocOp, RelMeths, ArithMeths):
             if a is None: return
         return False
 
+    def _eval_is_positive(self):
+        unbounded_positive = False
+        unbounded_negative = False
+        default_result = True
+        for t in self:
+            a = t.is_positive
+            if a is None: return
+            if a:
+                if t.is_unbounded:
+                    unbounded_positive = True
+                continue
+            default_result = False
+            if t.is_unbounded:
+                unbounded_negative = True
+        if default_result:
+            return True # all terms are positive
+        if unbounded_negative and unbounded_positive:
+            return None # oo-oo
+        if unbounded_negative:
+            return False # -oo + 2
+        if unbounded_positive:
+            return True # oo - 2
+        return None # -2 + 3 + x + .. cannot decide
+
     #
     def _calc_as_coeff_leadterm(self, x):
         return self._seq_as_coeff_leadterm([f.as_coeff_leadterm(x) for f in self])
@@ -204,14 +268,21 @@ class Add(AssocOp, RelMeths, ArithMeths):
             if c==0: continue
             if isinstance(abs(c),Basic.Infinity):
                 return c,e,f # essential singularity
-            if not (e.is_comparable and f.is_comparable):
-                raise TypeError("cannot determine lead term of a sequence with symbolic exponents: %r" % (seq))
+            #if not (e.is_comparable and f.is_comparable):
+            #    raise TypeError("cannot determine lead term of a sequence with symbolic exponents: %r" % (seq))
             try: d[(e,f)] += c
             except KeyError: d[(e,f)] = c
         l = d.items()
         l.sort(cmp_pow_log)
         (e,f),c = l[0]
         return c,e,f        
+
+    def as_coeff_terms(self):
+        # -2 + 2 * a -> -1, 2-2*a
+        c = self[0].as_coeff_terms()[0]
+        if c.is_positive:
+            return Basic.One(),[self]
+        return -Basic.One(),[-self]
 
     def subs(self, old, new):
         old = Basic.sympify(old)

@@ -34,6 +34,8 @@ class Pow(Basic, ArithMeths, RelMeths):
             if isinstance(other, Basic.Integer):
                 # (a ** b) ** 3 -> a ** (3 * b)
                 return Pow(self.base, self.exp * other)
+        if other.atoms(Basic.Wild):
+            return Pow(self.base, self.exp * other)
         return
 
     def _eval_is_commutative(self):
@@ -57,6 +59,8 @@ class Pow(Basic, ArithMeths, RelMeths):
         elif self.base.is_real:
             if self.exp.is_even:
                 return True
+            if self.exp.is_odd:
+                return False
 
     def _eval_is_integer(self):
         c1 = self.base.is_integer
@@ -71,15 +75,21 @@ class Pow(Basic, ArithMeths, RelMeths):
         if c1 is None: return
         c2 = self.exp.is_real
         if c2 is None: return
-        if c1 and c2 and self.base.is_positive:
-            return True
-
+        if c1 and c2:
+            if self.base.is_positive:
+                return True
+            if self.base.is_negative:
+                if self.exp.is_integer:
+                    return True
     def _eval_is_even(self):
         if not (self.is_integer and self.exp.is_positive): return
         return self.base.is_even
 
     def _eval_is_bounded(self):
-        if self.exp.is_negative: return True
+        if self.exp.is_negative:
+            if self.is_infinitesimal:
+                return False
+            return True
         c1 = self.base.is_bounded
         if c1 is None: return
         c2 = self.exp.is_bounded
@@ -88,8 +98,11 @@ class Pow(Basic, ArithMeths, RelMeths):
 
     def tostr(self, level=0):
         precedence = self.precedence
-        r = '%s ** %s' % (self.base.tostr(precedence),
-                          self.exp.tostr(precedence))
+        b = self.base.tostr(precedence)
+        if isinstance(self.exp, Basic.NegativeOne):
+            r = '1 / %s' % (b)
+        else:
+            r = '%s ** %s' % (b,self.exp.tostr(precedence))
         if precedence<=level:
             return '(%s)' % (r)
         return r
@@ -101,8 +114,11 @@ class Pow(Basic, ArithMeths, RelMeths):
         if isinstance(old, self.__class__) and self.base==old.base:
             coeff1,terms1 = self.exp.as_coeff_terms()
             coeff2,terms2 = old.exp.as_coeff_terms()
-            if terms1==terms2: return new ** (coeff1/coeff2)
-        #if Basic.Exp()(self.exp * Basic.Log()(self.base)) == old: return new
+            if terms1==terms2: return new ** (coeff1/coeff2) # (x**(2*y)).subs(x**(3*y),z) -> z**(2/3*y)
+        if isinstance(old, Basic.ApplyExp):
+            coeff1,terms1 = old.args[0].as_coeff_terms()
+            coeff2,terms2 = (self.exp * Basic.Log()(self.base)).as_coeff_terms()
+            if terms1==terms2: return new ** (coeff1/coeff2) # (x**(2*y)).subs(exp(3*y*log(x)),z) -> z**(2/3*y)
         return self.base.subs(old, new) ** self.exp.subs(old, new)
 
     def as_base_exp(self):
@@ -210,8 +226,10 @@ class Pow(Basic, ArithMeths, RelMeths):
         s = d[r] = Basic.Temporary()
         return s
 
-    def count_ops(self):
-        return Basic.Add(*[t.count_ops() for t in self[:]]) + Basic.Symbol('POW')
+    def count_ops(self, symbolic=True):
+        if symbolic:
+            return Basic.Add(*[t.count_ops(symbolic) for t in self[:]]) + Basic.Symbol('POW')
+        return Basic.Add(*[t.count_ops(symbolic) for t in self[:]]) + 1
 
     def _eval_integral(self, s):
         if not self.exp.has(s):
@@ -237,3 +255,36 @@ class Pow(Basic, ArithMeths, RelMeths):
                     y = Basic.Symbol('y',dummy=True)
                     return (y**self.exp*dx).integral(y==[self.base.subs(s,a), self.base.subs(s,b)])
 
+    def as_numer_denom(self):
+        base, exp = self.as_base_exp()
+        c,t = exp.as_coeff_terms()
+        n,d = base.as_numer_denom()
+        if c.is_negative:
+            exp = -exp
+            n,d = d,n
+        return n ** exp, d ** exp
+
+    def matches(pattern, expr, repl_dict={}, evaluate=False):
+        Basic.matches.__doc__
+        if evaluate:
+            pat = pattern
+            for old,new in repl_dict.items():
+                pat = pat.subs(old, new)
+            if pat!=pattern:
+                return pat.matches(expr, repl_dict)
+        expr = Basic.sympify(expr)
+        b, e = expr.as_base_exp()
+        d = repl_dict.copy()
+        d = pattern.base.matches(b, d, evaluate=False)
+        if d is None:
+            return None
+        d = pattern.exp.matches(e, d, evaluate=True)
+        if d is None:
+            return Basic.matches(pattern, expr, repl_dict, evaluate)
+        return d
+
+    def taylor(self, n=1):
+        """
+        """
+        
+        

@@ -75,7 +75,11 @@ class MrvLimitInfProcess(Basic):
         return self._args[1]
 
     def doit(self):
-        c0, e0 = mrv_leadterm(self.expr, self.var)
+        #return MrvExpr(self.expr, self.var).get_limit()
+        #if self.expr==self.var:
+        #    return Basic.Infinity()
+        #c0, e0 = MrvExpr(self.expr, self.var).leadterm()
+        c0, e0 = mrv_leadterm(self.expr, self.var, task='limit')
         if isinstance(e0, Basic.Zero):
             assert not c0.has(self.var),`self,c0`
             return c0
@@ -83,59 +87,115 @@ class MrvLimitInfProcess(Basic):
         if e0.is_positive: return Basic.Zero()
         raise ValueError("Cannot determine sign of %s" % (e0))
 
-mrv_moveup = lambda expr,x: expr.subs(x, Basic.Exp()(x))
-mrv_set_moveup = lambda s,x: set([expr.subs(x, Basic.Exp()(x)) for expr in s])
-mrv_movedown = lambda t,x: tuple([expr.subs(x, Basic.Log()(x)) for expr in t])
+def mrv_leadterm(expr, x, mrv_set=None, task=None, _cache={}, _catch_recursion={}):
+    r = _cache.get((expr,x),None)
+    if r is None:
+        if 0: # use to catch recursion
+            l = list(mrv_set or set())
+            l.sort()
+            l = tuple(l)
+            c = _catch_recursion.get((expr,x,l),None)
+            if c is None:
+                _catch_recursion[(expr,x, l)] = 1
+                r = _mrv_leadterm(expr, x, mrv_set, task)
+                del _catch_recursion[(expr, x, l)]
+            else:
+                raise RuntimeError("recursion detected when evaluating mrv_leadterm(%s, %s, %s)" % (expr, x, mrv_set))
+        elif 0:
+            m = MrvExpr(expr, x)
+            cache = m.expr,m.x, tuple(m.mrv_map.keys())
+            c = _catch_recursion.get(cache,None)
+            if c is None:
+                _catch_recursion[cache] = 1
+                r = m.leadterm()
+                del _catch_recursion[cache]
+            else:
+                #print _catch_recursion,_cache
+                raise RuntimeError("recursion detected when evaluating mrv_leadterm(%s, %s)" % (expr, x))
+        else:
+            #r = MrvExpr(expr, x).leadterm()
+            r = _mrv_leadterm(expr, x, mrv_set)
+        #print 'mrv_leadterm(%s, %s) -> %s ' % (expr, x, r)
+        _cache[(expr,x)] = r
+    else:
+        pass
+        #print 'CACHE'
+    return r
 
-
-def mrv_leadterm(expr, x, mrv_set = None):
+def _mrv_leadterm(expr, x, mrv_set = None):
     """
     x -> (1,-1)
     """
     # x -> oo
     if not expr.has(x):
-        return (expr, Basic.Zero())
+        return expr, Basic.Zero()
+
     if mrv_set is None:
         mrv_set = mrv(expr, x)
     log = Basic.Log()
+    exp = Basic.Exp()
     if x in mrv_set:
-        up_expr = mrv_moveup(expr,x)
-        up_mrv_set = mrv_set_moveup(mrv_set,x)
-        c,e = mrv_leadterm(up_expr,x,up_mrv_set)
+        ex = exp(x)
+        up_expr = expr.subs(x,ex)
+        up_mrv_set = set([s.subs(x,ex) for s in mrv_set])
+        c,e = mrv_leadterm(up_expr,x, up_mrv_set)
+        assert isinstance(e, Basic.Number),`e`
+        c = c.subs(x,log(x))
         return c,e
     for f in mrv_set:
         assert isinstance(f, Basic.ApplyExp),`f`
-    w = Basic.Symbol('w',dummy=True,positive=True,real=True)
+    w = Basic.Symbol('w',dummy=True,positive=True,infinitesimal=True)
     d, g = mrv_rewrite_dict(x, mrv_set, w)
     e = expr
-    for f,f2 in d.items():
+    for f,f2 in d:
         e = e.subs(f,f2)
-    c0,e0,f0 = e.as_coeff_leadterm(w)
+    #e = e.subs(g.args[0],-log(w))
+    #print e
+    if not e.has(w):
+        c0,e0,f0 = e, Basic.Zero(), Basic.Zero()
+    else:
+        c0,e0,f0 = e.as_coeff_leadterm(w)
+        assert not c0.has(w),`e,c0,e0,f0`
+    #print 'EXPR=',expr
+    #print '[%s->%s]' % (g,1/w)
+    #print 'RESULT=',e
+    #print 'LEADTERM=',c0,e0,f0
     if f0!=0:
         c1,e1,f0 = (log(g)**f0).as_coeff_leadterm(x)
         assert c1==1 and f0==0,`c1,e1,f0`
         e0 += e1
-    assert not c0.has(w),`c0,e0,f0`
-    assert f0==0, `c0,e0,f0,e,expr`
     if e0==0:
         return mrv_leadterm(c0, x)
     return c0, e0
 
 def mrv_rewrite_dict(x, mrv_set, w):
     l = list(mrv_set)
-    l.sort(Basic.compare)
+    l.sort(cmp_ops_count)
     g = l[0]
     t = g.args[0]
     # g=exp(t) -> oo as x->oo is ensured by mrv() function
-    d = {}
+    d = []
     for f in l:
         s = f.args[0]
-        c = (s/t).limit(x,Basic.Infinity())
-        #c = mrv_leadterm(s/t, x)[0]
-        A = Basic.Exp()(s-c*t)
+        #c = (s/t).limit(x,Basic.Infinity())
+        c = mrv_leadterm(s/t, x, task='mrv_rewrite_dict')[0]
+        assert not c.has(x),`c`
+        Aarg = s -c*t
+        Aarg = Aarg.subs(g, 1/w)
+        A = Basic.Exp()(Aarg)
+        #A = Basic.Exp()(s-c*t)#.subs(t,-Basic.Log()(w))
         f2 = A * w ** -c  # w**-c is due to g->oo as x->oo.
-        d[f] = f2
+        #print 5*'*','g=',g
+        #print 5*'*','f=',f
+        #print 5*'*','c=',c
+        ##print 5*'*','compare(A,f)='
+        #cr = mrv_compare(A,f,x)
+        #assert cr=='<',`cr,A,f`
+        d.insert(0, (f,f2))
     return d, g
+
+def cmp_ops_count(e1,e2):
+    return cmp(e1.count_ops(symbolic=False), e2.count_ops(symbolic=False))
 
 def mrv_max(s1, s2, x):
     assert isinstance(x, Basic.Symbol),`x`
@@ -151,18 +211,26 @@ def mrv_max(s1, s2, x):
 
 def mrv_compare(f, g, x):
     log = Basic.Log()
-    f = log(f)
-    g = log(g)
+    if isinstance(f, Basic.ApplyExp): f = f.args[0]
+    else: f = log(f)
+    if isinstance(g, Basic.ApplyExp): g = g.args[0]
+    else: g = log(g)
     if 1:
         c = (f/g).limit(x,Basic.Infinity())
-        if c==0: return '<'
-        if isinstance(abs(c), Basic.Infinity): return '>'
+        #print c,f,g
+        if c==0:
+            return '<'
+        if isinstance(abs(c), Basic.Infinity):
+            return '>'
         if not c.is_comparable:
             raise ValueError("non-comparable result: %s" % (c))
         return '='
-    c0,e0 = mrv_leadterm(f/g,x)
+    c0,e0 = mrv_leadterm(f/g,x, task='mrv_compare')
     se = Basic.Sign()(e0)
-    if se==0: return '='
+    if se==0:
+        if c0==0: return '<'
+        if isinstance(abs(c0), Basic.Infinity): return '>'
+        return '='
     if se==-1: return '>'
     if se==1: return '<'
     raise ValueError("failed to determine the sign of %s (got %s)" % (e0, se))
@@ -218,3 +286,250 @@ def mrv(expr, x):
             s = mrv_max(s, mrv(arg, x), x)
         return s
     raise NotImplementedError("don't know how to find mrv(%s,%s)" % (expr,x))
+
+def mrv2(expr, x, d, md):
+    """
+    Compute a set of most rapidly varying subexpressions of expr with respect to x.
+
+    d = {}
+    md = {}
+    mrv2(x + exp(x),x,d) -> x+se, d={x:x, exp(x):se}, md={exp(x):se}
+    """
+    if d.has_key(expr): return d[expr]
+    if not expr.has(x):
+        return expr
+    if expr==x:
+        if not md: md[x] = x
+        return x
+    if isinstance(expr, (Basic.Add, Basic.Mul)):
+        r = expr.__class__(*[mrv2(t, x, d, md) for t in expr])
+        d[expr] = r
+        return r
+    log = Basic.Log()
+    exp = Basic.Exp()
+    if isinstance(expr, Basic.Pow):
+        if not expr.exp.has(x):
+            r = mrv2(expr.base, x, d, md)**expr.exp
+        else:
+            r = mrv2(exp(expr.exp * log(expr.base)), x, d, md)
+        d[expr] = r
+        return r
+    if isinstance(expr, Basic.ApplyExp):
+        e = expr.args[0]
+        l = e.limit(x,Basic.Infinity())
+        r = exp(mrv2(e, x, d, md))
+        if isinstance(l, Basic.Infinity):
+            # e -> oo as x->oo
+            en = e
+        elif isinstance(l, Basic.NegativeInfinity):
+            # e -> -oo as x->oo
+            # rewrite to ensure that exp(e) -> oo
+            en = -e
+        else:
+            # |e| < oo as x->oo
+            d[expr] = r
+            return r
+        # normalize exp(2*e) -> exp(e)
+        coeff, terms = en.as_coeff_terms()
+        new_terms = []
+        for t in terms:
+            if t.has(x):
+                pass
+            elif t.is_positive:
+                continue
+            elif t.is_negative:
+                coeff *= -1
+                continue
+            new_terms.append(t)
+        terms = new_terms
+        coeff = Basic.Sign()(coeff)
+        if not isinstance(coeff, Basic.One):
+            terms.insert(0,coeff)
+        en = Basic.Mul(*terms)
+        nexpr = exp(en)
+        #print coeff,terms,nexpr
+        if md.has_key(x):
+            c = '>'
+        else:
+            lst = md.keys()
+            lst.sort(cmp_ops_count)
+            c = mrv_compare(nexpr, lst[0], x)
+        if c !='<':
+            if c=='>':
+                md.clear()
+            if md.has_key(nexpr):
+                tmp = md[nexpr]
+            else:
+                tmp = Basic.Temporary()
+                md[nexpr] = tmp
+            r = expr.subs(nexpr, tmp)
+        d[expr] = r
+        return r
+    if isinstance(expr, Basic.Apply):
+        r = expr.func(*[mrv2(a, x, d, md) for a in expr.args])
+        d[expr] = r
+        return r
+    raise NotImplementedError("don't know how to find mrv2(%s,%s)" % (expr,x))
+
+class MrvExpr(object):
+
+    def __new__(cls, expr, x, func = lambda o:o, mrv_map=None, newexpr=None):
+        expr = Basic.sympify(expr)
+        if isinstance(expr, Basic.Apply) and expr.func.nofargs==1 and expr.args[0] != x:
+            return MrvExpr(expr.args[0], x, expr.func)
+        expr_map = {}
+        if mrv_map is None:
+            mrv_map = {}
+            newexpr = mrv2(expr, x, expr_map, mrv_map)
+        if mrv_map.has_key(x):
+            up_expr = expr.subs(x, Basic.Exp()(x))
+            up_newexpr = newexpr.subs(x, Basic.Exp()(x))
+            up_mrv_map = {}
+            for k,v in mrv_map.items():
+                tmp = Basic.Temporary()
+                up_k = k.subs(x, Basic.Exp()(x))
+                up_mrv_map[k.subs(x, Basic.Exp()(x))] = tmp
+                up_newexpr = up_newexpr.subs(up_k, tmp).subs(x, Basic.Log()(tmp))
+            return MrvExpr(up_expr, x, lambda obj: func(obj.subs(x, Basic.Log()(x))),
+                           mrv_map=up_mrv_map, newexpr=up_newexpr)
+        obj = object.__new__(cls)
+        obj.func = func # applied to leading coefficient
+        obj.x = x
+        obj.expr = expr
+        obj.newexpr = newexpr
+        obj.expr_map = expr_map
+        obj.mrv_map = mrv_map
+        obj.w = Basic.Symbol('w',dummy=True,positive=True,infinitesimal=True)
+        obj.rewrite_mrv_map()
+        obj.rewrite_expr()
+        obj.leadterm_w = obj.newexpr_rw.as_coeff_leadterm(obj.w)
+        return obj
+
+    def __str__(self):
+        l = ['EXPR:%s' % (self.expr),
+             'VAR:%s' % (self.x),
+             'EXPR_MAP:'
+             ]
+        for k,v in self.expr_map.items():
+            l.append('  %s:%s' % (k,v))
+        l.append('NEWEXPR:%s' % (self.newexpr))
+        l.append('MRV_MAP:')
+        for k,v in self.mrv_map.items():
+            l.append('  %s:%s' % (k,v))
+        l.append('MRV_MAP_RW:')
+        for k,v in self.mrv_map_rw.items():
+            l.append('  %s:%s' % (k,v))
+        l.append('REFGERM:%s' % (self.refgerm))
+        l.append('FUNC(x):%s' % (self.func(self.x)))
+        l.append('NEWEXPR_RW:%s' % (self.newexpr_rw))
+        l.append('LEADTERM(%s):%s' % (self.w, `self.leadterm_w`))
+        return '\n'.join(l)
+
+    def get_leadterm(self):
+        c,e,f = self.leadterm_w
+        if f!=0:
+            # c * w**e * log(w)**f
+            # w = 1/g
+            # g = exp(s)
+            # c * exp(-e*s) * s**f
+            c *= (-self.refgerm.args[0])**f
+            print c,self.refgerm,f
+            assert e==0
+            f = Basic.Zero()
+        assert f==0,`c,e,f`
+        if e==0 and c.has(self.x):
+            m = MrvExpr(c, self.x, func=self.func)
+            return m.get_leadterm()
+        return c,e
+
+    def get_limit(self):
+        c, e = self.get_leadterm()
+        if e==0:
+            return self.func(c)
+        if e.is_positive:
+            return self.func(Basic.Zero())
+        if e.is_negative:
+            return self.func(Basic.Sign()(c) * Basic.Infinity())
+        raise ValueError("Cannot determine sign of %s" % (e))
+
+    def rewrite_expr(self):
+        tmps = self.newexpr.atoms(Basic.Temporary)
+        e = self.newexpr
+        for t in tmps:
+            germ = self.mrv_map_rw.get(t, None)
+            if t is None: continue
+            e = e.subs(t, germ)
+        self.newexpr_rw = e
+
+    def rewrite_mrv_map(self):
+        x = self.x
+        w = self.w
+        germs = self.mrv_map.keys()
+        germs.sort(cmp_ops_count)
+        if germs:
+            g = germs[0]
+            gname = self.mrv_map[g]
+            garg = g.args[0]
+        else:
+            g = None
+        d = {}
+        log = Basic.Log()
+        for germ in germs:
+            name = self.mrv_map[germ]
+            if name==gname:
+                d[name] = 1/w
+                continue
+            arg = germ.args[0]
+            c = (arg/garg).limit(x, Basic.Infinity())
+            Aarg = arg-c*garg
+            Aarg = Aarg.subs(g, 1/w)
+            c0,e0,f0 = Aarg.as_coeff_leadterm(w)
+            if e0==0:
+                c0, e0, f0 = c0.subs(g, 1/w).as_coeff_leadterm(w)
+            Aarg = c0 * w**e0    
+            A = Basic.Exp()(Aarg)
+            new_germ = A * w ** -c
+            d[name] = new_germ
+        self.mrv_map_rw = d
+        self.refgerm = g
+
+    def leadterm(self):
+        x = self.x
+        c, e = self._leadterm()
+        func = self.func
+        if func is not None:
+            c = func(c)
+        return c,e
+
+    def _leadterm(self):
+        x = self.x
+        expr = self.expr
+        if not expr.has(x):
+            return expr, Basic.Zero()
+        #print expr, self.mrv_map
+        up = self
+        while up.mrv_map.has_key(x):
+            up = MrvExpr(expr, x, up)
+        if self is not up:
+            return up.leadterm()
+        w = self.w
+        mrv_map_rw,refgerm = self.mrv_map_rw, self.refgerm
+        e = self.newexpr
+        for name, germ in mrv_map_rw.items():
+            e = e.subs(name, germ)
+        if not e.has(w):
+            c0,e0,f0 = e, Basic.Zero(), Basic.Zero()
+        else:
+            c0,e0,f0 = e.as_coeff_leadterm(w)
+            print c0,e0,f0,e,self.expr,self.newexpr
+            assert not c0.has(w)
+            #if c0.has(w):
+            #    c0 = c0.subs(1/w,refgerm)
+
+        if f0!=0:
+            c1,e1,f0 = (Basic.Log()(refgerm)**f0).as_coeff_leadterm(x)
+            assert c1==1 and f0==0,`c1,e1,f0,expr,e,refgerm`
+            e0 += e1
+        if e0==0:
+            return MrvExpr(c0, x).leadterm()
+        return c0,e0

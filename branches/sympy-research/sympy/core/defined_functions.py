@@ -4,6 +4,22 @@ from function import DefinedFunction, Apply, Lambda
 
 class ApplyExp(Apply):
 
+    def precedence(self):
+        b, e = self.as_base_exp()
+        if e.is_negative: return 50 # same as default Mul
+        return 70
+
+    def tostr(self, level=0):
+        p = self.precedence
+        b, e = self.as_base_exp()
+        if e.is_negative:
+            r = '1 / %s(%s)' % (self.func, -self.args[0])
+        else:
+            r = '%s(%s)' % (self.func, self.args[0])
+        if p <= level:
+            return '(%s)' % (r)
+        return r
+
     def as_base_exp(self):
         coeff, terms = self.args[0].as_coeff_terms()
         return self.func(Basic.Mul(*terms)), coeff
@@ -12,12 +28,39 @@ class ApplyExp(Apply):
         old = Basic.sympify(old)
         new = Basic.sympify(new)
         if self==old: return new
+        arg = self.args[0]
+        o = old
+        if isinstance(old, Basic.Pow): # handle (exp(3*log(x))).subs(x**2, z) -> z**(3/2)
+            old = Exp()(old.exp * Log()(old.base))
         if isinstance(old, ApplyExp):
             b,e = self.as_base_exp()
             bo,eo = old.as_base_exp()
             if b==bo:
                 return new ** (e/eo) # exp(2/3*x*3).subs(exp(3*x),y) -> y**(2/3)
-        return self.func(self.args[0].subs(old, new))
+            if 1 and isinstance(arg, Basic.Add): # exp(2*x+a).subs(exp(3*x),y) -> y**(2/3) * exp(a)
+                # exp(exp(x) + exp(x**2)).subs(exp(exp(x)), w) -> w * exp(exp(x**2))
+                oarg = old.args[0]
+
+                new_l = []
+                old_al = []
+                coeff2,terms2 = oarg.as_coeff_terms()
+                for a in arg:
+                    a = a.subs(old, new)
+                    coeff1,terms1 = a.as_coeff_terms()
+                    if terms1==terms2:
+                        new_l.append(new**(coeff1/coeff2))
+                    else:
+                        old_al.append(a.subs(old, new))
+                if new_l:
+                    new_l.append(self.func(Basic.Add(*old_al)))
+                    r = Basic.Mul(*new_l)
+                    #print 'SELF=',self
+                    #print '[%s->%s]' % (old,new)
+                    #print 'RESULT=',r
+                    return r
+        old = o
+
+        return self.func(arg.subs(old, new))
 
     def _eval_is_real(self):
         return self.args[0].is_real
@@ -30,6 +73,10 @@ class ApplyExp(Apply):
             if arg.is_positive: return False
         if arg.is_bounded:
             return True
+
+    def _eval_power(b, e):
+        return b.func(b.args[0] * e)
+
     def _calc_as_coeff_leadterm(self, x):
         arg = self.args[0]
         func = self.func
@@ -56,6 +103,35 @@ class ApplyExp(Apply):
         print c._assumptions, x._assumptions, arg[1].args[0]._assumptions
         raise NotImplementedError("leading term of %s(%s) -> %s((%s) * (%s)**(%s) * log(%s)**(%s)) at %s=0" % (func,arg,func,c,x,e,x,f, x))
 
+    def taylor(self, n=4):
+        """ Series of exp(x) Taylor series.
+        """
+        x = self.args[0]
+        if not isinstance(x, Basic.Symbol):
+            x, orders = x.as_expr_orders()
+            symbols = orders.atoms(Basic.Symbol)
+            assert symbols,`x,orders`
+            c,factors = x.as_coeff_factors()
+            l = []
+            for f in factors:
+                if f.has(*symbols):
+                    l.append(f)
+                else:
+                    c += f
+            x = Basic.Add(*l)
+        else:
+            c = Basic.Zero()
+            orders = Basic.Order(x**n)
+        g = self.func(0)
+        s = g + orders
+        s1 = g
+        i = 0
+        while s1!=s:
+            s1 = s
+            i += 1
+            g = (g*x/i)
+            s += g
+        return self.func(c) * s
 
 class Exp(DefinedFunction):
     """ Exp() -> exp
@@ -99,22 +175,11 @@ class Exp(DefinedFunction):
                     al.append(f)
             if l:
                 return Basic.Mul(*(l+[self(Basic.Add(*al))]))
-        
-    def _eval_apply_power(self, arg, exp):
-        return self(arg * exp)
-        
+                
     def _eval_apply_evalf(self, arg):
         arg = arg.evalf()
         if isinstance(arg, Basic.Number):
             return arg.exp()
-
-    def _calc_apply_positive(self, x):
-        if x.is_real: return True
-
-    def _calc_apply_real(self, x):
-        if x.is_real: return True
-
-
 
 class Log(DefinedFunction):
     """ Log() -> log
@@ -175,11 +240,15 @@ class ApplyLog(Apply):
     def _eval_is_real(self):
         return self.args[0].is_positive
     def _eval_is_bounded(self):
-        return self.args[0].is_bounded
+        arg = self.args[0]
+        if arg.is_infinitesimal:
+            return False
+        return arg.is_bounded
     def _eval_is_positive(self):
         arg = self.args[0]
         if arg.is_positive:
             if arg.is_unbounded: return True
+            if arg.is_infinitesimal: return False
             if isinstance(arg, Basic.Number):
                 return arg>1
     def _calc_as_coeff_leadterm(self, x):
@@ -199,7 +268,32 @@ class ApplyLog(Apply):
                                                      (e,Basic.Zero(),Basic.One()),
                                                      #(f*self(self(x)),Basic.Zero(),Basic.Zero())
                                                      ])
-        raise NotImplementedError("leading term of %s at %s=0" % (self(c*x**e*Log()(x)**f), x))
+        raise NotImplementedError("leading term of %s at %s=0" % (self.func(c*x**e*Log()(x)**f), x))
+
+    def power_series(self, x, n=1):
+        arg = self.args[0]
+        if not arg.has(x):
+            return self
+        coeff, factors = arg.as_coeff_factors(x)
+        rest = Basic.Add(*factors)
+        rest0 = rest.subs(x,0)
+        if rest0.is_unbounded:
+            b, a = coeff, rest
+        else:
+            a, b = coeff, rest
+        if not isinstance(a, Basic.Zero):
+            # log(a + b) -> log(a) + log(1+b/a)
+            l = [self.func(a)]
+            for i in range(1,n+1):
+                l.append((2*(i%2)-1)*(b/a) **i / i)
+            return Basic.Add(*l)
+        raise NotImplementedError("power_series(%s,%s)" % (self,x))
+
+    def as_numer_denom(self):
+        n, d = self.args[0].as_numer_denom()
+        if isinstance(d, Basic.One):
+            return self.func(n), d
+        return (self.func(n) - self.func(d)).as_numer_denom()
 
 class Sqrt(DefinedFunction):
 

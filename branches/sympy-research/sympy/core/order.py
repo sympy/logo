@@ -78,6 +78,8 @@ class Order(Basic, ArithMeths, RelMeths):
 
     precedence = 70
 
+    _cache = {}
+
     def __new__(cls, expr, *symbols, **assumptions):
         expr = Basic.sympify(expr)
         if symbols:
@@ -116,18 +118,49 @@ class Order(Basic, ArithMeths, RelMeths):
                         symbols.append(s)
             else:
                 if isinstance(expr, Basic.Add):
-                    return Basic.Add(*[Order(f,*symbols, **assumptions) for f in expr])
-                expr = expr.leading_term(*symbols)
-                coeff, terms = expr.as_coeff_terms()
-                if isinstance(coeff, Basic.Zero):
-                    return coeff
-                expr = Basic.Mul(*[t for t in terms if t.has(*symbols)])
+                    expr = Basic.Add(*[Order(f,*symbols, **assumptions).expr for f in expr])
+                else:
+                    expr = expr.leading_term(*symbols)
+                    coeff, terms = expr.as_coeff_terms()
+                    if isinstance(coeff, Basic.Zero):
+                        return coeff
+                    expr = Basic.Mul(*[t for t in terms if t.has(*symbols)])
         elif not isinstance(expr, Basic.Zero):
             expr = Basic.One()
         if isinstance(expr, Basic.Zero):
             return expr
-        symbols = [s for s in symbols if expr.has(s)]
-        return Basic.__new__(cls, expr, *symbols, **assumptions)
+        symbols = tuple([s for s in symbols if expr.has(s)])
+
+        cache = Order._cache.get(symbols,[])
+        for o in cache:
+            if o.expr==expr:
+                return o
+        obj = Basic.__new__(cls, expr, *symbols, **assumptions)
+        Order._update_cache(obj, symbols)
+        return obj
+
+    @staticmethod
+    def _update_cache(obj, symbols):
+        cache = Order._cache.get(symbols,[])
+        try: return cache.index(obj)
+        except ValueError: pass
+        assert isinstance(obj, Order),`obj`        
+        i = -1
+        for o in cache:
+            i += 1
+            l = obj.expr/o.expr
+            for s in symbols:
+                l = l.limit(s,0,direction='<')
+            if l.is_unbounded:
+                cache.insert(i,obj)
+                break
+            if l.is_bounded:
+                continue
+            raise NotImplementedError("failed to determine the inclusion relation between %s and %s" % (o, obj))
+        else:
+            cache.append(obj)
+        Order._cache[symbols] = cache
+        return cache.index(obj)
 
     @property
     def expr(self):
@@ -158,10 +191,17 @@ class Order(Basic, ArithMeths, RelMeths):
         return self.expr, order_symbols
 
     def contains(self, expr):
-        ldegree = self.expr.ldegree(*self.symbols)
-        if expr.ldegree(*self.symbols) >= ldegree:
-            return True
-        return False
+        if isinstance(expr, Order):
+            symbols = self.symbols
+            for s in expr.symbols:
+                if s not in symbols:
+                    symbols = symbols + (s,)
+            Order._update_cache(self, symbols) # make sure that expr is in proper cache
+            i2 = Order._update_cache(expr, symbols)
+            i1 = Order._update_cache(self, symbols)
+            return i1<=i2
+        obj = Order(expr, *expr.atoms(Basic.Symbol))
+        return self.contains(obj)
 
     def subs(self, old, new):
         old = Basic.sympify(old)
@@ -174,5 +214,8 @@ class Order(Basic, ArithMeths, RelMeths):
 
     def _calc_splitter(self, d):
         return Basic.Zero()
+
+    def _calc_as_coeff_leadterm(self, x):
+        return self.expr.as_coeff_leadterm(x)
             
 Basic.singleton['O'] = lambda : Order
