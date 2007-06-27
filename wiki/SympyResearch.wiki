@@ -35,6 +35,38 @@ Use `.evalf()` method to get floating point approximation with the current preci
 (I, -1, oo, nan)
 }}}
 
+= Assigning properties to symbols and expressions =
+
+== Method call ==
+
+  `<expr>.assume(property1=value1, property2=value2, ..)`
+
+== Method parameters ==
+
+  * `property1, ...` --- names of mathematical properties
+  * `value1, ...` --- `True` or `False` or `None`
+
+== Details ==
+
+  * The following predefined mathematical propeties are supported:
+
+    # `positive`, `negative` --- `expr` can have only positive or negative real values, respectively
+    # `real` --- `expr` can have values from the set of real numbers
+    # `integer` --- `expr` can have values from the set of integers
+    # `even`, `odd` --- `expr` value is an even or odd integer, respectively 
+    # `irrational` --- `expr` value is irrational
+    # `bounded` --- `expr` absolute value is bounded
+    # `unbounded` --- `expr` value is arbitrarily large
+    # `infinitesimal` --- `expr` value is infinitesimal
+    # `commutative` --- `expr` value commutes with other values with respect to multiplication
+    # `noncommutative` --- `expr` value does not commute with other values with respect to multiplication
+    # `comparable` --- `expr` value can be compared with numbers (`expr.evalf()` returns `Number` object).
+
+  * If property value is `False`, the oposite property is set. For example, setting `positive=False` is equivalent to `negative=True`
+
+  * Properties can be unset using property value `None`.
+
+
 = O – the domain of order terms (Landau symbols) =
 
   `O(f, x)` represents the Landau symbol _O(f, x -> 0)_.
@@ -45,8 +77,8 @@ Use `.evalf()` method to get floating point approximation with the current preci
 
 == Parameters ==
 
-  `f` --- an arithmetical expression representing a function in x, y, etc.
-  `x, y` --- variables, assumed to be infinitesimal
+  * `f` --- an arithmetical expression representing a function in x, y, etc.
+  * `x, y` --- variables, assumed to be infinitesimal and positive symbols
 
 == Return value ==
 
@@ -58,9 +90,9 @@ Use `.evalf()` method to get floating point approximation with the current preci
 
  * If variables `x, y, ..` are not specified then all symbols in `f` are considered as order variables. Otherwise all other symbols in `f` except `x, y, ..` are considered as parameters.
 
- * The variables in `O` instance can be accessed via .symbols attribute.
+ * The symbols in `O` instance can be accessed via `.symbols` attribute.
 
- * The expression in `O` instance can be accessed via .expr attribute.
+ * The expression in `O` instance can be accessed via `.expr` attribute.
 
  * The inclusion relation between _O(f, x)_ and _O(g, x)_ is determined by the result of `limit(f/g, x, 0)`. If the result is unbounded (e.g. `oo`) then _O(g, x)_ is a subset of _O(f, x)_ and `O(f+g,x)` results `O(f,x)`.
 
@@ -89,6 +121,7 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
+
 
 
 
