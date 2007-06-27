@@ -1,0 +1,77 @@
+#summary Documentation for sympy-research branch of sympy.
+#labels Phase-Design,Featured
+
+= Introduction =
+
+This page collects documentation notes for the sympy-research branch of sympy.
+More information can be found in http://code.google.com/p/sympy/issues/detail?id=144
+
+= O – the domain of order terms (Landau symbols) =
+
+  _O(f, x)_ represents the Landau symbol _O(f, x -> 0)_.
+
+== Call ==
+
+  O(f, x, y, ..)
+
+== Parameters ==
+
+  f --- an arithmetical expression representing a function in x, y, etc.
+  x, y --- variables, assumed to be infinitesimal
+
+== Return value ==
+
+  an Order instance.
+
+== Details ==
+
+ * By mathematical definition, for a function f with variables x,y, .., the 
+   Landau symbol g = O(f, x, y, ..) is a representative of a class of
+   functions having the following property: there exists a constant M and
+   a neighborhood of the limit point (0, 0, ..) such that |g| <= M|f|
+   for all values (x,y,..) in that neighborhood.
+
+ * If variables x,y,.. are not specified then all symbols in f are considered
+   as order variables. Otherwise all other symbols in f except x,y,.. are
+   considered as parameters.
+
+ * The variables in Order instance can be accessed via .symbols attribute.
+
+ * The expression in Order instance cab be accessed via .expr attribute.
+
+ * Automatic simplification is applied. See examples.
+
+== Examples ==
+
+{{{
+>>> x,y=map(Symbol,'xy')
+>>> O(x)
+O(x, x)
+>>> O(3*x)
+O(x, x)
+>>> O(3*x+x**2)
+O(x, x)
+>>> O(3*x+1/x)
+O(1 / x, x)
+>>> O(exp(1/x)+1/x)
+O(exp(1 / x), x)
+>>> O(x+y)
+O(x + y, x, y)
+>>> O(x+x*y)
+O(x, x)
+}}}
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
+
+
+
+
+
+
+
+
