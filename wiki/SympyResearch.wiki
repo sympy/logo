@@ -7,6 +7,34 @@ This page collects documentation notes for the sympy-research branch of sympy.
 More information can be found in 
 [http://code.google.com/p/sympy/issues/detail?id=144 Issue 144]
 
+= Mathematical constants =
+
+The following mathematical constants are defined in `sympy`:
+
+ * I --- imaginary unit (-1)**(1/2)
+ * oo --- positive infinity
+ * nan --- undefined value
+ * pi --- Pi = 3.14..
+ * E  --- Euler number E = 2.718.., exp(1)
+
+Use `.evalf()` method to get floating point approximation with the current precision `Basic.set_precision()`.
+
+== Examples ==
+
+{{{
+>>> Basic.set_precision()
+28
+>>> pi.evalf(), E.evalf()
+(3.141592653589793238462643383, 2.718281828459045235360287471)
+>>> Basic.set_precision(40)
+28
+>>> pi.evalf(), E.evalf()
+(3.141592653589793238462643383279502884197,
+ 2.718281828459045235360287471352662497757)
+>>> I,I**2,oo,nan
+(I, -1, oo, nan)
+}}}
+
 = O – the domain of order terms (Landau symbols) =
 
   `O(f, x)` represents the Landau symbol _O(f, x -> 0)_.
@@ -61,7 +89,6 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
-
 
 
 
