@@ -66,6 +66,7 @@ Use `.evalf()` method to get floating point approximation with the current preci
   * Assigned properties can be unset using property value `None`.
   * Unsetting a property will unset related properties. For example, unsetting `positive` will also unset `negative` property.
   * `expr` properties can be requested via `.is_property` attributes. If no information is known for a given property then `.is_property` attribute is `None`.
+  * `expr` properties can be set using `property=value` keyword arguments in the corresponding class constructor.
 
 == Examples ==
 
@@ -83,6 +84,11 @@ True
 >>> x.assume(infinitesimal=True)
 >>> log(x).is_negative
 True
+>>> y = Symbol('y', even=True)
+>>> y.is_integer
+True
+>>> y.is_odd
+False
 }}}
 
 = O – the domain of order terms (Landau symbols) =
@@ -139,7 +145,6 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
-
 
 
 
