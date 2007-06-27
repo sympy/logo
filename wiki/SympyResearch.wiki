@@ -22,7 +22,7 @@ More information can be found in
 
 == Return value ==
 
-  an Order instance or Zero instance.
+  an `O` or `Zero` instance.
 
 == Details ==
 
@@ -30,13 +30,15 @@ More information can be found in
 
  * If variables `x, y, ..` are not specified then all symbols in `f` are considered as order variables. Otherwise all other symbols in `f` except `x, y, ..` are considered as parameters.
 
- * The variables in Order instance can be accessed via .symbols attribute.
+ * The variables in `O` instance can be accessed via .symbols attribute.
 
- * The expression in Order instance can be accessed via .expr attribute.
+ * The expression in `O` instance can be accessed via .expr attribute.
 
  * The inclusion relation between _O(f, x)_ and _O(g, x)_ is determined by the result of `limit(f/g, x, 0)`. If the result is unbounded (e.g. `oo`) then _O(g, x)_ is a subset of _O(f, x)_ and `O(f+g,x)` results `O(f,x)`.
 
- * Automatic simplification is applied to O expression. See examples.
+ * Automatic simplification is applied to `O` expression. See examples.
+
+ * Assumptions `infinitesimal=True, positive=True` are set to `O` symbols.
 
 == Examples ==
 
@@ -45,10 +47,12 @@ More information can be found in
 >>> x,y=Symbol('x'), Symbol('y')
 >>> O(x,x),O(3*x,x),O(x+x**2),O(x+1/x),O(x+1/x+exp(2/x))
 (O(x, x), O(x, x), O(x, x), O(1 / x, x), O(exp(2 / x), x))
->>> O(x+y)
-O(x + y, x, y)
->>> O(x+x*y)
-O(x, x)
+>>> O(x+3*y), O(x+x*y), O(3*x*y**2-x**2*y+x**2*y**2), O(y**2*x**2+x*y**3,y)
+(O(x + y, x, y), O(x, x), O(x * y ** 2 + y * x ** 2, x, y), O(y ** 2, y))
+>>> O(x*y).expr, O(x*y).symbols
+(x * y, (x, y))
+>>> O(0,x), O(2,x)
+(0, O(1))
 }}}
 
 = Details =
@@ -57,6 +61,7 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
+
 
 
 
