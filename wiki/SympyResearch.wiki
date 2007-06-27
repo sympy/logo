@@ -62,10 +62,28 @@ Use `.evalf()` method to get floating point approximation with the current preci
     # `noncommutative` --- `expr` value does not commute with other values with respect to multiplication
     # `comparable` --- `expr` value can be compared with numbers (`expr.evalf()` returns `Number` object).
 
-  * If property value is `False`, the oposite property is set. For example, setting `positive=False` is equivalent to `negative=True`
+  * If property value is `False`, the opposite property is set. For example, setting `positive=False` is equivalent to `negative=True`
+  * Assigned properties can be unset using property value `None`.
+  * Unsetting a property will unset related properties. For example, unsetting `positive` will also unset `negative` property.
+  * `expr` properties can be requested via `.is_property` attributes. If no information is known for a given property then `.is_property` attribute is `None`.
 
-  * Properties can be unset using property value `None`.
+== Examples ==
 
+{{{
+>>> x = Symbol('x')
+>>> x.is_real
+>>> x.assume(positive=True)
+>>> x.is_real
+True
+>>> x.is_negative
+False
+>>> exp(x).is_positive
+True
+>>> log(x).is_negative
+>>> x.assume(infinitesimal=True)
+>>> log(x).is_negative
+True
+}}}
 
 = O – the domain of order terms (Landau symbols) =
 
@@ -121,7 +139,6 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
-
 
 
 
