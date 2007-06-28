@@ -62,10 +62,14 @@ Use `.evalf()` method to get floating point approximation with the current preci
     # `noncommutative` --- `expr` value does not commute with other values with respect to multiplication
     # `comparable` --- `expr` value can be compared with numbers (`expr.evalf()` returns `Number` object).
 
-  * If property value is `False`, the opposite property is set. For example, setting `positive=False` is equivalent to `negative=True`
+  * If property value is `False`, the opposite property is set. For example, setting `positive=False` is equivalent to `negative=True`.
+
   * Assigned properties can be unset using property value `None`.
+
   * Unsetting a property will unset related properties. For example, unsetting `positive` will also unset `negative` property.
+
   * `expr` properties can be requested via `.is_property` attributes. If no information is known for a given property then `.is_property` attribute is `None`.
+
   * `expr` properties can be set using `property=value` keyword arguments in the corresponding class constructor.
 
 == Examples ==
@@ -118,7 +122,7 @@ False
 
  * The expression in `O` instance can be accessed via `.expr` attribute.
 
- * The inclusion relation between _O(f, x)_ and _O(g, x)_ is determined by the result of `limit(f/g, x, 0)`. If the result is unbounded (e.g. `oo`) then _O(g, x)_ is a subset of _O(f, x)_ and `O(f+g,x)` results `O(f,x)`.
+ * The inclusion relation between _O(f, x)_ and _O(g, x)_ is determined by the result of `limit(f/g, x, 0)`. If the result is unbounded (e.g. `oo`) then _O(g, x)_ is a subset of _O(f, x)_ and `O(f,x)+O(g,x)` results `O(f,x)`.
 
  * Automatic simplification is applied to `O` expression. See examples.
 
@@ -149,7 +153,6 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
-
 
 
 
