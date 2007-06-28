@@ -110,7 +110,7 @@ False
 
 == Details ==
 
- * According to the mathematical definition, for a function f with variables x,y, .., the  Landau symbol _g = O(f, x, y, ..)_ is a representative of a class of functions having the following property: there exists a constant M and a neighborhood of the limit point _(0, 0, ..)_ such that _|g| <= M|f|_ for all values _(x,y,..)_ in that neighborhood.
+ * According to the mathematical definition, for a function f with variables x,y, .., the  Landau symbol _g = O(f, x, y, ..)_ is a representative of a class of functions having the following property: there exists a constant M and a neighborhood of the limit point _(0, 0, ..)_ such that _|g| <= M|f|_ for all values _(x,y,..)_ in that neighborhood. Note that in general `O(f(x,y),x,y) + O(g(x,y),x,y)` is not the same as `O(f(x,y)+g(x,y), x,y)`.
 
  * If variables `x, y, ..` are not specified then all symbols in `f` are considered as order variables. Otherwise all other symbols in `f` except `x, y, ..` are considered as parameters.
 
@@ -123,6 +123,8 @@ False
  * Automatic simplification is applied to `O` expression. See examples.
 
  * Assumptions `infinitesimal=True, positive=True` are set to `O` symbols.
+
+ * In the case multivariate `O` exp
 
 == Examples ==
 
@@ -137,6 +139,8 @@ False
 (x * y, (x, y))
 >>> O(0,x), O(2,x)
 (0, O(1))
+>>> O(x) + O(y), O(x+y)
+(O(x, x) + O(y, y), O(x + y, x, y))
 }}}
 
 = Details =
@@ -145,7 +149,6 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
-
 
 
 
