@@ -128,7 +128,7 @@ False
 
  * Assumptions `infinitesimal=True, positive=True` are set to `O` symbols.
 
- * In the case multivariate `O` exp
+ * Using `O` in the argument expression of a function leads to either Add or Order instance after applying the rule: _f(g(x) + O(h(x),x)) -> f(g(x)) + O(h(x) f'(g(x)), x)_ provided that _f'(g(x))_ is not zero.
 
 == Examples ==
 
@@ -145,6 +145,10 @@ False
 (0, O(1))
 >>> O(x) + O(y), O(x+y)
 (O(x, x) + O(y, y), O(x + y, x, y))
+>>> exp(1+x+O(x**3))
+exp(1 + x) + O(x ** 3, x)
+>>> cos(O(x))
+1 + O(x ** 2, x)
 }}}
 
 = Details =
