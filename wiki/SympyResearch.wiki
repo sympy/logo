@@ -7,6 +7,11 @@ This page collects documentation notes for the sympy-research branch of sympy.
 More information can be found in 
 [http://code.google.com/p/sympy/issues/detail?id=144 Issue 144]
 
+Checkout using:
+{{{
+svn co http://sympy.googlecode.com/svn/branches/sympy-research
+}}}
+
 = Mathematical constants =
 
 The following mathematical constants are defined in `sympy`:
@@ -157,7 +162,6 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
-
 
 
 
