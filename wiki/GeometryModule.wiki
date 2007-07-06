@@ -1,0 +1,69 @@
+#summary Documentation for the SymPy geometry module
+#labels Phase-Implementation
+
+= Introduction =
+The geometry module for SymPy allows one to create two-dimensional geometrical entities, such as lines and circles, and query information about these entities. This could include asking the area of an ellipse, checking for collinearity of a set of points, or finding the intersection between two lines. The primary use case of the module involves entities with numerical values, but it is possible to also use symbolic representations.
+
+= Available Entities =
+The following entities are currently available in the geometry module:
+  * `Point`
+  * `Line`, `Ray`, `Segment`
+  * `Ellipse`, `Circle`
+  * `Polygon`, `RegularPolygon`, `Triangle`
+
+Most of the work one will do will be through the properties and methods of these entities, but several global methods exist for one's usage:
+  * `intersection(entity1, entity2)`
+  * `are_similar(entity1, entity2)`
+  * `convex_hull(points)`
+
+For a full API listing and an explanation of the methods and their return values please view the documentation that comes with SymPy or visit the [http://sympy.googlecode.com/svn/api/index.html API listing] available in the SVN repository.
+
+= Example Usage =
+The following Python session gives one an idea of how to work with some of the geometry module.
+{{{
+>>> from sympy.modules.geometry import *
+>>> x = Point(0, 0)
+>>> y = Point(1, 1)
+>>> z = Point(2, 2)
+>>> zp = Point(1, 0)
+>>> Point.is_collinear(x, y, z)
+True
+>>> Point.is_collinear(x, y, zp)
+False
+>>> t = Triangle(zp, y, x)
+>>> t.area
+1/2
+>>> t.medians[x]
+>>> Segment(Point(1, 1/2), Point(0, 0))
+>>> m = t.medians
+>>> intersection(m[x], m[y], m[zp])
+[Point(2/3, 1/3)]
+>>> c = Circle(x, 5)
+>>> l = Line(Point(5, -5), Point(5, 5))
+>>> c.is_tangent(l) # is l tangent to c?
+True
+>>> l = Line(x, y)
+>>> c.is_tangent(l) # is l tangent to c?
+False
+>>> intersection(c, l)
+[Point(-25/2*2/25**(1/2), -25/2*2/25**(1/2)), Point(25/2*2/25**(1/2), 25/2*2/25**(1/2))]
+}}}
+
+= Future Work =
+== Truth Setting Expressions ==
+When one deals with symbolic entities, it often happens that an assertion cannot be guaranteed. For example, consider the following code:
+{{{
+>>> from sympy import *
+>>> from sympy.modules.geometry import *
+>>> x,y,z = Symbol('x'), Symbol('y'), Symbol('z')
+>>> p1,p2,p3 = Point(x, y), Point(y, z), Point(2*x*y, y)
+>>> Point.is_collinear(p1, p2, p3)
+False
+}}}
+Even though the result is currently `False`, this is not _always_ true. If the quantity `z - y - 2*y*z + 2*y**2 == 0` then the points will be collinear. It would be really nice to inform the user of this because such a quantity may be useful to a user for further calculation and, at the very least, being nice to know. This could be potentially done by returning an object (e.g., GeometryResult) that the user could use. This actually would not involve an extensive amount of work and therefore may be implemented by the end of SoC '07.
+
+== Three Dimensions and Beyond ==
+Currently there are no plans for extending the module to three dimensions, but it certainly would be a good addition. This would probably involve a fair amount of work since many of the algorithms used are specific to two dimensions.
+
+== Geometry Visualization ==
+Although not yet complete, the plotting module and the geometry module, in cooperation, could work very well. It would be really neat if there was a layer on top of the geometry module which could take a list of figures and display them using the plotting module.
