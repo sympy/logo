@@ -381,6 +381,8 @@ class Basic(BasicMeths):
             res = self.subs(x1, s1).as_coeff_leadterm(z)
             return res
 
+        self = self.as_leading_term(x)
+
         numer, denom = self.as_numer_denom()
 
         if denom.has(x):
@@ -412,6 +414,7 @@ class Basic(BasicMeths):
             nc /= Basic.Factorial()(ne)
 
         res = nc/dc, ne-de, nf-df
+
         return res
 
     def taylor_series(self, x, n=6):
@@ -525,6 +528,79 @@ class Basic(BasicMeths):
             l1.append(self)
         return Basic.Add(*l1), Basic.Add(*l2)
 
+    def as_a_plus_b(self,x):
+        """
+        Return (a,b) such that expression is a*(1 + b/a),
+        |b/a|<<1 in the process x->0+.
+        If such a split is not possible then return (0, self).
+        """
+        coeff, factors = self.as_coeff_factors(x)
+        rest = Basic.Add(*factors)
+        rest0 = rest.subs(x,0) # todo: replace with limit process x->0+.
+        if rest0.is_unbounded:
+            b, a = coeff, rest
+        else:
+            a, b = coeff, rest
+        return a, b
+
+    def _eval_oseries(self, order):
+        return
+
+    def oseries(self, order):
+        """
+        Return the series of an expression upto given Order symbol.
+        """
+        order = Basic.Order(order)
+        if isinstance(order, Basic.Zero):
+            return self
+        o = self.is_order
+        if o is not None:
+            if o.contains(order):
+                return self
+        if order.contains(self):
+            return Basic.Zero()
+        if len(order.symbols)>1:
+            r = self
+            for s in order.symbols:
+                o = Basic.Order(order.expr, s)
+                r = r.oseries(o)
+            return r
+        x = order.symbols[0]
+        if not self.has(x):
+            return self
+        obj = self._eval_oseries(order)
+        if obj is not None:
+            return obj
+        raise NotImplementedError('(%s).oseries(%s)' % (self, order))
+
+    def leading_term(self, *symbols):
+        c0 = self
+        for x in symbols:
+            c0 = c0.as_leading_term(x)
+        return c0
+
+    def _compute_oseries(self, arg, order, taylor_term, unevaluated_func, correction = 0):
+        """
+        compute series sum(taylor_term(i, arg), i=0..n-1) such
+        that order.contains(taylor_term(n, arg)). Assumes that arg->0 as x->0.
+        """
+        x = order.symbols[0]
+        ln = Basic.Log()
+        n = (ln(order.expr)/ln(arg.as_leading_term(x))).limit(x,0) + correction
+        if n.is_unbounded:
+            # requested accuracy gives infinite series,
+            # order is probably nonpolynomial e.g. O(exp(-1/x), x).
+            return unevaluated_func(arg)
+        n = int(n)
+        assert n>=0,`n`
+        l = []
+        g = None
+        for i in range(n+2):
+            g = taylor_term(i, arg, g)
+            g = g.oseries(order)
+            l.append(g)
+        return Basic.Add(*l)
+
 class Atom(Basic):
 
     precedence = 1000
@@ -557,6 +633,13 @@ class Atom(Basic):
             return (b**2-a**2)/2
         return self*(b-a)
 
+    def _eval_oseries(self, order):
+        # .oseries() method checks for order.contains(self)
+        return self
+
+    def as_leading_term(self, x):
+        return self
+
 class Singleton(Basic):
     """ Singleton object.
     """
@@ -572,5 +655,19 @@ class Singleton(Basic):
             setattr(Singleton, cls.__name__, obj)
         return obj
 
+class SingletonFactory:
+    """
+    A map between singleton classes and the corresponding instances.
+    """
+    def __getattr__(self, clsname):
+        obj = Singleton.__dict__.get(clsname)
+        if obj is None:
+            cls = getattr(Basic, clsname)
+            assert issubclass(cls, Singleton),`cls`
+            obj = cls()
+            setattr(self, clsname, obj)
+        return obj
+
+singleton = SingletonFactory()
 
 import parser

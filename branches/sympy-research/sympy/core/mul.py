@@ -1,5 +1,6 @@
 
 from basic import Basic
+from basic import singleton as S
 from operations import AssocOp
 from methods import RelMeths, ArithMeths
 
@@ -111,8 +112,8 @@ class Mul(AssocOp, RelMeths, ArithMeths):
     @property
     def precedence(self):
         coeff, rest = self.as_coeff_terms()
-        if coeff.is_negative: return 40 # same as default Add
-        return 50
+        if coeff.is_negative: return Basic.Add_precedence
+        return Basic.Mul_precedence
 
     def tostr(self, level = 0):
         precedence = self.precedence
@@ -306,3 +307,31 @@ class Mul(AssocOp, RelMeths, ArithMeths):
                     m2 = Mul(*terms1[i+l2:]).subs(old,new)
                     return Mul(*([coeff1/coeff2,m1,new,m2]))
         return self.__class__(*[s.subs(old, new) for s in self])
+
+    def _eval_oseries(self, order):
+        x = order.symbols[0]
+        l = []
+        r = []
+        lt = []
+        for t in self:
+            if not t.has(x):
+                l.append(t)
+                continue
+            r.append(t)
+            lt.append(t.as_leading_term(x))
+        if not r:
+            if order.contains(1,x): return S.Zero
+            return Mul(*l)
+        if len(r)==1:
+            return Mul(*(l + [r[0].oseries(order)]))
+        for i in range(len(r)):
+            m = Mul(*(lt[:i]+lt[i+1:]))
+            o = order/m
+            l.append(r[i].oseries(o))
+        r = Mul(*l).expand()
+        if isinstance(r, Basic.Add): # remove higher order terms
+            r = r.oseries(order)
+        return r
+
+    def as_leading_term(self, x):
+        return Mul(*[t.as_leading_term(x) for t in self])

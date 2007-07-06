@@ -28,6 +28,7 @@ class AssumeMeths(object):
         - irrational    - object value cannot be represented exactly by Rational
         - unbounded     - object value is arbitrarily large
         - infinitesimal - object value is infinitesimal
+        - order         - expression is not contained in Order(order).
 
     Example rules:
 
@@ -94,9 +95,16 @@ class AssumeMeths(object):
             return default
         while assumptions:
             k, v = assumptions.popitem()
-            if v is not None: v = bool(v)
             extra_msg = ' (while changing %s)' % (k)
-            if k=='real':
+            if k=='order':
+                v = self.Order(v)
+            elif v is not None: v = bool(v)
+            if k=='order':
+                if v is None:
+                    self._change_assumption(d, 'order', None)
+                else:
+                    self._change_assumption(d, 'order', v)
+            elif k=='real':
                 if v is None:
                     self._change_assumption(d, 'real', None)
                     self._change_assumption(d, 'positive', None, extra_msg)

@@ -4,7 +4,7 @@ from methods import ArithMeths, RelMeths, NoRelMeths
 
 class Pow(Basic, ArithMeths, RelMeths):
 
-    precedence = 60
+    precedence = Basic.Pow_precedence
 
     def __new__(cls, a, b, **assumptions):
         a = Basic.sympify(a)
@@ -283,8 +283,39 @@ class Pow(Basic, ArithMeths, RelMeths):
             return Basic.matches(pattern, expr, repl_dict, evaluate)
         return d
 
-    def taylor(self, n=1):
+    def _eval_oseries(self, order):
         """
+        f**g + O(h) == (f+O(k))**g -> .. -> f**g + O(f**(g-1)*k), hence O(k)==O(h*f**(1-g)).
+        If f->0 as x->0 then
         """
+        x = order.symbols[0]
+        e = self.exp
+        b = self.base
+        ln = Basic.Log()
+        exp = Basic.Exp()
+        if e.has(x):
+            return exp(e * ln(b)).oseries(order)
+        if b==x: return self
+        b0 = b.limit(x,0)
+        if isinstance(b0, Basic.Zero) or b0.is_unbounded:
+            lt = b.as_leading_term(x)
+            o = order * lt**(1-e)
+            bs = b.oseries(o)
+            r = (bs**e).expand()
+            if isinstance(r, Basic.Add):
+                r = r.oseries(order)
+            return r
+        o = order * (b0**-e)
+        # b -> b0 + (b-b0) -> b0 * (1 + (b/b0-1))
+        z = (b/b0-1)
+        return self._compute_oseries(z, o, self.taylor_term, lambda z: 1+z) * b0**e
         
-        
+    def as_leading_term(self, x):
+        if not self.exp.has(x):
+            return self.base.as_leading_term(x) ** self.exp
+        return Basic.Exp()(self.exp * Basic.Log()(self.base)).as_leading_term(x)
+
+    def taylor_term(self, n, x, *previous_terms): # of (1+x)**e
+        if n<0: return Basic.Zero()
+        x = Basic.sympify(x)
+        return Basic.Binomial()(self.exp, n) * x**n

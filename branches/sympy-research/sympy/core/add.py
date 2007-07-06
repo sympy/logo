@@ -5,31 +5,27 @@ from methods import RelMeths, ArithMeths
 
 class Add(AssocOp, RelMeths, ArithMeths):
 
-    precedence = 40
-
+    precedence = Basic.Add_precedence
+    
     @classmethod
     def flatten(cls, seq):
         # apply associativity, all terms are commutable with respect to addition
         terms = {}
         coeff = Basic.Zero()
         lambda_args = None
-        order_terms = {}
-        Order1 = [f for f in seq if isinstance(f, Basic.Order) and f.expr==1]
-        if Order1: Order1 = Order1[0]
-        else: Order1=None
+        order_factors = []
         while seq:
             o = seq.pop(0)
             if isinstance(o, Basic.Function):
                 o, lambda_args = o.with_dummy_arguments(lambda_args)
             if isinstance(o, Basic.Order):
-                if Order1 is not None and not order_terms.has_key(o.symbols):
-                    order_terms[o.symbols] = Order1
-                if order_terms.has_key(o.symbols):
-                    obj = order_terms[o.symbols]
-                    if o.contains(obj):
-                        order_terms[o.symbols] = o
-                else:
-                    order_terms[o.symbols] = o
+                for o1 in order_factors:
+                    if o1.contains(o):
+                        o = None
+                        break
+                if o is None:
+                    continue
+                order_factors = [o]+[o1 for o1 in order_factors if not o.contains(o1)]
                 continue
             if isinstance(o, Basic.Number):
                 coeff += o
@@ -56,66 +52,28 @@ class Add(AssocOp, RelMeths, ArithMeths):
                 terms[s] = c
         newseq = []
         noncommutative = False
-        orders = []
         for s,c in terms.items():
             if isinstance(c, Basic.Zero):
                 continue
-            if isinstance(s, Basic.Order):
-                orders.append(s)
             elif isinstance(c, Basic.One):
                 newseq.append(s)
             else:
                 newseq.append(Basic.Mul(c,s))
             noncommutative = noncommutative or not s.is_commutative
+
         if not isinstance(coeff, Basic.Zero):
             newseq.insert(0, coeff)
 
-        if order_terms:
-            if Order1 is not None:
-                del order_terms[Order1.symbols]
+        if order_factors:
             newseq2 = []
             for t in newseq:
-                for symbols, obj in order_terms.items():
-                    if obj.contains(t):
+                for o in order_factors:
+                    if o.contains(t):
                         t = None
                         break
                 if t is not None:
                     newseq2.append(t)
-            newseq = newseq2 + order_terms.values()
-        if 0:
-            lowest_order = order_factors[0]
-            for o in order_factors:
-                if lowest_order.contains(o):
-                    continue
-                lowest_order = o
-            lowest_degree = None
-            lorder_terms = {}
-            print order_terms
-            for symbols, obj in order_terms.items():
-                expr = obj.expr
-                ld = expr.ldegree(*symbols)
-                if lowest_degree is None:
-                    lowest_degree = ld
-                    lorder_terms = {symbols: expr}
-                elif ld == lowest_degree: # O(x**2) + O(x*y) -> O(x**2+x*y)
-                    if lorder_terms.has_key(symbols):
-                        lorder_terms[symbols] += expr
-                    else:
-                        lorder_terms[symbols] = expr
-                elif ld < lowest_degree: # O(x**2) + O(x) -> O(x)
-                    lowest_degree = ld
-                    lorder_terms = {symbols: expr}
-            
-            order_list = [Basic.Order(expr.leading_term(*symbols), *symbols) for symbols, expr in order_terms.items()]
-            newseq2 = []
-            for t in newseq:
-                for oterm in order_list:
-                    if oterm.contains(t): # x + x**2 + O(x**2) -> x + O(x**2)
-                        t = None
-                        break
-                if t is not None:
-                    newseq2.append(t)
-            newseq = newseq2 + order_list
+            newseq = newseq2 + order_factors
 
         newseq.sort(Basic.compare)
         if noncommutative:
@@ -155,8 +113,8 @@ class Add(AssocOp, RelMeths, ArithMeths):
             return Add(*l1), l2
         coeff = self[0]
         if isinstance(coeff, Basic.Number):
-            return coeff, self[1:]
-        return Basic.Zero(), self[:]
+            return coeff, list(self[1:])
+        return Basic.Zero(), list(self[:])
 
     def _eval_derivative(self, s):
         return Add(*[f.diff(s) for f in self])
@@ -259,7 +217,8 @@ class Add(AssocOp, RelMeths, ArithMeths):
 
     #
     def _calc_as_coeff_leadterm(self, x):
-        return self._seq_as_coeff_leadterm([f.as_coeff_leadterm(x) for f in self])
+        seq = [f.as_coeff_leadterm(x) for f in self]
+        return self._seq_as_coeff_leadterm(seq)
 
     @staticmethod
     def _seq_as_coeff_leadterm(seq):
@@ -292,12 +251,51 @@ class Add(AssocOp, RelMeths, ArithMeths):
         coeff2,factors2 = old.as_coeff_factors()
         if factors1==factors2: # (2+a).subs(3+a,y) -> 2-3+y
             return new + coeff1 - coeff2
-        l1,l2 = len(factors1),len(factors2)
-        if l2<l1: # (a+b+c+d).subs(b+c,x) -> a+x+d 
-            for i in range(l1-l2+1):
-                if factors2==factors1[i:i+l2]:
-                    return Add(*([coeff1-coeff2]+factors1[:i]+[new]+factors1[i+l2:]))
+        if isinstance(old, Add):
+            l1,l2 = len(factors1),len(factors2)
+            if l2<l1: # (a+b+c+d).subs(b+c,x) -> a+x+d 
+                for i in range(l1-l2+1):
+                    if factors2==factors1[i:i+l2]:
+                        return Add(*([coeff1-coeff2]+factors1[:i]+[new]+factors1[i+l2:]))
         return self.__class__(*[s.subs(old, new) for s in self])
+
+    def _eval_oseries(self, order):
+        return Add(*[f.oseries(order) for f in self])
+
+    def extract_leading_order(self, *symbols):
+        lst = []
+        seq = [(f, Basic.Order(f, *symbols)) for f in self]
+        for ef,of in seq:
+            for e,o in lst:
+                if o.contains(of):
+                    of = None
+                    break
+            if of is None:
+                continue
+            new_lst = [(ef,of)]
+            for e,o in lst:
+                if of.contains(o):
+                    continue
+                new_lst.append((e,o))
+            lst = new_lst
+        return lst
+
+    def as_leading_term(self, x):
+        if not self.has(x):
+            return self
+        coeff, factors = self.as_coeff_factors(x)
+        if not isinstance(coeff, Basic.Zero):
+            o = Basic.Order(x)
+        else:
+            o = Basic.Order(factors[0]*x,x)
+        s = self.oseries(o)
+        while isinstance(s, Basic.Zero):
+            o = x*o
+            s = self.oseries(o)
+        if isinstance(s, Basic.Add):
+            lst = s.extract_leading_order(x)
+            return Basic.Add(*[e for (e,f) in lst])
+        return s.as_leading_term(x)
 
 def cmp_pow_log(((e1,f1),c1),((e2,f2),c2)):
     return cmp(e1,e2) or cmp(f2,f1) or cmp(c1,c2)

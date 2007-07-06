@@ -353,7 +353,10 @@ class MrvLimitTestCase(unittest.TestCase):
         self.assertEquals(expr.limit(x,oo),1)
 
         
-
+    def test_bug_0(self):
+        expr = ln(x+x**2)/ln(x) # (ln(x)+ln(1+x))/ln(x)
+        self.assertEquals(expr.limit(x,0),0)
+        
 if __name__ == '__main__':
 
     job = 0

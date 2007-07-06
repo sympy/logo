@@ -19,11 +19,14 @@ ordering_of_classes = [
     'Pow', 'Mul', 'Add',
     # function values
     'Apply','ApplyExp','ApplyLog','ApplySin','ApplyCos','ApplySqrt','ApplyAbs','ApplySign',
+    'ApplyChebyshev',    'ApplyChebyshev2',
     'Derivative','Integral',
     # defined singleton functions
     'Abs','Sign','Sqrt','Exp','Log',
     'Sin','Cos','Tan','Cot','ASin','ACos','ATan','ACot',
     'Sinh','Cosh','Tanh','Coth','ASinh','ACosh','ATanh','ACoth',
+    # special polynomials
+    'Chebyshev','Chebyshev2',
     # undefined functions
     'Function','WildFunction',
     # anonymous functions
@@ -93,6 +96,14 @@ class MetaBasicMeths(type):
 class BasicMeths(AssumeMeths):
 
     __metaclass__ = MetaBasicMeths
+
+    Lambda_precedence = 1
+
+    Add_precedence = 40
+    Mul_precedence = 50
+    Pow_precedence = 60
+    Apply_precedence = 70
+    Item_precedence = 75
 
     def __getattr__(self, name):
         if name.startswith('is_'):

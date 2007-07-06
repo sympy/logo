@@ -549,6 +549,12 @@ class Integer(Rational):
     def as_numer_denom(self):
         return self, One()
 
+    def __floordiv__(self, other):
+        return Integer(self.p // Integer(other).p)
+
+    def __rfloordiv__(self, other):
+        return Integer(Integer(other).p // self.p)
+        
 class Zero(Singleton, Integer):
 
     p = 0
@@ -713,6 +719,7 @@ class NumberSymbol(Singleton, Atom, RelMeths, ArithMeths):
 
     is_commutative = True
     is_comparable = True
+    is_bounded = True
 
     def approximation(self, number_cls):
         """ Return an interval with number_cls endpoints
@@ -806,6 +813,7 @@ class ImaginaryUnit(Singleton, Atom, RelMeths, ArithMeths):
     is_real = False
     is_comparable = False
     is_negative = is_positive = None
+    is_bounded = True
 
     def tostr(self, level=0):
         return 'I'
@@ -844,6 +852,7 @@ class ImaginaryUnit(Singleton, Atom, RelMeths, ArithMeths):
 
 Basic.singleton['E'] = Exp1
 Basic.singleton['pi'] = Pi
+Basic.singleton['Pi'] = Pi
 Basic.singleton['I'] = ImaginaryUnit
 Basic.singleton['oo'] = Infinity
 Basic.singleton['nan'] = NaN

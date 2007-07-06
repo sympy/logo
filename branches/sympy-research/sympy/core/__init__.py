@@ -15,6 +15,8 @@ from function import Lambda, Function, Apply, FApply, Composition, FPow, WildFun
 from interval import Interval
 
 import defined_functions
+import orthogonal_polynomials
+import integer_sequences
 
 from order import Order
 from limit import Limit
@@ -24,7 +26,7 @@ Basic.interactive = True
 
 # expose singletons like exp, log, oo, I, etc.
 for _n,_cls in Basic.singleton.items():
-    exec _n + ' = _cls()'
+    exec '%s = _cls()' % (_n)
 
 sympify = Basic.sympify
 

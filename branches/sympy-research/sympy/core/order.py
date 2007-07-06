@@ -9,12 +9,12 @@ class Order(Basic, ArithMeths, RelMeths):
     Definition
     ==========
 
-    g(x) = O(f(x)) as x->a  if and only if
-    |g(x)|<=M|f(x)| near x=a                     (1)
+    g(x) = O(f(x)) as x->0  if and only if
+    |g(x)|<=M|f(x)| near x=0                     (1)
 
-    In our case Order is for a=0. An equivalent way of saying (1) is:
+    An equivalent way of saying (1) is:
 
-    lim_{x->a}  |g(x)/f(x)|  < oo
+    lim_{x->0}  |g(x)/f(x)|  < oo
     
     Let's illustrate it on the following example:
 
@@ -41,11 +41,11 @@ class Order(Basic, ArithMeths, RelMeths):
     =========
     >>> from sympy import *
     >>> x = Symbol("x")
-    >>> Order(x)
-    O(x)
-    >>> Order(x)*x
+    >>> O(x)
+    O(x, x)
+    >>> O(x)*x
     O(x**2)
-    >>> Order(x)-Order(x)
+    >>> O(x)-O(x)
     O(x)
 
        External links
@@ -66,7 +66,7 @@ class Order(Basic, ArithMeths, RelMeths):
       In O(f(x),x) the expression f(x) is assumed to have a leading term.
       O(f(x),x) is automatically transformed to O(f(x).leading_term(x),x).
       O(expr*f(x),x) is O(f(x),x)
-      O(expr,x) is O(1,e)
+      O(expr,x) is O(1)
       O(0, x) is 0.
 
       Multivariate O is also supported:
@@ -81,13 +81,17 @@ class Order(Basic, ArithMeths, RelMeths):
     _cache = {}
 
     def __new__(cls, expr, *symbols, **assumptions):
-        expr = Basic.sympify(expr)
+        expr = Basic.sympify(expr).expand()
+        
         if symbols:
             symbols = map(Basic.sympify, symbols)
         else:
             symbols = list(expr.atoms(Basic.Symbol))
+
         symbols.sort(Basic.compare)
+
         if isinstance(expr, Order):
+
             new_symbols = list(expr.symbols)
             for s in symbols:
                 if s not in new_symbols:
@@ -95,7 +99,9 @@ class Order(Basic, ArithMeths, RelMeths):
             if len(new_symbols)==len(expr.symbols):
                 return expr
             symbols = new_symbols
+
         elif symbols:
+
             symbol_map = {}
             new_symbols = []
             for s in symbols:
@@ -107,6 +113,7 @@ class Order(Basic, ArithMeths, RelMeths):
                 expr = expr.subs(x1,s1)
                 symbol_map[z] = s
                 new_symbols.append(z)
+                
             if symbol_map:
                 r = Order(expr, *new_symbols, **assumptions)
                 expr = r.expr.subs_dict(symbol_map)
@@ -118,26 +125,82 @@ class Order(Basic, ArithMeths, RelMeths):
                         symbols.append(s)
             else:
                 if isinstance(expr, Basic.Add):
-                    expr = Basic.Add(*[Order(f,*symbols, **assumptions).expr for f in expr])
+                    lst = expr.extract_leading_order(*symbols)
+                    expr = Basic.Add(*[f.expr for (e,f) in lst])
                 else:
-                    expr = expr.leading_term(*symbols)
+                    expr = expr.leading_term(*symbols) # need to get rid of this, use series
                     coeff, terms = expr.as_coeff_terms()
                     if isinstance(coeff, Basic.Zero):
                         return coeff
-                    expr = Basic.Mul(*[t for t in terms if t.has(*symbols)])
+                    expr = Basic.Mul(*[t for t in terms if t.has(*symbols)]) 
+
         elif not isinstance(expr, Basic.Zero):
             expr = Basic.One()
+
         if isinstance(expr, Basic.Zero):
             return expr
-        symbols = tuple([s for s in symbols if expr.has(s)])
 
+        # remove unused symbols
+        #symbols = tuple([s for s in symbols if expr.has(s)])
+        symbols = tuple(symbols)
+
+        # look Order symbols from cache, TODO: make cache a dictionary
         cache = Order._cache.get(symbols,[])
         for o in cache:
             if o.expr==expr:
                 return o
+
+        # Order symbols are assumed to be close to 0 from right:
+        for s in symbols:
+            assume_dict = {}
+            if not s.is_infinitesimal:
+                assume_dict['infinitesimal'] = True
+            if s.is_positive is None:
+                assume_dict['positive'] = True
+            if assume_dict: s.assume(**assume_dict)
+
+        # create Order instance:
         obj = Basic.__new__(cls, expr, *symbols, **assumptions)
-        Order._update_cache(obj, symbols)
+
+        # cache univariate Order symbols:
+        if len(symbols)>1:
+            for s in symbols:
+                Order(expr, s)._get_cache_index(s)
+        elif symbols:
+            obj._get_cache_index(symbols[0])
+
+        # cache multivariate Order symbols:
+        cache.append(obj)
+        Order._cache[symbols] = cache
+        
         return obj
+
+    def _get_cache_indices(obj, symbols):
+        return tuple([Order(obj.expr, s)._get_cache_index(s) for s in symbols])
+
+    def _get_cache_index(obj, symbol):
+        if len(obj.symbols)>1:
+            obj = Order(obj.expr, symbol)
+        elif not obj.symbols:
+            obj = Order(obj.expr, symbol)
+        cache = Order._cache.get(symbol,[])
+        try: return cache.index(obj)
+        except ValueError: pass
+        i = -1
+        for o in cache:
+            i += 1
+            l = (obj.expr/o.expr).limit(symbol, 0, direction='<')
+            if l.is_unbounded:
+                cache.insert(i,obj)
+                break
+            if l.is_bounded:
+                continue
+            print obj.expr/o.expr,l
+            raise NotImplementedError("failed to determine the inclusion relation between %s and %s (got lim=%s)" % (o, obj, l))
+        else:
+            cache.append(obj)
+        Order._cache[symbol] = cache
+        return cache.index(obj)
 
     @staticmethod
     def _update_cache(obj, symbols):
@@ -156,7 +219,7 @@ class Order(Basic, ArithMeths, RelMeths):
                 break
             if l.is_bounded:
                 continue
-            raise NotImplementedError("failed to determine the inclusion relation between %s and %s" % (o, obj))
+            raise NotImplementedError("failed to determine the inclusion relation between %s and %s (got lim=%s)" % (o, obj, l))
         else:
             cache.append(obj)
         Order._cache[symbols] = cache
@@ -191,22 +254,47 @@ class Order(Basic, ArithMeths, RelMeths):
         return self.expr, order_symbols
 
     def contains(self, expr):
+        """
+        Return True if expr belongs to Order(self.expr, *self.symbols).
+        Return False if self belongs to expr.
+        Return None if the inclusion relation cannot be determined (e.g. when self and
+        expr have different symbols).
+        """
+        if isinstance(expr, Basic.Zero):
+            return True
         if isinstance(expr, Order):
-            symbols = self.symbols
-            for s in expr.symbols:
-                if s not in symbols:
-                    symbols = symbols + (s,)
-            Order._update_cache(self, symbols) # make sure that expr is in proper cache
-            i2 = Order._update_cache(expr, symbols)
-            i1 = Order._update_cache(self, symbols)
-            return i1<=i2
-        obj = Order(expr, *expr.atoms(Basic.Symbol))
+            if self.symbols and expr.symbols:
+                common_symbols = tuple([s for s in self.symbols if s in expr.symbols])
+            elif self.symbols:
+                common_symbols = self.symbols
+            else:
+                common_symbols = expr.symbols
+            if not common_symbols:
+                if not (self.symbols or expr.symbols): # O(1),O(1)
+                    return True
+                return None
+            r = None
+            for s in common_symbols:
+                i1 = self._get_cache_index(s)
+                i2 = expr._get_cache_index(s)
+                if r is None:
+                    r = (i1<=i2)
+                else:
+                    if r != (i1<=i2):
+                        return None
+            return r
+        obj = Order(expr, *self.symbols)
         return self.contains(obj)
 
     def subs(self, old, new):
         old = Basic.sympify(old)
         if self==old:
             return Basic.sympify(new)
+        if isinstance(old, Basic.Symbol) and old in self.symbols:
+            i = list(self.symbols).index(old)
+            if isinstance(new, Basic.Symbol):
+                return Order(self.expr.subs(old, new), *(self.symbols[:i]+(new,)+self.symbols[i+1:]))
+            return Order(self.expr.subs(old, new), *(self.symbols[:i]+self.symbols[i+1:]))
         return Order(self.expr.subs(old, new), *self.symbols)
 
     def _calc_leadterm(self, x):
@@ -217,5 +305,5 @@ class Order(Basic, ArithMeths, RelMeths):
 
     def _calc_as_coeff_leadterm(self, x):
         return self.expr.as_coeff_leadterm(x)
-            
+
 Basic.singleton['O'] = lambda : Order

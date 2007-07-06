@@ -57,14 +57,34 @@ class Apply(Basic, ArithMeths, RelMeths):
     Apply(func, arg1, arg2, ..., **assumptions) <-> func(arg1, arg2, .., **assumptions)
     """
 
-    precedence = 70
+    precedence = Basic.Apply_precedence
 
     def __new__(cls, *args, **assumptions):
         args = map(Basic.sympify,args)
-        obj = args[0]._eval_apply(*args[1:])
+        func = args[0]
+        func_args = args[1:]
+
+        # f(g+O(h)) -> f(g) + O(f'(g)*h) if f'!=0, otherwise f(g) + O(f''(g)*h**2), etc.
+        i = -1
+        for a in func_args:
+            i += 1
+            a0,o0 = a.as_expr_orders()
+            if not isinstance(o0, Basic.Zero):
+                new_args = func_args[:i] + [a0,] + func_args[i+1:]
+                f = func
+                df = f
+                dfa = Basic.Zero()
+                n = 0
+                while isinstance(dfa, Basic.Zero) and not (isinstance(df, Lambda) and isinstance(df.body, Basic.Zero)):
+                    df = df.fdiff(i+1)
+                    dfa = df(*new_args)
+                    n += 1
+                return f(*new_args) + dfa * o0**n
+
+        obj = func._eval_apply(*func_args)
         if obj is None:
-            assert isinstance(args[0], Function),`args`
-            cls = getattr(Basic,'Apply'+args[0].__class__.__name__, cls)
+            assert isinstance(func, Function),`args`
+            cls = getattr(Basic,'Apply'+func.__class__.__name__, cls)
             obj = Basic.__new__(cls, *args, **assumptions)
         return obj
 
@@ -160,7 +180,22 @@ class Apply(Basic, ArithMeths, RelMeths):
     def _calc_as_coeff_leadterm(self, x):
         raise NotImplementedError("Apply%s._calc_as_coeff_leadterm(x)" % (self.func.__class__.__name__))
 
-        
+    def _eval_oseries(self, order):
+        assert self.func.nofargs==1,`self.func`
+        arg = self.args[0]
+        x = order.symbols[0]
+        if not Basic.Order(1,x).contains(arg):
+            return self.func(arg)
+        arg0 = arg.limit(x, 0)
+        if not isinstance(arg0, Basic.Zero):
+            e = self.func(arg)
+            e1 = e.expand()
+            if e==e1:
+                print '%s(%s).oseries(%s) is unevaluated' % (self.func,arg,order)
+                return
+            return e1.oseries(order)
+        return self._compute_oseries(arg, order, self.func.taylor_term, self.func)
+
 
 class Function(Basic, ArithMeths, NoRelMeths):
     """ Base class for function objects, represents also undefined functions.
@@ -269,6 +304,9 @@ class Function(Basic, ArithMeths, NoRelMeths):
             return Basic.Symbol(self.__class__.__name__.upper())
         return Basic.Integer(self.nofargs or 1)
 
+    def taylor_term(self, n, x, *previous_terms):
+        raise NotImplementedError('%s.taylor_term(..)' % (self))
+
 class WildFunction(Function):
 
     def matches(pattern, expr, repl_dict={}, evaluate=False):
@@ -328,7 +366,7 @@ class Lambda(Function):
 
     Lambda(Apply(g,x),x) -> g
     """
-    precedence = 1
+    precedence = Basic.Lambda_precedence
     name = None
     has_derivative = True
 
@@ -435,7 +473,7 @@ class Lambda(Function):
 
 class FPow(Function):
 
-    precedence = 70
+    precedence = Basic.Apply_precedence
 
     def __new__(cls, a, b, **assumptions):
         a = Basic.sympify(a)
@@ -620,7 +658,7 @@ class Derivative(Basic, ArithMeths, RelMeths):
     Derivative(Derivative(expr, x), y) -> Derivative(expr, x, y)
     """
 
-    precedence = 70
+    precedence = Basic.Apply_precedence
 
     def __new__(cls, expr, *symbols, **assumptions):
         expr = Basic.sympify(expr)
