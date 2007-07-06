@@ -294,3 +294,7 @@ If the match is successful, but the variables are not matched, they are simply n
     {}
 
 }}}
+
+= Modules =
+The following list provides links to documentation for some of the various modules !SymPy offers
+  * [http://code.google.com/p/sympy/wiki/GeometryModule Geometry Module]
