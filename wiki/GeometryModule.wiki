@@ -2,7 +2,7 @@
 #labels Phase-Implementation
 
 = Introduction =
-The geometry module for SymPy allows one to create two-dimensional geometrical entities, such as lines and circles, and query information about these entities. This could include asking the area of an ellipse, checking for collinearity of a set of points, or finding the intersection between two lines. The primary use case of the module involves entities with numerical values, but it is possible to also use symbolic representations.
+The geometry module for !SymPy allows one to create two-dimensional geometrical entities, such as lines and circles, and query information about these entities. This could include asking the area of an ellipse, checking for collinearity of a set of points, or finding the intersection between two lines. The primary use case of the module involves entities with numerical values, but it is possible to also use symbolic representations.
 
 = Available Entities =
 The following entities are currently available in the geometry module:
