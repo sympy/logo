@@ -6,17 +6,16 @@ This page documents the major changes made to !SymPy since the last release.
 
 == svn ==
 
-Currently the same as 0.4.1 version.
-
-== 0.4.1 ==
-
-  * added `sympy.modules.plotting.renderables` and `sympy.modules.plotting.scene` modules
   * augmented matrix manipulation including 2d slicing
   * general matrix inversion
   * LU decomposition (& associated linear solver)
   * sparse matrix implementation via python dictionaries
   * hessian, jacobian of matrices, cross/dot products
   * QR decomposition & the Gram-Schmidt procedure
+
+== 0.4.1 ==
+
+  * added `sympy.modules.plotting.renderables` and `sympy.modules.plotting.scene` modules
 
 == 0.4.0 ==
 
