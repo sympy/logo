@@ -8,6 +8,7 @@ http://sympy.googlecode.com/svn/trunk/doc/logo/sympy-160px.png
 
 ==News==
 
+  * *08 Jul 2007* Version 0.4.2 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *20 Jun 2007* Version 0.4.1 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *18 Jun 2007* Version 0.4.0 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *12 Apr 2007* The Google Summer of Code applications results are available. See [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007]
