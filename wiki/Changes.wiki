@@ -17,7 +17,7 @@ This page documents the major changes made to !SymPy since the last release.
   * hessian, jacobian of matrices, cross/dot products
   * QR decomposition & the Gram-Schmidt procedure
   * geometry module enhanced
-  * factorization ( factor(x**6-1) )
+  * factorization ( `factor(x**6-1)` )
 
 == 0.4.1 ==
 
