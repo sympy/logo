@@ -6,12 +6,17 @@ This page documents the major changes made to !SymPy since the last release.
 
 == svn ==
 
+  Currently the same as 0.4.2
+
+== 0.4.2 ==
+
   * augmented matrix manipulation including 2d slicing
   * general matrix inversion
   * LU decomposition (& associated linear solver)
   * sparse matrix implementation via python dictionaries
   * hessian, jacobian of matrices, cross/dot products
   * QR decomposition & the Gram-Schmidt procedure
+  * geometry module enhanced
 
 == 0.4.1 ==
 
