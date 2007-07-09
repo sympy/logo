@@ -196,6 +196,9 @@ class Apply(Basic, ArithMeths, RelMeths):
             return e1.oseries(order)
         return self._compute_oseries(arg, order, self.func.taylor_term, self.func)
 
+    def _eval_inflimit(self, x):
+        return self.func(*[a.inflimit(x) for a in self.args])
+
 
 class Function(Basic, ArithMeths, NoRelMeths):
     """ Base class for function objects, represents also undefined functions.
@@ -413,8 +416,8 @@ class Lambda(Function):
     def torepr(self):
         return '%s(%s)' % (self.__class__.__name__, ', '.join([a.torepr() for a in self]))
 
-    def as_coeff_terms(self):
-        c,t = self.body.as_coeff_terms()
+    def as_coeff_terms(self, x=None):
+        c,t = self.body.as_coeff_terms(x)
         return c, [Lambda(Basic.Mul(*t),*self.args)]
 
     def _eval_power(b, e):

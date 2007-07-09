@@ -139,7 +139,7 @@ class Number(Atom, RelMeths, ArithMeths):
     def __ge__(self, other):
         return Basic.sympify(other).__le__(self)
 
-    def as_coeff_terms(self):
+    def as_coeff_terms(self, x=None):
         # a -> c * t
         return self, []
 
@@ -379,6 +379,14 @@ class Rational(Number):
         if isinstance(other, Real):
             return Real(self._as_decimal() + other.num)
         if isinstance(other, Rational):
+            if self.is_unbounded:
+                if other.is_bounded:
+                    return self
+                elif self==other:
+                    return self
+            else:
+                if other.is_unbounded:
+                    return other
             return Rational(self.p * other.q + self.q * other.p, self.q * other.q)
         return Number.__add__(self, other)
 
@@ -572,6 +580,11 @@ class Zero(Singleton, Integer):
             if d.is_negative:
                 return Infinity()
             return b
+        coeff, terms = e.as_coeff_terms()
+        if coeff.is_negative:
+            return Infinity() ** Basic.Mul(*terms)
+        if not isinstance(coeff, Basic.One):
+            return b ** Basic.Mul(*terms)
 
     def _eval_order(self, *symbols):
         # Order(0,x) -> 0
@@ -714,6 +727,10 @@ class NaN(Singleton, Rational):
     def _as_decimal(self):
         return decimal.Decimal('NaN')
 
+    def _eval_power(b, e):
+        if isinstance(e, Basic.Zero):
+            return S.One
+        return b
 
 class NumberSymbol(Singleton, Atom, RelMeths, ArithMeths):
 

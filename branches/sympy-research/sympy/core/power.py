@@ -1,5 +1,6 @@
 
 from basic import Basic
+from basic import singleton as S
 from methods import ArithMeths, RelMeths, NoRelMeths
 
 class Pow(Basic, ArithMeths, RelMeths):
@@ -301,16 +302,17 @@ class Pow(Basic, ArithMeths, RelMeths):
             lt = b.as_leading_term(x)
             o = order * lt**(1-e)
             bs = b.oseries(o)
-            r = (bs**e).expand()
-            if isinstance(r, Basic.Add):
-                r = r.oseries(order)
-            return r
+            if isinstance(bs, Basic.Add):
+                # bs -> lt + rest -> lt * (1 + (bs/lt - 1))
+                return lt**e * ((bs/lt).expand()**e).oseries(order * lt**(-e))
+            return bs**e
         o = order * (b0**-e)
         # b -> b0 + (b-b0) -> b0 * (1 + (b/b0-1))
         z = (b/b0-1)
-        return self._compute_oseries(z, o, self.taylor_term, lambda z: 1+z) * b0**e
+        r = self._compute_oseries(z, o, self.taylor_term, lambda z: 1+z) * b0**e
+        return r
         
-    def as_leading_term(self, x):
+    def _eval_as_leading_term(self, x):
         if not self.exp.has(x):
             return self.base.as_leading_term(x) ** self.exp
         return Basic.Exp()(self.exp * Basic.Log()(self.base)).as_leading_term(x)
@@ -319,3 +321,12 @@ class Pow(Basic, ArithMeths, RelMeths):
         if n<0: return Basic.Zero()
         x = Basic.sympify(x)
         return Basic.Binomial()(self.exp, n) * x**n
+
+    def _eval_inflimit(self, x):
+        b,e = self.base, self.exp
+        if not e.has(x):
+            return b.inflimit(x) ** e
+        if not b.has(x):
+            return b ** e.inflimit(x)
+        return S.Exp(e * S.Log(b)).inflimit(x)
+    

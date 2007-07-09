@@ -1,5 +1,5 @@
 
-from basic import Basic
+from basic import Basic, S
 from methods import RelMeths, ArithMeths
 
 class Limit(Basic, RelMeths, ArithMeths):
@@ -10,6 +10,7 @@ class Limit(Basic, RelMeths, ArithMeths):
     """
 
     def __new__(cls, expr, x, xlim, direction='<', **assumptions):
+        raise 'aaa'
         expr = Basic.sympify(expr)
         x = Basic.sympify(x)
         xlim = Basic.sympify(xlim)
@@ -75,6 +76,14 @@ class MrvLimitInfProcess(Basic):
         return self._args[1]
 
     def doit(self):
+        r = self.expr.subs(self.var, Basic.Infinity())
+        if r.is_bounded:
+            return r
+        if self.expr==self.var:
+            return Basic.Infinity()
+        raise 'aa'
+        print self.expr
+        m = MrvExpr(self.expr, self.var)
         #return MrvExpr(self.expr, self.var).get_limit()
         #if self.expr==self.var:
         #    return Basic.Infinity()
@@ -216,7 +225,7 @@ def mrv_compare(f, g, x):
     if isinstance(g, Basic.ApplyExp): g = g.args[0]
     else: g = log(g)
     if 1:
-        c = (f/g).limit(x,Basic.Infinity())
+        c = (f/g).inflimit(x)
         #print c,f,g
         if c==0:
             return '<'
@@ -316,7 +325,8 @@ def mrv2(expr, x, d, md):
         return r
     if isinstance(expr, Basic.ApplyExp):
         e = expr.args[0]
-        l = e.limit(x,Basic.Infinity())
+        #l = e.limit(x,Basic.Infinity())
+        l = e.inflimit(x)
         r = exp(mrv2(e, x, d, md))
         if isinstance(l, Basic.Infinity):
             # e -> oo as x->oo
@@ -402,7 +412,9 @@ class MrvExpr(object):
         obj.w = Basic.Symbol('w',dummy=True,positive=True,infinitesimal=True)
         obj.rewrite_mrv_map()
         obj.rewrite_expr()
-        obj.leadterm_w = obj.newexpr_rw.as_coeff_leadterm(obj.w)
+        obj.leadterm_w = None #,obj.newexpr_rw.as_coeff_leadterm(obj.w)
+        obj.leadterm_w2 = obj.newexpr_rw.as_leading_term(obj.w)
+        #obj.leadterm_w0 = obj.leadterm_w2.limit(obj.w, 0)
         return obj
 
     def __str__(self):
@@ -423,6 +435,8 @@ class MrvExpr(object):
         l.append('FUNC(x):%s' % (self.func(self.x)))
         l.append('NEWEXPR_RW:%s' % (self.newexpr_rw))
         l.append('LEADTERM(%s):%s' % (self.w, `self.leadterm_w`))
+        l.append('LEADTERM2(%s):%s' % (self.w, `self.leadterm_w2`))
+        l.append('LEADTERM(%s->0):%s' % (self.w, `self.leadterm_w0`))
         return '\n'.join(l)
 
     def get_leadterm(self):
@@ -434,7 +448,7 @@ class MrvExpr(object):
             # c * exp(-e*s) * s**f
             c *= (-self.refgerm.args[0])**f
             print c,self.refgerm,f
-            assert e==0
+            assert e==0,`e`
             f = Basic.Zero()
         assert f==0,`c,e,f`
         if e==0 and c.has(self.x):
@@ -443,6 +457,14 @@ class MrvExpr(object):
         return c,e
 
     def get_limit(self):
+        r = self.leadterm_w0
+        #if r.has(self.x):
+        #    r = r.limit(self.x, Basic.Infinity())
+        return self.func(r)
+
+        if self.leadterm_w0==0:
+            return self.func(Basic.Zero())
+        
         c, e = self.get_leadterm()
         if e==0:
             return self.func(c)
@@ -533,3 +555,80 @@ class MrvExpr(object):
         if e0==0:
             return MrvExpr(c0, x).leadterm()
         return c0,e0
+
+def rewrite_mrv_map(mrv_map, x, w):
+    germs = mrv_map.keys()
+    germs.sort(cmp_ops_count)
+    if germs:
+        g = germs[0]
+        gname = mrv_map[g]
+        garg = g.args[0]
+    else:
+        g = None
+    d = {}
+    log = Basic.Log()
+    for germ in germs:
+        name = mrv_map[germ]
+        if name==gname:
+            d[name] = 1/w
+            continue
+        arg = germ.args[0]
+        c = (arg/garg).inflimit(x)
+        Aarg = arg-c*garg
+        Aarg = Aarg.subs(g, 1/w)
+        A = Basic.Exp()(Aarg)
+        new_germ = A * w ** -c
+        d[name] = new_germ
+    return g, d
+
+def rewrite_expr(expr, germ, mrv_map, w):
+    tmps = expr.atoms(Basic.Temporary)
+    e = expr
+    for t in tmps:
+        g = mrv_map.get(t, None)
+        if g is None: continue
+        e = e.subs(t, g)
+    if germ is not None:
+        mrvlog = S.MrvLog
+        log = S.Log
+        e = e.subs(log, mrvlog).subs(germ.args[0], -S.Log(w)).subs(mrvlog, log)
+    return e
+
+class MrvSet:
+
+    def __init__(self, expr, x, level=0):
+        self.expr = expr
+        self.x = x
+        self.expr_map, self.mrv_map = {}, {}
+        self.level = level
+        self.newexpr = None
+        self.new_expr = None
+
+    def mrvmap(self):
+        self.newexpr = mrv2(self.expr, self.x, self.expr_map, self.mrv_map)
+        if self.mrv_map.has_key(self.x):
+            m = MrvSet(self.expr.subs(self.x, S.Exp(self.x)), self.x, self.level+1)
+            em = m.mrv_map
+            for k,v in self.mrv_map.items():
+                em[k.subs(self.x, S.Exp(self.x))] = v.subs(self.x, S.Exp(self.x))
+            exm = m.expr_map
+            for k,v in self.expr_map.items():
+                exm[k.subs(self.x, S.Exp(self.x))] = v.subs(self.x, S.Exp(self.x))
+            m.newexpr = self.newexpr.subs(self.x, S.Exp(self.x))
+        else:
+            m = self
+        m.w = Basic.Symbol('w_0',dummy=True, positive=True, infinitesimal=True)
+        germ, new_mrv_map = rewrite_mrv_map(m.mrv_map, m.x, m.w)
+        m.new_expr = rewrite_expr(m.newexpr, germ, new_mrv_map, m.w)
+        return m
+
+    def __str__(self):
+        l = ['----------']
+        l.append('level=%s' % (self.level))
+        l.append('expr=%s' % (self.expr))
+        l.append('newexpr=%s' % (self.newexpr))
+        l.append('new_expr=%s' % (self.new_expr))
+        l.append('x=%s' % (self.x))
+        l.append('expr_map=%s' % (self.expr_map))
+        l.append('mrv_map=%s' % (self.mrv_map))
+        return '\n'.join(l)

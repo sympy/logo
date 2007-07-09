@@ -1,5 +1,6 @@
 
 from basic import Basic
+from basic import singleton as S
 from methods import ArithMeths, RelMeths
 
 class Order(Basic, ArithMeths, RelMeths):
@@ -64,13 +65,13 @@ class Order(Basic, ArithMeths, RelMeths):
     ======
     
       In O(f(x),x) the expression f(x) is assumed to have a leading term.
-      O(f(x),x) is automatically transformed to O(f(x).leading_term(x),x).
+      O(f(x),x) is automatically transformed to O(f(x).as_leading_term(x),x).
       O(expr*f(x),x) is O(f(x),x)
       O(expr,x) is O(1)
       O(0, x) is 0.
 
       Multivariate O is also supported:
-        O(f(x,y),x,y) is transformed to O(f(x,y).leading_term(x,y).leading_term(y), x, y)
+        O(f(x,y),x,y) is transformed to O(f(x,y).as_leading_term(x,y).as_leading_term(y), x, y)
 
       If O is used with only expression argument then the symbols are
       all symbols in the expression.
@@ -82,6 +83,8 @@ class Order(Basic, ArithMeths, RelMeths):
 
     def __new__(cls, expr, *symbols, **assumptions):
         expr = Basic.sympify(expr).expand()
+        if isinstance(expr, Basic.NaN):
+            return S.NaN
         
         if symbols:
             symbols = map(Basic.sympify, symbols)
@@ -128,7 +131,7 @@ class Order(Basic, ArithMeths, RelMeths):
                     lst = expr.extract_leading_order(*symbols)
                     expr = Basic.Add(*[f.expr for (e,f) in lst])
                 else:
-                    expr = expr.leading_term(*symbols) # need to get rid of this, use series
+                    expr = expr.as_leading_term(*symbols)
                     coeff, terms = expr.as_coeff_terms()
                     if isinstance(coeff, Basic.Zero):
                         return coeff
@@ -157,7 +160,8 @@ class Order(Basic, ArithMeths, RelMeths):
                 assume_dict['infinitesimal'] = True
             if s.is_positive is None:
                 assume_dict['positive'] = True
-            if assume_dict: s.assume(**assume_dict)
+            if assume_dict:
+                s.assume(**assume_dict)
 
         # create Order instance:
         obj = Basic.__new__(cls, expr, *symbols, **assumptions)
@@ -174,9 +178,6 @@ class Order(Basic, ArithMeths, RelMeths):
         Order._cache[symbols] = cache
         
         return obj
-
-    def _get_cache_indices(obj, symbols):
-        return tuple([Order(obj.expr, s)._get_cache_index(s) for s in symbols])
 
     def _get_cache_index(obj, symbol):
         if len(obj.symbols)>1:
@@ -200,29 +201,6 @@ class Order(Basic, ArithMeths, RelMeths):
         else:
             cache.append(obj)
         Order._cache[symbol] = cache
-        return cache.index(obj)
-
-    @staticmethod
-    def _update_cache(obj, symbols):
-        cache = Order._cache.get(symbols,[])
-        try: return cache.index(obj)
-        except ValueError: pass
-        assert isinstance(obj, Order),`obj`        
-        i = -1
-        for o in cache:
-            i += 1
-            l = obj.expr/o.expr
-            for s in symbols:
-                l = l.limit(s,0,direction='<')
-            if l.is_unbounded:
-                cache.insert(i,obj)
-                break
-            if l.is_bounded:
-                continue
-            raise NotImplementedError("failed to determine the inclusion relation between %s and %s (got lim=%s)" % (o, obj, l))
-        else:
-            cache.append(obj)
-        Order._cache[symbols] = cache
         return cache.index(obj)
 
     @property
@@ -297,13 +275,7 @@ class Order(Basic, ArithMeths, RelMeths):
             return Order(self.expr.subs(old, new), *(self.symbols[:i]+self.symbols[i+1:]))
         return Order(self.expr.subs(old, new), *self.symbols)
 
-    def _calc_leadterm(self, x):
-        return self.expr.leadterm(x)
-
     def _calc_splitter(self, d):
         return Basic.Zero()
-
-    def _calc_as_coeff_leadterm(self, x):
-        return self.expr.as_coeff_leadterm(x)
 
 Basic.singleton['O'] = lambda : Order

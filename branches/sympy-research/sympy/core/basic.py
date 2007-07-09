@@ -114,46 +114,6 @@ class Basic(BasicMeths):
     def _seq_evalf(self):
         return self.__class__(*[s.evalf() for s in self])
 
-    def expand(self):
-        if isinstance(self, Atom):
-            return self
-        return self.__class__(*[t.expand() for t in self], **self._assumptions)
-
-    def as_base_exp(self):
-        # a -> b ** e
-        return self, Basic.One()
-
-    def as_coeff_terms(self):
-        # a -> c * t
-        return Basic.One(), [self]
-
-    def as_indep_terms(self, x):
-        coeff, terms = self.as_coeff_terms()
-        indeps = [coeff]
-        new_terms = []
-        for t in terms:
-            if t.has(x):
-                new_terms.append(x)
-            else:
-                indeps.append(x)
-        return Mul(*indeps), Mul(*new_terms)
-
-    def as_coeff_factors(self, x=None):
-        # a -> c + f
-        if x is not None:
-            if not self.has(x):
-                return self, []
-        return Basic.Zero(), [self]
-
-    def as_numer_denom(self):
-        # a/b -> a,b
-        base, exp = self.as_base_exp()
-        coeff, terms = exp.as_coeff_terms()
-        if coeff.is_negative:
-            # b**-e -> 1, b**e
-            return Basic.One(), base ** (-exp)
-        return self, Basic.One()
-
     def has(self, *patterns):
         """
         Return True if self has any of the patterns.
@@ -210,41 +170,6 @@ class Basic(BasicMeths):
 
     def _calc_apply_real(self, *args):
         return
-
-    def diff(self, *symbols, **assumptions):
-        new_symbols = []
-        for s in symbols:
-            s = Basic.sympify(s)
-            if isinstance(s, Basic.Integer) and new_symbols:
-                last_s = new_symbols[-1]
-                i = int(s)
-                new_symbols += [last_s] * (i-1)
-            elif isinstance(s, Basic.Symbol):
-                new_symbols.append(s)
-            else:
-                raise TypeError(".diff() argument must be Symbol|Integer instance (got %s)" % (s.__class__.__name__))
-        ret = Basic.Derivative(self, *new_symbols, **assumptions)
-        return ret
-
-    def fdiff(self, *indices):
-        return Basic.FApply(Basic.FDerivative(*indices), self)
-
-    def integral(self, *symbols, **assumptions):
-        new_symbols = []
-        for s in symbols:
-            s = Basic.sympify(s)
-            if isinstance(s, Basic.Integer) and new_symbols:
-                last_s = new_symbols[-1]
-                i = int(s)
-                new_symbols += [last_s] * (i-1)
-            elif isinstance(s, (Basic.Symbol, Basic.Equality)):
-                new_symbols.append(s)
-            else:
-                raise TypeError(".integral() argument must be Symbol|Integer|Equality instance (got %s)" % (s.__class__.__name__))
-        return Basic.Integral(self, *new_symbols, **assumptions)
-
-    def __call__(self, *args):
-        return Basic.Apply(self, *args)
 
     def subs_dict(self, old_new_dict):
         r = self
@@ -338,128 +263,6 @@ class Basic(BasicMeths):
         # no linear symbol, return trivial solution
         return eqn, rhs
 
-    def ldegree(self, *symbols):
-        s = Basic.Zero()
-        f = Basic.Zero()
-        c0 = self
-        for x in symbols:
-            c0,e0,f0 = c0.as_coeff_leadterm(x)
-            assert f0==0,`c0,e0,f0`
-            s += e0
-            f += f0
-        return s
-
-    def leading_term(self, *symbols):
-        l = []
-        c0 = self
-        for x in symbols:
-            c0,e0,f0 = c0.as_coeff_leadterm(x)
-            l.append(x ** e0)
-            l.append(Basic.Log()(x)**f0)
-        l.append(c0)
-        return Basic.Mul(*l)
-
-    def _calc_as_coeff_leadterm(self, x):
-        raise NotImplementedError("%s._calc_as_coeff_leadterm(x)" % (self.__class__.__name__))
-
-    def as_coeff_leadterm(self, x):
-        """ Return (c, e, f) such that the leading term of an expression is c * x**e * ln(x)**f.
-        Here e,f are arbitrary real numbers.
-
-        In the limiting process x->0+ the leading terms are ordered as
-        follows
-        
-          0 < x**n < x < x**(1/n) < 1 < |ln(x)| < |ln(x)|^m < x**(-1/n) < 1/x < x**(-n) < +oo
-
-        for any positive integers n,m.
-        """
-        x = Basic.sympify(x)
-        if not isinstance(x, Basic.Symbol):
-            # f(x).leadterm(1+3*x) -> f((z-1)/3).leadterm(z)
-            z = Basic.Symbol('z',dummy=True)
-            x1, s1 = x.solve4linearsymbol(z)
-            res = self.subs(x1, s1).as_coeff_leadterm(z)
-            return res
-
-        self = self.as_leading_term(x)
-
-        numer, denom = self.as_numer_denom()
-
-        if denom.has(x):
-            nc,ne,nf = numer.as_coeff_leadterm(x)
-            dc,de,df = denom.as_coeff_leadterm(x)
-            res = nc/dc, ne-de, nf-df
-            return res
-
-        dc,de,df = denom, Basic.Zero(), Basic.Zero()
-        #assert dc!=0,`denom,dc, self`
-        
-        if not numer.has(x):
-            nc,ne,nf = numer, Basic.Zero(), Basic.Zero()
-        elif numer==x:
-            nc,ne,nf = Basic.One(), Basic.One(), Basic.Zero()
-        else:
-            nc,ne,nf = numer._calc_as_coeff_leadterm(x)
-
-        if nc==0 and not isinstance(numer, Basic.Zero):
-            assert nf==0 and ne>=0,`nc,ne,nf, self`
-            ne = Basic.Zero()
-            r = numer
-            while isinstance(nc, Basic.Zero):
-                ne += 1
-                r = r.diff(x)
-                #nc, e1,f1 = r.as_coeff_leadterm(x)
-                #nc = r.limit(x, 0)
-                nc = r.subs(x,0)
-            nc /= Basic.Factorial()(ne)
-
-        res = nc/dc, ne-de, nf-df
-
-        return res
-
-    def taylor_series(self, x, n=6):
-        """
-        Usage
-        =====
-            Return the Taylor series around 0 of self with respect to x until
-            the n-th term (default n is 6).
-        
-        Examples
-        ========
-
-        """
-        f = self
-        s = Basic.Zero()
-        j = 1
-        for i in range(0,n):
-            if i:
-                j *= i
-                f = f.diff(x)
-            t = (f.subs(x,0)/j)*(x**i)
-            if t.has(Basic.NaN()):
-                raise TypeError("cannot expand %s into Taylor series around %s=0, got nan term." % (self, x))                
-            s += t
-        if s==self:
-            return s
-        return s + Basic.Order(x**(n))
-
-    def power_series(self, x, n=6):
-        expr = self
-        s = Basic.Zero()
-        j = 1
-        for i in range(0,n):
-            ldi = expr.leading_term(x)
-            expr = expr - ldi
-            s += ldi
-        return s
-        
-    def series(self, *args, **parameters):
-        kind = parameters.pop('kind','taylor')
-        mth = getattr(self, kind+'_series', None)
-        if mth is None:
-            raise ValueError("%s does not define %s_series method" % (self.__class__,kind))
-        return mth(*args, **parameters)
-
     def _calc_splitter(self, d):
         if d.has_key(self):
             return d[self]
@@ -487,11 +290,14 @@ class Basic(BasicMeths):
         """
         return Basic.Integer(len(self[:])-1) + sum([t.count_ops(symbolic=symbolic) for t in self])
 
-    def limit(self, x, xlim, direction='<', **assumptions):
-        if isinstance(self, Basic.Apply) and self.func.nofargs==1:
-            arg = Basic.Limit(self.args[0], x, xlim, direction, **assumptions)
-            return self.func(arg)
-        return Basic.Limit(self, x, xlim, direction=direction, **assumptions)
+    ###################################################################################
+    ##################### EXPRESSION REPRESENTATION METHODS ###########################
+    ###################################################################################
+
+    def expand(self):
+        if isinstance(self, Atom):
+            return self
+        return self.__class__(*[t.expand() for t in self], **self._assumptions)
 
     def normal(self):
         n, d = self.as_numer_denom()
@@ -499,17 +305,43 @@ class Basic(BasicMeths):
             return n
         return n/d
 
-    def as_coeff_exponent(self, x):
-        """ c*x**e -> c,e where x can be any symbolic expression.
-        """
-        x = Basic.sympify(x)
-        wc = Basic.Wild()
-        we = Basic.Wild()
-        p  = wc*x**we
-        d = self.match(p)
-        if d is not None:
-            return d[wc], d[we]
-        return self, Basic.Zero()
+    def as_base_exp(self):
+        # a -> b ** e
+        return self, Basic.One()
+
+    def as_coeff_terms(self, x=None):
+        # a -> c * t
+        if x is not None:
+            if not self.has(x):
+                return self, []
+        return Basic.One(), [self]
+
+    def as_indep_terms(self, x):
+        coeff, terms = self.as_coeff_terms()
+        indeps = [coeff]
+        new_terms = []
+        for t in terms:
+            if t.has(x):
+                new_terms.append(x)
+            else:
+                indeps.append(x)
+        return Mul(*indeps), Mul(*new_terms)
+
+    def as_coeff_factors(self, x=None):
+        # a -> c + f
+        if x is not None:
+            if not self.has(x):
+                return self, []
+        return Basic.Zero(), [self]
+
+    def as_numer_denom(self):
+        # a/b -> a,b
+        base, exp = self.as_base_exp()
+        coeff, terms = exp.as_coeff_terms()
+        if coeff.is_negative:
+            # b**-e -> 1, b**e
+            return Basic.One(), base ** (-exp)
+        return self, Basic.One()
 
     def as_expr_orders(self):
         """ Split expr + Order(..) to (expr, Order(..)).
@@ -528,23 +360,62 @@ class Basic(BasicMeths):
             l1.append(self)
         return Basic.Add(*l1), Basic.Add(*l2)
 
-    def as_a_plus_b(self,x):
-        """
-        Return (a,b) such that expression is a*(1 + b/a),
-        |b/a|<<1 in the process x->0+.
-        If such a split is not possible then return (0, self).
-        """
-        coeff, factors = self.as_coeff_factors(x)
-        rest = Basic.Add(*factors)
-        rest0 = rest.subs(x,0) # todo: replace with limit process x->0+.
-        if rest0.is_unbounded:
-            b, a = coeff, rest
-        else:
-            a, b = coeff, rest
-        return a, b
+    ###################################################################################
+    ##################### DERIVATIVE, INTEGRAL, FUNCTIONAL METHODS ####################
+    ###################################################################################
 
-    def _eval_oseries(self, order):
-        return
+    def diff(self, *symbols, **assumptions):
+        new_symbols = []
+        for s in symbols:
+            s = Basic.sympify(s)
+            if isinstance(s, Basic.Integer) and new_symbols:
+                last_s = new_symbols[-1]
+                i = int(s)
+                new_symbols += [last_s] * (i-1)
+            elif isinstance(s, Basic.Symbol):
+                new_symbols.append(s)
+            else:
+                raise TypeError(".diff() argument must be Symbol|Integer instance (got %s)" % (s.__class__.__name__))
+        ret = Basic.Derivative(self, *new_symbols, **assumptions)
+        return ret
+
+    def fdiff(self, *indices):
+        return Basic.FApply(Basic.FDerivative(*indices), self)
+
+    def integral(self, *symbols, **assumptions):
+        new_symbols = []
+        for s in symbols:
+            s = Basic.sympify(s)
+            if isinstance(s, Basic.Integer) and new_symbols:
+                last_s = new_symbols[-1]
+                i = int(s)
+                new_symbols += [last_s] * (i-1)
+            elif isinstance(s, (Basic.Symbol, Basic.Equality)):
+                new_symbols.append(s)
+            else:
+                raise TypeError(".integral() argument must be Symbol|Integer|Equality instance (got %s)" % (s.__class__.__name__))
+        return Basic.Integral(self, *new_symbols, **assumptions)
+
+    def __call__(self, *args):
+        return Basic.Apply(self, *args)
+
+    ###################################################################################
+    ##################### SERIES, LEADING TERM, LIMIT, ORDER METHODS ##################
+    ###################################################################################
+
+    def series(self, x, n = 6):
+        """
+        Usage
+        =====
+            Return the Taylor series around 0 of self with respect to x until
+            the n-th term (default n is 6).
+
+        Notes
+        =====
+            For computing power series, use oseries() method.
+        """
+        x = Basic.sympify(x)
+        return self.oseries(Basic.Order(x**n,x))
 
     def oseries(self, order):
         """
@@ -570,14 +441,14 @@ class Basic(BasicMeths):
             return self
         obj = self._eval_oseries(order)
         if obj is not None:
-            return obj
-        raise NotImplementedError('(%s).oseries(%s)' % (self, order))
+            obj2 = obj.expand()
+            if obj2 != obj:
+                return obj2.oseries(order)
+            return obj2
+        raise NotImplementedError('(%s).oseries(%s)' % (self, order))    
 
-    def leading_term(self, *symbols):
-        c0 = self
-        for x in symbols:
-            c0 = c0.as_leading_term(x)
-        return c0
+    def _eval_oseries(self, order):
+        return
 
     def _compute_oseries(self, arg, order, taylor_term, unevaluated_func, correction = 0):
         """
@@ -586,7 +457,11 @@ class Basic(BasicMeths):
         """
         x = order.symbols[0]
         ln = Basic.Log()
-        n = (ln(order.expr)/ln(arg.as_leading_term(x))).limit(x,0) + correction
+        o = Basic.Order(arg*x, x)
+        if isinstance(o, Basic.Zero):
+            return unevaluated_func(arg)
+        e = ln(order.expr)/ln(o.expr)
+        n = e.limit(x,0) + 1 + correction
         if n.is_unbounded:
             # requested accuracy gives infinite series,
             # order is probably nonpolynomial e.g. O(exp(-1/x), x).
@@ -600,6 +475,133 @@ class Basic(BasicMeths):
             g = g.oseries(order)
             l.append(g)
         return Basic.Add(*l)
+
+    def limit(self, x, xlim, direction='<'):
+        """ Compute limit x->xlim.
+        """
+        x = Basic.sympify(x)
+        xlim = Basic.sympify(xlim)
+        if not self.has(x): return self
+        if isinstance(xlim, Basic.Infinity):
+            return self.inflimit(x)
+        var = Basic.Symbol(x.name+'_oo',dummy=True,positive=True,unbounded=True)
+        if isinstance(xlim, Basic.NegativeInfinity): 
+            return self.subs(x,-var).inflimit(var)
+        if direction=='<':
+            return self.subs(x, xlim+1/var).inflimit(var)
+        if direction=='>':
+            return self.subs(x, xlim-1/var).inflimit(var)
+        raise ValueError("Limit direction must be < or > (got %s)" % (direction))
+
+    def inflimit(self, x, _xoo_cache={}, _inflimit_cache={}):
+        x = Basic.sympify(x)
+        assert isinstance(x,Basic.Symbol),`x`
+        if not self.has(x):
+            return self
+        try:
+            xoo = _xoo_cache['xoo']
+        except KeyError:
+            xoo = _xoo_cache['xoo'] = Basic.Symbol('_oo', dummy=True, unbounded=True, positive=True)
+        use_cache = True
+        if not self.has(xoo):
+            expr = self.subs(x, xoo)
+        elif x==xoo:
+            expr = self
+        else:
+            xoo = Basic.Symbol(x.name + '_oo', dummy=True, unbounded=True, positive=True)
+            expr = self.subs(x, xoo)
+            use_cache = False
+
+        cache = _inflimit_cache
+        if use_cache:
+            try:
+                return cache[expr]
+            except KeyError:
+                pass
+
+        obj = expr._eval_inflimit(xoo)
+
+        if obj is not None and not isinstance(obj, Basic.NaN):
+            if use_cache:
+                cache[expr] = obj
+            return obj
+
+        obj = expr._eval_mrv_inflimit(xoo)
+
+        if use_cache:
+            cache[expr] = obj
+        return obj
+
+    def _eval_mrv_inflimit(self, x):
+        from limit import mrv2, rewrite_mrv_map, rewrite_expr, MrvSet
+        expr_map = {}
+        mrv_map = {}
+        newexpr = mrv2(self, x, expr_map, mrv_map)
+        if mrv_map.has_key(x):
+            t = Basic.Temporary(unbounded=True, positive=True)
+            return self.subs(S.Log(x),t).subs(x, S.Exp(t)).subs(t, x)._eval_mrv_inflimit(x)
+        w = Basic.Symbol('w_0',dummy=True, positive=True, infinitesimal=True)
+        germ, new_mrv_map = rewrite_mrv_map(mrv_map, x, w)
+        new_expr = rewrite_expr(newexpr, germ, new_mrv_map, w)
+        lt = new_expr.as_leading_term(w)
+        if germ is not None:
+            lt = lt.subs(S.Log(w), -germ.args[0])
+        c,e = lt.as_coeff_exponent(w)
+        assert not c.has(w),`c`
+        if e==0:
+            return c.inflimit(x)
+        if e.is_positive:
+            return S.Zero
+        if e.is_negative:
+            return S.Sign(c) * S.Infinity
+        raise RuntimeError('Failed to compute as_mrv_leading_term(%s, %s), got lt=%s' % (self, x, lt))
+
+    def as_leading_term(self, *symbols, **_cache):
+        if len(symbols)>1:
+            c = self
+            for x in symbols:
+                c = c.as_leading_term(x)
+            return c
+        elif not symbols:
+            return self
+        x = Basic.sympify(symbols[0])
+        assert isinstance(x, Basic.Symbol),`x`
+        r = _cache.get((self,x),None)
+        if r is not None:
+            return r
+        if not self.has(x):
+            _cache[(self,x)] = self
+            return self
+        expr = self.expand()
+        obj = expr._eval_as_leading_term(x)
+        if obj is not None:
+            _cache[(self,x)] = obj
+            return obj
+        raise NotImplementedError('as_leading_term(%s, %s)' % (self, x))
+
+    def as_coeff_exponent(self, x):
+        """ c*x**e -> c,e where x can be any symbolic expression.
+        """
+        x = Basic.sympify(x)
+        wc = Basic.Wild()
+        we = Basic.Wild()
+        c, terms = self.as_coeff_terms()
+        p  = wc*x**we
+        d = self.match(p)
+        if d is not None:
+            return d[wc], d[we]
+        return self, Basic.Zero()
+
+    def ldegree(self, x):
+        x = Basic.sympify(x)
+        c,e = self.as_leading_term(x).as_coeff_exponent(x)
+        if not c.has(x):
+            return e
+        raise ValueError("cannot compute ldegree(%s, %s), got c=%s" % (self, x, c))
+
+    ##########################################################################
+    ##################### END OF BASIC CLASS #################################
+    ##########################################################################
 
 class Atom(Basic):
 
@@ -637,7 +639,11 @@ class Atom(Basic):
         # .oseries() method checks for order.contains(self)
         return self
 
-    def as_leading_term(self, x):
+    def _eval_inflimit(self, x):
+        if self==x: return S.Infinity
+        return self
+
+    def _eval_as_leading_term(self, x):
         return self
 
 class Singleton(Basic):
@@ -668,6 +674,6 @@ class SingletonFactory:
             setattr(self, clsname, obj)
         return obj
 
-singleton = SingletonFactory()
+S = singleton = SingletonFactory()
 
 import parser

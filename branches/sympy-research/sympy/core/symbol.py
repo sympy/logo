@@ -1,5 +1,6 @@
 
 from basic import Basic, Atom
+from basic import singleton as S
 from methods import RelMeths, ArithMeths
 
 class Symbol(Atom, RelMeths, ArithMeths):

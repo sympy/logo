@@ -13,13 +13,11 @@ class MrvCompareLeadTerm(unittest.TestCase):
     def test_simple_1(self):
         self.assertEquals(mrv_compare(x,x,x),'=')
 
-
     def test_simple_2(self):
         self.assertEquals(mrv_compare(x,ln(x),x),'>')
         self.assertEquals(mrv_compare(ln(x),x,x),'<')
 
-
-class MrvTestCase(unittest.TestCase):
+class _MrvTestCase:#(unittest.TestCase):
 
     def test_simple_x(self):
         expr = x + 1/x
@@ -178,50 +176,6 @@ class MrvTestCase(unittest.TestCase):
         r = mrv2(expr1,x,d,md)
         self.assertEquals(set(md.keys()),set([exp(x*exp(x))]))
 
-class MrvExprTestCase(unittest.TestCase):
-
-    def test_simple_0(self):
-        expr = 3
-        m = MrvExpr(expr, x)
-        self.assertEquals(m.get_limit(),3)
-
-    def test_simple_1(self):
-        expr = x
-        m = MrvExpr(expr, x)
-        self.assertEquals(m.get_limit(),oo)
-
-    def test_simple_2(self):
-        expr = 1/x
-        m = MrvExpr(expr, x)
-        self.assertEquals(m.get_limit(),0)
-
-    def test_simple_3(self):
-        expr = exp(x)
-        m = MrvExpr(expr, x)
-        self.assertEquals(m.get_limit(),oo)
-
-    def test_simple_4(self):
-        expr = exp(-x)
-        m = MrvExpr(expr, x)
-        self.assertEquals(m.get_limit(),0)
-
-    def test_page2(self):
-        expr = x**7/exp(x)
-        m = MrvExpr(expr, x)
-        self.assertEquals(m.get_limit(),0)
-
-    def test_page4(self):
-        expr = 1/((1/x)**(log(log(log(log(x))))-1))
-        m = MrvExpr(expr, x)
-        self.assertEquals(m.get_limit(),oo)
-
-    def test_page12_ex2_5(self):
-        expr = sqrt(ln(x+1))-sqrt(ln(x))
-        m = MrvExpr(expr, x)
-        print m
-        print m.get_limit()
-        #self.assertEquals(m.get_limit(),0)
-
 
 class MrvLimitTestCase(unittest.TestCase):
 
@@ -272,7 +226,6 @@ class MrvLimitTestCase(unittest.TestCase):
         x = Symbol('x')
         n = Symbol('n',positive=1)
         m = Symbol('m',positive=1)
-        #n,m = Integer(1),Integer(2)
         expr = (x**(1/n)-1)/(x**(1/m)-1)
         self.assertEquals(expr.limit(x,1),m/n)
 
@@ -314,13 +267,13 @@ class MrvLimitTestCase(unittest.TestCase):
         self.assertEquals(expr.limit(x,oo),exp(-Rational(1,2)))
 
     def test_page18_ex2_15(self):
-        x = Symbol('x')
+        #x = Symbol('x')
         expr = exp(exp(exp(exp(x-1/exp(x)))))/exp(exp(exp(exp(x))))
         expr = exp(exp(exp(exp(x-1/exp(x))))-exp(exp(exp(x))))
         #expr = exp(exp(exp(x-1/exp(x))))-exp(exp(exp(x)))
         self.assertEquals(expr.limit(x,oo),0)
-        e = MrvExpr(expr, x)
-        print e
+        #e = MrvExpr(expr, x)
+        #print e
         
     def test_page27_ex2_17(self):
         x = Symbol('x')
@@ -340,9 +293,7 @@ class MrvLimitTestCase(unittest.TestCase):
     def test_page47_ex3_21(self):
         h = exp(-x/(1+exp(-x)))
         expr = exp(h)*exp(-x/(1+h))*exp(exp(-x+h))/h**2-exp(x)+x
-        #expr = exp(h-x/(1+h)+exp(-x+h)+2*x/(1+exp(-x)))-exp(x)+x
-        #self.assertEquals(expr.limit(x,oo),2)
-        e = MrvExpr(expr, x)
+        self.assertEquals(expr.limit(x,oo),2)
         
     def test_page47_ex3_21_1(self):
         expr = exp((-x) / (1 + exp(-x)))
@@ -352,7 +303,6 @@ class MrvLimitTestCase(unittest.TestCase):
         expr = (ln(ln(x)+ln(ln(x)))-ln(ln(x)))/ln(ln(x)+ln(ln(ln(x))))*ln(x)
         self.assertEquals(expr.limit(x,oo),1)
 
-        
     def test_bug_0(self):
         expr = ln(x+x**2)/ln(x) # (ln(x)+ln(1+x))/ln(x)
         self.assertEquals(expr.limit(x,0),0)

@@ -24,9 +24,11 @@ class Exp(DefinedFunction):
             if isinstance(arg, Basic.One):
                 return S.Exp1
             if isinstance(arg, Basic.Infinity):
-                return arg
+                return S.Infinity
             if isinstance(arg, Basic.NegativeInfinity):
                 return S.Zero
+            if isinstance(arg, Basic.NaN):
+                return S.NaN
         elif isinstance(arg, ApplyLog):
             return arg.args[0]
         elif isinstance(arg, (Basic.Add, Basic.Mul)):
@@ -38,10 +40,29 @@ class Exp(DefinedFunction):
             al = []
             for f in args:
                 coeff, terms = f.as_coeff_terms()
-                if len(terms)==1 and isinstance(terms[0], Basic.ApplyLog):
+                if isinstance(coeff, Basic.Infinity):
+                    l.append(coeff**Basic.Mul(*terms))
+                elif len(terms)==1 and isinstance(terms[0], Basic.ApplyLog):
                     l.append(terms[0].args[0]**coeff)
                 else:
-                    al.append(f)
+                    lt = None
+                    cl = [coeff]
+                    for t in terms:
+                        if isinstance(t, Basic.ApplyLog):
+                            if lt is None:
+                                lt = t
+                            else:
+                                lt = None
+                                break
+                        elif t.is_comparable:
+                            cl.append(t)
+                        else:
+                            lt = None
+                            break
+                    if lt is not None:
+                        l.append(lt.args[0] ** Basic.Mul(*cl))
+                    else:
+                        al.append(f)
             if l:
                 return Basic.Mul(*(l+[self(Basic.Add(*al))]))
                 
@@ -83,8 +104,11 @@ class ApplyExp(Apply):
         coeff, terms = self.args[0].as_coeff_terms()
         return self.func(Basic.Mul(*terms)), coeff
 
-    def as_coeff_terms(self):
+    def as_coeff_terms(self, x=None):
         arg = self.args[0]
+        if x is not None:
+            c,f = arg.as_coeff_factors(x)
+            return self.func(c), [self.func(a) for a in f]
         if isinstance(arg, Basic.Add):
             return Basic.One(), [self.func(a) for a in arg]
         return S.One,[self]
@@ -102,10 +126,9 @@ class ApplyExp(Apply):
             bo,eo = old.as_base_exp()
             if b==bo:
                 return new ** (e/eo) # exp(2/3*x*3).subs(exp(3*x),y) -> y**(2/3)
-            if 1 and isinstance(arg, Basic.Add): # exp(2*x+a).subs(exp(3*x),y) -> y**(2/3) * exp(a)
+            if isinstance(arg, Basic.Add): # exp(2*x+a).subs(exp(3*x),y) -> y**(2/3) * exp(a)
                 # exp(exp(x) + exp(x**2)).subs(exp(exp(x)), w) -> w * exp(exp(x**2))
                 oarg = old.args[0]
-
                 new_l = []
                 old_al = []
                 coeff2,terms2 = oarg.as_coeff_terms()
@@ -119,12 +142,8 @@ class ApplyExp(Apply):
                 if new_l:
                     new_l.append(self.func(Basic.Add(*old_al)))
                     r = Basic.Mul(*new_l)
-                    #print 'SELF=',self
-                    #print '[%s->%s]' % (old,new)
-                    #print 'RESULT=',r
                     return r
         old = o
-
         return self.func(arg.subs(old, new))
 
     def _eval_is_real(self):
@@ -142,52 +161,25 @@ class ApplyExp(Apply):
     def _eval_power(b, e):
         return b.func(b.args[0] * e)
 
-    def _calc_as_coeff_leadterm(self, x):
-        arg = self.args[0]
-        func = self.func
-        if isinstance(arg, Basic.Add):
-            return Basic.Mul._seq_as_coeff_leadterm([func(t).as_coeff_leadterm(x) for t in arg])
-        c, e, f = arg.as_coeff_leadterm(x)
-        # exp(c * x**e * log(x)**f)
-        if e.is_positive:
-            return Basic.One(), Basic.Zero(), Basic.Zero()
-        if isinstance(e, Basic.Zero):
-            # exp(c * log(x)**f) -> (exp(log(x)**f))**c
-            if isinstance(f, Basic.Zero):
-                return func(c), Basic.Zero(), Basic.Zero() # exp(c)
-            if isinstance(f, Basic.One) and c.is_comparable:
-                return Basic.One(),c,Basic.Zero()          # x ** c
-        return func(c*x**e*Log()(x)**f), Basic.Zero(), Basic.Zero()
-        if f<=0 and c.is_positive and e.is_negative: # essential singularity exp(1/x)
-            return Basic.Infinity(),Basic.Zero(),Basic.Zero()
-        if f>0 and c.is_positive and e.is_negative:
-            if f.is_odd: # exp(ln(x)/x) -> 0
-                return Basic.Zero(),Basic.Zero(),Basic.Zero()
-            if f.is_even:
-                return Basic.Infinity(),Basic.Zero(),Basic.Zero()
-        print c._assumptions, x._assumptions, arg[1].args[0]._assumptions
-        raise NotImplementedError("leading term of %s(%s) -> %s((%s) * (%s)**(%s) * log(%s)**(%s)) at %s=0" % (func,arg,func,c,x,e,x,f, x))
-
     def _eval_oseries(self, order):
         arg = self.args[0]
         x = order.symbols[0]
-        exp = S.Exp
-        ln = S.Log
         if not Basic.Order(1,x).contains(arg): # singularity
-            # arg = lt + (arg-lt)
-            lt = arg.as_leading_term(x)
-            return exp(lt) * exp(arg-lt).oseries(order * exp(-lt))
-        arg0 = arg.limit(x, S.Zero)
-        if not isinstance(arg0, Basic.Zero):
-            return exp(arg0) * exp(arg-arg0).oseries(order * exp(-arg0))
-        return self._compute_oseries(arg, order, exp.taylor_term, exp)
+            arg0 = arg.as_leading_term(x)
+            d = (arg-arg0).limit(x, S.Zero)
+            if not isinstance(d, Basic.Zero):
+                return S.Exp(arg)
+        else:
+            arg0 = arg.limit(x, S.Zero)
+        o = order * S.Exp(-arg0)
+        return self._compute_oseries(arg-arg0, o, S.Exp.taylor_term, S.Exp) * S.Exp(arg0)
 
-    def as_leading_term(self, x):
-        arg = self.args[0].expand()
+    def _eval_as_leading_term(self, x):
+        arg = self.args[0]
         if isinstance(arg, Basic.Add):
             return Basic.Mul(*[S.Exp(f).as_leading_term(x) for f in arg])
         arg = self.args[0].as_leading_term(x)
-        if Basic.Order(x).contains(arg):
+        if Basic.Order(1,x).contains(arg):
             return S.One
         return S.Exp(arg)
 
@@ -219,7 +211,9 @@ class Log(DefinedFunction):
             if isinstance(arg, Basic.One):
                 return S.Zero
             if isinstance(arg, Basic.Infinity):
-                return arg
+                return S.Infinity
+            if isinstance(arg, Basic.NaN):
+                return S.NaN
             if arg.is_negative:
                 return S.Pi * S.ImaginaryUnit + self(-arg)
         elif isinstance(arg, Basic.Pow) and isinstance(arg.exp, Basic.Number):
@@ -311,11 +305,24 @@ class ApplyLog(Apply):
         z = (arg/arg0 - 1)
         return self._compute_oseries(z, order, ln.taylor_term, lambda z: ln(1+z)) + ln(arg0)
 
-    def as_leading_term(self, x):
+    def _eval_as_leading_term(self, x):
         arg = self.args[0].as_leading_term(x)
         if isinstance(arg, Basic.One):
             return (self.args[0] - 1).as_leading_term(x)
         return self.func(arg)
+
+class MrvLog(Log):
+    pass
+
+class ApplyMrvLog(ApplyLog):
+
+    def subs(self, old, new):
+        old = Basic.sympify(old)
+        new = Basic.sympify(new)
+        if old==self.func:
+            arg = self.args[0]
+            return new(arg.subs(old, new))
+        return self
 
 class Sqrt(DefinedFunction):
 
@@ -333,6 +340,12 @@ class Sqrt(DefinedFunction):
 
     def _eval_apply(self, arg):
         if isinstance(arg, Basic.Number):
+            if isinstance(arg, Basic.NaN):
+                return S.NaN
+            if isinstance(arg, Basic.Infinity):
+                return S.Infinity
+            if isinstance(arg, Basic.NegativeInfinity):
+                return S.ImaginaryUnit * S.Infinity
             if isinstance(arg, Basic.Rational):
                 factors = arg.factors()
                 sqrt_factors = {}
@@ -389,6 +402,8 @@ class Abs(DefinedFunction):
         raise TypeError("argindex=%s is out of range [1,1] for %s" % (argindex,self))
 
     def _eval_apply(self, arg):
+        if isinstance(arg, Basic.NaN):
+            return S.NaN
         if arg.is_positive: return arg
         if arg.is_negative: return -arg
         coeff, terms = arg.as_coeff_terms()
@@ -427,6 +442,8 @@ class Sin(DefinedFunction):
 
     def _eval_apply(self, arg):
         if isinstance(arg, Basic.Number):
+            if isinstance(arg, Basic.NaN):
+                return S.NaN
             if isinstance(arg, Basic.Zero):
                 return arg
         c = Pi_coeff(arg)
@@ -488,12 +505,9 @@ class ApplySin(Apply):
             return (sin(x)*cos(y) + sin(y)*cos(x)).expand()
         return sin(arg)
 
-    def as_leading_term(self, x):
-        e = self.expand()
-        if e!=self:
-            return e.as_leading_term(x)
+    def _eval_as_leading_term(self, x):
         arg = self.args[0].as_leading_term(x)
-        if Basic.Order(x).contains(arg):
+        if Basic.Order(1,x).contains(arg):
             return arg
         return self.func(arg)
 
@@ -511,6 +525,8 @@ class Cos(DefinedFunction):
 
     def _eval_apply(self, arg):
         if isinstance(arg, Basic.Number):
+            if isinstance(arg, Basic.NaN):
+                return S.NaN
             if isinstance(arg, Basic.Zero):
                 return Basic.One()
         c = Pi_coeff(arg)
@@ -570,12 +586,9 @@ class ApplyCos(Apply):
                 return Basic.Chebyshev(coeff)(cos(x)).expand()
         return cos(arg)
 
-    def as_leading_term(self, x):
-        e = self.expand()
-        if e!=self:
-            return e.as_leading_term(x)
+    def _eval_as_leading_term(self, x):
         arg = self.args[0].as_leading_term(x)
-        if Basic.Order(x).contains(arg):
+        if Basic.Order(1,x).contains(arg):
             return Basic.One()
         return self.func(arg)
 
@@ -594,6 +607,8 @@ class Tan(DefinedFunction):
 
     def _eval_apply(self, arg):
         if isinstance(arg, Basic.Number):
+            if isinstance(arg, Basic.NaN):
+                return S.NaN
             if isinstance(arg, Basic.Zero):
                 return arg
         return
@@ -619,6 +634,8 @@ class Sign(DefinedFunction):
     nofargs = 1
 
     def _eval_apply(self, arg):
+        if isinstance(arg, Basic.NaN):
+            return S.NaN
         if isinstance(arg, Basic.Zero): return Basic.One()
         if arg.is_positive: return Basic.One()
         if arg.is_negative: return -Basic.One()

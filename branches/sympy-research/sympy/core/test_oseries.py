@@ -55,11 +55,11 @@ class OSeriesTestCase(unittest.TestCase):
     def test_exp_1(self):
         self.assertEqual(exp(x).oseries(x**5),1+x+x**2/2+x**3/6+x**4/24)
         self.assertEqual(exp(1/x).oseries(x**5),exp(1/x))
-        self.assertEqual(exp(1/(1+x)).oseries(x**4),E*(1-x-13*x**3/6+3*x**2/2))
-        self.assertEqual(exp(2+x).oseries(x**5),exp(2)*(1+x+x**2/2+x**3/6+x**4/24))
+        self.assertEqual(exp(1/(1+x)).oseries(x**4),(E*(1-x-13*x**3/6+3*x**2/2)).expand())
+        self.assertEqual(exp(2+x).oseries(x**5),(exp(2)*(1+x+x**2/2+x**3/6+x**4/24)).expand())
 
     def test_exp_sqrt_1(self):
-        self.assertEqual(exp(1+sqrt(x)).oseries(x**2),exp(1)*(1+sqrt(x)+x/2+sqrt(x)*x/6))
+        self.assertEqual(exp(1+sqrt(x)).oseries(x**2),(exp(1)*(1+sqrt(x)+x/2+sqrt(x)*x/6)).expand())
 
     def test_power_x_x(self):
         self.assertEqual((exp(x*ln(x))).oseries(x**3),1+x*log(x)+x**2*log(x)**2/2+x**3*log(x)**3/6)

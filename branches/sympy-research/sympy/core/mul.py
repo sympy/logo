@@ -78,10 +78,31 @@ class Mul(AssocOp, RelMeths, ArithMeths):
                     c_part.append(b)
             else:
                 c_part.append(Basic.Pow(b, e))
-        if not isinstance(coeff, Basic.One):
+        if isinstance(coeff, (Basic.Infinity, Basic.NegativeInfinity)):
+            new_c_part = []
+            for t in c_part:
+                if t.is_positive:
+                    continue
+                if t.is_negative:
+                    coeff = -coeff
+                    continue
+                new_c_part.append(t)
+            c_part = new_c_part
+            new_nc_part = []
+            for t in nc_part:
+                if t.is_positive:
+                    continue
+                if t.is_negative:
+                    coeff = -coeff
+                    continue
+                new_nc_part.append(t)
+            nc_part = new_nc_part
             c_part.insert(0, coeff)
-        if isinstance(coeff, Basic.Zero):
-            c_part, nc_part = [coeff],[]
+        elif isinstance(coeff, (Basic.Zero, Basic.NaN)):
+            c_part, nc_part = [coeff],[]            
+        elif not isinstance(coeff, Basic.One):
+            c_part.insert(0, coeff)
+
         c_part.sort(Basic.compare)
         if len(c_part)==2 and isinstance(c_part[0], Basic.Number) and isinstance(c_part[1], Basic.Add):
             # 2*(1+a) -> 2 + 2 * a
@@ -152,7 +173,16 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             return '(%s)' % r
         return r
 
-    def as_coeff_terms(self):
+    def as_coeff_terms(self, x=None):
+        if x is not None:
+            l1 = []
+            l2 = []
+            for f in self:
+                if f.has(x):
+                    l2.append(f)
+                else:
+                    l1.append(f)
+            return Mul(*l1), l2
         coeff = self[0]
         if isinstance(coeff, Basic.Number):
             return coeff, list(self[1:])
@@ -328,10 +358,16 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             m = Mul(*(lt[:i]+lt[i+1:]))
             o = order/m
             l.append(r[i].oseries(o))
-        r = Mul(*l).expand()
-        if isinstance(r, Basic.Add): # remove higher order terms
-            r = r.oseries(order)
-        return r
+        return Mul(*l)
 
-    def as_leading_term(self, x):
+    def _eval_as_leading_term(self, x):
         return Mul(*[t.as_leading_term(x) for t in self])
+
+    def _eval_inflimit(self, x):
+        coeff, terms = self.as_coeff_terms(x)
+        r = coeff
+        for t in terms:
+            r *= t.inflimit(x)
+            if isinstance(r, Basic.NaN):
+                return r
+        return r

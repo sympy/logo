@@ -19,10 +19,11 @@ ordering_of_classes = [
     'Pow', 'Mul', 'Add',
     # function values
     'Apply','ApplyExp','ApplyLog','ApplySin','ApplyCos','ApplySqrt','ApplyAbs','ApplySign',
+    'ApplyMrvLog',
     'ApplyChebyshev',    'ApplyChebyshev2',
     'Derivative','Integral',
     # defined singleton functions
-    'Abs','Sign','Sqrt','Exp','Log',
+    'Abs','Sign','Sqrt','Exp','Log','MrvLog',
     'Sin','Cos','Tan','Cot','ASin','ACos','ATan','ACot',
     'Sinh','Cosh','Tanh','Coth','ASinh','ACosh','ATanh','ACoth',
     # special polynomials
