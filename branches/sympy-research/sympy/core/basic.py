@@ -1,7 +1,7 @@
 """Base class for all objects in sympy"""
 
 import decimal
-from basic_methods import BasicMeths
+from basic_methods import BasicMeths, cache_it
 
 class Basic(BasicMeths):
     """
@@ -19,6 +19,7 @@ class Basic(BasicMeths):
         obj.assume(**assumptions)
         obj._mhash = None # will be set by BasicMeths.__hash__ method.
         obj._args = args  # all items in args must be Basic objects
+        obj._obj_cache = {} # save method results to cache
         return obj
 
     @staticmethod
@@ -72,6 +73,7 @@ class Basic(BasicMeths):
             return Basic.Interval(*a)
         raise ValueError("%s must be a subclass of Basic" % (`a`))
 
+    @cache_it
     def atoms(self, type=None):
         """Returns the atoms that form current object. 
         
@@ -98,15 +100,19 @@ class Basic(BasicMeths):
                 result = result.union(obj.atoms(type=type))
         return result
 
-    def subs(self, old, new):
-        """Substitutes an expression old -> new."""
+    def _eval_subs(self, old, new):
         if self==old:
-            return Basic.sympify(new)
+            return new
         return self
 
-    def _seq_subs(self, old, new):
+    @cache_it
+    def subs(self, old, new):
+        """Substitutes an expression old -> new."""
         old = Basic.sympify(old)
         new = Basic.sympify(new)
+        return self._eval_subs(old, new)
+
+    def _seq_subs(self, old, new):
         if self==old:
             return new
         return self.__class__(*[s.subs(old, new) for s in self])
@@ -126,13 +132,13 @@ class Basic(BasicMeths):
         elif not patterns:
             raise TypeError("has() requires at least 1 argument (got none)")
         p = Basic.sympify(patterns[0])
+        if isinstance(p, Basic.Symbol) and not isinstance(p, Basic.Wild): # speeds up
+            return p in self.atoms(p.__class__)
         if p.matches(self) is not None:
             return True
         for e in self:
             if e.has(p):
                 return True
-        #if self.subs(p, Basic.Symbol('x',dummy=True))!=self:
-        #    return True
         return False
 
     def _eval_derivative(self, s):
@@ -279,6 +285,7 @@ class Basic(BasicMeths):
         l.sort()
         return [(s,e) for i,s,e in l]
 
+    @cache_it
     def count_ops(self, symbolic=True):
         """ Return the number of operations in expressions.
 
@@ -294,10 +301,14 @@ class Basic(BasicMeths):
     ##################### EXPRESSION REPRESENTATION METHODS ###########################
     ###################################################################################
 
-    def expand(self):
+    def _eval_expand(self):
         if isinstance(self, Atom):
             return self
-        return self.__class__(*[t.expand() for t in self], **self._assumptions)
+        return self.__class__(*[t.expand() for t in self], **self._assumptions)        
+
+    @cache_it
+    def expand(self):
+        return self._eval_expand()
 
     def normal(self):
         n, d = self.as_numer_denom()
@@ -415,8 +426,9 @@ class Basic(BasicMeths):
             For computing power series, use oseries() method.
         """
         x = Basic.sympify(x)
-        return self.oseries(Basic.Order(x**n,x))
+        return self.oseries(Basic.Order(x**(n+1),x))
 
+    @cache_it
     def oseries(self, order):
         """
         Return the series of an expression upto given Order symbol.
@@ -481,11 +493,13 @@ class Basic(BasicMeths):
         """
         return Basic.Limit(self, x, xlim, direction)
 
-    def inflimit(self, x):
+
+    def inflimit(self, x): # inflimit has its own cache
         x = Basic.sympify(x)        
         return Basic.InfLimit(self, x)
 
-    def as_leading_term(self, *symbols, **_cache):
+    @cache_it
+    def as_leading_term(self, *symbols):
         if len(symbols)>1:
             c = self
             for x in symbols:
@@ -495,16 +509,11 @@ class Basic(BasicMeths):
             return self
         x = Basic.sympify(symbols[0])
         assert isinstance(x, Basic.Symbol),`x`
-        r = _cache.get((self,x),None)
-        if r is not None:
-            return r
         if not self.has(x):
-            _cache[(self,x)] = self
             return self
         expr = self.expand()
         obj = expr._eval_as_leading_term(x)
         if obj is not None:
-            _cache[(self,x)] = obj
             return obj
         raise NotImplementedError('as_leading_term(%s, %s)' % (self, x))
 
@@ -528,13 +537,20 @@ class Basic(BasicMeths):
             return e
         raise ValueError("cannot compute ldegree(%s, %s), got c=%s" % (self, x, c))
 
+    def leadterm(self, x):
+        x = Basic.sympify(x)
+        c,e = self.as_leading_term(x).as_coeff_exponent(x)
+        if not c.has(x):
+            return c,e
+        raise ValueError("cannot compute ldegree(%s, %s), got c=%s" % (self, x, c))
+
     ##########################################################################
     ##################### END OF BASIC CLASS #################################
     ##########################################################################
 
 class Atom(Basic):
 
-    precedence = 1000
+    precedence = Basic.Atom_precedence
 
     def _eval_derivative(self, s):
         if self==s: return Basic.One()
@@ -589,6 +605,7 @@ class Singleton(Basic):
 class SingletonFactory:
     """
     A map between singleton classes and the corresponding instances.
+    E.g. S.Exp == Basic.Exp()
     """
     def __getattr__(self, clsname):
         obj = Singleton.__dict__.get(clsname)
@@ -599,6 +616,6 @@ class SingletonFactory:
             setattr(self, clsname, obj)
         return obj
 
-S = singleton = SingletonFactory()
+S = SingletonFactory()
 
 import parser

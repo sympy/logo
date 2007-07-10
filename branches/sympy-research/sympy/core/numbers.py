@@ -2,9 +2,10 @@
 import math
 import decimal
 import decimal_math
-from basic import Basic, Atom, Singleton
+from basic import Basic, Atom, Singleton, S, cache_it
 from methods import RelMeths, ArithMeths
 
+@cache_it
 def gcd(a, b):
     '''Returns the Greatest Common Divisor,
     implementing Euclid\'s algorithm.'''
@@ -12,6 +13,7 @@ def gcd(a, b):
         a, b = b%a, a
     return b
 
+@cache_it
 def factor_trial_division(n):
     """
     Factor any integer into a product of primes, 0, 1, and -1.
@@ -71,6 +73,7 @@ class Number(Atom, RelMeths, ArithMeths):
     def is_number(self): return True
     #
 
+    @cache_it
     def __new__(cls, *obj):
         if len(obj)==1: obj=obj[0]
         if isinstance(obj, (int, long)):
@@ -166,7 +169,8 @@ class Real(Number):
     is_real = True
     is_irrational = False
     is_integer = False
-    
+
+    @cache_it
     def __new__(cls, num):
         if isinstance(num, (str, int, long)):
             num = decimal.Decimal(num)
@@ -322,6 +326,7 @@ class Rational(Number):
     is_integer = False
     is_irrational = False
 
+    @cache_it
     def __new__(cls, p, q = None):
         if q is None:
             return Integer(p)
@@ -359,8 +364,8 @@ class Rational(Number):
     @property
     def precedence(self):
         if self.p < 0:
-            return 40 # same as Add
-        return 50 # same as Mul
+            return Basic.Add_precedence
+        return Basic.Mul_precedence
 
     def _eval_is_positive(self): return self.p > 0
 
@@ -496,6 +501,7 @@ class Integer(Rational):
     q = 1
     is_integer = True
 
+    @cache_it
     def __new__(cls, i):
         if isinstance(i, (int, long)):
             if i==0: return Zero()
@@ -654,13 +660,13 @@ class Infinity(Singleton, Rational):
         oo ** nan -> nan
         oo ** (-p) -> 0, p is number, oo
         """
+        if e.is_positive:
+            return S.Infinity
+        if e.is_negative:
+            return S.Zero
         if isinstance(e, Number):
             if isinstance(e, NaN):
                 return NaN()
-            if e.is_negative:
-                return Zero()
-            if e.is_positive:
-                return Infinity()
         d = e.evalf()
         if isinstance(d, Number):
             return b ** d

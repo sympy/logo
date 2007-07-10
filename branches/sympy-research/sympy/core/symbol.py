@@ -1,6 +1,6 @@
 
-from basic import Basic, Atom
-from basic import singleton as S
+from basic import Basic, Atom, S, cache_it
+from basic_methods import cache_it_nondummy
 from methods import RelMeths, ArithMeths
 
 class Symbol(Atom, RelMeths, ArithMeths):
@@ -21,6 +21,7 @@ class Symbol(Atom, RelMeths, ArithMeths):
     is_comparable = False
     dummycount = 0
 
+    @cache_it_nondummy
     def __new__(cls, name, commutative=True, dummy=False, real=None, 
                 **assumptions):
         """if dummy == True, then this Symbol is totally unique, i.e.::
@@ -34,7 +35,7 @@ class Symbol(Atom, RelMeths, ArithMeths):
         False
 
         """
-        obj = Basic.singleton.get(name)
+        obj = Basic.singleton.get(name) # parser uses it
         if obj is not None:
             return obj()
         obj = Basic.__new__(cls,

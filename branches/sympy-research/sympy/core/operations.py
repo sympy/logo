@@ -1,5 +1,5 @@
 
-from basic import Basic
+from basic import Basic, cache_it
 
 class AssocOp(Basic):
     """ Associative operations, can separate noncommutative and
@@ -9,7 +9,8 @@ class AssocOp(Basic):
     
     Base class for Add and Mul.
     """
-    
+
+    @cache_it
     def __new__(cls, *args, **assumptions):
         if len(args)==0:
             return cls.identity()
@@ -50,7 +51,7 @@ class AssocOp(Basic):
             new_seq.append(o)
         return [], new_seq, None, None
 
-    subs = Basic._seq_subs
+    _eval_subs = Basic._seq_subs
 
     def _matches_commutative(pattern, expr, repl_dict={}, evaluate=False):
         # apply repl_dict to pattern to eliminate fixed wild parts

@@ -44,6 +44,48 @@ ordering_of_classes = [
 
 #
 
+def cache_it(func):
+    func._cache_it_cache = func_cache_it_cache = {}
+    def wrapper(*args, **kw_args):
+        if kw_args:
+            keys = kw_args.keys()
+            keys.sort()
+            items = [(k+'=',kw_args[k]) for k in keys]
+            k = args + tuple(items)
+        else:
+            k = args
+        try:
+            return func_cache_it_cache[k]
+        except KeyError:
+            pass
+        func_cache_it_cache[k] = r = func(*args, **kw_args)
+        return r
+    return wrapper
+
+def cache_it_nondummy(func):
+    func._cache_it_cache = func_cache_it_cache = {}
+    def wrapper(*args, **kw_args):
+        if kw_args:
+            try:
+                dummy = kw_args['dummy']
+            except KeyError:
+                dummy = None
+            if dummy:
+                return func(*args, **kw_args)
+            keys = kw_args.keys()
+            keys.sort()
+            items = [(k+'=',kw_args[k]) for k in keys]
+            k = args + tuple(items)
+        else:
+            k = args
+        try:
+            return func_cache_it_cache[k]
+        except KeyError:
+            pass
+        func_cache_it_cache[k] = r = func(*args, **kw_args)
+        return r
+    return wrapper
+
 class MetaBasicMeths(type):
 
     classnamespace = {}
@@ -99,13 +141,13 @@ class BasicMeths(AssumeMeths):
     __metaclass__ = MetaBasicMeths
 
     Lambda_precedence = 1
-
     Add_precedence = 40
     Mul_precedence = 50
     Pow_precedence = 60
     Apply_precedence = 70
     Item_precedence = 75
-
+    Atom_precedence = 1000
+    
     def __getattr__(self, name):
         if name.startswith('is_'):
             # default implementation for assumptions
@@ -127,6 +169,8 @@ class BasicMeths(AssumeMeths):
                                  (self.__class__.__name__, name))
 
     def __hash__(self):
+        # hash cannot be cached using cache_it because infinite recurrence
+        # occurs as hash is needed for setting cache dictionary keys
         h = self._mhash
         if h is None:
             self._mhash = h = hash((self.__class__.__name__,) + self._hashable_content())

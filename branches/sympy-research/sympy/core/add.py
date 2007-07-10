@@ -1,5 +1,5 @@
 
-from basic import Basic, S
+from basic import Basic, S, cache_it
 from operations import AssocOp
 from methods import RelMeths, ArithMeths
 
@@ -105,6 +105,7 @@ class Add(AssocOp, RelMeths, ArithMeths):
             return '(%s)' % r
         return r
 
+    @cache_it
     def as_coeff_factors(self, x=None):
         if x is not None:
             l1 = []
@@ -228,9 +229,7 @@ class Add(AssocOp, RelMeths, ArithMeths):
             return Basic.One(),[self]
         return -Basic.One(),[-self]
 
-    def subs(self, old, new):
-        old = Basic.sympify(old)
-        new = Basic.sympify(new)
+    def _eval_subs(self, old, new):
         if self==old: return new
         coeff1,factors1 = self.as_coeff_factors()
         coeff2,factors2 = old.as_coeff_factors()
@@ -247,6 +246,7 @@ class Add(AssocOp, RelMeths, ArithMeths):
     def _eval_oseries(self, order):
         return Add(*[f.oseries(order) for f in self])
 
+    @cache_it
     def extract_leading_order(self, *symbols):
         lst = []
         seq = [(f, Basic.Order(f, *symbols)) for f in self]

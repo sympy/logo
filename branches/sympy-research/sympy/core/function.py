@@ -47,7 +47,7 @@ As seen above, function values are Apply instances and
 have attributes .func and .args.
 """
 
-from basic import Basic, Singleton, Atom
+from basic import Basic, Singleton, Atom, cache_it
 from methods import ArithMeths, NoRelMeths, RelMeths
 from operations import AssocOp
 
@@ -59,6 +59,7 @@ class Apply(Basic, ArithMeths, RelMeths):
 
     precedence = Basic.Apply_precedence
 
+    @cache_it
     def __new__(cls, *args, **assumptions):
         args = map(Basic.sympify,args)
         func = args[0]
@@ -103,9 +104,7 @@ class Apply(Basic, ArithMeths, RelMeths):
             return '(%s)' % (r)
         return r
 
-    def subs(self, old, new):
-        old = Basic.sympify(old)
-        new = Basic.sympify(new)
+    def _eval_subs(self, old, new):
         if self==old: return new
         obj = self.func._eval_apply_subs(*(self.args + (old,) + (new,)))
         if obj is not None:
@@ -351,7 +350,7 @@ class FApply(Function):
             return '(%s)' % (r)
         return r
 
-    subs = Basic._seq_subs
+    _eval_subs = Basic._seq_subs
 
 
 class Lambda(Function):
@@ -440,6 +439,7 @@ class Lambda(Function):
             expr = expr.subs(a, na)
         return expr, args
 
+    @cache_it
     def expand(self):
         return Lambda(self.body.expand(), *self.args)
 
@@ -454,7 +454,7 @@ class Lambda(Function):
         expr = self.body.diff(s)
         return Lambda(expr, *self.args)
 
-    subs = Basic._seq_subs
+    _eval_subs = Basic._seq_subs
 
     def _eval_apply(self, *args):
         n = self.nofargs
@@ -514,9 +514,7 @@ class FPow(Function):
             return '(%s)' % (r)
         return r
 
-    def subs(self, old, new):
-        old = Basic.sympify(old)
-        new = Basic.sympify(new)
+    def _eval_subs(self, old, new):
         if self==old: return new
         #elif exp(self.exp * log(self.base)) == old: return new
         return self.base.subs(old, new) ** self.exp.subs(old, new)
@@ -639,7 +637,7 @@ class FDerivative(Function):
         if isinstance(e, Basic.Integer) and e.is_positive:
             return FDerivative(*(int(e)*b.indices))
 
-    subs = Basic._seq_subs
+    _eval_subs = Basic._seq_subs
 
     def __call__(self, func):
         return FApply(self, func)
@@ -709,9 +707,7 @@ class Derivative(Basic, ArithMeths, RelMeths):
             r = '(%s)' % (r)
         return r
 
-    def subs(self, old, new):
-        old = Basic.sympify(old)
-        new = Basic.sympify(new)
+    def _eval_subs(self, old, new):
         for a in list(old.atoms(Basic.Symbol)):
             if a in self.symbols:
                 return self.as_apply().subs(old, new)                
@@ -730,7 +726,7 @@ class Integral(Basic, ArithMeths, RelMeths):
       Integral(expr, x==[a,b])
     """
 
-    precedence = 70
+    precedence = Basic.Apply_precedence
 
     def __new__(cls, expr, *symbols, **assumptions):
         expr = Basic.sympify(expr)

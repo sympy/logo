@@ -1,12 +1,12 @@
 
-from basic import Basic
-from basic import singleton as S
+from basic import Basic, S, cache_it
 from methods import ArithMeths, RelMeths, NoRelMeths
 
 class Pow(Basic, ArithMeths, RelMeths):
 
     precedence = Basic.Pow_precedence
 
+    @cache_it
     def __new__(cls, a, b, **assumptions):
         a = Basic.sympify(a)
         b = Basic.sympify(b)
@@ -108,9 +108,7 @@ class Pow(Basic, ArithMeths, RelMeths):
             return '(%s)' % (r)
         return r
 
-    def subs(self, old, new):
-        old = Basic.sympify(old)
-        new = Basic.sympify(new)
+    def _eval_subs(self, old, new):
         if self==old: return new
         if isinstance(old, self.__class__) and self.base==old.base:
             coeff1,terms1 = self.exp.as_coeff_terms()
@@ -127,7 +125,7 @@ class Pow(Basic, ArithMeths, RelMeths):
             return 1/self.base, -self.exp
         return self.base, self.exp
 
-    def expand(self):
+    def _eval_expand(self):
         """
         (a*b)**n -> a**n * b**n
         (a+b+..) ** n -> a**n + n*a**(n-1)*b + .., n is positive integer
@@ -219,6 +217,7 @@ class Pow(Basic, ArithMeths, RelMeths):
         s = d[r] = Basic.Temporary()
         return s
 
+    @cache_it
     def count_ops(self, symbolic=True):
         if symbolic:
             return Basic.Add(*[t.count_ops(symbolic) for t in self[:]]) + Basic.Symbol('POW')
@@ -309,6 +308,7 @@ class Pow(Basic, ArithMeths, RelMeths):
             return self.base.as_leading_term(x) ** self.exp
         return Basic.Exp()(self.exp * Basic.Log()(self.base)).as_leading_term(x)
 
+    @cache_it
     def taylor_term(self, n, x, *previous_terms): # of (1+x)**e
         if n<0: return Basic.Zero()
         x = Basic.sympify(x)

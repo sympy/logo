@@ -1,5 +1,5 @@
 
-from basic import Basic, S
+from basic import Basic, S, cache_it
 from methods import RelMeths, ArithMeths
 
 class Limit(Basic, RelMeths, ArithMeths):
@@ -8,6 +8,7 @@ class Limit(Basic, RelMeths, ArithMeths):
     Limit(expr, x, xlim)
     """
 
+    @cache_it
     def __new__(cls, expr, x, xlim, direction='<', **assumptions):
         expr = Basic.sympify(expr)
         x = Basic.sympify(x)
@@ -17,15 +18,20 @@ class Limit(Basic, RelMeths, ArithMeths):
         assert isinstance(x, Basic.Symbol),`x`
         if not expr.has(x): return expr
         if isinstance(xlim, Basic.NegativeInfinity):
-            return InfLimit(expr.subs(x,-x), x)
+            xoo = InfLimit.limit_process_symbol()
+            if expr.has(xoo): 
+                xoo = Basic.Symbol(x.name + '_oo',dummy=True,positive=True,unbounded=True)
+            return InfLimit(expr.subs(x,-xoo), xoo)
         if isinstance(xlim, Basic.Infinity):
             return InfLimit(expr, x)
         else:
-            dx = Basic.Symbol(x.name + '_oo',dummy=True,positive=True,unbounded=True)
+            xoo = InfLimit.limit_process_symbol()
+            if expr.has(xoo): 
+                xoo = Basic.Symbol(x.name + '_oo',dummy=True,positive=True,unbounded=True)
             if direction=='<':
-                return InfLimit(expr.subs(x, xlim+1/dx), dx)
+                return InfLimit(expr.subs(x, xlim+1/xoo), xoo)
             elif direction=='>':
-                return InfLimit(expr.subs(x, xlim-1/dx), dx)
+                return InfLimit(expr.subs(x, xlim-1/xoo), xoo)
             else:
                 raise ValueError("Limit direction must be < or > (got %s)" % (direction))
 
@@ -58,18 +64,12 @@ class Limit(Basic, RelMeths, ArithMeths):
 
 class InfLimit(Basic):
 
-    _cache = {}
-
     @staticmethod
-    def limit_process_symbol(_cache={}):
-        try:
-            return _cache['xoo']
-        except KeyError:
-            pass
-        xoo = Basic.Symbol('xoo', dummy=True, unbounded=True, positive=True)
-        _cache['xoo'] = xoo
-        return xoo
+    @cache_it
+    def limit_process_symbol():
+        return Basic.Symbol('xoo', dummy=True, unbounded=True, positive=True)
 
+    @cache_it
     def __new__(cls, expr, x):
         expr = orig_expr = Basic.sympify(expr)
         orig_x = Basic.sympify(x)
@@ -81,7 +81,6 @@ class InfLimit(Basic):
         elif not orig_expr.has(orig_x):
             return orig_expr
 
-        use_cache = True
         x = InfLimit.limit_process_symbol()
         if not orig_expr.has(x):
             expr = orig_expr.subs(orig_x, x)
@@ -90,13 +89,6 @@ class InfLimit(Basic):
         else:
             x = Basic.Symbol(orig_x.name + '_oo', dummy=True, unbounded=True, positive=True)
             expr = orig_expr.subs(orig_x, x)
-            use_cache = False
-
-        if use_cache:
-            try:
-                return InfLimit._cache[expr]
-            except KeyError:
-                pass
 
         if hasattr(expr,'_eval_inflimit'):
             # support for callbacks
@@ -131,12 +123,9 @@ class InfLimit(Basic):
         if result is None:
             result = mrv_inflimit(expr, x)
 
-        if use_cache:
-            InfLimit._cache[expr] = result
-
         return result
 
-
+@cache_it
 def mrv_inflimit(expr, x):
     expr_map = {}
     mrv_map = {}
@@ -160,6 +149,7 @@ def mrv_inflimit(expr, x):
         return S.Sign(c) * S.Infinity
     raise RuntimeError('Failed to compute mrv_inflimit(%s, %s), got lt=%s' % (self, x, lt))
 
+@cache_it
 def cmp_ops_count(e1,e2):
     return cmp(e1.count_ops(symbolic=False), e2.count_ops(symbolic=False))
 
@@ -175,8 +165,9 @@ def mrv_max(s1, s2, x):
     if c=='<': return s2
     return s1.union(s2)
 
+@cache_it
 def mrv_compare(f, g, x):
-    log = Basic.Log()
+    log = S.Log
     if isinstance(f, Basic.ApplyExp): f = f.args[0]
     else: f = log(f)
     if isinstance(g, Basic.ApplyExp): g = g.args[0]
@@ -208,8 +199,8 @@ def mrv2(expr, x, d, md):
         r = expr.__class__(*[mrv2(t, x, d, md) for t in expr])
         d[expr] = r
         return r
-    log = Basic.Log()
-    exp = Basic.Exp()
+    log = S.Log
+    exp = S.Exp
     if isinstance(expr, Basic.Pow):
         if not expr.exp.has(x):
             r = mrv2(expr.base, x, d, md)**expr.exp
@@ -284,7 +275,6 @@ def rewrite_mrv_map(mrv_map, x, w):
     else:
         g = None
     d = {}
-    log = Basic.Log()
     for germ in germs:
         name = mrv_map[germ]
         if name==gname:
@@ -294,7 +284,7 @@ def rewrite_mrv_map(mrv_map, x, w):
         c = (arg/garg).inflimit(x)
         Aarg = arg-c*garg
         Aarg = Aarg.subs(g, 1/w)
-        A = Basic.Exp()(Aarg)
+        A = S.Exp(Aarg)
         new_germ = A * w ** -c
         d[name] = new_germ
     return g, d
@@ -303,12 +293,14 @@ def rewrite_expr(expr, germ, mrv_map, w):
     tmps = expr.atoms(Basic.Temporary)
     e = expr
     for t in tmps:
-        g = mrv_map.get(t, None)
-        if g is None: continue
+        try:
+            g = mrv_map[t]
+        except KeyError:
+            continue
         e = e.subs(t, g)
     if germ is not None:
         mrvlog = S.MrvLog
         log = S.Log
-        e = e.subs(log, mrvlog).subs(germ.args[0], -S.Log(w)).subs(mrvlog, log)
+        e = e.subs(log, mrvlog).subs(germ.args[0], -log(w)).subs(mrvlog, log)
     return e
 

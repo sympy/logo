@@ -1,6 +1,5 @@
 
-from basic import Basic
-from basic import singleton as S
+from basic import Basic, S, cache_it
 from operations import AssocOp
 from methods import RelMeths, ArithMeths
 
@@ -173,6 +172,7 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             return '(%s)' % r
         return r
 
+    @cache_it
     def as_coeff_terms(self, x=None):
         if x is not None:
             l1 = []
@@ -188,7 +188,7 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             return coeff, list(self[1:])
         return Basic.One(), list(self[:])
 
-    def expand(self):
+    def _eval_expand(self):
         """
         (a + b + ..) * c -> a * c + b * c + ..
         """
@@ -248,6 +248,7 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             denoms.append(d)
         return Mul(*numers), Mul(*denoms)
 
+    @cache_it
     def count_ops(self, symbolic=True):
         if symbolic:
             return Basic.Add(*[t.count_ops(symbolic) for t in self[:]]) + Basic.Symbol('MUL') * (len(self[:])-1)
@@ -308,9 +309,7 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             if a: r = True
         return r
 
-    def subs(self, old, new):
-        old = Basic.sympify(old)
-        new = Basic.sympify(new)
+    def _eval_subs(self, old, new):
         if self==old:
             return new
         coeff1,terms1 = self.as_coeff_terms()

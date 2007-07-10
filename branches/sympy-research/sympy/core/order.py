@@ -1,6 +1,5 @@
 
-from basic import Basic
-from basic import singleton as S
+from basic import Basic, S, cache_it
 from methods import ArithMeths, RelMeths
 
 class Order(Basic, ArithMeths, RelMeths):
@@ -77,10 +76,11 @@ class Order(Basic, ArithMeths, RelMeths):
       all symbols in the expression.
     """
 
-    precedence = 70
+    precedence = Basic.Apply_precedence
 
     _cache = {}
 
+    @cache_it
     def __new__(cls, expr, *symbols, **assumptions):
         expr = Basic.sympify(expr).expand()
         if isinstance(expr, Basic.NaN):
@@ -231,6 +231,7 @@ class Order(Basic, ArithMeths, RelMeths):
                     order_symbols = order_symbols + (s,)
         return self.expr, order_symbols
 
+    @cache_it
     def contains(self, expr):
         """
         Return True if expr belongs to Order(self.expr, *self.symbols).
@@ -264,10 +265,9 @@ class Order(Basic, ArithMeths, RelMeths):
         obj = Order(expr, *self.symbols)
         return self.contains(obj)
 
-    def subs(self, old, new):
-        old = Basic.sympify(old)
+    def _eval_subs(self, old, new):
         if self==old:
-            return Basic.sympify(new)
+            return new
         if isinstance(old, Basic.Symbol) and old in self.symbols:
             i = list(self.symbols).index(old)
             if isinstance(new, Basic.Symbol):

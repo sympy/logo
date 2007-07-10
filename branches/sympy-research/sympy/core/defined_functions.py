@@ -1,6 +1,6 @@
 
-from basic import Basic
-from basic import singleton as S
+from basic import Basic, S, cache_it
+
 from function import DefinedFunction, Apply, Lambda
 
 class Exp(DefinedFunction):
@@ -71,6 +71,7 @@ class Exp(DefinedFunction):
         if isinstance(arg, Basic.Number):
             return arg.exp()
 
+    @cache_it
     def taylor_term(self, n, x, *previous_terms):
         if n<0: return S.Zero
         if n==0: return S.One
@@ -113,9 +114,7 @@ class ApplyExp(Apply):
             return Basic.One(), [self.func(a) for a in arg]
         return S.One,[self]
 
-    def subs(self, old, new):
-        old = Basic.sympify(old)
-        new = Basic.sympify(new)
+    def _eval_subs(self, old, new):
         if self==old: return new
         arg = self.args[0]
         o = old
@@ -237,6 +236,7 @@ class Log(DefinedFunction):
     def _calc_apply_unbounded(self, x):
         return x.is_unbounded
 
+    @cache_it
     def taylor_term(self, n, x, *previous_terms): # of log(1+x)
         if n<0: return Basic.Zero()
         x = Basic.sympify(x)
@@ -385,9 +385,7 @@ class ApplySqrt(Apply):
     def as_base_exp(self):
         return self.args[0], Basic.Half()
 
-    def subs(self, old, new):
-        old = Basic.sympify(old)
-        new = Basic.sympify(new)
+    def _eval_subs(self, old, new):
         if self==old: return new
         arg = self.args[0]
         func = self.func
@@ -463,6 +461,7 @@ class Sin(DefinedFunction):
             return -self(-arg)
         return
 
+    @cache_it
     def taylor_term(self, n, x, *previous_terms):
         if n<0: return Basic.Zero()
         x = Basic.sympify(x)
@@ -490,7 +489,7 @@ class ApplySin(Apply):
             return c0,e0,f0
         raise ValueError("unable to compute leading term %s(%s) at %s=0" % (func, arg, x))
 
-    def expand(self):
+    def _eval_expand(self):
         arg = self.args[0].expand()
         cos = Basic.Cos()
         sin = Basic.Sin()
@@ -546,6 +545,7 @@ class Cos(DefinedFunction):
             return self(-arg)
         return
 
+    @cache_it
     def taylor_term(self, n, x, *previous_terms):
         if n<0: return Basic.Zero()
         x = Basic.sympify(x)
@@ -572,7 +572,7 @@ class ApplyCos(Apply):
             return Basic.One(),Basic.Zero(),Basic.Zero()
         raise ValueError("unable to compute leading term %s(%s) at %s=0" % (func, arg, x))
 
-    def expand(self):
+    def _eval_expand(self):
         arg = self.args[0].expand()
         cos = Basic.Cos()
         sin = Basic.Sin()

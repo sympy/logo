@@ -324,6 +324,6 @@ if __name__ == '__main__':
         stats = hotshot.stats.load("test_limit.prof")
         stats.strip_dirs()
         stats.sort_stats('cumulative', 'calls')
-        stats.print_stats(30)
+        stats.print_stats(50)
     else:
         unittest.main()
