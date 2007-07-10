@@ -311,6 +311,7 @@ class ApplyLog(Apply):
             return (self.args[0] - 1).as_leading_term(x)
         return self.func(arg)
 
+# MrvLog is used by limit.py
 class MrvLog(Log):
     pass
 
@@ -318,11 +319,12 @@ class ApplyMrvLog(ApplyLog):
 
     def subs(self, old, new):
         old = Basic.sympify(old)
-        new = Basic.sympify(new)
         if old==self.func:
             arg = self.args[0]
+            new = Basic.sympify(new)
             return new(arg.subs(old, new))
         return self
+#
 
 class Sqrt(DefinedFunction):
 

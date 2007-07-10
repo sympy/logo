@@ -177,9 +177,6 @@ class Apply(Basic, ArithMeths, RelMeths):
     def count_ops(self, symbolic=True):
         return Basic.Add(*[t.count_ops(symbolic) for t in self])
 
-    def _calc_as_coeff_leadterm(self, x):
-        raise NotImplementedError("Apply%s._calc_as_coeff_leadterm(x)" % (self.func.__class__.__name__))
-
     def _eval_oseries(self, order):
         assert self.func.nofargs==1,`self.func`
         arg = self.args[0]
@@ -195,9 +192,6 @@ class Apply(Basic, ArithMeths, RelMeths):
                 return
             return e1.oseries(order)
         return self._compute_oseries(arg, order, self.func.taylor_term, self.func)
-
-    def _eval_inflimit(self, x):
-        return self.func(*[a.inflimit(x) for a in self.args])
 
 
 class Function(Basic, ArithMeths, NoRelMeths):
@@ -358,7 +352,6 @@ class FApply(Function):
         return r
 
     subs = Basic._seq_subs
-
 
 
 class Lambda(Function):

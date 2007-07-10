@@ -191,14 +191,6 @@ class Pow(Basic, ArithMeths, RelMeths):
         dexp = self.exp.diff(s)
         return self * (dexp * Basic.Log()(self.base) + dbase * self.exp/self.base)
 
-    def _calc_as_coeff_leadterm(self, x):
-        if not self.exp.has(x):
-            c,e,f = self.base.as_coeff_leadterm(x)
-            return c**self.exp, e*self.exp, f*self.exp
-        if isinstance(self.exp, Basic.Add):
-            return Basic.Mul._seq_as_coeff_leadterm([(self.base**f).as_coeff_leadterm(x) for f in self.exp])
-        raise NotImplementedError("leading term of %s at %s=0" % (self, x))
-
     evalf = Basic._seq_evalf
 
     def _calc_splitter(self, d):
@@ -321,12 +313,3 @@ class Pow(Basic, ArithMeths, RelMeths):
         if n<0: return Basic.Zero()
         x = Basic.sympify(x)
         return Basic.Binomial()(self.exp, n) * x**n
-
-    def _eval_inflimit(self, x):
-        b,e = self.base, self.exp
-        if not e.has(x):
-            return b.inflimit(x) ** e
-        if not b.has(x):
-            return b ** e.inflimit(x)
-        return S.Exp(e * S.Log(b)).inflimit(x)
-    

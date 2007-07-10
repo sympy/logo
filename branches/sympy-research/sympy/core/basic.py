@@ -479,82 +479,11 @@ class Basic(BasicMeths):
     def limit(self, x, xlim, direction='<'):
         """ Compute limit x->xlim.
         """
-        x = Basic.sympify(x)
-        xlim = Basic.sympify(xlim)
-        if not self.has(x): return self
-        if isinstance(xlim, Basic.Infinity):
-            return self.inflimit(x)
-        var = Basic.Symbol(x.name+'_oo',dummy=True,positive=True,unbounded=True)
-        if isinstance(xlim, Basic.NegativeInfinity): 
-            return self.subs(x,-var).inflimit(var)
-        if direction=='<':
-            return self.subs(x, xlim+1/var).inflimit(var)
-        if direction=='>':
-            return self.subs(x, xlim-1/var).inflimit(var)
-        raise ValueError("Limit direction must be < or > (got %s)" % (direction))
+        return Basic.Limit(self, x, xlim, direction)
 
-    def inflimit(self, x, _xoo_cache={}, _inflimit_cache={}):
-        x = Basic.sympify(x)
-        assert isinstance(x,Basic.Symbol),`x`
-        if not self.has(x):
-            return self
-        try:
-            xoo = _xoo_cache['xoo']
-        except KeyError:
-            xoo = _xoo_cache['xoo'] = Basic.Symbol('_oo', dummy=True, unbounded=True, positive=True)
-        use_cache = True
-        if not self.has(xoo):
-            expr = self.subs(x, xoo)
-        elif x==xoo:
-            expr = self
-        else:
-            xoo = Basic.Symbol(x.name + '_oo', dummy=True, unbounded=True, positive=True)
-            expr = self.subs(x, xoo)
-            use_cache = False
-
-        cache = _inflimit_cache
-        if use_cache:
-            try:
-                return cache[expr]
-            except KeyError:
-                pass
-
-        obj = expr._eval_inflimit(xoo)
-
-        if obj is not None and not isinstance(obj, Basic.NaN):
-            if use_cache:
-                cache[expr] = obj
-            return obj
-
-        obj = expr._eval_mrv_inflimit(xoo)
-
-        if use_cache:
-            cache[expr] = obj
-        return obj
-
-    def _eval_mrv_inflimit(self, x):
-        from limit import mrv2, rewrite_mrv_map, rewrite_expr, MrvSet
-        expr_map = {}
-        mrv_map = {}
-        newexpr = mrv2(self, x, expr_map, mrv_map)
-        if mrv_map.has_key(x):
-            t = Basic.Temporary(unbounded=True, positive=True)
-            return self.subs(S.Log(x),t).subs(x, S.Exp(t)).subs(t, x)._eval_mrv_inflimit(x)
-        w = Basic.Symbol('w_0',dummy=True, positive=True, infinitesimal=True)
-        germ, new_mrv_map = rewrite_mrv_map(mrv_map, x, w)
-        new_expr = rewrite_expr(newexpr, germ, new_mrv_map, w)
-        lt = new_expr.as_leading_term(w)
-        if germ is not None:
-            lt = lt.subs(S.Log(w), -germ.args[0])
-        c,e = lt.as_coeff_exponent(w)
-        assert not c.has(w),`c`
-        if e==0:
-            return c.inflimit(x)
-        if e.is_positive:
-            return S.Zero
-        if e.is_negative:
-            return S.Sign(c) * S.Infinity
-        raise RuntimeError('Failed to compute as_mrv_leading_term(%s, %s), got lt=%s' % (self, x, lt))
+    def inflimit(self, x):
+        x = Basic.sympify(x)        
+        return Basic.InfLimit(self, x)
 
     def as_leading_term(self, *symbols, **_cache):
         if len(symbols)>1:
@@ -637,10 +566,6 @@ class Atom(Basic):
 
     def _eval_oseries(self, order):
         # .oseries() method checks for order.contains(self)
-        return self
-
-    def _eval_inflimit(self, x):
-        if self==x: return S.Infinity
         return self
 
     def _eval_as_leading_term(self, x):

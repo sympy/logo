@@ -19,7 +19,7 @@ import orthogonal_polynomials
 import integer_sequences
 
 from order import Order
-#from limit import Limit
+from limit import Limit
 
 # set repr output to pretty output:
 Basic.interactive = True

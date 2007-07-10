@@ -237,18 +237,6 @@ class Mul(AssocOp, RelMeths, ArithMeths):
     def _combine_inverse(lhs, rhs):
         return lhs / rhs
 
-    def _calc_as_coeff_leadterm(self, x):
-        return self._seq_as_coeff_leadterm([t.as_coeff_leadterm(x) for t in self])
-
-    @staticmethod
-    def _seq_as_coeff_leadterm(seq):
-        c0,e0,f0 = Basic.One(), Basic.Zero(), Basic.Zero()
-        for (c,e,f) in seq:
-            c0 *= c
-            e0 += e
-            f0 += f
-        return c0,e0,f0        
-
     def as_numer_denom(self):
         numers,denoms = [],[]
         for t in self:
@@ -362,12 +350,3 @@ class Mul(AssocOp, RelMeths, ArithMeths):
 
     def _eval_as_leading_term(self, x):
         return Mul(*[t.as_leading_term(x) for t in self])
-
-    def _eval_inflimit(self, x):
-        coeff, terms = self.as_coeff_terms(x)
-        r = coeff
-        for t in terms:
-            r *= t.inflimit(x)
-            if isinstance(r, Basic.NaN):
-                return r
-        return r

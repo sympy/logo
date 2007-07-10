@@ -1,6 +1,7 @@
 
 from __init__ import *
-from limit import mrv, mrv_max, mrv_compare, mrv_leadterm, mrv2, MrvExpr
+#from limit import mrv, mrv_max, mrv_compare, mrv_leadterm, mrv2, MrvExpr
+from limit import mrv_compare, mrv2
 import unittest
 
 x = Symbol('x',positive=True,real=True,unbounded=True)
