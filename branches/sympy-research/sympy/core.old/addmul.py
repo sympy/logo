@@ -1,6 +1,6 @@
 """
 This module has the necessary code to represent addition and multiplication of elements, via
-the classes Add, Mul and it's base class, Pair. 
+the classes Add, Mul and it's base class, Pair.
 
 This is a central part of the core
 """
@@ -12,17 +12,28 @@ from sympy.core.functions import Function
 
 from sympy.core.stringPict import prettyForm
 
+#from decorator import decorator
+
+#@decorator
+#def debug(f,*args,**kw):
+    #print "-"*40
+    #print "starting %s%s" % (f.func_name,args)
+#    r = f(*args,**kw)
+    #print "done %s%s = %s" % (f.func_name,args,r)
+    #print "-"*40
+#    return r
+
 class Pair(Basic):
     """Abstract class containing common code to Add and Mul classes.
     Should not be used directly.
     """
-    
+
     def __init__(self, *args):
         Basic.__init__(self)
         for arg in args:
             assert isinstance(arg, Basic)
         self._args = args
-        
+
     def __mathml__(self):
         """Returns a MathML expression representing the current object"""
         import xml.dom.minidom
@@ -36,13 +47,13 @@ class Pair(Basic):
             x.appendChild( arg.__mathml__() )
         self._mathml = x
         return self._mathml
-    
+
     def tryexpand(self, a):
         if isinstance(a, (Mul, Pow, Function)):
             return a.expand()
         else:
             return a
-            
+
     def flatten(self, a ):
         """::
             flatten([add(x,4),Mul(a,5),add(x,b),x]) ->
@@ -61,7 +72,7 @@ class Pair(Basic):
             else:
                 b.append(x)
         return b
-        
+
     @staticmethod
     def coerce(a, action):
         """coerce([x,y,z],action) -> action(action(action([],x),y),z)"""
@@ -71,10 +82,10 @@ class Pair(Basic):
         #    exp=action(exp,x)
         #return exp
         return reduce(action, a, [])
-        
+
     @staticmethod
     def coerce_numbers(a, action, default):
-        """coercenumbers([x,4,a,10],action,Rational(1)) -> 
+        """coercenumbers([x,4,a,10],action,Rational(1)) ->
         (action(action(Rational(1),4),10),[x,a])
 
         picks out the numbers of the list "a" and applies the action on them
@@ -88,7 +99,7 @@ class Pair(Basic):
             else:
                 b.append(x)
         return (n,b)
-    
+
     def print_tree(self):
         def indent(s,type=1):
             x = s.split("\n")
@@ -109,14 +120,84 @@ class Pair(Basic):
             f += indent(a.print_tree())
         f += indent(self._args[-1].print_tree(),2)
         return f
-    
-    @property        
+
+    def has_property(self, functor):
+        """Test if product or summation has some specific property
+           denoted with the functor. This will be True iff all its
+           components poses this property. If there is at least one
+           object with fails, this query will return False and in
+           all other cases None.
+
+           This method will be used in the following assumptions:
+
+               - is_commutative
+
+               - is_real
+
+               - is_integer
+
+               - is_bounded
+
+           Example will clarify usage of this query:
+
+           >>> from sympy import *
+           >>> x = Symbol('x')
+
+           # both bounded in a product
+           >>> (2*sin(x)).has_property('is_bounded')
+           True
+
+           # both bounded in a summation
+           >>> (2+sin(x)).has_property('is_bounded')
+           True
+
+           # contains an unbounded functions
+           >>> (sin(x)*exp(x)).has_property('is_bounded')
+           False
+
+           # contains unspecifed object but also unbounded
+           >>> (x*sin(x)*exp(x)).has_property('is_bounded')
+           False
+
+           # contains unspecifed and bounded objects, so say don't know
+           >>> print (x*sin(x)).has_property('is_bounded')
+           None
+
+        """
+        has_unknown = False
+        has_property = True
+
+        for term in self:
+            result = getattr(term, functor)
+
+            if result is None:
+                has_unknown = True
+            elif result == False:
+                has_property = False
+
+        if has_unknown:
+            # return False rather than None if there
+            # is at least one object that does not
+            # poses specifed property
+            return has_property and None
+        else:
+            return has_property
+
+    @property
     def is_commutative(self):
-        for x in self[:]:
-            #checks wether all arguments are commutative
-            if not x.is_commutative:
-                return False
-        return True
+        return self.has_property('is_commutative')
+
+    @property
+    def is_real(self):
+        return self.has_property('is_real')
+
+    @property
+    def is_integer(self):
+        return self.has_property('is_integer')
+
+    @property
+    def is_bounded(self):
+        return self.has_property('is_bounded')
 
     def match(self, pattern, syms=None, exclude = "None"):
         """
@@ -130,7 +211,7 @@ class Pair(Basic):
             1)if there is just one more variable besides the matched ones, for
             example "x", then exclude = x.
 
-            2)otherwise exclude=None, which means, that 
+            2)otherwise exclude=None, which means, that
             Rational(2).match(a*x,[a],exlude = None) returns {a: 2/x}
 
         """
@@ -214,17 +295,17 @@ class Pair(Basic):
 
 
 class Mul(Pair):
-    
+
     mathml_tag = "times"
-     
+
     def __str__(self):
         f = ""
         a = self._args
         if isinstance(a[0],Rational):
-            if a[0].isminusone():
+            if a[0].is_minus_one:
                 f = "-"
                 a = self._args[1:]
-            elif a[0].isone():
+            elif a[0].is_one:
                 f = ""
                 a = self._args[1:]
 
@@ -252,7 +333,7 @@ class Mul(Pair):
             sden = str.join('*', den)
             if len(den) > 1: sden = "(" + sden + ")"
             return "%s%s/%s" % (f, snum, sden)
-    
+
     def __float__(self):
         a = 1
         for arg in self._args[:]:
@@ -260,22 +341,36 @@ class Mul(Pair):
         return a
 
     def __latex__(self):
-        f = ""
+        from symbol import Symbol
+        from power import Pow
+        f = []
         a = self._args
         if isinstance(a[0],Rational):
-            if a[0].isminusone():
-                f = "-"
-                a = self.args[1:]
-            elif a[0].isone():
-                f = ""
-                a = self.args[1:]
+            if a[0].is_minus_one:
+                f = ["-"]
+                a = self._args[1:]
+            elif a[0].is_one:
+                f = []
+                a = self._args[1:]
+        multsymb = "\cdot"
         for x in a:
+            xs = x.__latex__()
             if isinstance(x,Pair):
-                f += "(%s)"
+                f += ["(%s)" % xs]
+            # Insert explicit multiplication sign in some cases
+            elif isinstance(x, Symbol) and "mathrm" in xs or \
+                 isinstance(x, Pow) and "mathrm" in x.base.__latex__():
+                f += [multsymb] + [xs] + [multsymb]
             else:
-                f += "%s "
-        f = f[:-1]
-        return f % tuple([x.__latex__() for x in a])
+                f += [xs]
+        # Remove extra multiplication signs
+        for i in range(len(f)-1):
+            if f[i] == f[i+1] == multsymb:
+                f[i] = ""
+        f = [x for x in f if x]
+        if f[0] == multsymb: f = f[1:]
+        if f[-1] == multsymb: f = f[:-1]
+        return " ".join(f)
 
     @staticmethod
     def get_baseandexp(a):
@@ -287,11 +382,11 @@ class Mul(Pair):
 
     @staticmethod
     def try_to_coerce(x, y):
-        """Tries to multiply x * y in this order and see if it simplifies. 
-        
+        """Tries to multiply x * y in this order and see if it simplifies.
+
         If it succeeds, returns (x*y, True)
         otherwise (x, False)
-        where x is the original x 
+        where x is the original x
         """
         #TODO: See also: L{Add.eval}
         z1 = y.muleval(x,y)
@@ -305,7 +400,7 @@ class Mul(Pair):
                 return z1, True
             if z2 is not None:
                 return z2, True
-        
+
         # if it contains infinity
         if (x.atoms(type=Infinity) != []) or y.atoms(type=Infinity) != []:
             return x, False
@@ -330,7 +425,9 @@ class Mul(Pair):
              isinstance(x.base, Function) and isinstance(y.base, Function):
             if xexp == yexp:
                 expr = Mul(xbase, ybase)
-                return Pow(expr, xexp, evaluate=True), True
+                # Don't evaluate Pow to avoid infinite recursion!
+                # return Pow(expr, xexp, evaluate=True), True
+                return Pow(expr, xexp, evaluate=False), True
             elif xexp == -yexp:
                 den = Pow(ybase, -1)
                 expr = Mul(xbase, den)
@@ -338,7 +435,7 @@ class Mul(Pair):
             return x, False
         else:
             return x, False
-            
+
     def eval(self):
         "Flatten, put all Rationals in the front, sort arguments"
 
@@ -354,7 +451,7 @@ class Mul(Pair):
                     e[0] *= z
                 else:
                     e.append(z)
-                if ok: 
+                if ok:
                     e.extend(exp[i+1:])
                     return e
             e.append(x)
@@ -393,8 +490,9 @@ class Mul(Pair):
         a = self.coerce([Rational(1)]+c_part+c_part2,_mul_c)
         n,c_part = a[0], a[1:]
         #so that now "n" is a Number and "c_part" doesn't contain any number
-        if n == 0: 
-            return Rational(0)
+        if n == 0:
+            if self.atoms(type=Infinity) == []:
+                return Rational(0)
         c_part.sort(Basic.cmphash)
         #this if is for multiplying Symbol*Matrix and Number*Matrix
         #I think it's not needed anymore, since Matrix is implemented
@@ -409,8 +507,17 @@ class Mul(Pair):
                 if ok: return z
         a=c_part+nc_part
         #put the number in front of all the other args
-        if n != 1: 
+        if n != 1:
             a = [n]+a
+        # Expand simple parantheses with Rational factors, e.g 2*(1+x)
+        if len(a) == 2 and isinstance(a[0], Rational) and isinstance(a[1], Add):
+            return Add(*[a[0]*b for b in a[1]])
+        # Distribute the minus sign in the first appearing sum.
+        #if len(a) > 2 and (a[0] == Rational(-1)) \
+        #   and Add in map(lambda x:type(x), a):
+        #    first_sum = map(lambda x:type(x), a).index(Add)
+        #    a[first_sum] = Add(*[a[0]*b for b in a[first_sum]])
+        #    a = a[1:]
         if len(a) > 1:
             #construct self again, but non-evaluated this time
             return Mul(evaluate=False, *a)
@@ -418,23 +525,23 @@ class Mul(Pair):
             return a[0]
         else:
             return Rational(1)
-            
-    def evalf(self):
+
+    def evalf(self, precision=18):
         a, b = self.getab()
         if a.is_number and b.is_number:
-            return Real(a)*Real(b)
-        else: 
+            return a.evalf(precision)*b.evalf(precision)
+        else:
             raise ValueError("Cannot evaluate a symbolic value")
 
     def evalc(self):
         a, b = self.getab()
         return (a.evalc() * b.evalc()).expand()
-            
+
     def getab(self):
         """Pretend that self=a*b and return a,b
-        
-        in general, self=a*b*c*d*..., but in many algorithms, we 
-        want to have just 2 arguments to Mul. Use this function to 
+
+        in general, self=a*b*c*d*..., but in many algorithms, we
+        want to have just 2 arguments to Mul. Use this function to
         simulate this interface. (the returned b = b*c*d.... )
         """
         a = self._args[0]
@@ -445,7 +552,7 @@ class Mul(Pair):
         else:
             b = Mul(*self._args[1:])
         return (a,b)
-        
+
     def diff(self,sym):
         r = Rational(0)
         for i in range(len(self._args)):
@@ -455,16 +562,20 @@ class Mul(Pair):
                     d *= self._args[j]
             r+=d
         return r
-        
+
     def series(self,sym,n):
-        """expansion for Mul
-        need to handle this correctly:
+        """Series expansion for Mul.
+
+        It needs to handle this correctly:
+
         (e^x-1)/x  -> 1+x/2+x^2/6
-        the first term is (e^x-1)/x evaluated at x=0. normally, we would use
-        a limit. but in cas, the limit is computed using series. so we must
+
+        the first term is (e^x-1)/x evaluated at x=0, normally, we would use
+        a limit. But in a CAS, the limit is computed using series, so we must
         calculate series differently - using the bottom up approach:
-        first expand x, then e^x, then e^x-1, and finally (e^x-1)/x
+        first expand x, then e^x, then e^x-1, and finally (e^x-1)/x.
         """
+
         a,b=self.getab()
         try:
             x=a.series(sym,n)
@@ -478,16 +589,17 @@ class Mul(Pair):
         try:
             y=b.series(sym,n)
         except pole_error:
-            #we are not able to expand b, 
-            #but if a goes to 0 and b is bounded, 
+            #we are not able to expand b,
+            #but if a goes to 0 and b is bounded,
             #the result is just a*const, so we just return a
             a0 = x.subs(sym,0)
             if a0==0 and b.is_bounded:
                 return x
             #we cannot expand x*y
             raise
+        #print x,y,x*y,(x*y).expand()
         return (x*y).expand()
-        
+
     def expand(self):
         a,b = self.getab()
         a = self.tryexpand(a)
@@ -521,7 +633,7 @@ class Mul(Pair):
                 if isinstance(x, exp):
                     return exp(a[0]+x[0])*b/x
         return a*b
-        
+
     def subs(self,old,new):
         a,b = self.getab()
         e = a.subs(old,new)*b.subs(old,new)
@@ -533,15 +645,33 @@ class Mul(Pair):
     def __pretty__(self):
         a = [] # items in the numerator
         b = [] # items that are in the denominator (if any)
+
+        # Gather terms for numerator/denominator
         for item in self._args:
             if isinstance(item, Pow) and item.exp == -1:
-                b.append( item.base.__pretty__() )
-            #elif item == -1:
-             #   a.append(prettyForm("-"))
-                #pass
+                b.append(item.base)
+            elif isinstance(item, Rational):
+                if item.p != 1:
+                    a.append( Rational(item.p) )
+                if item.q != 1:
+                    b.append( Rational(item.q) )
             else:
-                a.append(item.__pretty__())
+                a.append(item)
 
+        # Convert to pretty forms
+        for i in xrange(0, len(a)):
+            if isinstance(a[i], Add) and len(a) > 1:
+                a[i] = prettyForm(*a[i].__pretty__().parens())
+            else:
+                a[i] = a[i].__pretty__()
+
+        for i in xrange(0, len(b)):
+            if isinstance(b[i], Add) and len(b) > 1:
+                b[i] = prettyForm(*b[i].__pretty__().parens())
+            else:
+                b[i] = b[i].__pretty__()
+
+        # Construct a pretty form
         if len(b) == 0:
             return prettyForm.__mul__(*a)
         else:
@@ -549,23 +679,225 @@ class Mul(Pair):
                 a.append( Rational(1).__pretty__() )
             return prettyForm.__mul__(*a) / prettyForm.__mul__(*b)
 
+    @property
+    def is_odd(self):
+        """Product is odd iff all its components are odd. Otherwise
+           this query will return False or None if not all objects
+           are odd and some are only defined to be integers.
+
+           >>> from sympy import *
+           >>> n = Symbol('n', odd=True)
+           >>> k = Symbol('k', integer=True)
+
+           >>> (3*n).is_odd
+           True
+
+           >>> (2*k).is_odd
+           False
+
+           >>> (3*k).is_odd is None
+           True
+
+        """
+        has_unknown = False
+        has_even = False
+
+        for term in self:
+            if term.is_integer:
+                if term.is_even:
+                    has_even = True
+                elif not term.is_odd:
+                    has_unknown = True
+            else:
+                return None
+
+        if has_unknown:
+            return (not has_even) and None
+        else:
+            return not has_even
+
+    @property
+    def is_even(self):
+        """Product is even iff there is at least one even object
+           contained in it. Otherwise this query will return False
+           or None if there are no even objects and some are only
+           defined to be integers.
+
+           >>> from sympy import *
+           >>> k = Symbol('k', integer=True)
+
+           >>> (2*k).is_even
+           True
+
+           >>> (3*k).is_even is None
+           True
+
+        """
+        has_unknown = False
+        has_even = False
+
+        for term in self:
+            if term.is_integer:
+                if term.is_even:
+                    has_even = True
+                elif not term.is_odd:
+                    has_unknown = True
+            else:
+                return None
+
+        if has_unknown:
+            return has_even or None
+        else:
+            return has_even
+
+    ##
+    # Truth Table for (in order):
+    #
+    # - is_negative
+    # - is_positive
+    # - is_nonnegative
+    # - is_nonpositive
+    #
+    # ===========================================
+    # | - - | F T T F || -0 -0 | -0 - | F N T N |
+    # | + + | F T T F || +0 +0 | +0 + | F N T N |
+    # | - + | T F F T || -0 +0 | -0 + | N F N T |
+    # | + - | T F F T || +0 -0 | +0 - | N F N T |
+    # ===========================================
+
+    def _assumptions_helper(self):
+        """This helper function returns a tuple with the number
+           of negative and nonpositive terms and tells if there is
+           zero allowed in any of the terms. Otherwise it returns
+           False or None according to the most recent query result.
+        """
+        negative_count = 0
+        has_zero = False
+
+        for term in self:
+            if not term.is_real:
+                # not a real valued object, probably complex,
+                # so there is no total order relation defined
+                return None
+
+            result = term.is_negative
+
+            if result == True:
+                negative_count += 1
+                continue
+            elif result is None:
+                result = term.is_nonpositive
+
+                if result == True:
+                    negative_count += 1
+                    has_zero = True
+                    continue
+
+            # not a negative or nonpositive term but still don't
+            # know if this is really a positive or nonnegative term
+            result = term.is_positive
+
+            if result is None:
+                result = term.is_nonnegative
+
+                if result == True:
+                    has_zero = True
+                else:
+                    # can't deduce anything so fail (False or None)
+                    return result
+            elif result == False:
+                # here we know exactly nothing so say None
+                return None
+
+        return negative_count, has_zero
+
+    @property
+    def is_negative(self):
+        result = self._assumptions_helper()
+
+        if isinstance(result, tuple):
+            negative_count, has_zero = result
+        else:
+            return result
+
+        if negative_count & 1 == 0:
+            return False
+        else:
+            if has_zero == True:
+                return None
+            else:
+                return True
+
+    @property
+    def is_positive(self):
+        result = self._assumptions_helper()
+
+        if isinstance(result, tuple):
+            negative_count, has_zero = result
+        else:
+            return result
+
+        if negative_count & 1 == 1:
+            return False
+        else:
+            if has_zero == True:
+                return None
+            else:
+                return True
+
+    @property
+    def is_nonpositive(self):
+        result = self._assumptions_helper()
+
+        if isinstance(result, tuple):
+            negative_count, has_zero = result
+        else:
+            return result
+
+        if negative_count & 1 == 0:
+            if has_zero == True:
+                return None
+            else:
+                return False
+        else:
+            return True
+
+    @property
+    def is_nonnegative(self):
+        result = self._assumptions_helper()
+
+        if isinstance(result, tuple):
+            negative_count, has_zero = result
+        else:
+            return result
+
+        if negative_count & 1 == 1:
+            if has_zero == True:
+                return None
+            else:
+                return False
+        else:
+            return True
+
 class Add(Pair):
     """
     Usage
     =====
-        This class represent's the addition of two elements. so whenever you call '+', an 
-        instance of this class is created. 
-        
+        This class represent's the addition of two elements. so whenever
+        you call '+', an instance of this class is created.
+
     Notes
     =====
-        When an instance of this class is created, the method .eval() is called and will
-        preform some inexpensive symplifications. 
-        
-        In some cases, the eval() method will return an object that is not an instance of the
-        class Add, so for example if x is a Symbol, (x+x) will create a class Add with arguments
-        (x,x) , that will be evaluated via the .eval() method, and this method will return a 
-        class Mul with arguments (2,x), that is how x+x --> 2*x is done
-        
+        When an instance of this class is created, the method .eval()
+        is called and will perform some inexpensive simplifications.
+
+        In some cases, the eval() method will return an object that is
+        not an instance of the class Add. So, for example, if x is a
+        Symbol, (x+x) will create a class Add with arguments (x,x),
+        that will be evaluated via the .eval() method, and this method
+        will return a class Mul with arguments (2,x). That is how
+        x+x --> 2*x is done.
+
     Examples
     ========
         >>> from sympy import *
@@ -574,24 +906,24 @@ class Add(Pair):
         <class 'sympy.core.addmul.Add'>
         >>> (1+x)[:]
         (1, x)
-    
+
     See also
     ========
         L{Add.eval}
     """
-    
+
     mathml_tag = "plus"
-    
-    
+
+
     def __float__(self):
         a = 0
         for arg in self._args[:]:
             a += float(arg)
-        return a  
-    
+        return a
+
     def __str__(self):
         """Returns a string representation of the expression in self."""
-        
+
         f = "%s" % str(self._args[0])
         for i in range(1,len(self._args)):
             num_part = _extract_numeric(self._args[i])[0]
@@ -600,7 +932,7 @@ class Add(Pair):
             else:
                 f += "+%s" % str(self._args[i])
         return f
-    
+
     def __latex__(self):
         f = "%s" % self[0].__latex__()
         for i in range(1,len(self[:])):
@@ -609,15 +941,15 @@ class Add(Pair):
               f += "%s" % self[i].__latex__()
             else:
               f += "+%s" % self[i].__latex__()
-        return f    
+        return f
 
     def getab(self):
         """Pretend that self = a+b and return a,b
-        
-        in general, self=a+b+c+d+..., but in many algorithms, we 
-        want to have just 2 arguments to add. Use this function to 
+
+        in general, self=a+b+c+d+..., but in many algorithms, we
+        want to have just 2 arguments to add. Use this function to
         simulate this interface. (the returned b = b+c+d.... )
-        
+
         If you want to obtain all the arguments of a given expression, use
         the slices syntax, like in (1+x)[:]
         """
@@ -630,70 +962,78 @@ class Add(Pair):
             assert len(self._args) > 2
             b = Add(*self._args[1:])
         return (a,b)
-    
 
-        
+
+
+#    @debug
     def eval(self):
         """
         Usage
         =====
-            This method is called automatically when an instance of this class
-            is created, and will always return a new object. 
-            
+            This method is called automatically when an instance of
+            this class is created, and will always return a new object.
+
         Notes
         =====
-            Currently, what this method does is: 
-            
-                - flatten all arguments, i.e, substitute all instances of Add by their arguments
-                  for example, self.flatten(1, 1+x ) --> [1,1,x]
-                
-                - adds it's arguments beying aware of some identities, like that x+x -> 2*x and 
-                  that numbers can be added without restrictions using their own __add__ method
-                
-                - sort
+            Currently, what this method does is:
+
+                - Flatten all arguments, i.e, substitute all instances
+                  of Add by their arguments for example:
+                  self.flatten(1, 1+x ) --> [1,1,x]
+
+                - Add its arguments being aware of some identities,
+                  like that x+x -> 2*x and that numbers can be added
+                  without restrictions using their own __add__ method.
+
+                - Sort
         See also
         ========
             L{Mul.eval}, L{Pow.eval}
-            
+
         TODO
         ====
-            - Perform a complexity analysis
-            - probably optimizations can be done (algorithmic optimizations)
-            - the problem is with addeval() and muleval(), that some classes
-              implement, like Pauli and with noncommutativity of some objects
+            - Perform a complexity analysis.
+            - Probably optimizations can be done (algorithmic optimizations).
+            - The problem is with addeval() and muleval(), that some classes
+              implement, like Pauli and non-commutativity of some objects.
         """
 
+#        @debug
         def _add(exp,x):
             an, a = _extract_numeric(x)
             e = []
             ok = False
             for y in exp:
-	        # try to put all numeric parts together
+            # try to put all numeric parts together
                 bn, b = _extract_numeric(y)
                 if (not ok) and a == b:
                     if isinstance(a, Infinity) or isinstance(b, Infinity):
-                        # case oo - oo
-                        raise ArithmeticError("Cannot compute this")
-		    _m = Mul(an+bn, a)
-		    if _m != 0:
+                        if x != y:
+                            # case oo - oo
+                            raise ArithmeticError("Cannot compute oo-oo")
+                    _m = Mul(an+bn, a)
+                    if _m != 0:
                         e.append(_m)
                     ok = True
                 else:
+                    #print "I",x,y
                     z1 = x.addeval(y,x)
                     z2 = y.addeval(y,x)
+                    #print "R",z1,z2,e,y,ok
 
                     if z1 is not None or z2 is not None:
                         if z1 is not None and z2 is not None:
-                            #sanity check, only when z1 and z2 are not Order
-                            from symbol import Order
-                            if not isinstance(z1,Order):
+                            #sanity check, only when z1 and z2 are not O
+                            from symbol import O
+                            if not isinstance(z1,O):
                                 assert z1 == z2
-                        if z1 is not None:
-                            e.append(z1)
-                            ok = True
-                        elif z2 is not None:
-                            e.append(z2)
-                            ok = True
+                        if not ok:
+                            if z1 is not None:
+                                e.append(z1)
+                                ok = True
+                            elif z2 is not None:
+                                e.append(z2)
+                                ok = True
                     else:
                         e.append(y)
             if not ok: e.append(x)
@@ -705,7 +1045,7 @@ class Add(Pair):
                 return a + b
             else:
                 raise ArgumentError
-        
+
         a = self.flatten(self._args)
         a = self.coerce(a,_add)
         #n,a = self.coerce_numbers(a, Rational.__add__, Rational(0))
@@ -719,24 +1059,24 @@ class Add(Pair):
             return a[0]
         else:
             return Rational(0)
-        
-    def evalf(self):
+
+    def evalf(self, precision=18):
         a,b = self.getab()
         if hasattr(a, 'evalf') and hasattr(b, 'evalf'):
-            return a.evalf() + b.evalf()
+            return a.evalf(precision) + b.evalf(precision)
         else:
             raise ValueError('Can not evaluate a symbolic value')
 
     def evalc(self):
         a, b = self.getab()
         return (a.evalc() + b.evalc()).expand()
-    
+
     def diff(self,sym):
         d = Rational(0)
         for x in self._args:
             d += x.diff(sym)
         return d
-    
+
     def expand(self):
         """Tries to expands all the terms in the sum."""
         d = Rational(0)
@@ -745,36 +1085,39 @@ class Add(Pair):
         return d
 
     def combine(self):
-        r = 0
+        r = Rational(0)
         for x in self:
             r+=x.combine()
         return r
 
-    def removeOrder(self):
+    def removeO(self):
+        return self.removeO()
+
+    def removeO(self):
         """Removes the O(...) from the expression.
-        
+
         Example:
 
-        assert (2+Order(x)) != 2
-        assert (2+Order(x)).removeOrder() == 2
-        assert (2+x+Order(x**2)).removeOrder() == x+2
+        assert (2+O(x)) != 2
+        assert (2+O(x)).removeO() == 2
+        assert (2+x+O(x**2)).removeO() == x+2
         """
-        from symbol import Order
+        from symbol import O
         for x in self:
-            if isinstance(x, Order):
+            if isinstance(x, O):
                 a = list(self[:])
                 a.remove(x)
                 return Add(*a)
         return self
-        raise "the Order not found, cannot remove"
+        raise "the O not found, cannot remove"
 
-    
+
     def subs(self,old,new):
         d = Rational(0)
         for x in self._args:
             d += x.subs(old,new)
         return d
-    
+
     def series(self,sym,n):
         """expansion for add
         need to handle this correctly:
@@ -787,19 +1130,211 @@ class Add(Pair):
         except pole_error:
             a,b = self.getab()
             #there is a cancelation problem here:
-            #implement the class Order
+            #implement the class O
             #print a.series(sym,n)
             #print b.series(sym,n)
             return (a.series(sym,n)+b.series(sym,n))
-        
-    def __pretty__(self):
-        return prettyForm.__add__(*[arg.__pretty__() for arg in self._args])
 
+    def __pretty__(self):
+        #return prettyForm.__add__(*[arg.__pretty__() for arg in self._args])
+        from numbers import Number
+        from stringPict import stringPict
+        pforms = []
+        for ind in xrange(0, len(self._args)):
+            x = self._args[ind]
+            if isinstance(x, Mul) and isinstance(x[0], Number) \
+              and x[0] < 0:
+                pform1 = (-x).__pretty__()
+                if ind == 0:
+                    if '\r' in str(pform1):
+                        pform2 = '-'
+                    else:
+                        pform2 = '- '
+                else:
+                    pform2 = ' - '
+                pform = stringPict.next(pform2, pform1)
+                pforms.append(prettyForm(pform[0], pform[1], binding=prettyForm.NEG))
+            else:
+                pforms.append(x.__pretty__())
+        return prettyForm.__add__(*pforms)
+
+    @property
+    def is_odd(self):
+        odd_count = 0
+
+        for term in self:
+            result = term.is_odd
+
+            if result is None:
+                return None
+            elif result == True:
+                odd_count += 1
+                continue
+
+            # this is a non-odd object but it does not mean it's
+            # even, because it doesn't have to be integer at all
+            result = term.is_even
+
+            if result != True:
+                return result
+
+        # we need odd number of odd values
+        return odd_count & 1 == 1
+
+    @property
+    def is_even(self):
+        odd_count = 0
+
+        for term in self:
+            result = term.is_odd
+
+            if result is None:
+                return None
+            elif result == True:
+                odd_count += 1
+                continue
+
+            # this is a non-odd object but it does not mean it's
+            # even, because it doesn't have to be integer at all
+            result = term.is_even
+
+            if result != True:
+                return result
+
+        # we need even number of odd values
+        return odd_count & 1 == 0
+
+    def _assumptions_helper(self):
+        """This helper function returns a tuple containing True in
+           the first field if all terms are negative or nonpositive
+           and False otherwise, and tells in the other if there is
+           zero allowed in any of the terms. Otherwise it returns
+           False or None according to the most recent query result.
+        """
+        has_negative = False
+        has_positive = False
+        has_zero = False
+
+        for term in self:
+
+            if not term.is_real:
+                # not a real valued object, probably complex,
+                # so there is no total order relation defined
+                return None
+
+            if has_negative and has_positive:
+                # mixed signs so no idea what the total sign is
+                return None
+
+            result = term.is_negative
+
+            if result == True:
+                has_negative = True
+                continue
+            elif result is None:
+                result = term.is_nonpositive
+
+                if result == True:
+                    has_negative = True
+                    has_zero = True
+                    continue
+
+            # not a negative or nonpositive term but still don't
+            # know if this is really a positive or nonnegative term
+            result = term.is_positive
+
+            if result is None:
+                result = term.is_nonnegative
+
+                if result == True:
+                    has_zero = True
+                else:
+                    # can't deduce anything, so fail (False or None)
+                    return result
+            elif result == False:
+                # here we know exactly nothing so say None
+                return None
+
+            has_positive = True
+
+        # yet another redundant test
+        if not has_negative or not has_positive:
+            return has_negative, has_zero
+        else:
+            return None
+
+    @property
+    def is_negative(self):
+        result = self._assumptions_helper()
+
+        if isinstance(result, tuple):
+            has_negative, has_zero = result
+        else:
+            return result
+
+        if has_negative:
+            if has_zero:
+                return None
+            else:
+                return True
+        else:
+            return False
+
+    @property
+    def is_positive(self):
+        result = self._assumptions_helper()
+
+        if isinstance(result, tuple):
+            has_negative, has_zero = result
+        else:
+            return result
+
+        if not has_negative:
+            if has_zero:
+                return None
+            else:
+                return True
+        else:
+            return False
+
+    @property
+    def is_nonpositive(self):
+        result = self._assumptions_helper()
+
+        if isinstance(result, tuple):
+            has_negative, has_zero = result
+        else:
+            return result
+
+        if has_negative:
+            return True
+        else:
+            if has_zero:
+                return None
+            else:
+                return False
+
+    @property
+    def is_nonnegative(self):
+        result = self._assumptions_helper()
+
+        if isinstance(result, tuple):
+            has_negative, has_zero = result
+        else:
+            return result
+
+        if not has_negative:
+            return True
+        else:
+            if has_zero:
+                return None
+            else:
+                return False
 
 def _extract_numeric(x):
     """Returns the numeric and symbolic part of x.
     For example, 1*x -> (1,x)
-    Works only with simple expressions. 
+    Works only with simple expressions.
     """
     if isinstance(x, Mul) and isinstance(x._args[0], (Rational, Real)):
         return x.getab()

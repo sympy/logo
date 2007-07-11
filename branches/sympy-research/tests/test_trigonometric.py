@@ -4,6 +4,10 @@ sys.path.append(".")
 from sympy import *
 from decimal import Decimal
 
+def feq(a,b):
+    t = 1E-15
+    return -t < a-b < t
+
 def test_cos():
     assert cos(0) == 1
     assert cos(pi) == -1
@@ -33,10 +37,10 @@ def test_cos():
     assert cos(pi/6) == Rational(1, 2)*sqrt(3)
     assert cos(5*pi/6) == -Rational(1, 2)*sqrt(3)
 
-    assert float(cos(1)) == 0.54030230586813977
-    assert cos(1).evalf(precision=28) == Decimal("0.540302305868171952183697906453")
-    assert float(cos(1) + cos(2)) == 0.12415546932099736
-    assert abs(float(cos(1)*cos(2)*cos(3)) - 0.22259495730990297) < 1e-15 
+    assert feq( float(cos(1)), 0.54030230586813977 )
+    assert feq( float(cos(1) + cos(2)), 0.12415546932099736 )
+    assert feq( float(cos(1)*cos(2)*cos(3)), 0.22259495730990297 )
+    assert cos(1).evalf(precision=28) == Real("0.5403023058681397174009366074")
 
     x = Symbol('x')
     y = Symbol('y')
@@ -74,7 +78,8 @@ def test_sin():
     assert sin(7*pi/6) == -Rational(1, 2)
     assert sin(-5*pi/6) == -Rational(1, 2)
 
-    assert float(sin(1)) == 0.8414709848078965
+    assert feq( float(sin(1)), 0.8414709848078965 )
+    assert sin(1).evalf(precision=28) == Real("0.8414709848078965066525023216")
 
     x = Symbol('x')
     y = Symbol('y')
@@ -92,7 +97,39 @@ def test_tan():
     z = Symbol('z')
     assert tan(-x).expand() == -tan(x)
     assert tan(-x-y).expand() == (-tan(x) - tan(y)) / (1 - tan(x)*tan(y))
-    assert tan(x+y+z).expand() == (tan(x) + tan(y) + tan(z) - tan(x)*tan(y)*tan(z)) / (1 - tan(x)*tan(y) - tan(x)*tan(z) - tan(y)*tan(z)) 
+    assert tan(x+y+z).expand() == \
+           (tan(x) + tan(y) + tan(z) - tan(x)*tan(y)*tan(z)) \
+           / (1 - tan(x)*tan(y) - tan(x)*tan(z) - tan(y)*tan(z)) 
 
     assert tan(2*x).expand() == 2*tan(x) / (1 - tan(x)**2)
-    assert tan(-3*x).expand() == -(3*tan(x) - tan(x)**3) / (1 - 3*tan(x)**2)
+    assert tan(-3*x).expand() == -((3*tan(x) - tan(x)**3) / (1 - 3*tan(x)**2))
+
+def test_tan_cst():
+    assert tan(0)       == 0
+    assert tan(pi/4)    == 1
+#   assert tan(pi/2)    == oo
+
+
+def test_asin():
+    assert asin(0)      == 0
+    assert asin(-1)     == -pi/2
+
+    assert feq( float(asin(Real("0.3"))), 0.30469265401539752 )
+    assert asin(Real("0.3")).evalf(precision=28) == Real("0.3046926540153975079720029612")
+
+def test_acos():
+    assert acos(0)      == pi/2
+    assert acos(1)      == 0
+    assert acos(-1)     == pi
+
+    assert feq( float(acos(Real("0.3"))), 1.2661036727794992 )
+    assert acos(Real("0.3")).evalf(precision=28) == Real("1.266103672779499111259318730")
+
+def test_atan():
+    assert atan(1)      == pi/4
+    assert atan(oo)     == pi/2
+    #assert atan(-oo)    == -pi/2   XXX infinite recursion
+    assert atan(-sqrt(3))== - pi/3
+
+    assert feq( float(atan(1)), 0.78539816339744828 )
+    assert atan(1).evalf(precision=28) == Real("0.7853981633974483096156608458")

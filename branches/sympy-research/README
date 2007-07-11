@@ -7,10 +7,20 @@ http://code.google.com/p/sympy/
 
 Author: Ondrej Certik <ondrej@certik.cz>
 
-Developers: Fabian Seoane <fabian@fseoane.net>
+Developers and contributors (in the order they joined the project): 
+    Fabian Seoane <fabian@fseoane.net>
+    Jurjen N.E. Bos <jnebos@gmail.com>
+    Mateusz Paprocki <mattpap@gmail.com> 
+    Brian Jorgensen <brian.jorgensen@gmail.com>
+    Jason Gedge <inferno1386@gmail.com>
+    Robert Schwarz <lethargo@googlemail.com>
+    Pearu Peterson <pearu.peterson@gmail.com>
+    Fredrik Johansson <fredrik.johansson@gmail.com>
+    Chris Wu <chris.wu@gmail.com>
 
-License: GNU General Public License 2.0
-covers all the files in the sympy repository.
+License: New BSD License (see the LICENSE file for details)
+covers all files in the sympy repository except sympy/modules/decorator.py,
+that has it's own license (look into the file for details).
 
 
 0. Download
@@ -76,30 +86,7 @@ eval `python ~/py-dist/py/env.py`
 
 Now you can call "py.test" from anywhere.
 
-
-5. How to generate documentation
---------------------------------
-
-You must have epydoc installed (http://epydoc.sf.net), version 3.0. 
-Unfortunately, if you use Debian, there is only 2.1 in the unstable and it
-doesn't work, so you need to download and install it by hand.
-
-Once you have a working copy of epydoc, execute from sympy's directory: 
-
-epydoc --config doc/apidoc.conf
-
-6. How to create a Debian package
----------------------------------
-
-First install these packages: cdbs, debhelper, fakeroot, docbook2x
-
-Then issue:
-
-python setup.py bdist_dpkg
-
-This will create a python-sympy Debian package in the parent directory.
-
-7. Clean
+5. Clean
 --------
 
 To clean everything (thus getting the same tree as in the svn):

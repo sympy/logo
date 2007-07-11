@@ -22,14 +22,14 @@ comments) and its capabilities include:
     - taylor series
     - basic substitution (like x-> ln(x))
     - arbitrary precision integers,
-    - rationals and floats 
+    - rationals and floats
 
 Then there are SymPy modules (1000 lines) for these tasks:
 
     - limits (like limit(x*log(x), x, 0) -> 0)
     - integration (currently it can only do very simple integrals)
     - polynomials (division, gcd, square free decomposition)
-    - symbolic matrices 
+    - symbolic matrices
 
 To help you get started, here is a simple example in the python
 interpreter:
@@ -38,7 +38,7 @@ interpreter:
     >>> x = Symbol('x')
     >>> e = 1/cos(x)
     >>> print e.series(x,10)
-    1+O(x**10)+1/2*x**2+5/24*x**4+61/720*x**6+277/8064*x**8
+    1+1/2*x**2+O(x**10)+5/24*x**4+61/720*x**6+277/8064*x**8
 
 For full documentation, see the docs at our web page:
 U{http://code.google.com/p/sympy/wiki/Documentation}
@@ -46,29 +46,41 @@ U{http://code.google.com/p/sympy/wiki/Documentation}
 Structure
 =========
 
-Sympy is basically divided in two modules: the core module, which contains 
+Sympy is basically divided in two modules: the core module, which contains
 the classes needed for basic symbolic manipulations, like the definition of a
-Symbol or a Rational number, and sympy.modules, a high-level module that 
+Symbol or a Rational number, and sympy.modules, a high-level module that
 contains algorithms for symbolic computations, like limit, integration, etc.
 
 
 G{packagetree sympy}
 """
 
-__version__ = "0.4-pre"
+import sys
 
-from sympy.core import Basic
-from sympy.core import Symbol, Number, Rational, Real, oo, Order
-from sympy.core import pi, I, Add, Mul
-from sympy.core.functions import Function, diff, Derivative, exp, log, sign, sqrt
+__version__ = "0.4.2"
 
-from sympy.modules.limits import limit, limitinf
-#from sympy.modules.trigonometric import sin, cos, tan, atan
-from sympy.core import sin, cos, tan
+from sympy.core.basic import Basic
+from sympy.core.symbol import Symbol, symbols, O
+from sympy.core.functions import Function, exp, log, ln, sqrt, sign, diff
+from sympy.core.functions import Derivative
+from sympy.core.numbers import Rational, Real, Number, oo, I, pi
+from sympy.core.power import Pow, pole_error
+from sympy.core.addmul import Add, Mul
+from sympy.core.hashing import mhash
+
+from sympy.modules.limits import limit
+from sympy.modules.trigonometric import sin, cos, tan, sec, csc, cot, atan, asin, acos
 from sympy.modules.integrals import integrate
 from sympy.modules.matrices import Matrix
 from sympy.modules.solvers import solve, dsolve
-from sympy.modules.simplify import ratsimp, simplify
+from sympy.modules.simplify import fraction, numer, denom, together, \
+    separate, collect, ratsimp, simplify
+from sympy.modules.polynomials import div, gcd, factor, groebner, lcm, \
+    real_roots, resultant, roots, sqf, Ideal
 
 from sympy.modules.printing.pretty import pretty, pretty_print, pprint
 from sympy.modules.printing.mathml import mathml
+from sympy.modules.printing.latex import latex
+
+if sys.version_info[1] < 5:
+    from sympy.modules.utils import any, all

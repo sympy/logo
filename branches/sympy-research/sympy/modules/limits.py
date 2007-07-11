@@ -84,7 +84,7 @@ which is the most difficult part of the algorithm.
 """
 
 import sympy as s
-from sympy.core import Basic, mhash
+from sympy import Basic, mhash, Add, Mul, Pow, Function, log, oo, Rational
 from sympy.core.stringPict import stringPict, prettyForm
 
 from decorator import decorator
@@ -184,13 +184,10 @@ def limitinf(e,x):
     c0,e0 = mrv_leadterm(e,x) 
     sig=sign(e0,x)
     if sig==1: return s.Rational(0) # e0>0: lim f = 0
-    elif sig==-1: 
-        s.oo.sig=sign(c0,x)
-#uncommenting this line shows, what's happening:
-#        print "LL",s.oo, sign(c0,x), sign(c0, x) * s.oo
-        return s.oo #e0<0: lim f = +-oo   (the sign depends on the sign of c0)
-#this doesn't work:
-#        return sign(c0, x) * s.oo #e0<0: lim f = +-oo   (the sign depends on the sign of c0)
+    elif sig==-1: #e0<0: lim f = +-oo   (the sign depends on the sign of c0)
+        #the leading term shouldn't be 0:
+        assert sign(c0,x) != 0
+        return sign(c0, x) * s.oo 
     elif sig==0: return limitinf(c0,x) #e0=0: lim f = lim c0
 
 @memoize
@@ -201,14 +198,17 @@ def sign(e,x):
         e==0 .. 0
         e<0 ... -1
     """
-    #print "sign:",e
     if isinstance(e, (s.Rational, s.Real)):
         return s.sign(e)
     elif not e.has(x):
-        return e.evalf() > 0
+        f= e.evalf()
+        if f > 0:
+            return 1
+        else:
+            return -1
     elif e == x: 
         return 1
-    elif isinstance(e,s.core.Mul): 
+    elif isinstance(e,s.Mul): 
         a,b = e.getab()
         return sign(a,x)*sign(b,x)
 #    elif isinstance(e,s.add): 
@@ -216,19 +216,17 @@ def sign(e,x):
 #        return sign(a,x)*sign(b,x)
     elif isinstance(e,s.exp): 
         return 1 
-    elif isinstance(e, s.core.Pow):
+    elif isinstance(e, Pow):
         if sign(e.base,x) == 1: 
             return 1
     elif isinstance(e, s.log): 
         return sign(e._args -1, x)
-    elif isinstance(e, s.core.Add):
-        #print limitinf(e,x) 
-        #print sign(limitinf(e,x),x) 
-        return sign(limitinf(e,x),x) #FIXME this is wrong for -oo
+    elif isinstance(e, Add):
+        return sign(limitinf(e,x),x)
     raise "cannot determine the sign of %s"%e
 
 def tryexpand(a):
-    if isinstance(a,s.core.Mul) or isinstance(a,s.core.Pow) or isinstance(a,s.core.Add):
+    if isinstance(a,Mul) or isinstance(a,Pow) or isinstance(a,Add):
         return a.expand()
     else:
         return a
@@ -258,6 +256,7 @@ def rewrite(e,Omega,x,wsym):
     for f in Omega: 
         assert isinstance(f,s.exp) #all items in Omega should be exponencials
         c=mrv_leadterm(f._args/g._args,x)
+        #the c is a constant, because both f and g are from Omega:
         assert c[1]==0
         O2.append(s.exp(tryexpand(f._args-c[0]*g._args))*wsym**c[0])
     #Remember that Omega contains subexpressions of "e". So now we find
@@ -300,15 +299,15 @@ def mrv_leadterm(e,x,Omega=[]):
     f,logw=rewrite(e,Omega,x,wsym)
     series=f.expand().series(wsym,2)
     n = 3
-    from sympy import Order,Add
-    while series==0 or isinstance(series,Order) and n<10:
+    from sympy import O,Add
+    while series==0 or isinstance(series,O) and n<10:
         series = f.expand().series(wsym,n)
         n += 1
     assert series!=0
-    assert not isinstance(series,Order)
+    assert not isinstance(series,O)
     #print "sss1",series,type(series),f,n
     if isinstance(series,Add):
-        series = series.removeOrder()
+        series = series.removeO()
     #print "sss2",series,type(series)
     series=series.subs(s.log(wsym),logw)
     #print "sss3",series,type(series)
@@ -320,13 +319,13 @@ def mrv(e,x):
     "Returns the list of most rapidly varying (mrv) subexpressions of 'e'"
     if not e.has(x): return []
     elif e == x: return [x]
-    elif isinstance(e, s.core.Mul): 
+    elif isinstance(e, s.Mul): 
         a,b = e.getab()
         return max(mrv(a,x),mrv(b,x),x)
-    elif isinstance(e, s.core.Add): 
+    elif isinstance(e, s.Add): 
         a,b = e.getab()
         return max(mrv(a,x),mrv(b,x),x)
-    elif isinstance(e, s.core.Pow):
+    elif isinstance(e, s.Pow):
         if e.exp.has(x):
             return mrv(s.exp(e.exp * s.log(e.base)),x)
         else:
@@ -334,11 +333,11 @@ def mrv(e,x):
     elif isinstance(e, s.log): 
         return mrv(e._args, x)
     elif isinstance(e, s.exp): 
-        if limitinf(e._args,x) == s.oo:
+        if limitinf(e._args,x) in [oo,-oo]:
             return max([e],mrv(e._args, x), x)
         else:
             return mrv(e._args,x)
-    elif isinstance(e, s.core.Function): 
+    elif isinstance(e, Function): 
         return mrv(e._args,x)
     raise "unimplemented in mrv: %s"%e
 
@@ -362,10 +361,13 @@ def max(f,g,x):
 
 def compare(a,b,x):
     """Returns "<" if a<b, "=" for a==b, ">" for a>b"""
-    c=limitinf(s.log(a)/s.log(b),x)
-    if c==s.Rational(0): return "<"
-    elif c==s.oo: return ">"
-    else: return "="
+    c = limitinf(log(a)/log(b), x)
+    if c== Rational(0): 
+        return "<"
+    elif c in [oo,-oo]: 
+        return ">"
+    else: 
+        return "="
 
 class Limit(Basic):
     
@@ -387,7 +389,7 @@ class Limit(Basic):
          return a
      
     def __latex__(self):
-         return "\lim_{%s \to %s}%s" % (self.x.__latex__(), \
+         return r"\lim_{%s \to %s}%s" % (self.x.__latex__(), \
                                                  self.x0.__latex__(), 
                                                  self.e.__latex__() )
                  
@@ -427,18 +429,29 @@ class Limit(Basic):
         
         return self._mathml
             
-def limit(e,z,z0, evaluate=True):
-    """Compute the limit of e(z) at the point z0. 
-        z0 can be oo
-        Currently only limit z->z0+"""
+def limit(e,z,z0, evaluate=True, left=False):
+    """
+    Compute the limit of e(z) at the point z0. 
+
+    z0 can be any expression, including oo and -oo.
+
+    For finite z0 it calculates the limit from the right (z->z0+) for
+    left=False (default) and the limit from the left (z->z0-) for left=True.
+    """
     if not isinstance(z, s.Symbol):
         raise NotImplementedError("Second argument must be a Symbol")
-    if not evaluate:
+    elif not evaluate:
         return Limit(e, z, z0)
-    if z0 == s.oo:
+
+    #convert all limits to the limit z->oo
+    elif z0 == s.oo:
         return limitinf(e, z)
-    if z0 == -s.oo:
-        return limitinf(-e, z)
-    x=s.Symbol("x", dummy=True)
-    e0=e.subs(z,z0+1/x)
-    return limitinf(e0,x)
+    elif z0 == -s.oo:
+        return limitinf(e.subs(z,-z), z)
+    else:
+        x=s.Symbol("x", dummy=True)
+        if left:
+            e0=e.subs(z,z0-1/x)
+        else:
+            e0=e.subs(z,z0+1/x)
+        return limitinf(e0,x)

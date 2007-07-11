@@ -1,5 +1,5 @@
-from sympy.core import Basic, Symbol, Number, Mul, Pow, log, Add
-from sympy.modules import cos, sin
+from sympy import Basic, Symbol, Number, Mul, Pow, log, Add
+from sympy import cos, sin
 from sympy.core.stringPict import stringPict, prettyForm
 
 class IntegralError(Exception):
@@ -9,7 +9,7 @@ class Integral(Basic):
     """
     Definite integral.
 
-    Integral(f, (x,a,b) represents \int_a^b f(x) dx
+    Integral(f, (x,a,b)) represents \int_a^b f(x) dx
 
     Usage
     =====
@@ -62,16 +62,32 @@ class Integral(Basic):
     
         
     def __pretty__(self):
+        arg = prettyForm( *stringPict.next(self.f.__pretty__(), " d" , self.x.__pretty__()) )
+        arg.baseline = 0
+
+        # Create top and bottom parts based on definite/indefinite
         if self.a is not None:
-            a = prettyForm('|')
-            a = prettyForm(*a.below("/ %s" % self.a))
-            a = prettyForm(*a.top("/ %s" % self.b))
-        else: 
-            a = prettyForm("|")
-            a = prettyForm(*a.below("/"))
-            a = prettyForm(*a.top("/"))
-        a = prettyForm( *stringPict.next(a, " ",  self.f.__pretty__(), " d" , self.x.__pretty__() ) )
-        return a
+            t = "/ %s" % self.b
+            b = "/ %s" % self.a
+        else:
+            t = "/"
+            b = "/"
+
+        # Pad things so the integral sign is left-aligned properly
+        width = max(len(t), len(b))
+        t = prettyForm( t + (' ' * (width - len(t))) )
+        b = prettyForm( b + (' ' * (width - len(b))) )
+
+        # Create bar based on the height of the argument
+        c = '|' + (' ' * (width -1))
+        for x in xrange(1, arg.height()):
+            c += '\r|' + (' ' * (width -1))
+
+        # Construct the pretty form with the sign and the argument
+        a = prettyForm(c)
+        a = prettyForm(*a.below(b))
+        a = prettyForm(*a.top(t))
+        return prettyForm(*stringPict.right(a, " ", arg))
             
     def __mathml__(self):
         if self._mathml:
@@ -145,16 +161,26 @@ class Integral(Basic):
                     if f.exp==-1: return log(abs(x)) * other
                     else: return x**(f.exp+1)/(f.exp+1) * other
 
+        from sympy import exp
+        from sympy.modules.specfun.factorials import upper_gamma
         a,b,c = [Symbol(s, dummy = True) for s in ["a","b","c"]]
         integral_table = {
                 a/(b*x+c): a/b * log(abs(b*x+c)),
                 a*sin(b*x): -a/b * cos(b*x),
                 a*cos(b*x): a/b * sin(b*x),
-                log(x): x*log(x)-x
+                log(a*x): x*log(a*x)-x,
+                # Note: the next two entries are special cases of the
+                # third and would be redundant with a more powerful match()
+                exp(a*x) : exp(a*x)/a,
+                x * exp(a*x) : exp(a*x) * (a*x-1) / a**2,
+                x**a * exp(b*x) : (-1)*x**(a+1)*(-b*x)**(-a-1)*upper_gamma(a+1,-b*x)
                 }
         for k in integral_table:
             r = f.match(k, [a,b,c])
             if r != None:
+                # Prevent matching nonconstant expressions 
+                if [1 for v in r.values() if v.has(x)]:
+                    break
                 return integral_table[k].subs_dict(r)
 
         raise IntegralError("Don't know how to do this integral. :(")

@@ -14,7 +14,6 @@ how to customize the install procedure read the output of:
 
 In addition, there are some other commands:
 
-    python setup.py bdist_dpkg -> will make a deb package in the parent diretory
     python setup.py clean -> will clean all trash (*.pyc and stuff)
     python setup.py test  -> will run the complete test suite
     python setup.py test_core -> will run only tests concerning core features
@@ -178,6 +177,9 @@ class test_sympy_doc(Command):
         # files without doctests or that don't work
         files.remove('sympy/modules/printing/pygame_.py')
         files.remove('sympy/modules/printing/pretty.py') # see issue 53
+        # at this time Plot does not have doctests
+        plotting_path = 'sympy/modules/plotting'
+        files = [f for f in files if not f.startswith(plotting_path)]
 
         
         #testing for optional libraries
@@ -187,10 +189,6 @@ class test_sympy_doc(Command):
             #remove tests that make use of libxslt1
             files.remove('sympy/modules/printing/latex.py')
             files.remove('sympy/modules/printing/__init__.py')
-        try:
-            import pylab
-        except ImportError:
-            files.remove('sympy/modules/graphing.py')
 
         modules = []
         for x in files:
@@ -215,12 +213,21 @@ setup(
       name = 'sympy', 
       version = sympy.__version__, 
       description = 'Computer algebra system (CAS) in Python', 
+      license = 'BSD',
       url = 'http://code.google.com/p/sympy', 
-      packages = ['sympy', 'sympy.core', 'sympy.modules',
-                  'sympy.modules.mathml', 'sympy.modules.printing'],
-      package_data = {'sympy.modules.mathml' : ['data/mmlctop.xsl', 
-                                                'data/mmltex.xsl',
-                                                'data/simple_mmlctop.xsl' ]},
+      packages = ['sympy', 
+                    'sympy.core', 'sympy.modules',
+                    'sympy.modules.concrete',
+                    'sympy.modules.geometry',
+                    'sympy.modules.mathml', 
+                    'sympy.modules.plotting',
+                    'sympy.modules.plotting.renderables',
+                    'sympy.modules.plotting.scene',
+                    'sympy.modules.polynomials',
+                    'sympy.modules.printing',
+                    'sympy.modules.specfun',
+                  ],
+      package_data = {'sympy.modules.mathml' : ['data/*.xsl']}, 
       scripts = ['bin/isympy'],
       ext_modules = [],
       data_files = [('share/man/man1', ['doc/man/isympy.1'])],

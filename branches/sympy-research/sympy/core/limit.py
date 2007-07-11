@@ -304,3 +304,4 @@ def rewrite_expr(expr, germ, mrv_map, w):
         e = e.subs(log, mrvlog).subs(germ.args[0], -log(w)).subs(mrvlog, log)
     return e
 
+Basic.singleton['limit'] = lambda : Limit

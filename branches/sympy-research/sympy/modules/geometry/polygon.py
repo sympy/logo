@@ -1,41 +1,79 @@
-from sympy import Basic, Rational, Symbol
+from sympy import Basic, Rational, Symbol, cos, sin, pi
 from sympy.modules.simplify import simplify
 from entity import GeometryEntity
 from point import Point
 from ellipse import Circle
-from line import LinearEntity, Line, Segment
+from line import Line, Segment
 
 
 class Polygon(GeometryEntity):
-    """A polygon in space."""
+    """A simple polygon in space."""
     def __init__(self, *args, **kwargs):
-        GeometryEntity.__init__(self, **kwargs)
-        if not isinstance(args[0], GeometryEntity):
+        GeometryEntity.__init__(self, *args, **kwargs)
+        if not isinstance(args[0], Point):
             self._vertices = tuple(args[0])
         else:
             self._vertices = tuple(args)
 
         for p in self._vertices:
             if not isinstance(p, Point):
-                raise TypeError("__init__ requires Point instancess")
+                raise TypeError("__init__ requires Point instances")
 
         if len(self._vertices) < 3:
-            raise ValueError("A polygon must have at least three points")
+            raise RuntimeError("A polygon must have at least three points")
 
     @property
     def area(self):
         """Returns the area of the polygon."""
         area = 0
-        for ind in xrange(0, len(self._vertices)-1):
+        for ind in xrange(-1, len(self._vertices)-1):
             pi = self._vertices[ind]
             pii = self._vertices[ind+1]
             area += pi[0]*pii[1]-pii[0]*pi[1]
         return simplify(area) / Rational(2)
 
     @property
+    def angles(self):
+        """
+        Returns a dictionary of {point: angle} entries containing the
+        measure of all the internal angle of this polygon at each vertex.
+        """
+        def tarea(a, b, c):
+            return (b[0] - a[0])*(c[1] - a[1]) - (c[0] - a[0])*(b[1] - a[1])
+
+        def isright(a, b, c):
+            return (tarea(a, b, c) <= 0)
+
+        # Determine orientation of points
+        cw = True
+        if not isright(self._vertices[-1], self._vertices[0], self._vertices[1]):
+            cw = False
+
+        ret = {}
+        if cw:
+            for i in xrange(0, len(self._vertices)):
+                a,b,c = self._vertices[i-2], self._vertices[i-1], self._vertices[i]
+                ang = Line.angle_between(Line(b, a), Line(b, c))
+                if not isright(a, b, c):
+                    ret[b] = 360 - ang
+                else:
+                    ret[b] = ang
+        else:
+            for i in xrange(0, len(self._vertices)):
+                a,b,c = self._vertices[i-2], self._vertices[i-1], self._vertices[i]
+                ang = Line.angle_between(Line(b, a), Line(b, c))
+                if isright(a, b, c):
+                    ret[b] = 360 - ang
+                else:
+                    ret[b] = ang
+        return ret
+
+    @property
     def perimeter(self):
         """Returns the perimeter of the polygon."""
-        p = sum([side.length for side in self.sides])
+        p = 0
+        for ind in xrange(-1, len(self._vertices)-1):
+            p += Point.distance(self._vertices[ind], self._vertices[ind+1])
         return simplify(p)
 
     @property
@@ -46,39 +84,56 @@ class Polygon(GeometryEntity):
     @property
     def centroid(self):
         """Returns the centroid of the polygon."""
-        # TODO Double check this formula
-        x = Rational(0)
-        y = Rational(0)
-        n = Rational(len(self._points))
-        for p in self._vertices:
-            x += p[0]
-            y += p[1]
-        x = simplify(x/n)
-        y = simplify(y/n)
-        return Point(x, y)
+        A = 1 / (6*self.area)
+        cx,cy = 0,0
+        for ind in xrange(-1, len(self._vertices)-1):
+            pi = self._vertices[ind]
+            pii = self._vertices[ind+1]
+            v = pi[0]*pii[1]-pii[0]*pi[1]
+            cx += v*(pi[0] + pii[0])
+            cy += v*(pi[1] + pii[1])
+        return Point(simplify(A*cx), simplify(A*cy))
 
     @property
     def sides(self):
         """Returns a list of the sides."""
         res = []
-        for ind in xrange(1, len(self._vertices)):
-            res.append( Segment(self._vertices[ind-1], self._vertices[ind]) )
+        for ind in xrange(0, len(self._vertices)-1):
+            res.append( Segment(self._vertices[ind], self._vertices[ind+1]) )
         res.append( Segment(self._vertices[-1], self._vertices[0]) )
         return res
 
-    def intersection(self, o):
-        """
-        Returns the intersection of the Polygon and another entity, or None if
-        there is no intersection.
-        """
+    def is_convex(self):
+        """Returns True if this polygon is convex, False otherwise."""
+        # XXX Should we override this in RegularPoygon and Triangle since they
+        #     are never convex (if the tiny performance boost is important)
+        def tarea(a, b, c):
+            return (b[0] - a[0])*(c[1] - a[1]) - (c[0] - a[0])*(b[1] - a[1])
+
+        def isright(a, b, c):
+            return (tarea(a, b, c) <= 0)
+
+        # Determine orientation of points
+        cw = True
+        if not isright(self._vertices[-2], self._vertices[-1], self._vertices[0]):
+            cw = False
+
+        if cw:
+            for i in xrange(0, len(self._vertices)):
+                if not isright(self._vertices[i-2], self._vertices[i-1], self._vertices[i]):
+                    return False
+        else:
+            for i in xrange(0, len(self._vertices)):
+                if isright(self._vertices[i-2], self._vertices[i-1], self._vertices[i]):
+                    return False
+        return True
+
+    def _intersection(self, o):
         res = []
         for side in self.sides:
-            inter = GeometryEntity.intersection(side, o)
+            inter = GeometryEntity.do_intersection(side, o)
             if inter is not None:
                 res.extend(inter)
-
-        if len(res) == 0:
-            return None
         return res
 
     def __len__(self):
@@ -125,12 +180,6 @@ class Polygon(GeometryEntity):
 
         return False
 
-    def __ne__(self, o):
-        return not self.__eq__(o)
-
-    def __hash__(self):
-        return hash(self._vertices)
-
     def __contains__(self, o):
         if isinstance(o, Polygon):
             return self == o
@@ -147,35 +196,107 @@ class Polygon(GeometryEntity):
             return False
 
     def __str__(self):
-        #what_am_i = {
-        #    3: "Triangle",
-        #    4: "Quadrilateral",
-        #    5: "Pentagon",
-        #    6: "Hexagon",
-        #    7: "Heptagon",
-        #    8: "Octagon",
-        #    9: "Nonagon",
-        #    10: "Decagon"
-        #}.get(len(self._vertices), "Polygon")
-        return "Polygon(%d sides)" % len(self._vertices)
+        return "Polygon(%d sides)" % (len(self._vertices)-1)
 
     def __repr__(self):
-        return str(self)
+        return "Polygon(%s)" % [repr(x) for x in self._vertices]
+
 
 class RegularPolygon(Polygon):
-    def __init__(self, *args, **kwargs):
-        Polygon.__init__(self, *args, **kwargs)
+    """A regular polygon."""
+    def __init__(self, c, r, n, **kwargs):
+        r = Basic.sympify(r)
+
+        if not isinstance(c, Point):
+            raise ValueError("RegularPolygon.__init__ requires c to be a Point instance")
+
+        if not isinstance(r, Basic):
+            raise ValueError("RegularPolygon.__init__ requires c to be a number or Basic instance")
+
+        self._c = c
+        self._r = r
+        points = []
+        for k in xrange(0, n):
+            points.append( Point(c[0] + r*cos(2*k*pi/n), c[1] + r*sin(2*k*pi/n)) )
+        Polygon.__init__(self, points, **kwargs)
+
+    @property
+    def center(self):
+        """
+        Returns the center of the regular polygon (i.e., the center of the
+        circumscribing circle).
+        """
+        return self._c
+
+    @property
+    def radius(self):
+        """
+        Returns the radius of the regular polygon (i.e., the radius of the
+        circumscribing circle).
+        """
+        return self._r
+
+    @property
+    def apothem(self):
+        """
+        Returns the apothem/inradius of the regular polygon (i.e., the
+        radius of the inscribed circle).
+        """
+        n = len(self._vertices)
+        return self._r * cos(pi/n)
+
+    @property
+    def interior_angle(self):
+        """Returns the measure of the interior angles."""
+        n = len(self._vertices)
+        return (n-2)*pi/n
+
+    @property
+    def exterior_angle(self):
+        """Returns the measure of the exterior angles."""
+        n = len(self._vertices)
+        return 2*pi/n
+
+    @property
+    def circumcircle(self):
+        """Returns a Circle instance describing the circumcircle."""
+        return Circle(self._c, self._r)
+
+    @property
+    def incircle(self):
+        """Returns a Circle instance describing the inscribed circle."""
+        return Circle(self._c, self.apothem)
+
+    @property
+    def angles(self):
+        ret = {}
+        ang = self.interior_angle
+        for v in self._vertices:
+            ret[v] = ang
+        return ret
+
+    def __str__(self):
+        return "RegularPolygon(%d sides)" % (len(self._vertices)-1)
+
+    def __repr__(self):
+        n = len(self._vertices) - 1
+        return "RegularPolygon(%s, %s, %r)" % (repr(self._c), repr(self._r), n)
 
 class Triangle(Polygon):
-    @staticmethod
-    def are_similar(t1, t2):
-        """
-        Returns the True if triangles t1 and t2 are similar,
-        False otherwise.
-        """
+    """A triangle (3 sided polygon)."""
+
+    def __init__(self, *args, **kwargs):
+        Polygon.__init__(self, *args, **kwargs)
+        if len(self._vertices) != 3:
+            raise RuntimeError("A triangle requires exactly 3 points")
+
+    def _is_similar(t1, t2):
+        """Returns True if triangles t1 and t2 are similar, False otherwise."""
+        if not isinstance(t2, Polygon) or len(t2) != 3:
+            return False
+
         s1_1, s1_2, s1_3 = [side.length for side in t1.sides]
         s2 = [side.length for side in t2.sides]
-        #print [s1_1, s1_2, s1_3] + s2
         def _are_similar(u1, u2, u3, v1, v2, v3):
             e1 = simplify(u1/v1)
             e2 = simplify(u2/v2)
@@ -197,13 +318,10 @@ class Triangle(Polygon):
 
     def is_right(self):
         """Returns True if the triangle is right-angled, False otherwise."""
-        #for angle in self.angles:
-        #    if angle == pi/2: return True
-        #return False
         s = self.sides
-        return LinearEntity.are_perpendicular(s[0], s[1]) or \
-               LinearEntity.are_perpendicular(s[1], s[2]) or \
-               LinearEntity.are_perpendicular(s[0], s[2])
+        return Segment.is_perpendicular(s[0], s[1]) or \
+               Segment.is_perpendicular(s[1], s[2]) or \
+               Segment.is_perpendicular(s[0], s[2])
 
     @property
     def altitudes(self):
@@ -211,9 +329,6 @@ class Triangle(Polygon):
         Returns the altitudes of the triangle in a dictionary where the key
         is the vertex and the value is the altitude at that point.
         """
-        # XXX Is this abusing the fact that we know how self.sides
-        #     constructs its side, or shall we consider the way
-        #     self.sides is constructed is standard?
         s = self.sides
         v = self._vertices
         return {v[0]: s[1].perpendicular_segment(v[0]),
@@ -228,7 +343,9 @@ class Triangle(Polygon):
 
     @property
     def circumcenter(self):
-        return self.orthocenter
+        """Returns the circumcenter of the triangle."""
+        a,b,c = [x.perpendicular_bisector() for x in self.sides]
+        return GeometryEntity.do_intersection(a, b)[0]
 
     @property
     def circumradius(self):
@@ -241,15 +358,15 @@ class Triangle(Polygon):
     @property
     def bisectors(self):
         """
-        Returns the bisectors of the triangle in a dictionary where the key
-        is the vertex and the value is the bisector at that point.
+        Returns the angle bisectors of the triangle in a dictionary where the
+        key is the vertex and the value is the bisector at that point.
         """
         s = self.sides
         v = self._vertices
         c = self.incenter
-        l1 = Segment(v[0], GeometryEntity.intersection(Line(v[0], c), s[1])[0])
-        l2 = Segment(v[1], GeometryEntity.intersection(Line(v[1], c), s[2])[0])
-        l3 = Segment(v[2], GeometryEntity.intersection(Line(v[2], c), s[0])[0])
+        l1 = Segment(v[0], GeometryEntity.do_intersection(Line(v[0], c), s[1])[0])
+        l2 = Segment(v[1], GeometryEntity.do_intersection(Line(v[1], c), s[2])[0])
+        l3 = Segment(v[2], GeometryEntity.do_intersection(Line(v[2], c), s[0])[0])
         return {v[0]: l1, v[1]: l2, v[2]: l3}
 
     @property
@@ -279,7 +396,6 @@ class Triangle(Polygon):
         Returns the medians of the triangle in a dictionary where the key
         is the vertex and the value is the median at that point.
         """
-        # XXX See Triangle.altitudes for comments on the usage of self.sides 
         s = self.sides
         v = self._vertices
         return {v[0]: Segment(s[1].midpoint, v[0]),
@@ -292,13 +408,11 @@ class Triangle(Polygon):
         s = self.sides
         return Triangle(s[0].midpoint, s[1].midpoint, s[2].midpoint)
 
-    @property
-    def excircles(self):
-        """
-        Returns a list of the three excircles for this triangle.
-        """
-        pass
+    #@property
+    #def excircles(self):
+    #    """Returns a list of the three excircles for this triangle."""
+    #    pass
 
     def __str__(self):
-        fmt_tuple = (str(self._vertices[0]), str(self._vertices[1]), str(self._vertices[2]))
+        fmt_tuple = (repr(self._vertices[0]), repr(self._vertices[1]), repr(self._vertices[2]))
         return "Triangle(%s, %s, %s)" % fmt_tuple

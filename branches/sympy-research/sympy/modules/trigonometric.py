@@ -1,10 +1,32 @@
 from sympy.core.functions import Function, exp, sqrt
-from sympy.core.numbers import Number, Real, Rational, pi, I
-from sympy.core import Symbol, Add, Mul
+from sympy.core.numbers import Number, Real, Rational, pi, I, oo
+from sympy import Symbol, Add, Mul
 from simplify import ratsimp
 
 import decimal
 import math
+
+def pi_ratmatch(x):
+    """match x = Rational(p,q) * pi"""
+
+    # try most common cases (?)
+    if not x.is_number:
+        return None
+
+    a = Symbol('a')
+    coeff = x.match(a*pi, [a])
+
+    if coeff is None:
+        return None
+
+    arg = coeff[a]
+
+    if isinstance(arg, Rational):
+        return arg
+
+    return None
+
+
 
 class sin(Function):
     """
@@ -49,43 +71,40 @@ class sin(Function):
     def is_bounded(self):
         return True
 
+    @property
+    def is_real(self):
+        return self._args.is_real
+
     def eval(self):
-        if self._args.is_number:
-            if self._args == 0:
-                return Rational(0)
-            else:
-                a = Symbol('a')
+        # FIXME move to class level.
+        # doesn't work there because of cyclic import dependency
+        # NB: pi is ommited
+        cst_table = {
+            Rational(1):    Rational(0),
+            Rational(1,2):  Rational(1),
+            Rational(1,3):  Rational(1,2)*sqrt(3),
+            Rational(1,4):  Rational(1,2)*sqrt(2),
+            Rational(1,6):  Rational(1,2)
+        }
 
-                coeff = self._args.match(a*pi, [a])
-                if coeff != None:
-                    arg = coeff [a]
-
-                    if isinstance(arg, int):
-                        return Rational(0)
-                    elif isinstance(arg, Rational):
-                        if arg.is_integer:
-                            return Rational(0)
-                        else:
-                            if arg.q == 2:
-                                result = Rational(1)
-                            elif arg.q == 3:
-                                result = Rational(1, 2)*sqrt(3)
-                            elif arg.q == 4:
-                                result = Rational(1, 2)*sqrt(2)
-                            elif arg.q == 6:
-                                result = Rational(1, 2)
-                            elif arg < 0:
-                                return -sin(-self._args)
-                            else:
-                                return self
-
-                            if (arg.p / arg.q) % 2 == 1:
-                                result *= -1
-
-                            return result
-
-        if isinstance(self._args, Number) and self._args < 0:
+        # sin is odd
+        if self._args.is_number and self._args < 0:
             return -sin(-self._args)
+
+        arg = pi_ratmatch(self._args)
+
+        if arg is not None:
+            p, q = arg.p, arg.q
+            p = p % (2*q)   # sin period is 2*pi
+
+            m = (-1)**(p//q)    # p < q --> +1
+
+            try:
+                return m * cst_table[ Rational(1,q) ]
+            except KeyError:
+                return self
+
+
         elif isinstance(self._args, Mul):
             if isinstance(self._args[0], Number) and self._args[0] < 0:
                 return -sin(-self._args)
@@ -96,9 +115,11 @@ class sin(Function):
         if not self._args.is_number:
             raise ValueError("Argument can't be a symbolic value")
         if precision <= 18:
-            return math.sin(self._args)
+            return Real(math.sin(self._args))
+
         decimal.getcontext().prec = precision + 2
-        x = Real(self._args)
+
+        x = Real(self._args, precision+2)
         i, lasts, s, fact, num, sign = 1, 0, x, 1, x, 1
         while s != lasts:
             lasts = s
@@ -107,8 +128,9 @@ class sin(Function):
             num *= x * x
             sign *= -1
             s += num / fact * sign
-        decimal.getcontext().prec = precision - 2
-        return s
+
+        decimal.getcontext().prec = precision
+        return Real(+s)
 
     def evalc(self):
         x, y = self._args.get_re_im()
@@ -188,52 +210,42 @@ class cos(Function):
     def is_bounded(self):
         return True
 
+    @property
+    def is_real(self):
+        return self._args.is_real
+
     def eval(self):
-        if self._args.is_number:
-            if self._args == 0:
-                return Rational(1)
-            else:
-                a = Symbol('a')
-
-                coeff = self._args.match(a*pi, [a])
-
-                if coeff != None:
-                    arg = coeff [a]
-
-                    if isinstance(arg, int):
-                        if arg.p % 2 == 0:
-                            return Rational(1)
-                        else:
-                            return -Rational(1)
-                    elif isinstance(arg, Rational):
-                        if arg.q == 1:
-                            if arg.p % 2 == 0:
-                                return Rational(1)
-                            else:
-                                return -Rational(1)
-                        elif arg.q == 2:
-                            return Rational(0)
-                        else:
-                            if arg.q == 3:
-                                result = Rational(1, 2)
-                            elif arg.q == 4:
-                                result = Rational(1, 2)*sqrt(2)
-                            elif arg.q == 6:
-                                result = Rational(1, 2)*sqrt(3)
-                            elif arg < 0:
-                                return cos(-arg)
-                            else:
-                                return self
-
-                            floor_mod4 = ((2*arg.p) / arg.q) % 4
-
-                            if floor_mod4 == 1 or floor_mod4 == 2:
-                                result *= -1
-
-                            return result
-        
-        if isinstance(self._args, Number) and self._args < 0:
+        # FIXME move to class level.
+        # doesn't work there because of cyclic import dependency
+        # NB: pi is ommited
+        cst_table = {
+            Rational(1):    Rational(1),    # XXX should be -1, but ok
+            Rational(1,2):  Rational(0),
+            Rational(1,3):  Rational(1,2),
+            Rational(1,4):  Rational(1,2)*sqrt(2),
+            Rational(1,6):  Rational(1,2)*sqrt(3)
+        }
+  
+        # cos is even
+        if self._args.is_number and self._args < 0:
             return cos(-self._args)
+  
+        arg = pi_ratmatch(self._args)
+  
+        if arg is not None:
+            p, q = arg.p, arg.q
+            p = p % (2*q)   # cos period is 2*pi
+
+            octant = (2*p//q) % 4
+            if octant in (1,2):
+                m = -1
+            else:
+                m = +1
+  
+            try:
+                return m * cst_table[ Rational(1,q) ]
+            except KeyError:
+                return self
         elif isinstance(self._args, Mul):
             if isinstance(self._args[0], Number) and self._args[0] < 0:
                 return cos(-self._args)
@@ -244,10 +256,12 @@ class cos(Function):
         if not self._args.is_number:
             raise ValueError("Argument can't be a symbolic value")
         if precision <= 18:
-            return math.cos(self._args)
+            return Real(math.cos(self._args))
+
         decimal.getcontext().prec = precision + 2
-        x = Real(self._args)
-        i, lasts, s, fact, num, sign = 0, 0, 1, 1, 1, 1
+
+        x = Real(self._args, precision+2)
+        i, lasts, s, fact, num, sign = 0, 0, Real(1), Real(1), Real(1), Real(1)
         while s != lasts:
             lasts = s
             i += 2
@@ -255,8 +269,9 @@ class cos(Function):
             num *= x * x
             sign *= -1
             s += num / fact * sign
-        decimal.getcontext().prec = precision - 2
-        return s
+
+        decimal.getcontext().prec = precision
+        return Real(+s)
 
     def evalc(self):
         x, y = self._args.get_re_im()
@@ -325,7 +340,22 @@ class tan(Function):
     def derivative(self):
         return Rational(1) / (cos(self._args)**2)
 
+    @property
+    def is_bounded(self):
+        return False
+
+    @property
+    def is_real(self):
+        return self._args.is_real
+
     def eval(self):
+        s, c = sin(self._args).eval(), cos(self._args).eval()
+
+        # XXX this is hackish
+        # XXX what we really want is to check whether it is primitive constant
+        if (not isinstance(s, sin)) and (not isinstance(c, cos)) and c != 0:
+            return s/c
+
         if isinstance(self._args, Number) and self._args < 0:
             return -tan(-self._args)
         elif isinstance(self._args, Mul):
@@ -333,8 +363,8 @@ class tan(Function):
                 return -tan(-self._args)
         return self
 
-    def evalf(self):
-        return sin(self._args).evalf() / cos(self._args).evalf()
+    def evalf(self, precision=18):
+        return sin(self._args).evalf(precision) / cos(self._args).evalf(precision)
 
     def expand(self):
         def expand_fraction(num, den):
@@ -344,9 +374,9 @@ class tan(Function):
             numerator is an Add instance, the fraction isn't broken up
             into multiple instances.
             """
-            from sympy.core import Add,Mul,Pow
+            from sympy import Add,Mul,Pow
             if isinstance(den, Mul):
-                a,b = den.getab() 
+                a,b = den.getab()
                 if isinstance(a, Pow) and a.exp == -1:
                     a,b = b,a
                 if isinstance(b, Pow) and b.exp == -1:
@@ -360,7 +390,7 @@ class tan(Function):
                     else:
                         num *= b
             return num.expand() / den.expand()
-        
+
         if isinstance(self._args, Add):
             left = self._args[0]
             right = self._args[1:]
@@ -408,17 +438,89 @@ class asin(Function):
     def derivative(self):
         return sqrt(1-self._args**2)**(-1)
 
-    def eval(self):
-        return self
+    def evalf(self, precision=18):
+        if not self._args.is_number:
+            raise ValueError("Argument can't be a symbolic value")
+        if self._args > 1 or self._args < -1:
+            raise ValueError("Argument has to be in the interval [-1, 1]")
+        if self._args == 1:
+            return pi.evalf(precision)/2
+        if self._args == -1:
+            return -pi.evalf(precision)/2
+        if precision <= 18:
+            return Real(math.asin(self._args))
 
-def acos(Function):
-    """Return the arc sine of x (measured in radians)"""
+        decimal.getcontext().prec = precision + 2
+
+        x = Real(self._args, precision)
+        i, lasts, s, fact_num, fact_den, num = 0, 0, x, Real(1), Real(1), x
+        while s != lasts:
+            lasts = s
+            i += 2
+            fact_num *= i-1
+            fact_den *= i
+            num *= x*x
+            s += (num * fact_num) / (fact_den * (i+1))
+
+        decimal.getcontext().prec = precision
+        return Real(+s)
+
+    def eval(self):
+        # FIXME move to class level.
+        # doesn't work there because of cyclic import dependency
+        cst_table = {
+            Rational(1):    pi/2,
+            sqrt(3)/2:      pi/3,
+            sqrt(2)/2:      pi/4,
+            Rational(1,2):  pi/6,
+            Rational(0):    Rational(0),
+        }
+
+        # asin is odd
+        if self._args.is_number and self._args < 0:
+            return -asin(-self._args)
+
+        try:
+            return cst_table[ self._args ]
+        except KeyError:
+            return self
+
+class acos(Function):
+    """Return the arc cosine of x (measured in radians)"""
 
     def derivative(self):
         return - sqrt(1-self._args**2)**(-1)
 
+    def evalf(self, precision=18):
+        if precision <= 18:
+            return Real(math.acos(self._args))
+
+        decimal.getcontext().prec = precision + 2
+        a = pi.evalf(precision+2)/2
+        b = asin(self._args).evalf(precision+2)
+        ret = a-b
+        decimal.getcontext().prec = precision
+        return Real(+ret)
+
     def eval(self):
-        return self
+        # FIXME move to class level.
+        # doesn't work there because of cyclic import dependency
+        cst_table = {
+            Rational(1):            Rational(0),
+            Rational(1,2)*sqrt(3):  pi/6,
+            Rational(1,2)*sqrt(2):  pi/4,
+            Rational(1,2):          pi/3,
+            Rational(0):            pi/2
+        }
+
+        # acos(-x) = pi - acos(x)
+        if self._args.is_number and self._args < 0:
+            return pi - acos(-self._args)
+
+        try:
+            return cst_table[ self._args ]
+        except KeyError:
+            return self
 
 class atan(Function):
     """Return the arc tangent of x (measured in radians)"""
@@ -426,7 +528,56 @@ class atan(Function):
     def derivative(self):
         return Rational(1) / (1+(self._args)**2)
 
+    def series(self, x, n=6):
+        #expanding around infinity can actually be achieved for atan:
+        if self._args == 1/x:
+            return pi/2
+        return Function.series(self, x, n)
+
     def eval(self):
-        if self._args == 0:
-            return Rational(0)
-        return self
+        # FIXME move to class level.
+        # doesn't work there because of cyclic import dependency
+        cst_table = {
+            oo:             pi/2,
+            sqrt(3):        pi/3,
+            Rational(1):    pi/4,
+            1/sqrt(3):      pi/6,
+            Rational(0):    Rational(0)
+        }
+
+        # atan is odd
+        if self._args.is_number and self._args < 0:
+            return -atan(-self._args)
+        elif isinstance(self._args, Mul):
+            if isinstance(self._args[0], Number) and self._args[0] < 0:
+                return -atan(-self._args)
+
+        try:
+            return cst_table[ self._args ]
+        except KeyError:
+            return self
+
+    def evalf(self, precision=18):
+        # TODO Speed up since large arguments converge slowly
+        if not self._args.is_number:
+            raise ValueError("Argument can't be a symbolic value")
+        if precision <= 18:
+            return Real(math.atan(self._args))
+
+        decimal.getcontext().prec = precision + 2
+
+        x = Real(self._args, precision+2)
+        xp = 1 - Real(1) / (x*x + 1)
+        i, lasts, s, fact_num, fact_den, num = 0, 0, Real(1), Real(1), Real(1), Real(1)
+        b = Real(1)
+        while s != lasts:
+            lasts = s
+            i += 2
+            fact_num *= i
+            fact_den *= i+1
+            num *= xp
+            s += (num * fact_num) / fact_den
+        s = (x / (1 + x*x))*s
+
+        decimal.getcontext().prec = precision
+        return +s
