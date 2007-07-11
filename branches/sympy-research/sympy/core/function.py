@@ -47,7 +47,7 @@ As seen above, function values are Apply instances and
 have attributes .func and .args.
 """
 
-from basic import Basic, Singleton, Atom, cache_it
+from basic import Basic, Singleton, Atom, cache_it, S
 from methods import ArithMeths, NoRelMeths, RelMeths
 from operations import AssocOp
 
@@ -769,3 +769,5 @@ class DefinedFunction(Function, Singleton, Atom):
 Basic.singleton['D'] = lambda : Derivative
 Basic.singleton['FD'] = lambda : FDerivative
 Basic.singleton['Int'] = lambda : Integral
+
+

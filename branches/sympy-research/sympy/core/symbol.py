@@ -122,3 +122,23 @@ class Temporary(Symbol):
         name = 'T%s' % (Symbol.dummycount+1)
         return Symbol.__new__(cls, name, **assumptions)
 
+def symbols(*names, **kwargs):
+    """Returns a list of symbols with names declared in 'names'
+       argument. All newly created symbols have assumptions set
+       acordingly to 'kwargs'. Main intentention behind this
+       function is to simplify and shorten examples code in
+       doc-strings.
+
+       >>> from sympy.core.symbol import symbols
+
+       >>> x, y, z = symbols('x', 'y', 'z', real=True)
+
+       >>> y.is_real
+       True
+
+    """
+    return [ Symbol(name, **kwargs) for name in names ]
+
+# for backward compatibility, will be removed:
+O = lambda *args,**kw_args: Basic.Order(*args, **kw_args)
+#

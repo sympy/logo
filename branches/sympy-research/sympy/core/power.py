@@ -68,8 +68,8 @@ class Pow(Basic, ArithMeths, RelMeths):
         if c1 is None: return
         c2 = self.exp.is_integer
         if c2 is None: return
-        if c1 and c2 and self.exp.is_positive:
-            return True
+        if c1 and c2:
+            return self.exp.is_positive
 
     def _eval_is_real(self):
         c1 = self.base.is_real
@@ -313,3 +313,8 @@ class Pow(Basic, ArithMeths, RelMeths):
         if n<0: return Basic.Zero()
         x = Basic.sympify(x)
         return Basic.Binomial()(self.exp, n) * x**n
+
+# for backward compatibility, to be removed
+class pole_error(ZeroDivisionError):
+    pass
+#

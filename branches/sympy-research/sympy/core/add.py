@@ -199,19 +199,22 @@ class Add(AssocOp, RelMeths, ArithMeths):
     def _eval_is_positive(self):
         unbounded_positive = False
         unbounded_negative = False
-        default_result = True
+        default_result = None
         for t in self:
             a = t.is_positive
             if a is None: return
-            if a:
-                if t.is_unbounded:
-                    unbounded_positive = True
-                continue
-            default_result = False
+            if default_result is None:
+                default_result = a
+            else:
+                if default_result != a:
+                    return
             if t.is_unbounded:
-                unbounded_negative = True
-        if default_result:
-            return True # all terms are positive
+                if a:
+                    unbounded_positive = True
+                else:
+                    unbounded_negative = True                    
+        if default_result is not None:
+            return default_result # all terms are positive or not positive
         if unbounded_negative and unbounded_positive:
             return None # oo-oo
         if unbounded_negative:

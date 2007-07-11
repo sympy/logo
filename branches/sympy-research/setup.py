@@ -92,6 +92,7 @@ class test_sympy_core(Command):
     description = "Automatically run the core test suite for Sympy."
     user_options = []  # distutils complains if this is not here.
 
+    i = 0
     tests_to_run = ["tests/test_arit.py", "tests/test_basic.py", 
                    "tests/test_diff.py", "tests/test_equal.py", 
                    "tests/test_eval.py", "tests/test_evalf.py", 
@@ -99,7 +100,7 @@ class test_sympy_core(Command):
                    "tests/test_numbers.py", "tests/test_series.py", 
                    "tests/test_str.py", "tests/test_subs.py", 
                    "tests/test_symbol.py"
-                   ]
+                   ][i:i+1]
     
     def initialize_options(self):  # distutils wants this
         pass

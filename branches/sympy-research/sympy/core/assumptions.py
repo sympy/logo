@@ -68,6 +68,7 @@ class AssumeMeths(object):
                 raise TypeError('%s: cannot change fixed assumption item from %s=%s to %s=%s%s'\
                                 % (self.__class__.__name__, name, oldvalue, name, value, extra_msg))
             d[name] = value
+        return oldvalue
 
     def assume(self, **assumptions):
         """ Modify object assumptions in-situ.
@@ -100,7 +101,12 @@ class AssumeMeths(object):
                 k = k[3:]
                 assumptions[k] = v
                 continue
-            #
+            if k=='pi':
+                assumptions['integer'] = assumptions['positive'] = v
+                continue
+            if k=='nni':
+                assumptions['integer'] = assumptions['nonnegative'] = v
+                continue
             extra_msg = ' (while changing %s)' % (k)
             if k=='order':
                 v = self.Order(v)
@@ -112,37 +118,57 @@ class AssumeMeths(object):
                     self._change_assumption(d, 'order', v)
             elif k=='real':
                 if v is None:
-                    self._change_assumption(d, 'real', None)
-                    self._change_assumption(d, 'positive', None, extra_msg)
-                    self._change_assumption(d, 'negative', None, extra_msg)
-                    self._change_assumption(d, 'irrational', None, extra_msg)
-                    self._change_assumption(d, 'integer', None, extra_msg)
+                    old_v = self._change_assumption(d, 'real', None)
+                    if not old_v:
+                        self._change_assumption(d, 'positive', None, extra_msg)
+                        self._change_assumption(d, 'negative', None, extra_msg)
+                        self._change_assumption(d, 'nonpositive', None, extra_msg)
+                        self._change_assumption(d, 'nonnegative', None, extra_msg)
+                        self._change_assumption(d, 'irrational', None, extra_msg)
+                        self._change_assumption(d, 'integer', None, extra_msg)
                 else:
                     self._change_assumption(d, 'real', v)
                     if not v:
                         self._change_assumption(d, 'positive', False, extra_msg)
                         self._change_assumption(d, 'negative', False, extra_msg)
+                        self._change_assumption(d, 'nonpositive', False, extra_msg)
+                        self._change_assumption(d, 'nonnegative', False, extra_msg)
                         self._change_assumption(d, 'irrational', False, extra_msg)
                         self._change_assumption(d, 'integer', False, extra_msg)
-            elif k=='positive':
+            elif k in ['positive','negative']:
+                r = {'positive':'negative','negative':'positive'}[k]
                 if v is None:
+                    old_v = self._change_assumption(d, k, None)
                     self._change_assumption(d, 'real', None, extra_msg)
-                    self._change_assumption(d, 'positive', None)
-                    self._change_assumption(d, 'negative', None, extra_msg)
+                    self._change_assumption(d, r, None, extra_msg)
+                    if old_v:
+                        self._change_assumption(d, 'non'+k, None, extra_msg)
+                    else:
+                        self._change_assumption(d, 'non'+r, None, extra_msg)
                 else:
-                    self._change_assumption(d, 'positive', v)
-                    self._change_assumption(d, 'negative', get_unset('negative',not v), extra_msg)
+                    self._change_assumption(d, k, v)
                     self._change_assumption(d, 'real', get_unset('real',True), extra_msg)
-            elif k=='negative':
+                    self._change_assumption(d, r, get_unset(r,not v), extra_msg)
+                    if v:
+                        self._change_assumption(d, 'non'+k, get_unset('non'+k,not v), extra_msg)
+                    else:
+                        self._change_assumption(d, 'non'+r, get_unset('non'+r,not v), extra_msg)
+            elif k=='nonpositive':
                 if v is None:
                     assumptions['positive'] = None
                 else:
                     assumptions['positive'] = get_unset('positive', not v)
+            elif k=='nonnegative':
+                if v is None:
+                    assumptions['negative'] = None
+                else:
+                    assumptions['negative'] = get_unset('negative', not v)
             elif k=='bounded':
                 if v is None:
-                    self._change_assumption(d, 'bounded', None)
+                    old_v = self._change_assumption(d, 'bounded', None)
                     self._change_assumption(d, 'unbounded', None, extra_msg)
-                    self._change_assumption(d, 'infinitesimal', None, extra_msg)
+                    if not old_v:
+                        self._change_assumption(d, 'infinitesimal', None, extra_msg)
                 else:
                     self._change_assumption(d, 'bounded', v)
                     self._change_assumption(d, 'unbounded', get_unset('unbounded', not v), extra_msg)
@@ -155,7 +181,10 @@ class AssumeMeths(object):
                     assumptions['bounded'] = get_unset('bounded', not v)
             elif k=='infinitesimal':
                 if v is None:
-                    self._change_assumption(d, 'infinitesimal', None)
+                    old_v = self._change_assumption(d, 'infinitesimal', None)
+                    if old_v:
+                        self._change_assumption(d, 'bounded', None, extra_msg)
+                        self._change_assumption(d, 'unbounded', None, extra_msg)
                 else:
                     self._change_assumption(d, 'infinitesimal', v)
                     if v:
@@ -211,11 +240,6 @@ class AssumeMeths(object):
                 raise ValueError('unrecognized assumption item (%r:%r)' % (k,v))
         return
 
-    def _eval_is_negative(self):
-        r = self.is_positive
-        if r is not None: return not r
-        return
-
     def _eval_is_unbounded(self):
         r = self.is_bounded
         if r is not None: return not r
@@ -236,3 +260,13 @@ class AssumeMeths(object):
         keys = d.keys()
         keys.sort()
         return tuple([(k+'=', d[k]) for k in keys])
+
+    def _eval_is_nonnegative(self):
+        v = self.is_negative
+        if v is None: return
+        return not v
+
+    def _eval_is_nonpositive(self):
+        v = self.is_positive
+        if v is None: return
+        return not v
