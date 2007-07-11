@@ -22,7 +22,7 @@ from order import Order
 from limit import Limit
 
 # set repr output to pretty output:
-Basic.interactive = True
+Basic.set_interactive(True)
 
 # expose singletons like exp, log, oo, I, etc.
 for _n,_cls in Basic.singleton.items():
@@ -31,6 +31,5 @@ for _n,_cls in Basic.singleton.items():
 sympify = Basic.sympify
 
 # this is for backward compatibilty, to be removed:
-mhash = lambda obj: hash(obj)
-hashing = lambda obj: hash(obj)
+from hashing import mhash
 #

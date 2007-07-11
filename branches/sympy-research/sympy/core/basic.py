@@ -12,6 +12,8 @@ class Basic(BasicMeths):
     @property
     def is_number(self): return False
     def hash(self): return self.__hash__()
+    def print_tree(self):
+        print self.torepr()
     #
 
     def __new__(cls, *args, **assumptions):
@@ -176,6 +178,13 @@ class Basic(BasicMeths):
 
     def _calc_apply_real(self, *args):
         return
+
+    def _eval_conjugate(self):
+        if self.is_real:
+            return self
+
+    def conjugate(self):
+        return S.Conjugate(self)
 
     def subs_dict(self, old_new_dict):
         r = self
@@ -426,7 +435,8 @@ class Basic(BasicMeths):
             For computing power series, use oseries() method.
         """
         x = Basic.sympify(x)
-        return self.oseries(Basic.Order(x**(n+1),x))
+        o = Basic.Order(x**n,x)
+        return self.oseries(o) + o
 
     @cache_it
     def oseries(self, order):

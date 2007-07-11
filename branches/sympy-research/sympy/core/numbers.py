@@ -19,7 +19,8 @@ def factor_trial_division(n):
     Factor any integer into a product of primes, 0, 1, and -1.
     Returns a dictionary {<prime: exponent>}.
     """
-    if not n: return {0:1}
+    if not n:
+        return {0:1}
     factors = {}
     if n < 0:
         factors[-1] = 1
@@ -50,6 +51,7 @@ def factor_trial_division(n):
         except KeyError:
             factors[n] = 1
     return factors
+
 
 class Number(Atom, RelMeths, ArithMeths):
     """Represents any kind of number in sympy.
@@ -100,6 +102,9 @@ class Number(Atom, RelMeths, ArithMeths):
 
     def _eval_derivative(self, s):
         return Zero()
+
+    def _eval_conjugate(self):
+        return self
 
     def _eval_apply(self, a):
         return self*a
@@ -421,6 +426,29 @@ class Rational(Number):
                 if b.p!= 1:
                     # (4/3)**(5/6) -> 4**(5/6) * 3**(-5/6)
                     return Integer(b.p) ** e * Integer(b.q) ** (-e)
+                if abs(e.p)==1:
+                    factors = b.factors()
+                    l1 = []
+                    l12 = []
+                    l2 = []
+                    q = e.q
+                    for b1,e1 in factors.items():
+                        ee = abs(e1)
+                        i = ee//q
+                        r = ee - q*i
+                        if i:
+                            if e1<0:
+                                l12.append((b1**i, -1))
+                            else:
+                                l1.append(b1 ** i)
+                        if r:
+                            l2.append((b1**r, e))
+                    if not (l1 or l12):
+                        return
+                    l1 += [Basic.Pow(*be) for be in l2 + l12]
+                    return Basic.Mul(*l1)
+                else:
+                    return ((b**e.p)**(e//e.p))
         return
 
     def _as_decimal(self):
@@ -476,7 +504,7 @@ class Rational(Number):
         return RelMeths.__le__(self, other)
 
     def factors(self):
-        f = factor_trial_division(self.p)
+        f = factor_trial_division(self.p).copy()
         for p,e in factor_trial_division(self.q).items():
             try: f[p] += -e
             except KeyError: f[p] = -e
@@ -557,7 +585,25 @@ class Integer(Rational):
                 i = int(e)
                 if i:
                     i = Integer(i)
-                    return b ** i * b ** (e - q)
+                    return b ** i * b ** (e - i)
+                if abs(e.p)==1:
+                    factors = b.factors()
+                    l1 = []
+                    l2 = []
+                    q = e.q
+                    for b1,e1 in factors.items():
+                        i = e1//q
+                        r = e1 - q*i
+                        if i:
+                            l1.append(b1 ** i)
+                        if r:
+                            l2.append((b1**r, e))
+                    if not l1:
+                        return
+                    l1 += [Basic.Pow(*be) for be in l2]
+                    return Basic.Mul(*l1)
+                else:
+                    return ((b**e.p)**(e/e.p))
         return
 
     def as_numer_denom(self):
@@ -840,6 +886,9 @@ class ImaginaryUnit(Singleton, Atom, RelMeths, ArithMeths):
 
     def tostr(self, level=0):
         return 'I'
+
+    def _eval_conjugate(self):
+        return -I
 
     def _eval_derivative(self, s):
         return Zero()

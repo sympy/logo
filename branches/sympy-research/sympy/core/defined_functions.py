@@ -411,13 +411,6 @@ class Abs(DefinedFunction):
             return self(coeff) * self(Basic.Mul(*terms))
         return
 
-    def _eval_apply_leadterm(self, x, arg):
-        raise
-        c0, e0 = arg.leadterm(x)
-        if isinstance(e0, Basic.Zero):
-            return self(c0), Basic.Zero()
-        raise ValueError("unable to compute leading term %s(%s) at %s=0" % (self, arg, x))
-
 def Pi_coeff(expr):
     pi = Basic.Pi()
     if not expr.has(pi):
@@ -650,6 +643,20 @@ class ApplySign(Apply):
 
     is_bounded = True
 
+class Conjugate(DefinedFunction):
+
+    nofargs = 1
+
+    def _eval_apply(self, arg):
+        obj = arg._eval_conjugate()
+        if obj is not None:
+            return obj
+
+class ApplyConjugate(Apply):
+
+    def _eval_conjugate(self):
+        return self.args[0]
+
 Basic.singleton['exp'] = Exp
 Basic.singleton['log'] = Log
 Basic.singleton['ln'] = Log
@@ -659,3 +666,4 @@ Basic.singleton['tan'] = Tan
 Basic.singleton['sqrt'] = Sqrt
 Basic.singleton['abs_'] = Abs
 Basic.singleton['sign'] = Sign
+Basic.singleton['conjugate'] = Conjugate

@@ -283,5 +283,6 @@ class Add(AssocOp, RelMeths, ArithMeths):
             return Basic.Add(*[e for (e,f) in lst])
         return s.as_leading_term(x)
 
-def cmp_pow_log(((e1,f1),c1),((e2,f2),c2)):
-    return cmp(e1,e2) or cmp(f2,f1) or cmp(c1,c2)
+    def _eval_conjugate(self):
+        return Add(*[t.conjugate() for t in self])
+

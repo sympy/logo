@@ -19,11 +19,13 @@ ordering_of_classes = [
     'Pow', 'Mul', 'Add',
     # function values
     'Apply','ApplyExp','ApplyLog','ApplySin','ApplyCos','ApplySqrt','ApplyAbs','ApplySign',
+    'ApplyConjugate',
     'ApplyMrvLog',
     'ApplyChebyshev',    'ApplyChebyshev2',
     'Derivative','Integral',
     # defined singleton functions
     'Abs','Sign','Sqrt','Exp','Log','MrvLog',
+    'Conjugate',
     'Sin','Cos','Tan','Cot','ASin','ACos','ATan','ACot',
     'Sinh','Cosh','Tanh','Coth','ASinh','ACosh','ATanh','ACoth',
     # special polynomials
@@ -44,7 +46,25 @@ ordering_of_classes = [
 
 #
 
-def cache_it(func):
+def interactive(flag = None, _cache=[False]):
+    if flag is None:
+        return _cache[0]
+    old_flag = _cache[0]
+    _cache[0] = bool(flag)
+    return old_flag
+
+def mycopy(obj, level=0):
+    if isinstance(obj, (list, tuple)):
+        return obj.__class__(map(mycopy, obj))
+    elif isinstance(obj, dict):
+        d = obj.__class__()
+        for k,v in obj.items():
+            d[mycopy(k)] = mycopy(v)
+        return d
+    return obj
+
+
+def cache_it_fast(func):
     func._cache_it_cache = func_cache_it_cache = {}
     def wrapper(*args, **kw_args):
         if kw_args:
@@ -54,13 +74,52 @@ def cache_it(func):
             k = args + tuple(items)
         else:
             k = args
+        cache_flag = False
         try:
-            return func_cache_it_cache[k]
+            r = func_cache_it_cache[k]
         except KeyError:
-            pass
-        func_cache_it_cache[k] = r = func(*args, **kw_args)
-        return r
+            r = func(*args, **kw_args)
+            cache_flag = True
+        if cache_flag:
+            func_cache_it_cache[k] = r
+        return mycopy(r)
     return wrapper
+
+
+def cache_it_debug(func):
+    func._cache_it_cache = func_cache_it_cache = {}
+    func._cache_it_cache_repr = func_cache_it_cache_repr = {}
+    def wrapper(*args, **kw_args):
+        if kw_args:
+            keys = kw_args.keys()
+            keys.sort()
+            items = [(k+'=',kw_args[k]) for k in keys]
+            k = args + tuple(items)
+        else:
+            k = args
+        cache_flag = False
+        try:
+            r = func_cache_it_cache[k]
+        except KeyError:
+            r = func(*args, **kw_args)
+            cache_flag = True
+        if cache_flag:
+            func_cache_it_cache[k] = r
+            f = interactive(False)
+            func_cache_it_cache_repr[k] = repr(r)
+            interactive(f)
+        else:
+            s = func_cache_it_cache_repr[k]
+            f = interactive(False)
+            new_s = repr(r)
+            interactive(f)
+            # check that cache values have not changed
+            assert new_s==s,`func,s,r, args[0].__class__`
+        return mycopy(r)
+    return wrapper
+
+cache_it = cache_it_fast
+#cache_it = cache_it_debug # twice slower
 
 def cache_it_nondummy(func):
     func._cache_it_cache = func_cache_it_cache = {}
@@ -173,7 +232,8 @@ class BasicMeths(AssumeMeths):
         # occurs as hash is needed for setting cache dictionary keys
         h = self._mhash
         if h is None:
-            self._mhash = h = hash((self.__class__.__name__,) + self._hashable_content())
+            a = self._assume_hashable_content()
+            self._mhash = h = hash((self.__class__.__name__,) + self._hashable_content() + a)
         return h
 
     def _hashable_content(self):
@@ -201,8 +261,12 @@ class BasicMeths(AssumeMeths):
     def __str__(self):
         return self.tostr()
 
+    @staticmethod
+    def set_interactive(flag = None):
+        return interactive(flag)
+
     def __repr__(self):
-        if self.__class__.interactive:
+        if interactive():
             return self.tostr()
         return self.torepr()
 

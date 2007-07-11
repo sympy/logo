@@ -95,6 +95,12 @@ class AssumeMeths(object):
             return default
         while assumptions:
             k, v = assumptions.popitem()
+            # obsolete, to be removed:
+            if k.startswith('is_'):
+                k = k[3:]
+                assumptions[k] = v
+                continue
+            #
             extra_msg = ' (while changing %s)' % (k)
             if k=='order':
                 v = self.Order(v)
@@ -224,3 +230,9 @@ class AssumeMeths(object):
         r = self.is_commutative
         if r is not None: return not r
         return
+
+    def _assume_hashable_content(self):
+        d = self._assumptions
+        keys = d.keys()
+        keys.sort()
+        return tuple([(k+'=', d[k]) for k in keys])

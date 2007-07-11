@@ -349,3 +349,6 @@ class Mul(AssocOp, RelMeths, ArithMeths):
 
     def _eval_as_leading_term(self, x):
         return Mul(*[t.as_leading_term(x) for t in self])
+
+    def _eval_conjugate(self):
+        return Mul(*[t.conjugate() for t in self])
