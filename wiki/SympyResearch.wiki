@@ -77,6 +77,24 @@ Use `.evalf()` method to get floating point approximation with the current preci
 
   * `expr` properties can be set using `property=value` keyword arguments in the corresponding class constructor.
 
+== Rules ==
+
+From a set of properties may follow additional properties. For example, if
+an expression has property `positive` then it follows that the expression
+has property being `real` (as the set of positive numbers is a subset of
+real numbers) as well as being `complex` (as the set of real numbers
+is a subset of complex numbers), etc. In general, a property, say _P_,
+may be a union of subproperties, say _P_^1^, _P_^2^, etc. For example, if
+_P_ is `real` then _P_^1^ and _P_^2^ can be `positive` and `nonpositive`.
+The following rules apply for derived properties:
+
+  * if `x` has _P_^i^ set to `True`, then _P_ is `True`. Also, _P_^j^ are `None` for all j not equal to i (provided that subproperties have empty intersections).
+  * if `x` has _P_^i^ set to `False`, then _P_ is `True` (because `x` must have _P_^j^ set to `True` for some j not equal to i). Also, when there are exactly two subproperties, then _P_^i^ is `True`, otherwise `None`.
+  * if `x` has _P_^i^ set to `None` (undefined or when unsetting), then _P_ is `None` only if _P_ was derived from _P_^i^. Also all other _P_^j^ are `None`s.
+  * if `x` has _P_ set to `True` then _P_^i^ is `None` (undefined)
+  * if `x` has _P_ set to `False` then _P_^i^ is `False` for all i.
+  * if `x` has _P_ set to `None` then _P_^i^ is `None` for all i.
+
 == Examples ==
 
 {{{
