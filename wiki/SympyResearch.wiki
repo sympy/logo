@@ -79,13 +79,14 @@ Use `.evalf()` method to get floating point approximation with the current preci
 
 == Rules ==
 
-From a set of properties may follow additional properties. For example, if
+From a set of properties on can derive more properties. For example, if
 an expression has property `positive` then it follows that the expression
-has property being `real` (as the set of positive numbers is a subset of
+has also a property being `real` (as the set of positive numbers is a subset of
 real numbers) as well as being `complex` (as the set of real numbers
 is a subset of complex numbers), etc. In general, a property, say _P_,
 may be a union of subproperties, say _P_^1^, _P_^2^, etc. For example, if
-_P_ is `real` then _P_^1^ and _P_^2^ can be `positive` and `nonpositive`.
+_P_ is `real` then _P_^1^ and _P_^2^ can be `positive` and `nonpositive`, respectively.
+
 The following rules apply for derived properties:
 
   * if `x` has _P_^i^ set to `True`, then _P_ is `True`. Also, _P_^j^ are `None` for all j not equal to i (provided that subproperties have empty intersections).
@@ -180,7 +181,6 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
-
 
 
 
