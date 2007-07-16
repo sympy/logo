@@ -1,4 +1,19 @@
 
+def _get_deps(d, key):
+    l = set()
+    if d.has_key(key):
+        l = d[key].copy()
+        for k in d[key]:
+            l1 = _get_deps(d, k)
+            l = l.union(l1)
+    return l
+
+def _fill_includes(d):
+    new_d = {}
+    for k,v in d.items():
+        new_d[k] = _get_deps(d, k)
+    return new_d
+
 class AssumeMeths(object):
     """ Define default assumption methods.
     
@@ -10,7 +25,10 @@ class AssumeMeths(object):
     objects. Assumptions can have 3 possible values: True, False, None.
     None is returned when it is impossible to say something
     about the property. For example, ImaginaryUnit() is
-    not positive neither negative.
+    not positive neither negative. By default, all symbolic
+    values are in the largest set in the given context without
+    specifying the property. For example, a symbol that
+    has a property being integer, is also real, complex, etc.
 
     Here follows a list of possible assumption names:
 
@@ -24,6 +42,8 @@ class AssumeMeths(object):
         - dummy         - used for marking dummy symbols
         - positive      - object can have only positive values
         - negative      - object can have only negative values
+        - nonpositive      - object can have only nonpositive values
+        - nonnegative      - object can have only nonnegative values
         - comparable    - object.evalf() returns Number object.
         - irrational    - object value cannot be represented exactly by Rational
         - unbounded     - object value is arbitrarily large
@@ -32,7 +52,7 @@ class AssumeMeths(object):
 
     Example rules:
 
-      positive=True|False -> negative=not positive, real=True
+      positive=True|False -> nonpositive=not positive, real=True
       positive=None -> negative=None
       unbounded=False|True -> bounded=not unbounded
       irrational=True -> real=True
@@ -55,7 +75,64 @@ class AssumeMeths(object):
         - False
         
         - None (if you don't know if the property is True or false)
+
+    
+
     """
+
+    _assume_aliases = {} # aliases, "a key means values"
+    _assume_aliases['nni'] = ('integer','nonnegative')
+    _assume_aliases['npi'] = ('integer','nonpositive')
+    _assume_aliases['pi'] = ('integer','positive')
+    _assume_aliases['ni'] = ('integer','negative')
+
+    _properties = ['dummy','order'] # todo: rm is_order
+
+    # inclusion relations (subset, superset)
+    _assume_rels = (('prime', 'integer'),
+                    ('odd', 'integer'),
+                    ('integer', 'rational'),
+                    ('rational', 'real'),
+                    ('real', 'complex'),
+                    ('positive', 'real'),
+                    ('negative', 'real'),
+                    ('finite', 'bounded'),
+                    )
+
+    # implications (property -> super property)
+    _assume_impl = (('zero','infinitesimal'),
+                    #('negative', 'nonpositive'),
+                    #('positive', 'nonnegative'),
+                    ('finite', 'nonzero'),
+                    ('zero', 'even'),
+                    ('complex', 'commutative'),
+                    )
+
+    # (property, negative property) mapping
+    _assume_negs = {'bounded': 'unbounded',
+                    'commutative': 'noncommutative',
+                    'complex': 'noncomplex',
+                    'finite': 'infinitesimal',
+                    'integer': 'noninteger',
+                    'negative': 'nonnegative',
+                    'odd': 'even',
+                    'positive': 'nonpositive',
+                    'prime': 'composite',
+                    'rational': 'irrational',
+                    'real': 'imaginary',
+                    'zero': 'nonzero'}
+
+    _assume_inegs = {}
+    for k,v in _assume_negs.items(): _assume_inegs[v] = k
+
+    _assume_defined = ('integer','rational','real','complex','noninteger','irrational','imaginary','noncomplex',
+                       'even','odd','prime','composite','zero','nonzero',
+                       'negative','nonnegative','positive','nonpositive',
+                       'finite','infinitesimal','bounded','unbounded',
+                       'commutative','noncommutative',
+                       'comparable',
+                       'dummy','order',
+                       'nni','pi')
 
     def _change_assumption(self, d, name, value, extra_msg = ''):
         default_assumptions = self.__class__.default_assumptions
@@ -94,6 +171,14 @@ class AssumeMeths(object):
             if default_assumptions.has_key(name):
                 return default_assumptions[name]
             return default
+        
+        processed = {}
+        aliases = self._assume_aliases 
+        negs = self._assume_negs
+        inegs = self._assume_inegs
+        rels = self._assume_rels
+        impl = self._assume_impl
+        defined = self._assume_defined
         while assumptions:
             k, v = assumptions.popitem()
             # obsolete, to be removed:
@@ -101,156 +186,108 @@ class AssumeMeths(object):
                 k = k[3:]
                 assumptions[k] = v
                 continue
-            if k=='pi':
-                assumptions['integer'] = assumptions['positive'] = v
+            #
+            if aliases.has_key(k):
+                for a in aliases[k]:
+                    if a not in processed:
+                        assumptions[a] = v
+                    else:
+                        old_v = processed[a]
+                        assert old_v==v,`k,a,old_v,v`
+                processed[k] = v
                 continue
-            if k=='nni':
-                assumptions['integer'] = assumptions['nonnegative'] = v
-                continue
-            extra_msg = ' (while changing %s)' % (k)
+
+            if k not in defined:
+                raise ValueError('unrecognized assumption item (%r:%r)' % (k,v))
+
             if k=='order':
                 v = self.Order(v)
             elif v is not None: v = bool(v)
-            if k=='order':
+
+            if inegs.has_key(k):
+                a = inegs[k]
                 if v is None:
-                    self._change_assumption(d, 'order', None)
+                    if a not in processed:
+                        if a not in assumptions:
+                            assumptions[a] = v
+                        elif assumptions[a] != v:
+                            raise ValueError('%s: detected inconsistency between %s=%s and %s=%s in negation' \
+                                             % (self.__class__,k, v, a, assumptions[a]))
+                    elif processed[a] != v:
+                        raise ValueError('%s:detected inconsistency between %s=%s and %s=%s in processed negation'\
+                                         % (self.__class__,k, v, a, processed[a]))
                 else:
-                    self._change_assumption(d, 'order', v)
-            elif k=='real':
-                if v is None:
-                    old_v = self._change_assumption(d, 'real', None)
-                    if not old_v:
-                        self._change_assumption(d, 'positive', None, extra_msg)
-                        self._change_assumption(d, 'negative', None, extra_msg)
-                        self._change_assumption(d, 'nonpositive', None, extra_msg)
-                        self._change_assumption(d, 'nonnegative', None, extra_msg)
-                        self._change_assumption(d, 'irrational', None, extra_msg)
-                        self._change_assumption(d, 'integer', None, extra_msg)
-                else:
-                    self._change_assumption(d, 'real', v)
-                    if not v:
-                        self._change_assumption(d, 'positive', False, extra_msg)
-                        self._change_assumption(d, 'negative', False, extra_msg)
-                        self._change_assumption(d, 'nonpositive', False, extra_msg)
-                        self._change_assumption(d, 'nonnegative', False, extra_msg)
-                        self._change_assumption(d, 'irrational', False, extra_msg)
-                        self._change_assumption(d, 'integer', False, extra_msg)
-            elif k in ['positive','negative']:
-                r = {'positive':'negative','negative':'positive'}[k]
-                if v is None:
-                    old_v = self._change_assumption(d, k, None)
-                    self._change_assumption(d, 'real', None, extra_msg)
-                    self._change_assumption(d, r, None, extra_msg)
-                    if old_v:
-                        self._change_assumption(d, 'non'+k, None, extra_msg)
-                    else:
-                        self._change_assumption(d, 'non'+r, None, extra_msg)
-                else:
-                    self._change_assumption(d, k, v)
-                    self._change_assumption(d, 'real', get_unset('real',True), extra_msg)
-                    self._change_assumption(d, r, get_unset(r,not v), extra_msg)
-                    if v:
-                        self._change_assumption(d, 'non'+k, get_unset('non'+k,not v), extra_msg)
-                    else:
-                        self._change_assumption(d, 'non'+r, get_unset('non'+r,not v), extra_msg)
-            elif k=='nonpositive':
-                if v is None:
-                    assumptions['positive'] = None
-                else:
-                    assumptions['positive'] = get_unset('positive', not v)
-            elif k=='nonnegative':
-                if v is None:
-                    assumptions['negative'] = None
-                else:
-                    assumptions['negative'] = get_unset('negative', not v)
-            elif k=='bounded':
-                if v is None:
-                    old_v = self._change_assumption(d, 'bounded', None)
-                    self._change_assumption(d, 'unbounded', None, extra_msg)
-                    if not old_v:
-                        self._change_assumption(d, 'infinitesimal', None, extra_msg)
-                else:
-                    self._change_assumption(d, 'bounded', v)
-                    self._change_assumption(d, 'unbounded', get_unset('unbounded', not v), extra_msg)
-                    if not v:
-                        self._change_assumption(d, 'infinitesimal', get_unset('infinitesimal', False), extra_msg)
-            elif k=='unbounded':
-                if v is None:
-                    assumptions['bounded'] = None
-                else:
-                    assumptions['bounded'] = get_unset('bounded', not v)
-            elif k=='infinitesimal':
-                if v is None:
-                    old_v = self._change_assumption(d, 'infinitesimal', None)
-                    if old_v:
-                        self._change_assumption(d, 'bounded', None, extra_msg)
-                        self._change_assumption(d, 'unbounded', None, extra_msg)
-                else:
-                    self._change_assumption(d, 'infinitesimal', v)
-                    if v:
-                        self._change_assumption(d, 'bounded', get_unset('bounded', True), extra_msg)
-                        self._change_assumption(d, 'unbounded', get_unset('unbounded', False), extra_msg)
-            elif k=='irrational':
-                if v is None:
-                    self._change_assumption(d, 'irrational', None)
-                    self._change_assumption(d, 'real', None, extra_msg)
-                else:
-                    self._change_assumption(d, 'irrational', v)
-                    assumptions['real'] = get_unset('real',True)
-            elif k=='integer':
-                if v is None:
-                    self._change_assumption(d, 'integer', None)
-                else:
-                    self._change_assumption(d, 'integer', v)
-                    assumptions['real'] = get_unset('real',True)
-            elif k=='even':
-                if v is None:
-                    self._change_assumption(d, 'even', None)
-                    self._change_assumption(d, 'odd', None)
-                else:
-                    self._change_assumption(d, 'even', v)
-                    self._change_assumption(d, 'odd', not v, extra_msg)
-                    assumptions['integer'] = get_unset('integer',True)
-            elif k=='odd':
-                if v is None:
-                    self._change_assumption(d, 'odd', None)
-                    self._change_assumption(d, 'even', None)
-                else:
-                    self._change_assumption(d, 'odd', v)
-                    self._change_assumption(d, 'even', not v, extra_msg)
-                    assumptions['integer'] = get_unset('integer',True)
-            elif k=='commutative':
-                if v is None:
-                    self._change_assumption(d, 'commutative', None)
-                    self._change_assumption(d, 'noncommutative', None, extra_msg)
-                else:
-                    self._change_assumption(d, 'commutative', v)
-                    self._change_assumption(d, 'noncommutative', not v, extra_msg)
-            elif k=='noncommutative':
-                if v is None:
-                    assumptions['commutative'] = None
-                else:
-                    assumptions['commutative'] = get_unset('commutative',not v)
-            elif k in ['dummy','comparable']:
-                if v is None:
-                    self._change_assumption(d, k, None)
-                else:
-                    self._change_assumption(d, k, v)
+                    if a not in processed:
+                        if a not in assumptions:
+                            assumptions[a] = not v
+                        elif assumptions[a] != (not v):
+                            raise ValueError('%s: detected inconsistency between %s=%s and %s=%s in negation' \
+                                             % (self.__class__,k, v, a, assumptions[a]))
+                    elif processed[a] != (not v):
+                        raise ValueError('%s: detected inconsistency between %s=%s and %s=%s in processed negation' \
+                                         % (self.__class__,k, v, a, processed[a]))
+                processed[k] = v
+                continue
+
+            if negs.has_key(k):
+                a = negs[k]
             else:
-                raise ValueError('unrecognized assumption item (%r:%r)' % (k,v))
+                a = None
+
+            self._change_assumption(d, k, v)
+
+            if a is not None:
+                if v is None:
+                    self._change_assumption(d, a, v)
+                else:
+                    self._change_assumption(d, a, not v)
+
+            assert not processed.has_key(k),`processed, k, a, v`
+            processed[k] = v
+
+            for p1,p2 in rels:
+                if k==p1:
+                    # k is a subset of p2
+                    if v is None:
+                        pass
+                    else:
+                        if p2 in processed:
+                            assert processed[p2]==True, `k,v,p2,processed[p2]`
+                        else:
+                            assumptions[p2] = True
+                if k==p2:
+                    # k contains p1
+                    if v is None:
+                        assumptions[p1] = v
+                    elif v:
+                        pass
+                    else:
+                        if p1 in processed:
+                            assert processed[p1]==None, `self.__class__, k,v,p1,processed[p1]`
+                        else:
+                            assumptions[p1] = None
+
+            for p1,p2 in impl:
+                if k==p1:
+                    if v:
+                        if p2 in processed:
+                            assert processed[p2]==True, `k,v,p2,processed[p2]`
+                        else:
+                            assumptions[p2] = True
+            
         return
 
-    def _eval_is_unbounded(self):
+    def _rm_eval_is_unbounded(self):
         r = self.is_bounded
         if r is not None: return not r
         return
 
-    def _eval_is_odd(self):
+    def _rm_eval_is_odd(self):
         r = self.is_even
         if r is not None: return not r
         return
 
-    def _eval_is_noncommutative(self):
+    def _rm_eval_is_noncommutative(self):
         r = self.is_commutative
         if r is not None: return not r
         return
@@ -261,12 +298,12 @@ class AssumeMeths(object):
         keys.sort()
         return tuple([(k+'=', d[k]) for k in keys])
 
-    def _eval_is_nonnegative(self):
+    def _rm_eval_is_nonnegative(self):
         v = self.is_negative
         if v is None: return
         return not v
 
-    def _eval_is_nonpositive(self):
+    def _rm_eval_is_nonpositive(self):
         v = self.is_positive
         if v is None: return
         return not v

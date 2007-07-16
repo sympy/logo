@@ -1,5 +1,5 @@
 
-from basic import Basic, S, cache_it
+from basic import Basic, S, cache_it, cache_it_immutable
 from methods import RelMeths, ArithMeths
 
 class Limit(Basic, RelMeths, ArithMeths):
@@ -8,7 +8,7 @@ class Limit(Basic, RelMeths, ArithMeths):
     Limit(expr, x, xlim)
     """
 
-    @cache_it
+    @cache_it_immutable
     def __new__(cls, expr, x, xlim, direction='<', **assumptions):
         expr = Basic.sympify(expr)
         x = Basic.sympify(x)
@@ -65,11 +65,11 @@ class Limit(Basic, RelMeths, ArithMeths):
 class InfLimit(Basic):
 
     @staticmethod
-    @cache_it
+    @cache_it_immutable
     def limit_process_symbol():
         return Basic.Symbol('xoo', dummy=True, unbounded=True, positive=True)
 
-    @cache_it
+    @cache_it_immutable
     def __new__(cls, expr, x):
         expr = orig_expr = Basic.sympify(expr)
         orig_x = Basic.sympify(x)
@@ -125,7 +125,7 @@ class InfLimit(Basic):
 
         return result
 
-@cache_it
+@cache_it_immutable
 def mrv_inflimit(expr, x):
     expr_map = {}
     mrv_map = {}
@@ -149,23 +149,11 @@ def mrv_inflimit(expr, x):
         return S.Sign(c) * S.Infinity
     raise RuntimeError('Failed to compute mrv_inflimit(%s, %s), got lt=%s' % (self, x, lt))
 
-@cache_it
+@cache_it_immutable
 def cmp_ops_count(e1,e2):
     return cmp(e1.count_ops(symbolic=False), e2.count_ops(symbolic=False))
 
-def mrv_max(s1, s2, x):
-    assert isinstance(x, Basic.Symbol),`x`
-    if not s1: return s2
-    if not s2: return s1
-    if s1.intersection(s2): return s1.union(s2)
-    if x in s2: return s1
-    if x in s1: return s2
-    c = mrv_compare(list(s1)[0],list(s2)[0], x)
-    if c=='>': return s1
-    if c=='<': return s2
-    return s1.union(s2)
-
-@cache_it
+@cache_it_immutable
 def mrv_compare(f, g, x):
     log = S.Log
     if isinstance(f, Basic.ApplyExp): f = f.args[0]

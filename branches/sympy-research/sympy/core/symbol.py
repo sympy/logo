@@ -22,7 +22,7 @@ class Symbol(Atom, RelMeths, ArithMeths):
     dummycount = 0
 
     #@cache_it_nondummy
-    def __new__(cls, name, commutative=True, dummy=False, real=None, 
+    def __new__(cls, name, commutative=True, dummy=False,
                 **assumptions):
         """if dummy == True, then this Symbol is totally unique, i.e.::
         
@@ -41,7 +41,6 @@ class Symbol(Atom, RelMeths, ArithMeths):
         obj = Basic.__new__(cls,
                             commutative=commutative,
                             dummy=dummy,
-                            real=real,
                             **assumptions)
         if dummy:
             Symbol.dummycount += 1

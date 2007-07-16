@@ -1,5 +1,5 @@
 
-from basic import Basic, S, cache_it
+from basic import Basic, S, cache_it, cache_it_immutable
 from operations import AssocOp
 from methods import RelMeths, ArithMeths
 
@@ -37,6 +37,12 @@ class Mul(AssocOp, RelMeths, ArithMeths):
                     e = o.args[0]
                 else:
                     b, e = o.as_base_exp()
+                if isinstance(b, Basic.Add) and isinstance(e, Basic.Number):
+                    c, t = b.as_coeff_terms()
+                    if not isinstance(c, Basic.One):
+                        coeff *= c ** e
+                        assert len(t)==1,`t`
+                        b = t[0]
                 if c_powers.has_key(b):
                     c_powers[b] += e
                 else:
@@ -248,7 +254,7 @@ class Mul(AssocOp, RelMeths, ArithMeths):
             denoms.append(d)
         return Mul(*numers), Mul(*denoms)
 
-    @cache_it
+    @cache_it_immutable
     def count_ops(self, symbolic=True):
         if symbolic:
             return Basic.Add(*[t.count_ops(symbolic) for t in self[:]]) + Basic.Symbol('MUL') * (len(self[:])-1)
@@ -294,20 +300,57 @@ class Mul(AssocOp, RelMeths, ArithMeths):
         return False
 
     def _eval_is_positive(self):
-        r = True
-        for t in self:
-            a = t.is_positive
-            if a is None: return
-            if a: continue
-            r = not r
-        return r
-    def _eval_is_even(self):
-        r = False
-        for t in self:
-            a = t.is_even
-            if a is None: return
-            if a: r = True
-        return r
+        terms = [t for t in self if not t.is_positive]
+        if not terms:
+            return True
+        c = terms[0]
+        if len(terms)==1:
+            if c.is_nonpositive:
+                return False
+            return
+        r = Mul(*terms[1:])
+        if c.is_negative and r.is_negative:
+            return True
+        if r.is_negative and c.is_negative:
+            return True
+        # check for nonpositivity, <=0
+        if c.is_negative and r.is_nonnegative:
+            return False
+        if r.is_negative and c.is_nonnegative:
+            return False
+        if c.is_nonnegative and r.is_nonpositive:
+            return False
+        if r.is_nonnegative and c.is_nonpositive:
+            return False
+
+
+    def _eval_is_negative(self):
+        terms = [t for t in self if not t.is_positive]
+        if not terms:
+            return None
+        c = terms[0]
+        if len(terms)==1:
+            return c.is_negative
+        r = Mul(*terms[1:])
+        # check for nonnegativity, >=0
+        if c.is_negative and r.is_nonpositive:
+            return False
+        if r.is_negative and c.is_nonpositive:
+            return False
+        if c.is_nonpositive and r.is_nonpositive:
+            return False
+        if c.is_nonnegative and r.is_nonnegative:
+            return False
+
+    def _eval_is_odd(self):
+        if self.is_integer:
+            r = True
+            for t in self:
+                if t.is_even:
+                    return False
+                if t.is_odd is None:
+                    r = None
+            return r
 
     def _eval_subs(self, old, new):
         if self==old:

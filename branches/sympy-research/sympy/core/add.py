@@ -1,5 +1,5 @@
 
-from basic import Basic, S, cache_it
+from basic import Basic, S, cache_it, cache_it_immutable
 from operations import AssocOp
 from methods import RelMeths, ArithMeths
 
@@ -180,14 +180,12 @@ class Add(AssocOp, RelMeths, ArithMeths):
     _eval_is_integer = lambda self: self._eval_template_is_attr('is_integer')
     _eval_is_comparable = lambda self: self._eval_template_is_attr('is_comparable')
 
-    def _eval_is_even(self):
-        r = True
-        for t in self:
-            a = t.is_even
-            if a is None: return
-            if a: continue
-            r = not r
-        return r
+    def _eval_is_odd(self):
+        l = [f for f in self if not (f.is_even==True)]
+        if not l:
+            return False
+        if l[0].is_odd:
+            return Basic.Add(*l[1:]).is_even
 
     def _eval_is_irrational(self):
         for t in self:
@@ -197,41 +195,51 @@ class Add(AssocOp, RelMeths, ArithMeths):
         return False
 
     def _eval_is_positive(self):
-        unbounded_positive = False
-        unbounded_negative = False
-        default_result = None
-        for t in self:
-            a = t.is_positive
-            if a is None: return
-            if default_result is None:
-                default_result = a
+        c = self[0]
+        r = Add(*self[1:])
+        if c.is_positive and r.is_positive:
+            return True
+        if c.is_unbounded:
+            if r.is_unbounded:
+                # either c or r is negative
+                return
             else:
-                if default_result != a:
-                    return
-            if t.is_unbounded:
-                if a:
-                    unbounded_positive = True
-                else:
-                    unbounded_negative = True                    
-        if default_result is not None:
-            return default_result # all terms are positive or not positive
-        if unbounded_negative and unbounded_positive:
-            return None # oo-oo
-        if unbounded_negative:
-            return False # -oo + 2
-        if unbounded_positive:
-            return True # oo - 2
-        if self.is_comparable: # todo: ensure correctness when close to zero
-            return self.evalf().is_positive
-        return None # -2 + 3 + x + .. cannot decide
+                return c.is_positive
+        elif r.is_unbounded:
+            return r.is_positive
+        if c.is_nonnegative and r.is_positive:
+            return True
+        if r.is_nonnegative and c.is_positive:
+            return True
+        if c.is_nonpositive and r.is_nonpositive:
+            return False
+
+    def _eval_is_negative(self):
+        c = self[0]
+        r = Add(*self[1:])
+        if c.is_negative and r.is_negative:
+            return True
+        if c.is_unbounded:
+            if r.is_unbounded:
+                # either c or r is positive
+                return
+            else:
+                return c.is_negative
+        elif r.is_unbounded:
+            return r.is_negative
+        if c.is_nonpositive and r.is_negative:
+            return True
+        if r.is_nonpositive and c.is_negative:
+            return True
+        if c.is_nonnegative and r.is_nonnegative:
+            return False
 
     def as_coeff_terms(self, x=None):
         # -2 + 2 * a -> -1, 2-2*a
-        c = self[0].as_coeff_terms()[0]
-        if c.is_positive:
-            return Basic.One(),[self]
-        return -Basic.One(),[-self]
-
+        if isinstance(self[0], Basic.Number) and self[0].is_negative:
+            return -Basic.One(),[-self]
+        return Basic.One(),[self]
+        
     def _eval_subs(self, old, new):
         if self==old: return new
         coeff1,factors1 = self.as_coeff_factors()
@@ -289,3 +297,12 @@ class Add(AssocOp, RelMeths, ArithMeths):
     def _eval_conjugate(self):
         return Add(*[t.conjugate() for t in self])
 
+    def __neg__(self):
+        return Add(*[-t for t in self])
+
+    def _eval_power(b, e):
+        if isinstance(e, Basic.Number):
+            c, t = b.as_coeff_terms()
+            if not isinstance(c, Basic.One):
+                assert len(t)==1,`t`
+                return c**e * t[0]**e

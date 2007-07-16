@@ -1,5 +1,5 @@
 
-from basic import Basic, S, cache_it
+from basic import Basic, S, cache_it, cache_it_immutable
 from methods import ArithMeths, RelMeths
 
 class Order(Basic, ArithMeths, RelMeths):
@@ -80,7 +80,7 @@ class Order(Basic, ArithMeths, RelMeths):
 
     _cache = {}
 
-    @cache_it
+    @cache_it_immutable
     def __new__(cls, expr, *symbols, **assumptions):
         expr = Basic.sympify(expr).expand()
         if isinstance(expr, Basic.NaN):
@@ -231,7 +231,7 @@ class Order(Basic, ArithMeths, RelMeths):
                     order_symbols = order_symbols + (s,)
         return self.expr, order_symbols
 
-    @cache_it
+    @cache_it_immutable
     def contains(self, expr):
         """
         Return True if expr belongs to Order(self.expr, *self.symbols).

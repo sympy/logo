@@ -1,12 +1,12 @@
 
-from basic import Basic, S, cache_it
+from basic import Basic, S, cache_it, cache_it_immutable
 from methods import ArithMeths, RelMeths, NoRelMeths
 
 class Pow(Basic, ArithMeths, RelMeths):
 
     precedence = Basic.Pow_precedence
 
-    @cache_it
+    @cache_it_immutable
     def __new__(cls, a, b, **assumptions):
         a = Basic.sympify(a)
         b = Basic.sympify(b)
@@ -57,10 +57,29 @@ class Pow(Basic, ArithMeths, RelMeths):
         if self.base.is_positive:
             if self.exp.is_real:
                 return True
-        elif self.base.is_real:
+        elif self.base.is_negative:
             if self.exp.is_even:
                 return True
             if self.exp.is_odd:
+                return False
+        elif self.base.is_nonpositive:
+            if self.exp.is_odd:
+                return False
+
+    def _eval_is_negative(self):
+        if self.base.is_negative:
+            if self.exp.is_odd:
+                return True
+            if self.exp.is_even:
+                return False
+        elif self.base.is_positive:
+            if self.exp.is_real:
+                return False
+        elif self.base.is_nonnegative:
+            if self.exp.is_real:
+                return False
+        elif self.base.is_nonpositive:
+            if self.exp.is_even:
                 return False
 
     def _eval_is_integer(self):
@@ -69,7 +88,10 @@ class Pow(Basic, ArithMeths, RelMeths):
         c2 = self.exp.is_integer
         if c2 is None: return
         if c1 and c2:
-            return self.exp.is_positive
+            if self.exp.is_nonnegative or self.exp.is_positive:
+                return True
+            if self.exp.is_negative:
+                return False
 
     def _eval_is_real(self):
         c1 = self.base.is_real
@@ -82,20 +104,24 @@ class Pow(Basic, ArithMeths, RelMeths):
             if self.base.is_negative:
                 if self.exp.is_integer:
                     return True
-    def _eval_is_even(self):
-        if not (self.is_integer and self.exp.is_positive): return
-        return self.base.is_even
+
+    def _eval_is_odd(self):
+        if not (self.base.is_integer and self.exp.is_nonnegative): return
+        return self.base.is_odd
 
     def _eval_is_bounded(self):
         if self.exp.is_negative:
-            if self.is_infinitesimal:
+            if self.base.is_infinitesimal:
                 return False
-            return True
+            if self.base.is_unbounded:
+                return True
         c1 = self.base.is_bounded
         if c1 is None: return
         c2 = self.exp.is_bounded
         if c2 is None: return
-        if c1 and c2: return True
+        if c1 and c2:
+            if self.exp.is_nonnegative:
+                return True
 
     def tostr(self, level=0):
         precedence = self.precedence
@@ -217,7 +243,7 @@ class Pow(Basic, ArithMeths, RelMeths):
         s = d[r] = Basic.Temporary()
         return s
 
-    @cache_it
+    @cache_it_immutable
     def count_ops(self, symbolic=True):
         if symbolic:
             return Basic.Add(*[t.count_ops(symbolic) for t in self[:]]) + Basic.Symbol('POW')
@@ -308,7 +334,7 @@ class Pow(Basic, ArithMeths, RelMeths):
             return self.base.as_leading_term(x) ** self.exp
         return Basic.Exp()(self.exp * Basic.Log()(self.base)).as_leading_term(x)
 
-    @cache_it
+    @cache_it_immutable
     def taylor_term(self, n, x, *previous_terms): # of (1+x)**e
         if n<0: return Basic.Zero()
         x = Basic.sympify(x)

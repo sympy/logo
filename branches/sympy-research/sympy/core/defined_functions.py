@@ -1,5 +1,5 @@
 
-from basic import Basic, S, cache_it
+from basic import Basic, S, cache_it, cache_it_immutable
 
 from function import DefinedFunction, Apply, Lambda
 
@@ -71,7 +71,7 @@ class Exp(DefinedFunction):
         if isinstance(arg, Basic.Number):
             return arg.exp()
 
-    @cache_it
+    @cache_it_immutable
     def taylor_term(self, n, x, *previous_terms):
         if n<0: return S.Zero
         if n==0: return S.One
@@ -236,7 +236,7 @@ class Log(DefinedFunction):
     def _calc_apply_unbounded(self, x):
         return x.is_unbounded
 
-    @cache_it
+    @cache_it_immutable
     def taylor_term(self, n, x, *previous_terms): # of log(1+x)
         if n<0: return Basic.Zero()
         x = Basic.sympify(x)
@@ -454,7 +454,7 @@ class Sin(DefinedFunction):
             return -self(-arg)
         return
 
-    @cache_it
+    @cache_it_immutable
     def taylor_term(self, n, x, *previous_terms):
         if n<0: return Basic.Zero()
         x = Basic.sympify(x)
@@ -505,6 +505,10 @@ class ApplySin(Apply):
             return arg
         return self.func(arg)
 
+    def _eval_is_bounded(self):
+        arg = self.args[0]
+        if arg.is_real: return True
+
 class Cos(DefinedFunction):
     
     nofargs = 1
@@ -538,7 +542,7 @@ class Cos(DefinedFunction):
             return self(-arg)
         return
 
-    @cache_it
+    @cache_it_immutable
     def taylor_term(self, n, x, *previous_terms):
         if n<0: return Basic.Zero()
         x = Basic.sympify(x)
@@ -587,6 +591,9 @@ class ApplyCos(Apply):
             return Basic.One()
         return self.func(arg)
 
+    def _eval_is_bounded(self):
+        arg = self.args[0]
+        if arg.is_real: return True
 
 class Tan(DefinedFunction):
     

@@ -2,10 +2,10 @@
 import math
 import decimal
 import decimal_math
-from basic import Basic, Atom, Singleton, S, cache_it
+from basic import Basic, Atom, Singleton, S, cache_it, cache_it_immutable
 from methods import RelMeths, ArithMeths
 
-@cache_it
+@cache_it_immutable
 def gcd(a, b):
     '''Returns the Greatest Common Divisor,
     implementing Euclid\'s algorithm.'''
@@ -68,14 +68,14 @@ class Number(Atom, RelMeths, ArithMeths):
     is_commutative = True
     is_comparable = True
     is_bounded = True
-    is_infinitesimal = False
+    is_finite = True
     
     # for backward compatibility, will be removed:
     @property
     def is_number(self): return True
     #
 
-    @cache_it
+    @cache_it_immutable
     def __new__(cls, *obj):
         if len(obj)==1: obj=obj[0]
         if isinstance(obj, (int, long)):
@@ -175,7 +175,7 @@ class Real(Number):
     is_irrational = False
     is_integer = False
 
-    @cache_it
+    @cache_it_immutable
     def __new__(cls, num):
         if isinstance(num, (str, int, long)):
             num = decimal.Decimal(num)
@@ -227,7 +227,10 @@ class Real(Number):
     def torepr(self):
         return '%s(%r)' % (self.__class__.__name__, str(self.num))
 
-    def _eval_is_positive(self): return self.num.as_tuple()[0] == 0
+    def _eval_is_positive(self):
+        return self.num.as_tuple()[0] == 0
+    def _eval_is_negative(self):
+        return self.num.as_tuple()[0] != 0
 
     def evalf(self): return self
 
@@ -329,9 +332,9 @@ class Rational(Number):
     """
     is_real = True
     is_integer = False
-    is_irrational = False
+    is_rational = True
 
-    @cache_it
+    @cache_it_immutable
     def __new__(cls, p, q = None):
         if q is None:
             return Integer(p)
@@ -372,7 +375,12 @@ class Rational(Number):
             return Basic.Add_precedence
         return Basic.Mul_precedence
 
-    def _eval_is_positive(self): return self.p > 0
+    def _eval_is_positive(self):
+        if self.p > 0:
+            return True
+    def _eval_is_negative(self):
+        if self.p < 0:
+            return True
 
     def __neg__(self): return Rational(-self.p, self.q)
 
@@ -529,7 +537,7 @@ class Integer(Rational):
     q = 1
     is_integer = True
 
-    @cache_it
+    @cache_it_immutable
     def __new__(cls, i):
         if isinstance(i, (int, long)):
             if i==0: return Zero()
@@ -542,8 +550,8 @@ class Integer(Rational):
             return i
         raise TypeError("Expected integer but got %r" % (i))
 
-    def _eval_is_even(self):
-        return not (self.p % 2)
+    def _eval_is_odd(self):
+        return bool(self.p % 2)
 
     @property
     def precedence(self):
@@ -619,8 +627,9 @@ class Zero(Singleton, Integer):
 
     p = 0
     q = 1
-    is_positive = is_negative = False
-    is_infinitesimal = True
+    is_positive = False
+    is_negative = False
+    is_finite = False
 
     def _eval_power(b, e):
         if e.is_negative:
@@ -695,7 +704,9 @@ class Infinity(Singleton, Rational):
     is_commutative = True
     is_positive = True
     is_bounded = False
-
+    is_finite = None
+    is_odd = None
+    
     def tostr(self, level=0):
         return 'oo'
 
@@ -730,7 +741,8 @@ class NegativeInfinity(Singleton, Rational):
     is_real = True
     is_positive = False
     is_bounded = False
-
+    is_finite = False
+    
     precedence = 40 # same as Add
 
     def tostr(self, level=0):
@@ -767,11 +779,10 @@ class NaN(Singleton, Rational):
     q = 0
 
     is_commutative = True
-    is_real = False
-    is_integer = False
-    is_comparable = False
-    is_bounded = False
-    is_unbounded = False
+    is_real = None
+    is_comparable = None
+    is_bounded = None
+    #is_unbounded = False
 
     def tostr(self, level=0):
         return 'nan'
@@ -789,6 +800,7 @@ class NumberSymbol(Singleton, Atom, RelMeths, ArithMeths):
     is_commutative = True
     is_comparable = True
     is_bounded = True
+    is_finite = True
 
     def approximation(self, number_cls):
         """ Return an interval with number_cls endpoints
@@ -840,7 +852,6 @@ class Exp1(NumberSymbol):
     is_real = True
     is_positive = True
     is_irrational = True
-    is_integer = False
 
     def tostr(self, level=0):
         return 'E'
@@ -862,7 +873,6 @@ class Pi(NumberSymbol):
     is_real = True
     is_positive = True
     is_irrational = True
-    is_integer = False
 
     def approximation_interval(self, number_cls):
         if issubclass(number_cls,Integer):
@@ -879,10 +889,9 @@ class Pi(NumberSymbol):
 class ImaginaryUnit(Singleton, Atom, RelMeths, ArithMeths):
 
     is_commutative = True
-    is_real = False
-    is_comparable = False
-    is_negative = is_positive = None
+    is_imaginary = True
     is_bounded = True
+    is_finite = True
 
     def tostr(self, level=0):
         return 'I'

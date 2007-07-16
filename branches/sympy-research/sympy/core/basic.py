@@ -1,7 +1,7 @@
 """Base class for all objects in sympy"""
 
 import decimal
-from basic_methods import BasicMeths, cache_it
+from basic_methods import BasicMeths, cache_it, cache_it_immutable
 
 class Basic(BasicMeths):
     """
@@ -107,7 +107,7 @@ class Basic(BasicMeths):
             return new
         return self
 
-    @cache_it
+    @cache_it_immutable
     def subs(self, old, new):
         """Substitutes an expression old -> new."""
         old = Basic.sympify(old)
@@ -294,7 +294,7 @@ class Basic(BasicMeths):
         l.sort()
         return [(s,e) for i,s,e in l]
 
-    @cache_it
+    @cache_it_immutable
     def count_ops(self, symbolic=True):
         """ Return the number of operations in expressions.
 
@@ -315,7 +315,7 @@ class Basic(BasicMeths):
             return self
         return self.__class__(*[t.expand() for t in self], **self._assumptions)        
 
-    @cache_it
+    @cache_it_immutable
     def expand(self):
         return self._eval_expand()
 
@@ -438,7 +438,7 @@ class Basic(BasicMeths):
         o = Basic.Order(x**n,x)
         return self.oseries(o) + o
 
-    @cache_it
+    @cache_it_immutable
     def oseries(self, order):
         """
         Return the series of an expression upto given Order symbol.
@@ -508,7 +508,7 @@ class Basic(BasicMeths):
         x = Basic.sympify(x)        
         return Basic.InfLimit(self, x)
 
-    @cache_it
+    @cache_it_immutable
     def as_leading_term(self, *symbols):
         if len(symbols)>1:
             c = self

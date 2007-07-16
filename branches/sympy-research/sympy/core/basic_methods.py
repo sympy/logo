@@ -85,6 +85,23 @@ def cache_it_fast(func):
         return mycopy(r)
     return wrapper
 
+def cache_it_immutable(func):
+    func._cache_it_cache = func_cache_it_cache = {}
+    def wrapper(*args, **kw_args):
+        if kw_args:
+            keys = kw_args.keys()
+            keys.sort()
+            items = [(k+'=',kw_args[k]) for k in keys]
+            k = args + tuple(items)
+        else:
+            k = args
+        try:
+            return func_cache_it_cache[k]
+        except KeyError:
+            pass
+        func_cache_it_cache[k] = r = func(*args, **kw_args)
+        return r
+    return wrapper
 
 def cache_it_debug(func):
     func._cache_it_cache = func_cache_it_cache = {}
@@ -211,15 +228,29 @@ class BasicMeths(AssumeMeths):
         if name.startswith('is_'):
             # default implementation for assumptions
             k = name[3:]
+            if k not in self._assume_defined:
+                raise AttributeError('undefined assumption %r' % (k))
             assumptions = self._assumptions
             try: return assumptions[k]
             except KeyError: pass
-            if hasattr(self, '_eval_'+name):
-                a = getattr(self,'_eval_'+name)()
-                if a is not None:
-                    self.assume(**{k:a})
-                    return getattr(self, name)
-                return a      
+            try: ik = self._assume_inegs[k]
+            except KeyError: ik = None
+            if ik is None:
+                if hasattr(self, '_eval_is_'+k):
+                    a = getattr(self,'_eval_is_'+k)()
+                    if a is not None:
+                        self.assume(**{k:a})
+                        return getattr(self, name)
+                    return a
+            else:
+                if hasattr(self, '_eval_is_'+k):
+                    print 'TODO: implement %s._eval_is_%s as _eval_is_%s' % (self.__class__, k, ik)
+                if hasattr(self, '_eval_is_'+ik):
+                    a = getattr(self,'_eval_is_'+ik)()
+                    if a is not None:
+                        self.assume(**{ik:a})
+                        return getattr(self, name)
+                    return a
             return None
         elif BasicMeths.classnamespace.has_key(name):
             return BasicMeths.classnamespace[name]

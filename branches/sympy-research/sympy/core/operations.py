@@ -1,5 +1,5 @@
 
-from basic import Basic, cache_it
+from basic import Basic, cache_it, cache_it_immutable
 
 class AssocOp(Basic):
     """ Associative operations, can separate noncommutative and
@@ -10,7 +10,7 @@ class AssocOp(Basic):
     Base class for Add and Mul.
     """
 
-    @cache_it
+    @cache_it_immutable
     def __new__(cls, *args, **assumptions):
         if len(args)==0:
             return cls.identity()
