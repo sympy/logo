@@ -15,7 +15,7 @@ Usage:
 {{{
 >>> from sympy.core import *
 }}}
-(all other parts of sympy needs to be updated to new core)
+(all other parts of sympy may not work, they need to be updated to new core)
 
 = Mathematical constants =
 
@@ -191,6 +191,5 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
-
 
 
