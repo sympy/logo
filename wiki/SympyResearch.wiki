@@ -11,6 +11,11 @@ Checkout using:
 {{{
 svn co http://sympy.googlecode.com/svn/branches/sympy-research
 }}}
+Usage:
+{{{
+>>> from sympy.core import *
+}}}
+(all other parts of sympy needs to be updated to new core)
 
 = Mathematical constants =
 
@@ -42,39 +47,43 @@ Use `.evalf()` method to get floating point approximation with the current preci
 
 = Assigning properties to symbols and expressions =
 
+== Construction call ==
+
+  <symbolic class>(<constructor arguments>, property1=value1, property2, ..)
+
 == Method call ==
 
   `<expr>.assume(property1=value1, property2=value2, ..)`
 
-== Method parameters ==
+== Parameters ==
 
   * `property1, ...` --- names of mathematical properties
   * `value1, ...` --- `True` or `False` or `None`
 
 == Details ==
 
-  * The following predefined mathematical propeties are supported:
+  * The following predefined mathematical propeties are supported (opposite properties are given in parenthesis):
 
-    # `positive`, `negative` --- `expr` can have only positive or negative real values, respectively
-    # `real` --- `expr` can have values from the set of real numbers
-    # `integer` --- `expr` can have values from the set of integers
-    # `even`, `odd` --- `expr` value is an even or odd integer, respectively 
-    # `irrational` --- `expr` value is irrational
-    # `bounded` --- `expr` absolute value is bounded
-    # `unbounded` --- `expr` value is arbitrarily large
-    # `infinitesimal` --- `expr` value is infinitesimal
-    # `commutative` --- `expr` value commutes with other values with respect to multiplication
-    # `noncommutative` --- `expr` value does not commute with other values with respect to multiplication
+    # `positive` (`nonpositive`), `negative` (`nonnegative`) --- `expr` can have only positive or negative real values, respectively
+    # `complex` (`noncomplex`) --- `expr` has values from the set of complex numbers
+    # `real` (`nonreal`) --- `expr` has values from the set of real numbers
+    # `rational` (`irrational`) --- `expr` has values from the set of rational numbers
+    # `integer` (`noninteger`) --- `expr` has values from the set of integers
+    # `odd` (`even`) --- `expr` value is an odd integer
+    # `prime` (`composite`) --- `expr` value is a prime
+    # `zero` (`nonzero`) --- `expr` value is zero
+    # `bounded` (`unbounded`) --- `expr` absolute value is bounded
+    # `finite` (`infinitesimal`) --- `expr` value is nonzero and finite
+    # `commutative` (`noncimmutative`) --- `expr` value commutes with other values with respect to multiplication
+    # `homogeneous` (`inhomogeneous`) --- `expr` value is a homogeneous function with respect to its arguments
     # `comparable` --- `expr` value can be compared with numbers (`expr.evalf()` returns `Number` object).
+    # `pi` is alias to `integer`, `positive` properties
+    # `nni` is alias to `integer`, 'nonnegative' properties
 
-  * If property value is `False`, the opposite property is set. For example, setting `positive=False` is equivalent to `negative=True`.
-
+  * If property value is `False`, the opposite property is set. For example, setting `positive=False` is equivalent to `nonpositive=True`.
   * Assigned properties can be unset using property value `None`.
-
-  * Unsetting a property will unset related properties. For example, unsetting `positive` will also unset `negative` property.
-
+  * Unsetting a property will unset related properties. For example, unsetting `real` will also unset `positive` property, for instance.
   * `expr` properties can be requested via `.is_property` attributes. If no information is known for a given property then `.is_property` attribute is `None`.
-
   * `expr` properties can be set using `property=value` keyword arguments in the corresponding class constructor.
 
 == Rules ==
@@ -86,7 +95,7 @@ real numbers) as well as being `complex` (as the set of real numbers
 is a subset of complex numbers), etc. In general, a property, say _P_,
 may be a union of subproperties, say _P_^1^, _P_^2^, etc. For example, if
 _P_ is `real` then _P_^1^ and _P_^2^ can be `positive` and `nonpositive`, respectively.
-Each property has negation property, e.g. the negation property of `odd` is `even`.
+Each property has opposite property, e.g. the opposite property of `odd` is `even`.
 
 The following rules apply for derived properties:
 
@@ -94,7 +103,7 @@ The following rules apply for derived properties:
   * if `x` sets _P_^i^ to `None`, then _P_ keeps its value.
   * if `x` sets _P_ to `True`, _P_^i^ is not modified (it's probably `None`)
   * if `x` sets _P_ to `False` or `None`, then _P_^i^ is set to `None`. 
-  * if `x` sets _P_^1^ to `False` or `True` or `None`, then its negation property `_P_^2^` is set to  `True` or `False` or `None`, respectively.
+  * if `x` sets _P_^1^ to `False` or `True` or `None`, then its opposite property `_P_^2^` is set to  `True` or `False` or `None`, respectively.
 
 
 == Examples ==
@@ -182,7 +191,6 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
-
 
 
 
