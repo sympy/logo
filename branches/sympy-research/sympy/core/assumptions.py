@@ -1,19 +1,4 @@
 
-def _get_deps(d, key):
-    l = set()
-    if d.has_key(key):
-        l = d[key].copy()
-        for k in d[key]:
-            l1 = _get_deps(d, k)
-            l = l.union(l1)
-    return l
-
-def _fill_includes(d):
-    new_d = {}
-    for k,v in d.items():
-        new_d[k] = _get_deps(d, k)
-    return new_d
-
 class AssumeMeths(object):
     """ Define default assumption methods.
     
@@ -126,7 +111,8 @@ class AssumeMeths(object):
     _assume_inegs = {}
     for k,v in _assume_negs.items(): _assume_inegs[v] = k
 
-    _assume_defined = ('integer','rational','real','complex','noninteger','irrational','imaginary','noncomplex',
+    _assume_defined = ('integer','rational','real','complex','noninteger','irrational',
+                       'imaginary','noncomplex',
                        'even','odd','prime','composite','zero','nonzero',
                        'negative','nonnegative','positive','nonpositive',
                        'finite','infinitesimal','bounded','unbounded',
@@ -147,7 +133,6 @@ class AssumeMeths(object):
                 raise TypeError('%s: cannot change fixed assumption item from %s=%s to %s=%s%s'\
                                 % (self.__class__.__name__, name, oldvalue, name, value, extra_msg))
             d[name] = value
-        return oldvalue
 
     def assume(self, **assumptions):
         """ Modify object assumptions in-situ.
@@ -169,10 +154,6 @@ class AssumeMeths(object):
                                     % (self.__class__.__name__,k,v))
             assumptions[k] = v
         d = self._assumptions = getattr(self, '_assumptions', {})
-        def get_unset(name, default=None):
-            if default_assumptions.has_key(name):
-                return default_assumptions[name]
-            return default
         
         processed = {}
         aliases = self._assume_aliases 
@@ -250,25 +231,18 @@ class AssumeMeths(object):
             for p1,p2 in rels:
                 if k==p1:
                     # k is a subset of p2
-                    if v is None:
-                        pass
-                    else:
+                    if v is not None:
                         if p2 in processed:
                             assert processed[p2]==True, `k,v,p2,processed[p2]`
                         else:
                             assumptions[p2] = True
                 if k==p2:
                     # k contains p1
-                    if v is None:
-                        assumptions[p1] = v
-                    elif v:
-                        pass
-                    else:
+                    if not v:
                         if p1 in processed:
                             assert processed[p1]==None, `self.__class__, k,v,p1,processed[p1]`
                         else:
                             assumptions[p1] = None
-
             for p1,p2 in impl:
                 if k==p1:
                     if v:
@@ -279,33 +253,8 @@ class AssumeMeths(object):
             
         return
 
-    def _rm_eval_is_unbounded(self):
-        r = self.is_bounded
-        if r is not None: return not r
-        return
-
-    def _rm_eval_is_odd(self):
-        r = self.is_even
-        if r is not None: return not r
-        return
-
-    def _rm_eval_is_noncommutative(self):
-        r = self.is_commutative
-        if r is not None: return not r
-        return
-
     def _assume_hashable_content(self):
         d = self._assumptions
         keys = d.keys()
         keys.sort()
         return tuple([(k+'=', d[k]) for k in keys])
-
-    def _rm_eval_is_nonnegative(self):
-        v = self.is_negative
-        if v is None: return
-        return not v
-
-    def _rm_eval_is_nonpositive(self):
-        v = self.is_positive
-        if v is None: return
-        return not v
