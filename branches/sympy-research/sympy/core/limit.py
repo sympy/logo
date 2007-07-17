@@ -115,7 +115,7 @@ class InfLimit(Basic):
                 result = expr.base ** expr.exp.inflimit(x)
             else:
                 result = S.Exp(expr.exp * S.Log(expr.base)).inflimit(x)
-        elif 0 and isinstance(expr, Basic.Apply):
+        elif isinstance(expr, Basic.Apply):
             # warning: assume that
             #  lim_x f(g1(x),g2(x),..) = f(lim_x g1(x), lim_x g2(x))
             # if this is incorrect, one must define f._eval_inflimit(x) method
