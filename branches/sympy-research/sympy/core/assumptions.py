@@ -120,7 +120,8 @@ class AssumeMeths(object):
                     'prime': 'composite',
                     'rational': 'irrational',
                     'real': 'imaginary',
-                    'zero': 'nonzero'}
+                    'zero': 'nonzero',
+                    'homogeneous':'inhomogeneous'}
 
     _assume_inegs = {}
     for k,v in _assume_negs.items(): _assume_inegs[v] = k
@@ -130,6 +131,7 @@ class AssumeMeths(object):
                        'negative','nonnegative','positive','nonpositive',
                        'finite','infinitesimal','bounded','unbounded',
                        'commutative','noncommutative',
+                       'homogeneous','inhomogeneous',
                        'comparable',
                        'dummy','order',
                        'nni','pi')
