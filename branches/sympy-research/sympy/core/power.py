@@ -193,19 +193,19 @@ class Pow(Basic, ArithMeths, RelMeths):
                 ##  a(m,k) = 1/(k p_0) sum_{i=1}^n p_i ((m+1)i-k) a(m,k-i),
                 ## where a(m,0) = p_0^m.
                     n = len(p)-1
-                    cache = {0: [p[0] ** m]}
+                    cache = {0: p[0] ** m}
                     p0 = [t/p[0] for t in p]
-                    l = []
-                    l += cache[0]
+                    l = [cache[0]]
                     Mul = Basic.Mul
                     Rational = Basic.Rational
                     for k in range(1, m * n + 1):
                         a = []
                         for i in range(1,n+1):
                             if i<=k:
-                                a += [Mul(Rational((m+1)*i-k,k), p0[i], t) for t in cache[k-i]]
+                                a.append(Mul(Rational((m+1)*i-k,k), p0[i], cache[k-i]).expand())
+                        a = Basic.Add(*a)
                         cache[k] = a
-                        l += a
+                        l.append(a)
                     return Basic.Add(*l)
                 else:
                     if m==2:
