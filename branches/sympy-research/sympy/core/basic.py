@@ -1,5 +1,7 @@
 """Base class for all objects in sympy"""
 
+type_class = type
+
 import decimal
 from basic_methods import BasicMeths, cache_it, cache_it_immutable
 
@@ -94,6 +96,8 @@ class Basic(BasicMeths):
         set([2])
         """
         result = set()
+        if type is not None and not isinstance(type, type_class):
+            type = Basic.sympify(type).__class__
         if isinstance(self, Atom):
             if type is None or isinstance(self, type):
                 result.add(self)

@@ -263,24 +263,6 @@ class ApplyLog(Apply):
             if arg.is_infinitesimal: return False
             if isinstance(arg, Basic.Number):
                 return arg>1
-    def _calc_as_coeff_leadterm(self, x):
-        arg = self.args[0]
-        func = self.func
-        if arg==x: return Basic.One(), Basic.Zero(),Basic.One()
-        if isinstance(arg, Basic.Mul):
-            return Basic.Add._seq_as_coeff_leadterm([func(t).as_coeff_leadterm(x) for t in arg])
-        c, e, f = arg.as_coeff_leadterm(x)
-        # log(c * x**e * log(x)**f) -> log(c) + e*log(x) + f * log(log(x))
-        if f==0:
-            if e==0:
-                if isinstance(c, Basic.One):
-                    return (arg-1).as_coeff_leadterm(x)
-                return func(c),Basic.Zero(),Basic.Zero()
-            return Basic.Add._seq_as_coeff_leadterm([(func(c),Basic.Zero(), Basic.Zero()),
-                                                     (e,Basic.Zero(),Basic.One()),
-                                                     #(f*self(self(x)),Basic.Zero(),Basic.Zero())
-                                                     ])
-        raise NotImplementedError("leading term of %s at %s=0" % (self.func(c*x**e*Log()(x)**f), x))
 
     def as_numer_denom(self):
         n, d = self.args[0].as_numer_denom()
@@ -466,22 +448,6 @@ class Sin(DefinedFunction):
 
 class ApplySin(Apply):
 
-    def _calc_as_coeff_leadterm(self, x):
-        arg = self.args[0]
-        func = self.func
-        c0, e0, f0 = arg.as_coeff_leadterm(x)
-        if e0==0 and f0==0:
-            # sin(5+x) -> sin(5)
-            if isinstance(c0, Basic.Zero):
-                return c0,e0,f0
-            c = func(c0)
-            if not isinstance(c, Basic.Zero):
-                return c,e0,f0
-            return func(arg - c).as_coeff_leadterm(x)
-        if e0>0:
-            return c0,e0,f0
-        raise ValueError("unable to compute leading term %s(%s) at %s=0" % (func, arg, x))
-
     def _eval_expand(self):
         arg = self.args[0].expand()
         cos = Basic.Cos()
@@ -552,22 +518,6 @@ class Cos(DefinedFunction):
         return (1-2*(n%2))*x**(2*n)/Basic.Factorial()(2*n)
 
 class ApplyCos(Apply):
-
-    def _calc_as_coeff_leadterm(self, x):
-        arg = self.args[0]
-        func = self.func
-        c0, e0, f0 = arg.as_coeff_leadterm(x)
-        if e0==0 and f0==0:
-            # cos(5+x) -> cos(5)
-            if isinstance(c0, Basic.Zero):
-                return c0,e0,f0
-            c = func(c0)
-            if not isinstance(c, Basic.Zero):
-                return c,e0,f0
-            return func(arg - c).as_coeff_leadterm(x)
-        if e0>0:
-            return Basic.One(),Basic.Zero(),Basic.Zero()
-        raise ValueError("unable to compute leading term %s(%s) at %s=0" % (func, arg, x))
 
     def _eval_expand(self):
         arg = self.args[0].expand()
@@ -664,6 +614,35 @@ class ApplyConjugate(Apply):
     def _eval_conjugate(self):
         return self.args[0]
 
+class Max(DefinedFunction):
+
+    nofargs = 2
+    def _eval_apply(self, x, y):
+        if isinstance(x, Basic.Number) and isinstance(y, Basic.Number):
+            return max(x, y)
+        if x.is_positive:
+            if y.is_negative:
+                return x
+            if y.is_positive:
+                if x.is_unbounded:
+                    if y.is_unbounded:
+                        return
+                    return x
+        elif x.is_negative:
+            if y.is_negative:
+                if y.is_unbounded:
+                    if x.is_unbounded:
+                        return
+                    return x
+
+class Min(DefinedFunction):
+
+    nofargs = 2
+    def _eval_apply(self, x, y):
+        if isinstance(x, Basic.Number) and isinstance(y, Basic.Number):
+            return min(x, y)
+
+
 Basic.singleton['exp'] = Exp
 Basic.singleton['log'] = Log
 Basic.singleton['ln'] = Log
@@ -672,5 +651,7 @@ Basic.singleton['cos'] = Cos
 Basic.singleton['tan'] = Tan
 Basic.singleton['sqrt'] = Sqrt
 Basic.singleton['abs_'] = Abs
+Basic.singleton['max_'] = Max
+Basic.singleton['min_'] = Min
 Basic.singleton['sign'] = Sign
 Basic.singleton['conjugate'] = Conjugate
