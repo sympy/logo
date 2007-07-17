@@ -86,15 +86,16 @@ real numbers) as well as being `complex` (as the set of real numbers
 is a subset of complex numbers), etc. In general, a property, say _P_,
 may be a union of subproperties, say _P_^1^, _P_^2^, etc. For example, if
 _P_ is `real` then _P_^1^ and _P_^2^ can be `positive` and `nonpositive`, respectively.
+Each property has negation property, e.g. the negation property of `odd` is `even`.
 
 The following rules apply for derived properties:
 
-  * if `x` has _P_^i^ set to `True`, then _P_ is `True`. Also, _P_^j^ are `None` for all j not equal to i (provided that subproperties have empty intersections).
-  * if `x` has _P_^i^ set to `False`, then _P_ is `True` (because `x` must have _P_^j^ set to `True` for some j not equal to i). Also, when there are exactly two subproperties, then _P_^i^ is `True`, otherwise `None`.
-  * if `x` has _P_^i^ set to `None` (undefined or when unsetting), then _P_ is `None` only if _P_ was derived from _P_^i^. Also all other _P_^j^ are `None`s.
-  * if `x` has _P_ set to `True` then _P_^i^ is `None` (undefined)
-  * if `x` has _P_ set to `False` then _P_^i^ is `False` for all i.
-  * if `x` has _P_ set to `None` then _P_^i^ is `None` for all i.
+  * if `x` sets _P_^i^ to `True` or `False`, then _P_ is `True`
+  * if `x` sets _P_^i^ to `None`, then _P_ keeps its value.
+  * if `x` sets _P_ to `True`, _P_^i^ is not modified (it's probably `None`)
+  * if `x` sets _P_ to `False` or `None`, then _P_^i^ is set to `None`. 
+  * if `x` sets _P_^1^ to `False` or `True` or `None`, then its negation property `_P_^2^` is set to  `True` or `False` or `None`, respectively.
+
 
 == Examples ==
 
@@ -181,7 +182,6 @@ Add your content here.  Format your content with:
   * Text in *bold* or _italic_
   * Headings, paragraphs, and lists
   * Automatic links to other wiki pages
-
 
 
 
