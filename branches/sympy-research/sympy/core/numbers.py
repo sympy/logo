@@ -2,10 +2,10 @@
 import math
 import decimal
 import decimal_math
-from basic import Basic, Atom, Singleton, S, cache_it, cache_it_immutable
+from basic import Basic, Atom, Singleton, S, Memorizer
 from methods import RelMeths, ArithMeths
 
-@cache_it_immutable
+@Memorizer(((int,long), (int, long)))
 def gcd(a, b):
     '''Returns the Greatest Common Divisor,
     implementing Euclid\'s algorithm.'''
@@ -13,7 +13,7 @@ def gcd(a, b):
         a, b = b%a, a
     return b
 
-@cache_it
+@Memorizer(((int,long),), return_value_converter = lambda d: d.copy())
 def factor_trial_division(n):
     """
     Factor any integer into a product of primes, 0, 1, and -1.
@@ -75,7 +75,6 @@ class Number(Atom, RelMeths, ArithMeths):
     def is_number(self): return True
     #
 
-    @cache_it_immutable
     def __new__(cls, *obj):
         if len(obj)==1: obj=obj[0]
         if isinstance(obj, (int, long)):
@@ -160,6 +159,12 @@ decimal_to_Number_cls = {
     decimal.Decimal('NaN').as_tuple():'NaN',
     }
 
+def convert_to_Decimal(num):
+    if isinstance(num, (str, int, long)):
+        num = decimal.Decimal(num)
+    elif isinstance(num, float):
+        num = Real.float_to_decimal(num)
+    return num
 
 class Real(Number):
     """Represents a floating point number. It is capable of representing
@@ -175,20 +180,14 @@ class Real(Number):
     is_irrational = False
     is_integer = False
 
-    @cache_it_immutable
+    @Memorizer((type, (str, int, long, float, decimal.Decimal)), (None, convert_to_Decimal))
     def __new__(cls, num):
-        if isinstance(num, (str, int, long)):
-            num = decimal.Decimal(num)
-        elif isinstance(num, float):
-            num = Real.float_to_decimal(num)
-        if isinstance(num, decimal.Decimal):
-            singleton_cls_name = decimal_to_Number_cls.get(num.as_tuple(), None)
-            if singleton_cls_name is not None:
-                return getattr(Basic, singleton_cls_name)()
-            obj = Basic.__new__(cls)
-            obj.num = num
-            return obj
-        raise TypeError("expected str|int|long|float|Decimal but got %r" % (num))
+        singleton_cls_name = decimal_to_Number_cls.get(num.as_tuple(), None)
+        if singleton_cls_name is not None:
+            return getattr(Basic, singleton_cls_name)()
+        obj = Basic.__new__(cls)
+        obj.num = num
+        return obj
 
     @staticmethod
     def float_to_decimal(f):
@@ -318,8 +317,6 @@ class Real(Number):
             return bool(self._as_decimal()<=other._as_decimal())
         return RelMeths.__le__(self, other)
 
-
-
 class Rational(Number):
     """Represents integers and rational numbers (p/q) of any size.
 
@@ -334,29 +331,27 @@ class Rational(Number):
     is_integer = False
     is_rational = True
 
-    @cache_it_immutable
+    @Memorizer((type, (int, long), (int, long, type(None))))
     def __new__(cls, p, q = None):
         if q is None:
             return Integer(p)
-        if isinstance(p, (int, long)) and isinstance(q, (int, long)):
-            if q==0:
-                if p==0: return NaN()
-                if p<0: return NegativeInfinity()
-                return Infinity()
-            if q<0:
-                q = -q
-                p = -p
-            n = gcd(abs(p), q)
-            if n>1:
-                p /= n
-                q /= n
-            if q==1: return Integer(p)
-            if p==1 and q==2: return Half()
-            obj = Basic.__new__(cls)
-            obj.p = p
-            obj.q = q
-            return obj
-        raise TypeError("Expected integers but got %r, %r" % (p,q))
+        if q==0:
+            if p==0: return NaN()
+            if p<0: return NegativeInfinity()
+            return Infinity()
+        if q<0:
+            q = -q
+            p = -p
+        n = gcd(abs(p), q)
+        if n>1:
+            p /= n
+            q /= n
+        if q==1: return Integer(p)
+        if p==1 and q==2: return Half()
+        obj = Basic.__new__(cls)
+        obj.p = p
+        obj.q = q
+        return obj
 
     def _hashable_content(self):
         return (self.p, self.q)
@@ -537,18 +532,16 @@ class Integer(Rational):
     q = 1
     is_integer = True
 
-    @cache_it_immutable
+    @Memorizer((type, (int, long)))
     def __new__(cls, i):
-        if isinstance(i, (int, long)):
-            if i==0: return Zero()
-            if i==1: return One()
-            if i==-1: return NegativeOne()
-            obj = Basic.__new__(cls)
-            obj.p = i
-            return obj
         if isinstance(i, Integer):
             return i
-        raise TypeError("Expected integer but got %r" % (i))
+        if i==0: return Zero()
+        if i==1: return One()
+        if i==-1: return NegativeOne()
+        obj = Basic.__new__(cls)
+        obj.p = i
+        return obj
 
     def _eval_is_odd(self):
         return bool(self.p % 2)

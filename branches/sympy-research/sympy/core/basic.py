@@ -5,6 +5,72 @@ type_class = type
 import decimal
 from basic_methods import BasicMeths, cache_it, cache_it_immutable
 
+class Memorizer:
+    """ Memorizer function decorator generator.
+
+    Features:
+      - checks that function arguments have allowed types
+      - optionally apply converters to arguments
+      - cache the results of function calls
+      - optionally apply converter to function values
+
+    Usage:
+
+      @Memorizer(<tuple of allowed types or tuple of types>,
+                 converters = <tuple of converter functions or None objects or None>,
+                 return_value_converter = <converter_function or None>)
+      def function(<arguments>):
+          ...
+
+    Restrictions:
+      - arguments must be immutable
+      - when function values are mutable then one must use return_value_converter to
+        deep copy the returned values
+
+    """
+    def __init__(self, allowed_types, converters = None, return_value_converter = None,
+                 debug = False):
+        self.allowed_types = tuple(allowed_types)
+        if converters is None:
+            converters = (None,) * len(allowed_types)
+        assert len(allowed_types)==len(converters),`allowed_types, converters`
+        self.converters = tuple(converters)
+        self.return_value_converter = return_value_converter
+        self.debug = debug
+
+    def __call__(self, func):
+        cache = {}
+        func_src = '%s:%s:function %s' % (func.func_code.co_filename, func.func_code.co_firstlineno, func.func_name)
+        def wrapper(*args):
+            try:
+                return cache[args]
+            except KeyError:
+                pass
+            new_args = []
+            i = 0
+            for a,t,c in zip(args, self.allowed_types, self.converters):
+                if not isinstance(a, t):
+                    raise ValueError("%s %s-th argument must be of type %s but got %s" % (func_src, i, t, type(a)))
+                i += 1
+                if c is not None:
+                    new_args.append(c(a))
+                else:
+                    new_args.append(a)
+            new_args = tuple(new_args)
+            try:
+                return cache[new_args]
+            except KeyError:
+                r = func(*new_args)
+                if self.return_value_converter is not None:
+                    r = self.return_value_converter(r)
+                cache[new_args] = cache[args] = r
+                if self.debug:
+                    print '%s(*%s) -> %s' % (func_src, args, r)
+                return r
+        return wrapper
+
+#####
+
 class Basic(BasicMeths):
     """
     Base class for all objects in sympy.
@@ -23,7 +89,6 @@ class Basic(BasicMeths):
         obj.assume(**assumptions)
         obj._mhash = None # will be set by BasicMeths.__hash__ method.
         obj._args = args  # all items in args must be Basic objects
-        obj._obj_cache = {} # save method results to cache
         return obj
 
     @staticmethod
