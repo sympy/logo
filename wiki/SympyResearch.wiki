@@ -185,11 +185,24 @@ exp(1 + x) + O(x ** 3, x)
 1 + O(x ** 2, x)
 }}}
 
-= Details =
+= Developers notes =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+`sympy.core` uses a symbolic model where all symbolic objects are immutable,
+they are constructed from classes that are derived from `Basic` class.
+For example, sympy.core defines the following classes for elementary symbolic manipulations: `Symbol`, `Number`, `Add`, `Mul`, `Pow`, `Function`, `Apply`.
+There is a number of other classes derived from Basic or classes listed above
+for adding more features to the used symbolic model. For example, `Symbol` is
+a base class to `Wild`, `Temporary` and `Number` is a base class to `Real`, 
+`Rational`, and `Integer` classes.
 
+The implementation of the symbolic model uses many advanced features from the
+Python language such as newstyle classes, properties, decorators, etc. The goal
+is to keep code minimal, readable, and to get maximum performance using
+pure Python code while keeping in mind that in future some computationally 
+intensive code should be implemented in a C/C++ extension module.
 
+For efficiency, the following facts has to been taken into account:
+
+  * In pure Python constructing an object *is* an expensive operations. This is especially true for symbolic objects that may need to evaluate their arguments to some normal form. For example, constructing a rational number involves finding gcd of its numerator and denominator. In constructing `Add` and `Mul` instances some elementary simplifications (evaluations) are carried out. Therefore, many frequently used symbolic notions like numbers are created only once (via singleton or caching technique) and computed results that might be needed in further operations are cached.
+
+  * Comparing symbolic objects for an equality can be very expensive as one may need to walk through large trees of symbolic objects. Therefore, the code must be optimized for elementary comparisons such as if a symbolic object is an instance of some special number, etc. So, codelet like `obj == 1` should be replaced with `obj is S.One` or `isinstance(obj, Basic.One)` or `obj.is_one`, that involve only single operations, for efficency. Note that executing `obj==1` involves a number of operations, it is equivalent to the following code: `Equality(obj, Basic.sympify(1)).__nonzero__()` where the `__nonzero__` code contains comparison code for symbolic objects.
