@@ -187,6 +187,8 @@ exp(1 + x) + O(x ** 3, x)
 
 = Developers notes =
 
+Below some design decisions in the `sympy.core` are explained.
+
 `sympy.core` uses a symbolic model where all symbolic objects are immutable,
 they are constructed from classes that are derived from `Basic` class.
 For example, sympy.core defines the following classes for elementary symbolic manipulations: `Symbol`, `Number`, `Add`, `Mul`, `Pow`, `Function`, `Apply`.
@@ -200,12 +202,14 @@ Python language such as newstyle classes, metaclasses, properties, decorators, e
 pure Python code while keeping in mind that in future some computationally 
 intensive code should be implemented in a C/C++ extension module.
 
-For efficiency, the following facts has to been taken into account:
+For efficiency, the following is taken into account:
 
-  * In pure Python constructing an object *is* an expensive operations. This is especially true for symbolic objects that may need to evaluate their arguments to some normal form. For example, constructing a rational number involves finding gcd of its numerator and denominator. In constructing `Add` and `Mul` instances some elementary simplifications (evaluations) are carried out. Therefore, many frequently used symbolic notions like numbers are created only once (via singleton or caching technique) and computed results that might be needed in further operations are cached.
+  * In pure Python constructing an object _is_ an expensive operations. This is especially true for symbolic objects that may need to evaluate their arguments to some normal form. For example, constructing a rational number involves finding gcd of its numerator and denominator. In constructing `Add` and `Mul` instances some elementary simplifications (evaluations) are carried out. Therefore, many frequently used symbolic notions like numbers are created only once (via singleton or caching technique) and computed results that might be needed in further operations are cached.
+
+  * Also, the result of an evaluation may be different from the original constructor. For example, `Add(x, x)` will result in `Mul(2,x)`. In this situation, `sympy.core` will never create an intermediate object representing `x+x` but carries out evaluation and then creates a final object representing `2*x`.
 
   * Comparing symbolic objects for an equality can be very expensive as one may need to walk through large trees of symbolic objects. Therefore, the code must be optimized for elementary comparisons such as if a symbolic object is an instance of some special number, etc. So, a codelet like `obj == 1` should be replaced with `obj is S.One` or `isinstance(obj, Basic.One)` or `obj.is_one`, that involve only single operations, for efficency. Note that executing `obj==1` involves a number of operations, it is equivalent to the following code: `Equality(obj, Basic.sympify(1)).__nonzero__()` where the `__nonzero__` code contains comparison code for symbolic objects.
 
-For extending the symbolic model, the following has been taken into account:
+For extending the symbolic model, the following is taken into account:
 
-  * Different symbolic classes may need to have access to each other features while the classes are implemented in different modules or even in different packages. Therefore one must be careful with importing modules as in the given situation cyclic imports are introduced. `sympy.code` resolves this issue by making all `Basic` subclasses to be attributes of the `Basic` class at the moment of defining the subclasses. As a result, one only needs to import `Basic` from `sympy.core.basic` module to get access to *all* classes that are derived from `Basic` class.
+  * Different symbolic classes may need to have access to each other features while the classes are implemented in different modules or even in different packages. Therefore one must be careful with importing modules as in the given situation cyclic imports are introduced. `sympy.code` resolves this issue by making all `Basic` subclasses to be attributes of the `Basic` class at the moment of defining the subclasses. As a result, one only needs to import `Basic` from `sympy.core.basic` module to get access to _all_ classes that are derived from the `Basic` class.
