@@ -49,7 +49,7 @@ Then there are !SymPy modules (5700 lines including documentation) for these tas
  
   * See [http://code.google.com/p/sympy/issues/list Issues] for details
   * You can also check our blogs: [http://grupododo.com/planetsympy/ PlanetSympy]
-  * Or join discussion at #sympy on irc.freenode.net
+  * Or join us at #sympy on irc.freenode.net
 
 ===Some ideas for future development===
 
