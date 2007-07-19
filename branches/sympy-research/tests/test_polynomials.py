@@ -93,6 +93,19 @@ def test_poly():
     assert x**2 + 3*x*sqrt(y) - 8 == poly([(-8, 0), (3*sqrt(y), 1),
         (1, 2)],x)
 
+## sympy/modules/polynomials/common.py
+
+def test_coeff_ring():
+    from sympy.modules.polynomials.common import coeff_ring
+    x = Symbol("x")
+    assert coeff_ring([Rational(2)]) == 'int'
+    assert coeff_ring([Rational(2), Rational(1,2)]) == 'rat'
+    assert coeff_ring([Rational(2)**Rational(1,2)]) == 'real'
+    assert coeff_ring([Rational(1,2), Real(2.1)]) == 'real'
+    assert coeff_ring([pi]) == 'real'
+    assert coeff_ring([Real(2.1), Rational(-1)**Rational(1,2)]) == 'cplx'
+    assert coeff_ring([I, x]) == 'sym'
+
 ## sympy/modules/polynomials/wrapper.py
 
 def test_coeff():
@@ -130,16 +143,22 @@ def test_div():
 
 def test_factor():
     x = Symbol("x")
-    assert factor(x**2-1) == (x+1)*(x-1)
+    y = Symbol("y")
+    z = Symbol("z")
+    assert factor(Rational(3, 8)*x**2 - Rational(3, 2)) \
+           == Rational(3, 8)*((x + 2)*(x - 2))
     assert factor(x**3-1) == (x-1)*(x**2+x+1)
     assert factor(x**2+2*x+1) == (x+1)**2
-    assert factor(x**3-3*x**2+3*x-1) == (x-1)**3
     assert factor(x**3-3*x**2+3*x-1) == (x-1)**3
     assert factor(x**2+x-2) == (x-1)*(x+2)
     assert factor(x**3-x) == x*(x-1)*(x+1)
     assert factor(x**6-1) == (1+x**2-x)*(1+x)*(1+x+x**2)*(-1+x)
     assert factor(2*x**2+5*x+2) == (2+x)*(1+2*x)
 
+    assert factor(x**2 + y**2) == x**2 + y**2
+    assert factor(x*y + x*z + y*z) == x*y + x*z + y*z
+    assert factor(x*(y+1) + x*z) == x*(z + y + 1)
+    
 def test_gcd():
     x = Symbol("x")
     y = Symbol("y")
@@ -289,6 +308,20 @@ def test_roots():
     assert roots(x**5 - Rational(3,2), coeff='real') == \
            [Rational(3,2)**Rational(1,5)]
     assert roots(x**5 - Rational(3,2), coeff='int') == []
+
+def test_solve_system():
+    x = Symbol("x")
+    y = Symbol("y")
+    z = Symbol("z")
+    assert solve_system(x-1) == [[1]]
+    assert solve_system([2*x - 3, 3*y/2 - 2*x, z - 5*y]) \
+           == [[Rational(3, 2), 2, 10]]
+    assert solve_system([y - x, y - x - 1]) == []
+    assert solve_system([y - x**2, y + x**2]) == [[0, 0]]
+    assert solve_system([y - x**2, y + x**2 + 1]) == \
+           [[-Rational(1,2)**Rational(1,2)*I, Rational(-1,2)],
+            [Rational(1,2)**Rational(1,2)*I, Rational(-1,2)]]
+    assert solve_system([y - x**2, y + x**2 + 1], coeff='real') == []
            
 def test_sqf():
     x = Symbol("x")
