@@ -185,6 +185,27 @@ exp(1 + x) + O(x ** 3, x)
 1 + O(x ** 2, x)
 }}}
 
+= Functions =
+
+How to define your own functions:
+{{{
+from sympy import Symbol
+from sympy.core.function import DefinedFunction
+
+x = Symbol("x")
+y = Symbol("y")
+
+class F(DefinedFunction):
+    pass
+
+f = F()
+print f(x)
+}}}
+prints:
+{{{
+f(x)
+}}}
+
 = Developers notes =
 
 Below some design decisions in the `sympy.core` are explained.
