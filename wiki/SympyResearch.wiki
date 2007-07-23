@@ -9,7 +9,7 @@ More information can be found in
 
 Checkout using:
 {{{
-svn co http://sympy.googlecode.com/svn/branches/sympy-research
+svn co http://sympy.googlecode.com/svn/branches/sympy-merge
 }}}
 Usage:
 {{{
