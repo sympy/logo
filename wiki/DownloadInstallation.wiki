@@ -19,7 +19,12 @@ apt-get install python-sympy
 
 == Windows ==
 
-Downlad the windows installer from the homepage and execute it.
+Download the windows installer from the homepage and execute it.
+
+== SAGE ==
+
+!SymPy is in SAGE 2.7 and later. The exact version of !SymPy in SAGE can be seen here:
+http://www.sagemath.org/packages/standard
 
 == Sources ==
 
