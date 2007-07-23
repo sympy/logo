@@ -47,6 +47,7 @@ Then there are !SymPy modules (5700 lines including documentation) for these tas
 
 ===Things we are working on===
  
+  * the upper priority now is moving to a new core, that makes the whole !SymPy from 10x to 100x times faster
   * See [http://code.google.com/p/sympy/issues/list Issues] for details
   * You can also check our blogs: [http://grupododo.com/planetsympy/ PlanetSympy]
   * Or join us at #sympy on irc.freenode.net
