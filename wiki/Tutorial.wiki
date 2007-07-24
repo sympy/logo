@@ -259,6 +259,8 @@ you can also put Symbols in it:
 
 }}}
 
+For more information an examples with Matrices, see the LinearAlgebraTutorial
+
 
 = Pattern matching =
 
