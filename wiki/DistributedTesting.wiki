@@ -1,0 +1,25 @@
+#summary How to run tests in parallel
+
+= Introduction =
+
+Create a file `conftest.py` in the sympy root directory:
+{{{
+dist_hosts = [
+        "localhost",
+        "localhost",
+        "localhost",
+        "pc232",
+        "pc232",
+        ]
+}}}
+with addresses of computers you would like to use for testing. You don't need to install anything on them (except python). Now run:
+{{{
+py.test -d
+}}}
+That's it. 
+
+= Result =
+
+And the result will look like this:
+{{{
+}}}
