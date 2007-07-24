@@ -41,7 +41,9 @@ More interestingly (and usefully), we can use a 2-variabled function (or lambda)
 }}}
 
 Finally let's use lambda to create a 1-line matrix with 1's in the even permutation entries:
+{{{
 >>> Matrix(3, 4, lambda i,j: 1 - (i+j) % 2)
 1 0 1 0 
 0 1 0 1 
 1 0 1 0
+}}}
