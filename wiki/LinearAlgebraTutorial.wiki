@@ -1,0 +1,7 @@
+#summary Introduction to using Sympy's linear algebra module
+
+= Introduction =
+
+The Sympy linear algebra module is an easy-to-learn, functional library for matrix manipulation. The module includes the ability to use symbolic variables.
+
+= Simple Manipulation =
