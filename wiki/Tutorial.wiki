@@ -16,7 +16,7 @@ This tutorial gives an overview and introduction to !SymPy. Read this to have an
 
  * windows. Downlad the windows installer from the homepage and execute it. 
 
-== Importing SymPy ==
+== Importing !SymPy ==
 
 to import !SymPy from the standard python shell, just type
 
@@ -29,7 +29,7 @@ and most common functions will be imported. Other modules of interest include sy
 There is also a little app called isympy (located in bin/isympy if you are running from the source directory) which is just a standard python shell that has already imported the relevant sympy modules and defined the symbols x, y and z. 
 
 
-= Using SymPy as a calculator =
+= Using !SymPy as a calculator =
 
 Sympy has two built-in numeric types: [http://sympy.googlecode.com/svn/api/sympy.core.numbers.Real-class.html Real] and [http://sympy.googlecode.com/svn/api/sympy.core.numbers.Rational-class.html Rational]. 
 
