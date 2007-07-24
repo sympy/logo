@@ -17,9 +17,31 @@ The linear algebra module is deign to be as simple as possible. First we import 
     0 1
 }}}
 
-This is the standard manner one creates a matrix, i.e. with a list of appropriately-sizes lists. SymPy also supports more advanced methods of matrix creation including a single list of values and dimension inputs:
+This is the standard manner one creates a matrix, i.e. with a list of appropriately-sizes lists. !SymPy also supports more advanced methods of matrix creation including a single list of values and dimension inputs:
 {{{
->>> Matrix(2, 3, [1, 2, 3, 4, 5, 6])
-1 2 3 
-4 5 6 
+	>>> Matrix(2, 3, [1, 2, 3, 4, 5, 6])
+	1 2 3 
+	4 5 6 
 }}}
+
+More interestingly (and usefully), we can use a 2-variabled function (or lambda) to make one. Here we create an indicator function which is 1 on the diagonal and then use it to make the identity matrix:
+{{{
+	>>> def f(i,j):
+	...     if i == j:
+	...             return 1
+	...     else:
+	...             return 0
+	... 
+	>>> Matrix(4, 4, f)
+	1 0 0 0 
+	0 1 0 0 
+	0 0 1 0 
+	0 0 0 1 
+	>>>
+}}}
+
+Finally let's use lambda to create a 1-line matrix with 1's in the even permutation entries:
+>>> Matrix(3, 4, lambda i,j: 1 - (i+j) % 2)
+1 0 1 0 
+0 1 0 1 
+1 0 1 0
