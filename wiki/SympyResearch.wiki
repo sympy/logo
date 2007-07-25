@@ -3,7 +3,7 @@
 
 = Introduction =
 
-This page collects documentation notes for the new trunk, which merged new core developed by Pearu with SymPy. More information can be found in 
+This page collects documentation notes for the new trunk, which merged new core developed by Pearu with !SymPy. More information can be found in 
 [http://code.google.com/p/sympy/issues/detail?id=144 Issue 144]
 
 Usage:
