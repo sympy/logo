@@ -152,7 +152,7 @@ you can also calculate the limit at infinity:
 
 {{{
    >>> limit(x, x, oo)
-   Infinity()
+   oo
 
    >>> limit(1/x, x, oo)
    0
