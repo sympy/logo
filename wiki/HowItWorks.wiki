@@ -1,5 +1,7 @@
 #summary This document describes the main ideas of how SymPy works.
 
+*Note*: This document is accurate for versions of !SymPy <= 0.4.3. The svn version changed the internals and is documented in SympyResearch.
+
 = Basics =
 
 All symbolic things are implemented using subclasses of the `Basic` class.
@@ -124,4 +126,3 @@ So, those are the main ideas behind sympy, which we try to obey. The rest depend
 
 very interesting link describing the algorithms used by mathematica: 
 [http://documents.wolfram.com/v5/TheMathematicaBook/MathematicaReferenceGuide/SomeNotesOnInternalImplementation/A.9.5.html here]
-
