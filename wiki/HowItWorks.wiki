@@ -1,6 +1,6 @@
 #summary This document describes the main ideas of how SymPy works.
 
-*Note*: This document is accurate for versions of !SymPy <= 0.4.3. The svn version changed the internals and is documented in SympyResearch.
+*Note*: This document is accurate for versions of !SymPy <= 0.4.3. The svn version uses a new core and is documented in SympyResearch.
 
 = Basics =
 
