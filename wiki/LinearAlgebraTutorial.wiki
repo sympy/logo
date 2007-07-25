@@ -6,43 +6,149 @@ The Sympy linear algebra module is an easy-to-learn, functional library for matr
 
 For a more general tutorial remember to read the general [http://code.google.com/p/sympy/wiki/Tutorial Tutorial].
 
-= Simple Manipulation =
+= Creating Matrices =
 
 The linear algebra module is deign to be as simple as possible. First we import and declare our first Matrix:
 {{{
-    >>> from sympy import *
-    >>> from sympy.modules.matrices import Matrix
-    >>> Matrix([[1,0], [0,1]]) #doctest: +NORMALIZE_WHITESPACE 
-    1 0 
-    0 1
+>>> from sympy import *
+>>> from sympy.modules.matrices import Matrix
+>>> Matrix([[1,0], [0,1]]) #doctest: +NORMALIZE_WHITESPACE 
+1 0 
+0 1
 }}}
 
 This is the standard manner one creates a matrix, i.e. with a list of appropriately-sizes lists. !SymPy also supports more advanced methods of matrix creation including a single list of values and dimension inputs:
 {{{
-    >>> Matrix(2, 3, [1, 2, 3, 4, 5, 6])
-    1 2 3 
-    4 5 6 
+>>> Matrix(2, 3, [1, 2, 3, 4, 5, 6])
+1 2 3 
+4 5 6 
 }}}
 
 More interestingly (and usefully), we can use a 2-variabled function (or lambda) to make one. Here we create an indicator function which is 1 on the diagonal and then use it to make the identity matrix:
 {{{
-    >>> def f(i,j):
-    ...     if i == j:
-    ...             return 1
-    ...     else:
-    ...             return 0
-    ... 
-    >>> Matrix(4, 4, f)
-    1 0 0 0 
-    0 1 0 0 
-    0 0 1 0 
-    0 0 0 1 
+>>> def f(i,j):
+...     if i == j:
+...             return 1
+...     else:
+...             return 0
+... 
+>>> Matrix(4, 4, f)
+1 0 0 0 
+0 1 0 0 
+0 0 1 0 
+0 0 0 1 
 }}}
 
 Finally let's use lambda to create a 1-line matrix with 1's in the even permutation entries:
 {{{
-    >>> Matrix(3, 4, lambda i,j: 1 - (i+j) % 2)
-    1 0 1 0 
-    0 1 0 1 
-    1 0 1 0
+>>> Matrix(3, 4, lambda i,j: 1 - (i+j) % 2)
+1 0 1 0 
+0 1 0 1 
+1 0 1 0
+}}}
+
+= Basic Manipulation =
+While learning to work with matrices, let's choose one where the entries are readily identifiable. One useful thing to know is that while matrices are 2-dimensional, the storage is not and so it is allowable - though one should be careful - to access the entries as if they were a 1-d list.
+{{{
+>>> M = Matrix(2, 3, [1, 2, 3, 4, 5, 6])
+>>> M[4]
+5
+}}}
+Now, the more standard entry access is a pair of indices (starting at 0!):
+{{{
+>>> M[1,2]
+6
+>>> M[0,0]
+1
+>>> M[1,1]
+5
+}}}
+Since this is Python we're also able to slice submatrices:
+{{{
+>>> M[0:2,0:2]
+1 2 
+4 5
+>>> M[1:2,2:2]
+
+>>> M[:,2]
+3 
+6
+}}}
+In particular, this mean a quick way to create a copy of the matrix is:
+{{{
+>>> M2 = M[:,:]
+>>> M2[0,0] = 100
+>>> M
+1 2 3 
+4 5 6
+}}}
+Since we can slice, we can also assign entries:
+{{{
+>>> M = Matrix(([1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]))
+>>> M
+1 2 3 4 
+5 6 7 8 
+9 10 11 12 
+13 14 15 16
+>>> M[2,2] = M[0,3] = 0
+>>> M
+1 2 3 0 
+5 6 7 8 
+9 10 0 12 
+13 14 15 16
+}}}
+as well as slices:
+{{{
+>>> M = Matrix(([1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]))
+>>> M[2:,2:] = Matrix(2,2,lambda i,j: 0)
+>>> M
+1 2 3 4 
+5 6 7 8 
+9 10 0 0 
+13 14 0 0
+}}}
+All the standard arithmetic operations are supported:
+{{{
+>>> M = Matrix(([1,2,3],[4,5,6],[7,8,9]))
+>>> M - M
+0 0 0 
+0 0 0 
+0 0 0 
+>>> M + M
+2 4 6 
+8 10 12 
+14 16 18 
+>>> M * M
+30 36 42 
+66 81 96 
+102 126 150 
+>>> M2 = Matrix(3,1,[1,5,0])
+>>> M*M2
+11 
+29 
+47
+>>> M**2
+30 36 42 
+66 81 96 
+102 126 150
+}}}
+As well as some useful vector operations:
+{{{
+>>> M.row_del(0)
+>>> M
+4 5 6 
+7 8 9 
+>>> M.col_del(1)
+>>> M
+4 6 
+7 9
+>>> v1 = Matrix([1,2,3])
+>>> v2 = Matrix([4,5,6])
+>>> v3 = v1.cross(v2)
+>>> v1.dot(v2)
+32
+>>> v2.dot(v3)
+0
+>>> v1.dot(v3)
+0
 }}}
