@@ -7,13 +7,18 @@ This page documents the major changes made to !SymPy since the last release.
 == svn ==
 
   * new core (from 10x to 100x speedup compared to 0.4.3)
-  * multivariable functions
+  * multivariate functions
 
 == 0.4.3 ==
 
   * assumptions improved
   * plotting module uses pyglet (no more hangups) and more improvements
   * caching Rationals -1, 0, 1, resulting in 35% speedup of tests
+  * closed and pretty forms for simple summations and products
+  * new term rewriting functions: collect() and together()
+  * enhanced solver of polynomial equations
+  * preliminary support for binary arithmetics
+  * more special functions (zeta, incomplete gamma etc.) 
 
 == 0.4.2 ==
 
