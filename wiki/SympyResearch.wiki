@@ -3,19 +3,12 @@
 
 = Introduction =
 
-This page collects documentation notes for the sympy-research branch of sympy.
-More information can be found in 
+This page collects documentation notes for the new trunk, which merged new core developed by Pearu with SymPy. More information can be found in 
 [http://code.google.com/p/sympy/issues/detail?id=144 Issue 144]
 
-Checkout using:
-{{{
-svn co http://sympy.googlecode.com/svn/branches/sympy-merge
-}}}
 Usage:
-{{{
->>> from sympy.core import *
-}}}
-(all other parts of sympy may not work, they need to be updated to new core)
+
+simply checkout the trunk, most things should be working the same way as before.
 
 = Mathematical constants =
 
