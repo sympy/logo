@@ -8,6 +8,7 @@ http://sympy.googlecode.com/svn/trunk/doc/logo/sympy-160px.png
 
 ==News==
 
+  * *25 Jul 2007* Version 0.4.3 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *08 Jul 2007* Version 0.4.2 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *20 Jun 2007* Version 0.4.1 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *18 Jun 2007* Version 0.4.0 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
