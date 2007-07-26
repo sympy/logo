@@ -8,11 +8,11 @@ For a more general tutorial remember to read the general [http://code.google.com
 
 = Creating Matrices =
 
-The linear algebra module is deign to be as simple as possible. First we import and declare our first Matrix:
+The linear algebra module is designed to be as simple as possible. First, we import and declare our first Matrix object:
 {{{
 >>> from sympy import *
 >>> from sympy.modules.matrices import Matrix
->>> Matrix([[1,0], [0,1]]) #doctest: +NORMALIZE_WHITESPACE 
+>>> Matrix([[1,0], [0,1]])
 1 0 
 0 1
 }}}
@@ -24,7 +24,7 @@ This is the standard manner one creates a matrix, i.e. with a list of appropriat
 4 5 6 
 }}}
 
-More interestingly (and usefully), we can use a 2-variabled function (or lambda) to make one. Here we create an indicator function which is 1 on the diagonal and then use it to make the identity matrix:
+More interestingly (and usefully), we can use a 2-variable function (or lambda) to make one. Here we create an indicator function which is 1 on the diagonal and then use it to make the identity matrix:
 {{{
 >>> def f(i,j):
 ...     if i == j:
@@ -46,6 +46,20 @@ Finally let's use lambda to create a 1-line matrix with 1's in the even permutat
 0 1 0 1 
 1 0 1 0
 }}}
+There are also a couple of special constructors for quick matrix construction - 'eye' is the identity matrix and there are two zero matrix functions:
+{{{
+>>> eye(4)
+1 0 0 0 
+0 1 0 0 
+0 0 1 0 
+0 0 0 1 
+>>> zero(2)
+0 0 
+0 0 
+>>> zeronm(2,5)
+0 0 0 0 0 
+0 0 0 0 0
+}}}
 
 = Basic Manipulation =
 While learning to work with matrices, let's choose one where the entries are readily identifiable. One useful thing to know is that while matrices are 2-dimensional, the storage is not and so it is allowable - though one should be careful - to access the entries as if they were a 1-d list.
@@ -54,7 +68,7 @@ While learning to work with matrices, let's choose one where the entries are rea
 >>> M[4]
 5
 }}}
-Now, the more standard entry access is a pair of indices (starting at 0!):
+Now, the more standard entry access is a pair of indices:
 {{{
 >>> M[1,2]
 6
@@ -74,7 +88,7 @@ Since this is Python we're also able to slice submatrices:
 3 
 6
 }}}
-In particular, this mean a quick way to create a copy of the matrix is:
+Remember in the 2nd example above that slicing 2:2 gives an empty range and that, as in python, a 4 column list is indexed from 0 to 3. In particular, this mean a quick way to create a copy of the matrix is:
 {{{
 >>> M2 = M[:,:]
 >>> M2[0,0] = 100
@@ -82,7 +96,7 @@ In particular, this mean a quick way to create a copy of the matrix is:
 1 2 3 
 4 5 6
 }}}
-Since we can slice, we can also assign entries:
+See? Changing M2 didn't change M. Since we can slice, we can also assign entries:
 {{{
 >>> M = Matrix(([1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]))
 >>> M
@@ -97,7 +111,7 @@ Since we can slice, we can also assign entries:
 9 10 0 12 
 13 14 15 16
 }}}
-as well as slices:
+as well as assign slices:
 {{{
 >>> M = Matrix(([1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]))
 >>> M[2:,2:] = Matrix(2,2,lambda i,j: 0)
@@ -151,4 +165,124 @@ As well as some useful vector operations:
 0
 >>> v1.dot(v3)
 0
+}}}
+Recall that the row_del() and col_del() operations don't return a value - they simply change the matrix object. We can also _glue_ together matrices of the appropriate size:
+{{{
+>>> M1 = eye(3)
+>>> M2 = zeronm(3,4)
+>>> M1.row_join(M2)
+1 0 0 0 0 0 0 
+0 1 0 0 0 0 0 
+0 0 1 0 0 0 0
+>>> M3 = zeronm(4,3)
+>>> M1.col_join(M3)
+1 0 0 
+0 1 0 
+0 0 1 
+0 0 0 
+0 0 0 
+0 0 0 
+0 0 0
+}}}
+
+= Operations on entries =
+We are not restricted to having multiplication between two matrices:
+{{{
+>>> M = eye(3)
+>>> 2*M
+2 0 0 
+0 2 0 
+0 0 2 
+>>> 3*M
+3 0 0 
+0 3 0 
+0 0 3
+}}}
+but we can also apply functions to our matrix entries using applyfunc(). Here we'll declare a function that double any input number. Then we apply it to the 3x3 identity matrix:
+{{{
+>>> f = lambda x: x*2
+>>> eye(3).applyfunc(f)
+2 0 0 
+0 2 0 
+0 0 2
+}}}
+One more useful matrix-wide entry application function is the substitution function. Let's declare a matrix with symbolic entries then substitute a value. Remember we can substitute anything - even another symbol!:
+{{{
+>>> x = Symbol('x')
+>>> M = eye(3) * x
+>>> M
+x 0 0 
+0 x 0 
+0 0 x 
+>>> M.subs(x, 4)
+4 0 0 
+0 4 0 
+0 0 4 
+>>> y = Symbol('y')
+>>> M.subs(x, y)
+y 0 0 
+0 y 0 
+0 0 y
+}}}
+
+= Linear algebra = 
+
+Now that we have the basics out of the way, let's see what we can do with the actual matrices. Of course the first things that come to mind are the basics like the determinant:
+{{{
+>>> M = Matrix(( [1, 2, 3], [3, 6, 2], [2, 0, 1] ))
+>>> M.det()
+-28
+>>> M2 = eye(3)
+>>> M2.det()
+1
+>>> M3 = Matrix(( [1, 0, 0], [1, 0, 0], [1, 0, 0] ))
+>>> M3.det()
+0
+}}}
+and the inverse. In SymPy the inverse is computed by Gaussian elimination by default but we can specify it be done by LU decomposition as well:
+{{{
+>>> M2.inv()
+1 0 0 
+0 1 0 
+0 0 1 
+>>> M2.inv("LU")
+1 0 0 
+0 1 0 
+0 0 1 
+>>> M.inv("LU")
+-3/14 1/14 1/2 
+-1/28 5/28 -1/4 
+3/7 -1/7 0 
+>>> M * M.inv("LU")
+1 0 0 
+0 1 0 
+0 0 1
+}}}
+We can perform a QR factorization which is handy for solving systems:
+{{{
+>>> A = Matrix([[1,1,1],[1,1,3],[2,3,4]])
+>>> Q, R = A.QRdecomposition()
+>>> Q
+(1/6)**(1/2) -1/3*3**(1/2) -(1/2)**(1/2) 
+(1/6)**(1/2) -1/3*3**(1/2) (1/2)**(1/2) 
+2*(1/6)**(1/2) (1/3)*3**(1/2) 0 
+>>> R
+6**(1/2) 8*(1/6)**(1/2) 12*(1/6)**(1/2) 
+0 (1/3)**(1/2) 0 
+0 0 2**(1/2) 
+>>> Q*R
+1 1 1 
+1 1 3 
+2 3 4
+}}}
+In addition to the solvers in the solver.py file, we can solve the system Ax=b by passing the b vector to the matrix A's LUsolve function. Here we'll cheat a little choose A and x then multiply to get b. Then we can solve for x and check that it's correct:
+{{{
+>>> A = Matrix([ [2, 3, 5], [3, 6, 2], [8, 3, 6] ])
+>>> x = Matrix(3,1,[3,7,5])
+>>> b = A*x
+>>> soln = A.LUsolve(b)
+>>> soln
+3 
+7 
+5
 }}}
