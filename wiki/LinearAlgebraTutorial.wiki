@@ -1,4 +1,4 @@
-#summary Introduction to using !Sympy's linear algebra module
+#summary Introduction to using Sympy's linear algebra module
 
 = Introduction =
 
