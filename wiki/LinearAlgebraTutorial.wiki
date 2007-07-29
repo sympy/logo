@@ -11,7 +11,7 @@ For a more general tutorial remember to read the general [http://code.google.com
 The linear algebra module is designed to be as simple as possible. First, we import and declare our first Matrix object:
 {{{
 >>> from sympy import *
->>> from sympy.modules.matrices import Matrix
+>>> from sympy.matrices import Matrix
 >>> Matrix([[1,0], [0,1]])
 1 0 
 0 1
@@ -341,7 +341,7 @@ So there is quite a bit that can be done with the module including eigenvalues, 
 Ignoring that fast that there is an eigenvalue function, let's consider the task of taking a matrix and calculating a set of orthonormal vectors for it's eigenspace. We'll first declare the matrix then use charpoly to get it's characteristic polynomial. Because we're working with polynomials we'll need the symbol module:
 {{{
 >>> from sympy import Symbol
->>> from sympy.modules.matrices import *
+>>> from sympy.matrices import *
 >>> x = Symbol('x')
 >>> M = Matrix(( (5,0,2), (3,2,0), (0,0,1) ))
 >>> f = M.charpoly(x)
@@ -350,7 +350,7 @@ Ignoring that fast that there is an eigenvalue function, let's consider the task
 }}}
 Now we can use the handy solver from the polynomial module to get our roots:
 {{{
->>> from sympy.modules.polynomials import roots
+>>> from sympy.polynomials import roots
 >>> r = roots(f, x)
 >>> r
 [1, 2, 5]
