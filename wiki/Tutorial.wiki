@@ -24,7 +24,7 @@ to import !SymPy from the standard python shell, just type
     >>> from sympy import *
 
 }}}
-and most common functions will be imported. Other modules of interest include sympy.modules, sympy.modules.limits, sympy.modules.solvers, etc.
+and most common functions will be imported. Other modules of interest include sympy.limits, sympy.solvers, etc.
 
 There is also a little app called isympy (located in bin/isympy if you are running from the source directory) which is just a standard python shell that has already imported the relevant sympy modules and defined the symbols x, y and z. 
 
@@ -230,11 +230,11 @@ Documentation and examples are at http://sympy.googlecode.com/svn/api/sympy.modu
 
 == Matrices ==
 
-Matrices are created as instances from the [http://sympy.googlecode.com/svn/api/sympy.modules.matrices.Matrix-class.html Matrix] class. This class is located in sympy.modules.matrices, but at usual, isympy imports this for you: 
+Matrices are created as instances from the [http://sympy.googlecode.com/svn/api/sympy.modules.matrices.Matrix-class.html Matrix] class. This class is located in sympy.matrices, but at usual, isympy imports this for you: 
 
 {{{
     >>> from sympy import *
-    >>> from sympy.modules.matrices import Matrix
+    >>> from sympy.matrices import Matrix
     >>> Matrix([[1,0], [0,1]]) #doctest: +NORMALIZE_WHITESPACE 
     1 0 
     0 1
