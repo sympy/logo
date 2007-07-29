@@ -21,7 +21,7 @@ For a full API listing and an explanation of the methods and their return values
 = Example Usage =
 The following Python session gives one an idea of how to work with some of the geometry module.
 {{{
->>> from sympy.modules.geometry import *
+>>> from sympy.geometry import *
 >>> x = Point(0, 0)
 >>> y = Point(1, 1)
 >>> z = Point(2, 2)
@@ -51,7 +51,7 @@ False
 
 == Intersection of medians ==
 {{{
-In [1]: from sympy.modules.geometry import *
+In [1]: from sympy.geometry import *
 
 In [2]: a = Symbol("a")
 
@@ -121,7 +121,7 @@ True
 When one deals with symbolic entities, it often happens that an assertion cannot be guaranteed. For example, consider the following code:
 {{{
 >>> from sympy import *
->>> from sympy.modules.geometry import *
+>>> from sympy.geometry import *
 >>> x,y,z = Symbol('x'), Symbol('y'), Symbol('z')
 >>> p1,p2,p3 = Point(x, y), Point(y, z), Point(2*x*y, y)
 >>> Point.is_collinear(p1, p2, p3)
