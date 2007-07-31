@@ -338,7 +338,7 @@ We can spot-check their orthogonality with dot() and their orthogonality with no
 So there is quite a bit that can be done with the module including eigenvalues, eigenvectors, nullspace calculation, cofactor expansion tools, and so on. From here one might want to look over the matrices.py file for all functionality.
 
 = A Sample Workspace =
-Ignoring that fast that there is an eigenvalue function, let's consider the task of taking a matrix and calculating a set of orthonormal vectors for it's eigenspace. We'll first declare the matrix then use charpoly to get it's characteristic polynomial. Because we're working with polynomials we'll need the symbol module:
+Ignoring that fact that there is an eigenvalue function, let's consider the task of taking a matrix and calculating a set of orthonormal vectors for it's eigenspace. We'll first declare the matrix then use charpoly to get it's characteristic polynomial. Because we're working with polynomials we'll need the symbol module:
 {{{
 >>> from sympy import Symbol
 >>> from sympy.matrices import *
