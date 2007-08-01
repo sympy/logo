@@ -319,3 +319,4 @@ One can also use the exclude parameter of the `Wild` class to ensure that certai
 = Modules =
 The following list provides links to documentation for some of the various modules !SymPy offers
   * [GeometryModule Geometry Module]
+  * [LinearAlgebraTutorial Linear Algebra Module]
