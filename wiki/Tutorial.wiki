@@ -301,7 +301,21 @@ One can also make use of the `WildFunction` class (available in 0.5) to perform 
 
 }}}
 
+One can also use the exclude parameter of the `Wild` class to ensure that certain things do not show up in the result:
+
+{{{
+    >>> x = Symbol('x')
+    >>> p = Wild('p', exclude=[1,x])
+    >>> print (x+1).match(x+p) # 1 is excluded
+    None
+    >>> print (x+1).match(p+1) # x is excluded
+    None
+    >>> print (x+1).match(x+2+p) # -1 is not excluded
+    {p_: -1}
+
+}}}
+
 
 = Modules =
 The following list provides links to documentation for some of the various modules !SymPy offers
-  * [http://code.google.com/p/sympy/wiki/GeometryModule Geometry Module]
+  * [GeometryModule Geometry Module]
