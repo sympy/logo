@@ -8,7 +8,7 @@ This page documents the major changes made to !SymPy since the last release.
 
   * new core (from 10x to 100x speedup compared to 0.4.3)
   * multivariate functions
-  * pattern matching uses the Wild and WildFunction classes (see the [http://code.google.com/p/sympy/wiki/Tutorial Tutorial] for usage)
+  * pattern matching uses the Wild and !WildFunction classes (see the [http://code.google.com/p/sympy/wiki/Tutorial Tutorial] for usage)
 
 == 0.4.3 ==
 
