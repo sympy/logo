@@ -7,14 +7,7 @@ This tutorial gives an overview and introduction to !SymPy. Read this to have an
 
 == Installation ==
 
- * debian. Download the deb file from the project's homepage, and then install in with the command `"sudo dpkg -i python-sympy_$version_all.deb"`, where `$version` must be replaced with the version number. 
-
-  Hopefully, we'll soon (couple of weeks) have this package in the official debian main repository.
-
- * source. 
-    # unix systems (linux, BSD, cygwin, etc.). Download the source archive, (something like `sympy-$version.tar.gz`), extract it with the command `"tar xvvzf sympy-$version.tar.gz"`, and follow the README located in the sympy directory
-
- * windows. Downlad the windows installer from the homepage and execute it. 
+See DownloadInstallation and follow the instructions specific to your platform.
 
 == Importing !SymPy ==
 
