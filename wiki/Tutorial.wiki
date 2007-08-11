@@ -219,6 +219,20 @@ Currently, !SymPy can only do some simple integrals.
 
 Documentation and examples are at http://sympy.googlecode.com/svn/api/sympy.modules.integrals-module.html#integrate
 
+== Complex numbers ==
+
+{{{
+>>> from sympy import Symbol, exp, I
+>>> x = Symbol("x")
+>>> exp(I*x).expand()
+exp(I*x)
+>>> exp(I*x).expand(complex=True)
+1/exp(im(x))*cos(re(x)) + I/exp(im(x))*sin(re(x))
+>>> x = Symbol("x", real=True)
+>>> exp(I*x).expand(complex=True)
+I*sin(x) + cos(x)
+}}}
+
 = Linear Algebra =
 
 == Matrices ==
