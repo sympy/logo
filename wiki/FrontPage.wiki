@@ -26,7 +26,7 @@ Currently, !SymPy core has around 3200 lines of code (including extensive commen
   * basic simplification (like `a*b*b + 2*b*a*b  -> 3*a*b^2`)
   * expansion (like `(a+b)^2 -> a^2 + 2*a*b + b^2`)
   * functions (exp, ln, ...)
-  * complex numbers (like `exp(I*x).evalc()  -> cos(x)+I*sin(x)`)
+  * complex numbers (like `exp(I*x).expand(complex=True)  -> cos(x)+I*sin(x)`)
   * differentiation
   * taylor (laurent) series
   * basic substitution (like x-> ln(x))
@@ -49,7 +49,6 @@ Then there are !SymPy modules (5700 lines including documentation) for these tas
 
 ===Things we are working on===
  
-  * We moved to a new core (still written in Python) that made the whole !SymPy from 10x to 100x times faster in the svn and now we are polishing things
   * See [http://code.google.com/p/sympy/issues/list Issues] for details
   * You can also check our blogs: [http://grupododo.com/planetsympy/ PlanetSympy]
   * Or join us at #sympy on irc.freenode.net
