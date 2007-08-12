@@ -14,6 +14,8 @@ Currently the same as 0.5.0.
   * multivariate functions
   * pattern matching uses the Wild and !WildFunction classes (see the [http://code.google.com/p/sympy/wiki/Tutorial Tutorial] for usage)
   * `numerics` module for fast arbitrary-precision numerical computations (much faster than the Python int and Decimal)
+  * `plotting` module improved (colormaps, middle mouse button for zooming and more)
+  * `sympy/modules/*` was moved to `sympy/*` and the `sympy/modules` directory was deleted
 
 == 0.4.3 ==
 
