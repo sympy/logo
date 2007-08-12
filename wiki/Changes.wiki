@@ -13,6 +13,7 @@ Currently the same as 0.5.0.
   * new core (from 10x to 100x speedup compared to 0.4.3)
   * multivariate functions
   * pattern matching uses the Wild and !WildFunction classes (see the [http://code.google.com/p/sympy/wiki/Tutorial Tutorial] for usage)
+  * `numerics` module for fast arbitrary-precision numerical computations (much faster than the Python int and Decimal)
 
 == 0.4.3 ==
 
