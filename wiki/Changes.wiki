@@ -6,7 +6,7 @@ This page documents the major changes made to !SymPy since the last release.
 
 == svn ==
 
-Currently the same as 0.5.0.
+  * importing sympy (`import sympy`) was made a lot faster (2.4s against 0.1s)
 
 == 0.5.0 ==
 
