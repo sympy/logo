@@ -9,6 +9,8 @@ The module `sympy.numerics` implements arbitrary-precision arithmetic. It has no
 The classes `Float` and `ComplexFloat` behave roughly like Python's `float` and `complex`, except for being capable of arbitrary precision. `Float`s and `ComplexFloat`s can be created from regular Python numbers (`int`, `float`, `complex`), decimal strings, and also from !SymPy `Rational`s.
 
 {{{
+>>> from sympy import *
+>>> from sympy.numerics import *
 >>> Float(1) - Float(0.25) - Float('0.25') - Float(Rational(1,4))
 Float('0.25')
 >>> ComplexFloat(2, 3)
@@ -213,7 +215,6 @@ Float('0.57721566490153286060651209008240243104215933593992359880576723488486772
 }}}
 
 Currently, if `nintegrate` fails to reach full accuracy, an exception is raised. (In the future, it should probably return whatever result it managed obtain along with a warning message.)
-
 
 
 
