@@ -214,32 +214,32 @@ Float('0.57721566490153286060651209008240243104215933593992359880576723488486772
 6777664670936947063291746749517')
 }}}
 
-Currently, if `nintegrate` fails to reach full accuracy, an exception is raised. (In the future, it should probably return whatever result it managed obtain along with a warning message.)
+If `nintegrate` fails to reach full accuracy, it prints a warning message along with an estimate of the magnitude of the error.
 
+Here is a very badly behaved integral where `nintegrate` fails altogether (the correct value is pi/2):
+{{{
+>>> nintegrate(lambda x: sin(x)/x, 0, oo, maxsteps=100)
+Warning: failed to reach full accuracy. Estimated magnitude of error:  2
+Float('0.75184212987527188')
+}}}
 
+Increasing the number of steps only makes things worse:
+{{{
+>>> nintegrate(lambda x: sin(x)/x, 0, oo, maxsteps=1000)
+Warning: failed to reach full accuracy. Estimated magnitude of error:  6
+Float('-1.9422180210118507')
+}}}
 
+A better approach in this case is to choose a finite upper limit:
+{{{
+>>> nintegrate(lambda x: sin(x)/x, 0, 100, maxsteps=1000)
+Float('1.5622254668890563')
+}}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Here is a similar but slightly easier integral (the correct value is roughly 1.253).
+{{{
+>>> nintegrate(lambda x: sin(x**2)/x**2, 0, oo, maxsteps=1000)
+Warning: failed to reach full accuracy. Estimated magnitude of error:  0.003
+Float('1.2410979753100062')
+}}}
 
