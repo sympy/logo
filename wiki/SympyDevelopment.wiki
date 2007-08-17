@@ -19,7 +19,7 @@ We have only one rule:
  * As long as all the tests pass, the code is considered fine and can be commited to the svn repository.
 
 This means, that _all_ the functionality that the user expects from a symbolic system need to have a test case. If you implement a new feature, write a test case for it (and as long as this test case passes, the feature is considered to work). If you think there is a bug, write a test case which fails and then fix the bug. 
-If you think some other test case should be modified, please discuss it on the mailing list first. 
+If you think some other test case should be modified, please discuss it on the mailing list first. It's very important, so let's repeat it once more: if you don't write a test case for all your features that you implement/fix, it will be like you contributed nothing and just wasted your time, because those features will stop working the next time we refactor the library. 
 
 This also means, that any refactoring is very easy to do, just make sure all the tests run. And because refactoring is so easy, we are not afraid of making huge changes if we think the code will be more readable or simpler. If you want to find more about this kind of attitude, google the phrase "extreme programming".
 
