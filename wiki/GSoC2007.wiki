@@ -11,7 +11,7 @@ http://groups.google.com/group/sympy/browse_thread/thread/a63896b7d8a5fc90
 
 = Details =
 
-|| *student* || *svn account* || *mentor* || *mentoring organisation* || report ||
+|| *student* || *svn account* || *mentor* || *mentoring organisation* || *report* ||
 || Robert Schwarz || lethargo || Fabian Seoane || PSF || PolynomialsReport ||
 || Mateusz Paprocki || mattpap || Ondrej Certik || STScI || ||
 || Brian Jorgensen || brian.jorgensen || Ondrej Certik || PSF || ||
@@ -25,5 +25,4 @@ All are aggregated at: http://grupododo.com/planetsympy/
 You can also find links to the individual blogs there. Thus if you want to see what is happening, it's enough to follow the planetsympy.
 
 Besides that, the sympy's mailinglist and issues are the other two areas, where the development is taking place. See also SympyDevelopment.
-
 
