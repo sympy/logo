@@ -48,8 +48,10 @@ Supported mode names by number of variables:
   * 2 (surfaces): parametric, cartesian, cylindrical, spherical
 
 {{{
->>> Plot(1, mode='spherical')
+>>> Plot(1, 'mode=spherical; color=zfade4')
 }}}
+
+[http://bgjorgensen.com/images/gsoc/sympy-plot-sphere-fade4.png]
 
 = Specifying Intervals for Variables =
 
