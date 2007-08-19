@@ -68,7 +68,7 @@ The basic format for variable intervals is [var, min, max, steps]. However, the 
 
 = Plot Window Keyboard Controls =
 
-||*Screen Rotation*||||
+|| *Screen Rotation* || ||
 ||X,Y axis||Arrow Keys, A,S,D,W, Numpad 4,6,8,2||
 ||Z axis||Q,E, Numpad 7,9||
     
