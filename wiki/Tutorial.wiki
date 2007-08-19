@@ -324,3 +324,4 @@ The following list provides links to documentation for some of the various modul
   * [GeometryModule Geometry Module]
   * [LinearAlgebraTutorial Linear Algebra Module]
   * [NumericsModule Numerics Module]
+  * [PlottingModule Plotting Module]
