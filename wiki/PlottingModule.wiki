@@ -10,7 +10,7 @@ With the plotting module, you can simultaneously view any number of function plo
 >>> Plot(x*y**3-y*x**3)
 }}}
 
-= Plot Window Keyboard Controls =
+= Plot Window Controls =
 
 || *Camera* || ||
 ||Sensitivity Modifier||SHIFT||
@@ -28,6 +28,8 @@ With the plotting module, you can simultaneously view any number of function plo
 ||Toggle Colors||F6||
 || *Window* || ||
 ||Close||ESCAPE||
+
+The mouse can be used to rotate, zoom, and translate by dragging the left, middle, and right mouse buttons respectively.
 
 = Coordinate Modes =
 
@@ -59,7 +61,7 @@ The basic format for variable intervals is [var, min, max, steps]. However, the 
 >>> Plot(1*x, [], [x], mode='cylindrical') # [unbound_theta,0,2*Pi,40], [x,-1,1,20]
 }}}
 
-= Calculator-like Console (or Script) Interface =
+= Console (or Script) Interface =
 
 {{{
 >>> p = Plot(visible=False)
@@ -84,3 +86,4 @@ The basic format for variable intervals is [var, min, max, steps]. However, the 
 >>> p[2].style = 'both'
 >>> p.close()
 }}}
+
