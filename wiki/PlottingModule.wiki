@@ -97,6 +97,43 @@ The basic format for variable intervals is [var, min, max, steps]. However, the 
 
 = Custom Color Functions =
 
+The following code plots a saddle and color it by the magnitude of its gradient:
+{{{
+>>> fz = x**2-y**2
+>>> Fx, Fy, Fz = fz.diff(x), fz.diff(y), -1
+>>> p[1] = fz, 'style=solid'
+>>> p[1].color = (Fx**2 + Fy**2 + Fz**2)**(0.5)
+}}}
+[http://bgjorgensen.com/images/gsoc/colors-tutorial-1.png]
+
+The coloring algorithm works like this:
+  # Evaluate the color function(s) across the curve or surface.
+  # Find the minimum and maximum value of each component.
+  # Scale each component to the color gradient.
+
+When not specified explicitly, the default color gradient is (r,g,b) = (0.4,0.4,0.4)->(0.9,0.9,0.9). In our case, everything is gray-scale because we have applied the default color gradient uniformly for each color component. When defining a color scheme in this way, you might want to supply a color gradient as well:
+{{{
+>>> p[1].color = (Fx**2 + Fy**2 + Fz**2)**(0.5),
+................ (0.1,0.1,0.9), (0.9,0.1,0.1)
+}}}
+[http://bgjorgensen.com/images/gsoc/colors-tutorial-2.png]
+
+Here's a color gradient with four steps:
+{{{
+>>> gradient = [ 0.0, (0.1,0.1,0.9), 0.3, (0.1,0.9,0.1),
+................ 0.7, (0.9,0.9,0.1), 1.0, (1.0,0.0,0.0) ]
+>>> p[1].color = (Fx**2 + Fy**2 + Fz**2)**(0.5), gradient
+}}}
 [http://bgjorgensen.com/images/gsoc/colors-tutorial-3.png]
 
-There is a [http://straightupcoding.blogspot.com/2007/08/sympy-plotting-custom-colors-tutorial.html detailed tutorial] on this at my development blog.
+The other way to specify a color scheme is to give a separate function for each component r, g, b. With this syntax, the default color scheme is defined:
+{{{
+>>> p[1].color = z,y,x, (0.4,0.4,0.4), (0.9,0.9,0.9)
+}}}
+[http://bgjorgensen.com/images/gsoc/colors-tutorial-4.png]
+
+This maps z->red, y->green, and x->blue. In some cases, you might prefer to use the following alternative syntax:
+{{{
+>>> p[1].color = z,(0.4,0.9), y,(0.4,0.9), x,(0.4,0.9)
+}}}
+You can still use multi-step gradients with three-function color schemes. When somebody uses this to visualize something useful like curvature, I'd really like to hear about it.
