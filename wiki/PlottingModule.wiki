@@ -10,7 +10,7 @@ With the plotting module, you can simultaneously view any number of function plo
 >>> Plot(x*y**3-y*x**3)
 }}}
 
-[http://bgjorgensen.com/images/gsoc/SymPysympy-plot-xy3-yx3.png]
+[http://bgjorgensen.com/images/gsoc/sympy-plot-xy3-yx3.png]
 
 To see lots of plotting examples, see examples/plotting.py and try running it in interactive mode (python -i plotting.py).
 
