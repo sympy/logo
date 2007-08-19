@@ -79,10 +79,8 @@ The basic format for variable intervals is [var, min, max, steps]. However, the 
 ||View YZ||F3||
 ||View Perspective||F4||
 ||Reset||X, Numpad 5||
-
 || *Axes* || ||
-||Visible||F5||
-||Colors||F6||
-
+||Toggle Visible||F5||
+||Toggle Colors||F6||
 || *Window* || ||
 ||Close||ESCAPE||
