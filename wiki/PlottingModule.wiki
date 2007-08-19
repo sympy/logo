@@ -10,6 +10,8 @@ With the plotting module, you can simultaneously view any number of function plo
 >>> Plot(x*y**3-y*x**3)
 }}}
 
+[http://bgjorgensen.com/images/gsoc/SymPysympy-plot-xy3-yx3.png]
+
 To see lots of plotting examples, see examples/plotting.py and try running it in interactive mode (python -i plotting.py).
 
 = Plot Window Controls =
@@ -94,4 +96,3 @@ The basic format for variable intervals is [var, min, max, steps]. However, the 
 [http://bgjorgensen.com/images/gsoc/colors-tutorial-3.png]
 
 There is a [http://straightupcoding.blogspot.com/2007/08/sympy-plotting-custom-colors-tutorial.html detailed tutorial] on this at my development blog.
-
