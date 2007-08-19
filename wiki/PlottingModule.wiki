@@ -51,6 +51,8 @@ Supported mode names by number of variables:
 >>> Plot(1, 'mode=spherical; color=zfade4')
 }}}
 
+Note that function parameters are given as option strings of the form "key1=value1; key2 = value2" (spaces are truncated). Keyword arguments given directly to plot apply to the plot itself.
+
 [http://bgjorgensen.com/images/gsoc/sympy-plot-sphere-fade4.png]
 
 = Specifying Intervals for Variables =
@@ -64,7 +66,7 @@ The basic format for variable intervals is [var, min, max, steps]. However, the 
 >>> Plot(x**2, [x,-13,13,100])
 >>> Plot(x**2, [-13,13]) # [x,-13,13,100]
 >>> Plot(x**2, [x,-13,13]) # [x,-13,13,100]
->>> Plot(1*x, [], [x], mode='cylindrical') # [unbound_theta,0,2*Pi,40], [x,-1,1,20]
+>>> Plot(1*x, [], [x], 'mode=cylindrical') # [unbound_theta,0,2*Pi,40], [x,-1,1,20]
 }}}
 
 = Console (or Script) Interface =
