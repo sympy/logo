@@ -16,7 +16,7 @@ http://groups.google.com/group/sympy/browse_thread/thread/a63896b7d8a5fc90
 || Mateusz Paprocki || mattpap || Ondrej Certik || STScI || ||
 || Brian Jorgensen || brian.jorgensen || Ondrej Certik || PSF || ||
 || Chris Wu ||  || Mike Haertel || PSU || ||
-|| Jason Gedge || inferno1386 || Jim Jewett || PSF || ||
+|| Jason Gedge || inferno1386 || Jim Jewett || PSF || GeometryReport ||
 
 == students and mentors blogs ==
 
