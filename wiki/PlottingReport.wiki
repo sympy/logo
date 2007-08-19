@@ -17,13 +17,19 @@ So at this point I e-mailed Ondrej about this and a few other ideas. We got alon
 
 With Ondrej's help, I submitted my application to as many organizations as possible, since [http://code.google.com/p/sympy SymPy] was not itself a mentoring organization, but could be funded under several of them. 
 
+[http://www.bgjorgensen.com/images/gsoc/Schwarzchild-metric.jpg]
+
 = April and May - Acceptance and Preparation =
 
 My application was ultimately accepted under the Python Software Foundation, and Ondrej became my project mentor. During the next few weeks, I made sure to stay in contact with him, and also began to explore possibilities. I also started my first [http://straightupcoding.blogspot.com/2007/04/google-summer-of-code-2007-with-sympy.html blog]. One of the conditions of my acceptance was that I would leverage matplotlib for my initial implementation. Starting with some interface code Fabian had written, I had this done by the [http://straightupcoding.blogspot.com/2007/05/new-direction-for-sympy-graphing.html second week of May], but it was clear that if I wanted to allow [http://code.google.com/p/sympy SymPy] to be used as a symbolic graphing calculator, I would need to roll [http://straightupcoding.blogspot.com/2007/06/vision-for-extensible-visualization.html my own plotting interface].
 
+http://www.bgjorgensen.com/images/gsoc/mplot3d-wave.jpg
+
 = June - Plotting Implementation with GLUT =
 
 [http://straightupcoding.blogspot.com/2007/06/sympy-plot-now-available-in-svn.html My first plotting implementation] from scratch used PyOpenGL and GLUT, which is a library for easily creating OpenGL applications. This was a quick success, and I was able to produce pretty pictures, but I was unhappy with the console interaction; GLUT is a single-threaded event-driven library, which was not commensurable with my goal of allowing the plot to be interacted with programmatically through an interactive shell or a script while being displayed in a separate window.
+
+[http://bgjorgensen.com/images/gsoc/first-sympy-plot.png]
 
 = July - I Discover Pyglet and Create Fatal Crash-bugs =
 
@@ -31,11 +37,15 @@ I explored a variety of solutions and alternatives, and this was really a low-po
 
 I wrestled with Pyglet for about a week, and emerged with exactly what I wanted. I then spent the remainder of July implementing the interface and plotting modes I had planned. Also around this time, a large body of bugs began to accumulate. Luckily, members of the project would notice them quickly when I did not, and were very good in letting me know via our Google code bug tracking system. One particularly devious bug had me very nervous when it started crashing Ondrej's xserver consistently, but fortunately (for me at least), it turned out to be a bug in the Debian Xlib package.
 
+[http://bgjorgensen.com/images/gsoc/ding-dong-surface-thumb.png]
+
 = August - Features and Speed Optimizations =
 
 The first three weeks of August went by way too quickly. In this time, I added some new features such as labeled axes, translation, and perhaps most importantly custom color maps. However, it was really slow. After some optimization missteps (focusing too much on Big O complexity and not enough on the coefficients), I finally discovered that the true source of my hinderance was in using the arbitrarily precise calculation mechanisms of [http://code.google.com/p/sympy SymPy] when I could get away with much less precision for on-screen rendering.
 
 After implementing a function which converts [http://code.google.com/p/sympy SymPy] expressions into equivalent Python lambda functions which use Python's math library, I saw an order-of-magnitude speed boost. So the lesson of this month was that top-level Big O complexity is not always the culprit for slow performance.
+
+[http://bgjorgensen.com/images/gsoc/colors-tutorial-3.png]
 
 = What I Haven't Gotten Around To (Yet) =
 
@@ -50,4 +60,3 @@ I also hope that in the coming weeks I can integrate Jason Gedge's geometry modu
 I have thoroughly enjoyed this project. I have learned a lot about writing Python code, but even more about working on a medium-sized open-source project. I benefited from eager testing by members of the project, who were quick to find bugs and possible improvements. My only regret is that I wasn't more involved in the social aspect of the project. I think that this is mostly because my work focused on graphics and user interface, and was therefore fairly far-removed from the algorithmic and mathematical work being done in most other parts of the project. Even so, I had a great time, and look forward to working for the [http://code.google.com/p/sympy SymPy] project in the future.
 
 Thanks again to Google (especially Leslie H.), the PSF, and Ondrej.
-
