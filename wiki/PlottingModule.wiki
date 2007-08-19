@@ -70,19 +70,23 @@ The basic format for variable intervals is [var, min, max, steps]. However, the 
 
 || *Screen Rotation* || ||
 ||X,Y axis||Arrow Keys, A,S,D,W, Numpad 4,6,8,2||
-||Z axis||Q,E, Numpad 7,9||
+||Z axis||Q and E, Numpad 7 and 9||
+
 || *Model Rotation* || ||
-||Z axis||Z,C, Numpad 1,3||
+||Z axis||Z and C, Numpad 1 and 3||
+
 || *Camera* || ||
-||Zoom|| R,F, PgUp,PgDn, Numpad +,- ||
-||Reset|| X, Numpad 5 ||
+||Zoom||R and F, Page Up and Down, Numpad + and -||
+||Reset||X, Numpad 5||
 ||View XY||F1||
 ||View XZ||F2||
 ||View YZ||F3||
 ||View Perspective||F4||
 ||Sensitivity Modifier||SHIFT||
+
 || *Axes* || ||
 ||Visible||F5||
 ||Colors||F6||
+
 || *Window* || ||
 ||Close||ESCAPE||
