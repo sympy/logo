@@ -23,7 +23,7 @@ With Ondrej's help, I submitted my application to as many organizations as possi
 
 My application was ultimately accepted under the Python Software Foundation, and Ondrej became my project mentor. During the next few weeks, I made sure to stay in contact with him, and also began to explore possibilities. I also started my first [http://straightupcoding.blogspot.com/2007/04/google-summer-of-code-2007-with-sympy.html blog]. One of the conditions of my acceptance was that I would leverage matplotlib for my initial implementation. Starting with some interface code Fabian had written, I had this done by the [http://straightupcoding.blogspot.com/2007/05/new-direction-for-sympy-graphing.html second week of May], but it was clear that if I wanted to allow [http://code.google.com/p/sympy SymPy] to be used as a symbolic graphing calculator, I would need to roll [http://straightupcoding.blogspot.com/2007/06/vision-for-extensible-visualization.html my own plotting interface].
 
-http://www.bgjorgensen.com/images/gsoc/mplot3d-wave.jpg
+[http://www.bgjorgensen.com/images/gsoc/mplot3d-wave.jpg]
 
 = June - Plotting Implementation with GLUT =
 
