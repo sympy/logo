@@ -1,3 +1,5 @@
+#summary Review of the 2007 Summer of Code project.
+
 =Introduction=
 This pages summarizes my experience working on a Geometry module for !SymPy under the Google Summer of Code. My name is Jason Gedge and I am going into my fourth year of a Pure Math/Computer Science double major at Memorial University of Newfoundland, Canada.
 
