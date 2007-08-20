@@ -53,6 +53,10 @@ In my application, I said that I would use remaining time in August to accomplis
 
 I also hope that in the coming weeks I can integrate Jason Gedge's geometry module (also a SoC 2007 project) with plotting. This shouldn't be too hard, which is part of the reason I've put it at lower priority.
 
+*Update:* a few hours after I wrote this, I managed to create a simple visualization of the gradient. This is encouraging, because it shows that the capabilities I wanted are in the framework.
+
+[http://bgjorgensen.com/images/gsoc/sympy-plot-gradient.png]
+
 = Conclusions =
 
 I have thoroughly enjoyed this project. I have learned a lot about writing Python code, but even more about working on a medium-sized open-source project. I benefited from eager testing by members of the project, who were quick to find bugs and possible improvements. My only regret is that I wasn't more involved in the social aspect of the project. I think that this is mostly because my work focused on graphics and user interface, and was therefore fairly far-removed from the algorithmic and mathematical work being done in most other parts of the project. Even so, I had a great time, and look forward to working for the [http://code.google.com/p/sympy SymPy] project in the future.
