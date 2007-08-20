@@ -100,7 +100,7 @@ The basic format for variable intervals is [var, min, max, steps]. However, the 
 The following code plots a saddle and color it by the magnitude of its gradient:
 {{{
 >>> fz = x**2-y**2
->>> Fx, Fy, Fz = fz.diff(x), fz.diff(y), -1
+>>> Fx, Fy, Fz = fz.diff(x), fz.diff(y), 0
 >>> p[1] = fz, 'style=solid'
 >>> p[1].color = (Fx**2 + Fy**2 + Fz**2)**(0.5)
 }}}
