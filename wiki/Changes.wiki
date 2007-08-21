@@ -13,6 +13,7 @@ This page documents the major changes made to !SymPy since the last release.
   * concrete mathematics module written
   * geometry module
   * make the tarball conform to Debian policy
+  * many small bugs fixed, see Issues for details
 
 == 0.5.1 ==
 
