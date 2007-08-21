@@ -6,7 +6,13 @@ This page documents the major changes made to !SymPy since the last release.
 
 == svn ==
 
-  * currently the same as the 0.5.1 version
+  * currently the same as the 0.5.2 version
+
+== 0.5.2 ==
+
+  * concrete mathematics module written
+  * geometry module
+  * make the tarball conform to Debian policy
 
 == 0.5.1 ==
 
