@@ -1,5 +1,5 @@
 ==My Project==
-I proposed a linear algebra module for SymPy including the standard stuff like determinants, inversion and such
+I proposed a linear algebra module for !SymPy including the standard stuff like determinants, inversion and such
 
 ==Pre-SOC==
 Contacting the project member was a good idea. I got great feedback regarding my project content and difficulty. Also, meeting people (even if via email) was great since they were very cool and put me at ease.
