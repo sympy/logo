@@ -110,10 +110,37 @@ A complex value of the gamma function:
 The constant pi is available through a function `pi_float()` that returns an approximation of pi accurate to within the current working precision. The `examples` directory also contains a script `pidigits.py` for computing pi with extremely high precision (millions of digits for the patient).
 
 =Numerical optimization=
-The module `numerics.optimize` contains functions for root-finding and optimization. Currently the only implemented function is `polyroots` which finds all roots of a polynomial.
+The module `numerics.optimize` contains functions for root-finding and optimization. 
+
+The functions `bisect` and `secant` functions can be used to find isolated roots of decently well-behaved functions. As a simple example; using the secant method to calculate pi as the root of sin(x) closest to x = 3:
 
 {{{
->>> from sympy.numerics.optimize import *
+>>> from sympy.numerics.optimize import secant
+>>> from sympy.numerics.functions import sin
+>>> Float.setdps(50)
+>>> print secant(sin, 3)
+3.1415926535897932384626433832795028841971693993751
+}}}
+
+With details:
+{{{
+>>> print secant(sin, 3, verbose=True)
+  secant: x_1=3.000000  delta=-0.03
+  secant: x_2=3.142264  delta=0.142264
+  secant: x_3=3.141590  delta=-0.0006733
+  secant: x_4=3.141593  delta=2.23687e-006
+  secant: x_5=3.141593  delta=-1.67327e-013
+  secant: x_6=3.141593  delta=1.39539e-025
+  secant: x_7=3.141593  delta=0
+3.1415926535897932384626433832795028841971693993751
+}}}
+
+More examples and details on usage are available in the function docstrings.
+
+The function `polyroots` finds all roots of a polynomial using complex arithmetic.
+
+{{{
+>>> from sympy.numerics.optimize import polyroots
 >>> x = Symbol('x')
 >>> roots, error = polyroots(x**3 - 2*x**2 + x + 2)
 >>> for r in roots: print r
@@ -154,7 +181,7 @@ This polynomial is very ill-conditioned:
 0.978859971250306
 }}}
 
-In this case, calling `polyroots` with a higher `maxsteps` setting will give better results.
+In this case, calling `polyroots` with a higher `maxsteps` setting will give better results. It may also be necessary to increase the working precision.
 
 =Numerical integration=
 
@@ -242,4 +269,7 @@ Here is a similar but slightly easier integral (the correct value is roughly 1.2
 Warning: failed to reach full accuracy. Estimated magnitude of error:  0.003
 Float('1.2410979753100062')
 }}}
+
+
+
 
