@@ -11,3 +11,7 @@ We are scattered all over the world and none of us has ever seen anyone else fac
 === Your code gets to everyone ===
 
 If you write some nice symbolic algorithm, then just by getting it to the !SymPy svn, it will later become a part of a release and then gets into the standard distributions of Debian, Ubuntu and Gentoo (if you use something else, we will be glad if you create a native package for your favourite linux distribution). So anyone using those systems can install !SymPy with only one command and it will just work, so your own code can then be easily used by a lot of people. And you just don't have to worry about it, the only thing you need to do is to commit it to !SymPy.
+
+=== Google Summer of Code ===
+
+If you are a student, then by joining us and writing good code, you have a high chance of being accepted into the Google Summer of Code program and thus even being paid for working on !SymPy.
