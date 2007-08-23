@@ -13,7 +13,7 @@ http://groups.google.com/group/sympy/browse_thread/thread/a63896b7d8a5fc90
 
 || *student* || *svn account* || *mentor* || *mentoring organisation* || *report* ||
 || Robert Schwarz || lethargo || Fabian Seoane || PSF || PolynomialsReport ||
-|| Mateusz Paprocki || mattpap || Ondrej Certik || STScI || ||
+|| Mateusz Paprocki || mattpap || Ondrej Certik || STScI || ConcreteMathReport ||
 || Brian Jorgensen || brian.jorgensen || Ondrej Certik || PSF || PlottingReport ||
 || Chris Wu || Chris.Wu || Mike Haertel || PSU || LinAlgReport ||
 || Jason Gedge || inferno1386 || Jim Jewett || PSF || GeometryReport ||
