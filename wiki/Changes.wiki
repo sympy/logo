@@ -14,7 +14,9 @@ This page documents the major changes made to !SymPy since the last release.
   * geometry module
   * make the tarball conform to Debian policy
   * many small bugs fixed, see Issues for details
-  * known issues: there are many problems in the limits module (needs to be refactored), but all tests pass correctly
+  * known issues: 
+      * there are many problems in the limits module (needs to be refactored), but all tests pass correctly
+      * `import sympy` is slow again (fixed in svn)
 
 == 0.5.1 ==
 
