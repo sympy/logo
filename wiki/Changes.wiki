@@ -6,7 +6,7 @@ This page documents the major changes made to !SymPy since the last release.
 
 == svn ==
 
-  * currently the same as the 0.5.2 version
+  * using the `integrate(3*t**2, (t,0,x))` syntax again (as was in the 0.4.3 version)
 
 == 0.5.2 ==
 
