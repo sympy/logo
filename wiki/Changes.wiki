@@ -9,7 +9,7 @@ This page documents the major changes made to !SymPy since the last release.
   * faster `import sympy` statement
   * using the `integrate(3*t**2, (t,0,x))` syntax again (as was in the 0.4.3 version)
   * using true division in `isympy` (1/2 -> 0.5)
-  * plotting module can saveimage()
+  * plotting module can `saveimage()`
 
 == 0.5.2 ==
 
