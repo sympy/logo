@@ -21,7 +21,7 @@ http://sympy.googlecode.com/svn/trunk/doc/logo/sympy-160px.png
 
 ==Features==
 
-Currently, !SymPy core has around 3200 lines of code (including extensive comments and docstrings) and its capabilities include:
+Currently, !SymPy core has around 6300 lines of code (including extensive comments and docstrings) and its capabilities include:
 
   * basic arithmetics `*,/,+,-,**`
   * basic simplification (like `a*b*b + 2*b*a*b  -> 3*a*b^2`)
@@ -35,15 +35,15 @@ Currently, !SymPy core has around 3200 lines of code (including extensive commen
   * noncommutative symbols
   * pattern matching
  
-Then there are !SymPy modules (5700 lines including documentation) for these tasks:
+Then there are !SymPy modules (18200 lines including documentation) for these tasks:
 
   * more functions (sin, cos, tan, atan, asin, acos, factorial, zeta, legendre)
   * limits (like `limit(x*log(x), x, 0) -> 0`)
-  * integration (currently it can only do very simple integrals)
-  * polynomials (division, gcd, square free decomposition, groebner bases, factorisation)
+  * integration using extended Risch-Norman heuristic
+  * polynomials (division, gcd, square free decomposition, groebner bases, factorization)
+  * solvers (algebraic, difference and differential equations, and systems of equations)
   * symbolic matrices (determinants, LU decomposition...)
   * Pauli and Dirac algebra
-  * solvers (some algebraic and differential equations)
   * geometry module
   * plotting (2D and 3D)
 
