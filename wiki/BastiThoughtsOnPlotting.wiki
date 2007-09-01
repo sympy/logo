@@ -58,6 +58,11 @@ What will need a little work are the camera settings, because the camera is now 
 
 This is made slightly more complicated by the camera's reliance on OpenGL matrix calls (which need a GL context, in our case a pyglet window, to function). We could always replace this stuff with our own matrix transform maths, or store camera transformations a different way and apply them to the model matrix each frame when a context is available.
 
+====Basti Comment====
+
+A solution would be to have two camera objects. One that is accessible for the user through p.camera and where just the things are stored a user would like to set. When the window is initialized the render_camera would have to take the variables from the plot.camera and calculate out of it whatever is necessary. But then we must be aware of data inconsistencies, because on one side the plot.camera can be changed through a running script and on the other side the render_camera will be changed interactively. We would have to implement a function called in the _main_loop_ that tells if something was changed and if so, resets the render_camera.
+ 
+
 ==Image Capture Resolution Independence==
 
 This really is not easy to achieve, if the image gets bigger then the screen, because I couldn't find a way to render in the offset. There are some ways described in the net, but as I see it there is always a big platform dependency.
