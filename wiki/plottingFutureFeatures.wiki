@@ -40,7 +40,7 @@ What will need a little work are the camera settings, because the camera is now 
 ===The save_image method should let the user set the resolution of the image===
 
 This really is not easy to achieve, if the image gets bigger then the screen, because I couldn't find a way to render in the offset. There are some ways described in the net, but as I see it there is always a big platform dependency.
-I tried a little workaround with moving the window (of course invisible) over the desktop and get screenshot pieces that can finally put together. But I now get at different places of the code "invalid pointer" exceptions I can't trace back. Maybe someone wants to look at it [http://bastikr.ba.funpic.de/offset_rendering.py here]
+I tried a little workaround with moving the window (of course invisible) over the desktop and get screenshot pieces that can finally put together. But I now get at different places of the code "invalid pointer" exceptions I can't trace back. Maybe someone wants to look at it. I've uploaded it to sympy mailing list. (offset_rendering.py)
 
 Anyway it should be possible to render to two windows at the same time. This would allow the user to interactively choose his view and save an image in any size smaller than his desktop without having to close the interactive window.
 
