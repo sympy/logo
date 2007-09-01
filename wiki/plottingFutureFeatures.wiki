@@ -5,6 +5,8 @@
 It would be good if one could call at any time onto the plot object things like p.set_axis_visible(False), p.get_viewpoint() or p.save_image() or maybe in another syntax:
 p.set('axis_visible',True) and so on.
 
+
+
 This is a list of all settings I can think of:
 
   * camera position
@@ -45,10 +47,10 @@ Anyway it should be possible to render to two windows at the same time. This wou
 
 ===Some other features that crossed my mind:===
 
-  *rotating with keys doesn't feel natural to me. I would like a mode where the rotations are going around the axes of the ploted object, not around the screen axes.
+  * rotating with keys doesn't feel natural to me. I would like a mode where the rotations are going around the axes of the ploted object, not around the screen axes.
 
-  *just a matter of style ist the following: why isn't it possible to call p[0]? The indizes have to be greater than 0! It would be more pythonic if it would behave like an ordinare list, although of course it is a dictionary. But nobody has to know;)
+  * just a matter of style ist the following: why isn't it possible to call p[0]? The indizes have to be greater than 0! It would be more pythonic if it would behave like an ordinare list, although of course it is a dictionary. But nobody has to know;)
 
-  *another feature that sometimes would be nice, is to split a window up and display in each part a different view of the plot-object.
+  * another feature that sometimes would be nice, is to split a window up and display in each part a different view of the plot-object.
 
-  *maybe it also would be useful if you can single functions invisible, through scripting as well as interactively. Maybe with the keys 1-9.
+  * maybe it also would be useful if you can single functions invisible, through scripting as well as interactively. Maybe with the keys 1-9.
