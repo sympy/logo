@@ -211,9 +211,50 @@ Use `.series(var, order)`:
 
 == Integration ==
 
-Currently, !SymPy can only do some simple integrals. 
+!SymPy has support for indefinite and definite integration of transcendental elementary and special functions via `integrate()` facility, which uses powerful extended Risch-Norman algorithm and some heuristics and pattern matching.
 
-Documentation and examples are at http://sympy.googlecode.com/svn/api/sympy.modules.integrals-module.html#integrate
+{{{
+>>> from sympy import *
+>>> x, y = symbols('xy')
+}}}
+
+You can integrate elementary functions:
+
+>>> integrate(6*x**5, x)
+x**6
+>>> integrate(sin(x), x)
+-cos(x)
+>>> integrate(log(x), x)
+x*log(x) - x
+>>> integrate(2*x + sinh(x), x)
+x**2 + cosh(x)
+
+Also special functions are handled easily:
+
+{{{
+>>> integrate(exp(-x**2)*erf(x), x)
+(1/4)*pi**(1/2)*erf(x)**2
+}}}
+
+It is possible to compute definite integral:
+
+{{{
+>>> integrate(x**3, (x, -1, 1))
+0
+>>> integrate(sin(x), (x, 0, pi/2))
+1
+>>> integrate(cos(x), (x, -pi/2, pi/2))
+2
+}}}
+
+Also improper integrals are supported as well:
+
+{{{
+>>> integrate(exp(-x), (x, 0, oo))
+1
+>>> integrate(log(x), (x, 0, 1))
+-1
+}}}
 
 == Complex numbers ==
 
