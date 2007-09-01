@@ -10,6 +10,8 @@ This page documents the major changes made to !SymPy since the last release.
   * using the `integrate(3*t**2, (t,0,x))` syntax again (as was in the 0.4.3 version)
   * using true division in `isympy` (1/2 -> 0.5)
   * plotting module can `saveimage()`
+  * implemented extended Risch-Norman heuristic
+  * added a complete set of rewrite rules for trigonometric and hyperbolic functions
 
 == 0.5.2 ==
 
