@@ -1,0 +1,54 @@
+#summary Suggestions for further development of the plotting module
+
+===The plot object should give the user more possibilities for interacting.===
+
+It would be good if one could call at any time onto the plot object things like p.set_axis_visible(False), p.get_viewpoint() or p.save_image() or maybe in another syntax:
+p.set('axis_visible',True) and so on.
+
+This is a list of all settings I can think of:
+
+  * camera position
+  * camera viewdirection or viewpoint
+  * camera mode (perspective, ortho)
+  * something handy to set the details of the perspective view, otherwise just in the OpenGL manner(nearPlane, farPlane, fovy, aspect)
+
+  * axes visible
+  * axes color
+  * axes thickness
+  * axes interval
+  * axes ticks
+
+  * function interval
+  * function color
+  * function grid visible
+  * function grid size (that would set the amount of vertices drawn)
+
+
+and of course there should be:
+
+  * show
+  * save_image
+
+Feel free to add other settings to this list!
+
+Many of them are already implemented, but it would be nice to have a consistent way of using the plot object.
+What will need a little work are the camera settings, because the camera is now not instantiated until the interactive window is opened.
+
+
+===The save_image method should let the user set the resolution of the image===
+
+This really is not easy to achieve, if the image gets bigger then the screen, because I couldn't find a way to render in the offset. There are some ways described in the net, but as I see it there is always a big platform dependency.
+I tried a little workaround with moving the window (of course invisible) over the desktop and get screenshot pieces that can finally put together. But I now get at different places of the code "invalid pointer" exceptions I can't trace back. Maybe someone wants to look at it [http://bastikr.ba.funpic.de/offset_rendering.py here]
+
+Anyway it should be possible to render to two windows at the same time. This would allow the user to interactively choose his view and save an image in any size smaller than his desktop without having to close the interactive window.
+
+
+===Some other features that crossed my mind:===
+
+  *rotating with keys doesn't feel natural to me. I would like a mode where the rotations are going around the axes of the ploted object, not around the screen axes.
+
+  *just a matter of style ist the following: why isn't it possible to call p[0]? The indizes have to be greater than 0! It would be more pythonic if it would behave like an ordinare list, although of course it is a dictionary. But nobody has to know;)
+
+  *another feature that sometimes would be nice, is to split a window up and display in each part a different view of the plot-object.
+
+  *maybe it also would be useful if you can single functions invisible, through scripting as well as interactively. Maybe with the keys 1-9.
