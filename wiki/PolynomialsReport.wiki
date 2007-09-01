@@ -3,7 +3,7 @@
 = Introduction =
 
 This page summarizes the events of my Google Summer of code project
-"SymPy: Multivariate Polynomial Equations and Gröbner Bases". 
+"!SymPy: Multivariate Polynomial Equations and Gröbner Bases". 
 
 = About me =
 
@@ -20,7 +20,7 @@ wrong and began looking for interesting project suggestions. The
 timeline fitted perfectly well for me, as I was still in Paris, at the
 end of 2 semesters with the Erasmus exchange program, and had not much
 to do from june on. The lectures in Heidelberg don't begin before
-october. My roommate then pointed me to the SymPy project, which I
+october. My roommate then pointed me to the !SymPy project, which I
 haven't heard of since then. It was a perfect match, being written in
 pure Python, which I had just begun to learn, and with a reasonable
 small code base, which I could all read and understand.
@@ -37,7 +37,7 @@ My first task was to create a new representation for univariate and
 multivariate polynomials. I chose a sparse list, where the entries
 contain the coefficient and the exponents of the different
 variables. To do that, I had to change the way .expand() works, so I
-got quite some insight in the SymPy core and how things work "under
+got quite some insight in the !SymPy core and how things work "under
 the hood". Then followed all the items of the applications and some
 other stuff I found out, while reading in my books (mainly "Modern
 Computer Algebra", besides the one already mentioned).
@@ -50,7 +50,7 @@ time, especially with the factorization, which is quite limited, as
 for now.
 
 All communication was done openly, in the issues and on the mailing
-list. By that, all the developers (SymPy was lucky to get quite some
+list. By that, all the developers (!SymPy was lucky to get quite some
 SoC students) could interact with each other and discuss open
 questions. I also enjoyed picking small problems that turned up on the
 mailing list, mostly concerning automatic evaluation of products,
@@ -69,7 +69,7 @@ a prime p and some integer polynomial arithmetic.
 
 = Future =
 
-It was a lot of fun to work with the SymPy project (my first free
+It was a lot of fun to work with the !SymPy project (my first free
 software project I got really involved in) and am sure to hang around
 in the next time. Luckily, there is a lecture about computer algebra
 at my university next semester I am going to attend, so there will be
