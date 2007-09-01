@@ -86,4 +86,4 @@ The reason I've avoided an offscreen rendering approach is that it requires the 
 
   * Maybe it also would be useful if you can single functions invisible, through scripting as well as interactively. Maybe with the keys 1-9. *Another great idea. --Brian*
 
-  * What would maybe also be useful would be a string representation of the whole plot object, so the state of the plot can be saved. Consiquently another function is necessary to create a plot object with this string. In Symbide I implemented this through brutely reading out all variables and setting them again was really challanging for you have to wait for the right moment to do it. It would be nice to reach this threough the __repr__ method.
+  * What would maybe also be useful is a string representation of the whole plot object, so the state of the plot can be saved. Consiquently another function is necessary to create or set a plot object with this string. In Symbide I implemented this through brutely reading out all variables and setting them again was really challanging for you have to wait for the right moment to do it. It would be nice to reach this threough the __repr__ method.
