@@ -43,3 +43,11 @@ Also see [BastiThoughtsOnPlotting Basti's thoughts], where Basti has made some g
 ==== Support for Dynamic Level-of-Detail ====
 
 In other words, be able to recalculate the display vertices for different zoom levels and perspectives dynamically, rather than calculating them once when the function is added to the plot.
+
+== Window-less Plots ==
+
+The ability to plot without creating a pyglet window.
+
+== Camera ==
+
+We need a better way to represent the camera for several reasons. First, we need to be able to determine the zoom level and calculate the viewport for dynamic LOD. Second, it currently relies on OpenGL calls and therefore cannot be used for window-less plots.
