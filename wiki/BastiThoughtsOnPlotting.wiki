@@ -60,7 +60,7 @@ This is made slightly more complicated by the camera's reliance on OpenGL matrix
 
 ====Basti Comment====
 
-A solution would be to have two camera objects. One that is accessible for the user through p.camera and where just the things are stored a user would like to set. When the window is initialized the render_camera would have to take the variables from the plot.camera and calculate out of it whatever is necessary. But then we must be aware of data inconsistencies, because on one side the plot.camera can be changed through a running script and on the other side the render_camera will be changed interactively. We would have to implement a function called in the _main_loop_ that tells if something was changed and if so, resets the render_camera.
+A solution would be to have two camera objects. One that is accessible for the user through p.camera and where just the things are stored a user would like to set. When the window is initialized the render_camera would have to take the variables from the plot.camera and calculate whatever is necessary. But then we must be aware of data inconsistencies, because on one side the plot.camera can be changed through a running script and on the other side the render_camera will be changed interactively. We would have to implement a function called in the _main_loop_ that tells if something was changed and if so, resets the render_camera.
  
 
 ==Image Capture Resolution Independence==
