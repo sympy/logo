@@ -31,3 +31,13 @@ Also see [BastiThoughtsOnPlotting Basti's thoughts], where others have commented
 == Class Hierarchy ==
 
 == Rendering Control Flow ==
+
+== Function Representation ==
+
+==== Separation of Calculation and Display Code ====
+
+2D and 3D calculation is a pattern that should be factored out of PlotCurve, PlotSurface, and the corresponding color calculation functions.
+
+==== Support for Dynamic Level-of-Detail ====
+
+In other words, be able to recalculate the display vertices for different zoom levels and perspectives dynamically, rather than calculating them once when the function is added to the plot.
