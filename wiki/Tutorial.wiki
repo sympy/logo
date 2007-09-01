@@ -220,6 +220,7 @@ Use `.series(var, order)`:
 
 You can integrate elementary functions:
 
+{{{
 >>> integrate(6*x**5, x)
 x**6
 >>> integrate(sin(x), x)
@@ -228,6 +229,7 @@ x**6
 x*log(x) - x
 >>> integrate(2*x + sinh(x), x)
 x**2 + cosh(x)
+}}}
 
 Also special functions are handled easily:
 
