@@ -47,6 +47,10 @@ Then there are !SymPy modules (18200 lines including documentation) for these ta
   * geometry module
   * plotting (2D and 3D)
 
+plus external packages:
+
+  * [http://code.google.com/p/symbide/ symbide]: GUI for !SymPy in PyGTK
+
 
 ===Things we are working on===
  
