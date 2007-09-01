@@ -16,7 +16,7 @@ Also see [BastiThoughtsOnPlotting Basti's thoughts], where others have commented
 
 ==== 1-0 toggle p`[`n`]`.visible ====
 
-==== Add some kind of option for rotation in model (vs. view) coordinates
+==== Option for rotation in model (vs. view) Coordinate System ====
 
 === Mouse ===
 
