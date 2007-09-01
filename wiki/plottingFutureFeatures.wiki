@@ -3,7 +3,7 @@
 ==Plot Interaction==
 
 It would be good if one could call at any time onto the plot object things like p.set_axis_visible(False), p.get_viewpoint() or p.save_image() or maybe in another syntax:
-p.set('axis_visible',True) and so on. *Properties, see my comment below ;-)*
+p.set('axis_visible',True) and so on. *Properties are perfect for this, see my comment below ;-)*
 
 This is a list of all settings I can think of:
 
@@ -77,6 +77,5 @@ The reason I've avoided an offscreen rendering approach is that it requires the 
   * Another feature that sometimes would be nice, is to split a window up and display in each part a different view of the plot-object. *You are welcome to implement this :-P [http://nehe.gamedev.net/data/lessons/lesson.asp?lesson=42 Here] is a tutorial covering multiple viewports in a single window, but I'm not sure how this would mix with pyglet. --Brian*
 
   * Maybe it also would be useful if you can single functions invisible, through scripting as well as interactively. Maybe with the keys 1-9. *Another great idea. --Brian*
-
 
 
