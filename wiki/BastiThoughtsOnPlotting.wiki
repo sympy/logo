@@ -1,5 +1,7 @@
 #summary Suggestions for further development of the plotting module
 
+Please see [PlottingFuture] for the central list of plotting goals.
+
 ==Plot Interaction==
 
 It would be good if one could call at any time onto the plot object things like p.set_axis_visible(False), p.get_viewpoint() or p.save_image() or maybe in another syntax:
