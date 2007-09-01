@@ -1,6 +1,6 @@
-#summary Proposed goals for the plotting module
+#summary Proposed goals for the future of the plotting module
 
-Also see [BastiThoughtsOnPlotting Basti's thoughts], where others have commented.
+Also see [BastiThoughtsOnPlotting Basti's thoughts], where Basti has made some good points and others have commented on them. This page is a central location for future plotting goals.
 
 = Interfaces (External) =
 
