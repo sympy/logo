@@ -3,7 +3,7 @@
 ==Plot Interaction==
 
 It would be good if one could call at any time onto the plot object things like p.set_axis_visible(False), p.get_viewpoint() or p.save_image() or maybe in another syntax:
-p.set('axis_visible',True) and so on.
+p.set('axis_visible',True) and so on. *Properties, see my comment below ;-)*
 
 This is a list of all settings I can think of:
 
@@ -46,7 +46,7 @@ class PlotObject(object):
 }}}
 You can see some of these I've already done towards the bottom of plot_mode_base.py, but there are many that are only available directly. A sub-goal of this should be adding the underscore prefix to all member variables, and have the only legitimate access be through properties.
 
-I totally agree that these should be accessible from Plot.whatever and p[n].whatever. Also I think we should keep a hierarchy, i.e. it should be p.axes.visible rather than p.axes_visible, etc.
+I totally agree that these should be accessible from Plot.whatever and p[[n]].whatever. Also I think we should keep a hierarchy, i.e. it should be p.axes.visible rather than p.axes_visible, etc.
 
 == Camera ==
 
@@ -77,5 +77,6 @@ The reason I've avoided an offscreen rendering approach is that it requires the 
   * Another feature that sometimes would be nice, is to split a window up and display in each part a different view of the plot-object. *You are welcome to implement this :-P [http://nehe.gamedev.net/data/lessons/lesson.asp?lesson=42 Here] is a tutorial covering multiple viewports in a single window, but I'm not sure how this would mix with pyglet. --Brian*
 
   * Maybe it also would be useful if you can single functions invisible, through scripting as well as interactively. Maybe with the keys 1-9. *Another great idea. --Brian*
+
 
 
