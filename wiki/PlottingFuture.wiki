@@ -1,0 +1,27 @@
+#summary Proposed goals for the plotting module
+
+= Interfaces (External) =
+
+== Object Interface ==
+
+==== Encapsulate Everything in Properties ====
+
+==== Expose Properties in Logical Locations ====
+
+== Window Interface ==
+
+=== Keyboard ===
+
+=== Mouse ===
+
+== Plot Objects ==
+
+=== Axes ===
+
+=== Grids ===
+
+= Design (Internal) =
+
+== Class Hierarchy ==
+
+== Rendering Control Flow ==
