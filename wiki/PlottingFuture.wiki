@@ -1,5 +1,7 @@
 #summary Proposed goals for the plotting module
 
+Also see [BastiThoughtsOnPlotting Basti's thoughts], where others have commented.
+
 = Interfaces (External) =
 
 == Object Interface ==
@@ -11,6 +13,10 @@
 == Window Interface ==
 
 === Keyboard ===
+
+==== 1-0 toggle p`[`n`]`.visible ====
+
+==== Add some kind of option for rotation in model (vs. view) coordinates
 
 === Mouse ===
 
