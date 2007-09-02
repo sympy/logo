@@ -201,7 +201,7 @@ This way new function called _Im_ has been defined (which stands here for the si
 
 The number of obligatory arguments is specified by setting `nofargs` class member. Additional arguments do not account here, but they will be visible in `_eval_apply` method. For example logarithm has `fnoargs=1` for primary expression but you can also pass its base as an additional parameter. However logarithm function will rewrite itself to form with exactly one parameter (using the base change formula).
 
-If function has properties which are valid for all arguments, where all means in the most general domain in !SymPy which is complex field), you can set these using assumptions mechanism. In case of imaginary part, I've set `is_real=True` as this this always holds.
+If function has properties which are valid for all arguments, you can set these using assumptions mechanism. In case of imaginary part, I've set `is_real=True` as this is what always holds.
 
 Now the most important part of our function is evaluation procedure, `_eval_apply`, which will have exactly `nofargs` arguments without default value, plus additional with default value set to `None`. It's recommended, as the first step in this procedure, to check if all arguments are !SymPy compatible using `Basic.sympify()`. This step is a cheap if those arguments are already derived from the Basic class.
 
