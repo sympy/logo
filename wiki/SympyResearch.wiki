@@ -197,7 +197,7 @@ class Im(DefinedFunction):
             return S.Zero
 }}}
 
-This way new function called _Im_ has been defined (which stands here for the simplified version of an imaginary part function, which is implemented in `core/defined_functions.py`). Later this function will be identified via this name in lower case form.
+This way new function called _Im_ has been defined (which stands here for the simplified version of an imaginary part function, which is implemented in `sympy/functions/elementary/complexes.py`). Later this function will be identified via this name in lower case form.
 
 The number of obligatory arguments is specified by setting `nofargs` class member. Additional arguments do not account here, but they will be visible in `_eval_apply` method. For example logarithm has `fnoargs=1` for primary expression but you can also pass its base as an additional parameter. However logarithm function will rewrite itself to form with exactly one parameter (using the base change formula).
 
