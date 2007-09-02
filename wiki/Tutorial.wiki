@@ -395,7 +395,7 @@ Note that there is also a printing module available, `sympy.printing`. Level 2 p
   * `print_gtk(expr)`
     * Print `expr` to [http://helm.cs.unibo.it/mml-widget/ Gtkmathview], a GTK widget that displays MathML code. The [http://helm.cs.unibo.it/mml-widget/ Gtkmathview] program is required.
   * `print_pygame(expr)`
-    * Print `expr` to a [http://www.pygame.org/news.html PyGame] window. The PyGame library is required, along with the Python [http://pexpect.sourceforge.net/ pexpect] library, the [http://www.latex-project.org/ LaTeX] program, and the [http://savannah.nongnu.org/projects/dvipng/ dvipng] program.
+    * Print `expr` to a [http://www.pygame.org/news.html PyGame] window. The !PyGame library is required, along with the Python [http://pexpect.sourceforge.net/ pexpect] library, the [http://www.latex-project.org/ LaTeX] program, and the [http://savannah.nongnu.org/projects/dvipng/ dvipng] program.
 
 = Modules =
 The following list provides links to documentation for some of the various modules !SymPy offers
