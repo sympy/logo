@@ -180,7 +180,7 @@ exp(1 + x) + O(x ** 3, x)
 
 = Functions =
 
-To define a new function in !SymPy, a three step process is needed. First of all we need to create _the_ function with its name, the number of arguments, default properties, series handling and, especially, evaluation procedure. As an example consider following code:
+To define a new function in !SymPy, a three step process is needed. First of all we need to create _the_ function with its name, the number of arguments, default properties, series handling and, especially, evaluation procedure. As an example consider the following code:
 
 {{{
 class Im(DefinedFunction):
