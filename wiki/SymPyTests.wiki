@@ -1,0 +1,4 @@
+#summary Tests in SymPy
+
+
+We run tests before each commit, which assures, that even the svn version (and of course all releases) always works. This allows us to make huge changes in the codebase and we do - if we find we can make the !SymPy 100x faster, but changing drastically how things work internally, we do it. The same if we find we can simplify some classes a lot. We are very reluctant to change the tests themselves, because this is the interface that !SymPy has and that we have agreed upon by discussions in Issues, however, from time to time we make a concensus, that some interface is not optimal and we change it, resulting in change in tests and thus !SymPy is not fully backwards compatible, yet.
