@@ -403,4 +403,5 @@ The following list provides links to documentation for some of the various modul
   * [LinearAlgebraTutorial Linear Algebra Module]
   * [NumericsModule Numerics Module]
   * [PlottingModule Plotting Module]
+  * [ConcreteMathAndTermRewriting Concrete Mathematics Module]
   * [PolynomialsTutorial Polynomials Module]
