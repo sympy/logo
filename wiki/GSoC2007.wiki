@@ -12,8 +12,8 @@ http://groups.google.com/group/sympy/browse_thread/thread/a63896b7d8a5fc90
 = Details =
 
 || *student* || *svn account* || *mentor* || *mentoring organisation* || *report* || *tutorial* ||
-|| Robert Schwarz || lethargo || Fabian Seoane || PSF || PolynomialsReport || ||
-|| Mateusz Paprocki || mattpap || Ondrej Certik || STScI || ConcreteMathReport || ||
+|| Robert Schwarz || lethargo || Fabian Seoane || PSF || PolynomialsReport || PolynomialsTutorial ||
+|| Mateusz Paprocki || mattpap || Ondrej Certik || STScI || ConcreteMathReport || ConcreteMathAndTermRewriting ||
 || Brian Jorgensen || brian.jorgensen || Ondrej Certik || PSF || PlottingReport || PlottingModule ||
 || Chris Wu || Chris.Wu || Mike Haertel || PSU || LinAlgReport || LinearAlgebraTutorial ||
 || Jason Gedge || inferno1386 || Jim Jewett || PSF || GeometryReport || GeometryModule ||
