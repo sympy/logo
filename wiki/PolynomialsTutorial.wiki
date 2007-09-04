@@ -1,5 +1,3 @@
-#summary One-sentence summary of this page.
-
 = Introduction =
 
 This tutorial tries to give an overview of the functionality concerning polynomials within !SymPy. All code examples assume:
