@@ -32,6 +32,7 @@ To see lots of plotting examples, see examples/plotting.py and try running it in
 ||Toggle Colors||F6||
 || *Window* || ||
 ||Close||ESCAPE||
+||Save Screenshot||F8||
 
 The mouse can be used to rotate, zoom, and translate by dragging the left, middle, and right mouse buttons respectively.
 
