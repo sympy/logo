@@ -88,6 +88,8 @@ The reason I've avoided an offscreen rendering approach is that it requires the 
 
   * I would also like to set single functions invisible, through scripting as well as interactively. Maybe with the keys 1-9. *Another great idea. --Brian*
 
-  * What would also be useful, is a string representation of the whole plot object, so the state of the plot can be saved. Consiquently another function is necessary to create or set a plot object with this string. In Symbide I implemented this through brutely reading out all variables and setting them again was really challanging for you have to wait for the right moment to do it.
+  * What would also be useful, is a string representation of the whole plot object, so the state of the plot can be saved. Consiquently another function is necessary to create or set a plot object with this string.
 
-  * What about animations? That would also be fantastic to have! The user could activate it with p.set_time_variable(t) and p.animate(). Therefor the camera should also accept a function so it can be moved easily. 
+  * What about animations? That would also be fantastic to have! The user could activate it with something like p.set_time_variable(t) and p.animate(). (Therefor the camera would have to accept a function so it can be moved easily.)
+
+  * It would be nice to pass sympy.geometry objects like Circles, Lines, etc. to the plot object!
