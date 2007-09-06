@@ -2,7 +2,7 @@
 
 = Installation =
 
-!SymPy is packaged for the following systems, so if you use one of them, simply follow the instructions. Otherwise (or if you prefer), you can install the sources directly.
+!SymPy is packaged for the following systems, so if you use one of them, simply follow the instructions. Otherwise (or if you prefer), you can install the sources directly. All you need is Python 2.4 or newer.
 
 == Debian ==
 
