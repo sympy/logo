@@ -93,3 +93,5 @@ The reason I've avoided an offscreen rendering approach is that it requires the 
   * What about animations? That would also be fantastic to have! The user could activate it with something like p.set_time_variable(t) and p.animate(). (Therefor the camera would have to accept a function so it can be moved easily.)
 
   * It would be nice to pass sympy.geometry objects like Circles, Lines, etc. to the plot object!
+
+  * At the moment the axes are always absolutely visible. This looks strange for some plots. Maybe it would be better to let them be lightly covered by the plot objects.
