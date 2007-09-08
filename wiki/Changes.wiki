@@ -12,6 +12,9 @@ This page documents the major changes made to !SymPy since the last release.
   * plotting module can `saveimage()`
   * implemented extended Risch-Norman heuristic
   * added a complete set of rewrite rules for trigonometric and hyperbolic functions
+  * `ComplexInfinity` renamed to `zoo`
+  * known issues:
+     * there are many problems in the limits module (needs to be refactored), but all tests pass correctly
 
 == 0.5.2 ==
 
