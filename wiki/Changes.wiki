@@ -6,6 +6,10 @@ This page documents the major changes made to !SymPy since the last release.
 
 == svn ==
 
+  Currently the same as 0.5.3 version.
+
+== 0.5.3 ==
+
   * faster `import sympy` statement
   * using the `integrate(3*t**2, (t,0,x))` syntax again (as was in the 0.4.3 version)
   * using true division in `isympy` (1/2 returns 0.5 instead of 0)
