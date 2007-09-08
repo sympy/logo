@@ -24,6 +24,9 @@ The man page is in `doc/man/isympy.1`, and it is generated from the file `doc/ma
   mv isympy.1 doc/man/isympy.1
 }}}
 
+= Testing dependencies =
+
+Use the `bin/test_pure` file (see the documentation in it).
 
 = Generating the (html) documentation for the api =
 
