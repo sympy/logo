@@ -12,7 +12,7 @@ Currently the same as 0.5.3 version.
 
   * faster `import sympy` statement
   * using the `integrate(3*t**2, (t,0,x))` syntax again (as was in the 0.4.3 version)
-  * using true division in `isympy` (1/2 returns 0.5 instead of 0)
+  * using true division in `isympy` (1/2 returns 0.5 instead of 0, see [http://groups.google.com/group/sympy/browse_thread/thread/b59d9b6da69de886 example])
   * plotting module can `saveimage()`
   * implemented extended Risch-Norman heuristic
   * full partial fraction decomposition via `apart()`
