@@ -2,11 +2,7 @@
 
 = Introduction =
 
-Five students were accepted for this year's GSoC. See also:
-
-http://groups.google.com/group/sympy/browse_thread/thread/b68a42be34923a4
-
-http://groups.google.com/group/sympy/browse_thread/thread/a63896b7d8a5fc90
+Five students were accepted for this year's GSoC. You can find here who was their mentor, which organisation were they working for, their final reports and tutorials (documentation) to their projects. Besides that, they helped to fix many things all over !SymPy and just brought !SymPy where it is now.
 
 
 = Details =
