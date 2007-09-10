@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Five students were accepted for GSoC 2007. You can find here who their mentor was, which organisation were they working for, their final reports and tutorials (documentation) to their projects. Besides that, they helped to fix many things all over !SymPy and just brought !SymPy where it is now.
+Five students were accepted for GSoC 2007. You can find here who their mentor was, which organisation they were working for, their final reports and tutorials (documentation) to their projects. Besides that, they helped to fix many things all over !SymPy and just brought !SymPy where it is now.
 
 Overall, it was a success and we will try participate in GSoC 2008 as well. It will be announced on the front page if we do (and even if we don't), so just follow the news on the front page.
 
