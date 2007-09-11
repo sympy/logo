@@ -1,6 +1,6 @@
 #summary Documentation statistics module
 
-The `statistics` module in SymPy (currently in SVN) implements standard probability distributions and related tools. Its contents can be imported with the following statement:
+The `statistics` module in !SymPy (currently in SVN) implements standard probability distributions and related tools. Its contents can be imported with the following statement:
 
 {{{
 from sympy.statistics import *
