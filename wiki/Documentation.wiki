@@ -25,6 +25,7 @@ Documentation for individual modules is provided in the following pages:
   * [PlottingModule Plotting Module]
   * [ConcreteMathAndTermRewriting Concrete Mathematics Module]
   * [PolynomialsTutorial Polynomials Module]
+  * [StatisticsModule Statistics Module]
 
 = Other =
 
