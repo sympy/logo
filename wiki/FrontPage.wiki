@@ -8,6 +8,7 @@ http://sympy.googlecode.com/svn/trunk/doc/logo/sympy-160px.png
 
 ==News==
 
+  * *11 Sep 2007* [http://code.google.com/p/sympy/wiki/GSoC2007 Reports] from the Google Summer of Code students are available
   * *08 Sep 2007* Version 0.5.3 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *01 Sep 2007* [http://code.google.com/p/symbide/ symbide project], a GUI for !SymPy, has started
   * *20 Aug 2007* Version 0.5.2 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
