@@ -17,6 +17,14 @@ Then read the driving ideas behind !SymPy that are described in HowItWorks.
 
 And finally, read the [http://sympy.googlecode.com/svn/trunk/ sources] itself or just the [http://sympy.googlecode.com/svn/api/index.html API] documentation, that is automatically generated from the sources. Because every feature of !SymPy must have a test case, when you are not sure how to use something, just look into the `tests/` directory, find that feature and read the tests for it, that will tell you everything you need to know.
 
+Documentation for individual modules is provided in the following pages:
+
+  * [GeometryModule Geometry Module]
+  * [LinearAlgebraTutorial Linear Algebra Module]
+  * [NumericsModule Numerics Module]
+  * [PlottingModule Plotting Module]
+  * [ConcreteMathAndTermRewriting Concrete Mathematics Module]
+  * [PolynomialsTutorial Polynomials Module]
 
 = Other =
 
