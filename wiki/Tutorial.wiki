@@ -405,3 +405,4 @@ The following list provides links to documentation for some of the various modul
   * [PlottingModule Plotting Module]
   * [ConcreteMathAndTermRewriting Concrete Mathematics Module]
   * [PolynomialsTutorial Polynomials Module]
+  * [StatisticsModule Statistics Module]
