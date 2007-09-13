@@ -19,7 +19,6 @@ Overall, it was a success and we will try participate in GSoC 2008 as well. It w
 == students and mentors blogs ==
 
 All are aggregated at: http://planet.sympy.org/
-
-You can also find links to the individual blogs there. There are many interesting information about what was happening during the summer.
+You can also find links to the individual blogs there. There are many interesting information in there about what was happening during the summer.
 
 Besides that, the sympy's mailinglist and issues are the other two areas, where the development was taking place. See also SympyDevelopment.
