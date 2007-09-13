@@ -11,8 +11,8 @@ Overall, it was a success and we will try participate in GSoC 2008 as well. It w
 
 || *student* || *svn account* || *mentor* || *mentoring organisation* || *report* || *tutorial* ||
 || Robert Schwarz || lethargo || Fabian Seoane || PSF || PolynomialsReport || PolynomialsTutorial ||
-|| Mateusz Paprocki || mattpap || Ondrej Certik || STScI || ConcreteMathReport || ConcreteMathAndTermRewriting ||
-|| Brian Jorgensen || brian.jorgensen || Ondrej Certik || PSF || PlottingReport || PlottingModule ||
+|| Mateusz Paprocki || mattpap || Ondřej Čertík || STScI || ConcreteMathReport || ConcreteMathAndTermRewriting ||
+|| Brian Jorgensen || brian.jorgensen || Ondřej Čertík || PSF || PlottingReport || PlottingModule ||
 || Chris Wu || Chris.Wu || Mike Haertel || PSU || LinAlgReport || LinearAlgebraTutorial ||
 || Jason Gedge || inferno1386 || Jim Jewett || PSF || GeometryReport || GeometryModule ||
 
