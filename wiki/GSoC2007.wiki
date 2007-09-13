@@ -8,7 +8,7 @@ Besides their projects, they were able to form a nice team together with other !
 
 Overall, it was a huge success and we owe many thanks to Google and PSF, STScI and PSU for allowing all of this to happen. We will try to participate in GSoC 2008 as well. All relevant information will be announced on the front page, so just follow the news in there.
 
-[1] http://groups.google.com/group/sympy/browse_thread/thread/0b68a42be34923a4
+`[1]` http://groups.google.com/group/sympy/browse_thread/thread/0b68a42be34923a4
 
 = Details =
 
