@@ -29,11 +29,14 @@ Documentation for individual modules is provided in the following pages:
 
 = Other =
 
+Presentations about !SymPy given at conferences are at SymPyPresentations.
+
 Useful information can also be found on our blog [http://planet.sympy.org/ Planet SymPy].
 
 Description of !SymPy printing system is in PrintingSystem.
 
 You are welcomed to join (or just follow) the development. SympyDevelopment describes the details, with links to places that you should watch.
+ 
  
  
  
