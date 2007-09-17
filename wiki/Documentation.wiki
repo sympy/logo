@@ -29,11 +29,12 @@ Documentation for individual modules is provided in the following pages:
 
 = Other =
 
-Useful information can also be found on our blog [http://grupododo.com/planetsympy/ Planet SymPy].
+Useful information can also be found on our blog [http://planet.sympy.org/ Planet SymPy].
 
 Description of !SymPy printing system is in PrintingSystem.
 
 For some ideas, where Sympy can be used, see http://code.google.com/p/sympy/wiki/Motivation.
 
 You are welcomed to join (or just follow) the development. SympyDevelopment describes the details, with links to places that you should watch.
+ 
  
