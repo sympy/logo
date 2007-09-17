@@ -4,6 +4,8 @@
 
 !SymPy is easy to install and get started with. See the [DownloadInstallation download instructions] and [Tutorial tutorial] for more information. It works everywhere, where Python 2.4 or newer is installed (Linux, Windows, Mac Os X, ...).
 
+If you found a bug, please report it in [http://code.google.com/p/sympy/issues/list Issues] or the [http://groups.google.com/group/sympy mailinglist].
+
 http://sympy.googlecode.com/svn/materials/logo/sympy-160px.png
 
 ==News==
@@ -107,4 +109,5 @@ You are welcomed to join the development. If you find a bug or just want to say 
 as you would expect or if you created some algorithm using !SymPy and would like it to become part of !SymPy (so that others can easily use your code as well).
 
 More information can be found in SympyDevelopment.
+ 
  
