@@ -16,7 +16,7 @@ So just add the unstable (or testing) among your sources and
 apt-get install python-sympy
 }}}
 
-* Ubuntu *
+[http://www.ubuntu.com/ U] * Ubuntu *
 
 !SymPy is in Gutsy. The exact !SymPy versions in Ubuntu can be seen here:  https://launchpad.net/ubuntu/+source/sympy
 
@@ -57,6 +57,8 @@ Test that !SymPy works:
 }}}
 
 To test the whole !SymPy package, run `./setup.py test` in the `sympy` directory. You will need `py.test` that is part of the [http://codespeak.net/py/current/doc/test.html py lib]. If you use Debian, install the `python-codespeak-lib` package. Note: you only need the standard Python 2.4 (or newer) to run all tests. If it doesn't work, please report the problem into the Issues.
+ 
+ 
  
  
  
