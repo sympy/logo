@@ -13,11 +13,7 @@ For all instructions how to download and install !SymPy, see DownloadInstallatio
 
 If you are new to !SymPy, start with the [http://code.google.com/p/sympy/wiki/Tutorial Tutorial].
 
-Then read the driving ideas behind !SymPy that are described in HowItWorks.
-
-And finally, read the [http://sympy.googlecode.com/svn/trunk/ sources] itself or just the [http://sympy.googlecode.com/svn/api/index.html API] documentation, that is automatically generated from the sources. Because every feature of !SymPy must have a test case, when you are not sure how to use something, just look into the `tests/` directory, find that feature and read the tests for it, that will tell you everything you need to know.
-
-Documentation for individual modules is provided in the following pages:
+Then browse the documentation of individual !SymPy modules:
 
   * [GeometryModule Geometry Module]
   * [LinearAlgebraTutorial Linear Algebra Module]
@@ -28,6 +24,10 @@ Documentation for individual modules is provided in the following pages:
   * [StatisticsModule Statistics Module]
   * [PrintingSystem Printing System]
 
+Then read the driving ideas behind !SymPy that are described in HowItWorks.
+
+And finally, read the [http://sympy.googlecode.com/svn/trunk/ sources] itself or just the [http://sympy.googlecode.com/svn/api/index.html API] documentation, that is automatically generated from the sources. Because every feature of !SymPy must have a test case, when you are not sure how to use something, just look into the `tests/` directory, find that feature and read the tests for it, that will tell you everything you need to know.
+
 = Other =
 
 Presentations about !SymPy given at conferences are at SymPyPresentations.
@@ -37,6 +37,7 @@ Useful information can also be found on our blog [http://planet.sympy.org/ Plane
 You may want to look at [GSoC2007 2007 Google Summer of Code in SymPy] and join in 2008. :)
 
 You are welcomed to join (or just follow) the development. SympyDevelopment describes the details, with links to places that you should watch.
+ 
  
  
  
