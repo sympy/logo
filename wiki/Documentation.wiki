@@ -26,7 +26,7 @@ Then browse the documentation of individual !SymPy modules:
 
 Then read the driving ideas behind !SymPy that are described in HowItWorks.
 
-And finally, read the [http://sympy.googlecode.com/svn/trunk/ sources] itself or just the [http://sympy.googlecode.com/svn/api/index.html API] documentation, that is automatically generated from the sources. Because every feature of !SymPy must have a test case, when you are not sure how to use something, just look into the `tests/` directory, find that feature and read the tests for it, that will tell you everything you need to know.
+And finally, read the [http://sympy.googlecode.com/svn/trunk/ sources] itself or just the [http://sympy.googlecode.com/svn/api/index.html API] documentation, that is automatically generated from the sources (at this moment, September 19, 2007, the API doc is old, because epydoc 3.0 doesn't work with the current sympy, see the [http://code.google.com/p/sympy/issues/detail?id=318 issue 318]). Because every feature of !SymPy must have a test case, when you are not sure how to use something, just look into the `tests/` directory, find that feature and read the tests for it, that will tell you everything you need to know.
 
 = Other =
 
@@ -37,6 +37,7 @@ Useful information can also be found on our blog [http://planet.sympy.org/ Plane
 You may want to look at [GSoC2007 2007 Google Summer of Code in SymPy] and join in 2008. :)
 
 You are welcomed to join (or just follow) the development. SympyDevelopment describes the details, with links to places that you should watch.
+ 
  
  
  
