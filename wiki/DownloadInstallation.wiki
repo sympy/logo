@@ -36,7 +36,9 @@ The only prerequisite is python 2.4 or newer. !SymPy optionally uses some other 
 
 * latest release *
 
-On unix systems (linux, BSD, cygwin, etc.): Download the source archive (something like `sympy-0.4.0.tar.gz`), extract it with the command `"tar xzf sympy-0.4.0.tar.gz"` and follow the README located in the sympy directory.
+Go to the "Downloads" tab and download the latest source archive (something like `sympy-0.4.0.tar.gz`).
+
+On unix systems (linux, BSD, cygwin, etc.): extract it with the command `"tar xzf sympy-0.4.0.tar.gz"` and follow the README located in the sympy directory.
 
 * svn version *
 
@@ -58,6 +60,7 @@ Test that !SymPy works:
 }}}
 
 To test the whole !SymPy package, run `./setup.py test` in the `sympy` directory. You will need `py.test` that is part of the [http://codespeak.net/py/current/doc/test.html py lib]. If you use Debian, install the `python-codespeak-lib` package. Note: you only need the standard Python 2.4 (or newer) to run all tests. If it doesn't work, please report the problem into the Issues.
+ 
  
  
  
