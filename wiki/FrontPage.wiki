@@ -110,6 +110,3 @@ You are welcomed to join the development. If you find a bug or just want to say 
 as you would expect or if you created some algorithm using !SymPy and would like it to become part of !SymPy (so that others can easily use your code as well).
 
 More information can be found in SympyDevelopment.
- 
- 
- 
