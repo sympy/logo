@@ -70,6 +70,7 @@ There are extensive tests (6148 lines in 58 files) for every single feature in !
   * Risch integration algorithm
   * asymptotic expansion
   * objects with indices (tensors) 
+  * rewrite the core to C++, and use it as an optional module, if the user would like to speed things up (in any case the Python core will always be the default)
 
 and more...
 
@@ -109,5 +110,6 @@ You are welcomed to join the development. If you find a bug or just want to say 
 as you would expect or if you created some algorithm using !SymPy and would like it to become part of !SymPy (so that others can easily use your code as well).
 
 More information can be found in SympyDevelopment.
+ 
  
  
