@@ -5,7 +5,7 @@
 
 !SymPy is packaged for the following systems, so if you use one of them, simply follow the instructions. Otherwise (or if you prefer), you can install the sources directly. All you need is Python 2.4 or newer.
 
-== Package ==
+== Packages ==
 
 [http://www.debian.org/ http://sympy.googlecode.com/svn/materials/web/images/debian.png] * Debian * 
 
@@ -58,6 +58,7 @@ Test that !SymPy works:
 }}}
 
 To test the whole !SymPy package, run `./setup.py test` in the `sympy` directory. You will need `py.test` that is part of the [http://codespeak.net/py/current/doc/test.html py lib]. If you use Debian, install the `python-codespeak-lib` package. Note: you only need the standard Python 2.4 (or newer) to run all tests. If it doesn't work, please report the problem into the Issues.
+ 
  
  
  
