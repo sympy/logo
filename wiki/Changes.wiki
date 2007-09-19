@@ -19,7 +19,7 @@ Currently the same as 0.5.3 version.
   * added a complete set of rewrite rules for trigonometric and hyperbolic functions
   * `ComplexInfinity` renamed to `zoo`
   * known issues:
-     * there are many problems in the limits module (needs to be refactored), but all tests pass correctly
+     * there are many problems in the limits module that needs to be refactored (see the issue [http://code.google.com/p/sympy/issues/detail?id=298 298]), but all tests pass correctly
 
 == 0.5.2 ==
 
@@ -118,3 +118,4 @@ Currently the same as 0.5.3 version.
 == 0.2 ==
 
 This is the first release.
+ 
