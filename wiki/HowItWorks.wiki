@@ -3,7 +3,7 @@
 Unfortunately, there is no accurate page describing internals of !SymPy at the moment, so you just need to look into the sources and read the doctests, it should be well documented and if you don't understand something, ask on the mailinglist. 
 
   * For !SymPy <= 0.4.3 the documentation is in this page
-  * For !SymPy == 0.5.0 is documented in SympyResearch
+  * For !SymPy == 0.5.0 the documentation is in SympyResearch
   * For !SymPy > 0.5.0 and svn, read the sources (you can get some ideas behind it if you read this page or SympyResearch, but we changed a few things since then). You can find all the decisions archived in the Issues, to see rationale for doing this and that. And at this moment (September 19, 2007), we are going change the internals once again, to simplify things and make !SymPy even faster, see the Issues (sort them using a priority and look at the high priority issues).
 
 Documentation to !SymPy <= 0.4.3 is below.
@@ -132,5 +132,6 @@ So, those are the main ideas behind sympy, which we try to obey. The rest depend
 
 very interesting link describing the algorithms used by mathematica: 
 [http://documents.wolfram.com/v5/TheMathematicaBook/MathematicaReferenceGuide/SomeNotesOnInternalImplementation/A.9.5.html here]
+ 
  
  
