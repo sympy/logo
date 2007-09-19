@@ -5,24 +5,26 @@
 
 !SymPy is packaged for the following systems, so if you use one of them, simply follow the instructions. Otherwise (or if you prefer), you can install the sources directly. All you need is Python 2.4 or newer.
 
-== Debian == 
+== Package ==
 
-[http://www.debian.org/ http://www.debian.org/logos/openlogo-nd-25.png] !SymPy is in Debian unstable and testing. The exact !SymPy versions in Debian can be seen  here: http://packages.debian.org/python-sympy
+* Debian * [http://www.debian.org/ http://www.debian.org/logos/openlogo-nd-25.png] 
+
+!SymPy is in Debian unstable and testing. The exact !SymPy versions in Debian can be seen  here: http://packages.debian.org/python-sympy
 
 So just add the unstable (or testing) among your sources and
 {{{
 apt-get install python-sympy
 }}}
 
-== Ubuntu ==
+* Ubuntu *
 
 !SymPy is in Gutsy. The exact !SymPy versions in Ubuntu can be seen here:  https://launchpad.net/ubuntu/+source/sympy
 
-== Windows ==
+* Windows *
 
 Download the windows installer from the homepage and execute it.
 
-== SAGE ==
+* SAGE *
 
 !SymPy is in SAGE 2.7 and later. The exact version of !SymPy in SAGE can be seen here:
 http://www.sagemath.org/packages/standard
@@ -31,11 +33,11 @@ http://www.sagemath.org/packages/standard
 
 The only prerequisite is python 2.4 or newer. !SymPy optionally uses some other modules or packages, but they are optional. If you have problems using it on a pure Python installation, please report the problems into the Issues and we'll fix that.
 
-=== latest release ===
+* latest release *
 
 On unix systems (linux, BSD, cygwin, etc.): Download the source archive (something like `sympy-0.4.0.tar.gz`), extract it with the command `"tar xzf sympy-0.4.0.tar.gz"` and follow the README located in the sympy directory.
 
-=== svn version ===
+* svn version *
 
 On unix systems:
 {{{
@@ -47,13 +49,6 @@ svn checkout http://sympy.googlecode.com/svn/trunk/ sympy
 
 Test that !SymPy works:
 {{{
-cd sympy
-cd examples
-python basic.py
-}}}
-
-or using the example from the front page:
-{{{
 >>> from sympy import Symbol, cos
 >>> x=Symbol('x')
 >>> e=1/cos(x)
@@ -62,6 +57,8 @@ or using the example from the front page:
 }}}
 
 To test the whole !SymPy package, run `./setup.py test` in the `sympy` directory. You will need `py.test` that is part of the [http://codespeak.net/py/current/doc/test.html py lib]. If you use Debian, install the `python-codespeak-lib` package. Note: you only need the standard Python 2.4 (or newer) to run all tests. If it doesn't work, please report the problem into the Issues.
+ 
+ 
  
  
  
