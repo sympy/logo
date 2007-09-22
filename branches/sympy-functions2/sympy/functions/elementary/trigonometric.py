@@ -1,6 +1,6 @@
 
 from sympy.core.basic import Basic, S, cache_it, cache_it_immutable
-from sympy.core.function import DefinedFunction, Apply, Lambda
+from sympy.core.function import DefinedFunction, Apply, Lambda, SingleValuedFunction
 
 ###############################################################################
 ########################## TRIGONOMETRIC FUNCTIONS ############################
@@ -748,6 +748,82 @@ class ATan(DefinedFunction):
             return (-1)**((n-1)//2) * x**n / n
 
 class ApplyATan(Apply):
+
+    def _eval_as_leading_term(self, x):
+        arg = self.args[0].as_leading_term(x)
+
+        if Basic.Order(1,x).contains(arg):
+            return arg
+        else:
+            return self.func(arg)
+
+class acot2(SingleValuedFunction):
+
+    nofargs = 1
+
+    def fdiff(self, argindex=1):
+        if argindex == 1:
+            s = Basic.Symbol('x', dummy=True)
+            return Lambda(-1 / (1 + s**2), s)
+        else:
+            raise ArgumentIndexError(self, argindex)
+
+    def _eval_apply(self, arg):
+        arg = Basic.sympify(arg)
+
+        if isinstance(arg, Basic.Number):
+            if isinstance(arg, Basic.NaN):
+                return S.NaN
+            elif isinstance(arg, Basic.Infinity):
+                return S.Zero
+            elif isinstance(arg, Basic.NegativeInfinity):
+                return S.Zero
+            elif isinstance(arg, Basic.Zero):
+                return S.Pi/ 2
+            elif isinstance(arg, Basic.One):
+                return S.Pi / 4
+            elif isinstance(arg, Basic.NegativeOne):
+                return -S.Pi / 4
+            else:
+                cst_table = {
+                    S.Sqrt(3)/3  : 3,
+                    -S.Sqrt(3)/3 : -3,
+                    1/S.Sqrt(3)  : 3,
+                    -1/S.Sqrt(3) : -3,
+                    S.Sqrt(3)    : 6,
+                    -S.Sqrt(3)   : -6,
+                }
+
+                if arg in cst_table:
+                    return S.Pi / cst_table[arg]
+                elif arg.is_negative:
+                    return -self(-arg)
+        else:
+            i_coeff = arg.as_coefficient(S.ImaginaryUnit)
+
+            if i_coeff is not None:
+                return -S.ImaginaryUnit * S.ACoth(i_coeff)
+            else:
+                coeff, terms = arg.as_coeff_terms()
+
+                if coeff.is_negative:
+                    return -self(-arg)
+
+    def _eval_apply_evalf(self, arg):
+        arg = arg.evalf()
+
+        if isinstance(arg, Basic.Number):
+            return arg.acot()
+
+    @cache_it_immutable
+    def taylor_term(self, n, x, *previous_terms):
+        if n == 0:
+            return S.Pi / 2 # FIX THIS
+        elif n < 0 or n % 2 == 0:
+            return S.Zero
+        else:
+            x = Basic.sympify(x)
+            return (-1)**((n+1)//2) * x**n / n
 
     def _eval_as_leading_term(self, x):
         arg = self.args[0].as_leading_term(x)
