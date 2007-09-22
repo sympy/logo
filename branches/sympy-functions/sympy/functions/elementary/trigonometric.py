@@ -111,17 +111,17 @@ class sin(SingleValuedFunction):
         return 2*cot_half/(1 + cot_half**2)
 
     def _eval_conjugate(self):
-        return self.func(self.args[0].conjugate())
+        return self.func(self[0].conjugate())
 
     def _eval_expand_complex(self, *args):
-        if self.args[0].is_real:
+        if self[0].is_real:
             return self
-        re, im = self.args[0].as_real_imag()
+        re, im = self[0].as_real_imag()
         return S.Sin(re)*S.Cosh(im) + \
             S.ImaginaryUnit*S.Cos(re)*S.Sinh(im)
 
     def _eval_expand_trig(self, *args):
-        arg = self.args[0].expand()
+        arg = self[0].expand()
         cos, sin = S.Cos, S.Sin
         x = None
         if isinstance(arg, Basic.Add):
@@ -137,7 +137,7 @@ class sin(SingleValuedFunction):
         return sin(arg)
 
     def _eval_as_leading_term(self, x):
-        arg = self.args[0].as_leading_term(x)
+        arg = self[0].as_leading_term(x)
 
         if Basic.Order(1,x).contains(arg):
             return arg
@@ -145,10 +145,10 @@ class sin(SingleValuedFunction):
             return self.func(arg)
 
     def _eval_is_real(self):
-        return self.args[0].is_real
+        return self[0].is_real
 
     def _eval_is_bounded(self):
-        arg = self.args[0]
+        arg = self[0]
         if arg.is_real:
             return True
 
@@ -260,17 +260,17 @@ class cos(SingleValuedFunction):
         return (cot_half-1)/(cot_half+1)
 
     def _eval_conjugate(self):
-        return self.func(self.args[0].conjugate())
+        return self.func(self[0].conjugate())
 
     def _eval_expand_complex(self, *args):
-        if self.args[0].is_real:
+        if self[0].is_real:
             return self
-        re, im = self.args[0].as_real_imag()
+        re, im = self[0].as_real_imag()
         return S.Cos(re)*S.Cosh(im) - \
             S.ImaginaryUnit*S.Sin(re)*S.Sinh(im)
 
     def _eval_expand_trig(self, *args):
-        arg = self.args[0].expand()
+        arg = self[0].expand()
         cos = S.Cos
         sin = S.Sin
         x = None
@@ -286,7 +286,7 @@ class cos(SingleValuedFunction):
         return cos(arg)
 
     def _eval_as_leading_term(self, x):
-        arg = self.args[0].as_leading_term(x)
+        arg = self[0].as_leading_term(x)
 
         if Basic.Order(1,x).contains(arg):
             return S.One
@@ -294,7 +294,7 @@ class cos(SingleValuedFunction):
             return self.func(arg)
 
     def _eval_is_bounded(self):
-        arg = self.args[0]
+        arg = self[0]
 
         if arg.is_real:
             return True
@@ -381,12 +381,12 @@ class tan(SingleValuedFunction):
             return (-1)**a * b*(b-1) * B/F * x**n
 
     def _eval_conjugate(self):
-        return self.func(self.args[0].conjugate())
+        return self.func(self[0].conjugate())
 
     def _eval_expand_complex(self, *args):
-        if self.args[0].is_real:
+        if self[0].is_real:
             return self
-        re, im = self.args[0].as_real_imag()
+        re, im = self[0].as_real_imag()
         denom = S.Cos(re)**2 + S.Sinh(im)**2
         return (S.Sin(re)*S.Cos(re) + \
             S.ImaginaryUnit*S.Sinh(im)*S.Cosh(im))/denom
@@ -409,7 +409,7 @@ class tan(SingleValuedFunction):
         return 1/S.Cot(arg)
 
     def _eval_as_leading_term(self, x):
-        arg = self.args[0].as_leading_term(x)
+        arg = self[0].as_leading_term(x)
 
         if Basic.Order(1,x).contains(arg):
             return S.One
@@ -417,7 +417,7 @@ class tan(SingleValuedFunction):
             return self.func(arg)
 
     def _eval_is_bounded(self):
-        arg = self.args[0]
+        arg = self[0]
 
         if arg.is_imaginary:
             return True
@@ -501,12 +501,12 @@ class cot(SingleValuedFunction):
             return (-1)**((n+1)//2) * 2**(n+1) * B/F * x**n
 
     def _eval_conjugate(self):
-        return self.func(self.args[0].conjugate())
+        return self.func(self[0].conjugate())
 
     def _eval_expand_complex(self, *args):
-        if self.args[0].is_real:
+        if self[0].is_real:
             return self
-        re, im = self.args[0].as_real_imag()
+        re, im = self[0].as_real_imag()
         denom = S.Sin(re)**2 + S.Sinh(im)**2
         return (S.Sin(re)*S.Cos(re) - \
             S.ImaginaryUnit*S.Sinh(im)*S.Cosh(im))/denom
@@ -526,7 +526,7 @@ class cot(SingleValuedFunction):
         return 1/S.Tan(arg)
 
     def _eval_as_leading_term(self, x):
-        arg = self.args[0].as_leading_term(x)
+        arg = self[0].as_leading_term(x)
 
         if Basic.Order(1,x).contains(arg):
             return S.One
@@ -618,7 +618,7 @@ class ASin(DefinedFunction):
 class ApplyASin(Apply):
 
     def _eval_as_leading_term(self, x):
-        arg = self.args[0].as_leading_term(x)
+        arg = self[0].as_leading_term(x)
 
         if Basic.Order(1,x).contains(arg):
             return arg
@@ -696,7 +696,7 @@ class ACos(DefinedFunction):
 class ApplyACos(Apply):
 
     def _eval_as_leading_term(self, x):
-        arg = self.args[0].as_leading_term(x)
+        arg = self[0].as_leading_term(x)
 
         if Basic.Order(1,x).contains(arg):
             return arg
@@ -772,7 +772,7 @@ class ATan(DefinedFunction):
 class ApplyATan(Apply):
 
     def _eval_as_leading_term(self, x):
-        arg = self.args[0].as_leading_term(x)
+        arg = self[0].as_leading_term(x)
 
         if Basic.Order(1,x).contains(arg):
             return arg
@@ -850,7 +850,7 @@ class ACot(DefinedFunction):
 class ApplyACot(Apply):
 
     def _eval_as_leading_term(self, x):
-        arg = self.args[0].as_leading_term(x)
+        arg = self[0].as_leading_term(x)
 
         if Basic.Order(1,x).contains(arg):
             return arg
