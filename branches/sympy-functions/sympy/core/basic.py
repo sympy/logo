@@ -242,6 +242,9 @@ class Basic(BasicMeths):
            True
 
         """
+        from types import ClassType
+        if isinstance(a, ClassType):
+            raise ValueError("%r is NOT a valid SymPy expression" % a)
         if isinstance(a, Basic):
             return a
         elif isinstance(a, bool):
@@ -267,10 +270,10 @@ class Basic(BasicMeths):
 
             if isinstance(a, Matrix):
                 raise NotImplementedError('matrix support')
-            if a is Basic.sin:
-                return a
-            if a is Basic.cos:
-                return a
+            #if a is Basic.sin:
+            #    return a
+            #if a is Basic.cos:
+            #    return a
 
             if not isinstance(a, str):
                 # At this point we were given an arbitrary expression

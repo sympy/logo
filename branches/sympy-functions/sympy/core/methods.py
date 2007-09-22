@@ -86,6 +86,7 @@ class RelMeths(object):
         try:
             r = Basic.Equality(self, other)
         except ValueError, msg:
+            return False
             # temporary workaround:
             print 'Failed to create Equality instance: %s, using repr equality test instead' % msg
             r = repr(self)==repr(other)
