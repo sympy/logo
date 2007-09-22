@@ -215,6 +215,7 @@ class MetaBasicMeths(type):
                              (cls.__name__, name))
 
     def __cmp__(cls, other):
+        #if cls or other is a class, handle it differently
         from inspect import isclass
         if isclass(cls):
             if isclass(other):
