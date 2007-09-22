@@ -848,7 +848,7 @@ class Function2(Basic, RelMeths):
             pass
         elif not isinstance(r, tuple):
             args = (r,)
-        return Composite.__new__(cls, *args, **options)
+        return Basic.__new__(cls, *args, **options)
 
     @property
     def is_comparable(self):
