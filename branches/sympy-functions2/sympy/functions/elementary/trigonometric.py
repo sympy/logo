@@ -757,7 +757,7 @@ class ApplyATan(Apply):
         else:
             return self.func(arg)
 
-class acot2(SingleValuedFunction):
+class acot(SingleValuedFunction):
 
     nofargs = 1
 
@@ -833,7 +833,7 @@ class acot2(SingleValuedFunction):
         else:
             return self.func(arg)
 
-class ACot(DefinedFunction):
+class ACot2(DefinedFunction):
 
     nofargs = 1
 
@@ -901,7 +901,7 @@ class ACot(DefinedFunction):
             x = Basic.sympify(x)
             return (-1)**((n+1)//2) * x**n / n
 
-class ApplyACot(Apply):
+class ApplyACot2(Apply):
 
     def _eval_as_leading_term(self, x):
         arg = self.args[0].as_leading_term(x)
@@ -914,4 +914,4 @@ class ApplyACot(Apply):
 Basic.singleton['asin'] = ASin
 Basic.singleton['acos'] = ACos
 Basic.singleton['atan'] = ATan
-Basic.singleton['acot'] = ACot
+#Basic.singleton['acot'] = ACot
