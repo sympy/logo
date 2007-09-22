@@ -267,6 +267,10 @@ class Basic(BasicMeths):
 
             if isinstance(a, Matrix):
                 raise NotImplementedError('matrix support')
+            if a is Basic.sin:
+                return a
+            if a is Basic.cos:
+                return a
 
             if not isinstance(a, str):
                 # At this point we were given an arbitrary expression
