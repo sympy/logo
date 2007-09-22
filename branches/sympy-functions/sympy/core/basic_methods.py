@@ -215,6 +215,11 @@ class MetaBasicMeths(type):
                              (cls.__name__, name))
 
     def __cmp__(cls, other):
+        from types import ClassType
+        if isinstance(cls, ClassType):
+            return -1
+        import inspect
+        print cls, isinstance(cls, ClassType), type(cls), inspect.isclass(cls), other
         n1 = cls.__name__
         n2 = other.__name__
         c = cmp(n1,n2)
