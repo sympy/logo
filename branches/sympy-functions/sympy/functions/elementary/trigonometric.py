@@ -10,6 +10,9 @@ class sin(SingleValuedFunction):
 
     nofargs = 1
 
+    def diff(self, x):
+        return Basic.cos(self[0])*self[0].diff(x)
+
     def fdiff(self, argindex=1):
         if argindex == 1:
             return Basic.cos
@@ -145,6 +148,9 @@ class sin(SingleValuedFunction):
 class cos(SingleValuedFunction):
 
     nofargs = 1
+
+    def diff(self, x):
+        return -Basic.sin(self[0])*self[0].diff(x)
 
     def fdiff(self, argindex=1):
         if argindex == 1:
