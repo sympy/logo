@@ -30,8 +30,8 @@ Examples:
 {{{
    >>> from sympy import *
    >>> pprint( x**2 + 1 )
-    2
-   x + 1
+        2
+   1 + x 
    >>> pprint(Rational(1,2))
    1
    -
@@ -120,3 +120,4 @@ print_pygame(f)
 
 
 more info on mathml content: http://www.w3.org/TR/MathML2/chapter4.html
+ 
