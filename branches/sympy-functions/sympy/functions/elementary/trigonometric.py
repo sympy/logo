@@ -283,6 +283,9 @@ class tan(SingleValuedFunction):
 
     nofargs = 1
 
+    def diff(self, x):
+        return 1/Basic.cos(self[0])**2 *self[0].diff(x)
+
     def fdiff(self, argindex=1):
         if argindex==1:
             return S.One + S.Tan**2
