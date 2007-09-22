@@ -1098,3 +1098,9 @@ class SingleValuedFunction(ArithMeths, Function2):
     Single-valued functions.
     """
     signature = FunctionSignature(None, (Basic,))
+
+    def series(self, x, n):
+        s = Basic.Rational(0)
+        for i in range(n+1):
+            s += diff(self, x, i).subs(x, 0) * x**i / Basic.Factorial()(i)
+        return s
