@@ -914,4 +914,3 @@ class ApplyACot2(Apply):
 Basic.singleton['asin'] = ASin
 Basic.singleton['acos'] = ACos
 Basic.singleton['atan'] = ATan
-#Basic.singleton['acot'] = ACot
