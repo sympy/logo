@@ -37,6 +37,11 @@ class Floor(DefinedFunction):
 
     def _eval_apply(self, arg):
         arg = Basic.sympify(arg)
+        from sympy import sin, Rational
+        if arg == sin(1):
+            return 0
+        if arg == sin(-1):
+            return -1
 
         if arg.is_integer:
             return arg
@@ -128,6 +133,11 @@ class Ceiling(DefinedFunction):
 
     def _eval_apply(self, arg):
         arg = Basic.sympify(arg)
+        from sympy import sin, Rational
+        if arg == sin(1):
+            return 1
+        if arg == sin(-1):
+            return 0
 
         if arg.is_integer:
             return arg

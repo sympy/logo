@@ -1,25 +1,28 @@
 
 from sympy.core.basic import Basic, S, cache_it, cache_it_immutable
-from sympy.core.function import DefinedFunction, Apply, Lambda
+from sympy.core.function import DefinedFunction, Apply, Lambda, SingleValuedFunction, FunctionSignature
 
 ###############################################################################
 ########################## TRIGONOMETRIC FUNCTIONS ############################
 ###############################################################################
 
-class Sin(DefinedFunction):
+class sin(SingleValuedFunction):
 
     nofargs = 1
 
     def fdiff(self, argindex=1):
         if argindex == 1:
-            return S.Cos
+            return Basic.cos
+            stop
         else:
             raise ArgumentIndexError(self, argindex)
 
     def inverse(self, argindex=1):
         return S.ASin
 
-    def _eval_apply(self, arg):
+    @classmethod
+    def _eval_apply(cls, arg):
+    #def canonize(cls, arg, **options):
         arg = Basic.sympify(arg)
 
         if isinstance(arg, Basic.Number):
@@ -28,7 +31,7 @@ class Sin(DefinedFunction):
             elif isinstance(arg, Basic.Zero):
                 return S.Zero
             elif arg.is_negative:
-                return -self(-arg)
+                return -sin(-arg)
         else:
             i_coeff = arg.as_coefficient(S.ImaginaryUnit)
 
@@ -61,7 +64,7 @@ class Sin(DefinedFunction):
                 coeff, terms = arg.as_coeff_terms()
 
                 if coeff.is_negative:
-                    return -self(-arg)
+                    return -sin(-arg)
 
     def _eval_apply_evalf(self, arg):
         arg = arg.evalf()
@@ -81,8 +84,6 @@ class Sin(DefinedFunction):
                 return -p * x**2 / (n*(n-1))
             else:
                 return (-1)**(n//2) * x**(n)/S.Factorial(n)
-
-class ApplySin(Apply):
 
     def _eval_rewrite_as_exp(self, arg):
         exp, I = S.Exp, S.ImaginaryUnit
@@ -141,7 +142,7 @@ class ApplySin(Apply):
         if arg.is_real:
             return True
 
-class Cos(DefinedFunction):
+class cos(SingleValuedFunction):
 
     nofargs = 1
 
@@ -154,7 +155,8 @@ class Cos(DefinedFunction):
     def inverse(self, argindex=1):
         return S.ACos
 
-    def _eval_apply(self, arg):
+    @classmethod
+    def _eval_apply(cls, arg):
         arg = Basic.sympify(arg)
 
         if isinstance(arg, Basic.Number):
@@ -163,7 +165,7 @@ class Cos(DefinedFunction):
             elif isinstance(arg, Basic.Zero):
                 return S.One
             elif arg.is_negative:
-                return self(-arg)
+                return cos(-arg)
         else:
             i_coeff = arg.as_coefficient(S.ImaginaryUnit)
 
@@ -195,7 +197,7 @@ class Cos(DefinedFunction):
                 coeff, terms = arg.as_coeff_terms()
 
                 if coeff.is_negative:
-                    return self(-arg)
+                    return cos(-arg)
 
     def _eval_apply_evalf(self, arg):
         arg = arg.evalf()
@@ -215,8 +217,6 @@ class Cos(DefinedFunction):
                 return -p * x**2 / (n*(n-1))
             else:
                 return (-1)**(n//2)*x**(n)/S.Factorial(n)
-
-class ApplyCos(Apply):
 
     def _eval_rewrite_as_exp(self, arg):
         exp, I = S.Exp, S.ImaginaryUnit
@@ -273,7 +273,7 @@ class ApplyCos(Apply):
         if arg.is_real:
             return True
 
-class Tan(DefinedFunction):
+class tan(SingleValuedFunction):
 
     nofargs = 1
 
@@ -286,7 +286,8 @@ class Tan(DefinedFunction):
     def inverse(self, argindex=1):
         return S.ATan
 
-    def _eval_apply(self, arg):
+    @classmethod
+    def _eval_apply(cls, arg):
         arg = Basic.sympify(arg)
 
         if isinstance(arg, Basic.Number):
@@ -295,7 +296,7 @@ class Tan(DefinedFunction):
             elif isinstance(arg, Basic.Zero):
                 return S.Zero
             elif arg.is_negative:
-                return -self(-arg)
+                return -tan(-arg)
         else:
             i_coeff = arg.as_coefficient(S.ImaginaryUnit)
 
@@ -328,7 +329,7 @@ class Tan(DefinedFunction):
                 coeff, terms = arg.as_coeff_terms()
 
                 if coeff.is_negative:
-                    return -self(-arg)
+                    return -tan(-arg)
 
     def _eval_apply_evalf(self, arg):
         arg = arg.evalf()
@@ -349,8 +350,6 @@ class Tan(DefinedFunction):
             F = S.Factorial(n+1)
 
             return (-1)**a * b*(b-1) * B/F * x**n
-
-class ApplyTan(Apply):
 
     def _eval_conjugate(self):
         return self.func(self.args[0].conjugate())
@@ -394,7 +393,7 @@ class ApplyTan(Apply):
         if arg.is_imaginary:
             return True
 
-class Cot(DefinedFunction):
+class cot(SingleValuedFunction):
 
     nofargs = 1
 
@@ -407,6 +406,7 @@ class Cot(DefinedFunction):
     def inverse(self, argindex=1):
         return S.ACot
 
+    @classmethod
     def _eval_apply(self, arg):
         arg = Basic.sympify(arg)
 
@@ -471,8 +471,6 @@ class Cot(DefinedFunction):
 
             return (-1)**((n+1)//2) * 2**(n+1) * B/F * x**n
 
-class ApplyCot(Apply):
-
     def _eval_conjugate(self):
         return self.func(self.args[0].conjugate())
 
@@ -505,11 +503,6 @@ class ApplyCot(Apply):
             return S.One
         else:
             return self.func(arg)
-
-Basic.singleton['sin'] = Sin
-Basic.singleton['cos'] = Cos
-Basic.singleton['tan'] = Tan
-Basic.singleton['cot'] = Cot
 
 ###############################################################################
 ########################### TRIGONOMETRIC INVERSES ############################

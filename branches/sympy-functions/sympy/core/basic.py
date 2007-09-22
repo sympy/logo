@@ -140,12 +140,64 @@ class Memoizer:
                 return self.return_value_converter(r)
         return wrapper
 
+ordering_of_classes = [
+    'Integer','Fraction','Real',
+    'Symbol',
+    'Mul','Add',
+    'Function',
+    'sin','cos',
+    'Equality','StrictInequality','Inequality',
+    ]
+
+class BasicType(type):
+
+    classnamespace = dict()
+    def __init__(cls,*args,**kws):
+        if not cls.undefined_Function:
+            # make Basic subclasses available as attributes
+            # set is_<classname> = True and False for other classes
+            n = cls.__name__
+            c = BasicType.classnamespace.get(n)
+            if c is None:
+                setattr(cls, 'is_' + n, True)
+                for k, v in BasicType.classnamespace.items():
+                    setattr(v, 'is_' + n, False)
+                BasicType.classnamespace[n] = cls
+            else:
+                print 'Ignoring redefinition of %s: %s defined earlier than %s' % (n, c, cls)
+        type.__init__(cls, *args, **kws)
+
+    def __getattr__(cls, name):
+        try: return BasicType.classnamespace[name]
+        except KeyError: pass
+        raise AttributeError("'%s' object has no attribute '%s'"%
+                             (cls.__name__, name))
+
+    def __cmp__(cls, other):
+        if cls is other: return 0
+        n1 = cls.__name__
+        n2 = other.__name__
+        unknown = len(ordering_of_classes)+1
+        try:
+            i1 = ordering_of_classes.index(n1)
+        except ValueError:
+            i1 = unknown
+        try:
+            i2 = ordering_of_classes.index(n2)
+        except ValueError:
+            i2 = unknown
+        if i1 == unknown and i2 == unknown:
+            return cmp(n1, n2)
+        return cmp(i1,i2)
+
 #####
 
 class Basic(BasicMeths):
     """
     Base class for all objects in sympy.
     """
+    #__metaclass__ = BasicType
+    undefined_Function = False
 
     def __new__(cls, *args, **assumptions):
         obj = object.__new__(cls)
@@ -1129,5 +1181,10 @@ class SingletonFactory:
         return obj
 
 S = SingletonFactory()
+
+class Composite(Basic):
+
+    def torepr(self):
+        return '%s(%s)' % (self.__class__.__name__,', '.join(map(repr, self)))
 
 import parser

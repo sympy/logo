@@ -37,7 +37,7 @@ class Sinh(DefinedFunction):
             i_coeff = arg.as_coefficient(S.ImaginaryUnit)
 
             if i_coeff is not None:
-                return S.ImaginaryUnit * S.Sin(i_coeff)
+                return S.ImaginaryUnit * Basic.sin(i_coeff)
             else:
                 coeff, terms = arg.as_coeff_terms()
 
@@ -134,7 +134,7 @@ class Cosh(DefinedFunction):
             i_coeff = arg.as_coefficient(S.ImaginaryUnit)
 
             if i_coeff is not None:
-                return S.Cos(i_coeff)
+                return Basic.cos(i_coeff)
             else:
                 coeff, terms = arg.as_coeff_terms()
 
@@ -230,7 +230,7 @@ class Tanh(DefinedFunction):
             i_coeff = arg.as_coefficient(S.ImaginaryUnit)
 
             if i_coeff is not None:
-                return S.ImaginaryUnit * S.Tan(i_coeff)
+                return S.ImaginaryUnit * Basic.tan(i_coeff)
             else:
                 coeff, terms = arg.as_coeff_terms()
 
@@ -329,7 +329,7 @@ class Coth(DefinedFunction):
             i_coeff = arg.as_coefficient(S.ImaginaryUnit)
 
             if i_coeff is not None:
-                return -S.ImaginaryUnit * S.Cot(i_coeff)
+                return -S.ImaginaryUnit * Basic.cot(i_coeff)
             else:
                 coeff, terms = arg.as_coeff_terms()
 
