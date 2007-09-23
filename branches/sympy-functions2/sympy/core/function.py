@@ -60,7 +60,7 @@ class Apply(Basic, ArithMeths, RelMeths):
 
     precedence = Basic.Apply_precedence
 
-    @cache_it
+    #@cache_it
     def __new__(cls, *args, **kwargs):
         args = map(Basic.sympify, args)
         func = args[0]
@@ -874,7 +874,10 @@ class Function2(Basic, RelMeths):
         args = map(Basic.sympify, args)
         #cls.signature.validate(args)
         r = cls._eval_apply(*args, **options)
-        if isinstance(r, Basic): return r
+        if isinstance(r, Basic): 
+            if isinstance(r, Function2):
+                r.args = args
+            return r
         elif r is None:
             pass
         elif not isinstance(r, tuple):
