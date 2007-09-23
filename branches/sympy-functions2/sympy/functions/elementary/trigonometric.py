@@ -408,6 +408,10 @@ class cot(SingleValuedFunction):
         return S.ACot
 
     @classmethod
+    def _eval_apply_subs(self, *args):
+        return
+
+    @classmethod
     def _eval_apply(self, arg):
         arg = Basic.sympify(arg)
 
