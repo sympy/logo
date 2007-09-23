@@ -473,7 +473,8 @@ class cot(SingleValuedFunction):
             return (-1)**((n+1)//2) * 2**(n+1) * B/F * x**n
 
     def _eval_conjugate(self):
-        args = self[1:]
+        args = self[1:] #empty!?
+        args = self._args
         assert len(args) == 1
         return self.func(args[0].conjugate())
 
