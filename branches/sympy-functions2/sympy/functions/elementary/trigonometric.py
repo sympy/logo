@@ -475,6 +475,7 @@ class cot(SingleValuedFunction):
     def _eval_conjugate(self):
         args = self[1:] #empty!?
         args = self._args
+        print type(self), self.func, self.func(Basic.Symbol("x"))
         assert len(args) == 1
         return self.func(args[0].conjugate())
 

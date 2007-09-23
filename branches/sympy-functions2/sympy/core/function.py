@@ -924,7 +924,7 @@ class Function2(Basic, RelMeths):
 
     @property
     def func(self):
-        return self._args[0]
+        return self.__class__
 
     @property
     def args(self):
