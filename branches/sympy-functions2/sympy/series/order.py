@@ -158,8 +158,11 @@ class Order(Basic, ArithMeths, RelMeths):
             assume_dict = {}
             if not s.is_infinitesimal:
                 assume_dict['infinitesimal'] = True
-            if s.is_positive is None:
-                assume_dict['positive'] = True
+            #XXX This causes problems, that it changes the assumption in the
+            #   symbol, outside the scope of Order and breaks code. Don't know
+            #   why
+            #if s.is_positive is None:
+            #    assume_dict['positive'] = True
             if assume_dict:
                 s.assume(**assume_dict)
 
