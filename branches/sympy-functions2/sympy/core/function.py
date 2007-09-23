@@ -60,7 +60,7 @@ class Apply(Basic, ArithMeths, RelMeths):
 
     precedence = Basic.Apply_precedence
 
-    #@cache_it
+    @cache_it
     def __new__(cls, *args, **kwargs):
         args = map(Basic.sympify, args)
         func = args[0]
