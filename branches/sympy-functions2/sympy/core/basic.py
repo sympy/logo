@@ -337,7 +337,8 @@ class Basic(BasicMeths):
         if isinstance(p, Basic.Symbol) and not isinstance(p, Basic.Wild): # speeds up
             return p in self.atoms(p.__class__)
         if isinstance(p, BasicType):
-            #hack
+            #XXX
+            #hack, needs to check, if "self" contains "p".
             return False
         if p.matches(self) is not None:
             return True
