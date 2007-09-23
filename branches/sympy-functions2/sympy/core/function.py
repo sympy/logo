@@ -48,6 +48,7 @@ have attributes .func and .args.
 """
 
 from basic import Basic, Singleton, Atom, cache_it, S
+from basic_methods import BasicType, MetaBasicMeths
 from methods import ArithMeths, NoRelMeths, RelMeths
 from operations import AssocOp
 
@@ -827,6 +828,34 @@ def diff(f, x, times = 1, evaluate=True):
     else:
         return Derivative(f, x, evaluate=evaluate)
 
+class FunctionClass(MetaBasicMeths):
+    """
+    Base class for function classes. FunctionClass is a subclass of type.
+
+    Use Function('<function name>' [ , signature ]) to create
+    undefined function classes.
+    """
+
+    _new = type.__new__
+
+    def __new__(cls, arg1, arg2, arg3=None, **options):
+        assert not options,`options`
+        if isinstance(arg1, type):
+            ftype, name, signature = arg1, arg2, arg3
+            assert ftype.__name__.endswith('Function'),`ftype`
+            attrdict = ftype.__dict__.copy()
+            attrdict['undefined_Function'] = True
+            if signature is not None:
+                attrdict['signature'] = signature
+            bases = (ftype,)
+            return type.__new__(cls, name, bases, attrdict)
+        else:
+            name, bases, attrdict = arg1, arg2, arg3
+            return type.__new__(cls, name, bases, attrdict)
+
+    def torepr(cls):
+        return cls.__name__
+
 class Function2(Basic, RelMeths):
     """
     Base class for applied functions.
@@ -835,6 +864,8 @@ class Function2(Basic, RelMeths):
     We are moving to this more simple scheme. When all functions are moved, we
     simply delete Function and rename Function2 -> Function
     """
+
+    __metaclass__ = FunctionClass
 
     #signature = FunctionSignature(None, None)
     precedence = Basic.Apply_precedence
