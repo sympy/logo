@@ -78,7 +78,9 @@ both inside and outside of !SymPy. Unapplied functions `sign` is just the class:
 {{{
 sign
 }}}
-Both inside and outside of !SymPy. 
+Both inside and outside of !SymPy. The exact names of the class `SingleValuedFunction` and it's parents are likely to be changed, but important is, that there is just one class, that all functions derive from and that's it (no `Apply` classes like in the past). Also the names of the methods and how they work can be changed. 
+
+Some things (principles) however, will not likely be changed, and those are described below.
 
 == common tasks ==
 
@@ -141,6 +143,7 @@ In [10]: g is Add
 Out[10]: True
 }}}
 So `e` and `f` are functions, `g` is not a function.
+ 
  
  
  
