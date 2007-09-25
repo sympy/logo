@@ -1,0 +1,10 @@
+#summary Documentation to the svn version of SymPy
+
+= Introduction =
+
+As of September 25, we changed how functions are done in !SymPy again.
+
+
+= Details =
+
+ 
