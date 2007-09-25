@@ -4,10 +4,7 @@
 
 As of September 25, we changed how functions are done in !SymPy again.
 
-
-= Details =
-
-== Functions ==
+= Functions =
 
 How to create a new function:
 {{{
@@ -40,4 +37,26 @@ and that's it. The `_eval_*` functions are called when something is needed. The 
 {{{
 sign(x)
 }}}
-both inside and outside of !SymPy.
+both inside and outside of !SymPy. Unapplied functions `sign` is just the class:
+{{{
+sign
+}}}
+Both inside and outside of !SymPy. 
+
+== common tasks ==
+
+Please use the same way as is show below all across !SymPy.
+
+=== accessing parameters ===
+{{{
+e = sign(x**2)
+In [1]: e = sign(x**2)
+
+In [2]: e[:]
+Out[2]: (x**2,)
+
+In [3]: e[0]
+Out[3]: x**2
+}}}
+
+ 
