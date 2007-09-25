@@ -20,14 +20,6 @@ combinatorial/factorials.py:class FallingFactorial(DefinedFunction):
 combinatorial/factorials.py:class Binomial(DefinedFunction):
 elementary/integers.py:class Floor(DefinedFunction):
 elementary/integers.py:class Ceiling(DefinedFunction):
-elementary/hyperbolic.py:class Sinh(DefinedFunction):
-elementary/hyperbolic.py:class Cosh(DefinedFunction):
-elementary/hyperbolic.py:class Tanh(DefinedFunction):
-elementary/hyperbolic.py:class Coth(DefinedFunction):
-elementary/hyperbolic.py:class ASinh(DefinedFunction):
-elementary/hyperbolic.py:class ACosh(DefinedFunction):
-elementary/hyperbolic.py:class ATanh(DefinedFunction):
-elementary/hyperbolic.py:class ACoth(DefinedFunction):
 special/gamma_functions.py:class Gamma(DefinedFunction):
 special/gamma_functions.py:class LowerGamma(DefinedFunction):
 special/gamma_functions.py:class UpperGamma(DefinedFunction):
