@@ -58,5 +58,6 @@ Out[2]: (x**2,)
 In [3]: e[0]
 Out[3]: x**2
 }}}
-
+Never use internal methods or variables, prefixed with "_" (like `_args` -- don't use it).
+ 
  
