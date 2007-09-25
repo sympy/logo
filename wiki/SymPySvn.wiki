@@ -104,7 +104,7 @@ In [6]: sin(y*z)[:]
 Out[6]: (y*z,)
 
 }}}
-Never use internal methods or variables, prefixed with "`_`" (like `_args` -- don't use it -- use `[:]` instead).
+Never use internal methods or variables, prefixed with "`_`" (example: don't use `_args`, use `[:]` instead).
 
 === testing the structure of a !SymPy expression == 
 
@@ -141,5 +141,6 @@ In [10]: g is Add
 Out[10]: True
 }}}
 So `e` and `f` are functions, `g` is not a function.
+ 
  
  
