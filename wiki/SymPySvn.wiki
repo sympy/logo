@@ -2,11 +2,12 @@
 
 = Introduction =
 
-As of September 25, we have changed how functions are implemented in !SymPy again. This page serves as a reference, how to work with them. Please discuss new and current features in the [http://code.google.com/p/sympy/issues/detail?id=387 issue 387].
+This page serves as a reference for developers of !SymPy, how things are done internally and which idioms to use and which not. Please discuss new and current features in the [http://code.google.com/p/sympy/issues/detail?id=387 issue 387]. This page is a consensus, that we arrived at and thus if some code in !SymPy doesn't follow these recommendations, it's a bug. Note that we are still figuring things out and thus we may decide to change some recommendations on this page in the future. 
 
 = TODO =
 
-The following functions need yet to be migrated:
+As of September 25, we have changed how functions are implemented in !SymPy again,
+the following functions need yet to be migrated (and the documentation below doesn't apply for them):
 {{{
 combinatorial/numbers.py:class Fibonacci(DefinedFunction):
 combinatorial/numbers.py:class Lucas(DefinedFunction):
