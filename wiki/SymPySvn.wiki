@@ -7,4 +7,37 @@ As of September 25, we changed how functions are done in !SymPy again.
 
 = Details =
 
- 
+== Functions ==
+
+How to create a new function:
+{{{
+class sign(SingleValuedFunction):
+
+    nofargs = 1
+
+    @classmethod
+    def _eval_apply(self, arg):
+        if isinstance(arg, Basic.NaN):
+            return S.NaN
+        if isinstance(arg, Basic.Zero): return S.One
+        if arg.is_positive: return S.One
+        if arg.is_negative: return S.NegativeOne
+        if isinstance(arg, Basic.Mul):
+            coeff, terms = arg.as_coeff_terms()
+            if not isinstance(coeff, Basic.One):
+                return self(coeff) * self(Basic.Mul(*terms))
+
+    is_bounded = True
+
+    def _eval_conjugate(self):
+        return self
+
+    def _eval_is_zero(self):
+        return isinstance(self[0], Basic.Zero)
+}}}
+
+and that's it. The `_eval_*` functions are called when something is needed. The applied function `sign(x)` is constructed using
+{{{
+sign(x)
+}}}
+both inside and outside of !SymPy.
