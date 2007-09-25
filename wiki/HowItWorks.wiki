@@ -4,7 +4,7 @@ The internals of !SymPy has changed many times. The current state in the trunk i
 
 We try to make the sources easily understandable, so you can look into the sources and read the doctests, it should be well documented and if you don't understand something, ask on the mailinglist. 
 
-  * For !SymPy <= 0.4.3 the documentation is in this page
+  * For !SymPy <= 0.4.3 the documentation is on this page
   * For !SymPy == 0.5.0 the documentation is in SympyResearch
   * For !SymPy > 0.5.0 and svn, read SymPySvn and/or read the sources
 
