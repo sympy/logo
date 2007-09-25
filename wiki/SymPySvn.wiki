@@ -2,7 +2,7 @@
 
 = Introduction =
 
-As of September 25, we changed how functions are done in !SymPy again.
+As of September 25, we have changed how functions are implemented in !SymPy again. This page servers as a reference, how to work with them. Please discuss new and current features in the issue
 
 = Functions =
 
@@ -94,3 +94,4 @@ In [10]: g is Add
 Out[10]: True
 }}}
 So `e` and `f` are functions, `g` is not a function.
+ 
