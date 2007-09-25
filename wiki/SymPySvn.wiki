@@ -93,10 +93,20 @@ Out[2]: (x**2,)
 
 In [3]: e[0]
 Out[3]: x**2
+
+In [4]: (x+y*z)[:]
+Out[4]: (x, y*z)
+
+In [5]: (y*z)[:]
+Out[5]: (y, z)
+
+In [6]: sin(y*z)[:]
+Out[6]: (y*z,)
+
 }}}
 Never use internal methods or variables, prefixed with "`_`" (like `_args` -- don't use it -- use `[:]` instead).
 
-=== testing the structure of !SymPy expression == 
+=== testing the structure of a !SymPy expression == 
 
 Applied functions:
 {{{ 
@@ -131,4 +141,5 @@ In [10]: g is Add
 Out[10]: True
 }}}
 So `e` and `f` are functions, `g` is not a function.
+ 
  
