@@ -8,7 +8,37 @@ As of September 25, we have changed how functions are implemented in !SymPy agai
 
 The following functions need yet to be migrated:
 {{{
-
+combinatorial/numbers.py:class Fibonacci(DefinedFunction):
+combinatorial/numbers.py:class Lucas(DefinedFunction):
+combinatorial/numbers.py:class Bernoulli(DefinedFunction):
+combinatorial/numbers.py:class Bell(DefinedFunction):
+combinatorial/numbers.py:class Harmonic(DefinedFunction):
+combinatorial/factorials.py:class Factorial(DefinedFunction):
+combinatorial/factorials.py:class MultiFactorial(DefinedFunction):
+combinatorial/factorials.py:class RisingFactorial(DefinedFunction):
+combinatorial/factorials.py:class FallingFactorial(DefinedFunction):
+combinatorial/factorials.py:class Binomial(DefinedFunction):
+elementary/integers.py:class Floor(DefinedFunction):
+elementary/integers.py:class Ceiling(DefinedFunction):
+elementary/hyperbolic.py:class Sinh(DefinedFunction):
+elementary/hyperbolic.py:class Cosh(DefinedFunction):
+elementary/hyperbolic.py:class Tanh(DefinedFunction):
+elementary/hyperbolic.py:class Coth(DefinedFunction):
+elementary/hyperbolic.py:class ASinh(DefinedFunction):
+elementary/hyperbolic.py:class ACosh(DefinedFunction):
+elementary/hyperbolic.py:class ATanh(DefinedFunction):
+elementary/hyperbolic.py:class ACoth(DefinedFunction):
+special/gamma_functions.py:class Gamma(DefinedFunction):
+special/gamma_functions.py:class LowerGamma(DefinedFunction):
+special/gamma_functions.py:class UpperGamma(DefinedFunction):
+special/gamma_functions.py:class PolyGamma(DefinedFunction):
+special/gamma_functions.py:class LogGamma(DefinedFunction):
+special/zeta_functions.py:class Zeta(DefinedFunction):
+special/zeta_functions.py:class DirichletEta(DefinedFunction): # TBD
+special/polynomials.py:class PolynomialSequence(DefinedFunction):
+special/polynomials.py:class ChebyshevT_Root(DefinedFunction):
+special/polynomials.py:class ChebyshevU_Root(DefinedFunction):
+special/error_functions.py:class Erf(DefinedFunction):
 }}}
 
 = Functions =
@@ -101,3 +131,4 @@ In [10]: g is Add
 Out[10]: True
 }}}
 So `e` and `f` are functions, `g` is not a function.
+ 
