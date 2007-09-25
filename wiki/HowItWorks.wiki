@@ -8,7 +8,7 @@ We try to make the sources easily understandable, so you can look into the sourc
   * For !SymPy == 0.5.0 the documentation is in SympyResearch
   * For !SymPy > 0.5.0 and svn, read SymPySvn and/or read the sources
 
-You can find all the decisions archived in the Issues, to see rationale for doing this and that.
+You can find all the decisions archived in the Issues, to see rationale for doing this and that. If you want to have the full picture, read all 3 documentations (<=0.4.3, ==0.5.0, >0.5.0), this will give you the historical background and you'll see what we tried, what ideas were behind the decisions made and why we arrived at the current state.
 
 Documentation to !SymPy <= 0.4.3 is below.
 
