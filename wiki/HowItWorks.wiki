@@ -1,10 +1,14 @@
 #summary This document describes the main ideas of how SymPy works.
 
-Unfortunately, there is no accurate page describing internals of !SymPy at the moment, so you just need to look into the sources and read the doctests, it should be well documented and if you don't understand something, ask on the mailinglist. 
+The internals of !SymPy has changed many times. The current state in the trunk is described in SymPySvn.
+
+We try to make the sources easily understandable, so you can look into the sources and read the doctests, it should be well documented and if you don't understand something, ask on the mailinglist. 
 
   * For !SymPy <= 0.4.3 the documentation is in this page
   * For !SymPy == 0.5.0 the documentation is in SympyResearch
-  * For !SymPy > 0.5.0 and svn, read SymPySvn, or read the sources (you can get some ideas behind it if you read this page or SympyResearch, but we changed a few things since then). You can find all the decisions archived in the Issues, to see rationale for doing this and that.
+  * For !SymPy > 0.5.0 and svn, read SymPySvn and/or read the sources
+
+You can find all the decisions archived in the Issues, to see rationale for doing this and that.
 
 Documentation to !SymPy <= 0.4.3 is below.
 
