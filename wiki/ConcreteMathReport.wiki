@@ -10,7 +10,7 @@ Then Google Summer of Code initialization phase started. In fact I wanted to tak
 
 !SymPy at that time was very small project so I thought it will a great opportunity to learn computer algebra fundamentals from very beginning. This way I convinced my self to work on this project and to propose Concrete Mathematics module, as this is a set of tools and algorithms required in every computer algebra system.
 
-= About my self =
+= About myself =
 
 My name is Mateusz Paprocki and I'm a student of systems engineering and computer science at the University of Technology of Wrocław in Poland. My main educational activities concern optimization, modeling and identification of complex systems and in future application of chaos theory to those fields.
 
