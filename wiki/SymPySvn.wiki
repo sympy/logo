@@ -16,11 +16,6 @@ combinatorial/numbers.py:class Lucas(DefinedFunction):
 combinatorial/numbers.py:class Bernoulli(DefinedFunction):
 combinatorial/numbers.py:class Bell(DefinedFunction):
 combinatorial/numbers.py:class Harmonic(DefinedFunction):
-combinatorial/factorials.py:class Factorial(DefinedFunction):
-combinatorial/factorials.py:class MultiFactorial(DefinedFunction):
-combinatorial/factorials.py:class RisingFactorial(DefinedFunction):
-combinatorial/factorials.py:class FallingFactorial(DefinedFunction):
-combinatorial/factorials.py:class Binomial(DefinedFunction):
 elementary/integers.py:class Floor(DefinedFunction):
 elementary/integers.py:class Ceiling(DefinedFunction):
 special/zeta_functions.py:class Zeta(DefinedFunction):
