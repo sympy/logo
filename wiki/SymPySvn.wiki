@@ -23,17 +23,11 @@ combinatorial/factorials.py:class FallingFactorial(DefinedFunction):
 combinatorial/factorials.py:class Binomial(DefinedFunction):
 elementary/integers.py:class Floor(DefinedFunction):
 elementary/integers.py:class Ceiling(DefinedFunction):
-special/gamma_functions.py:class Gamma(DefinedFunction):
-special/gamma_functions.py:class LowerGamma(DefinedFunction):
-special/gamma_functions.py:class UpperGamma(DefinedFunction):
-special/gamma_functions.py:class PolyGamma(DefinedFunction):
-special/gamma_functions.py:class LogGamma(DefinedFunction):
 special/zeta_functions.py:class Zeta(DefinedFunction):
 special/zeta_functions.py:class DirichletEta(DefinedFunction): # TBD
 special/polynomials.py:class PolynomialSequence(DefinedFunction):
 special/polynomials.py:class ChebyshevT_Root(DefinedFunction):
 special/polynomials.py:class ChebyshevU_Root(DefinedFunction):
-special/error_functions.py:class Erf(DefinedFunction):
 }}}
 
 = Functions =
