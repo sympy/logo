@@ -10,6 +10,7 @@ http://sympy.googlecode.com/svn/materials/logo/sympy-160px.png
 
 ==News==
 
+  * *28 Sep 2007* [http://code.google.com/p/mpmath/ mpmath] project, a Python library for arbitrary-precision floating-point arithmetic (that we use in !SymPy), has started
   * *11 Sep 2007* Final page about the [http://code.google.com/p/sympy/wiki/GSoC2007 2007 Google Summer of Code in SymPy] is available
   * *08 Sep 2007* Version 0.5.3 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *01 Sep 2007* [http://code.google.com/p/symbide/ symbide project], a GUI for !SymPy, has started
