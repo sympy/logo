@@ -100,7 +100,9 @@ class chebyshevt_root(SingleValuedFunction):
         return Basic.cos(S.Pi*(2*k+1)/(2*n))
 }}}
 
-Note: the `nofargs` is obsoleted and will be removed in a near future.
+Note 1: the `nofargs` is obsoleted and will be removed in a near future.
+
+Note 2: the first argument of a @classmethod should be `cls` (not `self`).
 
 == common tasks ==
 
