@@ -7,7 +7,7 @@ We are looking for new developers - there are currently around 9 people (mostly 
 !SymPy development discussion takes place on the mailing list
 http://groups.google.com/group/sympy and in the issues http://code.google.com/p/sympy/issues/list. You can send your patch to either of them. Live discussions and coordination is done over IRC at #sympy on irc.freenode.net (but everything important is then also put into Issues, so that all decisions are documented). Also, all svn commits (including wiki changes) are sent live to the #sympy channel, so when working on sympy, it's a nice idea to log in, to see what other people are doing on the project.
 
-Then there is a [http://grupododo.com/planetsympy/ Planet SymPy], that aggregates blogs of all developers of !SymPy, so you can read what they are doing at one place.
+Then there is a [http://planet.sympy.org/ Planet SymPy], that aggregates blogs of all developers of !SymPy, so you can read what they are doing at one place.
 
 When writing some code for !SymPy, please follow the guidelines: SymPySvn
 
