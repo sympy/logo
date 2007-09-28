@@ -18,8 +18,6 @@ combinatorial/numbers.py:class Bell(DefinedFunction):
 combinatorial/numbers.py:class Harmonic(DefinedFunction):
 elementary/integers.py:class Floor(DefinedFunction):
 elementary/integers.py:class Ceiling(DefinedFunction):
-special/zeta_functions.py:class Zeta(DefinedFunction):
-special/zeta_functions.py:class DirichletEta(DefinedFunction): # TBD
 }}}
 
 = Functions =
