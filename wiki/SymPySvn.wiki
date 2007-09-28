@@ -11,11 +11,6 @@ All changes to the trunk should be discussed in Issues and should follow this pa
 As of September 25, we have changed how functions are implemented in !SymPy again,
 the following functions need yet to be migrated (and the documentation below doesn't apply for them):
 {{{
-combinatorial/numbers.py:class Fibonacci(DefinedFunction):
-combinatorial/numbers.py:class Lucas(DefinedFunction):
-combinatorial/numbers.py:class Bernoulli(DefinedFunction):
-combinatorial/numbers.py:class Bell(DefinedFunction):
-combinatorial/numbers.py:class Harmonic(DefinedFunction):
 elementary/integers.py:class Floor(DefinedFunction):
 elementary/integers.py:class Ceiling(DefinedFunction):
 }}}
