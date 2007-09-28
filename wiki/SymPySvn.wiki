@@ -20,9 +20,6 @@ elementary/integers.py:class Floor(DefinedFunction):
 elementary/integers.py:class Ceiling(DefinedFunction):
 special/zeta_functions.py:class Zeta(DefinedFunction):
 special/zeta_functions.py:class DirichletEta(DefinedFunction): # TBD
-special/polynomials.py:class PolynomialSequence(DefinedFunction):
-special/polynomials.py:class ChebyshevT_Root(DefinedFunction):
-special/polynomials.py:class ChebyshevU_Root(DefinedFunction):
 }}}
 
 = Functions =
