@@ -6,15 +6,6 @@ This page serves as a reference for developers of !SymPy, how things are done in
 
 All changes to the trunk should be discussed in Issues and should follow this page. However, it's also necessary to try new ideas without asking others to agree with that and we do these things in other branches, like `sympy-sandbox`. When we discover, that something should be done differently, we'll arrive at a consensus and update this page.
 
-= TODO =
-
-As of September 25, we have changed how functions are implemented in !SymPy again,
-the following functions need yet to be migrated (and the documentation below doesn't apply for them):
-{{{
-elementary/integers.py:class Floor(DefinedFunction):
-elementary/integers.py:class Ceiling(DefinedFunction):
-}}}
-
 = Functions =
 
 How to create a new function of a one variable:
