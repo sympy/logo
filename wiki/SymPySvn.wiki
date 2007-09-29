@@ -15,7 +15,7 @@ class sign(SingleValuedFunction):
     nofargs = 1
 
     @classmethod
-    def _eval_apply(self, arg):
+    def _eval_apply(cls, arg):
         if isinstance(arg, Basic.NaN):
             return S.NaN
         if isinstance(arg, Basic.Zero): return S.One
@@ -24,7 +24,7 @@ class sign(SingleValuedFunction):
         if isinstance(arg, Basic.Mul):
             coeff, terms = arg.as_coeff_terms()
             if not isinstance(coeff, Basic.One):
-                return self(coeff) * self(Basic.Mul(*terms))
+                return cls(coeff) * self(Basic.Mul(*terms))
 
     is_bounded = True
 
