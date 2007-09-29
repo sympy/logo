@@ -9,7 +9,7 @@ This page documents the major changes made to !SymPy in each release and svn.
   * `Log` and `ApplyLog` classes were simplified to `log` (the same for all other classes, like `sin`, `cos`, etc.), for the current uptodate documentation see SymPySvn.
   * all functions arguments are now accessed using the `sin(x)[:]` idiom (instead of the old `sin(x)._args` or `sin(x).args`), see SymPySvn, section _accessing parameters_
   * known issues:
-     * there are many problems in the limits module that needs to be refactored (see the  [http://code.google.com/p/sympy/issues/detail?id=298 issue 298]), but all tests pass correctly
+     * there are many problems in the limits module that needs to be refactored (see the  [http://code.google.com/p/sympy/issues/detail?id=298 issue 298]), some tests fail
      * solvers don't yet work ([http://code.google.com/p/sympy/issues/detail?id=395 issue 395])
 
 == 0.5.3 ==
