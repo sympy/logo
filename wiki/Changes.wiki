@@ -2,7 +2,7 @@
 
 = Introduction =
 
-This page documents the major changes made to !SymPy since the last release.
+This page documents the major changes made to !SymPy in each release and svn.
 
 == svn ==
 
