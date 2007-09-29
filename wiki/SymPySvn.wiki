@@ -35,7 +35,7 @@ class sign(SingleValuedFunction):
         return isinstance(self[0], Basic.Zero)
 }}}
 
-and that's it. The `_eval_*` functions are called when something is needed. The applied function `sign(x)` is constructed using
+and that's it. The `_eval_*` functions are called when something is needed. The `_eval_apply` is called when the class is about to be instantiated and it should return either some simplified instance of some other class or if the class should be unmodified, return `None` (see `core/function.py` in `Function.__new__` for implementation details).  The applied function `sign(x)` is constructed using
 {{{
 sign(x)
 }}}
