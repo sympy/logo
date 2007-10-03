@@ -25,7 +25,7 @@ To sum it up: It would be nice to have an opensource alternative to Maple/Mathem
 to glue together every useful open source mathematics software package
 and provide a transparent interface to all of them. Thus it is quite huge, which brings other problems, like that it cannot be easily packaged in Debian at the moment. Also we think !SymPy classes are currently simpler than SAGE.calculus (SAGE is faster though, since it uses Maxima as its backend).
 
-Another advantage of !SymPy is that since is written in pure Python (and doesn't need anything else), it is perfectly multiplatform, it's small and easy to install and use.
+Another advantage of !SymPy is that since it is written in pure Python (and doesn't need anything else), it is perfectly multiplatform, it's small and easy to install and use.
 
 !SymPy can be used from SAGE as an optional module (it is in SAGE version 2.7 and later by default). SAGE is promising, because it will eventually allow to use all good opensource CAS systems from python, but our aim is a little different - !SymPy will remain as a simple (but powerful) Python module for symbolic manipulation and the stress is not on a speed, but on a simplicity and versatility.
 
