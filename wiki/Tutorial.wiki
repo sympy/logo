@@ -150,6 +150,9 @@ you can also calculate the limit at infinity:
    >>> limit(1/x, x, oo)
    0
 
+   >>> limit(x**x, x, 0)
+   >>> 1
+
    >>> limit((5**x+3**x)**(1/x), x, oo)
    5
 
