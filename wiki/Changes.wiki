@@ -25,6 +25,7 @@ This page documents the major changes made to !SymPy in each release and svn.
   * `ComplexInfinity` renamed to `zoo`
   * known issues:
      * there are many problems in the limits module that needs to be refactored (see the  [http://code.google.com/p/sympy/issues/detail?id=298 issue 298]), but all tests pass correctly
+     * the series expansion fails for some more complex expressions
 
 == 0.5.2 ==
 
@@ -33,14 +34,16 @@ This page documents the major changes made to !SymPy in each release and svn.
   * make the tarball conform to Debian policy
   * many small bugs fixed, see Issues for details
   * known issues: 
-      * there are many problems in the limits module (needs to be refactored), but all tests pass correctly
-      * `import sympy` is slow again (fixed in svn)
+     * there are many problems in the limits module (needs to be refactored), but all tests pass correctly
+     * `import sympy` is slow again (fixed in 0.5.3)
+     * the series expansion fails for some more complex expressions
 
 == 0.5.1 ==
 
   * importing sympy (`import sympy`) was made a lot faster (2.4s against 0.1s)
   * known issues: 
-      * there are many problems in the limits module (needs to be refactored), but all tests pass correctly
+     * there are many problems in the limits module (needs to be refactored), but all tests pass correctly
+     * the series expansion fails for some more complex expressions
 
 == 0.5.0 ==
 
@@ -51,7 +54,8 @@ This page documents the major changes made to !SymPy in each release and svn.
   * `plotting` module improved (colormaps, middle mouse button for zooming and more)
   * `sympy/modules/*` was moved to `sympy/*` and the `sympy/modules` directory was deleted
   * known issues: 
-      * there are many problems in the limits module (needs to be refactored), but all tests pass correctly
+     * there are many problems in the limits module (needs to be refactored), but all tests pass correctly
+     * the series expansion fails for some more complex expressions
 
 == 0.4.3 ==
 
