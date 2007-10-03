@@ -65,6 +65,8 @@ There are extensive tests (6148 lines in 58 files) for every single feature in !
   * You can also check our blogs: [http://grupododo.com/planetsympy/ PlanetSympy]
   * Or join us at #sympy on irc.freenode.net
 
+But generally, we are trying to polish things, fix bugs, make !SymPy reliable and faster. We are also trying new ideas in the [http://sympy.googlecode.com/svn/branches/sympy-sandbox/ sympy-sandbox] branch and then implement the good ones in the trunk.
+
 ===Some ideas for future development===
 
   * improve the current functionality
