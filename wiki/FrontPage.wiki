@@ -69,13 +69,12 @@ But generally, we are trying to polish things, fix bugs, make !SymPy reliable an
 
 ===Some ideas for future development===
 
-  * improve the current functionality
-  * Risch integration algorithm
+  * improve the integration algorithm, so that !SymPy can integrate anything that can be integrated. :)
   * asymptotic expansion
   * objects with indices (tensors) 
   * rewrite the core to C++, and use it as an optional module, if the user would like to speed things up (in any case the Python core will always be the default)
 
-and more...
+and more... Feel free to tell us your ideas in Issues or the mailinglist.
 
 ==Documentation==
 
