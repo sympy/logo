@@ -36,7 +36,7 @@ Currently, !SymPy core has around 6300 lines of code (including extensive commen
   * complex numbers (like `exp(I*x).expand(complex=True)  -> cos(x)+I*sin(x)`)
   * differentiation
   * taylor (laurent) series
-  * basic substitution (like x-> ln(x))
+  * substitution (like x -> ln(x), or sin -> cos)
   * arbitrary precision integers, rationals and floats
   * noncommutative symbols
   * pattern matching
