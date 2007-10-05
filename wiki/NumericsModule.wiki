@@ -4,6 +4,8 @@
 
 The module `sympy.numerics` implements arbitrary-precision arithmetic. It has not yet been fully integrated into SymPy.
 
+_Note: the `numerics` module is currently being reimplemented as a standalone Python library, [http://code.google.com/p/mpmath/ mpmath]._
+
 =Floats and !ComplexFloats=
 
 The classes `Float` and `ComplexFloat` behave roughly like Python's `float` and `complex`, except for being capable of arbitrary precision. `Float`s and `ComplexFloat`s can be created from regular Python numbers (`int`, `float`, `complex`), decimal strings, and also from !SymPy `Rational`s.
@@ -269,7 +271,5 @@ Here is a similar but slightly easier integral (the correct value is roughly 1.2
 Warning: failed to reach full accuracy. Estimated magnitude of error:  0.003
 Float('1.2410979753100062')
 }}}
-
-
 
 
