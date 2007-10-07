@@ -10,6 +10,8 @@ This page documents the major changes made to !SymPy in each release and svn.
   * nice pretty printing when unicode is available
   * `isympy -c python` now also supports true division
   * documentation improved (sympy module, bin/isympy and isympy's man page)
+  * known issues:
+      * the series expansion fails for some more complex expressions (the same problem since !SymPy 0.5.0), see this [http://groups.google.com/group/sympy/browse_thread/thread/98a044bd5ac537ca post] for more details
 
 == 0.5.4 ==
 
