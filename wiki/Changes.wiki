@@ -6,7 +6,8 @@ This page documents the major changes made to !SymPy in each release and svn.
 
 == svn ==
 
-Currently the same as 0.5.4.
+  * `isympy -c python` now also supports true division
+  * documentation improved (sympy module, isympy man page)
 
 == 0.5.4 ==
 
