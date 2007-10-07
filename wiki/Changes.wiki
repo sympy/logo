@@ -7,6 +7,7 @@ This page documents the major changes made to !SymPy in each release and svn.
 == svn ==
 
   * `sympy.abc` module for quickly importing symbols
+  * nice pretty printing when unicode is available
   * `isympy -c python` now also supports true division
   * documentation improved (sympy module, bin/isympy and isympy's man page)
 
