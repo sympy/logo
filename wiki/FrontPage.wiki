@@ -108,7 +108,7 @@ Read the [http://code.google.com/p/sympy/wiki/Tutorial tutorial] for more exampl
 
 ==Development==
 
-If you wrote anything interesting using !SymPy, please donate your code back to the project, so that other people can easily use it and we can grow the community.
+If you wrote anything interesting using !SymPy, please donate your code back to the project, so that other people can easily use it and we can grow as the community.
 You are welcomed to join the development. If you find a bug or just want to say what you think, tell us on the [http://groups.google.com/group/sympy mailinglist] (or put your comment/bug report into the [http://code.google.com/p/sympy/issues/list Issues]). We are interested in your opinions if you think the !SymPy's interface is not
 as you would expect or if you created some algorithm using !SymPy and would like it to become part of !SymPy (so that others can easily use your code as well).
 
