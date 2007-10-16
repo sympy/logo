@@ -11,7 +11,7 @@ This page documents the major changes made to !SymPy in each release and svn.
   * `isympy -c python` now also supports true division
   * documentation improved (sympy module, bin/isympy and isympy's man page)
   * known issues:
-      * the series expansion fails for some more complex expressions (the same problem since !SymPy 0.5.0), see this [http://groups.google.com/group/sympy/browse_thread/thread/98a044bd5ac537ca post] for more details
+      * the series expansion fails for some more complex expressions (the same problem since !SymPy 0.5.0), see the relevant [http://code.google.com/p/sympy/issues/list?can=2&q=%22series+bug%22 issues].
 
 == 0.5.4 ==
 
