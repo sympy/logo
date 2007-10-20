@@ -2,7 +2,11 @@
 
 = Why Mercurial? =
 
-Mercurial is much better than Subversion. With svn, one has to implement a new feature locally, then test it and then commit, but the quality of such a commit is much lower than with Mercurial (hg), that is distributed, which means everyone can commit locally and thus won't be afraid of losing his changes. One commits several times locally, looks at the changes, tests them, reverts them etc., until one is satisfied with the result. Only then "commits the svn way" (which is called pushing in Mercurial).
+Mercurial is much better than Subversion. With svn, one has to implement a new feature locally, then test it and then commit, but the quality of such a commit is much lower than with Mercurial (hg), that is distributed, which means everyone can commit locally and thus won't be afraid of losing his changes. One commits several times locally, looks at the changes, tests them, reverts them etc., until one is satisfied with the result. Only then "commits the svn way" (which is called pushing in Mercurial). 
+
+Another advantage is that all Mercurial repositories are equal and thus have all history and one can work offline as long as one wishes. 
+
+I (Ondrej) am quite hesitant to try new things when the old ones work and work well (Subversion works very well), but Mercurial is really superior to Subversion. It's like a working [http://en.wikipedia.org/wiki/%C5%A0koda_105/120/125 Škoda 120] and working [http://en.wikipedia.org/wiki/BMW_E91 BMW].
 
 = Details =
 
