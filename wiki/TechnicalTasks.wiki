@@ -59,6 +59,14 @@ Then in this branch:
 
 and put the dist/sympy-0.4-pre.tar.gz on the website.
 
+== Sites to update ==
+
+  * http://code.google.com/p/sympy/wiki/FrontPage
+  * http://code.google.com/p/sympy/
+  * http://en.wikipedia.org/wiki/Comparison_of_computer_algebra_systems
+  * http://freshmeat.net/projects/sympy/
+  * http://pypi.python.org/pypi/SymPy/
+
 = How to make a windows installer =
 
 Start with the source release as described above.
