@@ -9,6 +9,8 @@ therefore one must experiment and that may temporarily break lots of
 code. This is not reasonable with the current state of !SymPy. 
 As a rule, fixing fundamental issues require fundamental changes. In !SymPy, we want to have something now (and we have it), but still many fundamental things could be improved.
 
-We think it is time to start implementing them. We started to play with new ideas in sympy-sandbox branch, but a new project [http://code.google.com/p/sympycore sympycore] is a better place to do it, because some of the code can be already useful to other people.
+We think it is time to start implementing them, in parallel of implementing new features in !SymPy. We started to play with new ideas in sympy-sandbox branch, but a new project [http://code.google.com/p/sympycore sympycore] is a better place to do it, because some of the code can be already useful to other people.
 
 The plan is to see which ideas are good and which are bad in sympycore, let it settle for a while and then discuss them in Issues and implementing the good ones in !SymPy. Another option could be that if we manage to disentangle the core of !SymPy with the rest of !SymPy, we could even have two packages, sympycore and sympy, that would be a clean solution, but currently this is really a far future.
+
+That way !SymPy will always work and also it will benefit from new fundamental improvements.
