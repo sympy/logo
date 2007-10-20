@@ -16,5 +16,28 @@ http://landau.phys.spbu.ru/~kirr/cgi-bin/hg.cgi/sympy--hg/
 
 Mercurial:
 {{{
-hg clone http://landau.phys.spbu.ru/~kirr/cgi-bin/hg.cgi/sympy--hg
+$ hg clone http://landau.phys.spbu.ru/~kirr/cgi-bin/hg.cgi/sympy--hg
+}}}
+
+== usage ==
+
+The same as with Subversion:
+{{{
+$ cd sympy--hg
+$ hg up
+0 files updated, 0 files merged, 0 files removed, 0 files unresolved
+$ echo "sympy is awesome" >> README
+$ hg st
+M README
+$ hg di
+diff -r 70c13b5a9986 README
+--- a/README    Fri Oct 19 06:33:11 2007 +0000
++++ b/README    Sat Oct 20 13:40:29 2007 +0200
+@@ -110,3 +110,4 @@ joined the development during the summer
+ joined the development during the summer 2007 and he has made SymPy much more
+ competitive by rewriting the core from scratch, that has made it from 10x to
+ 100x faster. 
++sympy is awesome
+$ hg ci -m "README was incredibly improved"
+$
 }}}
