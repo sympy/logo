@@ -1,0 +1,12 @@
+#summary Information about sympycore
+
+= Introduction =
+
+!SymPy uses a development model as described in SympyDevelopment, basically tests must pass and everything should be discussed in Issues, that is very good for a mature project, but on the other hand makes it very difficult to easily resolve some fundamental issues, such as speed, assumptions model, caching issues etc.
+
+Nobody knows what is the best way to resolve these issues,
+therefore one must experiment and that may temporarily break lots of
+code. This is not reasonable with the current state of !SymPy. 
+As a rule, fixing fundamental issues require fundamental changes.
+
+We think it is time to start implementing them. We started to play with new ideas in sympy-sandbox branch, but a new project sympycore is a better place to do it, because some of the code can be already useful to other people.
