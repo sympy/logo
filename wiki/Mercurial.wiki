@@ -39,5 +39,34 @@ diff -r 70c13b5a9986 README
  100x faster. 
 +sympy is awesome
 $ hg ci -m "README was incredibly improved"
+$ hg log -r tip
+changeset:   1535:173e12b16e48
+tag:         tip
+user:        Ondrej Certik <ondrej@certik.cz>
+date:        Sat Oct 20 13:40:49 2007 +0200
+summary:     README was incredibly improved
+
 $
 }}}
+
+The difference is that all of this happens locally and thus you can work offline (in the underground, in the plane, airport, bus, forrest, anywhere).
+
+== how to commit the svn way ==
+
+{{{
+$ hg out
+comparing with http://landau.phys.spbu.ru/~kirr/cgi-bin/hg.cgi/sympy--hg
+searching for changes
+changeset:   1535:173e12b16e48
+tag:         tip
+user:        Ondrej Certik <ondrej@certik.cz>
+date:        Sat Oct 20 13:40:49 2007 +0200
+summary:     README was incredibly improved
+
+$ hg push
+pushing to http://landau.phys.spbu.ru/~kirr/cgi-bin/hg.cgi/sympy--hg
+searching for changes
+ssl required
+}}}
+
+That repository is read only. But when we move to Mercurial completely, it the developers will have write access to it.
