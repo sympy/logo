@@ -1,0 +1,8 @@
+#summary How to develop SymPy using Mercurial
+
+= Why Mercurial? =
+
+Mercurial is much better than Subversion. With svn, one has to implement a new feature locally, then test it and then commit, but the quality of such a commit is much lower than with Mercurial (hg), that is distributed, which means everyone can commit locally and thus won't be afraid of losing his changes. One commits several times locally, looks at the changes, tests them, reverts them etc., until one is satisfied with the result. Only then "commits the svn way" (which is called pushing in Mercurial).
+
+
+= Details =
