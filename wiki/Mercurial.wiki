@@ -8,6 +8,14 @@ Another advantage is that all Mercurial repositories are equal and thus have all
 
 I (Ondrej) am quite hesitant to try new things when the old ones work and work well (Subversion works very well), but Mercurial is really superior to Subversion. It's like a working [http://en.wikipedia.org/wiki/%C5%A0koda_105/120/125 Škoda 120] and working [http://en.wikipedia.org/wiki/BMW_E91 BMW].
 
+Read hgbook:
+
+http://hgbook.red-bean.com/
+
+and watch this video from the author of Mercurial:
+
+http://video.google.com/videoplay?docid=-7724296011317502612
+
 = Details =
 
 Web:
@@ -52,6 +60,8 @@ $
 The difference is that all of this happens locally and thus you can work offline (in the underground, in the plane, airport, bus, forrest, anywhere).
 
 == how to commit the svn way ==
+
+It's called pushing.
 
 {{{
 $ hg out
