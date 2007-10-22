@@ -80,3 +80,12 @@ ssl required
 }}}
 
 That repository is read only. But when we move to Mercurial completely, it the developers will have write access to it.
+
+
+== testing ==
+
+For testing purposes, I am playing with a repository at:
+
+http://dakol.hopto.org/
+
+and read/write access to it.
