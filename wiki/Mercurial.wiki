@@ -84,7 +84,7 @@ That repository is read only. But when we move to Mercurial completely, it the d
 
 == testing ==
 
-For testing purposes, I am playing with a repository at:
+For testing purposes, I am (Ondrej) playing with a repository at:
 
 http://dakol.hopto.org/
 
