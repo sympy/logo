@@ -89,3 +89,9 @@ For testing purposes, I am (Ondrej) playing with a repository at:
 http://dakol.hopto.org/
 
 and read/write access to it.
+
+== TODO ==
+
+* svn -> hg works. pull/push in hg works. What remains is hg->svn.
+
+* The write access is currently done over http, which is I think a reasonable compromise. However the "hg push" requires to type in username && password everytime, which is annoying. The only known workaround is to embed usernam&&password into the default push url in .hg/hgrc, but then "hg pull/push" shows the password in the terminal. We could write a patch to hg to read username && password from ~/.hgrc.
