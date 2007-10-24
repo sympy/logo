@@ -64,7 +64,6 @@ The difference is that all of this happens locally and thus you can work offline
 == how to commit the svn way ==
 
 It's called pushing.
-
 {{{
 $ hg out
 comparing with http://hg.sympy.org/sympy/
@@ -76,16 +75,26 @@ date:        Sat Oct 20 13:40:49 2007 +0200
 summary:     README was incredibly improved
 
 $ hg push
-pushing to http://landau.phys.spbu.ru/~kirr/cgi-bin/hg.cgi/sympy--hg
+pushing to http://hg.sympy.org/sympy/
 searching for changes
 ssl required
 }}}
-
 Accessing the repository over http is read only. !SymPy developers have a write access using ssh, change "http://" to "ssh://hg@" like this:
-
+{{{
 $ hg out ssh://hg@hg.sympy.org/sympy/
-$ hg push ssh://hg@hg.sympy.org/sympy/
+comparing with ssh://hg@hg.sympy.org/sympy/
+searching for changes
+changeset:   1535:173e12b16e48
+tag:         tip
+user:        Ondrej Certik <ondrej@certik.cz>
+date:        Sat Oct 20 13:40:49 2007 +0200
+summary:     README was incredibly improved
 
+$ hg push ssh://hg@hg.sympy.org/sympy/
+pushing to ssh://hg@hg.sympy.org/sympy/
+searching for changes
+[...]
+}}}
 You can make this default by changing the `.hg/hgrc` from:
 {{{
 [paths]
