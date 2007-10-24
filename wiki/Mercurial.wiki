@@ -33,7 +33,7 @@ $ hg clone http://hg.sympy.org/sympy/
 
 The same as with Subversion:
 {{{
-$ cd sympy--hg
+$ cd sympy
 $ hg up
 0 files updated, 0 files merged, 0 files removed, 0 files unresolved
 $ echo "sympy is awesome" >> README
@@ -108,3 +108,9 @@ to:
 [paths]
 default = ssh://hg@hg.sympy.org/sympy/
 }}}
+
+== Useful info ==
+
+ * [http://hgbook.red-bean.com/hgbookch12.html Mercurial Queues] extension can be of great  help while working on your patches.
+ * when using ssh:// transport, it is convenient to use ssh-agent.
+ * "ssh -A" can be helpful if you want to reach the repository from a not-so-trusted host.
