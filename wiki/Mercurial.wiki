@@ -93,7 +93,10 @@ summary:     README was incredibly improved
 $ hg push ssh://hg@hg.sympy.org/sympy/
 pushing to ssh://hg@hg.sympy.org/sympy/
 searching for changes
-[...]
+remote: adding changesets
+remote: adding manifests
+remote: adding file changes
+remote: added 1 changesets with 1 changes to 1 files
 }}}
 You can make this default by changing the `.hg/hgrc` from:
 {{{
