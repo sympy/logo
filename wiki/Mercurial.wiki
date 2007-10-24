@@ -83,7 +83,7 @@ Accessing the repository over http is read only. Create for example a bundle:
 {{{
 $ hg bundle /tmp/mysuper.patch
 }}}
-and send it to Issues, or the mailinglist. We'll review it and either apply or help you improve it.
+and send it to Issues, or the mailinglist. We'll review it and either apply or help you improve it. You can also use the `hg email` when you configure it (see `hg help email`).
 
 Some long time active !SymPy developers have a write access using ssh, change "http://" to "ssh://hg@" like this:
 {{{
