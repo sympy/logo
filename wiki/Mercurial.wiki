@@ -20,11 +20,13 @@ http://video.google.com/videoplay?docid=-7724296011317502612
 
 Web:
 
-http://landau.phys.spbu.ru/~kirr/cgi-bin/hg.cgi/sympy--hg/
+http://hg.sympy.org/sympy/
+
+(not yet working, for the time being use the alias: http://dakol.hopto.org/sympy/)
 
 Mercurial:
 {{{
-$ hg clone http://landau.phys.spbu.ru/~kirr/cgi-bin/hg.cgi/sympy--hg
+$ hg clone http://hg.sympy.org/sympy/
 }}}
 
 == usage ==
@@ -65,7 +67,7 @@ It's called pushing.
 
 {{{
 $ hg out
-comparing with http://landau.phys.spbu.ru/~kirr/cgi-bin/hg.cgi/sympy--hg
+comparing with http://hg.sympy.org/sympy/
 searching for changes
 changeset:   1535:173e12b16e48
 tag:         tip
@@ -79,19 +81,18 @@ searching for changes
 ssl required
 }}}
 
-That repository is read only. But when we move to Mercurial completely, it the developers will have write access to it.
+Accessing the repository over http is read only. !SymPy developers have a write access using ssh, change "http://" to "ssh://hg@" like this:
 
+$ hg out ssh://hg@hg.sympy.org/sympy/
+$ hg push ssh://hg@hg.sympy.org/sympy/
 
-== testing ==
-
-For testing purposes, I am (Ondrej) playing with a repository at:
-
-http://dakol.hopto.org/
-
-and read/write access to it.
-
-== TODO ==
-
-  * svn -> hg works. pull/push in hg works. What remains is hg->svn.
-
-  * The write access is currently done over http, which is I think a reasonable compromise. However the "hg push" requires to type in username && password everytime, which is annoying. The only known workaround is to embed usernam&&password into the default push url in .hg/hgrc, but then "hg pull/push" shows the password in the terminal. We could write a patch to hg to read username && password from ~/.hgrc.
+You can make this default by changing the `.hg/hgrc` from:
+{{{
+[paths]
+default = http://hg.sympy.org/sympy/
+}}}
+to:
+{{{
+[paths]
+default = ssh://hg@hg.sympy.org/sympy/
+}}}
