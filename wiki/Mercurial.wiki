@@ -79,7 +79,7 @@ pushing to http://hg.sympy.org/sympy/
 searching for changes
 ssl required
 }}}
-Accessing the repository over http is read only. Some long time !SymPy developers have a write access using ssh, change "http://" to "ssh://hg@" like this:
+Accessing the repository over http is read only. Some long time active !SymPy developers have a write access using ssh, change "http://" to "ssh://hg@" like this:
 {{{
 $ hg out ssh://hg@hg.sympy.org/sympy/
 comparing with ssh://hg@hg.sympy.org/sympy/
