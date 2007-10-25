@@ -22,7 +22,7 @@ Web:
 
 http://hg.sympy.org/sympy/
 
-(not yet working, for the time being use the alias: http://dakol.hopto.org/sympy/)
+(not yet working, for the time being use the alias: http://hgsympy.hopto.org/sympy/)
 
 Mercurial:
 {{{
