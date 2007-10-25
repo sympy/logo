@@ -2,19 +2,17 @@
 
 This page served for applying for 2007 GSoC. See [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007] for uptodate information about !SymPy's involvement in 2007 GSoC.
 
+For 2008, see [http://code.google.com/p/sympy/wiki/GSoC2008 GSoC 2008].
+
 !SymPy is a symbolic manipulation package, written in pure Python. Its aim is to become a full featured CAS in Python, while keeping the code as simple as possible in order to be comprehensible and easily extensible. See http://code.google.com/p/sympy for more details.
 
 == Detailed ideas ==
 
   * Anything in Issues
-
-  * Reach the capabilities of Ginac
-  * symbolic matrices
   * symbolic integration. 
-  * implement factorisation
+  * make factorisation faster
   * asymptotic expansion
   * equations solving
-  * complex numbers in sin, cos,...
   * objects with indices (tensors) 
 
 == Other ideas ==
@@ -22,7 +20,6 @@ This page served for applying for 2007 GSoC. See [http://code.google.com/p/sympy
 Could be found here:
 
 http://code.google.com/p/sympy/wiki/Motivation
-
 
 Join the sympy mailinglist and tell us if you have any other ideas. If you choose any of the above, let us know as well, so we can ellaborate on the idea some more.
 
