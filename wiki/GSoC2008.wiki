@@ -2,6 +2,6 @@
 
 = Introduction =
 
-If google is going to do GSoC 2008, !SymPy is going to participate, the same way as in 2007 (see GSoC2007).
+If google is going to do GSoC 2008, !SymPy is going to participate, the same way as in 2007 (see [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007]).
 
 If you want to increase your chances of being accepted, now it's time to get involved in the project.
