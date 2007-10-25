@@ -40,11 +40,11 @@ Go to the "Downloads" tab and download the latest source archive (something like
 
 On unix systems (linux, BSD, cygwin, etc.): extract it with the command `"tar xzf sympy-0.4.0.tar.gz"` and follow the README located in the sympy directory.
 
-* svn version *
+* hg version *
 
 On unix systems:
 {{{
-svn checkout http://sympy.googlecode.com/svn/trunk/ sympy 
+hg clone http://hgsympy.hopto.org/sympy/
 }}}
 
 
