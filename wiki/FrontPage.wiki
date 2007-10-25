@@ -10,6 +10,7 @@ http://sympy.googlecode.com/svn/materials/logo/sympy-160px.png
 
 ==News==
 
+  * *24 Oct 2007* We moved from Subversion to [Mercurial] as our version control system
   * *21 Oct 2007* Version 0.5.5 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *16 Oct 2007* [http://code.google.com/p/sympycore/ sympycore] project, the next generation of the !SymPy core package, has started. See SymPyCore for more information.
   * *05 Oct 2007* Version 0.5.4 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
