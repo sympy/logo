@@ -1,0 +1,5 @@
+#summary Information about the 2008 Google Summer of Code and SymPy
+
+= Introduction =
+
+If google is going to do GSoC 2008, !SymPy is going to participate, the same way as in 2007 (see GSoC2007).
