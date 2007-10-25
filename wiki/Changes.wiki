@@ -6,7 +6,7 @@ This page documents the major changes made to !SymPy in each release and svn.
 
 == svn ==
 
-Currently the same as 0.5.5.
+  * `_sage_()` methods implemented to convert any !SymPy expression to a SAGE expression.
 
 == 0.5.5 ==
 
