@@ -33,42 +33,19 @@ The result should look like the ExampleTestRun.
 
 Optionally, when debugging, you may want to only execute some particular tests using `py.test`, or only the doctests using `python setup.py test_doc`. But before each commit, test the whole package including docstrings. You may also use DistributedTesting, it's much faster.
 
-= How to work with svn and commit (or create a patch) =
+= How to work with Mercurial in SymPy =
 
-Go to the "Source" tab and follow the instructions how to get the newest svn revision. Then do some modifications in your local copy (implement a new feature, fix a bug, add some new files using `svn add` etc.). Then follow this list:
-
+  * `hg clone http://hgsympy.hopto.org/sympy/` to get the !SymPy repository
+  * do some modifications in your local copy (implement a new feature, fix a bug, add some new files using `svn add` etc.)
   * `./setup test` to make sure all the tests pass
-  * `./setup clean` (optional), it's just that the next command prints less garbage
-  * `svn st` (optional) prints a list of files, that you modified
-  * `svn di` (optional) shows a "diff", so that you can see what exact changes you are going to commit
+  * `hg st` (optional) prints a list of files, that you modified
+  * `hg di` (optional) shows a "diff", so that you can see what exact changes you are going to commit
+  * `hg ci` will fire up an editor and you write a comment about what you changed (the `hg di` output from above will help you). This command can also be run non-interactively using `hg ci -m "comment"`.
+  * do some more commits if you want
+  * 'hg out' to see all your local changesets
+  * `hg bundle /tmp/myfix.hg` and send `/tmp/myfix.hg` either to Issues, or the mailinglist, and we will review it and either commit it, or help you improve it.
 
-Now, if you are given an svn write access, do:
-
-  * `svn ci` will fire up an editor and you write a comment about what you changed (the `svn di` output from above will help you). This command can also be run non-interactively using `svn ci -m "comment"`.
-
-Otherwise create a patch:
-
-  * `svn di > /tmp/patch` and send this patch to either Issues, or the mailinglist, and we will review it and either commit it, or help you improve it.
-
-== How to create a branch ==
-
-When working on something bigger, that affects the whole project and you are not able to finish it in couple of hours, create a new branch:
-{{{
-svn checkout https://sympy.googlecode.com/svn/ sympy --username ondrej.certik
-cd sympy
-svn copy trunk branches/sympy-order
-}}}
-Work in this branch, commit normally and when you are ready to merge it with the trunk, do:
-{{{
-svn di -r 963:1069 https://sympy.googlecode.com/svn/trunk
-svn merge --dry-run -r 963:1069 https://sympy.googlecode.com/svn/trunk
-svn merge -r 963:1069 https://sympy.googlecode.com/svn/trunk
-}}}
-It will update your branch to be consistent with the trunk. Check that everything works again. And then you just copy the changes from the branch into the trunk in the same way.
-
-More information about subversion can be found in the online book:
-
-http://svnbook.red-bean.com/en/1.1/index.html
+See [http://code.google.com/p/sympy/wiki/Mercurial Mercurial] for detailed instructions and tips how to work with Mercurial and !SymPy.
 
 = Lists =
 
