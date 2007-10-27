@@ -42,7 +42,7 @@ Optionally, when debugging, you may want to only execute some particular tests u
   * `hg di` (optional) shows a "diff", so that you can see what exact changes you are going to commit
   * `hg ci` will fire up an editor and you write a comment about what you changed (the `hg di` output from above will help you). This command can also be run non-interactively using `hg ci -m "comment"`.
   * do some more commits if you want
-  * 'hg out' to see all your local changesets
+  * `hg out` to see all your local changesets
   * `hg bundle /tmp/myfix.hg` and send `/tmp/myfix.hg` either to Issues, or the mailinglist, and we will review it and either commit it, or help you improve it.
 
 See [http://code.google.com/p/sympy/wiki/Mercurial Mercurial] for detailed instructions and tips how to work with Mercurial and !SymPy.
