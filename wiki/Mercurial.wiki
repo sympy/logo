@@ -120,3 +120,4 @@ default = ssh://hg@hgsympy.hopto.org/sympy/
  * [http://hgbook.red-bean.com/hgbookch12.html Mercurial Queues] extension can be of great  help while working on your patches.
  * when using ssh:// transport, it is convenient to use ssh-agent.
  * "ssh -A" can be helpful if you want to reach the repository from a not-so-trusted host.
+ * [http://wiki.pylonshq.com/display/pylonscookbook/Mercurial+for+Subversion+Users  Mercurial for Subversion Users] Howto.
