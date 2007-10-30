@@ -13,6 +13,8 @@ The same as 0.5.6.
   * `_sage_()` methods implemented to convert any !SymPy expression to a SAGE expression.
   * `isympy` fixed so that it always tries the local unpacked sympy first (the one in the directory where `isympy` sits) and only then the system wide installation of sympy (Debian package for example)
   * issues fixed: 439, 436
+  * known issues:
+      * the series expansion fails for some more complex expressions (the same problem since !SymPy 0.5.0), see the relevant [http://code.google.com/p/sympy/issues/list?can=2&q=%22series+bug%22 issues].
 
 == 0.5.5 ==
 
