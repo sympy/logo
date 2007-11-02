@@ -50,7 +50,7 @@ you can also access it on the web:
 
 http://hg.sympy.org/sympy/
 
-and you can download any revision you want as a gz, bz2 or zip file.
+where (besides other things) you can download any revision you want as a gz, bz2 or zip file.
 
 
 = Test it =
