@@ -42,10 +42,15 @@ On unix systems (linux, BSD, cygwin, etc.): extract it with the command `"tar xz
 
 * hg version *
 
-On unix systems:
+To get the Mercurial repository, use:
 {{{
-hg clone http://hgsympy.hopto.org/sympy/
+hg clone http://hg.sympy.org/sympy/
 }}}
+you can also access it on the web:
+
+http://hg.sympy.org/sympy/
+
+and you can download any revision you want as a gz, bz2 or zip file.
 
 
 = Test it =
