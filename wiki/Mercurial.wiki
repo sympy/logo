@@ -20,13 +20,11 @@ http://video.google.com/videoplay?docid=-7724296011317502612
 
 Web:
 
-http://hgsympy.hopto.org/sympy/
-
-(soon the repository will have a nice address hg.sympy.org)
+http://hg.sympy.org/sympy/
 
 Mercurial:
 {{{
-$ hg clone http://hgsympy.hopto.org/sympy/
+$ hg clone http://hg.sympy.org/sympy/
 }}}
 
 == usage ==
@@ -66,7 +64,7 @@ The difference is that all of this happens locally and thus you can work offline
 It's called pushing.
 {{{
 $ hg out
-comparing with http://hgsympy.hopto.org/sympy/
+comparing with http://hg.sympy.org/sympy/
 searching for changes
 changeset:   1535:173e12b16e48
 tag:         tip
@@ -75,7 +73,7 @@ date:        Sat Oct 20 13:40:49 2007 +0200
 summary:     README was incredibly improved
 
 $ hg push
-pushing to http://hgsympy.hopto.org/sympy/
+pushing to http://hg.sympy.org/sympy/
 searching for changes
 ssl required
 }}}
@@ -87,8 +85,8 @@ and send it to Issues, or the mailinglist. We'll review it and either apply or h
 
 Some long time active !SymPy developers have a write access using ssh, change "http://" to "ssh://hg@" like this:
 {{{
-$ hg out ssh://hg@hgsympy.hopto.org/sympy/
-comparing with ssh://hg@hgsympy.hopto.org/sympy/
+$ hg out ssh://hg@hg.sympy.org/sympy/
+comparing with ssh://hg@hg.sympy.org/sympy/
 searching for changes
 changeset:   1535:173e12b16e48
 tag:         tip
@@ -96,8 +94,8 @@ user:        Ondrej Certik <ondrej@certik.cz>
 date:        Sat Oct 20 13:40:49 2007 +0200
 summary:     README was incredibly improved
 
-$ hg push ssh://hg@hgsympy.hopto.org/sympy/
-pushing to ssh://hg@hgsympy.hopto.org/sympy/
+$ hg push ssh://hg@hg.sympy.org/sympy/
+pushing to ssh://hg@hg.sympy.org/sympy/
 searching for changes
 remote: adding changesets
 remote: adding manifests
@@ -107,12 +105,12 @@ remote: added 1 changesets with 1 changes to 1 files
 You can make this default by changing the `.hg/hgrc` from:
 {{{
 [paths]
-default = http://hgsympy.hopto.org/sympy/
+default = http://hg.sympy.org/sympy/
 }}}
 to:
 {{{
 [paths]
-default = ssh://hg@hgsympy.hopto.org/sympy/
+default = ssh://hg@hg.sympy.org/sympy/
 }}}
 
 == Useful info ==
