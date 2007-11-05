@@ -38,6 +38,8 @@ Examples:
    2
 }}}
 
+See also PrettyPrinting for a nice unicode printing.
+
 == Implementation details ==
   
 Pretty printing is implemented using the classmethod `__pretty__` and relies on the module sympy.core.stringPict for rendering nice-looking formulas. 
