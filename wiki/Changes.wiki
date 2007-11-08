@@ -6,7 +6,7 @@ This page documents the major changes made to !SymPy in each release and svn.
 
 == hg ==
 
-The same as 0.5.6.
+  * `isympy` now uses 2D unicode PrettyPrinting by default.
 
 == 0.5.6 ==
 
