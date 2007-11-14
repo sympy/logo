@@ -65,6 +65,12 @@ Y₀₀ (θ, φ) = ───
 
 }}}
 
-= This is how it looks in uxterm =
+= This is how it looks=
+
+in `uterm`:
 
 http://landau.phys.spbu.ru/~kirr/isympy-unicode.png
+
+and `gnome-terminal`:
+
+http://sympy.googlecode.com/svn/materials/web/screenshots/gnome-terminal-unicode.png
