@@ -69,7 +69,7 @@ Y₀₀ (θ, φ) = ───
 
 in `uterm`:
 
-http://landau.phys.spbu.ru/~kirr/isympy-unicode.png
+http://sympy.googlecode.com/svn/materials/web/screenshots/uterm-isympy-unicode.png
 
 and `gnome-terminal`:
 
