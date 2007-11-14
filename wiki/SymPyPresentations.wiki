@@ -4,7 +4,7 @@
 
 On this page you can find all presentations about !SymPy that were given at conferences.
 
-== !SciPy2007 ==
+== !SciPy 2007 ==
 
 [http://www.scipy.org/SciPy2007/ SciPy2007] was a conference at Caltech (Los Angeles, USA), where Ondřej gave this talk: [http://sympy.googlecode.com/svn/materials/presentations/scipy2007.pdf scipy2007.pdf]
  
