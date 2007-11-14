@@ -4,7 +4,7 @@
 
 !SymPy is able to display nice-looking formulas on a pure terminal using ascii-art. Even more -- when unicode is available, it uses special better-looking symbols for drawing.
 
-To try it, run _isympy_ in a unicode-capable terminal such as uxterm.
+To try it, run _isympy_ in a unicode-capable terminal such as `uxterm` or `gnome-terminal`.
 
 
 = Example =
@@ -67,7 +67,7 @@ Y₀₀ (θ, φ) = ───
 
 = This is how it looks like =
 
-in `uterm`:
+in `uxterm`:
 
 http://sympy.googlecode.com/svn/materials/web/screenshots/uterm-isympy-unicode.png
 
