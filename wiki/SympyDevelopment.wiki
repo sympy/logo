@@ -35,7 +35,7 @@ Optionally, when debugging, you may want to only execute some particular tests u
 
 = How to work with Mercurial in !SymPy =
 
-  * `hg clone http://hgsympy.hopto.org/sympy/` to get the !SymPy repository
+  * `hg clone http://hg.sympy.org/sympy/` to get the !SymPy repository
   * do some modifications in your local copy (implement a new feature, fix a bug, add some new files using `svn add` etc.)
   * `./setup test` to make sure all the tests pass
   * `hg st` (optional) prints a list of files, that you modified
