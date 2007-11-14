@@ -10,5 +10,5 @@ On this page you can find all presentations about !SymPy that were given at conf
  
 == SAGE Days 6 ==
 
-[http://wiki.sagemath.org/days6/ SAGE Days 6] was a conference in Bristol, UK, where Ondřej gave this talk: [http://hg.certik.cz/SD6/raw-file/2c1aefebf157/pres.pdf pres.pdf]
+[http://wiki.sagemath.org/days6/ SAGE Days 6] was a conference in Bristol (UK) where Ondřej gave this talk: [http://hg.certik.cz/SD6/raw-file/2c1aefebf157/pres.pdf pres.pdf]
  
