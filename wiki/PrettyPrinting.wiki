@@ -65,7 +65,7 @@ Y₀₀ (θ, φ) = ───
 
 }}}
 
-= This is how it looks=
+= This is how it looks like =
 
 in `uterm`:
 
