@@ -16,7 +16,7 @@ hg ci
 }}}
 as many times as you want.
 
-= Publish your patch =
+= Publish your patches =
 
 What has changed?
 {{{
