@@ -7,3 +7,18 @@ This serves as a quick cookbook. For detailed tutorial about Hg and !SymPy, see 
 {{{
 $ hg clone http://hg.sympy.org/sympy/
 }}}
+
+= Hack =
+
+Implement new features, tests, bugfixes. Commit
+{{{
+hg ci
+}}}
+as many times as you want.
+
+= Publish your patch =
+
+What has changed?
+{{{
+hg out
+}}}
