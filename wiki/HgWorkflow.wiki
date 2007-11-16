@@ -31,7 +31,9 @@ hg qimport -r qparent
 hg qpop
 hg qpop
 ...
-hg qfold
+hg qfold 1516
+hg qfold 1517
+...
 }}}
 
 = Links =
