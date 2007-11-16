@@ -28,5 +28,8 @@ hg qimport -r tip
 hg qimport -r qparent
 hg qimport -r qparent
 ...
+hg qpop
+hg qpop
+...
 hg qfold
 }}}
