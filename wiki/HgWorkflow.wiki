@@ -1,5 +1,9 @@
-#summary Simple "cookbook" how to hack on !SymPy
+#summary Simple "cookbook" how to hack on SymPy
+
+This serves as a quick cookbook. For detailed tutorial about Hg and !SymPy, see the [http://code.google.com/p/sympy/wiki/Mercurial Mercurial] wiki.
 
 = Download Hg =
 
+{{{
 $ hg clone http://hg.sympy.org/sympy/
+}}}
