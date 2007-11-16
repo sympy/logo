@@ -22,7 +22,7 @@ What has changed?
 {{{
 hg out
 }}}
-Create one (or a few) nice patches from all your commits (i.e. join some commits together to form logical chunks to be easier to review && apply).
+Create one (or a few) nice patches from all your commits (i.e. join some commits together to form logical chunks to be easier to review && apply):
 {{{
 hg qimport -r tip
 hg qimport -r qparent
