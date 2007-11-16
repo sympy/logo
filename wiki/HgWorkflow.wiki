@@ -1,0 +1,5 @@
+#summary Simple "cookbook" how to hack on !SymPy
+
+= Download Hg =
+
+$ hg clone http://hg.sympy.org/sympy/
