@@ -10,6 +10,7 @@ http://sympy.googlecode.com/svn/materials/logo/sympy-160px.png
 
 ==News==
 
+  * *17 Nov 2007* Version 0.5.7 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *30 Oct 2007* Version 0.5.6 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *24 Oct 2007* We moved from Subversion to [Mercurial] as our version control system
   * *21 Oct 2007* Version 0.5.5 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
