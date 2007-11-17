@@ -63,15 +63,17 @@ Then there are !SymPy modules (18200 lines including documentation) for these ta
   * geometry module
   * plotting (2D and 3D)
 
-plus external packages:
-
-  * [http://code.google.com/p/symbide/ symbide]: GUI for !SymPy in PyGTK
 
 There are extensive tests (6148 lines in 58 files) for every single feature in !SymPy. [SymPyTests More...] 
 
+=== Related packages ===
+
+  * [http://sagemath.org/ SAGE]: an open source alternative to Mathematica, Maple, Matlab and Magma
+  * [http://code.google.com/p/symbide/ symbide]: GUI for !SymPy in PyGTK
+
 ===Things we are working on===
 
-  * Make !SymPy very easy to use in [http://www.sagemath.org/ SAGE]
+  * Make !SymPy very easy to use within [http://www.sagemath.org/ SAGE]
   * See also [http://code.google.com/p/sympy/issues/list Issues]
   * You can also check our blogs: [http://planet.sympy.org/ PlanetSympy]
   * Or join us at #sympy on irc.freenode.net
