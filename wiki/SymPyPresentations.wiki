@@ -4,15 +4,19 @@
 
 On this page you can find all presentations about !SymPy that were given at conferences.
 
-== !SciPy 2007 ==
+== !SciPy 2007==
 
 [http://www.scipy.org/SciPy2007/ SciPy2007] was a conference at Caltech (Los Angeles, USA), where Ondřej gave this talk: 
+
+date: August 14-18, 2007
 
 slides: [http://sympy.googlecode.com/svn/materials/presentations/scipy2007.pdf scipy2007.pdf]
  
 == SAGE Days 6 ==
 
 [http://wiki.sagemath.org/days6/ SAGE Days 6] was a conference in Bristol (UK) where Ondřej gave this talk:
+
+date: November 9-15, 2007
 
 slides: [http://sympy.googlecode.com/svn/materials/presentations/SD6.pdf SD6.pdf]
 
