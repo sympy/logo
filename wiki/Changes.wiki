@@ -5,8 +5,8 @@
 This page documents the major changes made to !SymPy in each release and svn.
 
 == [http://hg.sympy.org/sympy/ hg] ==
-
-The same as 0.5.7.
+ 
+  * `_eval_apply()` was renamed to `canonize()` (Ondřej Čertík)
 
 == 0.5.7 ==
 
