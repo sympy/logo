@@ -8,6 +8,10 @@ If you found a bug, please report it in [http://code.google.com/p/sympy/issues/l
 
 http://sympy.googlecode.com/svn/materials/logo/sympy-160px.png
 
+==Downloads==
+
+Go to DownloadInstallation
+
 ==News==
 
   * *17 Nov 2007* Version 0.5.7 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
