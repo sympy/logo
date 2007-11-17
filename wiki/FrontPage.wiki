@@ -10,7 +10,7 @@ http://sympy.googlecode.com/svn/materials/logo/sympy-160px.png
 
 ==Downloads==
 
-Use "Featured Downloads" on the right hand side. Or go to DownloadInstallation for more options and information.
+Use "Featured Downloads" on the right hand side. For more options and information, go to DownloadInstallation.
 
 ==News==
 
