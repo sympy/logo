@@ -34,7 +34,7 @@ Presentations about !SymPy given at conferences are at SymPyPresentations.
 
 Useful information can also be found on our blog [http://planet.sympy.org/ Planet SymPy].
 
-You may want to look at [GSoC2007 2007 Google Summer of Code in SymPy] and apply in [GSoc2008 2008]. :)
+You may want to look at [GSoC2007 2007 Google Summer of Code in SymPy] and apply in [GSoC2008 2008]. :)
 
 !SymPy logos: SymPyLogos.
 
