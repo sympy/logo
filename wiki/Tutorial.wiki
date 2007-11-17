@@ -158,7 +158,7 @@ you can also calculate the limit at infinity:
 
 }}}
 
-for some non-trivial examples on limits, you can read the test file [http://sympy.googlecode.com/svn/trunk/sympy/series/tests/test_demidovich.py test_demidovich.py]
+for some non-trivial examples on limits, you can read the test file [http://hg.sympy.org/sympy/file/tip/sympy/series/tests/test_demidovich.py test_demidovich.py]
 
 == Differentiation ==
 
