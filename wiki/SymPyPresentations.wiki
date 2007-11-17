@@ -16,7 +16,7 @@ slides: [http://sympy.googlecode.com/svn/materials/presentations/scipy2007.pdf s
 
 [http://wiki.sagemath.org/days6/ SAGE Days 6] was a conference in Bristol (UK) where Ondřej gave this talk:
 
-date: November 9-15, 2007
+date: November 10-14, 2007
 
 slides: [http://sympy.googlecode.com/svn/materials/presentations/SD6.pdf SD6.pdf]
 
