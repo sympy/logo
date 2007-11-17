@@ -15,7 +15,7 @@ class sign(SingleValuedFunction):
     nofargs = 1
 
     @classmethod
-    def _eval_apply(cls, arg):
+    def canonize(cls, arg):
         if isinstance(arg, Basic.NaN):
             return S.NaN
         if isinstance(arg, Basic.Zero): return S.One
@@ -24,7 +24,7 @@ class sign(SingleValuedFunction):
         if isinstance(arg, Basic.Mul):
             coeff, terms = arg.as_coeff_terms()
             if not isinstance(coeff, Basic.One):
-                return cls(coeff) * self(Basic.Mul(*terms))
+                return cls(coeff) * cls(Basic.Mul(*terms))
 
     is_bounded = True
 
@@ -35,7 +35,7 @@ class sign(SingleValuedFunction):
         return isinstance(self[0], Basic.Zero)
 }}}
 
-and that's it. The `_eval_*` functions are called when something is needed. The `_eval_apply` is called when the class is about to be instantiated and it should return either some simplified instance of some other class or if the class should be unmodified, return `None` (see `core/function.py` in `Function.__new__` for implementation details).  The applied function `sign(x)` is constructed using
+and that's it. The `_eval_*` functions are called when something is needed. The `canonize` is called when the class is about to be instantiated and it should return either some simplified instance of some other class or if the class should be unmodified, return `None` (see `core/function.py` in `Function.__new__` for implementation details).  The applied function `sign(x)` is constructed using
 {{{
 sign(x)
 }}}
