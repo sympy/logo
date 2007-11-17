@@ -16,5 +16,5 @@ slides: [http://sympy.googlecode.com/svn/materials/presentations/scipy2007.pdf s
 
 slides: [http://sympy.googlecode.com/svn/materials/presentations/SD6.pdf SD6.pdf]
 
-video: [http://dakol.fsik.cvut.cz/~ondra/SD6.mpg SD6.mpg]
+video: [http://dakol.fsik.cvut.cz/~ondra/SD6.mpg SD6.mpg] (full resolution, 602MB)
  
