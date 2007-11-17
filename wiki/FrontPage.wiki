@@ -66,9 +66,11 @@ Then there are !SymPy modules (18200 lines including documentation) for these ta
 
 There are extensive tests (6148 lines in 58 files) for every single feature in !SymPy. [SymPyTests More...] 
 
-=== Related packages ===
+=== Related projects ===
 
   * [http://sagemath.org/ SAGE]: an open source alternative to Mathematica, Maple, Matlab and Magma
+  * [http://code.google.com/p/mpmath/ mpmath]: a Python library for arbitrary-precision floating-point arithmetic (included in !SymPy)
+  * [http://code.google.com/p/sympycore/ sympycore]: the next generation of the !SymPy core package (see SymPyCore for more information)
   * [http://code.google.com/p/symbide/ symbide]: GUI for !SymPy in PyGTK
 
 ===Things we are working on===
