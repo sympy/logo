@@ -70,8 +70,9 @@ plus external packages:
 There are extensive tests (6148 lines in 58 files) for every single feature in !SymPy. [SymPyTests More...] 
 
 ===Things we are working on===
- 
-  * See [http://code.google.com/p/sympy/issues/list Issues] for details
+
+  * Make !SymPy very easy to use in [http://www.sagemath.org/ SAGE]
+  * See also [http://code.google.com/p/sympy/issues/list Issues]
   * You can also check our blogs: [http://planet.sympy.org/ PlanetSympy]
   * Or join us at #sympy on irc.freenode.net
 
@@ -79,7 +80,6 @@ But generally, we are trying to polish things, fix bugs, improve documentation, 
 
 ===Some ideas for future development===
 
-  * Make !SymPy very easy to use in [http://www.sagemath.org/ SAGE]
   * improve the integration algorithm, so that !SymPy can integrate anything that can be integrated.
   * improve series expansion
   * asymptotic expansion
