@@ -35,7 +35,11 @@ hg qfold 1516
 hg qfold 1517
 ...
 }}}
-Send them to list:
+edit the log message
+{{{
+hg qrefresh -e
+}}}
+Send it to list:
 {{{
 hg email -o
 }}}
