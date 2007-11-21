@@ -14,8 +14,6 @@ Use "Featured Downloads" on the right hand side. For more options and informatio
 
 Mercurial repository: http://hg.sympy.org/sympy/
 
-All downloads can be accessed from the link above, but the mercurial repository is accessed often and also it's the easiest way how to find out what has changed in terms of new code.
-
 ==News==
 
   * *17 Nov 2007* Version 0.5.7 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
