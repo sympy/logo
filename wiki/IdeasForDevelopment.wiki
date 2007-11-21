@@ -2,17 +2,6 @@
 
 Here are some ideas where sympy could be effectively used. All of those are things that can be done in Maple/Mathematica, but it is much more convenient and easier to have it in Python.
 
-
-= Geometry =
-
-Write a geometry module, which you would tell: create a triangle, construct angle bisectors, a circumcircle etc. And then you would ask questions: do these three lines intersect? Is this point in that line? 
-
-The module will use an analytic geometry to represent the geometry entities (lines, triangles, points, ...) and then solve symbolic equations to answer the questions.
-
-Note: we are working on this as part of the GSoC.
-
-= Other =
-
 All the things which are written as Mathematica or Maple modules.
 As an example, why Sympy is a better approach than Maple, look into http://sympy.googlecode.com/svn/trunk/doc/gruntz.pdf, page 131, there is a code for computing symbolic limits in the Maple language. Then look into http://sympy.googlecode.com/svn/trunk/sym/modules/limits.py, which does the same thing (I used the Maple code as a reference). Sympy code is shorter and cleaner.
 
