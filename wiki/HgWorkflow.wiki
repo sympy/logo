@@ -59,6 +59,16 @@ method = /usr/sbin/sendmail
 more info here:
 http://code.google.com/p/sympy/issues/detail?id=451
 
+== How to apply patches directly from Mail Client ==
+
+For Mutt, put something like the following into .muttrc:
+{{{
+macro pager A "<pipe-entry>(umask 022; hg -R ~/study/sympy/sympy import -)"
+}}}
+
+Then, when you press 'A', a patch will be imported into sympy repository.
+
+
 == other ==
 
 http://selenic.com/pipermail/mercurial/2007-March/012580.html
