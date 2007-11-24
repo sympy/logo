@@ -9,7 +9,7 @@ This page documents the major changes made to !SymPy in each release and svn.
   * `_eval_apply()` was renamed to `canonize()` (Ondřej Čertík)
   * Added more number theory functions (Goutham)
   * Spherical harmonics (Ylm) implemented (Ondřej Čertík)
-  * Functions interface simplified
+  * Functions interface simplified (Ondřej Čertík)
 
 == 0.5.7 ==
 
