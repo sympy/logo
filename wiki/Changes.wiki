@@ -10,6 +10,7 @@ This page documents the major changes made to !SymPy in each release and svn.
   * Added more number theory functions (Goutham Lakshminarayan)
   * Spherical harmonics (Ylm) implemented (Ondřej Čertík)
   * Functions interface simplified (Ondřej Čertík)
+  * Draw negative powers in denominator nicely (Kirill Smelkov)
 
 == 0.5.7 ==
 
