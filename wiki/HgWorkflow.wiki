@@ -47,6 +47,12 @@ hg email -o
 
 = Links =
 
+== How to setup the email ==
+
+http://code.google.com/p/sympy/issues/detail?id=451
+
+== other ==
+
 http://selenic.com/pipermail/mercurial/2007-March/012580.html
 
 == Notes ==
