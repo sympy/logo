@@ -50,6 +50,10 @@ http://www.ccas.ru/sabramov/ps/PCS56.pdf
 
 says, that it can be implemented in just 100 (!) lines of code.
 
+And here it is -- The Poor Man's Integrator:
+
+http://www-sop.inria.fr/cafe/Manuel.Bronstein/pmint/index.html
+
 = General =
 
 These two sites contain articles concerning almost every aspect of CAS.
