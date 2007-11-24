@@ -49,6 +49,14 @@ hg email -o
 
 == How to setup the email ==
 
+Then you need to put this to your ~/.hgrc:
+{{{
+[email]
+to = sympy-patches@googlegroups.com
+from = Ondrej Certik <your@email>
+method = /usr/sbin/sendmail
+}}}
+more info here:
 http://code.google.com/p/sympy/issues/detail?id=451
 
 == other ==
