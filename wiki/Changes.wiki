@@ -9,7 +9,7 @@ This page documents the major changes made to !SymPy in each release and svn.
   * `_eval_apply()` was renamed to `canonize()`
   * Added more number theory functions
   * Spherical harmonics (Ylm) implemented
-  * Functions interface simplified
+  * Functions interface simplified (`SingleValuedFunction` removed, `nofargs -> nargs`)
   * Draw negative powers in denominator nicely
 
 People who contributed to this release:
