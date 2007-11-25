@@ -35,7 +35,9 @@ class sign(SingleValuedFunction):
         return isinstance(self[0], Basic.Zero)
 }}}
 
-and that's it. The `_eval_*` functions are called when something is needed. The `canonize` is called when the class is about to be instantiated and it should return either some simplified instance of some other class or if the class should be unmodified, return `None` (see `core/function.py` in `Function.__new__` for implementation details).  The applied function `sign(x)` is constructed using
+and that's it. The `_eval_*` functions are called when something is needed. The `canonize` is called when the class is about to be instantiated and it should return either some simplified instance of some other class or if the class should be unmodified, return `None` (see `core/function.py` in `Function.__new__` for implementation details). See also tests in [http://hg.sympy.org/sympy/file/tip/sympy/functions/elementary/tests/test_interface.py sympy/functions/elementary/tests/test_interface.py], that test this interface and you can use them to create your own new functions.
+
+The applied function `sign(x)` is constructed using
 {{{
 sign(x)
 }}}
@@ -43,7 +45,8 @@ both inside and outside of !SymPy. Unapplied functions `sign` is just the class:
 {{{
 sign
 }}}
-Both inside and outside of !SymPy. This is the current structure of classes in !SymPy:
+Both inside and outside of !SymPy. 
+This is the current structure of classes in !SymPy:
 {{{
 class BasicType(type):
     pass
