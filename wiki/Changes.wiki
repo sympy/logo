@@ -7,6 +7,7 @@ This page documents the major changes made to !SymPy in each release and svn.
 == [http://hg.sympy.org/sympy/ hg] ==
  
   * `_eval_apply()` was renamed to `canonize()`
+  * Added `var` from [http://www.sagemath.org SAGE]
   * Added more number theory functions
   * Spherical harmonics (Ylm) implemented
   * Functions interface simplified (`SingleValuedFunction` removed, `nofargs -> nargs`)
