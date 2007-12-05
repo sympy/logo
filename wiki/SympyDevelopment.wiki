@@ -47,6 +47,8 @@ Optionally, when debugging, you may want to only execute some particular tests u
 
 See [http://code.google.com/p/sympy/wiki/Mercurial Mercurial] for detailed instructions and tips how to work with Mercurial and !SymPy.
 
+If you prefer to send regular patches, read HgWorkflow, that contains many nice tips.
+
 = Lists =
 
 Besides the mailing list, there is a list where all issue changes are sent:
