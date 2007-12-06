@@ -26,7 +26,7 @@ http://www.sagemath.org/packages/standard
 
 [http://www.microsoft.com/ http://sympy.googlecode.com/svn/materials/web/images/windows.png] * Windows *
 
-Download the windows installer from the frontpage and execute it. Unfortunately, the windows package is usually not the very recent one, because most of the developers don't use Windows.
+Download the windows installer from the frontpage and execute it. There is one known [http://code.google.com/p/sympy/issues/detail?id=188 issue] with missing MSVCR71.dll, but !SymPy works fine.
 
 
 == Sources ==
