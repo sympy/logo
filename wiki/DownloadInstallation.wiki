@@ -17,7 +17,7 @@ apt-get install python-sympy
 
 [http://www.ubuntu.com/ http://sympy.googlecode.com/svn/materials/web/images/ubuntu.png] * Ubuntu *
 
-!SymPy is in Gutsy. The exact !SymPy versions in Ubuntu can be seen here:  https://launchpad.net/ubuntu/+source/sympy
+!SymPy is in Gutsy and Hardy. The exact !SymPy versions in Ubuntu can be seen here:  https://launchpad.net/ubuntu/+source/sympy
 
 [http://www.sagemath.org/ http://sympy.googlecode.com/svn/materials/web/images/sage.png] * SAGE *
 
