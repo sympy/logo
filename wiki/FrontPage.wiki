@@ -118,7 +118,12 @@ Example in the python interpreter:
 
 There is a nice console `isympy` (in the `bin` directory, or if you installed the `deb`, it will be in `/usr/bin/isympy`) which just imports sympy and defines symbols x,y,z for you, so the above thing can be achieved by starting `isympy` and typing this one line:
 {{{
-(1/cos(x)).series(x,10)
+In [1]: (1/cos(x)).series(x,10)
+Out[1]: 
+     2      4       6        8           
+    x    5*x    61*x    277*x            
+1 + ── + ──── + ───── + ────── + O(x**10)
+    2     24     720     8064            
 }}}
 
 Read the [http://code.google.com/p/sympy/wiki/Tutorial tutorial] for more examples.
