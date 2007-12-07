@@ -4,6 +4,8 @@
 
 Sympy uses a number of formats for printing: pretty printing, latex, mathml and plain string representation. 
 
+Note: the documentation of this module needs to be improved. See also the related [http://code.google.com/p/sympy/issues/detail?id=475 issue 475].
+
 = String representation =
 
 This is the standard python representation and is implemented in the classmethod `__str__`
