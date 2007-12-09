@@ -2,7 +2,7 @@
 
 = Introduction =
 
-As everytime with a fork, it's difficult to write "objective" wiki page about it, so for now, we just present opinions of individual people.
+As everytime with a fork, it's difficult to write "objective" wiki page about it, so for now, we just present opinions of individual people. All of them have write access to this wiki, so that they can change the wiki to reflect their opinions accurately.
 
 == Ondřej Čertík == 
 
