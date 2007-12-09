@@ -20,6 +20,10 @@ We also believe that having two incompatible symbolic manipulation libraries in 
 
 With our strategy, !SymPy will always work and also it will benefit from new fundamental improvements.
 
-== Fredrik Johansson and Pearu Peterson ==
+== Fredrik Johansson ==
 
-Fredrik's opinion, like Pearu's, is that it would have been difficult to do the changes directly in sympy as it would break a lot of existing code, and effort would be spent getting that code to run instead of experimenting with the core.
+My opinion, like Pearu's, is that it would have been difficult to do the changes directly in sympy as it would break a lot of existing code, and effort would be spent getting that code to run instead of experimenting with the core.
+
+== Pearu Peterson ==
+
+_To be added._
