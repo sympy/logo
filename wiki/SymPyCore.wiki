@@ -10,52 +10,29 @@ My opinion, like Pearu's, is that it would have been difficult to do the changes
 
 == Kirill Smelkov ==
 
-Yes, changing fundamental thing breaks a lot of code, but the changes (of course!) shall be targeted to improve the whole thing. Hence the need to bring it to the project. Yes, merging fundamental changes is a pain, but if the merge is kept in mind from the beginning, the pain can be lowered -- changes should be structured into smaller parts, and eventually, some of that smaller parts can be merged without breaking things too much, or at all.
+Yes, changing fundamental thing breaks a lot of code, but the changes (of course!) shall be targeted to improve the whole thing. Hence the need to bring it to the project. Yes, merging fundamental changes is a pain, but if the merge is kept in mind from the beginning, the pain can be lowered -- changes should be structured into smaller parts, and eventually, some of that smaller parts can be merge
+without breaking things too much, or at all.
 *If* there is a motivation for the merge, everything can be easier, but when no merge is planned -- it is a disaster.
 
 Let's see: what is better -- evolution or revolution?
 
-evolution is changing things incrementally, in small steps and revolution usually breaks a lot of stuff. And this was proved to be bad most of the times.
+evolution is changing things incrementally, in small steps
+and revolution usually breaks a lot of stuff
+And this was proved to be bad most of the times.
 
-ok, let's remember the previous "new" core.
+ok, let's remember the previous *new* core.
 What can be said about a merge? was it evolution or revolution?
 How much time and effort did it take to restore the project?
-Again, my point is that the merge have to be planned from the first minutes of a branch 
+Again, my point is that the merge have to be planned from the first minutes of a 
 and yes, every branch is a fork (sort of micro)
-But this works greatly when people intend to merge finally, and try to do their best to cooperate. And on the other way it leads to real forks.
+But this works greatly when people intend to merge finally, and on the other hand it leads to real forks.
 
-
-Again, *if* there is a motivation for the merge, people usually try to find a way for their changes to be incorporated in, and they usually assist to port other code to new infrastructure if needed.
-
-From the now-old "new" core we learnt, that a "merge" was just a breakage, and noone from the "new" core developers was intrested to keep thing in shape -- that is to ease and assits in adaptating other !SymPy code.
-
-~~  . . . . . . . . . . . . . . . . . . .                                                                . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ~~
-
-<kirr> It already did -- nothing prevented it to be developed on a branch, and when we switched to [http://www.selenic.com/mercurial/wiki Mercurial] it is much easier to develop on a separate branch, since it is in spirit of distributed development.
-
+<kirr> It already did -- nothing prevented it to be developed on a branch, and when we switched to HG it is much easier to develop on a separate branch, since it is in spirit of distributed development.
 <kirr> Spawning a new project *is* release by itself!
-
 <fredrik> i can't say i agree with that
-
-<kirr> You'll find eventually that the amount of changes is *tons* and it is again impossible to "merge" it without breaking things. But at least I and I think Ondrej will object to the breakage. We did it once, and we learnt.
-
+<kirr> You'll find eventually that the amount of changes is *tons* and it is again impossible to "merge" it without breaking things. But at lease I and I think Ondrej wiill object to the breakage. We did it once, and we learnt.
 <kirr> separate issue tracker: just tag issues with say sympycore or something like that for easier search/etc...
-
-
-=== Resume ===
-
-[http://www.selenic.com/mercurial/wiki Mercurial] makes it easy to experiment in a branch.
-That is to incrementally develop patches on some topic until they are ready.
-
-Also, it is a good practice to merge ready bits into mainline in the process.
-
-Release-early, release-often can be reformulated here as:
-
-  _MERGE_-_EARLY_, _MERGE_ _OFTEN_
-
-
 <kirr> The problem is that from the technical side, everything is ok to be in, but from someone's motivation side -- it is not.
-
 
 == Ondřej Čertík == 
 
@@ -75,4 +52,58 @@ With our strategy, !SymPy will always work and also it will benefit from new fun
 
 == Pearu Peterson ==
 
-_To be added._
+What Fredrik said above is exactly why it is so difficult to fix
+fundamental issues in sympy. Also, I agree with Ondřej that the 
+SympyDevelopment model is a very good for a mature project.
+From the fact that sympy has fundamental issues follows that
+this development model cannot be applied strictly when there are
+motivated people who are willing to work on fixing
+the fundamental issues.
+
+We all remember the pain of merging the sympy-research branch that
+was a rewrite of my symbolic package to meet the interface developed in 
+the original sympy. The merge never included all of the features in the branch
+nor was all of the original functionality of sympy restored.
+This does not sound good and hence the merge is remembered with pain.
+However, if I remember correctly, the merge resulted a speedup up to
+*150-1500 times* for various operations. I don't think that this kind of speedup
+could have been achieved with a normal evolution of sympy. I do think
+that the pain of merging was well-grounded and we should not actually
+call this as a painful merge but an essential step forward in sympy development,
+even when it contradicts a very good development model.
+
+Implementing a CAS from scratch is not an easy task.
+In fact, I think this is fundamentally a wrong way of approaching
+the problem, i.e. to start with an _implementation_. If there is a
+desire to have a CAS for a given programming environment, say Python,
+then one should start working out a fundamental model of CAS taking
+into account the possibilities and restrictions of the given programming
+environment. When the model is worked out only then start implementing it 
+as a final step. That would be ideal.
+
+Fortunately, Python is close to being
+an ideal programming language for prototype development where one can try
+out different ideas and approaches by writing Python code from the beginning.
+This is also how I see projects like sympy -- sympy is a prototype project
+that aims to provide CAS for Python.
+Hopefully in future it will be reliable and fast enough to solve real problems.
+Let me repeat: implementing a CAS is not an easy task. Keeping in mind
+what's said above, I would claim that too many developers will not
+make this task any easier, especially in the early stages of development.
+
+I believe that working out a reasonably good CAS model for Python requires
+some vision what the model should include and what methods are suitable for
+supporting this model efficiently.
+I wrote my first Python program that aimed to perform basic symbolic
+manipulations tasks about 9 years ago. After that I have tried to
+implement a CAS for Python using very different approaches, starting
+from manipulating Python AST trees to achieve some symbolic manipulation
+effects, ending with creating Python interfaces to existing CA systems
+of other environments such as GiNaC, Maxima using handwritten wrappers
+or the Boost toolkit. With this experience in my bag, I dare to say that
+I have some vision what the CAS model for Python should include and what
+methods are suitable for implementing it in Python. Discussions and all the work
+on sympy/sympycore with all of you have been most fruitful in searching
+for a "perfect" way to implement a CAS for Python. Hopefully this
+research will continue and one day we won't need to worry about changing
+the core of sympy but instead work on extending sympy with new concepts and algorithms.
