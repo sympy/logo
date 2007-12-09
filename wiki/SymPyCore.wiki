@@ -42,7 +42,7 @@ From the now-old "new" core we learnt, that a "merge" was just a breakage, and n
 <kirr> separate issue tracker: just tag issues with say sympycore or something like that for easier search/etc...
 
 
-==== Resume ====
+=== Resume ===
 
 [http://www.selenic.com/mercurial/wiki Mercurial] makes it easy to experiment in a branch.
 That is to incrementally develop patches on some topic until they are ready.
