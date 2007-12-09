@@ -9,7 +9,7 @@ There are issues that could be improved though, such as speed, assumptions model
 
 Nobody knows what is the best way to resolve these issues,
 therefore one must experiment and that may temporarily break lots of
-code. Thus such development needs to happen in a separate branch. We started to play with new ideas in the sympy-sandbox branch mainly by Pearu Peterson, but later Pearu decided to create his own project [http://code.google.com/p/sympycore sympycore].
+code. Thus such development needs to happen in a separate branch. We started to play with new ideas in the sympy-sandbox branch mainly by Pearu Peterson, but later Pearu decided to create his own project [http://code.google.com/p/sympycore sympycore], which is basically a fork of !SymPy.
 
 My (Ondřej) plan is to see which ideas are good and which are bad in sympycore, let it settle for a while and then discuss them in Issues and implementing the good ones in !SymPy. 
 
