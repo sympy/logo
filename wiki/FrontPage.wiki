@@ -73,7 +73,7 @@ There are extensive tests (6148 lines in 58 files) for every single feature in !
 
   * [http://sagemath.org/ SAGE]: an open source alternative to Mathematica, Maple, Matlab and Magma (!SymPy is included in SAGE)
   * [http://code.google.com/p/mpmath/ mpmath]: a Python library for arbitrary-precision floating-point arithmetic (included in !SymPy)
-  * [http://code.google.com/p/sympycore/ sympycore]: the next generation of the !SymPy core package (see SymPyCore for more information)
+  * [http://code.google.com/p/sympycore/ sympycore]: sandbox !SymPy core package (see SymPyCore for more information)
   * [http://code.google.com/p/symbide/ symbide]: GUI for !SymPy in PyGTK
 
 ===Things we are working on===
