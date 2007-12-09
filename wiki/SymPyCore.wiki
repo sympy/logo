@@ -2,15 +2,16 @@
 
 = Introduction =
 
-!SymPy uses a development model as described in SympyDevelopment, basically tests must pass and everything should be discussed in Issues, that is very good for a mature project, but on the other hand makes it very difficult to easily resolve some fundamental issues, such as speed, assumptions model, caching issues etc.
+!SymPy uses a development model as described in SympyDevelopment, basically tests must pass and everything should be discussed in Issues, that is very good for a mature project and 
+I (Ondřej) very stronly believe that is the way to go - team work, open discussion about everything, cooperation. 
+
+There are issues that could be improved though, such as speed, assumptions model, caching issues etc.
 
 Nobody knows what is the best way to resolve these issues,
 therefore one must experiment and that may temporarily break lots of
-code. This is not reasonable with the current state of !SymPy. 
-As a rule, fixing fundamental issues require fundamental changes. In !SymPy, we want to have something now (and we have it), but still many fundamental things could be improved.
+code. Thus such development needs to happen in a separate branch. This is done by Pearu Peterson in the sympycore project.
+We think it is time to start implementing them, in parallel of implementing new features in !SymPy. We started to play with new ideas in sympy-sandbox branch, but Pearu decided to create his own project [http://code.google.com/p/sympycore sympycore].
 
-We think it is time to start implementing them, in parallel of implementing new features in !SymPy. We started to play with new ideas in sympy-sandbox branch, but a new project [http://code.google.com/p/sympycore sympycore] is a better place to do it, because some of the code can be already useful to other people.
-
-The plan is to see which ideas are good and which are bad in sympycore, let it settle for a while and then discuss them in Issues and implementing the good ones in !SymPy. Another option could be that if we manage to disentangle the core of !SymPy with the rest of !SymPy, we could even have two packages, sympycore and sympy, that would be a clean solution, but currently this is really a far future.
+My (Ondřej) plan is to see which ideas are good and which are bad in sympycore, let it settle for a while and then discuss them in Issues and implementing the good ones in !SymPy. 
 
 That way !SymPy will always work and also it will benefit from new fundamental improvements.
