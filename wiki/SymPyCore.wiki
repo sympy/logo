@@ -1,3 +1,4 @@
+
 #summary Information about sympycore
 
 = Introduction =
@@ -26,6 +27,13 @@ How much time and effort did it take to restore the project?
 Again, my point is that the merge have to be planned from the first minutes of a 
 and yes, every branch is a fork (sort of micro)
 But this works greatly when people intend to merge finally, and on the other hand it leads to real forks.
+
+<kirr> It already did -- nothing prevented it to be developed on a branch, and when we switched to HG it is much easier to develop on a separate branch, since it is in spirit of distributed development.
+<kirr> Spawning a new project *is* release by itself!
+<fredrik> i can't say i agree with that
+<kirr> You'll find eventually that the amount of changes is *tons* and it is again impossible to "merge" it without breaking things. But at lease I and I think Ondrej wiill object to the breakage. We did it once, and we learnt.
+<kirr> separate issue tracker: just tag issues with say sympycore or something like that for easier search/etc...
+<kirr> The problem is that from the technical side, everything is ok to be in, but from someone's motivation side -- it is not.
 
 == Ondřej Čertík == 
 
