@@ -9,7 +9,7 @@ We are looking for new developers - there are currently around 9 people (mostly 
 
 Then there is a [http://planet.sympy.org/ Planet SymPy], that aggregates blogs of all developers of !SymPy, so you can read what they are doing at one place.
 
-When writing some code for !SymPy, please follow the guidelines in Mercurial and HgWorkFlow
+When writing some code for !SymPy, please follow the guidelines in Mercurial and HgWorkflow
 
 So please subscribe to both the mailinglists and issues, to be in touch with the other developers. Submit enough patches and you will be given hg push access. Start by going into the Issues and try to fix/implement something, or create a new issue for something you want to implement and then do it and send your patch to [http://groups.google.com/group/sympy-patches sympy-patches], or append it to the issue. We'll review it and commit it.
 
@@ -45,7 +45,7 @@ Optionally, when debugging, you may want to only execute some particular tests u
   * `hg out` (optional) to see all your local changesets
   * `hg email -o sympy-patches@googlegroups.com to send your changes the mailinglist, and we will review it and either commit it, or help you improve it.
 
-See [http://code.google.com/p/sympy/wiki/Mercurial Mercurial] and HgWorkFlow for detailed instructions and tips how to work with Mercurial and !SymPy.
+See [http://code.google.com/p/sympy/wiki/Mercurial Mercurial] and HgWorkflow for detailed instructions and tips how to work with Mercurial and !SymPy.
 
 = Lists =
 
