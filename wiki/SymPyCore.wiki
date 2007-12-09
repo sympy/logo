@@ -2,8 +2,12 @@
 
 = Introduction =
 
+As everytime with a fork, it's difficult to write "objective" wiki page about it, so for now, we just present opinions of individual people.
+
+== Ondřej Čertík == 
+
 !SymPy uses a development model as described in SympyDevelopment, basically tests must pass and everything should be discussed in Issues, that is very good for a mature project and 
-I (Ondřej) very stronly believe that is the way to go - team work, open discussion about everything, cooperation. 
+I very stronly believe that is the way to go - team work, open discussion about everything, cooperation. 
 
 There are issues that could be improved though, such as speed, assumptions model, caching issues etc.
 
@@ -15,3 +19,7 @@ Our plan in !SymPy is to see which ideas are good and which are bad in sympycore
 We also believe that having two incompatible symbolic manipulation libraries in Python is a bad thing. It's sad that sympycore developers don't implement the things directly in !SymPy, so that we need to duplicate their work in many cases, but we will port all good things finally, it will just take longer.
 
 With our strategy, !SymPy will always work and also it will benefit from new fundamental improvements.
+
+== Fredrik Johansson and Pearu Peterson ==
+
+Fredrik's opinion, like Pearu's, is that it would have been difficult to do the changes directly in sympy as it would break a lot of existing code, and effort would be spent getting that code to run instead of experimenting with the core.
