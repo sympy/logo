@@ -2,7 +2,30 @@
 
 = Introduction =
 
-As everytime with a fork, it's difficult to write "objective" wiki page about it, so for now, we just present opinions of individual people. All of them have write access to this wiki, so that they can change the wiki to reflect their opinions accurately.
+As everytime with a fork, it's difficult to write "objective" wiki page about it, so for now, we just present opinions of individual people. All of them have write access to this wiki, so that they can change the wiki to reflect their opinions accurately. People are sorted alphabetically.
+
+== Fredrik Johansson ==
+
+My opinion, like Pearu's, is that it would have been difficult to do the changes directly in sympy as it would break a lot of existing code, and effort would be spent getting that code to run instead of experimenting with the core.
+
+== Kirill Smelkov ==
+
+Yes, changing fundamental thing breaks a lot of code, but the changes (of course!) shall be targeted to improve the whole thing. Hence the need to bring it to the project. Yes, merging fundamental changes is a pain, but if the merge is kept in mind from the beginning, the pain can be lowered -- changes should be structured into smaller parts, and eventually, some of that smaller parts can be merge
+without breaking things too much, or at all.
+*If* there is a motivation for the merge, everything can be easier, but when no merge is planned -- it is a disaster.
+
+Let's see: what is better -- evolution or revolution?
+
+evolution is changing things incrementally, in small steps
+and revolution usually breaks a lot of stuff
+And this was proved to be bad most of the times.
+
+ok, let's remember the previous *new* core.
+What can be said about a merge? was it evolution or revolution?
+How much time and effort did it take to restore the project?
+Again, my point is that the merge have to be planned from the first minutes of a 
+and yes, every branch is a fork (sort of micro)
+But this works greatly when people intend to merge finally, and on the other hand it leads to real forks.
 
 == Ondřej Čertík == 
 
@@ -19,10 +42,6 @@ Our plan in !SymPy is to see which ideas are good and which are bad in sympycore
 We also believe that having two incompatible symbolic manipulation libraries in Python is a bad thing. It's sad that sympycore developers don't implement the things directly in !SymPy, so that we need to duplicate their work in many cases, but we will port all good things finally, it will just take longer.
 
 With our strategy, !SymPy will always work and also it will benefit from new fundamental improvements.
-
-== Fredrik Johansson ==
-
-My opinion, like Pearu's, is that it would have been difficult to do the changes directly in sympy as it would break a lot of existing code, and effort would be spent getting that code to run instead of experimenting with the core.
 
 == Pearu Peterson ==
 
