@@ -10,29 +10,52 @@ My opinion, like Pearu's, is that it would have been difficult to do the changes
 
 == Kirill Smelkov ==
 
-Yes, changing fundamental thing breaks a lot of code, but the changes (of course!) shall be targeted to improve the whole thing. Hence the need to bring it to the project. Yes, merging fundamental changes is a pain, but if the merge is kept in mind from the beginning, the pain can be lowered -- changes should be structured into smaller parts, and eventually, some of that smaller parts can be merge
-without breaking things too much, or at all.
+Yes, changing fundamental thing breaks a lot of code, but the changes (of course!) shall be targeted to improve the whole thing. Hence the need to bring it to the project. Yes, merging fundamental changes is a pain, but if the merge is kept in mind from the beginning, the pain can be lowered -- changes should be structured into smaller parts, and eventually, some of that smaller parts can be merged without breaking things too much, or at all.
 *If* there is a motivation for the merge, everything can be easier, but when no merge is planned -- it is a disaster.
 
 Let's see: what is better -- evolution or revolution?
 
-evolution is changing things incrementally, in small steps
-and revolution usually breaks a lot of stuff
-And this was proved to be bad most of the times.
+evolution is changing things incrementally, in small steps and revolution usually breaks a lot of stuff. And this was proved to be bad most of the times.
 
-ok, let's remember the previous *new* core.
+ok, let's remember the previous "new" core.
 What can be said about a merge? was it evolution or revolution?
 How much time and effort did it take to restore the project?
-Again, my point is that the merge have to be planned from the first minutes of a 
+Again, my point is that the merge have to be planned from the first minutes of a branch 
 and yes, every branch is a fork (sort of micro)
-But this works greatly when people intend to merge finally, and on the other hand it leads to real forks.
+But this works greatly when people intend to merge finally, and try to do their best to cooperate. And on the other way it leads to real forks.
 
-<kirr> It already did -- nothing prevented it to be developed on a branch, and when we switched to HG it is much easier to develop on a separate branch, since it is in spirit of distributed development.
+
+Again, *if* there is a motivation for the merge, people usually try to find a way for their changes to be incorporated in, and they usually assist to port other code to new infrastructure if needed.
+
+From the now-old "new" core we learnt, that a "merge" was just a breakage, and noone from the "new" core developers was intrested to keep thing in shape -- that is to ease and assits in adaptating other !SymPy code.
+
+~~  . . . . . . . . . . . . . . . . . . .                                                                . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ~~
+
+<kirr> It already did -- nothing prevented it to be developed on a branch, and when we switched to [http://www.selenic.com/mercurial/wiki Mercurial] it is much easier to develop on a separate branch, since it is in spirit of distributed development.
+
 <kirr> Spawning a new project *is* release by itself!
+
 <fredrik> i can't say i agree with that
-<kirr> You'll find eventually that the amount of changes is *tons* and it is again impossible to "merge" it without breaking things. But at lease I and I think Ondrej wiill object to the breakage. We did it once, and we learnt.
+
+<kirr> You'll find eventually that the amount of changes is *tons* and it is again impossible to "merge" it without breaking things. But at least I and I think Ondrej will object to the breakage. We did it once, and we learnt.
+
 <kirr> separate issue tracker: just tag issues with say sympycore or something like that for easier search/etc...
+
+
+=== Resume ===
+
+[http://www.selenic.com/mercurial/wiki Mercurial] makes it easy to experiment in a branch.
+That is to incrementally develop patches on some topic until they are ready.
+
+Also, it is a good practice to merge ready bits into mainline in the process.
+
+Release-early, release-often can be reformulated here as:
+
+  _MERGE_-_EARLY_, _MERGE_ _OFTEN_
+
+
 <kirr> The problem is that from the technical side, everything is ok to be in, but from someone's motivation side -- it is not.
+
 
 == Ondřej Čertík == 
 
