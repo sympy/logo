@@ -149,7 +149,7 @@ ported all modules to it. So all features that you had should now be in
 sympy. Which features weren't included?
 
 > hence the merge is remembered with pain. However, if I remember correctly, the merge resulted a speedup up to 150-1500 times for various
-> operations. I don't think that this kind of speedup could have been achieved with a normal evolution of sympy. I do think that the pain of merging
+ operations. I don't think that this kind of speedup could have been achieved with a normal evolution of sympy. I do think that the pain of merging
 
 I think the main speedup was achieved by using __new__ instead of
 __init__ and that should have been done incrementaly, because I spent literally weeks fixing issues with the
@@ -159,7 +159,7 @@ with caching, but as you have shown in sympycore, it is possible to
 write fast CAS in python even without caching.
 
 > was well-grounded and we should not actually call this as a painful merge but an essential step forward in sympy development, even when it
-> contradicts a very good development model.
+ contradicts a very good development model.
 
 I think it was a mistake to do it, in the end it cost me much more
 time, than just porting __init__ to _new_ and some other things (there
@@ -171,7 +171,7 @@ to the old core. Maybe it's inevitable for the core to be too complex,
 but I still believe it could be done simple and fast.
 
 > this experience in my bag, I dare to say that I have some vision what the CAS model for Python should include and what methods are suitable for
-> implementing it in Python. Discussions and all the work on
+ implementing it in Python. Discussions and all the work on
 
 Well - the new core, now in !SymPy is your (Pearu's) vision. It turned out it still needs more changes. Now you started sympycore, but I really don't see any guarantees that more changes will be needed to it and a new rewrite from scratch will happen? I don't think that's the way. Evolution, as Kirr says, that's the way.
 
@@ -180,12 +180,12 @@ Let me quote part of your email (see sympy mailinglist archives):
 _After the merged core is stabilized then we should work hard to keep backward
 compatibility as much as possible._
 
-We merged that new core, but you don't seem to agree with this anymore, because sympycore is incomatible with your new core, now in SymPy. 
+We merged that new core, but you don't seem to agree with this anymore, because sympycore is incomatible with your new core, now in !SymPy. 
 
 As to the experience, I am not sure it's that relevant, because I have
 a plenty of experience too - I tried to fix your pyginac when you
 stopped working on it, then I created swiginac together with Ola, played with ginac a lot
 and wrote sympy, also I am quite involved in Sage.calculus. I also
-tried and studied all CAS systems in the links on sympy's webpage.
+tried and studied all CAS systems in the links on the sympy's webpage.
 
 == Pearu Peterson ==
