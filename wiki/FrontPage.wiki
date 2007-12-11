@@ -12,9 +12,7 @@ http://sympy.googlecode.com/svn/materials/logo/sympy-160px.png
 
 Use "Featured Downloads" on the right hand side. For more options and information, go to DownloadInstallation.
 
-Mercurial repository: http://hg.sympy.org/sympy/
-
-You can track current progress in there (according to "Talk is cheap, show me the code.").
+Mercurial repository (you can track current progress in there): http://hg.sympy.org/sympy/
 
 ==News==
 
