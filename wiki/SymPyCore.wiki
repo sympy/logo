@@ -173,7 +173,7 @@ but I still believe it could be done simple and fast.
 > this experience in my bag, I dare to say that I have some vision what the CAS model for Python should include and what methods are suitable for
 > implementing it in Python. Discussions and all the work on
 
-Well - the new core, now in SymPy is your (Pearu's) vision. :) 
+Well - the new core, now in !SymPy is your (Pearu's) vision. :) 
 
 As to the experience, I am not sure it's that relevant, because I have
 a plenty of experience too - I tried to fix your pyginac when you
