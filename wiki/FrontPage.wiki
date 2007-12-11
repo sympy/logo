@@ -14,6 +14,8 @@ Use "Featured Downloads" on the right hand side. For more options and informatio
 
 Mercurial repository: http://hg.sympy.org/sympy/
 
+You can track current progress in there (according to "Talk is cheap, show me the code.").
+
 ==News==
 
   * *06 Dec 2007* Version 0.5.8 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
