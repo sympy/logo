@@ -196,8 +196,8 @@ But all this should be irrelevant at the moment, we should look to the future.
 About the incompatibility between sympy/sympycore: I think this issue can be
 easily resolved keeping in mind that they still share the same fundamental ideas:
 
-  * classes are CamelCase, sympycore has also functions in CamelCase.
+  * classes are !CamelCase, sympycore has also functions in !CamelCase.
   * expressions are iterable in the same way, that is the fundamental feature that should keep sympy/sympycore extensions compatible or at least easily portable.
-  * the module structure is similar, eg sympy is the parent package. In sympycore lots of functionality of sympy.core is moved to sympy.arithmetic package. This refactoring was needed in order to keep sympy.core clean and to be stictly a base package for subpackages like sympy.arithmetic, sympy.logical.symbolic, and sympy.logical.sets.
-  * both miss a good assumption model: in !Sympy the assumption model is fragile, in !SympyCore there is no model implemented yet but it provides needed infrastructure for a better assumption model: constructors do not take assumptions and sympycore defines logical concepts.
+  * the module structure is similar, eg sympy is the parent package. In sympycore lots of functionality of sympy.core is moved to sympy.arithmetic package. This refactoring was needed in order to keep sympy.core clean and to be srictly a base package for subpackages like sympy.arithmetic, sympy.logical.symbolic, and sympy.logical.sets.
+  * both miss a good assumption model: in !SymPy the assumption model is fragile, in !SympyCore there is no model implemented yet but it provides needed infrastructure for a better assumption model: constructors do not take assumptions and sympycore defines logical concepts.
   * btw, sympycore does not use ordered_classes anymore.. The Basic class in sympycore has been simplified considerably.
