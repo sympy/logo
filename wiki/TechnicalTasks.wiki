@@ -84,6 +84,7 @@ and put the dist/sympy-0.4-pre.tar.gz on the website.
 
   * http://code.google.com/p/sympy/wiki/FrontPage
   * http://code.google.com/p/sympy/
+  * http://sympy.googlecode.com/svn/api/sympy.html
   * http://en.wikipedia.org/wiki/SymPy
   * http://en.wikipedia.org/wiki/Comparison_of_computer_algebra_systems
   * http://freshmeat.net/projects/sympy/
