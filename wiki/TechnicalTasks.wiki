@@ -30,6 +30,27 @@ Use the `bin/test_pure` file (see the documentation in it).
 
 = Generating the (html) documentation for the api =
 
+== pydoctor ==
+
+In the sympy root directory (where the setup.py is):
+
+{{{
+$ pydoctor --make-html --add-package sympy
+adding directory sympy
+findImportStars
+210 / 210 modules parsed 
+extractDocstrings
+210 / 210 modules parsed 737 warnings 
+finalStateComputations
+writing html to apidocs using pydoctor.html.SystemWriter
+}}}
+
+a new directory `apidoc` is created with the documentation. 
+
+== epydoc ==
+
+Unfortunately, this doesn't work for sympy anymore.
+
 You'll need epydoc (wajig install python-epydoc). (The output is written to ../api/ (you can change this editing the variable gen_doc.target_dir ))
 
 {{{
