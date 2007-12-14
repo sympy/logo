@@ -26,7 +26,7 @@ Then browse the documentation of individual !SymPy modules:
 
 Then read how !SymPy works internally: HowItWorks.
 
-And finally, read the [http://sympy.googlecode.com/svn/trunk/ sources] itself or just the [http://sympy.googlecode.com/svn/api/sympy.html API] documentation, that is automatically generated from the sources for the latest stable release of !SymPy. Because every feature of !SymPy must have a test case, when you are not sure how to use something, just look into the `tests/` directory, find that feature and read the tests for it, that will tell you everything you need to know.
+And finally, read the [http://hg.sympy.org/sympy sources] itself or just the [http://sympy.googlecode.com/svn/api/sympy.html API] documentation, that is automatically generated from the sources for the latest stable release of !SymPy. Because every feature of !SymPy must have a test case, when you are not sure how to use something, just look into the `tests/` directory, find that feature and read the tests for it, that will tell you everything you need to know.
 
 = Other =
 
