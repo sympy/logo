@@ -47,6 +47,12 @@ writing html to apidocs using pydoctor.html.SystemWriter
 
 a new directory `apidoc` is created with the documentation. 
 
+Don't forget to do:
+{{{
+svn propset svn:mime-type text/css apidocs.css
+svn propset svn:mime-type text/html *.html
+}}}
+
 == epydoc ==
 
 Unfortunately, this doesn't work for sympy anymore.
