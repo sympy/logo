@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.ntheory.primetest&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.n.primetest</h1><span id="part">Part of <a href="sympy.ntheory.html">sympy.ntheory</a></span><div class="toplevel"><div>Primality testing
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.ntheory.primetest._is_tiny_prime">_is_tiny_prime</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.ntheory.primetest._has_tiny_factor">_has_tiny_factor</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.ntheory.primetest._factor_pow2">_factor_pow2</a></td><td><div>Factor powers of two from n. Return (s, t), with t odd, such
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.ntheory.primetest._test">_test</a></td><td><div>Miller-Rabin strong pseudoprime test for one base.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.ntheory.primetest.mr">mr</a></td><td><div>Perform a Miller-Rabin strong pseudoprime test on n using a
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.ntheory.primetest.mr_safe">mr_safe</a></td><td><div>For n &lt; 1e16, use the Miller-Rabin test to determine with
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.ntheory.primetest.isprime">isprime</a></td><td><div>Test whether n is a prime number. Negative primes (e.g. -2) are not
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.ntheory.primetest._is_tiny_prime">_is_tiny_prime(n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.ntheory.primetest._has_tiny_factor">_has_tiny_factor(n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.ntheory.primetest._factor_pow2">_factor_pow2(n):</a></div>
+            <div class="functionBody"><div>Factor powers of two from n. Return (s, t), with t odd, such that n = 
+2**s * t.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.ntheory.primetest._test">_test(n, base):</a></div>
+            <div class="functionBody"><div>Miller-Rabin strong pseudoprime test for one base. Return False if n is 
+definitely composite, True if n is probably prime, with a probability 
+greater than 3/4.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.ntheory.primetest.mr">mr(n, bases):</a></div>
+            <div class="functionBody"><div><p>Perform a Miller-Rabin strong pseudoprime test on n using a given list 
+of bases/witnesses.</p>
+Reference: Richard Crandall &amp; Carl Pomerance (2005), &quot;Prime 
+Numbers: A Computational Perspective&quot;, Springer, 2nd edition, 
+135-138
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.ntheory.primetest.mr_safe">mr_safe(n):</a></div>
+            <div class="functionBody"><div><p>For n &lt; 1e16, use the Miller-Rabin test to determine with certainty 
+(unless the code is buggy!) whether n is prime.</p>
+Reference for the bounds: http://primes.utm.edu/prove/prove2_3.html
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.ntheory.primetest.isprime">isprime(n):</a></div>
+            <div class="functionBody"><div>Test whether n is a prime number. Negative primes (e.g. -2) are not 
+considered prime. The function first looks for trivial factors, and if none
+is found, performs a Miller-Rabin strong pseudoprime test.
+<h1 class="heading">Example usage</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>isprime(13)
+<span class="py-output">True</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>isprime(15)
+<span class="py-output">False</span></pre>
+</div></div>
+            </div></body>
+        

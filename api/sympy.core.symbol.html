@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.symbol&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.c.symbol</h1><span id="part">Part of <a href="sympy.core.html">sympy.core</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.core.symbol.Symbol.html">Symbol</a></td><td><div>Assumptions:
+<pre class="literalblock">
+
+</pre>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.symbol.Wild.html">Wild</a></td><td><div>Wild() matches any expression but another Wild().
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.symbol.Temporary.html">Temporary</a></td><td><div>Indexed dummy symbol.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.symbols">symbols</a></td><td><div>Returns a list of symbols with names taken from 'names'
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.var">var</a></td><td><div>Create a symbolic variable with the name *s*.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.symbols">symbols(*names, **kwargs):</a></div>
+            <div class="functionBody"><div><p>Returns a list of symbols with names taken from 'names' argument, which 
+can be a string, then each character forms a separate symbol, or a sequence
+of strings.</p>
+All newly created symbols have assumptions set acordingly to 'kwargs'. 
+Main intention behind this function is to simplify and shorten examples 
+code in doc-strings.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y, z = symbols(<span class="py-string">'xyz'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>a = symbols(<span class="py-string">'a'</span>, integer=True)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>a.is_integer
+<span class="py-output">True</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>xx, yy, zz = symbols(<span class="py-string">'xx'</span>, <span class="py-string">'yy'</span>, <span class="py-string">'zz'</span>, real=True)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>xx.is_real <span class="py-keyword">and</span> yy.is_real <span class="py-keyword">and</span> zz.is_real
+<span class="py-output">True</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.var">var(s):</a></div>
+            <div class="functionBody"><pre>Create a symbolic variable with the name *s*.
+
+INPUT:
+    s -- a string, either a single variable name, or
+         a space separated list of variable names, or
+         a list of variable names.
+
+NOTE: The new variable is both returned and automatically injected into
+the parent's *global* namespace.  It's recommended not to use "var" in
+library code, it is better to use symbols() instead.
+
+EXAMPLES:
+We define some symbolic variables:
+    >>> var('n xx yy zz')
+    (n, xx, yy, zz)
+    >>> n
+    n</pre></div>
+            </div></body>
+        

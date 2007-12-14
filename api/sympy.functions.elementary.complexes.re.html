@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.functions.elementary.complexes.re&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.f.e.c.re(<a href="sympy.core.function.Function.html">Function</a>):</h1><span id="part">Part of <a href="sympy.functions.elementary.complexes.html">sympy.functions.elementary.complexes</a></span><div class="toplevel"><div>Returns real part of expression. This function performs only elementary 
+analysis and so it will fail to decompose properly more complicated 
+expressions. If completely simplified result is needed then use 
+Basic.as_real_imag() or perform complex expansion on instance of this 
+function.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'x'</span>, <span class="py-string">'y'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>re(2*E)
+<span class="py-output">2*E</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>re(2*I + 17)
+<span class="py-output">17</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>re(2*I)
+<span class="py-output">0</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>re(im(x) + x*I + 2)
+<span class="py-output">2</span></pre>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.complexes.re._eval_apply_subs">_eval_apply_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.complexes.re.canonize">canonize</a></td><td><div>Returns a canonical form of cls applied to arguments args.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.complexes.re._eval_conjugate">_eval_conjugate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.complexes.re._eval_is_real">_eval_is_real</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.complexes.re._eval_expand_complex">_eval_expand_complex</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.complexes.re._eval_apply_subs">_eval_apply_subs(self, *args):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.complexes.re.canonize">canonize(cls, arg):</a></div>
+            <div class="functionBody"><pre>Returns a canonical form of cls applied to arguments args.
+
+The canonize() method is called when the class cls is about to be
+instantiated and it should return either some simplified instance
+(possible of some other class), or if the class cls should be
+unmodified, return None.
+
+Example of canonize() for the function "sign"
+---------------------------------------------
+
+@classmethod
+def canonize(cls, arg):
+    if isinstance(arg, Basic.NaN):
+        return S.NaN
+    if isinstance(arg, Basic.Zero): return S.One
+    if arg.is_positive: return S.One
+    if arg.is_negative: return S.NegativeOne
+    if isinstance(arg, Basic.Mul):
+        coeff, terms = arg.as_coeff_terms()
+        if not isinstance(coeff, Basic.One):
+            return cls(coeff) * cls(Basic.Mul(*terms))</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.complexes.re._eval_conjugate">_eval_conjugate(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.complexes.re._eval_is_real">_eval_is_real(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.complexes.re._eval_expand_complex">_eval_expand_complex(self, *args):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

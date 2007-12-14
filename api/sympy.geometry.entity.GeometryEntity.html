@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.geometry.entity.GeometryEntity&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.g.e.GeometryEntity(tuple):</h1><span id="part">Part of <a href="sympy.geometry.entity.html">sympy.geometry.entity</a></span><p>known subclasses: <a href="sympy.geometry.point.Point.html">sympy.geometry.point.Point</a>, <a href="sympy.geometry.polygon.Polygon.html">sympy.geometry.polygon.Polygon</a>, <a href="sympy.geometry.ellipse.Ellipse.html">sympy.geometry.ellipse.Ellipse</a>, <a href="sympy.geometry.line.LinearEntity.html">sympy.geometry.line.LinearEntity</a></p><div class="toplevel"><div>The base class for any geometrical entity.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.do_intersection">do_intersection</a></td><td><div>Determines the intersection between two geometrical entities. 
+Returns
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.is_similar">is_similar</a></td><td><div>Return True if self and other are similar. Two entities are similar
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.intersection">intersection</a></td><td><div>Returns a list of all of the intersections of this entity and 
+another
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.extract_entities">extract_entities</a></td><td><div>Takes a set of arguments and extracts all of the GeometryEntity
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.__ne__">__ne__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.__radd__">__radd__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.__rsub__">__rsub__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.__rmul__">__rmul__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.__rdiv__">__rdiv__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.__str__">__str__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.__repr__">__repr__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.entity.GeometryEntity.__cmp__">__cmp__</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.__new__">__new__(cls, *args, **kwargs):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.do_intersection">do_intersection(e1, e2):</a></div>
+            <div class="functionBody"><div>Determines the intersection between two geometrical entities. Returns a 
+list of all of the intersections.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.is_similar">is_similar(self, other):</a></div>
+            <div class="functionBody"><div>Return True if self and other are similar. Two entities are similar if a
+uniform scaling (enlarging or shrinking) of one of the entities will allow 
+one to obtain the other.
+<h1 class="heading">Notes:</h1>
+  <ul>
+    <li>
+      This method is not intended to be used directly but rather through
+      the are_similar() method found in util.py.
+    </li>
+    <li>
+      An entity is not required to implement this method.
+    </li>
+    <li>
+      If two different types of entities can be similar, it is only 
+      required that one of them be able to determine this.
+    </li>
+  </ul>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.intersection">intersection(self, o):</a></div>
+            <div class="functionBody"><div>Returns a list of all of the intersections of this entity and another 
+entity.
+<h1 class="heading">Notes:</h1>
+  <ul>
+    <li>
+      This method is not intended to be used directly but rather through
+      the intersection() method found in util.py.
+    </li>
+    <li>
+      An entity is not required to implement this method.
+    </li>
+    <li>
+      If two different types of entities can intersect, it is only 
+      required that one of them be able to determine this.
+    </li>
+  </ul>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.extract_entities">extract_entities(args, remove_duplicates=True):</a></div>
+            <div class="functionBody"><div>Takes a set of arguments and extracts all of the GeometryEntity 
+instances (recursively). Returns a tuple of all of the instances found.
+<h1 class="heading">Notes:</h1>
+  <ul>
+    <li>
+      Duplicates of entities are removed if the remove_duplicates 
+      argument is set to True, otherwise duplicates remain. The default is 
+      True.
+    </li>
+    <li>
+      Anything that is not a GeometryEntity instance is simply 
+      ignored.
+    </li>
+    <li>
+      Ordering of arguments is always maintained. If duplicates are 
+      removed then the entry with the lowest index is kept.
+    </li>
+  </ul>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.__ne__">__ne__(self, o):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.__radd__">__radd__(self, a):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.__rsub__">__rsub__(self, a):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.__rmul__">__rmul__(self, a):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.__rdiv__">__rdiv__(self, a):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.__str__">__str__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.__repr__">__repr__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.entity.GeometryEntity.__cmp__">__cmp__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

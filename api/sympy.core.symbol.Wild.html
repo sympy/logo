@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.symbol.Wild&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.c.s.Wild(<a href="sympy.core.symbol.Symbol.html">Symbol</a>):</h1><span id="part">Part of <a href="sympy.core.symbol.html">sympy.core.symbol</a></span><div class="toplevel"><div>Wild() matches any expression but another Wild().
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Wild.__new__">__new__</a></td><td><div>if dummy == True, then this Symbol is totally unique, i.e.:
+<pre class="literalblock">
+
+</pre>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Wild.matches">matches</a></td><td><div>Helper method for match() - switches the pattern and expr.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Wild.__call__">__call__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Wild.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Wild.__new__">__new__(cls, name=None, exclude=None, **assumptions):</a></div>
+            <div class="functionBody"><div>if dummy == True, then this Symbol is totally unique, i.e.:
+<pre class="literalblock">
+       &gt;&gt;&gt; bool(Symbol(&quot;x&quot;) == Symbol(&quot;x&quot;)) == True
+       True
+
+       but with the dummy variable ::
+
+       &gt;&gt;&gt; bool(Symbol(&quot;x&quot;, dummy = True) == Symbol(&quot;x&quot;, dummy = True)) == True
+       False
+</pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Wild.matches">matches(pattern, expr, repl_dict={}, evaluate=False):</a></div>
+            <div class="functionBody"><div><p>Helper method for match() - switches the pattern and expr.</p>
+Can be used to solve linear equations:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol, Wild
+<span class="py-prompt">&gt;&gt;&gt; </span>a,b = map(Symbol, <span class="py-string">'ab'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Wild(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>(a+b*x).matches(0)
+<span class="py-output">{x_: -a/b}</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Wild.__call__">__call__(self, *args, **assumptions):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Wild.tostr">tostr(self, level=0):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

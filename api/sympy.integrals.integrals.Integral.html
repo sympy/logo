@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.integrals.integrals.Integral&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.i.i.Integral(Basic, <a href="sympy.core.methods.NoRelMeths.html">NoRelMeths</a>, <a href="sympy.core.methods.ArithMeths.html">ArithMeths</a>):</h1><span id="part">Part of <a href="sympy.integrals.integrals.html">sympy.integrals.integrals</a></span><div class="toplevel"><div>Represents unevaluated integral.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.integrals.integrals.Integral.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.integrals.Integral.function">function</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.integrals.Integral.limits">limits</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.integrals.Integral.variables">variables</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.integrals.Integral._xab_tostr">_xab_tostr</a></td><td><div>str representation of integration variable with optional limits
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.integrals.Integral.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.integrals.Integral.doit">doit</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.integrals.Integral._eval_integral">_eval_integral</a></td><td><div>Calculate the antiderivative to the function f(x).
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.integrals.Integral.__new__">__new__(cls, function, *symbols, **assumptions):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.integrals.Integral.function">function(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.integrals.Integral.limits">limits(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.integrals.Integral.variables">variables(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.integrals.Integral._xab_tostr">_xab_tostr(xab):</a></div>
+            <div class="functionBody"><div>str representation of integration variable with optional limits
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.integrals.Integral.tostr">tostr(self, level=0):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.integrals.Integral.doit">doit(self, **hints):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.integrals.Integral._eval_integral">_eval_integral(self, f, x):</a></div>
+            <div class="functionBody"><pre>Calculate the antiderivative to the function f(x).
+
+This is a powerful function that should in theory be able to integrate
+everything that can be integrated. If you find something, that it
+doesn't, it is easy to implement it.
+
+(1) Simple heuristics (based on pattern matching and integral table):
+
+ - most frequently used functions (eg. polynomials)
+ - functions non-integrable by any of the following algorithms (eg.
+   exp(-x**2))
+
+(2) Integration of rational functions:
+
+ (a) using apart() - apart() is full partial fraction decomposition
+ procedure based on Bronstein-Salvy algorithm. It gives formal
+ decomposition with no polynomial factorization at all (so it's fast
+ and gives the most general results). However it needs much better
+ implementation of RootsOf class (if fact any implementation).
+ (b) using Trager's algorithm - possibly faster than (a) but needs
+ implementation :)
+
+(3) Whichever implementation of pmInt (Mateusz, Kirill's or a
+combination of both).
+
+  - this way we can handle efficiently huge class of elementary and
+    special functions
+
+(4) Recursive Risch algorithm as described in Bronstein's integration
+tutorial.
+
+  - this way we can handle those integrable functions for which (3)
+    fails
+
+(5) Powerful heuristics based mostly on user defined rules.
+
+ - handle complicated, rarely used cases</pre></div>
+            </div></body>
+        

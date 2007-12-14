@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.font.carbon.CarbonFont&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.f.c.CarbonFont(<a href="sympy.plotting.pyglet.font.base.Font.html">base.Font</a>):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.font.carbon.html">sympy.plotting.pyglet.font.carbon</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.carbon.CarbonFont.__init__">__init__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.carbon.CarbonFont.have_font">have_font</a></td><td><div>Determine if a font with the given name is installed.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.carbon.CarbonFont.calculate_metrics">calculate_metrics</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.carbon.CarbonFont.add_font_data">add_font_data</a></td><td><div>Add font data to the font loader.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.carbon.CarbonFont.__init__">__init__(self, name, size, bold=False, italic=False, dpi=None):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.carbon.CarbonFont.have_font">have_font(cls, name):</a></div>
+            <div class="functionBody"><pre>Determine if a font with the given name is installed.
+
+:Parameters:
+    `name` : str
+        Name of a font to search for
+
+:rtype: bool</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.carbon.CarbonFont.calculate_metrics">calculate_metrics(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.carbon.CarbonFont.add_font_data">add_font_data(cls, data):</a></div>
+            <div class="functionBody"><div><p>Add font data to the font loader.</p>
+<p>This is a class method and affects all fonts loaded.  Data must be some 
+byte string of data, for example, the contents of a TrueType font file.  
+Subclasses can override this method to add the font data into the font 
+registry.</p>
+There is no way to instantiate a font given the data directly, you must 
+use `pyglet.font.load` specifying the font name.
+</div></div>
+            </div></body>
+        

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.functions.combinatorial.numbers.bell&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.f.c.n.bell(<a href="sympy.core.function.Function.html">Function</a>):</h1><span id="part">Part of <a href="sympy.functions.combinatorial.numbers.html">sympy.functions.combinatorial.numbers</a></span><div class="toplevel"><pre>Bell numbers / Bell polynomials
+
+Usage
+=====
+    bell(n) gives the nth Bell number, B_n
+    bell(n, x) gives the nth Bell polynomial, B_n(x)
+
+    Not to be confused with Bernoulli numbers and Bernoulli polynomials,
+    which use the same notation.
+
+Examples
+========
+    >>> from sympy import *
+
+    >>> [bell(n) for n in range(11)]
+    [1, 1, 2, 5, 15, 52, 203, 877, 4140, 21147, 115975]
+    >>> bell(30)
+    846749014511809332450147
+    >>> bell(4, Symbol('t'))
+    t + t**4 + 6*t**3 + 7*t**2
+
+Mathematical description
+========================
+    The Bell numbers satisfy B_0 = 1 and
+             n-1
+             ___
+            \      / n - 1 \
+      B   =  )     |       | * B .
+       n    /___   \   k   /    k
+            k = 0
+
+    They are also given by
+                  oo
+                 ___    n
+            1   \      k
+      B   = - *  )     --.
+       n    e   /___   k!
+                k = 0
+
+    The Bell polynomials are given by B_0(x) = 1 and
+                    n-1
+                    ___
+                   \      / n - 1 \
+      B (x)  = x *  )     |       | * B   (x).
+       n           /___   \ k - 1 /    k-1
+                   k = 1
+
+References and further reading
+==============================
+    * http://en.wikipedia.org/wiki/Bell_number
+    * http://mathworld.wolfram.com/BellNumber.html
+    * http://mathworld.wolfram.com/BellPolynomial.html</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.numbers.bell._bell">_bell</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.numbers.bell._bell_poly">_bell_poly</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.numbers.bell.canonize">canonize</a></td><td><div>Returns a canonical form of cls applied to arguments args.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.combinatorial.numbers.bell._bell">_bell(n, prev):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.combinatorial.numbers.bell._bell_poly">_bell_poly(n, prev):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.combinatorial.numbers.bell.canonize">canonize(cls, n, sym=None):</a></div>
+            <div class="functionBody"><pre>Returns a canonical form of cls applied to arguments args.
+
+The canonize() method is called when the class cls is about to be
+instantiated and it should return either some simplified instance
+(possible of some other class), or if the class cls should be
+unmodified, return None.
+
+Example of canonize() for the function "sign"
+---------------------------------------------
+
+@classmethod
+def canonize(cls, arg):
+    if isinstance(arg, Basic.NaN):
+        return S.NaN
+    if isinstance(arg, Basic.Zero): return S.One
+    if arg.is_positive: return S.One
+    if arg.is_negative: return S.NegativeOne
+    if isinstance(arg, Basic.Mul):
+        coeff, terms = arg.as_coeff_terms()
+        if not isinstance(coeff, Basic.One):
+            return cls(coeff) * cls(Basic.Mul(*terms))</pre></div>
+            </div></body>
+        

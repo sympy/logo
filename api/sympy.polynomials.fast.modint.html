@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.polynomials.fast.modint&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.p.f.modint</h1><span id="part">Part of <a href="sympy.polynomials.fast.html">sympy.polynomials.fast</a></span><div class="toplevel"><div>Class for modular integer arithmetic.
+</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.polynomials.fast.modint.ModularInteger.html">ModularInteger</a></td><td><div>Modular integer arithmetic, based on Python integers.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.modint.ModularIntegerFactory">ModularIntegerFactory</a></td><td><div>Create custom class for specific integer modulus.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.modint.gcd">gcd</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.modint.xgcd">xgcd</a></td><td><div>Returns g, x, y such that g = x*a + y*b = gcd(a,b).
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.modint.crt">crt</a></td><td><div>Chinese remainder theorem.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.modint.crt1">crt1</a></td><td><div>First part of chines remainder theorem, for multiple application.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.modint.crt2">crt2</a></td><td><div>Second part of chines remainder theorem, for multiple application.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.modint.ModularIntegerFactory">ModularIntegerFactory(m):</a></div>
+            <div class="functionBody"><div>Create custom class for specific integer modulus.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.modint.gcd">gcd(a, b):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.modint.xgcd">xgcd(a, b):</a></div>
+            <div class="functionBody"><pre>Returns g, x, y such that g = x*a + y*b = gcd(a,b).
+Input:
+    a -- an integer
+    b -- an integer
+Output:
+    g -- an integer, the gcd of a and b
+    x -- an integer
+    y -- an integer
+Examples:
+>>> xgcd(2,3)
+(1, -1, 1)
+>>> xgcd(10, 12)
+(2, -1, 1)
+>>> g, x, y = xgcd(100, 2004)
+>>> print g, x, y
+4 -20 1
+>>> print x*100 + y*2004
+4</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.modint.crt">crt(m, v, symmetric=False):</a></div>
+            <div class="functionBody"><div><p>Chinese remainder theorem.</p>
+The integers in m are assumed to be pairwise coprime. The output is then
+an integer f, such that that f = v_i mod m_i for each pair out of v and 
+m.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.modint.crt1">crt1(m):</a></div>
+            <div class="functionBody"><div>First part of chines remainder theorem, for multiple application.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.modint.crt2">crt2(m, v, mm, e, s, symmetric=False):</a></div>
+            <div class="functionBody"><div>Second part of chines remainder theorem, for multiple application.
+</div></div>
+            </div></body>
+        

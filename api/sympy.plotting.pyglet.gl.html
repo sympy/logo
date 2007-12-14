@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.gl&rdquo;</title>
+        </head>
+        <body><h1 class="package">Package s.p.p.gl</h1><span id="part">Part of <a href="sympy.plotting.pyglet.html">sympy.plotting.pyglet</a></span><div class="toplevel"><pre>OpenGL and GLU interface.
+
+This package imports all OpenGL, GLU and registered OpenGL extension
+functions.  Functions have identical signatures to their C counterparts.  For
+example::
+
+    from pyglet.gl import *
+    
+    # [...omitted: set up a GL context and framebuffer]
+    glBegin(GL_QUADS)
+    glVertex3f(0, 0, 0)
+    glVertex3f(0.1, 0.2, 0.3)
+    glVertex3f(0.1, 0.2, 0.3)
+    glEnd()
+
+OpenGL is documented in full at the `OpenGL Reference Pages`_.  
+
+The `OpenGL Programming Guide`_ is a popular reference manual organised by
+topic.  The free online version documents only OpenGL 1.1.  `Later editions`_
+cover more recent versions of the API and can be purchased from a book store.
+
+.. _OpenGL Reference Pages: http://www.opengl.org/documentation/red_book/
+.. _OpenGL Programming Guide: http://fly.cc.fer.hr/~unreal/theredbook/
+.. _Later editions: http://www.opengl.org/documentation/red_book/
+
+The following subpackages are imported into this "mega" package already (and
+so are available by importing ``pyglet.gl``):
+
+``pyglet.gl.gl``
+    OpenGL
+``pyglet.gl.glu``
+    GLU
+``pyglet.gl.gl.glext_arb``
+    ARB registered OpenGL extension functions
+``pyglet.gl.gl.glext_missing``
+    ARB registered OpenGL extension functions not included in the ARB C header
+
+These subpackages are also available, but are not imported into this namespace
+by default:
+
+``pyglet.gl.glext_nv``
+    nVidia OpenGL extension functions
+``pyglet.gl.agl``
+    AGL (Mac OS X OpenGL context functions)
+``pyglet.gl.glx``
+    GLX (Linux OpenGL context functions)
+``pyglet.gl.glxext_arb``
+    ARB registered GLX extension functions
+``pyglet.gl.glxext_nv``
+    nvidia GLX extension functions
+``pyglet.gl.wgl``
+    WGL (Windows OpenGL context functions)
+``pyglet.gl.wglext_arb``
+    ARB registered WGL extension functions
+``pyglet.gl.wglext_nv``
+    nvidia WGL extension functions
+
+The information modules are provided for convenience, and are documented
+below.</pre></div><table class="children"><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.agl.html">agl</a></td><td><div>Wrapper for /System/Library/Frameworks/AGL.framework/Headers/agl.h
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.gl.html">gl</a></td><td><div>Wrapper for /usr/include/GL/gl.h
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.gl_info.html">gl_info</a></td><td><div>Information about version and extensions of current GL 
+implementation.
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.glext_arb.html">glext_arb</a></td><td><div>Wrapper for http://oss.sgi.com/projects/ogl-sample/ABI/glext.h
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.glext_missing.html">glext_missing</a></td><td><div>Additional hand-coded GL extensions.
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.glext_nv.html">glext_nv</a></td><td><div>Wrapper for 
+http://developer.download.nvidia.com/opengl/includes/glext.h
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.glu.html">glu</a></td><td><div>Wrapper for /usr/include/GL/glu.h
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.glu_info.html">glu_info</a></td><td><div>Information about version and extensions of current GLU 
+implementation.
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.glx.html">glx</a></td><td><div>Wrapper for /usr/include/GL/glx.h
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.glx_info.html">glx_info</a></td><td><div>Information about version and extensions of current GLX 
+implementation.
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.glxext_arb.html">glxext_arb</a></td><td><div>Wrapper for http://oss.sgi.com/projects/ogl-sample/ABI/glxext.h
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.glxext_mesa.html">glxext_mesa</a></td><td><div>This file is currently hand-coded; I don't have a MESA header file to 
+build
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.glxext_nv.html">glxext_nv</a></td><td><div>Wrapper for 
+http://developer.download.nvidia.com/opengl/includes/glxext.h
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.lib.html">lib</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.lib_agl.html">lib_agl</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.lib_glx.html">lib_glx</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.lib_wgl.html">lib_wgl</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.wgl.html">wgl</a></td><td><div>Wrapper for C:\cygwin\home\Alex\pyglet  ools\wgl.h
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.wgl_info.html">wgl_info</a></td><td><div>Cached information about version and extensions of current WGL
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.wglext_arb.html">wglext_arb</a></td><td><div>Wrapper for http://oss.sgi.com/projects/ogl-sample/ABI/wglext.h
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.gl.wglext_nv.html">wglext_nv</a></td><td><div>Wrapper for 
+http://developer.download.nvidia.com/opengl/includes/wglext.h
+</div></td></tr></table></body>
+        

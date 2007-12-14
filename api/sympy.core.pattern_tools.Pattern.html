@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.pattern_tools.Pattern&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.c.p.Pattern:</h1><span id="part">Part of <a href="sympy.core.pattern_tools.html">sympy.core.pattern_tools</a></span><div class="toplevel"><div>p1 | p2    -&gt; &lt;p1&gt; | &lt;p2&gt; p1 + p2    -&gt; &lt;p1&gt; 
+&lt;p2&gt; p1 &amp; p2    -&gt; &lt;p1&gt;&lt;p2&gt; ~p1        -&gt; [ 
+&lt;p1&gt; ] ~~p1       -&gt; [ &lt;p1&gt; ]... ~~~p1      -&gt; &lt;p1&gt;
+[ &lt;p1&gt; ]... ~~~~p1     -&gt; ~~~p1 abs(p1)    -&gt; whole string 
+match of &lt;p1&gt; p1.named(name) -&gt; match of &lt;p1&gt; has name 
+p1.match(string) -&gt; return string match with &lt;p1&gt; 
+p1.flags(&lt;re.I,..&gt;) p1.rsplit(..) -&gt; split a string from the 
+rightmost p1 occurrence p1.lsplit(..) -&gt; split a string from the 
+leftmost p1 occurrence
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.__init__">__init__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.flags">flags</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.get_compiled">get_compiled</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.match">match</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.search">search</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.rsplit">rsplit</a></td><td><div>Return (&lt;lhs&gt;, &lt;pattern_match&gt;, &lt;rhs&gt;) where
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.lsplit">lsplit</a></td><td><div>Return (&lt;lhs&gt;, &lt;pattern_match&gt;, &lt;rhs&gt;) where
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.__abs__">__abs__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.__repr__">__repr__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.__or__">__or__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.__and__">__and__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.__rand__">__rand__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.__invert__">__invert__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.__add__">__add__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.__radd__">__radd__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.named">named</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.rename">rename</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.pattern_tools.Pattern.__call__">__call__</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.__init__">__init__(self, label, pattern, optional=0, flags=0, value=None):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.flags">flags(self, *flags):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.get_compiled">get_compiled(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.match">match(self, string):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.search">search(self, string):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.rsplit">rsplit(self, string):</a></div>
+            <div class="functionBody"><pre>Return (<lhs>, <pattern_match>, <rhs>) where
+  string = lhs + pattern_match + rhs
+and rhs does not contain pattern_match.
+If no pattern_match is found in string, return None.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.lsplit">lsplit(self, string):</a></div>
+            <div class="functionBody"><pre>Return (<lhs>, <pattern_match>, <rhs>) where
+  string = lhs + pattern_match + rhs
+and rhs does not contain pattern_match.
+If no pattern_match is found in string, return None.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.__abs__">__abs__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.__repr__">__repr__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.__or__">__or__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.__and__">__and__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.__rand__">__rand__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.__invert__">__invert__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.__add__">__add__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.__radd__">__radd__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.named">named(self, name=None):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.rename">rename(self, label):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.pattern_tools.Pattern.__call__">__call__(self, string):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.utilities.pkgdata&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.u.pkgdata</h1><span id="part">Part of <a href="sympy.utilities.html">sympy.utilities</a></span><div class="toplevel"><div><p>pkgdata is a simple, extensible way for a package to acquire data file 
+resources.</p>
+The getResource function is equivalent to the standard idioms, such as 
+the following minimal implementation:
+<pre class="literalblock">
+   import sys, os
+
+   def getResource(identifier, pkgname=__name__):
+       pkgpath = os.path.dirname(sys.modules[pkgname].__file__)
+       path = os.path.join(pkgpath, identifier)
+       return file(os.path.normpath(path), mode='rb')
+</pre>
+When a __loader__ is present on the module given by __name__, it will 
+defer getResource to its get_data implementation and return it as a 
+file-like object (such as StringIO).
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.utilities.pkgdata.get_resource">get_resource</a></td><td><div>Acquire a readable object for a given package name and identifier.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.utilities.pkgdata.get_resource">get_resource(identifier, pkgname=__name__):</a></div>
+            <div class="functionBody"><div><p>Acquire a readable object for a given package name and identifier. An 
+IOError will be raised if the resource can not be found.</p>
+For example:
+<pre class="literalblock">
+   mydata = get_esource('mypkgdata.jpg').read()
+</pre>
+<p>Note that the package name must be fully qualified, if given, such that 
+it would be found in sys.modules.</p>
+In some cases, getResource will return a real file object.  In that 
+case, it may be useful to use its name attribute to get the path rather 
+than use it as a file-like object.  For example, you may be handing data 
+off to a C API.
+</div></div>
+            </div></body>
+        

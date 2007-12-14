@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.geometry.polygon.Triangle&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.g.p.Triangle(<a href="sympy.geometry.polygon.Polygon.html">Polygon</a>):</h1><span id="part">Part of <a href="sympy.geometry.polygon.html">sympy.geometry.polygon</a></span><div class="toplevel"><div>Any 3-sided polygon.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.vertices">vertices</a></td><td><div>The vertices that define the polygon.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.is_similar">is_similar</a></td><td><div>Return True if self and other are similar. Two entities are similar
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.is_equilateral">is_equilateral</a></td><td><div>Returns True if the triangle is equilateral, False otherwise.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.is_right">is_right</a></td><td><div>Returns True if the triangle is right-angled, False otherwise.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.altitudes">altitudes</a></td><td><div>The altitudes of the triangle in a dictionary where the key
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.orthocenter">orthocenter</a></td><td><div>The orthocenter of the triangle.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.circumcenter">circumcenter</a></td><td><div>The circumcenter of the triangle.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.circumradius">circumradius</a></td><td><div>The radius of the circumcircle of the triangle.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.circumcircle">circumcircle</a></td><td><div>The circumcircle of the triangle.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.bisectors">bisectors</a></td><td><div>The angle bisectors of the triangle in a dictionary where the
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.incenter">incenter</a></td><td><div>The incenter of the triangle.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.inradius">inradius</a></td><td><div>The inradius of the triangle.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.incircle">incircle</a></td><td><div>The incircle of the triangle.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.medians">medians</a></td><td><div>The medians of the triangle in a dictionary where the key
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.Triangle.medial">medial</a></td><td><div>The medial triangle of the triangle, the triangle which is formed
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.__new__">__new__(cls, *args, **kwargs):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.vertices">vertices(self):</a></div>
+            <div class="functionBody"><div>The vertices that define the polygon.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.is_similar">is_similar(t1, t2):</a></div>
+            <div class="functionBody"><div>Return True if self and other are similar. Two entities are similar if a
+uniform scaling (enlarging or shrinking) of one of the entities will allow 
+one to obtain the other.
+<h1 class="heading">Notes:</h1>
+  <ul>
+    <li>
+      This method is not intended to be used directly but rather through
+      the are_similar() method found in util.py.
+    </li>
+    <li>
+      An entity is not required to implement this method.
+    </li>
+    <li>
+      If two different types of entities can be similar, it is only 
+      required that one of them be able to determine this.
+    </li>
+  </ul>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.is_equilateral">is_equilateral(self):</a></div>
+            <div class="functionBody"><div>Returns True if the triangle is equilateral, False otherwise.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.is_right">is_right(self):</a></div>
+            <div class="functionBody"><div>Returns True if the triangle is right-angled, False otherwise.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.altitudes">altitudes(self):</a></div>
+            <div class="functionBody"><div>The altitudes of the triangle in a dictionary where the key is the 
+vertex and the value is the altitude at that point.
+<h1 class="heading">Example:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p1,p2,p3 = Point(0,0), Point(1,0), Point(0,1)
+<span class="py-prompt">&gt;&gt;&gt; </span>t = Triangle(p1, p2, p3)
+<span class="py-prompt">&gt;&gt;&gt; </span>t.altitudes[p1]
+<span class="py-output">Segment(Point(0, 0), Point(1/2, 1/2))</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.orthocenter">orthocenter(self):</a></div>
+            <div class="functionBody"><div>The orthocenter of the triangle.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.circumcenter">circumcenter(self):</a></div>
+            <div class="functionBody"><div>The circumcenter of the triangle.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.circumradius">circumradius(self):</a></div>
+            <div class="functionBody"><div>The radius of the circumcircle of the triangle.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.circumcircle">circumcircle(self):</a></div>
+            <div class="functionBody"><div>The circumcircle of the triangle.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.bisectors">bisectors(self):</a></div>
+            <div class="functionBody"><div>The angle bisectors of the triangle in a dictionary where the key is the
+vertex and the value is the bisector at that point.
+<h1 class="heading">Example:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p1,p2,p3 = Point(0,0), Point(1,0), Point(0,1)
+<span class="py-prompt">&gt;&gt;&gt; </span>t = Triangle(p1, p2, p3)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>t.bisectors[p2]
+<span class="py-output">Segment(Point(0, (-1) + 2**(1/2)), Point(1, 0))</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.incenter">incenter(self):</a></div>
+            <div class="functionBody"><div>The incenter of the triangle.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.inradius">inradius(self):</a></div>
+            <div class="functionBody"><div>The inradius of the triangle.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.incircle">incircle(self):</a></div>
+            <div class="functionBody"><div>The incircle of the triangle.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.medians">medians(self):</a></div>
+            <div class="functionBody"><div>The medians of the triangle in a dictionary where the key is the vertex 
+and the value is the median at that point.
+<h1 class="heading">Example:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p1,p2,p3 = Point(0,0), Point(1,0), Point(0,1)
+<span class="py-prompt">&gt;&gt;&gt; </span>t = Triangle(p1, p2, p3)
+<span class="py-prompt">&gt;&gt;&gt; </span>t.medians[p1]
+<span class="py-output">Segment(Point(0, 0), Point(1/2, 1/2))</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.polygon.Triangle.medial">medial(self):</a></div>
+            <div class="functionBody"><div>The medial triangle of the triangle, the triangle which is formed from 
+the midpoints of the three sides.
+</div></div>
+            </div></body>
+        

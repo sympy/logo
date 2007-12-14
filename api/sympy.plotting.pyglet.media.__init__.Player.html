@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.media.__init__.Player&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.m._.Player(<a href="sympy.plotting.pyglet.event.EventDispatcher.html">event.EventDispatcher</a>):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.media.__init__.html">sympy.plotting.pyglet.media.__init__</a></span><p>known subclasses: <a href="sympy.plotting.pyglet.media.__init__.ManagedSoundPlayer.html">sympy.plotting.pyglet.media.__init__.ManagedSoundPlayer</a></p><div class="toplevel"><div><p>A sound and/or video player.</p>
+Queue sources on this player to play them.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player.__init__">__init__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._create_audio">_create_audio</a></td><td><div>Create _audio for sources[0].
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._fill_audio">_fill_audio</a></td><td><div>Ensure _audio is full.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._get_audio_data">_get_audio_data</a></td><td><div>Yields pairs of (audio_data, audio_format).
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player.queue">queue</a></td><td><div>Queue the source on this player.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player.play">play</a></td><td><div>Begin playing the current source.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player.pause">pause</a></td><td><div>Pause playback of the current source.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player.seek">seek</a></td><td><div>Seek for playback to the indicated timestamp in seconds on the
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player.next">next</a></td><td><div>Move immediately to the next queued source.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._next_source">_next_source</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._begin_source">_begin_source</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._on_eos">_on_eos</a></td><td><div>Internal method when EOS is encountered.  Returns False if
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player.dispatch_events">dispatch_events</a></td><td><div>Dispatch any pending events and perform regular heartbeat functions
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._get_time">_get_time</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._get_source">_get_source</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._set_eos_action">_set_eos_action</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._set_volume">_set_volume</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._set_position">_set_position</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._set_min_distance">_set_min_distance</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._set_max_distance">_set_max_distance</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._set_pitch">_set_pitch</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._set_cone_orientation">_set_cone_orientation</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._set_cone_inner_angle">_set_cone_inner_angle</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._set_cone_outer_angle">_set_cone_outer_angle</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player._set_cone_outer_gain">_set_cone_outer_gain</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.Player.on_eos">on_eos</a></td><td><div>The player has reached the end of the current source.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player.__init__">__init__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._create_audio">_create_audio(self):</a></div>
+            <div class="functionBody"><div><p>Create _audio for sources[0].</p>
+Reuses existing _audio if it exists and is compatible.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._fill_audio">_fill_audio(self):</a></div>
+            <div class="functionBody"><div>Ensure _audio is full.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._get_audio_data">_get_audio_data(self, bytes):</a></div>
+            <div class="functionBody"><div>Yields pairs of (audio_data, audio_format).
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player.queue">queue(self, source):</a></div>
+            <div class="functionBody"><pre>Queue the source on this player.
+
+If the player has no source, the player will be paused immediately
+on this source.
+
+:Parameters:
+    `source` : Source
+        The source to queue.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player.play">play(self):</a></div>
+            <div class="functionBody"><div><p>Begin playing the current source.</p>
+This has no effect if the player is already playing.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player.pause">pause(self):</a></div>
+            <div class="functionBody"><div><p>Pause playback of the current source.</p>
+This has no effect if the player is already paused.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player.seek">seek(self, timestamp):</a></div>
+            <div class="functionBody"><pre>Seek for playback to the indicated timestamp in seconds on the
+current source.  If the timestamp is outside the duration of the
+source, it will be clamped to the end.
+
+:Parameters:
+    `timestamp` : float
+        Timestamp to seek to.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player.next">next(self):</a></div>
+            <div class="functionBody"><div><p>Move immediately to the next queued source.</p>
+There may be a gap in playback while the audio buffer is refilled.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._next_source">_next_source(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._begin_source">_begin_source(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._on_eos">_on_eos(self):</a></div>
+            <div class="functionBody"><div>Internal method when EOS is encountered.  Returns False if 
+dispatch_events should be immediately aborted.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player.dispatch_events">dispatch_events(self):</a></div>
+            <div class="functionBody"><div>Dispatch any pending events and perform regular heartbeat functions to 
+maintain playback.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._get_time">_get_time(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._get_source">_get_source(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._set_eos_action">_set_eos_action(self, action):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._set_volume">_set_volume(self, volume):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._set_position">_set_position(self, position):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._set_min_distance">_set_min_distance(self, min_distance):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._set_max_distance">_set_max_distance(self, max_distance):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._set_pitch">_set_pitch(self, pitch):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._set_cone_orientation">_set_cone_orientation(self, cone_orientation):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._set_cone_inner_angle">_set_cone_inner_angle(self, cone_inner_angle):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._set_cone_outer_angle">_set_cone_outer_angle(self, cone_outer_angle):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player._set_cone_outer_gain">_set_cone_outer_gain(self, cone_outer_gain):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.Player.on_eos">on_eos():</a></div>
+            <div class="functionBody"><div><p>The player has reached the end of the current source.</p>
+<p>This event is dispatched regardless of the EOS action.  You can alter 
+the EOS action in this event handler, however playback may stutter as the 
+media device will not have enough time to decode and buffer the new data in
+advance.</p>
+:event:
+</div></div>
+            </div></body>
+        

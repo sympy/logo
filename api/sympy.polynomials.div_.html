@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.polynomials.div_&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.p.div_</h1><span id="part">Part of <a href="sympy.polynomials.html">sympy.polynomials</a></span><div class="toplevel"><div>Polynomial division algorithms for use with class Polynomial
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.div_.div">div</a></td><td><div>Division with remainder.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.div_.gcd">gcd</a></td><td><div>Greatest common divisor.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.div_.lcm">lcm</a></td><td><div>Least common multiple.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.div_.div">div(f, g, var=None, order=None, coeff=None):</a></div>
+            <div class="functionBody"><div>Division with remainder.
+<h1 class="heading">Usage:</h1>
+  <p>The input consists of a polynomial f and either one or a list of 
+  polynomials g. When these are just SymPy expressions, you can 
+  additionally specify the variables and monomial orders with 'var' and 
+  'order', respectively. Only f is checked for the input types, the rest is
+  assumed to match.</p>
+  <p>If 'coeff' is set to 'int', only term divisions with proper 
+  coefficient divisions are allowed. That is, 3*x divides 6*x*y, but not 
+  2*x**2.</p>
+  The output's type is Polynomial, but there is a wrapper, see 
+  wrapper.div With only one element in g given, the resulting list of 
+  quotients is unpacked, also. The second output is the remainder.
+<h1 class="heading">Notes:</h1>
+  <p>The loop then iterates over all terms of f, checking if any of the 
+  elements in g (or just g if it is the sole divisor) have a leading term 
+  dividing the current term of f. If yes, the proper multiple of the 
+  element of g is subtracted from f, so that the term is eliminated, 
+  otherwise added to the remainder, until f is 0.</p>
+  <p>This way, the algorithm doesn't stop, when the leading terms of g 
+  don't divide the leading term of f, but rather try to reduce all of f's 
+  other terms. Of course, the known univariate single-polynomial division 
+  with remainder is a special case of this function.</p>
+  The result can depend on the order of the elements in g. For unicity, 
+  you need that their form a Groebner base of the ideal they generate, see 
+  groebner_.groebner.
+<h1 class="heading">Examples:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>q, r = div(x**2 + 6*x + 1, 3*x - 1)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> q
+<span class="py-output">19/9 + (1/3)*x</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> r
+<span class="py-output">28/9</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>q, r = div(x**2 + 6*x + 1, 3*x - 1, coeff=<span class="py-string">'int'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> q
+<span class="py-output">2</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> r
+<span class="py-output">3 + x**2</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>q, r = div(2*x**3*y**2 - x*y + y**3, [x-y, y**2], [x,y], <span class="py-string">'lex'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> q[0]
+<span class="py-output">-y + 2*y**4 + 2*x*y**3 + 2*x**2*y**2</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> q[1]
+<span class="py-output">(-1) + y + 2*y**3</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> r
+<span class="py-output">0</span></pre>
+<h1 class="heading">References:</h1>
+  Cox, Little, O'Shea: Ideals, Varieties and Algorithms, Springer, 2. 
+  edition, p. 62
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.div_.gcd">gcd(f, g, var=None, order=None, coeff=None):</a></div>
+            <div class="functionBody"><div>Greatest common divisor.
+<h1 class="heading">Usage:</h1>
+  <p>Input are two polynomials, either as SymPy expressions or as instances
+  of Polynomial. In the first case, the variables and monomial order can be
+  specified with 'var' and 'order', respectively.</p>
+  <p>If 'coeff' is set to 'int', the content of each polynomial is checked 
+  and their gcd multiplied to the result. Otherwise it is monic, that is, 
+  of leading coefficient 1.</p>
+  The output's type is Polynomial, but there is a wrapper, see 
+  wrapper.gcd.
+<h1 class="heading">Notes:</h1>
+  With only one variable, euclid's algorithm is used directly, which is 
+  reasonably fast. But in the multivariate case, we have to compute the gcd
+  using the least common multiple, which relies on Groebner bases. This is 
+  based on the formula: f*g = gcd(f, g)*lcm(f, g)
+<h1 class="heading">Examples:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> gcd(4*x**2*y, 6*x*y**2)
+<span class="py-output">x*y</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> gcd(4*x**2*y, 6*x*y**2, coeff=<span class="py-string">'int'</span>)
+<span class="py-output">2*x*y</span></pre>
+<h1 class="heading">References:</h1>
+  Cox, Little, O'Shea: Ideals, Varieties and Algorithms, Springer, 2. 
+  edition, p. 41 &amp; p. 187
+See also <a href="sympy.polynomials.div_.div.html">div</a>, <a 
+href="sympy.polynomials.div_.lcm.html">lcm</a>.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.div_.lcm">lcm(f, g, var=None, order=None, coeff=None):</a></div>
+            <div class="functionBody"><div>Least common multiple.
+<h1 class="heading">Usage:</h1>
+  <p>Input are two polynomials, either as SymPy expressions or as instances
+  of Polynomial. In the first case, the variables and monomial order can be
+  specified with 'var' and 'order', respectively.</p>
+  <p>If 'coeff' is set to 'int', the content of each polynomial is checked 
+  and their lcm multiplied to the result. Otherwise it is monic, that is, 
+  of leading coefficient 1.</p>
+  The output's type is Polynomial, but there is a wrapper, see 
+  wrapper.lcm.
+<h1 class="heading">Notes:</h1>
+  <p>With only one variable, the gcd is used to get the lcm from the 
+  product, via f*g = gcd(f, g)*lcm(f, g).</p>
+  In the univariate case, we compute the unique generator of the 
+  intersection of the two ideals, generated by f and g. This is done by 
+  computing a lexicographic Groebner base of [t*f. (t-1)*g], with t a dummy
+  variable at the first place, then filtering trough the base elements not 
+  containing t.
+<h1 class="heading">Examples:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> lcm(4*x**2*y, 6*x*y**2)
+<span class="py-output">x**2*y**2</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> lcm(4*x**2*y, 6*x*y**2, coeff=<span class="py-string">'int'</span>)
+<span class="py-output">12*x**2*y**2</span></pre>
+<h1 class="heading">References:</h1>
+  Cox, Little, O'Shea: Ideals, Varieties and Algorithms, Springer, 2. 
+  edition, p. 187
+See also <a href="sympy.polynomials.div_.div.html">div</a>, <a 
+href="sympy.polynomials.div_.gcd.html">gcd</a>.
+</div></div>
+            </div></body>
+        

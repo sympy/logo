@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.media.__init__.StaticSource&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.m._.StaticSource(<a href="sympy.plotting.pyglet.media.__init__.Source.html">Source</a>):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.media.__init__.html">sympy.plotting.pyglet.media.__init__</a></span><p>known subclasses: <a href="sympy.plotting.pyglet.media.__init__.StaticMemorySource.html">sympy.plotting.pyglet.media.__init__.StaticMemorySource</a></p><div class="toplevel"><div>A source that has been completely decoded in memory.  This source can be
+queued onto multiple players any number of times.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.StaticSource.__init__">__init__</a></td><td><div>Construct a `StaticSource` for the data in `source`.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.StaticSource._get_queue_source">_get_queue_source</a></td><td><div>Return the `Source` to be used as the queue source for a player.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.StaticSource._get_audio_data">_get_audio_data</a></td><td><div>Get next packet of audio data.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.StaticSource.__init__">__init__(self, source):</a></div>
+            <div class="functionBody"><pre>Construct a `StaticSource` for the data in `source`.
+
+:Parameters:
+    `source` : `Source`
+        The source to read and decode audio and video data from.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.StaticSource._get_queue_source">_get_queue_source(self):</a></div>
+            <div class="functionBody"><div><p>Return the `Source` to be used as the queue source for a player.</p>
+Default implementation returns self.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.StaticSource._get_audio_data">_get_audio_data(self, bytes):</a></div>
+            <div class="functionBody"><pre>Get next packet of audio data.
+
+:Parameters:
+    `bytes` : int
+        Maximum number of bytes of data to return.
+
+:rtype: `AudioData`
+:return: Next packet of audio data, or None if there is no (more)
+    data.</pre></div>
+            </div></body>
+        

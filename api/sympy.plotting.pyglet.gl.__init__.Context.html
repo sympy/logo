@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.gl.__init__.Context&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.g._.Context(object):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.gl.__init__.html">sympy.plotting.pyglet.gl.__init__</a></span><div class="toplevel"><pre>OpenGL context for drawing.
+
+Windows in pyglet each have their own GL context.  This class boxes
+the context in a platform-independent manner.  Applications will have
+no need to deal with contexts directly.
+
+:Ivariables:
+    `object_space` : `ObjectSpace`
+        An object which is shared between all contexts that share
+        GL objects.
+    `window` : `pyglet.window.Window`
+        The window this context is used by.</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Context.__init__">__init__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Context.__repr__">__repr__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Context.set_current">set_current</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Context.destroy">destroy</a></td><td><div>Release the context.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Context.delete_texture">delete_texture</a></td><td><div>Safely delete a texture belonging to this context.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.gl.__init__.Context.__init__">__init__(self, context_share=None):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.gl.__init__.Context.__repr__">__repr__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.gl.__init__.Context.set_current">set_current(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.gl.__init__.Context.destroy">destroy(self):</a></div>
+            <div class="functionBody"><div><p>Release the context.</p>
+The context will not be useable after being destroyed.  Each platform 
+has its own convention for releasing the context and the buffer(s) that 
+depend on it in the correct order; this should never be called by an 
+application.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.gl.__init__.Context.delete_texture">delete_texture(self, texture_id):</a></div>
+            <div class="functionBody"><pre>Safely delete a texture belonging to this context.
+
+Usually, the texture is released immediately using
+``glDeleteTextures``, however if another context that does not share
+this context's object space is current active, the deletion will
+be deferred until an appropriate context is activated.
+
+:Parameters:
+    `texture_id` : int
+        The OpenGL name of the texture to delete.</pre></div>
+            </div></body>
+        

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.font.base.Font&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.f.b.Font(object):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.font.base.html">sympy.plotting.pyglet.font.base</a></span><p>known subclasses: <a href="sympy.plotting.pyglet.font.carbon.CarbonFont.html">sympy.plotting.pyglet.font.carbon.CarbonFont</a>, <a href="sympy.plotting.pyglet.font.win32.Win32Font.html">sympy.plotting.pyglet.font.win32.Win32Font</a>, <a href="sympy.plotting.pyglet.font.freetype.FreeTypeFont.html">sympy.plotting.pyglet.font.freetype.FreeTypeFont</a></p><div class="toplevel"><pre>Abstract font class able to produce glyphs.
+
+To construct a font, use `pyglet.font.load`, which will instantiate the
+platform-specific font class.
+
+Internally, this class is used by the platform classes to manage the set
+of textures into which glyphs are written.
+
+:Ivariables:
+    `ascent` : int
+        Maximum ascent above the baseline, in pixels.
+    `descent` : int
+        Maximum descent below the baseline, in pixels. Usually negative.</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.base.Font.__init__">__init__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.base.Font.add_font_data">add_font_data</a></td><td><div>Add font data to the font loader.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.base.Font.have_font">have_font</a></td><td><div>Determine if a font with the given name is installed.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.base.Font.create_glyph">create_glyph</a></td><td><div>Create a glyph using the given image.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.base.Font.get_glyphs">get_glyphs</a></td><td><div>Create and return a list of Glyphs for `text`.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.base.Font.get_glyphs_for_width">get_glyphs_for_width</a></td><td><div>Return a list of glyphs for `text` that fit within the given width.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.base.Font.__init__">__init__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.base.Font.add_font_data">add_font_data(cls, data):</a></div>
+            <div class="functionBody"><div><p>Add font data to the font loader.</p>
+<p>This is a class method and affects all fonts loaded.  Data must be some 
+byte string of data, for example, the contents of a TrueType font file.  
+Subclasses can override this method to add the font data into the font 
+registry.</p>
+There is no way to instantiate a font given the data directly, you must 
+use `pyglet.font.load` specifying the font name.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.base.Font.have_font">have_font(cls, name):</a></div>
+            <div class="functionBody"><pre>Determine if a font with the given name is installed.
+
+:Parameters:
+    `name` : str
+        Name of a font to search for
+
+:rtype: bool</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.base.Font.create_glyph">create_glyph(self, image):</a></div>
+            <div class="functionBody"><pre>Create a glyph using the given image.
+
+This is used internally by `Font` subclasses to add glyph data
+to the font.  Glyphs are packed within large textures maintained by
+`Font`.  This method inserts the image into a font texture and returns
+a glyph reference; it is up to the subclass to add metadata to the
+glyph.
+
+Applications should not use this method directly.
+
+:Parameters:
+    `image` : `pyglet.image.AbstractImage`
+        The image to write to the font texture.
+
+:rtype: `Glyph`</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.base.Font.get_glyphs">get_glyphs(self, text):</a></div>
+            <div class="functionBody"><pre>Create and return a list of Glyphs for `text`.
+
+If any characters do not have a known glyph representation in this
+font, a substitution will be made.
+
+:Parameters:
+    `text` : str or unicode
+        Text to render.
+
+:rtype: list of `Glyph`</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.base.Font.get_glyphs_for_width">get_glyphs_for_width(self, text, width):</a></div>
+            <div class="functionBody"><pre>Return a list of glyphs for `text` that fit within the given width.
+
+If the entire text is larger than 'width', as much as possible will be
+used while breaking after a space or zero-width space character.  If a
+newline is enountered in text, only text up to that newline will be
+used.  If no break opportunities (newlines or spaces) occur within
+`width`, the text up to the first break opportunity will be used (this
+will exceed `width`).  If there are no break opportunities, the entire
+text will be used.
+
+You can assume that each character of the text is represented by
+exactly one glyph; so the amount of text "used up" can be determined
+by examining the length of the returned glyph list.
+
+:Parameters:
+    `text` : str or unicode
+        Text to render.
+    `width` : int
+        Maximum width of returned glyphs.
+
+:rtype: list of `Glyph`
+
+:see: `GlyphString`</pre></div>
+            </div></body>
+        

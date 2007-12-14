@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.window.__init__.Display&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.w._.Display(object):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.window.__init__.html">sympy.plotting.pyglet.window.__init__</a></span><div class="toplevel"><div><p>A display device supporting one or more screens.</p>
+Use `Platform.get_display` or `Platform.get_default_display` to obtain 
+an instance of this class.  Use a display to obtain `Screen` instances.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.Display.__init__">__init__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.Display.get_screens">get_screens</a></td><td><div>Get the available screens.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.Display.get_default_screen">get_default_screen</a></td><td><div>Get the default screen as specified by the user's operating system
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.Display.get_windows">get_windows</a></td><td><div>Get the windows currently attached to this display.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.window.__init__.Display.__init__">__init__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.window.__init__.Display.get_screens">get_screens(self):</a></div>
+            <div class="functionBody"><div><p>Get the available screens.</p>
+<p>A typical multi-monitor workstation comprises one `Display` with 
+multiple `Screen` s.  This method returns a list of screens which can be 
+enumerated to select one for full-screen display.</p>
+<p>For the purposes of creating an OpenGL config, the default screen will 
+suffice.</p>
+:rtype: list of `Screen`
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.window.__init__.Display.get_default_screen">get_default_screen(self):</a></div>
+            <div class="functionBody"><div><p>Get the default screen as specified by the user's operating system 
+preferences.</p>
+:rtype: `Screen`
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.window.__init__.Display.get_windows">get_windows(self):</a></div>
+            <div class="functionBody"><div><p>Get the windows currently attached to this display.</p>
+:rtype: sequence of `Window`
+</div></div>
+            </div></body>
+        

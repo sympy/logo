@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.polynomials.fast.intpoly&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.p.f.intpoly</h1><span id="part">Part of <a href="sympy.polynomials.fast.html">sympy.polynomials.fast</a></span><div class="toplevel"><div>Univariate polynomials with integer coefficients.
+</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.polynomials.fast.intpoly.IntPoly.html">IntPoly</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.intpoly.div">div</a></td><td><div>Division with remainder over the integers.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.intpoly.gcd_small_primes">gcd_small_primes</a></td><td><div>Modular small primes version for primitive polynomials.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.intpoly.gcd_heuristic">gcd_heuristic</a></td><td><div>Heuristic gcd for primitive univariate polynomials.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.intpoly.hensel_step">hensel_step</a></td><td><div>One step in Hensel lifting.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.intpoly.multi_hensel_lift">multi_hensel_lift</a></td><td><div>Multifactor Hensel lifting.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.intpoly.zassenhaus">zassenhaus</a></td><td><div>Factors a square-free primitive polynomial.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.intpoly.squarefree_part">squarefree_part</a></td><td><div>Computes the primitive squarefree part of a polynomial.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.intpoly.factor">factor</a></td><td><div>Factorization of univariate integer polynomials.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.intpoly.div">div(f, g):</a></div>
+            <div class="functionBody"><div>Division with remainder over the integers.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.intpoly.gcd_small_primes">gcd_small_primes(f, g):</a></div>
+            <div class="functionBody"><div>Modular small primes version for primitive polynomials.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.intpoly.gcd_heuristic">gcd_heuristic(f, g):</a></div>
+            <div class="functionBody"><div>Heuristic gcd for primitive univariate polynomials.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.intpoly.hensel_step">hensel_step(m, f, g, h, s, t):</a></div>
+            <div class="functionBody"><pre>One step in Hensel lifting.
+
+Takes an integer m and integer polynomials f, g, h, s and t as
+input, such that:
+    f == g*h mod m
+    s*g + t*h == 1 mod m
+    lc(f) not a zero divisor mod m, h is monic
+    deg(f) == deg(g) + deg(h)
+    deg(s) < deg(h) and deg(t) < deg(g)
+
+Outputs integer polynomials gg, hh, ss and tt, such that:
+    f == gg*hh mod m**2
+    ss*gg + tt**hh == 1 mod m**2</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.intpoly.multi_hensel_lift">multi_hensel_lift(p, f, f_list, l):</a></div>
+            <div class="functionBody"><pre>Multifactor Hensel lifting.
+
+Input: an integer p, an univariate integer polynomial f such that
+f's leading coefficient lc(f) is a unit mod p. Monic polynomials
+f_i that are pair-wise coprime mod p satisfying
+    f = lc(f)*f_1*...*f_r mod p
+and an integer l.
+
+Output: monic polynomials ff_1, ..., ff_r satisfying
+    f = lc(f)*ff_1*...*ff_r mod p**l
+    ff_i = f_i mod p</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.intpoly.zassenhaus">zassenhaus(f):</a></div>
+            <div class="functionBody"><div><p>Factors a square-free primitive polynomial.</p>
+Returns a list of the unique factors.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.intpoly.squarefree_part">squarefree_part(f):</a></div>
+            <div class="functionBody"><div>Computes the primitive squarefree part of a polynomial.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.intpoly.factor">factor(f):</a></div>
+            <div class="functionBody"><div><p>Factorization of univariate integer polynomials.</p>
+Outputs a list of factors with their multiplicities, the first being 
+constant.
+</div></div>
+            </div></body>
+        

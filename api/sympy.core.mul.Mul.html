@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.mul.Mul&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.c.m.Mul(<a href="sympy.core.operations.AssocOp.html">AssocOp</a>, <a href="sympy.core.methods.RelMeths.html">RelMeths</a>, <a href="sympy.core.methods.ArithMeths.html">ArithMeths</a>):</h1><span id="part">Part of <a href="sympy.core.mul.html">sympy.core.mul</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul.flatten">flatten</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_power">_eval_power</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul.precedence">precedence</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul.as_two_terms">as_two_terms</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul.as_coeff_terms">as_coeff_terms</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._expandsums">_expandsums</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_expand_basic">_eval_expand_basic</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_derivative">_eval_derivative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._matches_simple">_matches_simple</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul.matches">matches</a></td><td><div>Helper method for match() - switches the pattern and expr.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._combine_inverse">_combine_inverse</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul.as_powers_dict">as_powers_dict</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul.as_numer_denom">as_numer_denom</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul.count_ops">count_ops</a></td><td><div>Return the number of operations in expressions.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_integral">_eval_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_defined_integral">_eval_defined_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_is_polynomial">_eval_is_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_is_irrational">_eval_is_irrational</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_is_positive">_eval_is_positive</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_is_negative">_eval_is_negative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_is_odd">_eval_is_odd</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_subs">_eval_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_oseries">_eval_oseries</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_as_leading_term">_eval_as_leading_term</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._eval_conjugate">_eval_conjugate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.mul.Mul._sage_">_sage_</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul.flatten">flatten(cls, seq):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_power">_eval_power(b, e):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul.precedence">precedence(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul.tostr">tostr(self, level=0):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul.as_two_terms">as_two_terms(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul.as_coeff_terms">as_coeff_terms(self, x=None):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._expandsums">_expandsums(sums):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_expand_basic">_eval_expand_basic(self, *args):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_derivative">_eval_derivative(self, s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._matches_simple">_matches_simple(pattern, expr, repl_dict):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul.matches">matches(pattern, expr, repl_dict={}, evaluate=False):</a></div>
+            <div class="functionBody"><div><p>Helper method for match() - switches the pattern and expr.</p>
+Can be used to solve linear equations:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol, Wild
+<span class="py-prompt">&gt;&gt;&gt; </span>a,b = map(Symbol, <span class="py-string">'ab'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Wild(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>(a+b*x).matches(0)
+<span class="py-output">{x_: -a/b}</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._combine_inverse">_combine_inverse(lhs, rhs):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul.as_powers_dict">as_powers_dict(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul.as_numer_denom">as_numer_denom(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul.count_ops">count_ops(self, symbolic=True):</a></div>
+            <div class="functionBody"><div><p>Return the number of operations in expressions.</p>
+Examples: &gt;&gt;&gt; (1+a+b**2).count_ops() POW + 2 * ADD &gt;&gt;&gt;
+(sin(x)*x+sin(x)**2).count_ops() ADD + MUL + POW + 2 * SIN
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_integral">_eval_integral(self, s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_defined_integral">_eval_defined_integral(self, s, a, b):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_is_polynomial">_eval_is_polynomial(self, syms):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_is_irrational">_eval_is_irrational(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_is_positive">_eval_is_positive(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_is_negative">_eval_is_negative(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_is_odd">_eval_is_odd(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_subs">_eval_subs(self, old, new):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_oseries">_eval_oseries(self, order):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_as_leading_term">_eval_as_leading_term(self, x):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._eval_conjugate">_eval_conjugate(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.mul.Mul._sage_">_sage_(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

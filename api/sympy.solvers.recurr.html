@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.solvers.recurr&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.s.recurr</h1><span id="part">Part of <a href="sympy.solvers.html">sympy.solvers</a></span><div class="toplevel"><div><p>This module is intended for solving recurrences or, in other words, 
+difference equations. Currently supported are linear, inhomogeneous 
+equantions with polynomial or rational coefficients.</p>
+The solutions are obtained among polynomials, rational functions, 
+hypergeometric terms, or combinations of hypergeometric term which are 
+pairwise dissimilar.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.solvers.recurr.rsolve_poly">rsolve_poly</a></td><td><div>Given linear recurrence operator L of order 'k' with polynomial
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.recurr.rsolve_ratio">rsolve_ratio</a></td><td><div>Given linear recurrence operator L of order 'k' with polynomial
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.recurr.rsolve_hyper">rsolve_hyper</a></td><td><div>Given linear recurrence operator L of order 'k' with polynomial
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.recurr.rsolve">rsolve</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.solvers.recurr.rsolve_poly">rsolve_poly(coeffs, f, n, **hints):</a></div>
+            <div class="functionBody"><pre>Given linear recurrence operator L of order 'k' with polynomial
+coefficients and inhomogeneous equation Ly = f, where 'f' is a
+polynomial, we seek for all polynomial solutions over field K
+of characteristic zero.
+
+The algorithm performs two basic steps:
+
+    (1) Compute degree N of the general polynomial solution.
+    (2) Find all polynomials of degree N or less of Ly = f.
+
+There are two methods for computing the polynomial solutions.
+If the degree bound is relatively small, ie. it's smaller than
+or equal to the order of the recurrence, then naive method of
+undetermined coefficients is being used. This gives system
+of algebraic equations with N+1 unknowns.
+
+In the other case, the algorithm performs transformation of the
+initial equation to an equivalent one, for which the system of
+algebraic equations has only 'r' undeterminates. This method is
+quite sophisticated (in comparison with the naive one) and was
+invented together by Abramov, Bronstein and Petkovsek.
+
+It is possible to generalize the algorithm implemented here to
+the case of linear q-difference and differential equations.
+
+Lets say that we would like to compute m-th Bernoulli polynomial
+up to a constant. For this we can use b(n+1) - b(n) == m*n**(m-1)
+recurrence, which has solution b(n) = B_m + C. For example:
+
+>>> from sympy.core import Symbol
+>>> n = Symbol('n', integer=True)
+
+>>> rsolve_poly([-1, 1], 4*n**3, n)
+C0 + n**2 + n**4 - 2*n**3
+
+For more information on implemented algorithms refer to:
+
+[1] S. A. Abramov, M. Bronstein and M. Petkovsek, On polynomial
+    solutions of linear operator equations, in: T. Levelt, ed.,
+    Proc. ISSAC '95, ACM Press, New York, 1995, 290-296.
+
+[2] M. Petkovsek, Hypergeometric solutions of linear recurrences
+    with polynomial coefficients, J. Symbolic Computation,
+    14 (1992), 243-264.
+
+[3] M. Petkovsek, H. S. Wilf, D. Zeilberger, A = B, 1996.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.solvers.recurr.rsolve_ratio">rsolve_ratio(coeffs, f, n, **hints):</a></div>
+            <div class="functionBody"><pre>Given linear recurrence operator L of order 'k' with polynomial
+coefficients and inhomogeneous equation Ly = f, where 'f' is a
+polynomial, we seek for all rational solutions over field K of
+characteristic zero.
+
+This procedure accepts only polynomials, however if you are
+interested in solving recurrence with ratinal coefficients
+then use rsolve() with will preprocess equation given and
+run this procedure with polynomial arguments.
+
+The algorithm performs two basic steps:
+
+    (1) Compute polynomial v(n) which can be used as universal
+        denominator of any rational solution of equation Ly = f.
+
+    (2) Construct new linear difference equation by substitution
+        y(n) = u(n)/v(n) and solve it for u(n) finding all its
+        polynomial solutions. Return None if none were found.
+
+Algorithm implemented here is a revised version of the original
+Abramov's algorithm, developed in 1989. The new approach is much
+simpler to implement and has better overall efficiency. This
+method can be easily adapted to q-difference equations case.
+
+Besides finding rational solutions alone, this functions is
+an important part of Hyper algorithm were it is used to find
+particular solution of ingomogeneous part of a recurrence.
+
+For more information on the implemented algorithm refer to:
+
+[1] S. A. Abramov, Rational solutions of linear difference
+    and q-difference equations with polynomial coefficients,
+    in: T. Levelt, ed., Proc. ISSAC '95, ACM Press, New York,
+    1995, 285-289</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.solvers.recurr.rsolve_hyper">rsolve_hyper(coeffs, f, n, **hints):</a></div>
+            <div class="functionBody"><pre>Given linear recurrence operator L of order 'k' with polynomial
+coefficients and inhomogeneous equation Ly = f we seek for all
+hypergeometric solutions over field K of characteristic zero.
+
+The inhomogeneous part can be either hypergeometric or a sum
+of a fixed number of pairwise dissimilar hypergeometric terms.
+
+The algorithm performs three basic steps:
+
+    (1) Group together similar hypergeometric terms in the
+        inhomogeneous part of Ly = f, and find particular
+        solution using Abramov's algorithm.
+
+    (2) Compute generating set of L and find basis in it,
+        so that all solutions are lineary independent.
+
+    (3) Form final solution with the number of arbitrary
+        constants equal to dimension of basis of L.
+
+Term a(n) is hypergeometric if it is anihilated by first order
+linear difference equations with polynomial coefficients or, in
+simpler words, if consecutive term ratio is a rational function.
+
+The output of this procedure is a linear combination of fixed
+number of hypergeometric terms. However the underlying method
+can generate larger class of solutions - D'Alembertian terms.
+
+Note also that this method not only computes the kernel of the
+inhomogeneous equation, but also reduces in to a basis so that
+solutions generated by this procedure are lineary independent
+
+For more information on the implemented algorithm refer to:
+
+[1] M. Petkovsek, Hypergeometric solutions of linear recurrences
+    with polynomial coefficients, J. Symbolic Computation,
+    14 (1992), 243-264.
+
+[2] M. Petkovsek, H. S. Wilf, D. Zeilberger, A = B, 1996.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.solvers.recurr.rsolve">rsolve(eq, seq):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

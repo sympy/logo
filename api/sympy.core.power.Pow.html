@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.power.Pow&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.c.p.Pow(<a href="sympy.core.basic.Basic.html">Basic</a>, <a href="sympy.core.methods.ArithMeths.html">ArithMeths</a>, <a href="sympy.core.methods.RelMeths.html">RelMeths</a>):</h1><span id="part">Part of <a href="sympy.core.power.html">sympy.core.power</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.base">base</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.exp">exp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_power">_eval_power</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_is_commutative">_eval_is_commutative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_is_comparable">_eval_is_comparable</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_is_even">_eval_is_even</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_is_positive">_eval_is_positive</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_is_negative">_eval_is_negative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_is_integer">_eval_is_integer</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_is_real">_eval_is_real</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_is_odd">_eval_is_odd</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_is_bounded">_eval_is_bounded</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_subs">_eval_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.as_powers_dict">as_powers_dict</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.as_base_exp">as_base_exp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_conjugate">_eval_conjugate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_expand_complex">_eval_expand_complex</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_expand_basic">_eval_expand_basic</a></td><td><div>(a*b)**n -&gt; a**n * b**n
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_derivative">_eval_derivative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._calc_splitter">_calc_splitter</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.count_ops">count_ops</a></td><td><div>Return the number of operations in expressions.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_integral">_eval_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_defined_integral">_eval_defined_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_is_polynomial">_eval_is_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.as_numer_denom">as_numer_denom</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.matches">matches</a></td><td><div>Helper method for match() - switches the pattern and expr.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_oseries">_eval_oseries</a></td><td><div>f**g + O(h) == (f+O(k))**g -&gt; .. -&gt; f**g + O(f**(g-1)*k), hence 
+O(k)==O(h*f**(1-g)).
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_as_leading_term">_eval_as_leading_term</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.taylor_term">taylor_term</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._sage_">_sage_</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow.__new__">__new__(cls, a, b, **assumptions):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow.base">base(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow.exp">exp(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_power">_eval_power(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_is_commutative">_eval_is_commutative(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_is_comparable">_eval_is_comparable(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_is_even">_eval_is_even(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_is_positive">_eval_is_positive(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_is_negative">_eval_is_negative(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_is_integer">_eval_is_integer(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_is_real">_eval_is_real(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_is_odd">_eval_is_odd(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_is_bounded">_eval_is_bounded(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow.tostr">tostr(self, level=0):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_subs">_eval_subs(self, old, new):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow.as_powers_dict">as_powers_dict(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow.as_base_exp">as_base_exp(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_conjugate">_eval_conjugate(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_expand_complex">_eval_expand_complex(self, *args):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_expand_basic">_eval_expand_basic(self, *args):</a></div>
+            <div class="functionBody"><div>(a*b)**n -&gt; a**n * b**n (a+b+..) ** n -&gt; a**n + n*a**(n-1)*b + ..,
+n is positive integer
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_derivative">_eval_derivative(self, s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._calc_splitter">_calc_splitter(self, d):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow.count_ops">count_ops(self, symbolic=True):</a></div>
+            <div class="functionBody"><div><p>Return the number of operations in expressions.</p>
+Examples: &gt;&gt;&gt; (1+a+b**2).count_ops() POW + 2 * ADD &gt;&gt;&gt;
+(sin(x)*x+sin(x)**2).count_ops() ADD + MUL + POW + 2 * SIN
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_integral">_eval_integral(self, s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_defined_integral">_eval_defined_integral(self, s, a, b):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_is_polynomial">_eval_is_polynomial(self, syms):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow.as_numer_denom">as_numer_denom(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow.matches">matches(pattern, expr, repl_dict={}, evaluate=False):</a></div>
+            <div class="functionBody"><div><p>Helper method for match() - switches the pattern and expr.</p>
+Can be used to solve linear equations:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol, Wild
+<span class="py-prompt">&gt;&gt;&gt; </span>a,b = map(Symbol, <span class="py-string">'ab'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Wild(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>(a+b*x).matches(0)
+<span class="py-output">{x_: -a/b}</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_oseries">_eval_oseries(self, order):</a></div>
+            <div class="functionBody"><div>f**g + O(h) == (f+O(k))**g -&gt; .. -&gt; f**g + O(f**(g-1)*k), hence 
+O(k)==O(h*f**(1-g)). If f-&gt;0 as x-&gt;0 then
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_as_leading_term">_eval_as_leading_term(self, x):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow.taylor_term">taylor_term(self, n, x, *previous_terms):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow._sage_">_sage_(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

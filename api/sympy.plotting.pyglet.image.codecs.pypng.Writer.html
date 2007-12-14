@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.image.codecs.pypng.Writer&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.i.c.p.Writer:</h1><span id="part">Part of <a href="sympy.plotting.pyglet.image.codecs.pypng.html">sympy.plotting.pyglet.image.codecs.pypng</a></span><div class="toplevel"><div>PNG encoder in pure Python.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Writer.__init__">__init__</a></td><td><div>Create a PNG encoder object.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Writer.write_chunk">write_chunk</a></td><td><div>Write a PNG chunk to the output file, including length and checksum.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Writer.write">write</a></td><td><div>Write a PNG image to the output file.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Writer.write_array">write_array</a></td><td><div>Encode a pixel array to PNG and write output file.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Writer.convert_ppm">convert_ppm</a></td><td><div>Convert a PPM file containing raw pixel data into a PNG file
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Writer.convert_ppm_and_pgm">convert_ppm_and_pgm</a></td><td><div>Convert a PPM and PGM file containing raw pixel data into a
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Writer.file_scanlines">file_scanlines</a></td><td><div>Generator for scanlines from an input file.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Writer.array_scanlines">array_scanlines</a></td><td><div>Generator for scanlines from an array.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Writer.old_array_scanlines_interlace">old_array_scanlines_interlace</a></td><td><div>Generator for interlaced scanlines from an array.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Writer.array_scanlines_interlace">array_scanlines_interlace</a></td><td><div>Generator for interlaced scanlines from an array.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Writer.__init__">__init__(self, width, height, transparent=None, background=None, gamma=None, greyscale=False, has_alpha=False, bytes_per_sample=1, compression=None, interlaced=False, chunk_limit=220):</a></div>
+            <div class="functionBody"><div><p>Create a PNG encoder object.</p>
+<p>Arguments: width, height - size of the image in pixels transparent - 
+create a tRNS chunk background - create a bKGD chunk gamma - create a gAMA 
+chunk greyscale - input data is greyscale, not RGB has_alpha - input data 
+has alpha channel (RGBA) bytes_per_sample - 8-bit or 16-bit input data 
+compression - zlib compression level (1-9) chunk_limit - write multiple 
+IDAT chunks to save memory</p>
+<p>If specified, the transparent and background parameters must be a tuple 
+with three integer values for red, green, blue, or a simple integer (or 
+singleton tuple) for a greyscale image.</p>
+If specified, the gamma parameter must be a float value.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Writer.write_chunk">write_chunk(self, outfile, tag, data):</a></div>
+            <div class="functionBody"><div>Write a PNG chunk to the output file, including length and checksum.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Writer.write">write(self, outfile, scanlines):</a></div>
+            <div class="functionBody"><div>Write a PNG image to the output file.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Writer.write_array">write_array(self, outfile, pixels):</a></div>
+            <div class="functionBody"><div>Encode a pixel array to PNG and write output file.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Writer.convert_ppm">convert_ppm(self, ppmfile, outfile):</a></div>
+            <div class="functionBody"><div>Convert a PPM file containing raw pixel data into a PNG file with the 
+parameters set in the writer object.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Writer.convert_ppm_and_pgm">convert_ppm_and_pgm(self, ppmfile, pgmfile, outfile):</a></div>
+            <div class="functionBody"><div>Convert a PPM and PGM file containing raw pixel data into a PNG outfile 
+with the parameters set in the writer object.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Writer.file_scanlines">file_scanlines(self, infile):</a></div>
+            <div class="functionBody"><div>Generator for scanlines from an input file.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Writer.array_scanlines">array_scanlines(self, pixels):</a></div>
+            <div class="functionBody"><div>Generator for scanlines from an array.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Writer.old_array_scanlines_interlace">old_array_scanlines_interlace(self, pixels):</a></div>
+            <div class="functionBody"><div>Generator for interlaced scanlines from an array. 
+http://www.w3.org/TR/PNG/#8InterlaceMethods
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Writer.array_scanlines_interlace">array_scanlines_interlace(self, pixels):</a></div>
+            <div class="functionBody"><div>Generator for interlaced scanlines from an array. 
+http://www.w3.org/TR/PNG/#8InterlaceMethods
+</div></div>
+            </div></body>
+        

@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.geometry.point.Point&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.g.p.Point(<a href="sympy.geometry.entity.GeometryEntity.html">GeometryEntity</a>):</h1><span id="part">Part of <a href="sympy.geometry.point.html">sympy.geometry.point</a></span><div class="toplevel"><pre>A point in Euclidean N-space defined by a sequence of values. Can be
+constructed from a sequence of points or a list of points.
+
+Examples:
+======
+    >>> Point(1, 2)
+    Point(1, 2)
+    >>> Point([1, 2])
+    Point(1, 2)
+
+Notes:
+======
+    - Currently only 2-dimensional points are supported.</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.is_collinear">is_collinear</a></td><td><div>Test whether or not a set of points are collinear. Returns True if
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.is_concyclic">is_concyclic</a></td><td><div>Test whether or not a set of points are concyclic (i.e., on the same
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.distance">distance</a></td><td><div>Get the Euclidean distance between two points.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.midpoint">midpoint</a></td><td><div>Get the midpoint of two points.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.evalf">evalf</a></td><td><div>Evaluate and return a Point where every coordinate is evaluated to
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.intersection">intersection</a></td><td><div>Returns a list of all of the intersections of this entity and 
+another
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.__add__">__add__</a></td><td><div>Create a new point where each coordinate in this point is
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.__sub__">__sub__</a></td><td><div>Create a new point where each coordinate in this point is
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.__mul__">__mul__</a></td><td><div>Create a new point where each coordinate in this point is
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.__div__">__div__</a></td><td><div>Create a new point where each coordinate in this point is
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.__neg__">__neg__</a></td><td><div>Create a new point where each oordinate in this point is negated.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.point.Point.__abs__">__abs__</a></td><td><div>Returns the distance between this point and the origin.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.__new__">__new__(cls, *args, **kwargs):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.is_collinear">is_collinear(*points):</a></div>
+            <div class="functionBody"><pre>Test whether or not a set of points are collinear. Returns True if
+the set of points are collinear, or False otherwise.
+
+Examples:
+=========
+    >>> from sympy import *
+    >>> x = Symbol('x')
+    >>> p1,p2 = Point(0, 0), Point(1, 1)
+    >>> p3,p4,p5 = Point(2, 2), Point(x, x), Point(1, 2)
+    >>> Point.is_collinear(p1, p2, p3, p4)
+    True
+    >>> Point.is_collinear(p1, p2, p3, p5)
+    False
+
+Description of method used:
+===========================
+    Slope is preserved everywhere on a line, so the slope between
+    any two points on the line should be the same. Take the first
+    two points, p1 and p2, and create a translated point v1
+    with p1 as the origin. Now for every other point we create
+    a translated point, vi with p1 also as the origin. Note that
+    these translations preserve slope since everything is
+    consistently translated to a new origin of p1. Since slope
+    is preserved then we have the following equality:
+            v1_slope = vi_slope
+      =>    v1.y/v1.x = vi.y/vi.x (due to translation)
+      =>    v1.y*vi.x = vi.y*v1.x
+      =>    v1.y*vi.x - vi.y*v1.x = 0           (*)
+    Hence, if we have a vi such that the equality in (*) is False
+    then the points are not collinear. We do this test for every
+    point in the list, and if all pass then they are collinear.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.is_concyclic">is_concyclic(*points):</a></div>
+            <div class="functionBody"><div>Test whether or not a set of points are concyclic (i.e., on the same 
+circle). Returns True if they are concyclic, or False otherwise.
+<h1 class="heading">Example:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p1,p2 = Point(-1, 0), Point(1, 0)
+<span class="py-prompt">&gt;&gt;&gt; </span>p3,p4 = Point(0, 1), Point(-1, 2)
+<span class="py-prompt">&gt;&gt;&gt; </span>Point.is_concyclic(p1, p2, p3)
+<span class="py-output">True</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>Point.is_concyclic(p1, p2, p3, p4)
+<span class="py-output">False</span></pre>
+<h1 class="heading">Description of method used:</h1>
+  <p>No points are not considered to be concyclic. One or two points are 
+  definitely concyclic and three points are conyclic iff they are not 
+  collinear.</p>
+  For more than three points, we pick the first three points and attempt
+  to create a circle. If the circle cannot be created (i.e., they are 
+  collinear) then all of the points cannot be concyclic. If the circle is 
+  created successfully then simply check all of the other points for 
+  containment in the circle.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.distance">distance(p1, p2):</a></div>
+            <div class="functionBody"><div>Get the Euclidean distance between two points.
+<h1 class="heading">Example:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p1,p2 = Point(1, 1), Point(4, 5)
+<span class="py-prompt">&gt;&gt;&gt; </span>Point.distance(p1, p2)
+<span class="py-output">5</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.midpoint">midpoint(p1, p2):</a></div>
+            <div class="functionBody"><div>Get the midpoint of two points.
+<h1 class="heading">Example:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p1,p2 = Point(1, 1), Point(13, 5)
+<span class="py-prompt">&gt;&gt;&gt; </span>Point.midpoint(p1, p2)
+<span class="py-output">Point(7, 3)</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.evalf">evalf(self):</a></div>
+            <div class="functionBody"><div>Evaluate and return a Point where every coordinate is evaluated to a 
+floating point number.
+<h1 class="heading">Example:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>Point(Rational(1,2), Rational(3,2)).evalf()
+<span class="py-output">Point(0.5, 1.5)</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.intersection">intersection(self, o):</a></div>
+            <div class="functionBody"><div>Returns a list of all of the intersections of this entity and another 
+entity.
+<h1 class="heading">Notes:</h1>
+  <ul>
+    <li>
+      This method is not intended to be used directly but rather through
+      the intersection() method found in util.py.
+    </li>
+    <li>
+      An entity is not required to implement this method.
+    </li>
+    <li>
+      If two different types of entities can intersect, it is only 
+      required that one of them be able to determine this.
+    </li>
+  </ul>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.__add__">__add__(self, other):</a></div>
+            <div class="functionBody"><div>Create a new point where each coordinate in this point is increased by 
+the corresponding coordinate in other.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.__sub__">__sub__(self, other):</a></div>
+            <div class="functionBody"><div>Create a new point where each coordinate in this point is decreased by 
+the corresponding coordinate in other.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.__mul__">__mul__(self, factor):</a></div>
+            <div class="functionBody"><div>Create a new point where each coordinate in this point is multiplied by 
+factor.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.__div__">__div__(self, divisor):</a></div>
+            <div class="functionBody"><div>Create a new point where each coordinate in this point is divided by 
+factor.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.__neg__">__neg__(self):</a></div>
+            <div class="functionBody"><div>Create a new point where each oordinate in this point is negated.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.point.Point.__abs__">__abs__(self):</a></div>
+            <div class="functionBody"><div>Returns the distance between this point and the origin.
+</div></div>
+            </div></body>
+        

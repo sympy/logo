@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.image.__init__.CompressedImageData&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.i._.CompressedImageData(<a href="sympy.plotting.pyglet.image.__init__.AbstractImage.html">AbstractImage</a>):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.image.__init__.html">sympy.plotting.pyglet.image.__init__</a></span><div class="toplevel"><div>Image representing some compressed data suitable for direct uploading to
+driver.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.CompressedImageData.__init__">__init__</a></td><td><div>Construct a CompressedImageData with the given compressed data.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.CompressedImageData.set_mipmap_data">set_mipmap_data</a></td><td><div>Set data for a mipmap level.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.CompressedImageData._have_extension">_have_extension</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.CompressedImageData._verify_driver_supported">_verify_driver_supported</a></td><td><div>Assert that the extension required for this image data is
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.CompressedImageData._get_texture">_get_texture</a></td><td><div>Retrieve a Texture instance for this image.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.CompressedImageData._get_mipmapped_texture">_get_mipmapped_texture</a></td><td><div>Retrieve a Texture instance with all mipmap levels filled in.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.CompressedImageData.blit_to_texture">blit_to_texture</a></td><td><div>Draw this image on the currently bound texture at `target`.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.CompressedImageData.__init__">__init__(self, width, height, gl_format, data, extension=None, decoder=None):</a></div>
+            <div class="functionBody"><pre>Construct a CompressedImageData with the given compressed data.
+
+:Parameters:
+    `width` : int
+        Width of image
+    `height` : int
+        Height of image
+    `gl_format` : int
+        GL constant giving format of compressed data; for example,
+        ``GL_COMPRESSED_RGBA_S3TC_DXT5_EXT``.
+    `data` : sequence
+        String or array/list of bytes giving compressed image data.
+    `extension` : str or None
+        If specified, gives the name of a GL extension to check for
+        before creating a texture.
+    `decoder` : function(data, width, height) -> AbstractImage
+        A function to decode the compressed data, to be used if the
+        required extension is not present.
+        </pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.CompressedImageData.set_mipmap_data">set_mipmap_data(self, level, data):</a></div>
+            <div class="functionBody"><pre>Set data for a mipmap level.
+
+Supplied data gives a compressed image for the given mipmap level.
+The image must be of the correct dimensions for the level 
+(i.e., width >> level, height >> level); but this is not checked.  If
+any mipmap levels are specified, they are used; otherwise, mipmaps for
+`mipmapped_texture` are generated automatically.
+
+:Parameters:
+    `level` : int
+        Level of mipmap image to set.
+    `data` : sequence
+        String or array/list of bytes giving compressed image data.
+        Data must be in same format as specified in constructor.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.CompressedImageData._have_extension">_have_extension(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.CompressedImageData._verify_driver_supported">_verify_driver_supported(self):</a></div>
+            <div class="functionBody"><div><p>Assert that the extension required for this image data is supported.</p>
+Raises `ImageException` if not.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.CompressedImageData._get_texture">_get_texture(self):</a></div>
+            <div class="functionBody"><div>Retrieve a Texture instance for this image.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.CompressedImageData._get_mipmapped_texture">_get_mipmapped_texture(self):</a></div>
+            <div class="functionBody"><div>Retrieve a Texture instance with all mipmap levels filled in.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.CompressedImageData.blit_to_texture">blit_to_texture(self, target, level, x, y, z):</a></div>
+            <div class="functionBody"><div>Draw this image on the currently bound texture at `target`.
+</div></div>
+            </div></body>
+        

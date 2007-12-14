@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.matrices.matrices.SMatrix&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.m.m.SMatrix(<a href="sympy.matrices.matrices.Matrix.html">Matrix</a>):</h1><span id="part">Part of <a href="sympy.matrices.matrices.html">sympy.matrices.matrices</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.__init__">__init__</a></td><td><div>Matrix can be constructed with values or a rule.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.__getitem__">__getitem__</a></td><td><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *</pre>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.rowdecomp">rowdecomp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.__setitem__">__setitem__</a></td><td><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *</pre>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.__str__">__str__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.row_del">row_del</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.col_del">col_del</a></td><td><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">import</span> sympy</pre>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.copyin_list">copyin_list</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.multiply">multiply</a></td><td><div>Returns self*b
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.submatrix">submatrix</a></td><td><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *</pre>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.reshape">reshape</a></td><td><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *</pre>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.cross">cross</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.zeronm">zeronm</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.zero">zero</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.SMatrix.eye">eye</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.__init__">__init__(self, *args):</a></div>
+            <div class="functionBody"><div>Matrix can be constructed with values or a rule.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>Matrix( (1,2+I), (3,4) ) <span class="py-comment">#doctest:+NORMALIZE_WHITESPACE</span>
+<span class="py-output">1 2 + I</span>
+<span class="py-output">3 4</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>Matrix(2, 2, <span class="py-keyword">lambda</span> i,j: (i+1)*j ) <span class="py-comment">#doctest:+NORMALIZE_WHITESPACE</span>
+<span class="py-output">0 1</span>
+<span class="py-output">0 2</span></pre>
+Note: in SymPy we count indices from 0. The rule however counts from 
+1.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.__getitem__">__getitem__(self, key):</a></div>
+            <div class="functionBody"><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>m=Matrix(((1,2+I),(3,4)))
+<span class="py-prompt">&gt;&gt;&gt; </span>m  <span class="py-comment">#doctest: +NORMALIZE_WHITESPACE</span>
+<span class="py-output">1 2 + I</span>
+<span class="py-output">3 4</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>m[1,0]
+<span class="py-output">3</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>m.H[1,0]
+<span class="py-output">2 - I</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.rowdecomp">rowdecomp(self, num):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.__setitem__">__setitem__(self, key, value):</a></div>
+            <div class="functionBody"><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>m=Matrix(((1,2+I),(3,4)))
+<span class="py-prompt">&gt;&gt;&gt; </span>m  <span class="py-comment">#doctest: +NORMALIZE_WHITESPACE</span>
+<span class="py-output">1 2 + I</span>
+<span class="py-output">3 4</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>m[1,0]=9
+<span class="py-prompt">&gt;&gt;&gt; </span>m  <span class="py-comment">#doctest: +NORMALIZE_WHITESPACE</span>
+<span class="py-output">1 2 + I</span>
+<span class="py-output">9 4</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.__str__">__str__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.row_del">row_del(self, k):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.col_del">col_del(self, k):</a></div>
+            <div class="functionBody"><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">import</span> sympy
+<span class="py-prompt">&gt;&gt;&gt; </span>M = sympy.matrices.eye(3)
+<span class="py-prompt">&gt;&gt;&gt; </span>M.col_del(1)
+<span class="py-prompt">&gt;&gt;&gt; </span>M   <span class="py-comment">#doctest: +NORMALIZE_WHITESPACE</span>
+<span class="py-output">1 0</span>
+<span class="py-output">0 0</span>
+<span class="py-output">0 1</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.copyin_list">copyin_list(self, key, value):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.multiply">multiply(self, b):</a></div>
+            <div class="functionBody"><div>Returns self*b
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.submatrix">submatrix(self, keys):</a></div>
+            <div class="functionBody"><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>m = Matrix(4,4,<span class="py-keyword">lambda</span> i,j: i+j)
+<span class="py-prompt">&gt;&gt;&gt; </span>m   <span class="py-comment">#doctest: +NORMALIZE_WHITESPACE</span>
+<span class="py-output">0 1 2 3</span>
+<span class="py-output">1 2 3 4</span>
+<span class="py-output">2 3 4 5</span>
+<span class="py-output">3 4 5 6</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>m[0:1, 1]   <span class="py-comment">#doctest: +NORMALIZE_WHITESPACE</span>
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>m[0:2, 0:1] <span class="py-comment">#doctest: +NORMALIZE_WHITESPACE</span>
+<span class="py-output">0</span>
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>m[2:4, 2:4] <span class="py-comment">#doctest: +NORMALIZE_WHITESPACE</span>
+<span class="py-output">4 5</span>
+<span class="py-output">5 6</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.reshape">reshape(self, _rows, _cols):</a></div>
+            <div class="functionBody"><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>m = Matrix(2,3,<span class="py-keyword">lambda</span> i,j: 1)
+<span class="py-prompt">&gt;&gt;&gt; </span>m   <span class="py-comment">#doctest: +NORMALIZE_WHITESPACE</span>
+<span class="py-output">1 1 1</span>
+<span class="py-output">1 1 1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>m.reshape(1,6)  <span class="py-comment">#doctest: +NORMALIZE_WHITESPACE</span>
+<span class="py-output">1 1 1 1 1 1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>m.reshape(3,2)  <span class="py-comment">#doctest: +NORMALIZE_WHITESPACE</span>
+<span class="py-output">1 1</span>
+<span class="py-output">1 1</span>
+<span class="py-output">1 1</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.cross">cross(self, b):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.zeronm">zeronm(self, n, m):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.zero">zero(self, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.SMatrix.eye">eye(self, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

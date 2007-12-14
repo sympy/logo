@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.numbers.Rational&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.c.n.Rational(<a href="sympy.core.numbers.Number.html">Number</a>):</h1><span id="part">Part of <a href="sympy.core.numbers.html">sympy.core.numbers</a></span><p>known subclasses: <a href="sympy.core.numbers.Integer.html">sympy.core.numbers.Integer</a>, <a href="sympy.core.numbers.Half.html">sympy.core.numbers.Half</a>, <a href="sympy.core.numbers.Infinity.html">sympy.core.numbers.Infinity</a>, <a href="sympy.core.numbers.NegativeInfinity.html">sympy.core.numbers.NegativeInfinity</a>, <a href="sympy.core.numbers.NaN.html">sympy.core.numbers.NaN</a></p><div class="toplevel"><div>Represents integers and rational numbers (p/q) of any size.
+<h1 class="heading">Examples</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Rational(3)
+<span class="py-output">3</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>Rational(1,2)
+<span class="py-output">1/2</span></pre>
+  You can create a rational from a string:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Rational(<span class="py-string">&quot;3/5&quot;</span>)
+<span class="py-output">3/5</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>Rational(<span class="py-string">&quot;1.23&quot;</span>)
+<span class="py-output">123/100</span></pre>
+  Use square brackets to indicate a recurring decimal:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Rational(<span class="py-string">&quot;0.[333]&quot;</span>)
+<span class="py-output">1/3</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>Rational(<span class="py-string">&quot;1.2[05]&quot;</span>)
+<span class="py-output">1193/990</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>float(Rational(1193,990))
+<span class="py-output">1.2050505050505051</span></pre>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational._hashable_content">_hashable_content</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.torepr">torepr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.precedence">precedence</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational._eval_is_positive">_eval_is_positive</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational._eval_is_zero">_eval_is_zero</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.__neg__">__neg__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.__mul__">__mul__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.__add__">__add__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational._eval_power">_eval_power</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational._as_decimal">_as_decimal</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.__abs__">__abs__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.__int__">__int__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.__eq__">__eq__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.__ne__">__ne__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.__lt__">__lt__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.__le__">__le__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.factors">factors</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational.as_numer_denom">as_numer_denom</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Rational._sage_">_sage_</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.__new__">__new__(cls, p, q=None):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational._hashable_content">_hashable_content(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.tostr">tostr(self, level=0):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.torepr">torepr(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.precedence">precedence(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational._eval_is_positive">_eval_is_positive(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational._eval_is_zero">_eval_is_zero(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.__neg__">__neg__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.__mul__">__mul__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.__add__">__add__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational._eval_power">_eval_power(b, e):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational._as_decimal">_as_decimal(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.__abs__">__abs__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.__int__">__int__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.__eq__">__eq__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.__ne__">__ne__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.__lt__">__lt__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.__le__">__le__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.factors">factors(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational.as_numer_denom">as_numer_denom(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.numbers.Rational._sage_">_sage_(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

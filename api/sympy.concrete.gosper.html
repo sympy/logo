@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.concrete.gosper&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.c.gosper</h1><span id="part">Part of <a href="sympy.concrete.html">sympy.concrete</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.concrete.gosper.normal">normal</a></td><td><div>Given relatively prime univariate polynomials 'f' and 'g',
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.concrete.gosper.gosper">gosper</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.concrete.gosper.normal">normal(f, g, n):</a></div>
+            <div class="functionBody"><pre>Given relatively prime univariate polynomials 'f' and 'g',
+rewrite their quotient to a normal form defined as follows:
+
+                f(n)       A(n) C(n+1)
+                ----  =  Z -----------
+                g(n)       B(n)  C(n)
+
+where Z is arbitrary constant and A, B, C are monic
+polynomials in 'n' with follwing properties:
+
+    (1) gcd(A(n), B(n+h)) = 1 for all 'h' in N
+    (2) gcd(B(n), C(n+1)) = 1
+    (3) gcd(A(n), C(n)) = 1
+
+This normal form, or rational factorization in other words,
+is crucial step in Gosper's algorithm and in difference
+equations solving. It can be also used to decide if two
+hypergeometric are similar or not.
+
+This procedure will return return triple containig elements
+of this factorization in the form (Z*A, B, C). For example:
+
+>>> from sympy import Symbol
+>>> n = Symbol('n', integer=True)
+
+>>> normal(4*n+5, 2*(4*n+1)*(2*n+3), n)
+(1/4, 3/2 + n, 1/4 + n)</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.concrete.gosper.gosper">gosper(term, k, a, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

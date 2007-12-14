@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.integrals.integrals&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.i.integrals</h1><span id="part">Part of <a href="sympy.integrals.html">sympy.integrals</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.integrals.integrals.Integral.html">Integral</a></td><td><div>Represents unevaluated integral.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.integrals.integrate">integrate</a></td><td><div>Compute definite or indefinite integral of one or more variables
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.integrals.integrate">integrate(*args, **kwargs):</a></div>
+            <div class="functionBody"><div>Compute definite or indefinite integral of one or more variables using 
+Risch-Norman algorithm and table lookup. This procedure is able to handle 
+elementary algebraic and transcendental functions and also a huge class of 
+special functions, including Airy, Bessel, Whittaker and Lambert.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>integrate(log(x), x)
+<span class="py-output">-x + x*log(x)</span></pre>
+See also the doctest of Integral._eval_integral(), which explains 
+thoroughly the strategy that SymPy uses for integration.
+</div></div>
+            </div></body>
+        

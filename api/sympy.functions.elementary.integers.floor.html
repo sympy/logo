@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.functions.elementary.integers.floor&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.f.e.i.floor(<a href="sympy.core.function.Function.html">Function</a>):</h1><span id="part">Part of <a href="sympy.functions.elementary.integers.html">sympy.functions.elementary.integers</a></span><div class="toplevel"><div><p>Floor is a univariate function which returns the largest integer value 
+not greater than its argument. However this implementaion generalizes floor
+to complex numbers.</p>
+More information can be found in &quot;Concrete mathematics&quot; by 
+Graham, pp. 87 or visit 
+http://mathworld.wolfram.com/FloorFunction.html.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>floor(17)
+<span class="py-output">17</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>floor(Rational(23, 10))
+<span class="py-output">2</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>floor(2*E)
+<span class="py-output">5</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>floor(-Real(0.567))
+<span class="py-output">-1</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>floor(-I/2)
+<span class="py-output">-I</span></pre>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.integers.floor.canonize">canonize</a></td><td><div>Returns a canonical form of cls applied to arguments args.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.integers.floor._eval_is_bounded">_eval_is_bounded</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.integers.floor._eval_is_real">_eval_is_real</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.integers.floor._eval_is_integer">_eval_is_integer</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.integers.floor.canonize">canonize(cls, arg):</a></div>
+            <div class="functionBody"><pre>Returns a canonical form of cls applied to arguments args.
+
+The canonize() method is called when the class cls is about to be
+instantiated and it should return either some simplified instance
+(possible of some other class), or if the class cls should be
+unmodified, return None.
+
+Example of canonize() for the function "sign"
+---------------------------------------------
+
+@classmethod
+def canonize(cls, arg):
+    if isinstance(arg, Basic.NaN):
+        return S.NaN
+    if isinstance(arg, Basic.Zero): return S.One
+    if arg.is_positive: return S.One
+    if arg.is_negative: return S.NegativeOne
+    if isinstance(arg, Basic.Mul):
+        coeff, terms = arg.as_coeff_terms()
+        if not isinstance(coeff, Basic.One):
+            return cls(coeff) * cls(Basic.Mul(*terms))</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.integers.floor._eval_is_bounded">_eval_is_bounded(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.integers.floor._eval_is_real">_eval_is_real(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.integers.floor._eval_is_integer">_eval_is_integer(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

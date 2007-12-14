@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.functions.special.polynomials.assoc_legendre&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.f.s.p.assoc_legendre(<a href="sympy.functions.special.polynomials.PolynomialSequence2.html">PolynomialSequence2</a>):</h1><span id="part">Part of <a href="sympy.functions.special.polynomials.html">sympy.functions.special.polynomials</a></span><div class="toplevel"><pre>assoc_legendre(n,m, x) gives P_nm(x) = mth association to Legendre polynomial P_n(x)
+
+Associated Legende polynomial are orthogonal on [-1, 1] with:
+
+- weight = 1            for the same m, and different n.
+- weight = 1/(1-x**2)   for the same n, and different m.
+
+Examples
+========
+    >>> x = Symbol('x')
+    >>> assoc_legendre(0,0, x)
+    1
+    >>> assoc_legendre(1,0, x)
+    x
+    >>> assoc_legendre(1,1, x)
+    -(1-x**2)**(1/2)
+
+References
+==========
+* http://en.wikipedia.org/wiki/Associated_Legendre_polynomials</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.functions.special.polynomials.assoc_legendre._calc2">_calc2</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.special.polynomials.assoc_legendre.calc2">calc2</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.special.polynomials.assoc_legendre._calc2">_calc2(n, m, prev):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.special.polynomials.assoc_legendre.calc2">calc2(n, m):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

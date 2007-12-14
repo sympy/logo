@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.assumptions.AssumeMeths&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.c.a.AssumeMeths(object):</h1><span id="part">Part of <a href="sympy.core.assumptions.html">sympy.core.assumptions</a></span><p>known subclasses: <a href="sympy.core.basic_methods.BasicMeths.html">sympy.core.basic_methods.BasicMeths</a></p><div class="toplevel"><pre>Define default assumption methods.
+
+AssumeMeths should be used to derive Basic class only.
+
+All symbolic objects have assumption attributes that
+can be accessed via .is_<assumption name> attribute.
+Assumptions determine certain properties of symbolic
+objects. Assumptions can have 3 possible values: True, False, None.
+None is returned when it is impossible to say something
+about the property. For example, ImaginaryUnit() is
+not positive neither negative. By default, all symbolic
+values are in the largest set in the given context without
+specifying the property. For example, a symbol that
+has a property being integer, is also real, complex, etc.
+
+Here follows a list of possible assumption names:
+
+    - commutative   - object commutes with any other object with
+                      respect to multiplication operation.
+    - real          - object can have only values from the set
+                      of real numbers
+    - integer       - object can have only values from the set
+                      of integers
+    - bounded       - object absolute value is bounded
+    - dummy         - used for marking dummy symbols
+    - positive      - object can have only positive values
+    - negative      - object can have only negative values
+    - nonpositive      - object can have only nonpositive values
+    - nonnegative      - object can have only nonnegative values
+    - comparable    - object.evalf() returns Number object.
+    - irrational    - object value cannot be represented exactly by Rational
+    - unbounded     - object value is arbitrarily large
+    - infinitesimal - object value is infinitesimal
+    - order         - expression is not contained in Order(order).
+
+Example rules:
+
+  positive=True|False -> nonpositive=not positive, real=True
+  positive=None -> negative=None
+  unbounded=False|True -> bounded=not unbounded
+  irrational=True -> real=True
+
+Exceptions:
+  positive=negative=False for Zero() instance
+
+Implementation note: assumption values are stored in
+._assumption dictionary or are returned by getter methods (with
+property decorators) or are attributes of objects/classes.
+
+Examples:
+
+    - True, when we are sure about a property. For example, when we are
+    working only with real numbers:
+    >>> from sympy import *
+    >>> Symbol('x', real = True)
+    x
+    
+    - False
+    
+    - None (if you don't know if the property is True or false)</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.assumptions.AssumeMeths._get_assumption">_get_assumption</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.assumptions.AssumeMeths._change_assumption">_change_assumption</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.assumptions.AssumeMeths.assume">assume</a></td><td><div>Modify object assumptions in-situ.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.assumptions.AssumeMeths._assume_hashable_content">_assume_hashable_content</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.assumptions.AssumeMeths._eval_is_nonnegative">_eval_is_nonnegative</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.assumptions.AssumeMeths._get_assumption">_get_assumption(self, name):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.assumptions.AssumeMeths._change_assumption">_change_assumption(self, d, name, value, extra_msg=''):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.assumptions.AssumeMeths.assume">assume(self, **assumptions):</a></div>
+            <div class="functionBody"><pre>Modify object assumptions in-situ.
+
+Usage examples:
+  obj.assume(commutative = True,  # obj is in commutative center
+             real = None          # assumption that obj is real will be removed
+             )
+  obj.is_commutative              # check if object is commutative
+
+User is responsible for setting reasonable assumptions.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.assumptions.AssumeMeths._assume_hashable_content">_assume_hashable_content(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.assumptions.AssumeMeths._eval_is_nonnegative">_eval_is_nonnegative(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

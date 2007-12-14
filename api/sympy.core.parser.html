@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.parser&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.c.parser</h1><span id="part">Part of <a href="sympy.core.html">sympy.core</a></span><div class="toplevel"><pre>Defines parser for the following syntax rules:
+
+
+<expr> = <lambda-test>
+<lambda-test> = [ lambda <identifier-list> : ] <xor-test>
+<xor-test> = [ <xor-test> <xor-op> ] <or-test>
+<or-test> = [ <or-test> <or-op> ] <and-test>
+<and_test> = [ <and-test> <and-op> ] <not-test>
+<not-test> = [ <not-op> ] <relational>
+<relational> = [ <arith> <rel-op> ] <arith>
+<arith> = [ <arith> <add-op> ] <term>
+                 | <factor>
+<factor> = [ <add-op> ] <term>
+<term> = [ <term> <mult-op> ] <power>
+<power> = <primary> [ <power-op> <power> ]
+
+<primary> = <atom>
+            | <attr-ref>
+            | <slicing>
+            | <call>
+
+<atom> = <identifier> | <literal> | <parenth>
+<identifier> = <letter> [ <alphanumeric_character> ]...
+<literal> = <int-literal>
+            | <float-literal>
+            | <logical-literal>
+<parenth> = ( <expr-list> )
+
+<attr-ref> = <primary> . <identifier>
+
+<slicing> = <primary> [ <subscript-list> ]
+<subscript> = <expr> | <slice>
+<slice> = [ <expr> ] : [ <expr> ] [ : <expr> ]
+
+<call> = <primary> ( [ <argument-list> ] )
+<argument> = [ <identifier> = ] <expr></pre></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.core.parser.NoMatchError.html">NoMatchError</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Base.html">Base</a></td><td><div>Base class for symbolic syntax rules.
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.SequenceBase.html">SequenceBase</a></td><td><div>&lt;sequence-base&gt; = &lt;obj&gt;, &lt;obj&gt; [ , &lt;obj&gt; 
+]...
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.UnaryOpBase.html">UnaryOpBase</a></td><td><div>&lt;unary-op-base&gt; = &lt;unary-op&gt; &lt;rhs&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.BinaryOpBase.html">BinaryOpBase</a></td><td><div>&lt;binary-op-base&gt; = &lt;lhs&gt; &lt;op&gt; &lt;rhs&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.KeywordValueBase.html">KeywordValueBase</a></td><td><div>&lt;keyword-value-base&gt; = [ &lt;lhs&gt; = ] &lt;rhs&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.BracketBase.html">BracketBase</a></td><td><div>&lt;bracket-base&gt; = &lt;left-bracket-base&gt; &lt;something&gt; 
+&lt;right-bracket&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.CallBase.html">CallBase</a></td><td><div>&lt;call-base&gt; = &lt;lhs&gt; ( [ &lt;rhs&gt; ] )
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.StringBase.html">StringBase</a></td><td><div>&lt;string-base&gt; = &lt;xyz&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.NumberBase.html">NumberBase</a></td><td><div>&lt;number-base&gt; = &lt;number&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Expr.html">Expr</a></td><td><div>&lt;expr&gt; = &lt;lambda-test&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Lambda_Test.html">Lambda_Test</a></td><td><div>&lt;lambda-test&gt; = [ lambda &lt;identifier-list&gt; : ] 
+&lt;or-test&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Or_Test.html">Or_Test</a></td><td><div>&lt;or-test&gt; = [ &lt;or-test&gt; &lt;or-op&gt; ] &lt;XOr_Test&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.XOr_Test.html">XOr_Test</a></td><td><div>&lt;xor-test&gt; = [ &lt;xor-test&gt; &lt;xor-op&gt; ] 
+&lt;And_Test&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.And_Test.html">And_Test</a></td><td><div>&lt;And_Test&gt; = [ &lt;And_Test&gt; &lt;and-op&gt; ] 
+&lt;not-test&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Not_Test.html">Not_Test</a></td><td><div>&lt;not-test&gt; = [ &lt;not-op&gt; ] &lt;Relational&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Relational.html">Relational</a></td><td><div>&lt;Relational&gt; = [ &lt;arith&gt; &lt;rel-op&gt; ] &lt;arith&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Arith.html">Arith</a></td><td><div>&lt;arith&gt; = [ &lt;arith&gt; &lt;add-op&gt; ] &lt;term&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Factor.html">Factor</a></td><td><div>&lt;factor&gt; = [ &lt;add-op&gt; ] &lt;term&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Term.html">Term</a></td><td><div>&lt;term&gt; = [ &lt;term&gt; &lt;mult-op&gt; ] &lt;power&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Power.html">Power</a></td><td><div>&lt;power&gt; = &lt;primary&gt; [ &lt;power-op&gt; &lt;power&gt; ]
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Primary.html">Primary</a></td><td><div>&lt;primary&gt; = &lt;atom&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Parenth.html">Parenth</a></td><td><div>&lt;parenth&gt; = ( &lt;expr-list&gt; )
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Identifier.html">Identifier</a></td><td><div>&lt;identifier&gt; = &lt;letter&gt; [ &lt;alphanumeric_character&gt; 
+]...
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Int_Literal.html">Int_Literal</a></td><td><div>&lt;int-literal&gt; = [ &lt;sign&gt; ] &lt;digit-string&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Float_Literal.html">Float_Literal</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Logical_Literal.html">Logical_Literal</a></td><td><div>&lt;logical-literal-constant&gt; = True | False
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Attr_Ref.html">Attr_Ref</a></td><td><div>&lt;attr-ref&gt; = &lt;primary&gt; . &lt;identifier&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Slicing.html">Slicing</a></td><td><div>&lt;slicing&gt; = &lt;primary&gt; &lt;left-square-bracket&gt; 
+&lt;subscript-list&gt; &lt;right-square-bracket&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Subscript.html">Subscript</a></td><td><div>&lt;subscript&gt; = &lt;expr&gt; | &lt;slice&gt;
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Slice.html">Slice</a></td><td><div>&lt;slice&gt; = [ &lt;expr&gt; ] : [ &lt;expr&gt; ] [ : &lt;expr&gt; 
+]
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Call.html">Call</a></td><td><div>&lt;call&gt; = &lt;primary&gt; ( [ &lt;argument-list&gt; ] )
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.parser.Argument.html">Argument</a></td><td><div>&lt;argument&gt; = [ &lt;identifier&gt; = ] &lt;expr&gt;
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.parser._rpl_list">_rpl_list</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.parser._rpl_list">_rpl_list(clsname):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

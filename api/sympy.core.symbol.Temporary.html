@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.symbol.Temporary&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.c.s.Temporary(<a href="sympy.core.symbol.Symbol.html">Symbol</a>):</h1><span id="part">Part of <a href="sympy.core.symbol.html">sympy.core.symbol</a></span><div class="toplevel"><div>Indexed dummy symbol.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Temporary.__new__">__new__</a></td><td><div>if dummy == True, then this Symbol is totally unique, i.e.:
+<pre class="literalblock">
+
+</pre>
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Temporary.__new__">__new__(cls, **assumptions):</a></div>
+            <div class="functionBody"><div>if dummy == True, then this Symbol is totally unique, i.e.:
+<pre class="literalblock">
+       &gt;&gt;&gt; bool(Symbol(&quot;x&quot;) == Symbol(&quot;x&quot;)) == True
+       True
+
+       but with the dummy variable ::
+
+       &gt;&gt;&gt; bool(Symbol(&quot;x&quot;, dummy = True) == Symbol(&quot;x&quot;, dummy = True)) == True
+       False
+</pre>
+</div></div>
+            </div></body>
+        

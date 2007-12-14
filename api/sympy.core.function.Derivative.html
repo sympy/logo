@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.function.Derivative&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.c.f.Derivative(<a href="sympy.core.basic.Basic.html">Basic</a>, <a href="sympy.core.methods.ArithMeths.html">ArithMeths</a>, <a href="sympy.core.methods.RelMeths.html">RelMeths</a>):</h1><span id="part">Part of <a href="sympy.core.function.html">sympy.core.function</a></span><div class="toplevel"><div><p>Carries out differentation of the given expression with respect to 
+symbols.</p>
+<p>expr must define ._eval_derivative(symbol) method that returns 
+differentation result or None.</p>
+Derivative(Derivative(expr, x), y) -&gt; Derivative(expr, x, y)
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.xas_apply">xas_apply</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative._eval_derivative">_eval_derivative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.doit">doit</a></td><td><div>Evaluate objects that are not evaluated by default like limits,
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.expr">expr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.symbols">symbols</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative._eval_subs">_eval_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.matches">matches</a></td><td><div>Helper method for match() - switches the pattern and expr.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.Derivative.__new__">__new__(cls, expr, *symbols, **assumptions):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.Derivative.xas_apply">xas_apply(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.Derivative._eval_derivative">_eval_derivative(self, s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.Derivative.doit">doit(self):</a></div>
+            <div class="functionBody"><div>Evaluate objects that are not evaluated by default like limits, 
+integrals, sums and products. All objects of this kind will be evaluated 
+unless some species were excluded via 'hints'.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>2*Integral(x, x)
+<span class="py-output">2*Integral(x, x)</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>(2*Integral(x, x)).doit()
+<span class="py-output">x**2</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.Derivative.expr">expr(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.Derivative.symbols">symbols(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.Derivative.tostr">tostr(self, level=0):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.Derivative._eval_subs">_eval_subs(self, old, new):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.Derivative.matches">matches(pattern, expr, repl_dict={}, evaluate=False):</a></div>
+            <div class="functionBody"><div><p>Helper method for match() - switches the pattern and expr.</p>
+Can be used to solve linear equations:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol, Wild
+<span class="py-prompt">&gt;&gt;&gt; </span>a,b = map(Symbol, <span class="py-string">'ab'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Wild(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>(a+b*x).matches(0)
+<span class="py-output">{x_: -a/b}</span></pre>
+</div></div>
+            </div></body>
+        

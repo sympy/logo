@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.polynomials.fast.gfpoly&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.p.f.gfpoly</h1><span id="part">Part of <a href="sympy.polynomials.fast.html">sympy.polynomials.fast</a></span><div class="toplevel"><div>Univariate polynomials with galois field coefficients.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.gfpoly.GFPolyFactory">GFPolyFactory</a></td><td><div>Create custom class for specific coefficient type.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.gfpoly.div">div</a></td><td><div>Division with remainder.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.gfpoly.gcd">gcd</a></td><td><div>Euclidean algorithm.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.gfpoly.lcm">lcm</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.gfpoly.xgcd">xgcd</a></td><td><div>Extended euclidean algorithm.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.gfpoly.truncate">truncate</a></td><td><div>The remainder from division by x**n.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.gfpoly.pow_mod">pow_mod</a></td><td><div>Repeated squaring.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.gfpoly.distinct_degree_factor">distinct_degree_factor</a></td><td><div>Return a list of divisors.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.gfpoly.equal_degree_split">equal_degree_split</a></td><td><div>Finds divisor of a result from distinct-degree factorization.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.gfpoly.equal_degree_factor">equal_degree_factor</a></td><td><div>Finds all divisors of a result from distinct-degree factorization.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.gfpoly.factor">factor</a></td><td><div>Factorization of a univariate polynomial over a Galois field.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.fast.gfpoly.factor_sqf">factor_sqf</a></td><td><div>Factorization of a univariate square-free polynomial over a Galois 
+field.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.gfpoly.GFPolyFactory">GFPolyFactory(p):</a></div>
+            <div class="functionBody"><div>Create custom class for specific coefficient type.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.gfpoly.div">div(f, g):</a></div>
+            <div class="functionBody"><div>Division with remainder.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.gfpoly.gcd">gcd(f, g):</a></div>
+            <div class="functionBody"><div>Euclidean algorithm.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.gfpoly.lcm">lcm(f, g):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.gfpoly.xgcd">xgcd(f, g):</a></div>
+            <div class="functionBody"><pre>Extended euclidean algorithm.
+
+Outputs the gcd, s and t, such that:
+    h == s*f + t*g</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.gfpoly.truncate">truncate(f, n):</a></div>
+            <div class="functionBody"><div>The remainder from division by x**n.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.gfpoly.pow_mod">pow_mod(f, n, p):</a></div>
+            <div class="functionBody"><div>Repeated squaring.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.gfpoly.distinct_degree_factor">distinct_degree_factor(f):</a></div>
+            <div class="functionBody"><div><p>Return a list of divisors.</p>
+Each polynomial has only factors of a specific degree.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.gfpoly.equal_degree_split">equal_degree_split(f, degree):</a></div>
+            <div class="functionBody"><div>Finds divisor of a result from distinct-degree factorization.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.gfpoly.equal_degree_factor">equal_degree_factor(f, degree):</a></div>
+            <div class="functionBody"><div>Finds all divisors of a result from distinct-degree factorization.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.gfpoly.factor">factor(f):</a></div>
+            <div class="functionBody"><div><p>Factorization of a univariate polynomial over a Galois field.</p>
+Returns a list of the leading coefficient of f and the monic factors 
+with their multiplicities.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.fast.gfpoly.factor_sqf">factor_sqf(f):</a></div>
+            <div class="functionBody"><div><p>Factorization of a univariate square-free polynomial over a Galois 
+field.</p>
+Returns a list of the leading coefficient and the monic factors of 
+f.
+</div></div>
+            </div></body>
+        

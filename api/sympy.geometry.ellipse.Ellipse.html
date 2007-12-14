@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.geometry.ellipse.Ellipse&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.g.e.Ellipse(<a href="sympy.geometry.entity.GeometryEntity.html">GeometryEntity</a>):</h1><span id="part">Part of <a href="sympy.geometry.ellipse.html">sympy.geometry.ellipse</a></span><p>known subclasses: <a href="sympy.geometry.ellipse.Circle.html">sympy.geometry.ellipse.Circle</a></p><div class="toplevel"><div>An ellipse in space. Constructed from a center and two radii, the first 
+being the horizontal radius (along the x-axis) and the second being the 
+vertical radius (along the y-axis).
+<h1 class="heading">Notes:</h1>
+  <ul>
+    <li>
+      Rotation is currently not supported since an ellipse is defined on
+      horizontal/vertical radii
+    </li>
+  </ul>
+<h1 class="heading">Example:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>e = Ellipse(Point(0, 0), 5, 1)
+<span class="py-prompt">&gt;&gt;&gt; </span>e.hradius, e.vradius
+<span class="py-output">(5, 1)</span></pre>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.center">center</a></td><td><div>The center of the ellipse.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.hradius">hradius</a></td><td><div>The horizontal radius of the ellipse.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.vradius">vradius</a></td><td><div>The vertical radius of the ellipse.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.area">area</a></td><td><div>The area of the ellipse.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.circumference">circumference</a></td><td><div>The circumference of the ellipse.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.foci">foci</a></td><td><div>The foci of the ellipse, if the radii are numerical.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.tangent_line">tangent_line</a></td><td><div>If p is on the ellipse, returns the tangent line through point p.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.is_tangent">is_tangent</a></td><td><div>Returns True if o is tangent to the ellipse, False otherwise.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.arbitrary_point">arbitrary_point</a></td><td><div>Returns a symbolic point that is on the ellipse.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.random_point">random_point</a></td><td><div>Returns a random point on the ellipse.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.equation">equation</a></td><td><div>Returns the equation of the ellipse.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse._do_line_intersection">_do_line_intersection</a></td><td><div>Find the intersection of a LinearEntity and the ellipse. Makes no
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.intersection">intersection</a></td><td><div>Returns a list of all of the intersections of this entity and 
+another
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.__eq__">__eq__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.__contains__">__contains__</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.__new__">__new__(cls, center, hradius, vradius, **kwargs):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.center">center(self):</a></div>
+            <div class="functionBody"><div>The center of the ellipse.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.hradius">hradius(self):</a></div>
+            <div class="functionBody"><div>The horizontal radius of the ellipse.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.vradius">vradius(self):</a></div>
+            <div class="functionBody"><div>The vertical radius of the ellipse.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.area">area(self):</a></div>
+            <div class="functionBody"><div>The area of the ellipse.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.circumference">circumference(self):</a></div>
+            <div class="functionBody"><div>The circumference of the ellipse.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.foci">foci(self):</a></div>
+            <div class="functionBody"><div>The foci of the ellipse, if the radii are numerical.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.tangent_line">tangent_line(self, p):</a></div>
+            <div class="functionBody"><div>If p is on the ellipse, returns the tangent line through point p. 
+Otherwise, returns the tangent line(s) from p to the ellipse, or None if no
+tangent line is possible (e.g., p inside ellipse).
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.is_tangent">is_tangent(self, o):</a></div>
+            <div class="functionBody"><div>Returns True if o is tangent to the ellipse, False otherwise.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.arbitrary_point">arbitrary_point(self, parameter_name='t'):</a></div>
+            <div class="functionBody"><div>Returns a symbolic point that is on the ellipse.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.random_point">random_point(self):</a></div>
+            <div class="functionBody"><div>Returns a random point on the ellipse.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.equation">equation(self, x='x', y='y'):</a></div>
+            <div class="functionBody"><div><p>Returns the equation of the ellipse.</p>
+Optional parameters x and y can be used to specify symbols, or the names
+of the symbols used in the equation.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse._do_line_intersection">_do_line_intersection(self, o):</a></div>
+            <div class="functionBody"><div>Find the intersection of a LinearEntity and the ellipse. Makes no 
+regards to what the LinearEntity is because it assumes a Line. To ensure 
+correct intersection results one must invoke intersection() to remove bad 
+results.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.intersection">intersection(self, o):</a></div>
+            <div class="functionBody"><div>Returns a list of all of the intersections of this entity and another 
+entity.
+<h1 class="heading">Notes:</h1>
+  <ul>
+    <li>
+      This method is not intended to be used directly but rather through
+      the intersection() method found in util.py.
+    </li>
+    <li>
+      An entity is not required to implement this method.
+    </li>
+    <li>
+      If two different types of entities can intersect, it is only 
+      required that one of them be able to determine this.
+    </li>
+  </ul>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.__eq__">__eq__(self, o):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.__contains__">__contains__(self, o):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

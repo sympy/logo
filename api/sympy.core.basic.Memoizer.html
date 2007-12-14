@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.basic.Memoizer&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.c.b.Memoizer:</h1><span id="part">Part of <a href="sympy.core.basic.html">sympy.core.basic</a></span><div class="toplevel"><pre>Memoizer function decorator generator.
+
+Features:
+  - checks that function arguments have allowed types
+  - optionally apply converters to arguments
+  - cache the results of function calls
+  - optionally apply converter to function values
+
+Usage:
+
+  @Memoizer(<allowed types for argument 0>,
+            MemoizerArg(<allowed types for argument 1>),
+            MemoizerArg(<allowed types for argument 2>, <convert argument before function call>),
+            MemoizerArg(<allowed types for argument 3>, <convert argument before function call>, name=<kw argument name>),
+            ...
+            return_value_converter = <None or converter function, usually makes a copy>
+            )
+  def function(<arguments>, <kw_argumnets>):
+      ...
+
+Details:
+  - if allowed type is string object then there Basic must have attribute
+    with the string name that is used as the allowed type --- this is needed
+    for applying Memoizer decorator to Basic methods when Basic definition
+    is not defined.
+
+Restrictions:
+  - arguments must be immutable
+  - when function values are mutable then one must use return_value_converter to
+    deep copy the returned values
+
+Ref: http://en.wikipedia.org/wiki/Memoization</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Memoizer.__init__">__init__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Memoizer.fix_allowed_types">fix_allowed_types</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Memoizer.__call__">__call__</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.basic.Memoizer.__init__">__init__(self, *arg_templates, **kw_arg_templates):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.basic.Memoizer.fix_allowed_types">fix_allowed_types(self, have_been_here={}):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.basic.Memoizer.__call__">__call__(self, func):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

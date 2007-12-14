@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.plot_mode_base.PlotModeBase&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.PlotModeBase(<a href="sympy.plotting.plot_mode.PlotMode.html">PlotMode</a>):</h1><span id="part">Part of <a href="sympy.plotting.plot_mode_base.html">sympy.plotting.plot_mode_base</a></span><p>known subclasses: <a href="sympy.plotting.plot_surface.PlotSurface.html">sympy.plotting.plot_surface.PlotSurface</a>, <a href="sympy.plotting.plot_curve.PlotCurve.html">sympy.plotting.plot_curve.PlotCurve</a></p><div class="toplevel"><div>Intended parent class for plotting modes. Provides base functionality in
+conjunction with its parent, PlotMode.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._get_evaluator">_get_evaluator</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._get_sympy_evaluator">_get_sympy_evaluator</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._get_lambda_evaluator">_get_lambda_evaluator</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._on_calculate_verts">_on_calculate_verts</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._on_calculate_cverts">_on_calculate_cverts</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase.__init__">__init__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase.synchronized">synchronized</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase.push_wireframe">push_wireframe</a></td><td><div>Push a function which performs gl commands
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase.push_solid">push_solid</a></td><td><div>Push a function which performs gl commands
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._create_display_list">_create_display_list</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._render_stack_top">_render_stack_top</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._draw_solid_display_list">_draw_solid_display_list</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._draw_wireframe_display_list">_draw_wireframe_display_list</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase.draw">draw</a></td><td><div>OpenGL rendering code for the plot object.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._on_change_color">_on_change_color</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._on_calculate">_on_calculate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._calculate_all">_calculate_all</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._calculate_verts">_calculate_verts</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._calculate_cverts">_calculate_cverts</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._get_calculating_verts">_get_calculating_verts</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._get_calculating_verts_pos">_get_calculating_verts_pos</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._get_calculating_verts_len">_get_calculating_verts_len</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._get_calculating_cverts">_get_calculating_cverts</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._get_calculating_cverts_pos">_get_calculating_cverts_pos</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._get_calculating_cverts_len">_get_calculating_cverts_len</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._get_style">_get_style</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._set_style">_set_style</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._get_color">_get_color</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase._set_color">_set_color</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase.__str__">__str__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode_base.PlotModeBase.__repr__">__repr__</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._get_evaluator">_get_evaluator(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._get_sympy_evaluator">_get_sympy_evaluator(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._get_lambda_evaluator">_get_lambda_evaluator(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._on_calculate_verts">_on_calculate_verts(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._on_calculate_cverts">_on_calculate_cverts(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase.__init__">__init__(self, *args, **kwargs):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase.synchronized">synchronized(f):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase.push_wireframe">push_wireframe(self, function):</a></div>
+            <div class="functionBody"><div>Push a function which performs gl commands used to build a display list.
+(The list is built outside of the function)
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase.push_solid">push_solid(self, function):</a></div>
+            <div class="functionBody"><div>Push a function which performs gl commands used to build a display list.
+(The list is built outside of the function)
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._create_display_list">_create_display_list(self, function):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._render_stack_top">_render_stack_top(self, render_stack):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._draw_solid_display_list">_draw_solid_display_list(self, dl):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._draw_wireframe_display_list">_draw_wireframe_display_list(self, dl):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase.draw">draw(self):</a></div>
+            <div class="functionBody"><div>OpenGL rendering code for the plot object. Override in base class.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._on_change_color">_on_change_color(self, color):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._on_calculate">_on_calculate(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._calculate_all">_calculate_all(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._calculate_verts">_calculate_verts(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._calculate_cverts">_calculate_cverts(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._get_calculating_verts">_get_calculating_verts(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._get_calculating_verts_pos">_get_calculating_verts_pos(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._get_calculating_verts_len">_get_calculating_verts_len(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._get_calculating_cverts">_get_calculating_cverts(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._get_calculating_cverts_pos">_get_calculating_cverts_pos(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._get_calculating_cverts_len">_get_calculating_cverts_len(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._get_style">_get_style(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._set_style">_set_style(self, v):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._get_color">_get_color(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase._set_color">_set_color(self, v):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase.__str__">__str__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode_base.PlotModeBase.__repr__">__repr__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

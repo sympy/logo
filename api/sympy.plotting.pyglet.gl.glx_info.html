@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.gl.glx_info&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.p.p.g.glx_info</h1><span id="part">Part of <a href="sympy.plotting.pyglet.gl.html">sympy.plotting.pyglet.gl</a></span><div class="toplevel"><div><p>Information about version and extensions of current GLX 
+implementation.</p>
+Usage:
+<pre class="literalblock">
+   from pyglet.gl import glx_info
+
+   if glx_info.have_extension('GLX_NV_float_buffer'):
+       # ...
+</pre>
+Or, if using more than one display:
+<pre class="literalblock">
+   from pyglet.gl.glx_info import GLXInfo
+
+   info = GLXInfo(window._display)
+   if info.get_server_vendor() == 'ATI':
+       # ...
+</pre>
+</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.gl.glx_info.GLXInfoException.html">GLXInfoException</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.gl.glx_info.GLXInfo.html">GLXInfo</a></td><td><span class="undocumented">Undocumented</span></td></tr></table></body>
+        

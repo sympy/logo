@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.plot_mode.PlotMode&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.PlotMode(<a href="sympy.plotting.plot_object.PlotObject.html">PlotObject</a>):</h1><span id="part">Part of <a href="sympy.plotting.plot_mode.html">sympy.plotting.plot_mode</a></span><p>known subclasses: <a href="sympy.plotting.plot_mode_base.PlotModeBase.html">sympy.plotting.plot_mode_base.PlotModeBase</a></p><div class="toplevel"><div><p>Grandparent class for plotting modes. Serves as interface for 
+registration, lookup, and init of modes.</p>
+To create a new plot mode, inherit from PlotModeBase or one of its 
+children, such as PlotSurface or PlotCurve.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode.PlotMode.draw">draw</a></td><td><div>OpenGL rendering code for the plot object.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode.PlotMode.__new__">__new__</a></td><td><div>This is the function which interprets
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode.PlotMode._get_mode">_get_mode</a></td><td><div>Tries to return an appropriate mode class.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode.PlotMode._get_default_mode">_get_default_mode</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode.PlotMode._get_aliased_mode">_get_aliased_mode</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode.PlotMode._register">_register</a></td><td><div>Called once for each user-usable plot mode.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode.PlotMode._init_mode">_init_mode</a></td><td><div>Initializes the plot mode based on
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode.PlotMode._find_i_vars">_find_i_vars</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode.PlotMode._fill_i_vars">_fill_i_vars</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode.PlotMode._fill_intervals">_fill_intervals</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode.PlotMode._interpret_args">_interpret_args</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.plot_mode.PlotMode._extract_options">_extract_options</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode.PlotMode.draw">draw(self):</a></div>
+            <div class="functionBody"><div>OpenGL rendering code for the plot object. Override in base class.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode.PlotMode.__new__">__new__(cls, *args, **kwargs):</a></div>
+            <div class="functionBody"><div>This is the function which interprets arguments given to Plot.__init__ 
+and Plot.__setattr__. Returns an initialized instance of the appropriate 
+child class.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode.PlotMode._get_mode">_get_mode(mode_arg, i_var_count, d_var_count):</a></div>
+            <div class="functionBody"><pre>Tries to return an appropriate mode class.
+Intended to be called only by __new__.
+
+mode_arg
+    Can be a string or a class. If it is a
+    PlotMode subclass, it is simply returned.
+    If it is a string, it can an alias for
+    a mode or an empty string. In the latter
+    case, we try to find a default mode for
+    the i_var_count and d_var_count.
+
+i_var_count
+    The number of independent variables
+    needed to evaluate the d_vars.
+    
+d_var_count
+    The number of dependent variables;
+    usually the number of functions to
+    be evaluated in plotting.
+
+For example, a cartesian function y = f(x) has
+one i_var (x) and one d_var (y). A parametric
+form x,y,z = f(u,v), f(u,v), f(u,v) has two
+two i_vars (u,v) and three d_vars (x,y,z).</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode.PlotMode._get_default_mode">_get_default_mode(i, d, i_vars=-1):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode.PlotMode._get_aliased_mode">_get_aliased_mode(alias, i, d, i_vars=-1):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode.PlotMode._register">_register(cls):</a></div>
+            <div class="functionBody"><div>Called once for each user-usable plot mode. For Cartesian2D, it is 
+invoked after the class definition: Cartesian2D._register()
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode.PlotMode._init_mode">_init_mode(cls):</a></div>
+            <div class="functionBody"><div>Initializes the plot mode based on the 'mode-specific parameters' above.
+Only intended to be called by PlotMode._register(). To use a mode without 
+registering it, you can directly call ModeSubclass._init_mode().
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode.PlotMode._find_i_vars">_find_i_vars(functions, intervals):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode.PlotMode._fill_i_vars">_fill_i_vars(self, i_vars):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode.PlotMode._fill_intervals">_fill_intervals(self, intervals):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode.PlotMode._interpret_args">_interpret_args(args):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.plot_mode.PlotMode._extract_options">_extract_options(args, kwargs):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

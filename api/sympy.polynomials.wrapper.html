@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.polynomials.wrapper&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.p.wrapper</h1><span id="part">Part of <a href="sympy.polynomials.html">sympy.polynomials</a></span><div class="toplevel"><div>Module providing a user-friendly interface to the polynomial 
+algorithms.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.wrapper.div">div</a></td><td><div>Division with remainder.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.wrapper.quo">quo</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.wrapper.rem">rem</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.wrapper.factor">factor</a></td><td><div>Factorization of polynomials over the rationals.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.wrapper.gcd">gcd</a></td><td><div>Greatest common divisor of two polynomials.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.wrapper.groebner">groebner</a></td><td><div>Computes the (reduced) Groebner base of given polynomials.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.wrapper.lcm">lcm</a></td><td><div>Least common divisor of two polynomials.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.wrapper.resultant">resultant</a></td><td><div>Computes resultant of two polynomials in one variable. This
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.wrapper.sqf">sqf</a></td><td><div>Square-free decomposition.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.wrapper.sqf_part">sqf_part</a></td><td><div>Square-free part.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.wrapper.div">div(f, g, var=None, order=None, coeff=None):</a></div>
+            <div class="functionBody"><div><p>Division with remainder.</p>
+A thin wrapper that returns SymPy expressions coming from <a 
+href="sympy.polynomials.div_.div.html">div_.div</a>.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.wrapper.quo">quo(*args, **kwargs):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.wrapper.rem">rem(*args, **kwargs):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.wrapper.factor">factor(f, var=None, order=None):</a></div>
+            <div class="functionBody"><div><p>Factorization of polynomials over the rationals.</p>
+A thin wrapper that returns a SymPy expression by multiplying the 
+different factors coming from <a 
+href="sympy.polynomials.factor_.factor.html">factor_.factor</a>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.wrapper.gcd">gcd(f, g, var=None, order=None, coeff=None):</a></div>
+            <div class="functionBody"><div><p>Greatest common divisor of two polynomials.</p>
+A thin wrapper returning a SymPy expression from <a 
+href="sympy.polynomials.div_.gcd.html">div_.gcd</a>'s result after checking
+the coefficients' type.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.wrapper.groebner">groebner(f, var=None, order=None, reduced=True):</a></div>
+            <div class="functionBody"><div><p>Computes the (reduced) Groebner base of given polynomials.</p>
+Thin wrapper returning SymPy expressions from <a 
+href="sympy.polynomials.groebner_.groebner.html">groebner_.groebner</a>.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.wrapper.lcm">lcm(f, g, var=None, order=None, coeff=None):</a></div>
+            <div class="functionBody"><div><p>Least common divisor of two polynomials.</p>
+A thin wrapper returning a SymPy expression from <a 
+href="sympy.polynomials.div_.lcm.html">div_.lcm</a>'s result.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.wrapper.resultant">resultant(f, g, x, method='bezout'):</a></div>
+            <div class="functionBody"><pre>Computes resultant of two polynomials in one variable. This
+method can be used to verify if selected polynomials have
+common root withot factoring them or computing any GCD's.
+
+It can be also be used for variable elemination in case of
+bivariate polynomials. Just assume that one of the var
+is a parameter and compute resultant with respect to the other
+one and you will get univariate polynomial in single variable.
+
+For now two algorithm have been implemented, based on
+Sylvester and Bezout matrices. The default is Bezout.
+
+TODO: Make Bezout approach run in O(s**2). Currently
+      it is O(s**3), where s = max(deg(f), deg(g)).</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.wrapper.sqf">sqf(f, var=None, order=None, coeff=None):</a></div>
+            <div class="functionBody"><div><p>Square-free decomposition.</p>
+Thin wrapper that multiplies the factors of <a 
+href="sympy.polynomials.factor_.sqf.html">factor_.sqf</a> as SymPy 
+expressions.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.wrapper.sqf_part">sqf_part(f, var=None, order=None):</a></div>
+            <div class="functionBody"><div><p>Square-free part.</p>
+Thin wrapper that returns the result of <a 
+href="sympy.polynomials.factor_.sqf_part.html">factor_.sqf_part</a> as a 
+SymPy expression.
+</div></div>
+            </div></body>
+        

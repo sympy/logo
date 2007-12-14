@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.functions.special.polynomials.PolynomialSequence&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.f.s.p.PolynomialSequence(<a href="sympy.core.function.Function.html">Function</a>):</h1><span id="part">Part of <a href="sympy.functions.special.polynomials.html">sympy.functions.special.polynomials</a></span><p>known subclasses: <a href="sympy.functions.special.polynomials.chebyshevt.html">sympy.functions.special.polynomials.chebyshevt</a>, <a href="sympy.functions.special.polynomials.chebyshevu.html">sympy.functions.special.polynomials.chebyshevu</a>, <a href="sympy.functions.special.polynomials.legendre.html">sympy.functions.special.polynomials.legendre</a>, <a href="sympy.functions.special.polynomials.hermite.html">sympy.functions.special.polynomials.hermite</a></p><div class="toplevel"><div><p>Polynomial sequence with 1 index</p>
+n &gt;= 0
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.functions.special.polynomials.PolynomialSequence.canonize">canonize</a></td><td><div>Returns a canonical form of cls applied to arguments args.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.special.polynomials.PolynomialSequence.canonize">canonize(cls, n, x):</a></div>
+            <div class="functionBody"><pre>Returns a canonical form of cls applied to arguments args.
+
+The canonize() method is called when the class cls is about to be
+instantiated and it should return either some simplified instance
+(possible of some other class), or if the class cls should be
+unmodified, return None.
+
+Example of canonize() for the function "sign"
+---------------------------------------------
+
+@classmethod
+def canonize(cls, arg):
+    if isinstance(arg, Basic.NaN):
+        return S.NaN
+    if isinstance(arg, Basic.Zero): return S.One
+    if arg.is_positive: return S.One
+    if arg.is_negative: return S.NegativeOne
+    if isinstance(arg, Basic.Mul):
+        coeff, terms = arg.as_coeff_terms()
+        if not isinstance(coeff, Basic.One):
+            return cls(coeff) * cls(Basic.Mul(*terms))</pre></div>
+            </div></body>
+        

@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.numerics.float_.Float&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.n.f.Float(tuple):</h1><span id="part">Part of <a href="sympy.numerics.float_.html">sympy.numerics.float_</a></span><div class="toplevel"><pre>A Float is a rational number of the form
+
+    man * 2**exp
+
+("man" and "exp" are short for "mantissa" and "exponent"). Both man
+and exp are integers, possibly negative, and may be arbitrarily large.
+Essentially, a larger mantissa corresponds to a higher precision
+and a larger exponent corresponds to larger magnitude.
+
+A Float instance is represented by a tuple
+
+    (man, exp, bc)
+
+where bc is the bitcount of the mantissa. The elements can be
+accessed as named properties:
+
+    >>> x = Float(3)
+    >>> x.man
+    3
+    >>> x.exp
+    0
+    >>> x.bc
+    2
+
+When performing an arithmetic operation on two Floats, or creating a
+new Float from an existing numerical value, the result gets rounded
+to a fixed precision level, just like with ordinary Python floats.
+Unlike regular Python floats, however, the precision level can be
+set arbitrarily high. You can also change the rounding mode (all
+modes supported by Decimal are also supported by Float).
+
+The precision level and rounding mode are stored as properties of
+the Float class. (An individual Float instances does not have any
+precision or rounding data associated with it.) The precision level
+and rounding mode make up the current working context. You can
+change the working context through static methods of the Float
+class:
+
+    Float.setprec(n)    -- set precision to n bits
+    Float.extraprec(n)  -- increase precision by n bits
+    Float.setdps(n)     -- set precision equivalent to n decimals
+    Float.setmode(mode) -- set rounding mode
+
+Corresponding methods are available for inspection:
+
+    Float.getprec()
+    Float.getdps()
+    Float.getmode()
+
+There are also two methods Float.store() and Float.revert(). If
+you call Float.store() before changing precision or mode, the
+old context can be restored with Float.revert(). (If Float.revert()
+is called one time too much, the default settings are restored.)
+You can nest multiple uses of store() and revert().
+
+(In the future, it will also be possible to use the 'with'
+statement to change contexts.)
+
+Note that precision is measured in bits. Since the ratio between
+binary and decimal precision levels is irrational, setprec and
+setdps work slightly differently. When you set the precision with
+setdps, the bit precision is set slightly higher than the exact
+corresponding precision to account for the fact that decimal
+numbers cannot generally be represented exactly in binary (the
+classical example is 0.1). The exact number given to setdps
+is however used by __str__ to determine number of digits to
+display. Likewise, when you set a bit precision, the decimal
+printing precision used for __str__ is set slightly lower.
+
+The following rounding modes are available:
+
+    ROUND_DOWN       -- toward zero
+    ROUND_UP         -- away from zero
+    ROUND_FLOOR      -- towards -oo
+    ROUND_CEILING    -- towards +oo
+    ROUND_HALF_UP    -- to nearest; 0.5 to 1
+    ROUND_HALF_DOWN  -- to nearest; 0.5 to 0
+    ROUND_HALF_EVEN  -- to nearest; 0.5 to 0 and 1.5 to 2
+
+The rounding modes are available both as global constants defined
+in this module and as properties of the Float class, e.g.
+Float.ROUND_CEILING.
+
+The default precision level is 53 bits and the default rounding
+mode is ROUND_HALF_EVEN. In this mode, Floats should round exactly
+like regular Python floats (in the absence of bugs!).</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.store">store</a></td><td><div>Store the current precision/rounding context. It can
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.revert">revert</a></td><td><div>Revert to last precision/rounding context stored with
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.setprec">setprec</a></td><td><div>Set precision to n bits
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.setdps">setdps</a></td><td><div>Set the precision high enough to allow representing numbers
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.extraprec">extraprec</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.setmode">setmode</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.getprec">getprec</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.getdps">getdps</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.getmode">getmode</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__new__">__new__</a></td><td><div>Float(x) creates a new Float instance with value x. The usual
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__hash__">__hash__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__pos__">__pos__</a></td><td><div>s.__pos__() &lt;==&gt; +s
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__float__">__float__</a></td><td><div>Convert s to a Python float. OverflowError will be raised
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__int__">__int__</a></td><td><div>Convert to a Python int, using floor rounding
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.rational">rational</a></td><td><div>Convert to a SymPy Rational
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__repr__">__repr__</a></td><td><div>Represent s as a decimal string, with sufficiently many
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__str__">__str__</a></td><td><div>Print slightly more prettily than __repr__
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__cmp__">__cmp__</a></td><td><div>s.__cmp__(t) &lt;==&gt; cmp(s, t)
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__eq__">__eq__</a></td><td><div>s.__eq__(t) &lt;==&gt; s == Float(t)
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.ae">ae</a></td><td><div>Determine whether the difference between s and t is smaller
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.almost_zero">almost_zero</a></td><td><div>Quick check if |s| &lt; 2**-prec. May return a false negative
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__nonzero__">__nonzero__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__abs__">__abs__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__add__">__add__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__neg__">__neg__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__sub__">__sub__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__rsub__">__rsub__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__mul__">__mul__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__div__">__div__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__rdiv__">__rdiv__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.Float.__pow__">__pow__</a></td><td><div>Calculate (man*2**exp)**n, currently for integral n only.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.store">store():</a></div>
+            <div class="functionBody"><div>Store the current precision/rounding context. It can be restored by 
+calling Float.revert()
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.revert">revert():</a></div>
+            <div class="functionBody"><div>Revert to last precision/rounding context stored with Float.store()
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.setprec">setprec(n):</a></div>
+            <div class="functionBody"><div>Set precision to n bits
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.setdps">setdps(n):</a></div>
+            <div class="functionBody"><div>Set the precision high enough to allow representing numbers with at 
+least n decimal places without loss.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.extraprec">extraprec(n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.setmode">setmode(mode):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.getprec">getprec():</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.getdps">getdps():</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.getmode">getmode():</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__new__">__new__(cls, x=0, prec=None, mode=None):</a></div>
+            <div class="functionBody"><div>Float(x) creates a new Float instance with value x. The usual types are 
+supported for x:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Float(3)
+<span class="py-output">Float('3')</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>Float(3.5)
+<span class="py-output">Float('3.5')</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>Float(<span class="py-string">'3.5'</span>)
+<span class="py-output">Float('3.5')</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>Float(Rational(7,2))
+<span class="py-output">Float('3.5')</span></pre>
+You can also create a Float from a tuple specifying its mantissa and 
+exponent:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Float((5, -3))
+<span class="py-output">Float('0.625')</span></pre>
+Use the prec and mode arguments to specify a custom precision level (in 
+bits) and rounding mode. If these arguments are omitted, the current 
+working precision is used instead.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Float(<span class="py-string">'0.500001'</span>, prec=3, mode=ROUND_DOWN)
+<span class="py-output">Float('0.5')</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>Float(<span class="py-string">'0.500001'</span>, prec=3, mode=ROUND_UP)
+<span class="py-output">Float('0.625')</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__hash__">__hash__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__pos__">__pos__(s):</a></div>
+            <div class="functionBody"><div><p>s.__pos__() &lt;==&gt; +s</p>
+Normalize s to the current working precision, rounding according to the 
+current rounding mode.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__float__">__float__(s):</a></div>
+            <div class="functionBody"><div>Convert s to a Python float. OverflowError will be raised if the 
+magnitude of s is too large.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__int__">__int__(s):</a></div>
+            <div class="functionBody"><div>Convert to a Python int, using floor rounding
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.rational">rational(s):</a></div>
+            <div class="functionBody"><div>Convert to a SymPy Rational
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__repr__">__repr__(s):</a></div>
+            <div class="functionBody"><div>Represent s as a decimal string, with sufficiently many digits included 
+to ensure that Float(repr(s)) == s at the current working precision.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__str__">__str__(s):</a></div>
+            <div class="functionBody"><div>Print slightly more prettily than __repr__
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__cmp__">__cmp__(s, t):</a></div>
+            <div class="functionBody"><div><p>s.__cmp__(t) &lt;==&gt; cmp(s, t)</p>
+<p>If t is a Float, int or float, this returns -1 if s &lt; t, 0 if s == t,
+and 1 if s &gt; t. The comparison operators &gt;, &gt;=, &lt;, &lt;= are 
+defined in terms of this function. If t is a SymPy Basic instance, s is 
+converted into a Rational and Rational.__cmp__ is called.</p>
+Warning: in extreme cases, the truncation error resulting from calling 
+Float(t) will result in an erroneous comparison: for example, Float(2**80) 
+will compare as equal to 2**80+1. This problem can be circumvented by 
+manually increasing the working precision or by converting numbers into 
+Rationals for comparisons.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__eq__">__eq__(s, t):</a></div>
+            <div class="functionBody"><div><p>s.__eq__(t) &lt;==&gt; s == Float(t)</p>
+Determine whether s and Float(t) are equal (see warning for __cmp__ 
+about conversion between different types.)
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.ae">ae(s, t, rel_eps=None, abs_eps=None):</a></div>
+            <div class="functionBody"><div><p>Determine whether the difference between s and t is smaller than a given
+epsilon (&quot;ae&quot; is short for &quot;almost equal&quot;).</p>
+<p>Both a maximum relative difference and a maximum difference ('epsilons')
+may be specified. The absolute difference is defined as |s-t| and the 
+relative difference is defined as |s-t|/max(|s|, |t|).</p>
+If only one epsilon is given, both are set to the same value. If none is
+given, both epsilons are set to 2**(-prec+m) where prec is the current 
+working precision and m is a small integer.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.almost_zero">almost_zero(s, prec):</a></div>
+            <div class="functionBody"><div>Quick check if |s| &lt; 2**-prec. May return a false negative if s is 
+very close to the threshold.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__nonzero__">__nonzero__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__abs__">__abs__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__add__">__add__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__neg__">__neg__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__sub__">__sub__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__rsub__">__rsub__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__mul__">__mul__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__div__">__div__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__rdiv__">__rdiv__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.float_.Float.__pow__">__pow__(s, n):</a></div>
+            <div class="functionBody"><div>Calculate (man*2**exp)**n, currently for integral n only.
+</div></div>
+            </div></body>
+        

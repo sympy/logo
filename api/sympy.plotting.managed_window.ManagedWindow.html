@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.managed_window.ManagedWindow&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.m.ManagedWindow(Window):</h1><span id="part">Part of <a href="sympy.plotting.managed_window.html">sympy.plotting.managed_window</a></span><p>known subclasses: <a href="sympy.plotting.plot_window.PlotWindow.html">sympy.plotting.plot_window.PlotWindow</a></p><div class="toplevel"><div>A pyglet window with an event loop which executes automatically in a 
+separate thread. Behavior is added by creating a subclass which overrides 
+setup, update, and/or draw.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.managed_window.ManagedWindow.__init__">__init__</a></td><td><div>It is best not to override this function in the child
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.managed_window.ManagedWindow.__event_loop__">__event_loop__</a></td><td><div>The event loop thread function. Do not override or call
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.managed_window.ManagedWindow.close">close</a></td><td><div>Closes the window.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.managed_window.ManagedWindow.setup">setup</a></td><td><div>Called once before the event loop begins.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.managed_window.ManagedWindow.update">update</a></td><td><div>Called before draw during each iteration of
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.managed_window.ManagedWindow.draw">draw</a></td><td><div>Called after update during each iteration of
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.managed_window.ManagedWindow.__init__">__init__(self, **win_args):</a></div>
+            <div class="functionBody"><div>It is best not to override this function in the child class, unless you 
+need to take additional arguments. Do any OpenGL initialization calls in 
+setup().
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.managed_window.ManagedWindow.__event_loop__">__event_loop__(self, **win_args):</a></div>
+            <div class="functionBody"><div>The event loop thread function. Do not override or call directly (it is 
+called by __init__).
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.managed_window.ManagedWindow.close">close(self):</a></div>
+            <div class="functionBody"><div>Closes the window.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.managed_window.ManagedWindow.setup">setup(self):</a></div>
+            <div class="functionBody"><div>Called once before the event loop begins. Override this method in a 
+child class. This is the best place to put things like OpenGL 
+initialization calls.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.managed_window.ManagedWindow.update">update(self, dt):</a></div>
+            <div class="functionBody"><div>Called before draw during each iteration of the event loop. dt is the 
+elapsed time in seconds since the last update. OpenGL rendering calls are 
+best put in draw() rather than here.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.managed_window.ManagedWindow.draw">draw(self):</a></div>
+            <div class="functionBody"><div>Called after update during each iteration of the event loop. Put OpenGL 
+rendering calls here.
+</div></div>
+            </div></body>
+        

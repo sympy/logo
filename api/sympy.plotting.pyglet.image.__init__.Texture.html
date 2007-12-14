@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.image.__init__.Texture&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.i._.Texture(<a href="sympy.plotting.pyglet.image.__init__.AbstractImage.html">AbstractImage</a>):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.image.__init__.html">sympy.plotting.pyglet.image.__init__</a></span><p>known subclasses: <a href="sympy.plotting.pyglet.image.__init__.TextureRegion.html">sympy.plotting.pyglet.image.__init__.TextureRegion</a>, <a href="sympy.plotting.pyglet.image.__init__.Texture3D.html">sympy.plotting.pyglet.image.__init__.Texture3D</a>, <a href="sympy.plotting.pyglet.image.__init__.TileableTexture.html">sympy.plotting.pyglet.image.__init__.TileableTexture</a>, <a href="sympy.plotting.pyglet.image.__init__.DepthTexture.html">sympy.plotting.pyglet.image.__init__.DepthTexture</a></p><div class="toplevel"><pre>An image loaded into video memory that can be efficiently drawn
+to the framebuffer.
+
+Typically you will get an instance of Texture by accessing the `texture`
+member of any other AbstractImage.
+
+:Ivariables:
+    `region_class` : class (subclass of TextureRegion)
+        Class to use when constructing regions of this texture.
+    `tex_coords` : tuple
+        4-tuple of 3-tuple of float, giving four 3D texture coordinates
+        of the bottom-left, bottom-right, top-right and top-left corners
+        of the texture.
+    `target` : int
+        The GL texture target (e.g., ``GL_TEXTURE_2D``).
+    `level` : int
+        The mipmap level of this texture.</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.Texture.__init__">__init__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.Texture.delete">delete</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.Texture.__del__">__del__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.Texture.create_for_size">create_for_size</a></td><td><div>Create a Texture with dimensions at least min_width, min_height.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.Texture.get_image_data">get_image_data</a></td><td><div>Get the image data of this texture.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.Texture.blit">blit</a></td><td><div>Draw this image to the active framebuffers.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.Texture.blit_into">blit_into</a></td><td><div>Draw `source` on this image.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.Texture.get_region">get_region</a></td><td><div>Retrieve a rectangular region of this image.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.Texture.__init__">__init__(self, width, height, target, id):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.Texture.delete">delete(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.Texture.__del__">__del__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.Texture.create_for_size">create_for_size(cls, target, min_width, min_height, internalformat=None):</a></div>
+            <div class="functionBody"><pre>Create a Texture with dimensions at least min_width, min_height.
+
+:Parameters:
+    `target` : int
+        GL constant giving texture target to use, typically
+        ``GL_TEXTURE_2D``.
+    `min_width` : int
+        Minimum width of texture (may be increased to create a power
+        of 2).
+    `min_height` : int
+        Minimum height of texture (may be increased to create a power
+        of 2).
+    `internalformat` : int
+        GL constant giving internal format of texture; for example,
+        ``GL_RGBA``.  If unspecified, the texture will not be
+        initialised (only the texture name will be created on the
+        instance).   If specified, the image will be initialised
+        to this format with zero'd data.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.Texture.get_image_data">get_image_data(self, z=0):</a></div>
+            <div class="functionBody"><pre>Get the image data of this texture.
+
+:Parameters:
+    `z` : int
+        For 3D textures, the image slice to retrieve.
+
+:rtype: `ImageData`</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.Texture.blit">blit(self, x, y, z=0, width=None, height=None):</a></div>
+            <div class="functionBody"><div>Draw this image to the active framebuffers.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.Texture.blit_into">blit_into(self, source, x, y, z):</a></div>
+            <div class="functionBody"><div><p>Draw `source` on this image.</p>
+Note that if `source` is larger than this image (or the positioning 
+would cause the copy to go out of bounds) then you must pass a region of 
+`source` to this method, typically using get_region().
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.Texture.get_region">get_region(self, x, y, width, height):</a></div>
+            <div class="functionBody"><pre>Retrieve a rectangular region of this image.
+
+:Parameters:
+    `x` : int
+        Left edge of region.
+    `y` : int
+        Bottom edge of region.
+    `width` : int
+        Width of region.
+    `height` : int
+        Height of region.
+
+:rtype: AbstractImage</pre></div>
+            </div></body>
+        

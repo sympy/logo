@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.window&rdquo;</title>
+        </head>
+        <body><h1 class="package">Package s.p.p.window</h1><span id="part">Part of <a href="sympy.plotting.pyglet.html">sympy.plotting.pyglet</a></span><div class="toplevel"><pre>Windowing and user-interface events.
+
+This module allows applications to create and display windows with an
+OpenGL context.  Windows can be created with a variety of border styles 
+or set fullscreen.
+
+You can register event handlers for keyboard, mouse and window events.
+For games and kiosks you can also restrict the input to your windows,
+for example disabling users from switching away from the application
+with certain key combinations or capturing and hiding the mouse.
+
+Getting started
+---------------
+
+Call the Window constructor to create a new window::
+
+    from pyglet.window import Window
+    win = Window(width=640, height=480)
+
+Attach your own event handlers::
+
+    @win.event
+    def on_key_press(symbol, modifiers):
+        # ... handle this event ...
+
+Within your main run loop, you must call `Window.dispatch_events` regularly.
+Windows are double-buffered by default, so you must call `Window.flip` to
+update the display::
+
+    while not win.has_exit:
+        win.dispatch_events()
+        # ... drawing commands ...
+        win.flip()
+
+Creating a game window
+----------------------
+
+Use `Window.set_exclusive_mouse` to hide the mouse cursor and receive relative
+mouse movement events.  Specify ``fullscreen=True`` as a keyword argument to
+the `Window` constructor to render to the entire screen rather than opening a
+window::
+
+    win = Window(fullscreen=True)
+    win.set_mouse_exclusive()
+
+Working with multiple windows
+-----------------------------
+
+You can open any number of windows and render to them individually.  Each
+window must have the event handlers set on it that you are interested in
+(i.e., each window will have its own mouse event handler).  
+
+You must call `Window.dispatch_events` for each window.  Before rendering
+to a window, you must call `Window.switch_to` to set the active GL context.
+Here is an example run loop for a list of windows::
+
+    windows = # list of Window instances
+    while windows:
+        for win in windows:
+            win.dispatch_events()
+            if win.has_exit:
+                win.close()
+        windows = [w for w in windows if not w.has_exit]
+   
+        for win in windows:
+            win.switch_to()
+            # ... drawing commands for this window ...
+            win.flip()
+
+Working with multiple screens
+-----------------------------
+
+By default, fullscreen windows are opened on the primary display (typically
+set by the user in their operating system settings).  You can retrieve a list
+of attached screens and select one manually if you prefer.  This is useful for
+opening a fullscreen window on each screen::
+
+    display = window.get_platform().get_default_display()
+    screens = display.get_screens()
+    windows = []
+    for screen in screens:
+        windows.append(window.Window(fullscreen=True, screen=screen))
+
+Specifying a screen has no effect if the window is not fullscreen.
+
+Specifying the OpenGL context properties
+----------------------------------------
+
+Each window has its own context which is created when the window is created.
+You can specify the properties of the context before it is created
+by creating a "template" configuration::
+
+    from pyglet import gl
+    # Create template config
+    config = gl.Config()
+    config.stencil_size = 8
+    config.aux_buffers = 4
+    # Create a window using this config
+    win = window.Window(config=config)
+
+To determine if a given configuration is supported, query the screen (see
+above, "Working with multiple screens")::
+
+    configs = screen.get_matching_configs(config)
+    if not configs:
+        # ... config is not supported
+    else:
+        win = window.Window(config=configs[0])</pre></div><table class="children"><tr class="package"><td>Package</td><td><a href="sympy.plotting.pyglet.window.carbon.html">carbon</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.window.event.html">event</a></td><td><div>Events for `pyglet.window`.
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.window.key.html">key</a></td><td><div>Key constants and utilities for pyglet.window.
+</div></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.window.mouse.html">mouse</a></td><td><div>Mouse constants and utilities for pyglet.window.
+</div></td></tr><tr class="package"><td>Package</td><td><a href="sympy.plotting.pyglet.window.win32.html">win32</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="package"><td>Package</td><td><a href="sympy.plotting.pyglet.window.xlib.html">xlib</a></td><td><span class="undocumented">Undocumented</span></td></tr></table></body>
+        

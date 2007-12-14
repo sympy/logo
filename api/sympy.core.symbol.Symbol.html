@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.symbol.Symbol&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.c.s.Symbol(<a href="sympy.core.basic.Atom.html">Atom</a>, <a href="sympy.core.methods.RelMeths.html">RelMeths</a>, <a href="sympy.core.methods.ArithMeths.html">ArithMeths</a>):</h1><span id="part">Part of <a href="sympy.core.symbol.html">sympy.core.symbol</a></span><p>known subclasses: <a href="sympy.core.symbol.Wild.html">sympy.core.symbol.Wild</a>, <a href="sympy.core.symbol.Temporary.html">sympy.core.symbol.Temporary</a></p><div class="toplevel"><div>Assumptions:
+<pre class="literalblock">
+  real = True
+  commutative = True
+</pre>
+You can override the default assumptions in the constructor:
+<pre class="literalblock">
+  &gt;&gt;&gt; A,B = symbols('AB', commutative = False)
+  &gt;&gt;&gt; bool(A*B != B*A)
+  True
+  &gt;&gt;&gt; bool(A*B*2 == 2*A*B) == True # multiplication by scalars is commutative
+  True
+</pre>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Symbol.__new__">__new__</a></td><td><div>if dummy == True, then this Symbol is totally unique, i.e.:
+<pre class="literalblock">
+
+</pre>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Symbol._hashable_content">_hashable_content</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Symbol.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Symbol.torepr">torepr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Symbol.as_dummy">as_dummy</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Symbol.__call__">__call__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Symbol._eval_integral">_eval_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Symbol._eval_defined_integral">_eval_defined_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Symbol._eval_expand_complex">_eval_expand_complex</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Symbol._sage_">_sage_</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Symbol.__new__">__new__(cls, name, commutative=True, dummy=False, **assumptions):</a></div>
+            <div class="functionBody"><div>if dummy == True, then this Symbol is totally unique, i.e.:
+<pre class="literalblock">
+       &gt;&gt;&gt; bool(Symbol(&quot;x&quot;) == Symbol(&quot;x&quot;)) == True
+       True
+
+       but with the dummy variable ::
+
+       &gt;&gt;&gt; bool(Symbol(&quot;x&quot;, dummy = True) == Symbol(&quot;x&quot;, dummy = True)) == True
+       False
+</pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Symbol._hashable_content">_hashable_content(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Symbol.tostr">tostr(self, level=0):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Symbol.torepr">torepr(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Symbol.as_dummy">as_dummy(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Symbol.__call__">__call__(self, *args):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Symbol._eval_integral">_eval_integral(self, s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Symbol._eval_defined_integral">_eval_defined_integral(self, s, a, b):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Symbol._eval_expand_complex">_eval_expand_complex(self, *args):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Symbol._sage_">_sage_(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

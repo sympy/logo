@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.simplify.rewrite&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.s.rewrite</h1><span id="part">Part of <a href="sympy.simplify.html">sympy.simplify</a></span><div class="toplevel"><div>Module 'rewrite.py' contains advanced term rewriting methods concerning 
+partial fraction decomposition, combinig together and collecting terms.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rewrite.ext_gcd">ext_gcd</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.simplify.rewrite.RootOf.html">RootOf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rewrite.apart">apart</a></td><td><div>Computes full partial fraction decomposition of a univariate
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rewrite.ext_gcd">ext_gcd(p, q, x):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rewrite.apart">apart(f, z, domain=None, index=None):</a></div>
+            <div class="functionBody"><pre>Computes full partial fraction decomposition of a univariate
+rational function over the algebraic closure of its field of
+definition. Although only gcd operations over the initial
+field are required, the expansion is returned in a formal
+form with linear denominators.
+
+However it is possible to force expansion of the resulting
+formal summations, and so factorization over a specified
+domain is performed.
+
+To specify the desired behavior of the algorithm use the
+'domain' keyword. Setting it to None, which is done be
+default, will result in no factorization at all.
+
+Otherwise it can be assigned with one of Z, Q, R, C domain
+specifiers and the formal partial fraction expansion will
+be rewritten using all possible roots over this domain.
+
+If the resulting expansion contains formal summations, then
+for all those a single dummy index variable named 'a' will
+be generated. To change this default behavior issue new
+name via 'index' keyword.
+
+For more information on the implemented algorithm refer to:
+
+[1] M. Bronstein, B. Salvy, Full partial fraction decomposition
+    of rational functions, in: M. Bronstein, ed., Proceedings
+    ISSAC '93, ACM Press, Kiev, Ukraine, 1993, pp. 157-160.</pre></div>
+            </div></body>
+        

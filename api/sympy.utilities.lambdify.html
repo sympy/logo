@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.utilities.lambdify&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.u.lambdify</h1><span id="part">Part of <a href="sympy.utilities.html">sympy.utilities</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.utilities.lambdify.lambdify">lambdify</a></td><td><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> symbols, sqrt</pre>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.utilities.lambdify.lambdastr">lambdastr</a></td><td><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> symbols</pre>
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.utilities.lambdify.lambdify">lambdify(*args):</a></div>
+            <div class="functionBody"><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> symbols, sqrt
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y,z = symbols(<span class="py-string">'xyz'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>f = lambdify(x**2, [x])
+<span class="py-prompt">&gt;&gt;&gt; </span>f(2)
+<span class="py-output">4</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>f = lambdify([z,y,x], [x,y,z])
+<span class="py-prompt">&gt;&gt;&gt; </span>f(1,2,3)
+<span class="py-output">(3, 2, 1)</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>f = lambdify(sqrt(x), [x])
+<span class="py-prompt">&gt;&gt;&gt; </span>f(4)
+<span class="py-output">2.0</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.utilities.lambdify.lambdastr">lambdastr(*args):</a></div>
+            <div class="functionBody"><div><pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> symbols
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y,z = symbols(<span class="py-string">'xyz'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>lambdastr(x**2, [x])
+<span class="py-output">'lambda x: (x**2)'</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>lambdastr([z,y,x], [x,y,z])
+<span class="py-output">'lambda x,y,z: (z,y,x)'</span></pre>
+</div></div>
+            </div></body>
+        

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.statistics.distributions.Normal&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.s.d.Normal(<a href="sympy.statistics.distributions.ContinuousProbability.html">ContinuousProbability</a>):</h1><span id="part">Part of <a href="sympy.statistics.distributions.html">sympy.statistics.distributions</a></span><div class="toplevel"><div><p>Normal(mu, sigma) represents the normal or Gaussian distribution with 
+mean value mu and standard deviation sigma.</p>
+Example usage:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>N = Normal(1, 2)
+<span class="py-prompt">&gt;&gt;&gt; </span>N.mean
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>N.variance
+<span class="py-output">4</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>N.probability(-oo, 1)   <span class="py-comment"># probability on an interval</span>
+<span class="py-output">1/2</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>N.probability(1, oo)
+<span class="py-output">1/2</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>N.probability(-oo, oo)
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>N.probability(-1, 3)
+<span class="py-output">erf((1/2)**(1/2))</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>_.evalf()
+<span class="py-output">0.682689492137086</span></pre>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.statistics.distributions.Normal.__init__">__init__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.statistics.distributions.Normal.__repr__">__repr__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.statistics.distributions.Normal.pdf">pdf</a></td><td><div>Return the probability density function as an expression in x
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.statistics.distributions.Normal.cdf">cdf</a></td><td><div>Return the cumulative density function as an expression in x
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.statistics.distributions.Normal._random">_random</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.statistics.distributions.Normal.confidence">confidence</a></td><td><div>Return a symmetric (p*100)% confidence interval. For example,
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.statistics.distributions.Normal.fit">fit</a></td><td><div>Create a normal distribution fit to the mean and standard
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.statistics.distributions.Normal.__init__">__init__(self, mu, sigma):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.statistics.distributions.Normal.__repr__">__repr__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.statistics.distributions.Normal.pdf">pdf(s, x):</a></div>
+            <div class="functionBody"><div>Return the probability density function as an expression in x
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.statistics.distributions.Normal.cdf">cdf(s, x):</a></div>
+            <div class="functionBody"><div>Return the cumulative density function as an expression in x
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.statistics.distributions.Normal._random">_random(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.statistics.distributions.Normal.confidence">confidence(s, p):</a></div>
+            <div class="functionBody"><pre>Return a symmetric (p*100)% confidence interval. For example,
+p=0.95 gives a 95% confidence interval. Currently this function
+only handles numerical values except in the trivial case p=1.
+
+Examples usage:
+    # One standard deviation
+    >>> N = Normal(0, 1)
+    >>> N.confidence(0.68)
+    (-0.994457883209753, 0.994457883209753)
+    >>> N.probability(*_).evalf()
+    0.68
+
+    # Two standard deviations
+    >>> N = Normal(0, 1)
+    >>> N.confidence(0.95)
+    (-1.95996398454005, 1.95996398454005)
+    >>> N.probability(*_).evalf()
+    0.95</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.statistics.distributions.Normal.fit">fit(sample):</a></div>
+            <div class="functionBody"><div>Create a normal distribution fit to the mean and standard deviation of 
+the given distribution or sample.
+</div></div>
+            </div></body>
+        

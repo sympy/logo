@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.functions.combinatorial.factorials.Factorial&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.f.c.f.Factorial(<a href="sympy.core.function.Function.html">Function</a>):</h1><span id="part">Part of <a href="sympy.functions.combinatorial.factorials.html">sympy.functions.combinatorial.factorials</a></span><div class="toplevel"><div><p>Implementation of factorial function over nonnegative integers. For the 
+sake of convenience and simplicity of procedures using this function it is 
+defined for negative integers and returns zero in this case.</p>
+<p>The factorial is very important in combinatorics where it gives the 
+number of ways in which 'n' objects can be permuted. It also arises in 
+calculus, probability, number theory etc.</p>
+<p>There is strict relation of factorial with gamma function. In fact n! = 
+gamma(n+1) for nonnegarive integers. Rewrite of this kind is very useful in
+case of combinatorial simplification.</p>
+Computation of the factorial is done using two algorithms. For small 
+arguments naive product is evaluated. However for bigger input algorithm 
+Prime-Swing is used. It is the fastest algorithm known and computes n! via 
+prime factorization of special class of numbers, called here the 'Swing 
+Numbers'.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>n = Symbol(<span class="py-string">'n'</span>, integer=True)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>factorial(-2)
+<span class="py-output">0</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>factorial(0)
+<span class="py-output">1</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>factorial(7)
+<span class="py-output">5040</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>factorial(n)
+<span class="py-output">n!</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>factorial(2*n)
+<span class="py-output">(2*n)!</span></pre>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial._swing">_swing</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial._recursive">_recursive</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial.canonize">canonize</a></td><td><div>Returns a canonical form of cls applied to arguments args.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial._eval_rewrite_as_gamma">_eval_rewrite_as_gamma</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial._eval_is_integer">_eval_is_integer</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.combinatorial.factorials.Factorial._swing">_swing(cls, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.combinatorial.factorials.Factorial._recursive">_recursive(cls, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.combinatorial.factorials.Factorial.canonize">canonize(cls, n):</a></div>
+            <div class="functionBody"><pre>Returns a canonical form of cls applied to arguments args.
+
+The canonize() method is called when the class cls is about to be
+instantiated and it should return either some simplified instance
+(possible of some other class), or if the class cls should be
+unmodified, return None.
+
+Example of canonize() for the function "sign"
+---------------------------------------------
+
+@classmethod
+def canonize(cls, arg):
+    if isinstance(arg, Basic.NaN):
+        return S.NaN
+    if isinstance(arg, Basic.Zero): return S.One
+    if arg.is_positive: return S.One
+    if arg.is_negative: return S.NegativeOne
+    if isinstance(arg, Basic.Mul):
+        coeff, terms = arg.as_coeff_terms()
+        if not isinstance(coeff, Basic.One):
+            return cls(coeff) * cls(Basic.Mul(*terms))</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.combinatorial.factorials.Factorial._eval_rewrite_as_gamma">_eval_rewrite_as_gamma(self, arg):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.combinatorial.factorials.Factorial.tostr">tostr(self, level=0):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.combinatorial.factorials.Factorial._eval_is_integer">_eval_is_integer(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

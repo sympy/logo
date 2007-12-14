@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.polynomials.factor_&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.p.factor_</h1><span id="part">Part of <a href="sympy.polynomials.html">sympy.polynomials</a></span><div class="toplevel"><div>Various algorithms for the factorization of polynomials.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.factor_.sqf">sqf</a></td><td><div>Square-free decomposition.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.factor_.sqf_part">sqf_part</a></td><td><div>Returns the square-free part of f.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.factor_.factor">factor</a></td><td><div>Factorization of polynomials over the rationals.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.factor_.kronecker">kronecker</a></td><td><div>One step in univariate factorization, see <a 
+href="sympy.polynomials.factor_.factor.html">factor</a>.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.factor_.kronecker_mv">kronecker_mv</a></td><td><div>One step in multivariate factorization, see <a 
+href="sympy.polynomials.factor_.factor.html">factor</a>.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.factor_.sqf">sqf(f, var=None, order=None, coeff=None):</a></div>
+            <div class="functionBody"><div>Square-free decomposition.
+<h1 class="heading">Usage:</h1>
+  <p>Computes a decomposition of f in a1 * a2**2 * ... * an**n, where the 
+  ai are pairwise prime and square-free polynomials.</p>
+  <p>The input is assumed to be a univariate polynomial, either as a SymPy 
+  expression or an instance of Polynomial. In the first case, you can 
+  optionally specify the variables and monomial order with the arguments 
+  'var' and 'order'.</p>
+  <p>If the argument 'coeff' is set to 'int', the constant factors are 
+  redistributed to the different ai, so that they have integer 
+  coefficients. Otherwise, they are made monic.</p>
+  A list is returned, with an instance of Polynomial at each index, 
+  which represents the multiplicity (except beginning with 1 instead of 
+  0).
+<h1 class="heading">Examples:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>a = sqf(3 - 12*x - 4*x**3 + 4*x**4 + 13*x**2)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">for</span> i, f <span class="py-keyword">in</span> enumerate(a): <span class="py-keyword">print</span> (i + 1), f
+<span class="py-output">1 12 + 4*x**2</span>
+<span class="py-output">2 (-1/2) + x</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>b = sqf(3 - 12*x - 4*x**3 + 4*x**4 + 13*x**2, coeff=<span class="py-string">'int'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">for</span> i, f <span class="py-keyword">in</span> enumerate(b): <span class="py-keyword">print</span> (i + 1), f
+<span class="py-output">1 3 + x**2</span>
+<span class="py-output">2 (-1) + 2*x</span></pre>
+<h1 class="heading">References:</h1>
+  Gathen, Gerhard: Modern Computer Algebra, Cambridge University Press, 
+  1. edition, p. 371
+Also see <a href="sympy.polynomials.factor_.sqf_part.html">sqf_part</a>,
+<a href="sympy.polynomials.factor_.factor.html">factor</a>.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.factor_.sqf_part">sqf_part(f, var=None, order=None):</a></div>
+            <div class="functionBody"><div>Returns the square-free part of f.
+<h1 class="heading">Usage:</h1>
+  <p>Computes the square-free part of f.</p>
+  <p>The input is assumed to be a univariate polynomial, either as a SymPy 
+  expression or an instance of Polynomial. In the first case, you can 
+  optionally specify the variables and monomial order with the arguments 
+  'var' and 'order'.</p>
+  The result is returned as an instance of Polynomial.
+<h1 class="heading">Examples:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> sqf_part(2*x**3 + 2*x**2)
+<span class="py-output">2*x + 2*x**2</span></pre>
+<h1 class="heading">References:</h1>
+  Gathen, Gerhard: Modern Computer Algebra, Cambridge University Press, 
+  1. edition, p. 370
+Also see <a href="sympy.polynomials.factor_.sqf.html">sqf</a>.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.factor_.factor">factor(f, var=None, order=None):</a></div>
+            <div class="functionBody"><div>Factorization of polynomials over the rationals.
+<h1 class="heading">Usage:</h1>
+  <p>As input, a polynomial is taken, either as a SymPy expression or as an
+  instance of Polynomial. In the first case, the variables and monomial 
+  order can optionally be specified through the arguments 'var' and 
+  'order'.</p>
+  The result is a list containing all the irreducible factors as 
+  instances of Polynomial, the first element being a constant factor.
+<h1 class="heading">Notes:</h1>
+  <p>In the univariate case, the first step is a square-free decomposition.
+  Then, for each factor, we get all the linear factors by looking for 
+  rational roots. The remainder is finally factored by a method due to 
+  Kronecker, which uses polynomial interpolation to guess divisors. Due to 
+  this method, the univariate factoring is rather limited, but planned to 
+  be replaced soon.</p>
+  <p>The multivariate polynomials are reduced to univariate ones, also due 
+  to a method by Kronecker. The univariate factors are then re-assembled 
+  and reformed to potential divisors of f, for trial division.</p>
+  Factorization over the integers and rationals is equivalent, since you
+  can always multiply with the common denominator and then remove the 
+  content of the polynomial.
+<h1 class="heading">Examples:</h1>
+  # Order of terms is no longer deterministic, # implement cmp for 
+  Polynomial? #&gt;&gt;&gt; x, y = symbols('xy') #&gt;&gt;&gt; for f in 
+  factor(2*x**4 - 2): print f #2 #(-1) + x #1 + x #1 + x**2 #&gt;&gt;&gt; 
+  for f in factor(4*x**2/3 - y**2/3): print f #1/3 #y + 2*x #-y + 2*x
+<h1 class="heading">References:</h1>
+  Buchberger, Collins, Loos, Albrecht: Computer Algebra, ACM SIGSAM 
+  Bulletin 1982
+Also see <a href="sympy.polynomials.factor_.sqf.html">sqf</a>, <a 
+href="sympy.polynomials.factor_.kronecker.html">kronecker</a>, <a 
+href="sympy.polynomials.factor_.kronecker_mv.html">kronecker_mv</a>, <a 
+href="sympy.polynomials.roots_.rat_roots.html">roots_.rat_roots</a>.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.factor_.kronecker">kronecker(f):</a></div>
+            <div class="functionBody"><div>One step in univariate factorization, see <a 
+href="sympy.polynomials.factor_.factor.html">factor</a>.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.factor_.kronecker_mv">kronecker_mv(f):</a></div>
+            <div class="functionBody"><div>One step in multivariate factorization, see <a 
+href="sympy.polynomials.factor_.factor.html">factor</a>.
+</div></div>
+            </div></body>
+        

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.printing.pygame_&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.p.pygame_</h1><span id="part">Part of <a href="sympy.printing.html">sympy.printing</a></span><div class="toplevel"><div><p>install TeX and these Debian packages: python-pygame, python-pexpect, 
+dvipng</p>
+To view the equation in the evince:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">import</span> sympy.printing <span class="py-keyword">as</span> printing
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>printing.view(1/log(x))
+<span class="py-prompt">&gt;&gt;&gt;</span></pre>
+You can use any other viewer:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>printing.view(1/log(x), psviewer=<span class="py-string">&quot;kpdf&quot;</span>)
+<span class="py-prompt">&gt;&gt;&gt;</span></pre>
+Finally, you can view the equation in the pygame window:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>printing.print_pygame(1/log(x))
+<span class="py-prompt">&gt;&gt;&gt;</span></pre>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.printing.pygame_.print_pygame">print_pygame</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.pygame_.tex2png">tex2png</a></td><td><div>Accepts a latex equation in &quot;eq&quot; and returns an image with 
+this equation.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.pygame_.view">view</a></td><td><div>Launches a PostScript viewer (default: evince) with the equation.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.pygame_.print_pygame">print_pygame(st):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.pygame_.tex2png">tex2png(eq, pygame):</a></div>
+            <div class="functionBody"><div>Accepts a latex equation in &quot;eq&quot; and returns an image with 
+this equation.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.pygame_.view">view(eq, psviewer='evince'):</a></div>
+            <div class="functionBody"><div>Launches a PostScript viewer (default: evince) with the equation.
+</div></div>
+            </div></body>
+        

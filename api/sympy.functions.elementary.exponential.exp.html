@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.functions.elementary.exponential.exp&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.f.e.e.exp(<a href="sympy.core.function.Function.html">Function</a>):</h1><span id="part">Part of <a href="sympy.functions.elementary.exponential.html">sympy.functions.elementary.exponential</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp.fdiff">fdiff</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp.inverse">inverse</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._eval_apply_subs">_eval_apply_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp.canonize">canonize</a></td><td><div>Returns a canonical form of cls applied to arguments args.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp.taylor_term">taylor_term</a></td><td><div>General method for the taylor term.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._eval_expand_complex">_eval_expand_complex</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._eval_conjugate">_eval_conjugate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp.as_base_exp">as_base_exp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp.as_coeff_terms">as_coeff_terms</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._eval_subs">_eval_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._eval_is_real">_eval_is_real</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._eval_is_positive">_eval_is_positive</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._eval_is_bounded">_eval_is_bounded</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._eval_is_zero">_eval_is_zero</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._eval_power">_eval_power</a></td><td><div>exp(b[0])**e -&gt; exp(b[0]*e)
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._eval_oseries">_eval_oseries</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._eval_as_leading_term">_eval_as_leading_term</a></td><td><div>General method for the leading term
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._eval_expand_basic">_eval_expand_basic</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.exp._sage_">_sage_</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp.fdiff">fdiff(self, argindex=1):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp.inverse">inverse(self, argindex=1):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._eval_apply_subs">_eval_apply_subs(self, *args):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp.canonize">canonize(cls, arg, **optionsXXX):</a></div>
+            <div class="functionBody"><pre>Returns a canonical form of cls applied to arguments args.
+
+The canonize() method is called when the class cls is about to be
+instantiated and it should return either some simplified instance
+(possible of some other class), or if the class cls should be
+unmodified, return None.
+
+Example of canonize() for the function "sign"
+---------------------------------------------
+
+@classmethod
+def canonize(cls, arg):
+    if isinstance(arg, Basic.NaN):
+        return S.NaN
+    if isinstance(arg, Basic.Zero): return S.One
+    if arg.is_positive: return S.One
+    if arg.is_negative: return S.NegativeOne
+    if isinstance(arg, Basic.Mul):
+        coeff, terms = arg.as_coeff_terms()
+        if not isinstance(coeff, Basic.One):
+            return cls(coeff) * cls(Basic.Mul(*terms))</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp.taylor_term">taylor_term(self, n, x, *previous_terms):</a></div>
+            <div class="functionBody"><div><p>General method for the taylor term.</p>
+This method is slow, because it differentiates n-times.  Subclasses can 
+redefine it to make it faster by using the &quot;previous_terms&quot;.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._eval_expand_complex">_eval_expand_complex(self, *args):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._eval_conjugate">_eval_conjugate(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp.as_base_exp">as_base_exp(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp.as_coeff_terms">as_coeff_terms(self, x=None):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._eval_subs">_eval_subs(self, old, new):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._eval_is_real">_eval_is_real(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._eval_is_positive">_eval_is_positive(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._eval_is_bounded">_eval_is_bounded(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._eval_is_zero">_eval_is_zero(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._eval_power">_eval_power(b, e):</a></div>
+            <div class="functionBody"><div>exp(b[0])**e -&gt; exp(b[0]*e)
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._eval_oseries">_eval_oseries(self, order):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._eval_as_leading_term">_eval_as_leading_term(self, x):</a></div>
+            <div class="functionBody"><div>General method for the leading term
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._eval_expand_basic">_eval_expand_basic(self, *args):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.exp._sage_">_sage_(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

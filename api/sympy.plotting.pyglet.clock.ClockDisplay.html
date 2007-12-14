@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.plotting.pyglet.clock.ClockDisplay&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.c.ClockDisplay(object):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.clock.html">sympy.plotting.pyglet.clock</a></span><div class="toplevel"><pre>Display current clock values, such as FPS.
+
+This is a convenience class for displaying diagnostics such as the
+framerate.  See the module documentation for example usage.
+
+:Ivariables:
+    `label` : `pyglet.font.Text`
+        The label which is displayed.</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.ClockDisplay.__init__">__init__</a></td><td><div>Create a ClockDisplay.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.ClockDisplay.update_text">update_text</a></td><td><div>Scheduled method to update the label text.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.ClockDisplay.draw">draw</a></td><td><div>Method called each frame to render the label.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.clock.ClockDisplay.__init__">__init__(self, font=None, interval=0.25, format='%(fps).2f', color=(0.5, 0.5, 0.5, 0.5), clock=None):</a></div>
+            <div class="functionBody"><pre>Create a ClockDisplay.
+
+All parameters are optional.  By default, a large translucent
+font will be used to display the FPS to two decimal places.
+
+:Parameters:
+    `font` : `pyglet.font.Font`
+        The font to format text in.
+    `interval` : float
+        The number of seconds between updating the display.
+    `format` : str
+        A format string describing the format of the text.  This
+        string is modulated with the dict ``{'fps' : fps}``.
+    `color` : 4-tuple of float
+        The color, including alpha, passed to ``glColor4f``.
+    `clock` : `Clock`
+        The clock which determines the time.  If None, the default
+        clock is used.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.clock.ClockDisplay.update_text">update_text(self, dt=0):</a></div>
+            <div class="functionBody"><div>Scheduled method to update the label text.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.plotting.pyglet.clock.ClockDisplay.draw">draw(self):</a></div>
+            <div class="functionBody"><div>Method called each frame to render the label.
+</div></div>
+            </div></body>
+        

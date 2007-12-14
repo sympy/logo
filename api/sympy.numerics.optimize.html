@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.numerics.optimize&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.n.optimize</h1><span id="part">Part of <a href="sympy.numerics.html">sympy.numerics</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.numerics.optimize.ConvergenceError.html">ConvergenceError</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.optimize.polyroots">polyroots</a></td><td><div>Numerically locate all (complex) roots of a given polynomial 'poly'
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.optimize.sign">sign</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.optimize.bisect">bisect</a></td><td><div>Numerical root-finding using the bisection method.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.optimize.perturb">perturb</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.optimize.secant">secant</a></td><td><div>secant(f, x0) uses the secant method to find a numerical root of f,
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.optimize.polyroots">polyroots(poly, maxsteps=20):</a></div>
+            <div class="functionBody"><div><p>Numerically locate all (complex) roots of a given polynomial 'poly' 
+using the Durand-Kerner method (http://en.wikipedia.org/wiki/ 
+Durand-Kerner_method)</p>
+<p>This function returns a tuple (roots, err) where roots is a list of 
+ComplexFloats sorted by absolute value, and err is an estimate of the 
+maximum error. The 'poly' argument should be a SymPy expression 
+representing a univariate polynomial.</p>
+Example:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Float.setdps(15)
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>r, e = polyroots((x-3)*(x-2))
+<span class="py-prompt">&gt;&gt;&gt; </span>r[0]
+<span class="py-output">ComplexFloat(real='1.9999999999999993', imag='-4.5917748078995606E-41')</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>r[1]
+<span class="py-output">ComplexFloat(real='3', imag='-4.6222318665293660E-33')</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>e
+<span class="py-output">Float('2.2204460492503131E-16')</span></pre>
+<p>Polyroots attempts to achieve a maximum error less than the epsilon of 
+the current working precision, but may fail to do so if the polynomial is 
+badly conditioned. Usually the error can be reduced by increasing the 
+'maxsteps' parameter, although this will of course also reduce the speed 
+proprtionally. It may also be necessary to increase the working 
+precision.</p>
+In particular, polyroots is easily fooled by multiple roots and roots 
+that are very close together. In general, if n-multiple roots are present, 
+polyroots will typically only locate their values to within 1/n of the 
+working precision. For example, with the standard precision of ~15 decimal 
+digits, the expected accuracy for a double root is 7-8 decimals:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Float.setdps(15)
+<span class="py-prompt">&gt;&gt;&gt; </span>r, e = polyroots((x-2)**2)
+<span class="py-prompt">&gt;&gt;&gt; </span>r[0]
+<span class="py-output">ComplexFloat(real='1.9999999832018203', imag='-2.5469994476319085E-8')</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>r[1]
+<span class="py-output">ComplexFloat(real='2.0000000110216827', imag='1.4784776969781909E-8')</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>e
+<span class="py-output">Float('5.4076851354766810E-8')</span></pre>
+An effective cure is to multiply the working precision n times (in the 
+case of a double root, doubling it):
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Float.setdps(30)
+<span class="py-prompt">&gt;&gt;&gt; </span>r, e = polyroots((x-2)**2, 40)
+<span class="py-prompt">&gt;&gt;&gt; </span>r[0].real
+<span class="py-output">Float('1.9999999999999999075008441778756')</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>e
+<span class="py-output">Float('1.9055980809840526328094566161453E-16')</span></pre>
+The result is good to 15 decimals as expected.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.optimize.sign">sign(x):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.optimize.bisect">bisect(f, a, b, eps=None, maxsteps=None, verbose=False):</a></div>
+            <div class="functionBody"><div><p>Numerical root-finding using the bisection method.</p>
+<p>Given a real-valued function f and an interval [a, b] (not necessarily 
+real) such that f(a) and f(b) have opposite signs, narrow the interval 
+where f crosses the x axis to a relative width at most equal to 'eps' 
+through repeated bisections. If not specified, eps is set to give a full 
+precision estimate of the root.</p>
+<p>A tuple for the narrowed interval is returned.</p>
+<p>If f is continuous, bisect is guaranteed to find a root. If f jumps 
+discontinuously from positive negative values, bisect will locate the point
+of the discontinuity. bisect quits early and returns an interval of width 
+zero if it encounters a point x where f(x) = 0 exactly.</p>
+Optionally, perform no more than 'maxsteps' bisections (by default 
+perform as many as needed); if the 'verbose' flag is set, print status at 
+each step.
+<h1 class="heading">Examples</h1>
+  Find a bounding interval for pi/2 (which is a root of cos):
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Float.setdps(15)
+<span class="py-prompt">&gt;&gt;&gt; </span>a, b = bisect(cos, 1, 2, 1e-2, verbose=True)
+<span class="py-output">  bisect step  1: a=1.000000  b=2.000000  delta=1</span>
+<span class="py-output">  bisect step  2: a=1.500000  b=2.000000  delta=0.5</span>
+<span class="py-output">  bisect step  3: a=1.500000  b=1.750000  delta=0.25</span>
+<span class="py-output">  bisect step  4: a=1.500000  b=1.625000  delta=0.125</span>
+<span class="py-output">  bisect step  5: a=1.562500  b=1.625000  delta=0.0625</span>
+<span class="py-output">  bisect step  6: a=1.562500  b=1.593750  delta=0.03125</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> a, b
+<span class="py-output">1.5625 1.578125</span></pre>
+  Calculate the same value to full precision:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>a, b = bisect(cos, 1, 2)
+<span class="py-prompt">&gt;&gt;&gt; </span>a, b
+<span class="py-output">(Float('1.5707963267948966'), Float('1.5707963267948968'))</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> cos(a)
+<span class="py-output">6.12320117570134E-17</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> cos(b)
+<span class="py-output">-1.60812593168018E-16</span></pre>
+  Although generally reliable, the bisection method has a slow rate of 
+  convergence. The previous computation required about 50 steps, which can 
+  be compared to the secant method which only requires 5-6 steps to obtain 
+  a full precision value from an initial value near 1.5.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.optimize.perturb">perturb(x, eps):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.optimize.secant">secant(f, x0, x1=None, eps=None, maxsteps=50, bracket=None, on_error=1, verbose=False):</a></div>
+            <div class="functionBody"><pre>secant(f, x0) uses the secant method to find a numerical root of f,
+starting from the initial approximation/guess x0.
+
+This algorithm is very efficient for finding regular roots of
+smooth functions; nearly as efficient as Newton's method. Each
+iteration roughly multiplies the number of correct digits in the
+answer by 1.6 (in practice, a 15-digit value can usually be
+found in less than 10 steps).
+
+The secant method can be inefficient or may fail to converge in
+the presence of high-order roots or if the initial approximation
+is far from the true root. Generally, it works best if f is
+monotonic and steeply sloped everywhere in the surrounding of
+the root (and x0 is in that surrounding).
+
+Advanced settings
+=================
+
+The secant method actually requires two initial values x0 and x1.
+By default, an x1 value is generated by perturbing x0 slightly;
+in some cases this perturbation may be too small and it may then
+help to specify a custom value for x1.
+
+Several other advanced options are supported as guards against
+poor convergence:
+
+  eps
+      Only attempt to locate the root to within this epsilon.
+      By default, eps is set to give a full-precision value.
+
+  maxsteps
+      Break when this many iterations have been performed.
+
+  bracket
+      If bracket = [a, b], break if the iteration ends up somewhere
+      outside the interval [a, b]. This is useful to protect from
+      the iterate x_n "shooting off to space" in the presence of
+      a nearly horizontal function value. If the bracket is a
+      single number, break if abs(x_0-x_n) exceeds this value.
+
+The 'on_error' parameter can be set to control what happens in the
+case of a convergence failure:
+
+   on_error = 0   print warning if in verbose mode; return value
+   on_error = 1   print warning; return value (default)
+   on_error = 2   raise an exception
+
+Examples
+========
+
+A simple example, calculating pi:
+
+    >>> Float.setdps(15)
+    >>> print secant(sin, 3)
+    3.14159265358979
+
+If we try the same for cosine, starting from x=0, we get the
+"wrong" root because the cosine is nearly horizontal around x=0,
+sending the initial iterate far away (verbose=True shows what
+happens in more detail):
+
+    >>> Float.setdps(15)
+    >>> print secant(cos, 0)
+    391.128285371929
+
+This can be helped by providing a second point that better matches
+the geometry of the function's graph or by providing a closer
+initial estimate:
+
+    >>> print secant(cos, x0=0, x1=1)
+    1.57079632679490
+    >>> print secant(cos, 1.5)
+    1.57079632679490
+
+As another example, a high-precision calculation of log(3):
+
+    >>> Float.setdps(50)
+    >>> print secant(lambda x: exp(x)-3, 1)
+    1.0986122886681096913952452369225257046474905578227
+    >>> Float.revert()</pre></div>
+            </div></body>
+        

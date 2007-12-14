@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.numerics.quad.Quadrature&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.n.q.Quadrature:</h1><span id="part">Part of <a href="sympy.numerics.quad.html">sympy.numerics.quad</a></span><p>known subclasses: <a href="sympy.numerics.quad.Midpoint.html">sympy.numerics.quad.Midpoint</a>, <a href="sympy.numerics.quad.Trapezoid.html">sympy.numerics.quad.Trapezoid</a>, <a href="sympy.numerics.quad.GaussLegendre.html">sympy.numerics.quad.GaussLegendre</a>, <a href="sympy.numerics.quad.CompositeGaussLegendre.html">sympy.numerics.quad.CompositeGaussLegendre</a>, <a href="sympy.numerics.quad.TanhSinh.html">sympy.numerics.quad.TanhSinh</a>, <a href="sympy.numerics.quad.AdaptiveTanhSinh.html">sympy.numerics.quad.AdaptiveTanhSinh</a></p><div class="toplevel"><div><p>This class provides a standard interface for quadrature rules. A rule is
+applied through a function call (e.g. to integrate sin(x) from x=3 to x=8, 
+SomeQuadRule(&lt;options&gt;)(lambda x: sin(x), 3, 8))</p>
+<p>Each Quadrature subclass should define an '_eval' method that returns a 
+tuple containing two values: (y, err) where y is the calculated value of 
+the integral, and err is an estimate of the approximation error (or None if
+the error cannot be estimated from the rule).</p>
+By default, the quadrature rule is assumed to be defined on [-1, 1] or 
+(-1, 1). __call__ automatically transforms other (finite) intervals to this
+default interval. This behavior can be modified by overriding the 
+'transform' method.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.numerics.quad.Quadrature.transform">transform</a></td><td><div>Given an integrand function f and boundaries a, b,
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.quad.Quadrature.__call__">__call__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.quad.Quadrature.adaptive">adaptive</a></td><td><div>Apply rule adaptively (must support error estimation)
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.quad.Quadrature.transform">transform(self, f, a, b):</a></div>
+            <div class="functionBody"><div>Given an integrand function f and boundaries a, b, return an equivalent 
+integrand defined on [-1, 1]
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.quad.Quadrature.__call__">__call__(self, f, a, b, extraprec=3, verbose=False):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.quad.Quadrature.adaptive">adaptive(self, f, a, b, eps, steps=0, maxsteps=5000, verbose=False):</a></div>
+            <div class="functionBody"><div>Apply rule adaptively (must support error estimation)
+</div></div>
+            </div></body>
+        

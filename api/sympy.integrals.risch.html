@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.integrals.risch&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.i.risch</h1><span id="part">Part of <a href="sympy.integrals.html">sympy.integrals</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.integrals.risch.components">components</a></td><td><div>Returns a set of all functional components of the given expression
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.risch.monomials">monomials</a></td><td><div>Generate monomials set of the given total degree or less.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.risch.factorization">factorization</a></td><td><div>Returns a list with polynomial factors over rationals or, if
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.risch.risch_norman">risch_norman</a></td><td><div>Computes indefinite integral using extended Risch-Norman algorithm,
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.risch.components">components(expr):</a></div>
+            <div class="functionBody"><div>Returns a set of all functional components of the given expression with 
+symbols, functions applications and compositions. All integer powers are 
+being skipped, however fractional and functional powers are collected as 
+well.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>components(x*y)
+<span class="py-output">set([y, x])</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>components(1/(x+y))
+<span class="py-output">set([y, x])</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>components(sin(x))
+<span class="py-output">set([sin(x), x])</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>components(sin(x)*cos(x)**2)
+<span class="py-output">set([sin(x), cos(x), x])</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>components(sin(x)*sqrt(log(x)))
+<span class="py-output">set([log(x), sin(x), log(x)**(1/2), x])</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>components(x*sin(exp(x)*y))
+<span class="py-output">set([y, sin(y*exp(x)), x, exp(x)])</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.risch.monomials">monomials(variables, degree):</a></div>
+            <div class="functionBody"><div>Generate monomials set of the given total degree or less.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>sorted(monomials([x, y], 2))
+<span class="py-output">[1, x, y, x**2, y**2, x*y]</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>sorted(monomials([x, y], 3))
+<span class="py-output">[1, x, y, x**2, x**3, y**2, y**3, x*y, x*y**2, y*x**2]</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.risch.factorization">factorization(poly, linear=False):</a></div>
+            <div class="functionBody"><div>Returns a list with polynomial factors over rationals or, if 'linear' 
+flag is set over Q(i). This simple handler should be merged with original 
+factor() method.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>factorization(x**2 - y**2)
+<span class="py-output">set([1, x - y, x + y])</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>factorization(x**2 + 1)
+<span class="py-output">set([1, 1 + x**2])</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>factorization(x**2 + 1, linear=True)
+<span class="py-output">set([1, x - I, I + x])</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.risch.risch_norman">risch_norman(f, x, rewrite=False):</a></div>
+            <div class="functionBody"><pre>Computes indefinite integral using extended Risch-Norman algorithm,
+also known as parallel Risch. This is a simplified version of full
+recursive Risch algorithm. It is designed for integrating various
+classes of functions including transcendental elementary or special
+functions like Airy, Bessel, Whittaker and Lambert.
+
+The main difference between this algorithm and the recursive one
+is that rather than computing a tower of differential extensions
+in a recursive way, it handles all cases in one shot. That's why
+it is called parallel Risch algorithm. This makes it much faster
+than the original approach.
+
+Another benefit is that it doesn't require to rewrite expressions
+in terms of complex exponentials. Rather it uses tangents and so
+antiderivatives are being found in a more familliar form.
+
+Risch-Norman algorithm can also handle special functions very
+easily without any additional effort. Just differentiation
+method must be known for a given function.
+
+Note that this algorithm is not a decision procedure. If it
+computes an antiderivative for a given integral then it's a
+proof that such function exists. However when it fails then
+there still may exist an antiderivative and a fallback to
+recurrsive Risch algorithm would be necessary.
+
+The question if this algorithm can be made a full featured
+decision procedure still remains open.
+
+For more information on the implemented algorithm refer to:
+
+[1] K. Geddes, L.Stefanus, On the Risch-Norman Integration
+    Method and its Implementation in Maple, Proceedings of
+    ISSAC'89, ACM Press, 212-217.
+
+[2] J. H. Davenport, On the Parallel Risch Algorithm (I),
+    Proceedings of EUROCAM'82, LNCS 144, Springer, 144-157.
+
+[3] J. H. Davenport, On the Parallel Risch Algorithm (III):
+    Use of Tangents, SIGSAM Bulletin 16 (1982), 3-6.
+
+[4] J. H. Davenport, B. M. Trager, On the Parallel Risch
+    Algorithm (II), ACM Transactions on Mathematical
+    Software 11 (1985), 356-362.
+
+See also Manuel Bronstein  Poor Man's Integrator
+
+[5] http://www-sop.inria.fr/cafe/Manuel.Bronstein/pmint/index.html</pre></div>
+            </div></body>
+        

@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.utilities.iterables&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.u.iterables</h1><span id="part">Part of <a href="sympy.utilities.html">sympy.utilities</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.utilities.iterables.all">all</a></td><td><div>Return True if all elements are set to True. This
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.utilities.iterables.any">any</a></td><td><div>Return True if at least one element is set to True.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.utilities.iterables.make_list">make_list</a></td><td><div>Returns a list of elements taken from specified expresion
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.utilities.iterables.flatten">flatten</a></td><td><div>Recursively denest iterable containers.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.utilities.iterables.all">all(iterable):</a></div>
+            <div class="functionBody"><div>Return True if all elements are set to True. This function does not 
+support predicates explicitely, but this behaviour can be simulated easily 
+using list comprehension.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>all( [True, True, True] )
+<span class="py-output">True</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>all( [True, False, True] )
+<span class="py-output">False</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>all( [ x % 2 == 0 <span class="py-keyword">for</span> x <span class="py-keyword">in</span> [2, 6, 8] ] )
+<span class="py-output">True</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>all( [ x % 2 == 0 <span class="py-keyword">for</span> x <span class="py-keyword">in</span> [2, 6, 7] ] )
+<span class="py-output">False</span></pre>
+NOTE: Starting from Python 2.5 this a built-in.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.utilities.iterables.any">any(iterable):</a></div>
+            <div class="functionBody"><div>Return True if at least one element is set to True. This function does 
+not support predicates explicitely, but this behaviour can be simulated 
+easily using list comprehension.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>any( [False, False, False] )
+<span class="py-output">False</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>any( [False, True, False] )
+<span class="py-output">True</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>any( [ x % 2 == 1 <span class="py-keyword">for</span> x <span class="py-keyword">in</span> [2, 6, 8] ] )
+<span class="py-output">False</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>any( [ x % 2 == 1 <span class="py-keyword">for</span> x <span class="py-keyword">in</span> [2, 6, 7] ] )
+<span class="py-output">True</span></pre>
+NOTE: Starting from Python 2.5 this a built-in.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.utilities.iterables.make_list">make_list(expr, kind):</a></div>
+            <div class="functionBody"><div>Returns a list of elements taken from specified expresion when it is of 
+sequence type (Add or Mul) or singleton list otherwise (Rational, Pow 
+etc.).
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = map(Symbol, <span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>make_list(x*y, Mul)
+<span class="py-output">[x, y]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>make_list(x*y, Add)
+<span class="py-output">[x*y]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>make_list(x*y + y, Add)
+<span class="py-output">[y, x*y]</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.utilities.iterables.flatten">flatten(iterable):</a></div>
+            <div class="functionBody"><div>Recursively denest iterable containers.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>flatten([1, 2, 3])
+<span class="py-output">[1, 2, 3]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>flatten([1, 2, [3]])
+<span class="py-output">[1, 2, 3]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>flatten([1, [2, 3], [4, 5]])
+<span class="py-output">[1, 2, 3, 4, 5]</span></pre>
+</div></div>
+            </div></body>
+        

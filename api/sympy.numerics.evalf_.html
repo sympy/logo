@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.numerics.evalf_&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.n.evalf_</h1><span id="part">Part of <a href="sympy.numerics.html">sympy.numerics</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.numerics.evalf_.polyfunc">polyfunc</a></td><td><div>Convert a SymPy expression representing a univariate polynomial
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.evalf_.evalf">evalf</a></td><td><div>evalf(expr) attempts to evaluate a SymPy expression to a Float or
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.evalf_.polyfunc">polyfunc(expr, derivative=False):</a></div>
+            <div class="functionBody"><div>Convert a SymPy expression representing a univariate polynomial into a 
+function for numerical evaluation using Floats / ComplexFloats.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>polyfunc(x**3 + 4)(2)
+<span class="py-output">Float('12')</span></pre>
+If derivative=True is set, the evaluation function evaluates both the 
+polynomial and its derivative at the given point and returns the two values
+as a tuple.
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.numerics.evalf_.evalf">evalf(expr):</a></div>
+            <div class="functionBody"><div>evalf(expr) attempts to evaluate a SymPy expression to a Float or 
+ComplexFloat with an error smaller than 10**(-Float.getdps())
+</div></div>
+            </div></body>
+        

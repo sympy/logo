@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.simplify.simplify&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.s.simplify</h1><span id="part">Part of <a href="sympy.simplify.html">sympy.simplify</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.fraction">fraction</a></td><td><div>Returns a pair with expression's numerator and denominator.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.numer">numer</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.denom">denom</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.fraction_expand">fraction_expand</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.numer_expand">numer_expand</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.denom_expand">denom_expand</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.separate">separate</a></td><td><div>Rewrite or separate a power of product to a product of powers
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.together">together</a></td><td><div>Combine together and denest rational functions into a single
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.collect">collect</a></td><td><div>Collect additive terms with respect to a list of symbols up
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.ratsimp">ratsimp</a></td><td><div>Usage
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.trigsimp">trigsimp</a></td><td><div>Usage
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.radsimp">radsimp</a></td><td><div>Rationalize the denominator.
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.powsimp">powsimp</a></td><td><div>Usage
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.normal">normal</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.hypersimp">hypersimp</a></td><td><div>Given combinatorial term a(n) simplify its consecutive term
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.hypersimilar">hypersimilar</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.combsimp">combsimp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.simplify.simplify">simplify</a></td><td><div>Simplifies the expression 'expr'.
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.fraction">fraction(expr, exact=False):</a></div>
+            <div class="functionBody"><div><p>Returns a pair with expression's numerator and denominator. If the given
+expression is not a fraction then this function will assume that the 
+denominator is equal to one.</p>
+<p>This function will not make any attempt to simplify nested fractions or 
+to do any term rewriting at all.</p>
+If only one of the numerator/denominator pair is needed then use 
+numer(expr) or denom(expr) functions respectively.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'x'</span>, <span class="py-string">'y'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>fraction(x/y)
+<span class="py-output">(x, y)</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>fraction(x)
+<span class="py-output">(x, 1)</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>fraction(1/y**2)
+<span class="py-output">(1, y**2)</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>fraction(x*y/2)
+<span class="py-output">(x*y, 2)</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>fraction(Rational(1, 2))
+<span class="py-output">(1, 2)</span></pre>
+This function will also work fine with assumptions:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>k = Symbol(<span class="py-string">'k'</span>, negative=True)
+<span class="py-prompt">&gt;&gt;&gt; </span>fraction(x * y**k)
+<span class="py-output">(x, y**(-k))</span></pre>
+If we know nothing about sign of some exponent and 'exact' flag is 
+unset, then structure this exponent's structure will be analyzed and pretty
+fraction will be returned:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>fraction(2*x**(-y))
+<span class="py-output">(2, x**y)</span></pre>
+#&gt;&gt;&gt; fraction(exp(-x)) #(1, exp(x))
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>fraction(exp(-x), exact=True)
+<span class="py-output">(exp(-x), 1)</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.numer">numer(expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.denom">denom(expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.fraction_expand">fraction_expand(expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.numer_expand">numer_expand(expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.denom_expand">denom_expand(expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.separate">separate(expr, deep=False):</a></div>
+            <div class="functionBody"><div>Rewrite or separate a power of product to a product of powers but 
+without any expanding, ie. rewriting products to summations.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y, z = symbols(<span class="py-string">'x'</span>, <span class="py-string">'y'</span>, <span class="py-string">'z'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>separate((x*y)**2)
+<span class="py-output">x**2*y**2</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>separate((x*(y*z)**3)**2)
+<span class="py-output">x**2*y**6*z**6</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>separate((x*sin(x))**y + (x*cos(x))**y)
+<span class="py-output">x**y*cos(x)**y + x**y*sin(x)**y</span></pre>
+<p>#&gt;&gt;&gt; separate((exp(x)*exp(y))**x) #exp(x*y)*exp(x**2)</p>
+Notice that summations are left un touched. If this is not the requested
+behaviour, apply 'expand' to input expression before:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>separate(((x+y)*z)**2)
+<span class="py-output">z**2*(x + y)**2</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>separate((x*y)**(1+z))
+<span class="py-output">x**(1 + z)*y**(1 + z)</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.together">together(expr, deep=False):</a></div>
+            <div class="functionBody"><div><p>Combine together and denest rational functions into a single fraction. 
+By default the resulting expression is simplified to reduce the total order
+of both numerator and denominator and minimize the number of terms.</p>
+<p>Densting is done recursively on fractions level. However this function 
+will not attempt to rewrite composite objects, like functions, interior 
+unless 'deep' flag is set.</p>
+By definition, 'together' is a complement to 'apart', so 
+apart(together(expr)) should left expression unhanged.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y, z = symbols(<span class="py-string">'x'</span>, <span class="py-string">'y'</span>, <span class="py-string">'z'</span>)</pre>
+<p>You can work with sums of fractions easily. The algorithm used here 
+will, in an iterative style, collect numerators and denominator of all 
+expressions involved and perform needed simplifications:</p>
+<p>#&gt;&gt;&gt; together(1/x + 1/y) #(x + y)/(y*x)</p>
+#&gt;&gt;&gt; together(1/x + 1/y + 1/z) #(z*x + x*y + z*y)/(y*x*z)
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>together(1/(x*y) + 1/y**2)
+<span class="py-output">1/x*y**(-2)*(x + y)</span></pre>
+Or you can just denest multi-level fractional expressions:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>together(1/(1 + 1/x))
+<span class="py-output">x/(1 + x)</span></pre>
+It also perfect possible to work with symbolic powers or exponential 
+functions or combinations of both:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>together(1/x**y + 1/x**(y-1))
+<span class="py-output">x**(-y)*(1 + x)</span></pre>
+<p>#&gt;&gt;&gt; together(1/x**(2*y) + 1/x**(y-z)) #x**(-2*y)*(1 + x**(y + 
+z))</p>
+<p>#&gt;&gt;&gt; together(1/exp(x) + 1/(x*exp(x))) #(1+x)/(x*exp(x))</p>
+#&gt;&gt;&gt; together(1/exp(2*x) + 1/(x*exp(3*x))) 
+#(1+exp(x)*x)/(x*exp(3*x))
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.collect">collect(expr, syms, evaluate=True, exact=False):</a></div>
+            <div class="functionBody"><div><p>Collect additive terms with respect to a list of symbols up to powers 
+with rational exponents. By the term symbol here are meant arbitrary 
+expressions, which can contain powers, products, sums etc. In other words 
+symbol is a pattern which will be searched for in the expression's 
+terms.</p>
+<p>This function will not apply any redundant expanding to the input 
+expression, so user is assumed to enter expression in final form. This 
+makes 'collect' more predictable as there is no magic behind the scenes. 
+However it is important to note, that powers of products are converted to 
+products of powers using 'separate' function.</p>
+There are two possible types of output. First, if 'evaluate' flag is 
+set, this function will return a single expression or else it will return a
+dictionary with separated symbols up to rational powers as keys and 
+collected sub-expressions as values respectively.
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y, z = symbols(<span class="py-string">'x'</span>, <span class="py-string">'y'</span>, <span class="py-string">'z'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>a, b, c = symbols(<span class="py-string">'a'</span>, <span class="py-string">'b'</span>, <span class="py-string">'c'</span>)</pre>
+This function can collect symbolic coefficients in polynomial or 
+rational expressions. It will manage to find all integer or rational powers
+of collection variable:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>collect(a*x**2 + b*x**2 + a*x - b*x + c, x)
+<span class="py-output">c + x*(a - b) + x**2*(a + b)</span></pre>
+The same result can achieved in dictionary form:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>collect(a*x**2 + b*x**2 + a*x - b*x + c, x, evaluate=False)
+<span class="py-output">{1: c, x**2: a + b, x: a - b}</span></pre>
+You can also work with multi-variate polynomials. However remember that 
+this function is greedy so it will care only about a single symbol at time,
+in specification order:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>collect(x**2 + y*x**2 + x*y + y + a*y, [x, y])
+<span class="py-output">x*y + y*(1 + a) + x**2*(1 + y)</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>collect(x**2*y**4 + z*(x*y**2)**2 + z + a*z, [x*y**2, z])
+<span class="py-output">z*(1 + a) + x**2*y**4*(1 + z)</span></pre>
+Also more complicated expressions can be used as patterns:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>collect(a*sin(2*x) + b*sin(2*x), sin(2*x))
+<span class="py-output">(a + b)*sin(2*x)</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>collect(a*x**2*log(x)**2 + b*(x*log(x))**2, x*log(x))
+<span class="py-output">x**2*log(x)**2*(a + b)</span></pre>
+<p>It is also possible to work with symbolic powers, although it has more 
+complicated behaviour, because in this case power's base and symbolic part 
+of the exponent are treated as a single symbol:</p>
+<p>#&gt;&gt;&gt; collect(a*x**c + b*x**c, x) #a*x**c + b*x**c</p>
+<p>#&gt;&gt;&gt; collect(a*x**c + b*x**c, x**c) #x**c*(a + b)</p>
+<p>However if you incorporate rationals to the exponents, then you will get
+well known behaviour:</p>
+<p>#&gt;&gt;&gt; collect(a*x**(2*c) + b*x**(2*c), x**c) #x**(2*c)*(a + 
+b)</p>
+<p>Note also that all previously stated facts about 'collect' function 
+apply to the exponential function, so you can get:</p>
+<p>#&gt;&gt;&gt; collect(a*exp(2*x) + b*exp(2*x), exp(x)) 
+#(a+b)*exp(2*x)</p>
+If you are interested only in collecting specific powers of some symbols
+then set 'exact' flag in arguments:
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>collect(a*x**7 + b*x**7, x, exact=True)
+<span class="py-output">a*x**7 + b*x**7</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>collect(a*x**7 + b*x**7, x**7, exact=True)
+<span class="py-output">x**7*(a + b)</span></pre>
+<p>You can also apply this function to differential equations, where 
+derivatives of arbitary order can be collected:</p>
+<p>#&gt;&gt;&gt; from sympy import Derivative as D #&gt;&gt;&gt; f = 
+Function(x)</p>
+<p>#&gt;&gt;&gt; collect(a*D(f,x) + b*D(f,x), D(f,x)) 
+#(a+b)*Function'(x)</p>
+<p>#&gt;&gt;&gt; collect(a*D(D(f,x),x) + b*D(D(f,x),x), D(f,x)) 
+#(a+b)*(Function'(x))'</p>
+<p>#&gt;&gt;&gt; collect(a*D(D(f,x),x) + b*D(D(f,x),x), D(f,x), exact=True)
+#a*(Function'(x))'+b*(Function'(x))'</p>
+<p>#&gt;&gt;&gt; collect(a*D(D(f,x),x) + b*D(D(f,x),x) + a*D(f,x) + 
+b*D(f,x), D(f,x)) #(a+b)*Function'(x)+(a+b)*(Function'(x))'</p>
+<p>Or you can even match both derivative order and exponent at time:</p>
+#&gt;&gt;&gt; collect(a*D(D(f,x),x)**2 + b*D(D(f,x),x)**2, D(f,x)) 
+#(a+b)*(Function'(x))'**2
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.ratsimp">ratsimp(expr):</a></div>
+            <div class="functionBody"><div><h1 class="heading">Usage</h1>
+  ratsimp(expr) -&gt; joins two rational expressions and returns the 
+  simples form
+<h1 class="heading">Notes</h1>
+  Currently can simplify only simple expressions, for this to be really 
+  usefull multivariate polynomial algorithms are needed
+<h1 class="heading">Examples</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>y = Symbol(<span class="py-string">'y'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>e = ratsimp(1/x + 1/y)</pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.trigsimp">trigsimp(expr, deep=False):</a></div>
+            <div class="functionBody"><div><h1 class="heading">Usage</h1>
+  trig(expr) -&gt; reduces expression by using known trig identities
+<h1 class="heading">Notes</h1>
+<h1 class="heading">Examples</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>y = Symbol(<span class="py-string">'y'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>e = 2*sin(x)**2 + 2*cos(x)**2
+<span class="py-prompt">&gt;&gt;&gt; </span>trigsimp(e)
+<span class="py-output">2</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>trigsimp(log(e))
+<span class="py-output">log(2*cos(x)**2 + 2*sin(x)**2)</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>trigsimp(log(e), deep=True)
+<span class="py-output">log(2)</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.radsimp">radsimp(expr):</a></div>
+            <div class="functionBody"><div>Rationalize the denominator.
+<h1 class="heading">Examples:</h1>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>radsimp(1/(2+sqrt(2)))
+<span class="py-output">1 - 1/2*2**(1/2)</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>x,y = map(Symbol, <span class="py-string">'xy'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>e = ( (2+2*sqrt(2))*x+(2+sqrt(8))*y )/( 2+sqrt(2) )
+<span class="py-prompt">&gt;&gt;&gt; </span>radsimp(e)
+<span class="py-output">x*2**(1/2) + y*2**(1/2)</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.powsimp">powsimp(expr, deep=False):</a></div>
+            <div class="functionBody"><pre>Usage
+=====
+    powsimp(expr, deep) -> reduces expression by combining powers with
+        similar bases and exponents.
+
+Notes
+=====
+    If deep is True then powsimp() will also simplify arguments of
+    functions. By default deep is set to False.
+
+
+Examples
+========
+    >>> from sympy import *
+    >>> x,n = map(Symbol, 'xn')
+    >>> e = x**n * (x*n)**(-n) * n
+    >>> powsimp(e)
+    n**(1 - n)
+
+    >>> powsimp(log(e))
+    log(n*x**n*(n*x)**(-n))
+
+    >>> powsimp(log(e), deep=True)
+    log(n**(1 - n))</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.normal">normal(expr, *syms):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.hypersimp">hypersimp(term, n, consecutive=True, simplify=True):</a></div>
+            <div class="functionBody"><pre>Given combinatorial term a(n) simplify its consecutive term
+ratio ie. a(n+1)/a(n). The term can be composed of functions
+and integer sequences which have equivalent represenation
+in terms of gamma special function. Currently ths includes
+factorials (falling, rising), binomials and gamma it self.
+
+The algorithm performs three basic steps:
+
+    (1) Rewrite all functions in terms of gamma, if possible.
+
+    (2) Rewrite all occurences of gamma in terms of produtcs
+        of gamma and rising factorial with integer, absolute
+        constant exponent.
+
+    (3) Perform simplification of nested fractions, powers
+        and if the resulting expression is a quotient of
+        polynomials, reduce their total degree.
+
+If the term given is hypergeometric then the result of this
+procudure is a quotient of polynomials of minimal degree.
+Sequence is hypergeometric if it is anihilated by linear,
+homogeneous recurrence operator of first order, so in
+other words when a(n+1)/a(n) is a rational function.
+
+When the status of being hypergeometric or not, is required
+then you can avoid additional simplification by unsetting
+'simplify' flag.
+
+This algorithm, due to Wolfram Koepf, is very simple but
+powerful, however its full potential will be visible when
+simplification in general will improve.
+
+For more information on the implemented algorithm refer to:
+
+[1] W. Koepf, Algorithms for m-fold Hypergeometric Summation,
+    Journal of Symbolic Computation (1995) 20, 399-417</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.hypersimilar">hypersimilar(f, g, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.combsimp">combsimp(expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.simplify.simplify">simplify(expr):</a></div>
+            <div class="functionBody"><div><p>Simplifies the expression 'expr'.</p>
+Simplification is not a well defined term and the exact strategies this 
+function tries can change in the future versions of SymPy. If your 
+algorithm relies on &quot;simplification&quot; (whatever it is), try to 
+determine what you need exactly - is it powsimp(), or radsimp(), or 
+together(), or something else? And use this particular function directly, 
+because those are well defined and thus your algorithm will be robust.
+</div></div>
+            </div></body>
+        
