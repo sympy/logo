@@ -1,4 +1,4 @@
-#summary How to work with setup.py
+#summary How to work with setup.py, make releases, API documentation, ...
 
 = Introduction =
 
