@@ -205,6 +205,8 @@ easily resolved keeping in mind that they still share the same fundamental ideas
 
 = IRC discussion =
 
+We were also discussing about our plans on IRC:
+
 {{{
 (04:21:13 PM) ondrej: hi pearu
 (04:23:25 PM) ondrej: just got home from mountains
