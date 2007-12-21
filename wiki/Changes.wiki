@@ -18,6 +18,7 @@ Also, we try to provide uptodate short overview here:
   * Differential solvers were polished [http://hg.sympy.org/sympy/rev/fed3bf172cd5 (commit 1], [http://hg.sympy.org/sympy/rev/31bf80b8afb4 2], [http://hg.sympy.org/sympy/rev/6aaa2e4e40af 3])
   * `isympy` now predefines `f` as a function [http://hg.sympy.org/sympy/rev/aded3f85df9b (commit)]
   * Matrix printing improved [http://hg.sympy.org/sympy/rev/9c2a2ccc5929 (commit 1], [http://hg.sympy.org/sympy/rev/a603a56661ea 2], [http://hg.sympy.org/sympy/rev/506201f33afd 3], [http://hg.sympy.org/sympy/rev/f95b75a13dea 4)]
+  * Printing internals were documented [http://hg.sympy.org/sympy/rev/5636b9da4297 (commit)]
 
 == 0.5.8 ==
 
