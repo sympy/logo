@@ -1,6 +1,6 @@
 #summary How to install SymPy
 
-= Installation =
+= Download =
 
 !SymPy is packaged for the following systems, so if you use one of them, simply follow the instructions. Otherwise (or if you prefer), you can install the sources directly. All you need is Python 2.4 or newer.
 
@@ -54,7 +54,40 @@ where (besides other things) you can download any revision you want as a gz, bz2
 
 http://hg.sympy.org/sympy/archive/tip.tar.gz
 
-= Test it =
+= Installation =
+
+Either use the usual:
+{{{
+python setup.py install
+}}}
+or just go to the unpacked directory and use it directly (without installation):
+{{{
+$ python
+Python 2.4.4 (#2, Aug 16 2007, 02:03:40) 
+[GCC 4.1.3 20070812 (prerelease) (Debian 4.1.2-15)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import sympy
+>>> 
+}}}
+
+If it is possible for you, we suggest you use `isympy`:
+{{{
+$ bin/isympy 
+Python 2.4.4 console for SymPy 0.5.8-hg. These commands were executed:
+>>> from __future__ import division
+>>> from sympy import *
+>>> x, y, z = symbols('xyz')
+>>> k, m, n = symbols('kmn', integer=True)
+>>> f = Function("f")
+>>> Basic.set_repr_level(2)     # pretty print output; Use "1" for python output
+>>> pprint_try_use_unicode()    # use unicode pretty print when available
+
+
+In [1]: integrate(x*sin(x), x)
+Out[1]: -x*cos(x) + sin(x)
+}}}
+
+== Test it ==
 
 Test that !SymPy works:
 {{{
