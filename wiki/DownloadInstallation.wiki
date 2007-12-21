@@ -45,12 +45,17 @@ To get the Mercurial repository, use:
 {{{
 hg clone http://hg.sympy.org/sympy/
 }}}
-you can also access it on the web:
+
+And you can also access it on the web:
 
 http://hg.sympy.org/sympy/
 
 where (besides other things) you can download any revision you want as a gz, bz2 or zip file.
 
+
+Alternatively, you can download the latest !SymPy snapshot here:
+
+http://hg.sympy.org/sympy/archive/tip.tar.gz
 
 = Test it =
 
