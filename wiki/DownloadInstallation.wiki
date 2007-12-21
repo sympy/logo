@@ -85,6 +85,13 @@ Python 2.4.4 console for SymPy 0.5.8-hg. These commands were executed:
 
 In [1]: integrate(x*sin(x), x)
 Out[1]: -x*cos(x) + sin(x)
+
+In [2]: Integral(x**2 * sin(x), x)
+Out[2]: 
+⌠             
+⎮  2          
+⎮ x *sin(x) dx
+⌡             
 }}}
 
 == Test it ==
