@@ -26,7 +26,7 @@ http://www.sagemath.org/packages/standard
 
 [http://www.microsoft.com/ http://sympy.googlecode.com/svn/materials/web/images/windows.png] * Windows *
 
-Download the windows installer from the frontpage and execute it. There is one known [http://code.google.com/p/sympy/issues/detail?id=188 issue] with missing MSVCR71.dll, but !SymPy works fine.
+Download the windows installer from the frontpage (Featured Downloads) and execute it. There is one known [http://code.google.com/p/sympy/issues/detail?id=188 issue] with missing MSVCR71.dll, but !SymPy works fine.
 
 
 = Sources =
@@ -35,7 +35,8 @@ The only prerequisite is python 2.4 or newer. !SymPy optionally uses some other 
 
 * latest release *
 
-Go to the "Downloads" tab and download the latest source archive (something like `sympy-0.4.0.tar.gz`).
+Download the latest tar.gz (something like `sympy-0.4.0.tar.gz`) from the front page (Featured Downloads). You can also access all the previous downloads
+from [http://code.google.com/p/sympy/downloads/list Downloads].
 
 On unix systems (linux, BSD, Mac OS X, cygwin, etc.): extract it with the command `"tar xzf sympy-0.4.0.tar.gz"` and follow the README located in the sympy directory.
 
