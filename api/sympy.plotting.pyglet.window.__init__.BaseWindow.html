@@ -17,61 +17,61 @@ bar, minimize and close buttons, resize handles, and so on).</p>
 that applications allow the platform to place it according to local 
 conventions.  This will ensure it is not obscured by other windows, and 
 appears on an appropriate screen for the user.</p>
-To render into a window, you must first call `switch_to`, to make it the
+<p>To render into a window, you must first call `switch_to`, to make it the
 current OpenGL context.  If you use only one window in the application, 
-there is no need to do this.
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.__init__">__init__</a></td><td><div>Create a window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow._create">_create</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow._recreate">_recreate</a></td><td><div>Recreate the window with current attributes.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.flip">flip</a></td><td><div>Swap the OpenGL front and back buffers.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.switch_to">switch_to</a></td><td><div>Make this window the current OpenGL rendering context.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_fullscreen">set_fullscreen</a></td><td><div>Toggle to or from fullscreen.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_resize 0">on_resize 0</a></td><td><div>A default resize event handler.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.close">close</a></td><td><div>Close the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.draw_mouse_cursor">draw_mouse_cursor</a></td><td><div>Draw the custom mouse cursor.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_caption">set_caption</a></td><td><div>Set the window's caption.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_minimum_size">set_minimum_size</a></td><td><div>Set the minimum size of the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_maximum_size">set_maximum_size</a></td><td><div>Set the maximum size of the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_size">set_size</a></td><td><div>Resize the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.get_size">get_size</a></td><td><div>Return the current size of the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_location">set_location</a></td><td><div>Set the position of the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.get_location">get_location</a></td><td><div>Return the current position of the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.activate">activate</a></td><td><div>Attempt to restore keyboard focus to the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_visible">set_visible</a></td><td><div>Show or hide the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.minimize">minimize</a></td><td><div>Minimize the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.maximize">maximize</a></td><td><div>Maximize the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_vsync">set_vsync</a></td><td><div>Enable or disable vertical sync control.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_mouse_visible">set_mouse_visible</a></td><td><div>Show or hide the mouse cursor.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_mouse_platform_visible">set_mouse_platform_visible</a></td><td><div>Set the platform-drawn mouse cursor visibility.  This is called
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_mouse_cursor">set_mouse_cursor</a></td><td><div>Change the appearance of the mouse cursor.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_exclusive_mouse">set_exclusive_mouse</a></td><td><div>Hide the mouse cursor and direct all mouse events to this
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_exclusive_keyboard">set_exclusive_keyboard</a></td><td><div>Prevent the user from switching away from this window using
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.get_system_mouse_cursor">get_system_mouse_cursor</a></td><td><div>Obtain a system mouse cursor.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_icon">set_icon</a></td><td><div>Set the window icon.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.clear">clear</a></td><td><div>Clear the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.dispatch_event">dispatch_event</a></td><td><div>Dispatch a single event to the attached handlers.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.dispatch_events">dispatch_events</a></td><td><div>Process the operating system event queue and call attached
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_key_press">on_key_press</a></td><td><div>A key on the keyboard was pressed (and held down).
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_key_release">on_key_release</a></td><td><div>A key on the keyboard was released.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_text">on_text</a></td><td><div>The user input some text.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_text_motion">on_text_motion</a></td><td><div>The user moved the text input cursor.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_text_motion_select">on_text_motion_select</a></td><td><div>The user moved the text input cursor while extending the
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_motion">on_mouse_motion</a></td><td><div>The mouse was moved with no buttons held down.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_drag">on_mouse_drag</a></td><td><div>The mouse was moved with one or more mouse buttons pressed.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_press">on_mouse_press</a></td><td><div>A mouse button was pressed (and held down).
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_release">on_mouse_release</a></td><td><div>A mouse button was released.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_scroll">on_mouse_scroll</a></td><td><div>The mouse wheel was scrolled.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_close">on_close</a></td><td><div>The user attempted to close the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_enter">on_mouse_enter</a></td><td><div>The mouse was moved into the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_leave">on_mouse_leave</a></td><td><div>The mouse was moved outside of the window.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_expose">on_expose</a></td><td><div>A portion of the window needs to be redrawn.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_resize">on_resize</a></td><td><div>The window was resized.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_move">on_move</a></td><td><div>The window was moved.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_activate">on_activate</a></td><td><div>The window was activated.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_deactivate">on_deactivate</a></td><td><div>The window was deactivated.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_show">on_show</a></td><td><div>The window was shown.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_hide">on_hide</a></td><td><div>The window was hidden.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_context_lost">on_context_lost</a></td><td><div>The window's GL context was lost.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_context_state_lost">on_context_state_lost</a></td><td><div>The state of the window's GL context was lost.
+there is no need to do this.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.__init__">__init__</a></td><td><div><p>Create a window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow._create">_create</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow._recreate">_recreate</a></td><td><div><p>Recreate the window with current attributes.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.flip">flip</a></td><td><div><p>Swap the OpenGL front and back buffers.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.switch_to">switch_to</a></td><td><div><p>Make this window the current OpenGL rendering context.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_fullscreen">set_fullscreen</a></td><td><div><p>Toggle to or from fullscreen.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_resize 0">on_resize 0</a></td><td><div><p>A default resize event handler.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.close">close</a></td><td><div><p>Close the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.draw_mouse_cursor">draw_mouse_cursor</a></td><td><div><p>Draw the custom mouse cursor.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_caption">set_caption</a></td><td><div><p>Set the window's caption.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_minimum_size">set_minimum_size</a></td><td><div><p>Set the minimum size of the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_maximum_size">set_maximum_size</a></td><td><div><p>Set the maximum size of the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_size">set_size</a></td><td><div><p>Resize the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.get_size">get_size</a></td><td><div><p>Return the current size of the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_location">set_location</a></td><td><div><p>Set the position of the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.get_location">get_location</a></td><td><div><p>Return the current position of the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.activate">activate</a></td><td><div><p>Attempt to restore keyboard focus to the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_visible">set_visible</a></td><td><div><p>Show or hide the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.minimize">minimize</a></td><td><div><p>Minimize the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.maximize">maximize</a></td><td><div><p>Maximize the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_vsync">set_vsync</a></td><td><div><p>Enable or disable vertical sync control.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_mouse_visible">set_mouse_visible</a></td><td><div><p>Show or hide the mouse cursor.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_mouse_platform_visible">set_mouse_platform_visible</a></td><td><div><p>Set the platform-drawn mouse cursor visibility.  This is called</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_mouse_cursor">set_mouse_cursor</a></td><td><div><p>Change the appearance of the mouse cursor.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_exclusive_mouse">set_exclusive_mouse</a></td><td><div><p>Hide the mouse cursor and direct all mouse events to this</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_exclusive_keyboard">set_exclusive_keyboard</a></td><td><div><p>Prevent the user from switching away from this window using</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.get_system_mouse_cursor">get_system_mouse_cursor</a></td><td><div><p>Obtain a system mouse cursor.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.set_icon">set_icon</a></td><td><div><p>Set the window icon.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.clear">clear</a></td><td><div><p>Clear the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.dispatch_event">dispatch_event</a></td><td><div><p>Dispatch a single event to the attached handlers.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.dispatch_events">dispatch_events</a></td><td><div><p>Process the operating system event queue and call attached</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_key_press">on_key_press</a></td><td><div><p>A key on the keyboard was pressed (and held down).</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_key_release">on_key_release</a></td><td><div><p>A key on the keyboard was released.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_text">on_text</a></td><td><div><p>The user input some text.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_text_motion">on_text_motion</a></td><td><div><p>The user moved the text input cursor.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_text_motion_select">on_text_motion_select</a></td><td><div><p>The user moved the text input cursor while extending the</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_motion">on_mouse_motion</a></td><td><div><p>The mouse was moved with no buttons held down.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_drag">on_mouse_drag</a></td><td><div><p>The mouse was moved with one or more mouse buttons pressed.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_press">on_mouse_press</a></td><td><div><p>A mouse button was pressed (and held down).</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_release">on_mouse_release</a></td><td><div><p>A mouse button was released.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_scroll">on_mouse_scroll</a></td><td><div><p>The mouse wheel was scrolled.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_close">on_close</a></td><td><div><p>The user attempted to close the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_enter">on_mouse_enter</a></td><td><div><p>The mouse was moved into the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_mouse_leave">on_mouse_leave</a></td><td><div><p>The mouse was moved outside of the window.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_expose">on_expose</a></td><td><div><p>A portion of the window needs to be redrawn.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_resize">on_resize</a></td><td><div><p>The window was resized.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_move">on_move</a></td><td><div><p>The window was moved.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_activate">on_activate</a></td><td><div><p>The window was activated.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_deactivate">on_deactivate</a></td><td><div><p>The window was deactivated.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_show">on_show</a></td><td><div><p>The window was shown.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_hide">on_hide</a></td><td><div><p>The window was hidden.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_context_lost">on_context_lost</a></td><td><div><p>The window's GL context was lost.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.window.__init__.BaseWindow.on_context_state_lost">on_context_state_lost</a></td><td><div><p>The state of the window's GL context was lost.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.window.__init__.BaseWindow.__init__">__init__(self, width=640, height=480, caption=None, resizable=False, style=WINDOW_STYLE_DEFAULT, fullscreen=False, visible=True, vsync=True, display=None, screen=None, config=None, context=None):</a></div>
@@ -150,16 +150,16 @@ The context will be active as soon as the window is created, as if
 <p>Call this method on a double-buffered window to update the visible 
 display with the back buffer.  The contents of the back buffer is undefined
 after this operation.</p>
-Windows are double-buffered by default.
+<p>Windows are double-buffered by default.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.window.__init__.BaseWindow.switch_to">switch_to(self):</a></div>
             <div class="functionBody"><div><p>Make this window the current OpenGL rendering context.</p>
-Only one OpenGL context can be active at a time.  This method sets the 
+<p>Only one OpenGL context can be active at a time.  This method sets the 
 current window's context to be current.  You should use this method in 
 preference to `pyglet.gl.Context.set_current`, as it may perform additional
-initialisation functions.
+initialisation functions.</p>
 </div></div>
             </div>
             <div class="function">
@@ -186,8 +186,8 @@ redrawn.
 and sets the ``GL_PROJECTION`` matrix to be orthagonal in window space.  
 The bottom-left corner is (0, 0) and the top-right corner is the width and 
 height of the window in pixels.</p>
-Override this event handler with your own to create another projection, 
-for example in perspective.
+<p>Override this event handler with your own to create another projection, 
+for example in perspective.</p>
 </div></div>
             </div>
             <div class="function">
@@ -196,8 +196,8 @@ for example in perspective.
 <p>Windows are closed automatically when the process exits, so this method 
 need only be called when multiple windows or console input are being 
 used.</p>
-After closing the window, the GL context will be invalid.  The window 
-instance cannot be reused once closed (see also `set_visible`).
+<p>After closing the window, the GL context will be invalid.  The window 
+instance cannot be reused once closed (see also `set_visible`).</p>
 </div></div>
             </div>
             <div class="function">
@@ -208,8 +208,8 @@ before the buffers are flipped to render it.</p>
 <p>This method always leaves the ``GL_MODELVIEW`` matrix as current, 
 regardless of what it was set to previously.  No other GL state is 
 affected.</p>
-There is little need to override this method; instead, subclass 
-``MouseCursor`` and provide your own ``draw`` method.
+<p>There is little need to override this method; instead, subclass 
+``MouseCursor`` and provide your own ``draw`` method.</p>
 </div></div>
             </div>
             <div class="function">
@@ -281,8 +281,8 @@ The window size does not include the border or title bar.
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.window.__init__.BaseWindow.get_size">get_size(self):</a></div>
             <div class="functionBody"><div><p>Return the current size of the window.</p>
 <p>The window size does not include the border or title bar.</p>
-:rtype: (int, int) :return: The width and height of the window, in 
-pixels.
+<p>:rtype: (int, int) :return: The width and height of the window, in 
+pixels.</p>
 </div></div>
             </div>
             <div class="function">
@@ -308,10 +308,10 @@ pixels.
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.window.__init__.BaseWindow.activate">activate(self):</a></div>
             <div class="functionBody"><div><p>Attempt to restore keyboard focus to the window.</p>
-Depending on the window manager or operating system, this may not be 
+<p>Depending on the window manager or operating system, this may not be 
 successful.  For example, on Windows XP an application is not allowed to 
 &quot;steal&quot; focus from another application.  Instead, the window's 
-taskbar icon will flash, indicating it requires attention.
+taskbar icon will flash, indicating it requires attention.</p>
 </div></div>
             </div>
             <div class="function">
@@ -325,15 +325,15 @@ taskbar icon will flash, indicating it requires attention.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.window.__init__.BaseWindow.minimize">minimize(self):</a></div>
-            <div class="functionBody"><div>Minimize the window.
+            <div class="functionBody"><div><p>Minimize the window.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.window.__init__.BaseWindow.maximize">maximize(self):</a></div>
             <div class="functionBody"><div><p>Maximize the window.</p>
-The behaviour of this method is somewhat dependent on the user's display
+<p>The behaviour of this method is somewhat dependent on the user's display
 setup.  On a multi-monitor system, the window may maximize to either a 
-single screen or the entire virtual desktop.
+single screen or the entire virtual desktop.</p>
 </div></div>
             </div>
             <div class="function">
@@ -460,8 +460,8 @@ Useful sizes to provide are 16x16, 32x32, 64x64 (Mac only) and
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.window.__init__.BaseWindow.clear">clear(self):</a></div>
             <div class="functionBody"><div><p>Clear the window.</p>
-This is a convenience method for clearing the color and depth buffer.  
-The window must be the active context (see `switch_to`).
+<p>This is a convenience method for clearing the color and depth buffer.  
+The window must be the active context (see `switch_to`).</p>
 </div></div>
             </div>
             <div class="function">
@@ -481,8 +481,8 @@ the ``dispatch_events`` method.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.window.__init__.BaseWindow.dispatch_events">dispatch_events(self):</a></div>
-            <div class="functionBody"><div>Process the operating system event queue and call attached event 
-handlers.
+            <div class="functionBody"><div><p>Process the operating system event queue and call attached event 
+handlers.</p>
 </div></div>
             </div>
             <div class="function">
@@ -699,7 +699,7 @@ both `scroll_x` and `scroll_y` movement.
             <div class="functionBody"><div><p>The user attempted to close the window.</p>
 <p>This event can be triggered by clicking on the &quot;X&quot; control box
 in the window title bar, or by some other platform-dependent manner.</p>
-:event:
+<p>:event:</p>
 </div></div>
             </div>
             <div class="function">
@@ -743,7 +743,7 @@ it.</p>
 redrawing.  Note that the use of this method is becoming increasingly 
 uncommon, as newer window managers composite windows automatically and keep
 a backing store of the window contents.</p>
-:event:
+<p>:event:</p>
 </div></div>
             </div>
             <div class="function">
@@ -779,7 +779,7 @@ a backing store of the window contents.</p>
 <p>This event can be triggered by clicking on the title bar, bringing it to
 the foreground; or by some platform-specific method.</p>
 <p>When a window is &quot;active&quot; it has the keyboard focus.</p>
-:event:
+<p>:event:</p>
 </div></div>
             </div>
             <div class="function">
@@ -787,7 +787,7 @@ the foreground; or by some platform-specific method.</p>
             <div class="functionBody"><div><p>The window was deactivated.</p>
 <p>This event can be triggered by clicking on another application window.  
 When a window is deactivated it no longer has the keyboard focus.</p>
-:event:
+<p>:event:</p>
 </div></div>
             </div>
             <div class="function">
@@ -795,7 +795,7 @@ When a window is deactivated it no longer has the keyboard focus.</p>
             <div class="functionBody"><div><p>The window was shown.</p>
 <p>This event is triggered when a window is restored after being minimised,
 or after being displayed for the first time.</p>
-:event:
+<p>:event:</p>
 </div></div>
             </div>
             <div class="function">
@@ -803,7 +803,7 @@ or after being displayed for the first time.</p>
             <div class="functionBody"><div><p>The window was hidden.</p>
 <p>This event is triggered when a window is minimised or (on Mac OS X) 
 hidden by the user.</p>
-:event:
+<p>:event:</p>
 </div></div>
             </div>
             <div class="function">
@@ -814,7 +814,7 @@ recreated.  This is a rare event, triggered perhaps by the user switching
 to an incompatible video mode.  When it occurs, an application will need to
 reload all objects (display lists, texture objects, shaders) as well as 
 restore the GL state.</p>
-:event:
+<p>:event:</p>
 </div></div>
             </div>
             <div class="function">
@@ -826,7 +826,7 @@ mode.  In this case it will try to share the objects (display lists,
 texture objects, shaders) between the old and new contexts.  If this is 
 possible, only the current state of the GL context is lost, and the 
 application should simply restore state.</p>
-:event:
+<p>:event:</p>
 </div></div>
             </div></body>
         

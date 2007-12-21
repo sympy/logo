@@ -3,7 +3,7 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.polynomials.base.Polynomial&rdquo;</title>
         </head>
-        <body><h1 class="class">Class s.p.b.Polynomial(Basic):</h1><span id="part">Part of <a href="sympy.polynomials.base.html">sympy.polynomials.base</a></span><div class="toplevel"><div>Unified representation of all kinds of polynomials.
+        <body><h1 class="class">Class s.p.b.Polynomial(Basic):</h1><span id="part">Part of <a href="sympy.polynomials.base.html">sympy.polynomials.base</a></span><div class="toplevel"><div><p>Unified representation of all kinds of polynomials.</p>
 <h1 class="heading">Usage:</h1>
   <p>Most of the time, the Polynomial instances are created of a SymPy 
   expression, which is a polynomial.</p>
@@ -23,14 +23,14 @@
   <p>The built Polynomial instances support arithmetic, like addition and 
   multiplication, but fall back to the underlying SymPy expression, when a 
   non-Polynomial is encountered.</p>
-  The SymPy expression of a Polynomial f can be accessed through 
+  <p>The SymPy expression of a Polynomial f can be accessed through 
   f.sympy_expr. The coefficients and exponents are held in f.coeffs , f.var
-  and f.order hold the respective arguments.
+  and f.order hold the respective arguments.</p>
 <h1 class="heading">Notes:</h1>
-  Computes the coefficients with the exponents in sparse representation 
+  <p>Computes the coefficients with the exponents in sparse representation 
   for faster arithmetic and leading terms etc. Tries to be compatible with 
   other SymPy expressions, for example, by forwarding most attributes like 
-  assumptions to the underlying SymPy expression.
+  assumptions to the underlying SymPy expression.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
@@ -58,41 +58,41 @@
 <span class="py-output">((-1, 1, 1), (1, 0, 2))</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>h.coeffs
 <span class="py-output">((1, 2), (-x, 1))</span></pre>
-  Also see <a 
+  <p>Also see <a 
   href="sympy.polynomials.base.sympy2coefficients.html">sympy2coefficients</a>,
   <a 
-  href="sympy.polynomials.base.coefficients2sympy.html">coefficients2sympy</a>.
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__getattribute__">__getattribute__</a></td><td><div>Redirect most attributes to the underlying SymPy expression.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__str__">__str__</a></td><td><div>Return only the SymPy expression to be human-readable.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__repr__">__repr__</a></td><td><div>Returns a string that could be used to reconstruct this object.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__eq__">__eq__</a></td><td><div>Equality is restricted to equality of SymPy expression.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__ne__">__ne__</a></td><td><div>Also see <a 
-href="sympy.polynomials.base.Polynomial.__eq__.html">__eq__</a>.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__pos__">__pos__</a></td><td><div>Just returns the Polynomial.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__neg__">__neg__</a></td><td><div>Returns the Polynomial multiplied by -1.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__add__">__add__</a></td><td><div>Overwrites the + operator.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__radd__">__radd__</a></td><td><div>Also see <a 
-href="sympy.polynomials.base.Polynomial.__add__.html">__add__</a>.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__sub__">__sub__</a></td><td><div>Also see <a 
+  href="sympy.polynomials.base.coefficients2sympy.html">coefficients2sympy</a>.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__getattribute__">__getattribute__</a></td><td><div><p>Redirect most attributes to the underlying SymPy expression.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__str__">__str__</a></td><td><div><p>Return only the SymPy expression to be human-readable.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__repr__">__repr__</a></td><td><div><p>Returns a string that could be used to reconstruct this object.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__eq__">__eq__</a></td><td><div><p>Equality is restricted to equality of SymPy expression.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__ne__">__ne__</a></td><td><div><p>Also see <a 
+href="sympy.polynomials.base.Polynomial.__eq__.html">__eq__</a>.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__pos__">__pos__</a></td><td><div><p>Just returns the Polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__neg__">__neg__</a></td><td><div><p>Returns the Polynomial multiplied by -1.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__add__">__add__</a></td><td><div><p>Overwrites the + operator.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__radd__">__radd__</a></td><td><div><p>Also see <a 
+href="sympy.polynomials.base.Polynomial.__add__.html">__add__</a>.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__sub__">__sub__</a></td><td><div><p>Also see <a 
 href="sympy.polynomials.base.Polynomial.__add__.html">__add__</a>,  <a 
-href="sympy.polynomials.base.Polynomial.__neg__.html">__neg__</a>.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__rsub__">__rsub__</a></td><td><div>Also see <a 
+href="sympy.polynomials.base.Polynomial.__neg__.html">__neg__</a>.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__rsub__">__rsub__</a></td><td><div><p>Also see <a 
 href="sympy.polynomials.base.Polynomial.__add__.html">__add__</a>, <a 
-href="sympy.polynomials.base.Polynomial.__neg__.html">__neg__</a>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__mul__">__mul__</a></td><td><div>Overwrites the * operator.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__rmul__">__rmul__</a></td><td><div>Also see <a 
-href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__pow__">__pow__</a></td><td><div>Overwrites the ** operator.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__call__">__call__</a></td><td><div>Evaluate the polynomial function at a specific point.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.as_integer">as_integer</a></td><td><div>Return the polynomial with integer coefficients.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.as_monic">as_monic</a></td><td><div>Return the polynomial with leading coefficient 1.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.as_primitive">as_primitive</a></td><td><div>Return the content and a primitive Polynomial.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.content">content</a></td><td><div>Return the content of a Polynomial.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.diff">diff</a></td><td><div>Derivative of a Polynomial.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.integrate">integrate</a></td><td><div>Primitive function of a Polynomial.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.leading_coeff">leading_coeff</a></td><td><div>Return the leading coefficient of a Polynomial.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.leading_term">leading_term</a></td><td><div>Return the leading term of a Polynomial.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.nth_coeff">nth_coeff</a></td><td><div>Return a specific coefficient of a Polynomial.
+href="sympy.polynomials.base.Polynomial.__neg__.html">__neg__</a></p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__mul__">__mul__</a></td><td><div><p>Overwrites the * operator.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__rmul__">__rmul__</a></td><td><div><p>Also see <a 
+href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__pow__">__pow__</a></td><td><div><p>Overwrites the ** operator.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.__call__">__call__</a></td><td><div><p>Evaluate the polynomial function at a specific point.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.as_integer">as_integer</a></td><td><div><p>Return the polynomial with integer coefficients.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.as_monic">as_monic</a></td><td><div><p>Return the polynomial with leading coefficient 1.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.as_primitive">as_primitive</a></td><td><div><p>Return the content and a primitive Polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.content">content</a></td><td><div><p>Return the content of a Polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.diff">diff</a></td><td><div><p>Derivative of a Polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.integrate">integrate</a></td><td><div><p>Primitive function of a Polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.leading_coeff">leading_coeff</a></td><td><div><p>Return the leading coefficient of a Polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.leading_term">leading_term</a></td><td><div><p>Return the leading term of a Polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.nth_coeff">nth_coeff</a></td><td><div><p>Return a specific coefficient of a Polynomial.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.degree">degree</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.as_basic">as_basic</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__new__">__new__(cls, sympy_expr=None, coeffs=None, var=None, order=None, **assumptions):</a></div>
@@ -100,40 +100,40 @@ href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__getattribute__">__getattribute__(self, name):</a></div>
-            <div class="functionBody"><div>Redirect most attributes to the underlying SymPy expression.
+            <div class="functionBody"><div><p>Redirect most attributes to the underlying SymPy expression.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__str__">__str__(self):</a></div>
-            <div class="functionBody"><div>Return only the SymPy expression to be human-readable.
+            <div class="functionBody"><div><p>Return only the SymPy expression to be human-readable.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__repr__">__repr__(self):</a></div>
-            <div class="functionBody"><div>Returns a string that could be used to reconstruct this object.
+            <div class="functionBody"><div><p>Returns a string that could be used to reconstruct this object.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__eq__">__eq__(self, other):</a></div>
             <div class="functionBody"><div><p>Equality is restricted to equality of SymPy expression.</p>
-This overwrites the == operator. Other attributes such as variables or 
-monomial order are not compared.
+<p>This overwrites the == operator. Other attributes such as variables or 
+monomial order are not compared.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__ne__">__ne__(self, other):</a></div>
-            <div class="functionBody"><div>Also see <a 
-href="sympy.polynomials.base.Polynomial.__eq__.html">__eq__</a>.
+            <div class="functionBody"><div><p>Also see <a 
+href="sympy.polynomials.base.Polynomial.__eq__.html">__eq__</a>.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__pos__">__pos__(self):</a></div>
-            <div class="functionBody"><div>Just returns the Polynomial.
+            <div class="functionBody"><div><p>Just returns the Polynomial.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__neg__">__neg__(self):</a></div>
-            <div class="functionBody"><div>Returns the Polynomial multiplied by -1.
+            <div class="functionBody"><div><p>Returns the Polynomial multiplied by -1.</p>
 </div></div>
             </div>
             <div class="function">
@@ -143,29 +143,29 @@ href="sympy.polynomials.base.Polynomial.__eq__.html">__eq__</a>.
 matching variables, using the coefficients and exponents, but falls back to
 the SymPy expressions otherwise. It even returns a non-Polynomial object 
 when encountering one.</p>
-Also see <a 
+<p>Also see <a 
 href="sympy.polynomials.base.Polynomial.html">Polynomial</a>, <a 
-href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.
+href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__radd__">__radd__(self, other):</a></div>
-            <div class="functionBody"><div>Also see <a 
-href="sympy.polynomials.base.Polynomial.__add__.html">__add__</a>.
+            <div class="functionBody"><div><p>Also see <a 
+href="sympy.polynomials.base.Polynomial.__add__.html">__add__</a>.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__sub__">__sub__(self, other):</a></div>
-            <div class="functionBody"><div>Also see <a 
+            <div class="functionBody"><div><p>Also see <a 
 href="sympy.polynomials.base.Polynomial.__add__.html">__add__</a>,  <a 
-href="sympy.polynomials.base.Polynomial.__neg__.html">__neg__</a>.
+href="sympy.polynomials.base.Polynomial.__neg__.html">__neg__</a>.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__rsub__">__rsub__(self, other):</a></div>
-            <div class="functionBody"><div>Also see <a 
+            <div class="functionBody"><div><p>Also see <a 
 href="sympy.polynomials.base.Polynomial.__add__.html">__add__</a>, <a 
-href="sympy.polynomials.base.Polynomial.__neg__.html">__neg__</a>
+href="sympy.polynomials.base.Polynomial.__neg__.html">__neg__</a></p>
 </div></div>
             </div>
             <div class="function">
@@ -175,28 +175,28 @@ href="sympy.polynomials.base.Polynomial.__neg__.html">__neg__</a>
 matching variables, using the coefficients and exponents, but falls back to
 the SymPy expressions otherwise. It even returns a non-Polynomial object 
 when encountering one.</p>
-Also see <a 
+<p>Also see <a 
 href="sympy.polynomials.base.Polynomial.html">Polynomial</a>, <a 
-href="sympy.polynomials.base.Polynomial.__add__.html">__add__</a>.
+href="sympy.polynomials.base.Polynomial.__add__.html">__add__</a>.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__rmul__">__rmul__(self, other):</a></div>
-            <div class="functionBody"><div>Also see <a 
-href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.
+            <div class="functionBody"><div><p>Also see <a 
+href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__pow__">__pow__(self, other):</a></div>
-            <div class="functionBody"><div>Overwrites the ** operator.
+            <div class="functionBody"><div><p>Overwrites the ** operator.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.__call__">__call__(self, *point):</a></div>
-            <div class="functionBody"><div>Evaluate the polynomial function at a specific point.
+            <div class="functionBody"><div><p>Evaluate the polynomial function at a specific point.</p>
 <h1 class="heading">Usage:</h1>
-  Give an arbitrary argument for each variable and get the SymPy 
-  expression with the variables substituted.
+  <p>Give an arbitrary argument for each variable and get the SymPy 
+  expression with the variables substituted.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
@@ -209,12 +209,12 @@ href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.as_integer">as_integer(self):</a></div>
-            <div class="functionBody"><div>Return the polynomial with integer coefficients.
+            <div class="functionBody"><div><p>Return the polynomial with integer coefficients.</p>
 <h1 class="heading">Usage:</h1>
-  Starting from an instance of Polynomial with only rational 
+  <p>Starting from an instance of Polynomial with only rational 
   coefficients, this function multiplies it with the common denominator. 
   The result is a tuple consisting of the factor applied to the 
-  coefficients and a new instance of Polynomial in the integers.
+  coefficients and a new instance of Polynomial in the integers.</p>
 <h1 class="heading">Example:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
@@ -229,17 +229,17 @@ href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.
 <span class="py-output">1</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> f
 <span class="py-output">2*x + 3*y + 4*x*y</span></pre>
-  Also see <a 
+  <p>Also see <a 
   href="sympy.polynomials.base.Polynomial.as_monic.html">as_monic</a>, <a 
-  href="sympy.polynomials.base.Polynomial.as_primitive.html">as_primitive</a>.
+  href="sympy.polynomials.base.Polynomial.as_primitive.html">as_primitive</a>.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.as_monic">as_monic(self):</a></div>
-            <div class="functionBody"><div>Return the polynomial with leading coefficient 1.
+            <div class="functionBody"><div><p>Return the polynomial with leading coefficient 1.</p>
 <h1 class="heading">Usage:</h1>
-  Starting with any instance of Polynomial, this returns the former 
-  leading coefficient and a new Polynomial which is monic.
+  <p>Starting with any instance of Polynomial, this returns the former 
+  leading coefficient and a new Polynomial which is monic.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
@@ -261,22 +261,22 @@ href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.
 <span class="py-output">y</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> f
 <span class="py-output">x</span></pre>
-  Also see <a 
+  <p>Also see <a 
   href="sympy.polynomials.base.Polynomial.as_integer.html">as_integer</a>, 
   <a 
   href="sympy.polynomials.base.Polynomial.as_primitive.html">as_primitive</a>,
   <a 
-  href="sympy.polynomials.base.Polynomial.leading_coeff.html">leading_coeff</a>.
+  href="sympy.polynomials.base.Polynomial.leading_coeff.html">leading_coeff</a>.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.as_primitive">as_primitive(self):</a></div>
-            <div class="functionBody"><div>Return the content and a primitive Polynomial.
+            <div class="functionBody"><div><p>Return the content and a primitive Polynomial.</p>
 <h1 class="heading">Usage:</h1>
-  Starting with any instance of Polynomial, this returns the content, 
+  <p>Starting with any instance of Polynomial, this returns the content, 
   that is, the greatest common divisor of the (integer-or-symbolic) 
   coefficients, and a new Polynomial which is primitive, that is, of 
-  content 1. Only works for integer coefficients.
+  content 1. Only works for integer coefficients.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
@@ -291,18 +291,18 @@ href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.
 <span class="py-output">1</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> f
 <span class="py-output">3*x + 10*y + 2*x*y</span></pre>
-  Also see <a 
+  <p>Also see <a 
   href="sympy.polynomials.base.Polynomial.as_integer.html">as_integer</a>, 
   <a href="sympy.polynomials.base.Polynomial.as_monic.html">as_monic</a>, 
-  <a href="sympy.polynomials.base.Polynomial.content.html">content</a>.
+  <a href="sympy.polynomials.base.Polynomial.content.html">content</a>.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.content">content(self):</a></div>
-            <div class="functionBody"><div>Return the content of a Polynomial.
+            <div class="functionBody"><div><p>Return the content of a Polynomial.</p>
 <h1 class="heading">Usage:</h1>
-  Returns the content, that is, the positive greatest common divisor of 
-  the (integer-or-symbolic) coefficients.
+  <p>Returns the content, that is, the positive greatest common divisor of 
+  the (integer-or-symbolic) coefficients.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
@@ -312,18 +312,18 @@ href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>f = Polynomial(y**2*x**2 + y, var=x)
 <span class="py-prompt">&gt;&gt;&gt; </span>f.content()
 <span class="py-output">y</span></pre>
-  Also see <a 
+  <p>Also see <a 
   href="sympy.polynomials.base.Polynomial.as_primitive.html">as_primitive</a>,
   <a 
-  href="sympy.polynomials.base.Polynomial.leading_coeff.html">leading_coeff</a>.
+  href="sympy.polynomials.base.Polynomial.leading_coeff.html">leading_coeff</a>.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.diff">diff(self, variable):</a></div>
-            <div class="functionBody"><div>Derivative of a Polynomial.
+            <div class="functionBody"><div><p>Derivative of a Polynomial.</p>
 <h1 class="heading">Usage:</h1>
-  Returns a new instance of Polynomial which is the partial derivative 
-  by the given variable.
+  <p>Returns a new instance of Polynomial which is the partial derivative 
+  by the given variable.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y, z = symbols(<span class="py-string">'xyz'</span>)
@@ -338,11 +338,11 @@ href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.integrate">integrate(self, variable):</a></div>
-            <div class="functionBody"><div>Primitive function of a Polynomial.
+            <div class="functionBody"><div><p>Primitive function of a Polynomial.</p>
 <h1 class="heading">Usage:</h1>
-  Returns a new instance of Polynomial which is the primitive function 
+  <p>Returns a new instance of Polynomial which is the primitive function 
   (antiderivative) of &quot;self&quot; with respect to the given 
-  variable.
+  variable.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y, z = symbols(<span class="py-string">'xyz'</span>)
@@ -357,46 +357,46 @@ href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.leading_coeff">leading_coeff(self):</a></div>
-            <div class="functionBody"><div>Return the leading coefficient of a Polynomial.
+            <div class="functionBody"><div><p>Return the leading coefficient of a Polynomial.</p>
 <h1 class="heading">Usage:</h1>
-  This gives the coefficient, that is, non-symbolic part, of the leading
+  <p>This gives the coefficient, that is, non-symbolic part, of the leading
   term, according to the monomial order, or simply highest degree, in the 
-  univariate case.
+  univariate case.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>f = Polynomial(6*x + 20*y + 4*x*y)
 <span class="py-prompt">&gt;&gt;&gt; </span>f.leading_coeff()
 <span class="py-output">4</span></pre>
-  Also see <a 
+  <p>Also see <a 
   href="sympy.polynomials.base.Polynomial.as_monic.html">as_monic</a>, <a 
   href="sympy.polynomials.base.Polynomial.leading_term.html">leading_term</a>,
   <a 
-  href="sympy.polynomials.base.Polynomial.nth_coeff.html">nth_coeff</a>.
+  href="sympy.polynomials.base.Polynomial.nth_coeff.html">nth_coeff</a>.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.leading_term">leading_term(self):</a></div>
-            <div class="functionBody"><div>Return the leading term of a Polynomial.
+            <div class="functionBody"><div><p>Return the leading term of a Polynomial.</p>
 <h1 class="heading">Usage:</h1>
-  The leading term, according to the monomial order, or simply highest 
-  degree, in the univariate case.
+  <p>The leading term, according to the monomial order, or simply highest 
+  degree, in the univariate case.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>f = Polynomial(6*x + 20*y + 4*x*y)
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> f.leading_term()
 <span class="py-output">4*x*y</span></pre>
-  Also see <a 
-  href="sympy.polynomials.base.Polynomial.leading_coeff.html">leading_coeff</a>.
+  <p>Also see <a 
+  href="sympy.polynomials.base.Polynomial.leading_coeff.html">leading_coeff</a>.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.nth_coeff">nth_coeff(self, *exponent):</a></div>
-            <div class="functionBody"><div>Return a specific coefficient of a Polynomial.
+            <div class="functionBody"><div><p>Return a specific coefficient of a Polynomial.</p>
 <h1 class="heading">Usage:</h1>
-  This gives the coefficient, that is, non-symbolic part, of the term 
-  with matching exponents, or 0, if it doesn't appear.
+  <p>This gives the coefficient, that is, non-symbolic part, of the term 
+  with matching exponents, or 0, if it doesn't appear.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
@@ -407,8 +407,8 @@ href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.
 <span class="py-output">4</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>f.nth_coeff(0, 0)
 <span class="py-output">0</span></pre>
-  Also see <a 
-  href="sympy.polynomials.base.Polynomial.leading_coeff.html">leading_coeff</a>.
+  <p>Also see <a 
+  href="sympy.polynomials.base.Polynomial.leading_coeff.html">leading_coeff</a>.</p>
 </div></div>
             </div>
             <div class="function">

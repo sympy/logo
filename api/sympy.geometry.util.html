@@ -3,18 +3,18 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.geometry.util&rdquo;</title>
         </head>
-        <body><h1 class="module">Module s.g.util</h1><span id="part">Part of <a href="sympy.geometry.html">sympy.geometry</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.geometry.util.intersection">intersection</a></td><td><div>Finds the intersection between a list GeometryEntity instances. Returns 
-a
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.util.convex_hull">convex_hull</a></td><td><div>Returns a Polygon representing the convex hull of a set of 2D 
-points.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.util.are_similar">are_similar</a></td><td><div>Returns True if e1 and e2 are similar (one can be uniformly scaled 
-to
+        <body><h1 class="module">Module s.g.util</h1><span id="part">Part of <a href="sympy.geometry.html">sympy.geometry</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.geometry.util.intersection">intersection</a></td><td><div><p>Finds the intersection between a list GeometryEntity instances. Returns 
+a</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.util.convex_hull">convex_hull</a></td><td><div><p>Returns a Polygon representing the convex hull of a set of 2D 
+points.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.util.are_similar">are_similar</a></td><td><div><p>Returns True if e1 and e2 are similar (one can be uniformly scaled 
+to</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.util.intersection">intersection(*entities):</a></div>
-            <div class="functionBody"><div>Finds the intersection between a list GeometryEntity instances. Returns 
+            <div class="functionBody"><div><p>Finds the intersection between a list GeometryEntity instances. Returns 
 a list of all the intersections, Will raise a NotImplementedError exception
-if unable to calculate the intersection.
+if unable to calculate the intersection.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy.geometry <span class="py-keyword">import</span> *
@@ -34,8 +34,8 @@ if unable to calculate the intersection.
 <h1 class="heading">Notes:</h1>
   <ul>
     <li>
-      The intersection of any geometrical entity with itself should 
-      return a list with one item: the entity in question.
+      The intersection of any geometrical entity with itself should return 
+      a list with one item: the entity in question.
     </li>
     <li>
       An intersection requires two or more entities. If only a single 
@@ -51,10 +51,10 @@ if unable to calculate the intersection.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.util.convex_hull">convex_hull(*args):</a></div>
-            <div class="functionBody"><div>Returns a Polygon representing the convex hull of a set of 2D 
-points.
+            <div class="functionBody"><div><p>Returns a Polygon representing the convex hull of a set of 2D 
+points.</p>
 <h1 class="heading">Notes:</h1>
-  This can only be performed on a set of non-symbolic points.
+  <p>This can only be performed on a set of non-symbolic points.</p>
 <h1 class="heading">Example:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy.geometry <span class="py-keyword">import</span> Point
@@ -62,13 +62,13 @@ points.
 <span class="py-prompt">&gt;&gt;&gt; </span>convex_hull(points)
 <span class="py-output">Polygon(Point(3, 1), Point(15, 4), Point(-5, 2), Point(1, 1))</span></pre>
 <h1 class="heading">Description of method used:</h1>
-  See http://en.wikipedia.org/wiki/Graham_scan.
+  <p>See http://en.wikipedia.org/wiki/Graham_scan.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.util.are_similar">are_similar(e1, e2):</a></div>
-            <div class="functionBody"><div>Returns True if e1 and e2 are similar (one can be uniformly scaled to 
-the other) or False otherwise.
+            <div class="functionBody"><div><p>Returns True if e1 and e2 are similar (one can be uniformly scaled to 
+the other) or False otherwise.</p>
 <h1 class="heading">Notes:</h1>
   <ul>
     <li>

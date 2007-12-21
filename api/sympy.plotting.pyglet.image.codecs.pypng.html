@@ -9,46 +9,46 @@ http://www.w3.org/TR/2003/REC-PNG-20031110 in pure Python. It reads and
 writes PNG files with 8/16/24/32/48/64 bits per pixel (greyscale, RGB, 
 RGBA, with 8 or 16 bits per layer), with a number of options. For help, 
 type &quot;import png; help(png)&quot; in your python interpreter.</p>
-This file can also be used as a command-line utility to convert PNM 
+<p>This file can also be used as a command-line utility to convert PNM 
 files to PNG. The interface is similar to that of the pnmtopng program from
 the netpbm package. Type &quot;python png.py --help&quot; at the shell 
-prompt for usage and a list of options.
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.interleave_planes">interleave_planes</a></td><td><div>Interleave color planes, e.g. RGB + A = RGBA.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.pypng.Error.html">Error</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.pypng.Writer.html">Writer</a></td><td><div>PNG encoder in pure Python.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.pypng._readable.html">_readable</a></td><td><div>A simple file-like interface for strings and arrays.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.pypng.Reader.html">Reader</a></td><td><div>PNG decoder in pure Python.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.test_suite">test_suite</a></td><td><div>Run regression test and write PNG file to stdout.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.read_pnm_header">read_pnm_header</a></td><td><div>Read a PNM header, return width and height of the image in pixels.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.color_triple">color_triple</a></td><td><div>Convert a command line color value to a RGB triple of integers.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng._main">_main</a></td><td><div>Run the PNG encoder with options from the command line.
+prompt for usage and a list of options.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.interleave_planes">interleave_planes</a></td><td><div><p>Interleave color planes, e.g. RGB + A = RGBA.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.pypng.Error.html">Error</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.pypng.Writer.html">Writer</a></td><td><div><p>PNG encoder in pure Python.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.pypng._readable.html">_readable</a></td><td><div><p>A simple file-like interface for strings and arrays.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.pypng.Reader.html">Reader</a></td><td><div><p>PNG decoder in pure Python.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.test_suite">test_suite</a></td><td><div><p>Run regression test and write PNG file to stdout.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.read_pnm_header">read_pnm_header</a></td><td><div><p>Read a PNM header, return width and height of the image in pixels.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.color_triple">color_triple</a></td><td><div><p>Convert a command line color value to a RGB triple of integers.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng._main">_main</a></td><td><div><p>Run the PNG encoder with options from the command line.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.interleave_planes">interleave_planes(ipixels, apixels, ipsize, apsize):</a></div>
             <div class="functionBody"><div><p>Interleave color planes, e.g. RGB + A = RGBA.</p>
-Return an array of pixels consisting of the ipsize bytes of data from 
+<p>Return an array of pixels consisting of the ipsize bytes of data from 
 each pixel in ipixels followed by the apsize bytes of data from each pixel 
-in apixels, for an image of size width x height.
+in apixels, for an image of size width x height.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.test_suite">test_suite(options):</a></div>
-            <div class="functionBody"><div>Run regression test and write PNG file to stdout.
+            <div class="functionBody"><div><p>Run regression test and write PNG file to stdout.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.read_pnm_header">read_pnm_header(infile, supported='P6'):</a></div>
-            <div class="functionBody"><div>Read a PNM header, return width and height of the image in pixels.
+            <div class="functionBody"><div><p>Read a PNM header, return width and height of the image in pixels.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.color_triple">color_triple(color):</a></div>
-            <div class="functionBody"><div>Convert a command line color value to a RGB triple of integers. FIXME: 
-Somewhere we need support for greyscale backgrounds etc.
+            <div class="functionBody"><div><p>Convert a command line color value to a RGB triple of integers. FIXME: 
+Somewhere we need support for greyscale backgrounds etc.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng._main">_main():</a></div>
-            <div class="functionBody"><div>Run the PNG encoder with options from the command line.
+            <div class="functionBody"><div><p>Run the PNG encoder with options from the command line.</p>
 </div></div>
             </div></body>
         

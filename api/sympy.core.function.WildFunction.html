@@ -3,12 +3,18 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.core.function.WildFunction&rdquo;</title>
         </head>
-        <body><h1 class="class">Class s.c.f.WildFunction(<a href="sympy.core.function.Function.html">Function</a>, <a href="sympy.core.basic.Atom.html">Atom</a>):</h1><span id="part">Part of <a href="sympy.core.function.html">sympy.core.function</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.matches">matches</a></td><td><div>Helper method for match() - switches the pattern and expr.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction._eval_apply_evalf">_eval_apply_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+        <body><h1 class="class">Class s.c.f.WildFunction(<a href="sympy.core.function.Function.html">Function</a>, <a href="sympy.core.basic.Atom.html">Atom</a>):</h1><span id="part">Part of <a href="sympy.core.function.html">sympy.core.function</a></span><div class="toplevel"><div><p>WildFunction() matches any expression but another WildFunction() XXX is 
+this as intended, does it work ?</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.matches">matches</a></td><td><div><p>Helper method for match() - switches the pattern and expr.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.torepr">torepr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction._eval_apply_evalf">_eval_apply_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.WildFunction.__new__">__new__(cls, name=None, **assumptions):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.function.WildFunction.matches">matches(pattern, expr, repl_dict={}, evaluate=False):</a></div>
             <div class="functionBody"><div><p>Helper method for match() - switches the pattern and expr.</p>
-Can be used to solve linear equations:
+<p>Can be used to solve linear equations:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol, Wild
 <span class="py-prompt">&gt;&gt;&gt; </span>a,b = map(Symbol, <span class="py-string">'ab'</span>)
@@ -16,6 +22,10 @@ Can be used to solve linear equations:
 <span class="py-prompt">&gt;&gt;&gt; </span>(a+b*x).matches(0)
 <span class="py-output">{x_: -a/b}</span></pre>
 </div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.WildFunction.torepr">torepr(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.function.WildFunction.tostr">tostr(self, level=0):</a></div>

@@ -4,14 +4,14 @@
         <title>API docs for &ldquo;sympy.plotting.pyglet.event.EventDispatcher&rdquo;</title>
         </head>
         <body><h1 class="class">Class s.p.p.e.EventDispatcher(object):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.event.html">sympy.plotting.pyglet.event</a></span><p>known subclasses: <a href="sympy.plotting.pyglet.media.__init__.Player.html">sympy.plotting.pyglet.media.__init__.Player</a>, <a href="sympy.plotting.pyglet.window.__init__.BaseWindow.html">sympy.plotting.pyglet.window.__init__.BaseWindow</a></p><div class="toplevel"><div><p>Generic event dispatcher interface.</p>
-See the module docstring for usage.
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.register_event_type">register_event_type</a></td><td><div>Register an event type with the dispatcher.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.push_handlers">push_handlers</a></td><td><div>Push a level onto the top of the handler stack, then attach zero or
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.set_handlers">set_handlers</a></td><td><div>Attach one or more event handlers to the top level of the handler
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.set_handler">set_handler</a></td><td><div>Attach a single event handler.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.pop_handlers">pop_handlers</a></td><td><div>Pop the top level of event handlers off the stack.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.dispatch_event">dispatch_event</a></td><td><div>Dispatch a single event to the attached handlers.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.event">event</a></td><td><div>Function decorator for an event handler.
+<p>See the module docstring for usage.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.register_event_type">register_event_type</a></td><td><div><p>Register an event type with the dispatcher.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.push_handlers">push_handlers</a></td><td><div><p>Push a level onto the top of the handler stack, then attach zero or</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.set_handlers">set_handlers</a></td><td><div><p>Attach one or more event handlers to the top level of the handler</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.set_handler">set_handler</a></td><td><div><p>Attach a single event handler.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.pop_handlers">pop_handlers</a></td><td><div><p>Pop the top level of event handlers off the stack.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.dispatch_event">dispatch_event</a></td><td><div><p>Dispatch a single event to the attached handlers.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.event.EventDispatcher.event">event</a></td><td><div><p>Function decorator for an event handler.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.event.EventDispatcher.register_event_type">register_event_type(cls, name):</a></div>
@@ -29,17 +29,17 @@ suitable handlers.
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.event.EventDispatcher.push_handlers">push_handlers(self, *args, **kwargs):</a></div>
             <div class="functionBody"><div><p>Push a level onto the top of the handler stack, then attach zero or more
 event handlers.</p>
-If keyword arguments are given, they name the event type to attach. 
+<p>If keyword arguments are given, they name the event type to attach. 
 Otherwise, a callable's `__name__` attribute will be used.  Any other 
 object may also be specified, in which case it will be searched for 
-callables with event names.
+callables with event names.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.event.EventDispatcher.set_handlers">set_handlers(self, *args, **kwargs):</a></div>
             <div class="functionBody"><div><p>Attach one or more event handlers to the top level of the handler 
 stack.</p>
-See `push_handlers` for the accepted argument types.
+<p>See `push_handlers` for the accepted argument types.</p>
 </div></div>
             </div>
             <div class="function">
@@ -54,7 +54,7 @@ See `push_handlers` for the accepted argument types.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.event.EventDispatcher.pop_handlers">pop_handlers(self):</a></div>
-            <div class="functionBody"><div>Pop the top level of event handlers off the stack.
+            <div class="functionBody"><div><p>Pop the top level of event handlers off the stack.</p>
 </div></div>
             </div>
             <div class="function">
@@ -75,7 +75,7 @@ the ``dispatch_events`` method.
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.event.EventDispatcher.event">event(self, *args):</a></div>
             <div class="functionBody"><div><p>Function decorator for an event handler.</p>
-Usage:
+<p>Usage:</p>
 <pre class="literalblock">
    win = window.Window()
 
@@ -83,7 +83,7 @@ Usage:
    def on_resize(self, width, height):
        # ...
 </pre>
-or:
+<p>or:</p>
 <pre class="literalblock">
    @win.event('on_resize')
    def foo(self, width, height):

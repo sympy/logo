@@ -3,16 +3,16 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.utilities.iterables&rdquo;</title>
         </head>
-        <body><h1 class="module">Module s.u.iterables</h1><span id="part">Part of <a href="sympy.utilities.html">sympy.utilities</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.utilities.iterables.all">all</a></td><td><div>Return True if all elements are set to True. This
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.utilities.iterables.any">any</a></td><td><div>Return True if at least one element is set to True.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.utilities.iterables.make_list">make_list</a></td><td><div>Returns a list of elements taken from specified expresion
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.utilities.iterables.flatten">flatten</a></td><td><div>Recursively denest iterable containers.
+        <body><h1 class="module">Module s.u.iterables</h1><span id="part">Part of <a href="sympy.utilities.html">sympy.utilities</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.utilities.iterables.all">all</a></td><td><div><p>Return True if all elements are set to True. This</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.utilities.iterables.any">any</a></td><td><div><p>Return True if at least one element is set to True.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.utilities.iterables.make_list">make_list</a></td><td><div><p>Returns a list of elements taken from specified expresion</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.utilities.iterables.flatten">flatten</a></td><td><div><p>Recursively denest iterable containers.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.utilities.iterables.all">all(iterable):</a></div>
-            <div class="functionBody"><div>Return True if all elements are set to True. This function does not 
+            <div class="functionBody"><div><p>Return True if all elements are set to True. This function does not 
 support predicates explicitely, but this behaviour can be simulated easily 
-using list comprehension.
+using list comprehension.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>all( [True, True, True] )
 <span class="py-output">True</span>
@@ -22,14 +22,14 @@ using list comprehension.
 <span class="py-output">True</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>all( [ x % 2 == 0 <span class="py-keyword">for</span> x <span class="py-keyword">in</span> [2, 6, 7] ] )
 <span class="py-output">False</span></pre>
-NOTE: Starting from Python 2.5 this a built-in.
+<p>NOTE: Starting from Python 2.5 this a built-in.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.utilities.iterables.any">any(iterable):</a></div>
-            <div class="functionBody"><div>Return True if at least one element is set to True. This function does 
+            <div class="functionBody"><div><p>Return True if at least one element is set to True. This function does 
 not support predicates explicitely, but this behaviour can be simulated 
-easily using list comprehension.
+easily using list comprehension.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>any( [False, False, False] )
 <span class="py-output">False</span>
@@ -39,14 +39,14 @@ easily using list comprehension.
 <span class="py-output">False</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>any( [ x % 2 == 1 <span class="py-keyword">for</span> x <span class="py-keyword">in</span> [2, 6, 7] ] )
 <span class="py-output">True</span></pre>
-NOTE: Starting from Python 2.5 this a built-in.
+<p>NOTE: Starting from Python 2.5 this a built-in.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.utilities.iterables.make_list">make_list(expr, kind):</a></div>
-            <div class="functionBody"><div>Returns a list of elements taken from specified expresion when it is of 
+            <div class="functionBody"><div><p>Returns a list of elements taken from specified expresion when it is of 
 sequence type (Add or Mul) or singleton list otherwise (Rational, Pow 
-etc.).
+etc.).</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = map(Symbol, <span class="py-string">'xy'</span>)</pre>
@@ -61,7 +61,7 @@ etc.).
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.utilities.iterables.flatten">flatten(iterable):</a></div>
-            <div class="functionBody"><div>Recursively denest iterable containers.
+            <div class="functionBody"><div><p>Recursively denest iterable containers.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>flatten([1, 2, 3])
 <span class="py-output">[1, 2, 3]</span>

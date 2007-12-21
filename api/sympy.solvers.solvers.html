@@ -3,7 +3,7 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.solvers.solvers&rdquo;</title>
         </head>
-        <body><h1 class="module">Module s.s.solvers</h1><span id="part">Part of <a href="sympy.solvers.html">sympy.solvers</a></span><div class="toplevel"><div>This module contain solvers for all kinds of equations:
+        <body><h1 class="module">Module s.s.solvers</h1><span id="part">Part of <a href="sympy.solvers.html">sympy.solvers</a></span><div class="toplevel"><div><p>This module contain solvers for all kinds of equations:</p>
 <ul>
   <li>
     algebraic, use solve()
@@ -15,14 +15,14 @@
     differential, use dsolve() (not implemented)
   </li>
 </ul>
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve">solve</a></td><td><div>Solves univariate polynomial equations and linear systems with
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_linear_system">solve_linear_system</a></td><td><div>Solve system of N linear equations with M variables, which means
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_undetermined_coeffs">solve_undetermined_coeffs</a></td><td><div>Solve equation of a type p(x; a_1, ..., a_k) == q(x) where both
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_linear_system_LU">solve_linear_system_LU</a></td><td><div>LU function works for invertible only
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.dsolve">dsolve</a></td><td><div>Solves any (supported) kind of differential equation.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_ODE_first_order">solve_ODE_first_order</a></td><td><div>a*f'(x)+b = 0
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_ODE_second_order">solve_ODE_second_order</a></td><td><div>a*f''(x) + b*f'(x) + c = 0
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_ODE_1">solve_ODE_1</a></td><td><div>(x*exp(-f(x)))'' = 0
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve">solve</a></td><td><div><p>Solves univariate polynomial equations and linear systems with</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_linear_system">solve_linear_system</a></td><td><div><p>Solve system of N linear equations with M variables, which means</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_undetermined_coeffs">solve_undetermined_coeffs</a></td><td><div><p>Solve equation of a type p(x; a_1, ..., a_k) == q(x) where both</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_linear_system_LU">solve_linear_system_LU</a></td><td><div><p>LU function works for invertible only</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.dsolve">dsolve</a></td><td><div><p>Solves any (supported) kind of differential equation.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_ODE_first_order">solve_ODE_first_order</a></td><td><div><p>a*f'(x)+b = 0</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_ODE_second_order">solve_ODE_second_order</a></td><td><div><p>a*f''(x) + b*f'(x) + c*f(x) = 0</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_ODE_1">solve_ODE_1</a></td><td><div><p>(x*exp(-f(x)))'' = 0</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.solvers.solvers.solve">solve(eq, syms, simplified=True):</a></div>
@@ -39,9 +39,9 @@ case. If there were variables with can be assigned with arbitrary value,
 then they will be avoided in the output.</p>
 <p>Optionaly it is possible to have the solutions preprocessed using 
 simplification routines if 'simplified' flag is set.</p>
-To solve recurrence relations or differential equations use 'rsolve' or 
+<p>To solve recurrence relations or differential equations use 'rsolve' or 
 'dsolve' functions respectively, which are also wrappers combining set of 
-problem specific methods.
+problem specific methods.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y, a = symbols(<span class="py-string">'xya'</span>)</pre>
@@ -100,9 +100,9 @@ Solve the following system:
 univariate polynomials and f depends on k parameters. The result of this 
 functions is a dictionary with symbolic values of those parameters with 
 respect to coefficiens in q.</p>
-This functions accepts both Equations class instances and ordinary SymPy
+<p>This functions accepts both Equations class instances and ordinary SymPy
 expressions. Specification of parameters and variable is obligatory for 
-efficiency and simplicity reason.
+efficiency and simplicity reason.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
 <span class="py-prompt">&gt;&gt;&gt; </span>a, b, c, x = symbols(<span class="py-string">'a'</span>, <span class="py-string">'b'</span>, <span class="py-string">'c'</span>, <span class="py-string">'x'</span>)</pre>
@@ -116,7 +116,7 @@ efficiency and simplicity reason.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.solvers.solvers.solve_linear_system_LU">solve_linear_system_LU(matrix, syms):</a></div>
-            <div class="functionBody"><div>LU function works for invertible only
+            <div class="functionBody"><div><p>LU function works for invertible only</p>
 </div></div>
             </div>
             <div class="function">
@@ -130,7 +130,8 @@ Usage
 
 Details
 =======
-    @param f: ordinary differential equation
+    @param f: ordinary differential equation (either just the left hand
+        side, or the Equality class)
 
     @param y: indeterminate function of one variable
 
@@ -138,36 +139,41 @@ Details
     >>> from sympy import *
     >>> x = Symbol('x') # x is the independent variable
     
-    #>>> f = Function(x) # f is a function of f
-    #>>> f_ = Derivative(f, x) # f_ will be the derivative of f with respect to x
+    >>> f = Function("f")(x) # f is a function of x
+    >>> f_ = Derivative(f, x) # f_ will be the derivative of f with respect to x
 
     - This function just parses the equation "eq" and determines the type of
     differential equation, then it determines all the coefficients and then
     calls the particular solver, which just accepts the coefficients.
+    - "eq" can be either an Equality, or just the left hand side (in which
+      case the right hand side is assumed to be 0)
+    - see test_ode.py for many tests, that serve also as a set of examples
+      how to use dsolve
 
 Examples
 ========
     >>> from sympy import *
     >>> x = Symbol('x')
 
-    #>>> f = Function('f')
-    #>>> fx = f(x)
-    #>>> dsolve(Derivative(Derivative(fx,x),x)+9*fx, fx)
-    #C1*sin(3*x) + C2*cos(3*x)</pre></div>
+    >>> f = Function('f')
+    >>> dsolve(Derivative(f(x),x,x)+9*f(x), f(x))
+    C1*sin(3*x) + C2*cos(3*x)
+    >>> dsolve(Derivative(f(x),x,x)+9*f(x)+1==1, f(x))
+    C1*sin(3*x) + C2*cos(3*x)</pre></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.solvers.solvers.solve_ODE_first_order">solve_ODE_first_order(a, b, f, x):</a></div>
-            <div class="functionBody"><div>a*f'(x)+b = 0
+            <div class="functionBody"><div><p>a*f'(x)+b = 0</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.solvers.solvers.solve_ODE_second_order">solve_ODE_second_order(a, b, c, f, x):</a></div>
-            <div class="functionBody"><div>a*f''(x) + b*f'(x) + c = 0
+            <div class="functionBody"><div><p>a*f''(x) + b*f'(x) + c*f(x) = 0</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.solvers.solvers.solve_ODE_1">solve_ODE_1(f, x):</a></div>
-            <div class="functionBody"><div>(x*exp(-f(x)))'' = 0
+            <div class="functionBody"><div><p>(x*exp(-f(x)))'' = 0</p>
 </div></div>
             </div></body>
         

@@ -3,18 +3,18 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.plotting.pyglet.clock.Clock&rdquo;</title>
         </head>
-        <body><h1 class="class">Class s.p.p.c.Clock(<a href="sympy.plotting.pyglet.clock._ClockBase.html">_ClockBase</a>):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.clock.html">sympy.plotting.pyglet.clock</a></span><div class="toplevel"><div>Class for calculating and limiting framerate, and for calling scheduled 
-functions.
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.__init__">__init__</a></td><td><div>Initialise a Clock, with optional framerate limit and custom
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.tick">tick</a></td><td><div>Signify that one frame has passed.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock._limit">_limit</a></td><td><div>Sleep until the next frame is due.  Called automatically by
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.set_fps_limit">set_fps_limit</a></td><td><div>Set the framerate limit.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.get_fps_limit">get_fps_limit</a></td><td><div>Get the framerate limit.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.get_fps">get_fps</a></td><td><div>Get the average FPS of recent history.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.schedule">schedule</a></td><td><div>Schedule a function to be called every frame.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock._schedule_item">_schedule_item</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.schedule_interval">schedule_interval</a></td><td><div>Schedule a function to be called every `interval` seconds.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.schedule_once">schedule_once</a></td><td><div>Schedule a function to be called once after `delay` seconds.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.unschedule">unschedule</a></td><td><div>Remove a function from the schedule.
+        <body><h1 class="class">Class s.p.p.c.Clock(<a href="sympy.plotting.pyglet.clock._ClockBase.html">_ClockBase</a>):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.clock.html">sympy.plotting.pyglet.clock</a></span><div class="toplevel"><div><p>Class for calculating and limiting framerate, and for calling scheduled 
+functions.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.__init__">__init__</a></td><td><div><p>Initialise a Clock, with optional framerate limit and custom</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.tick">tick</a></td><td><div><p>Signify that one frame has passed.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock._limit">_limit</a></td><td><div><p>Sleep until the next frame is due.  Called automatically by</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.set_fps_limit">set_fps_limit</a></td><td><div><p>Set the framerate limit.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.get_fps_limit">get_fps_limit</a></td><td><div><p>Get the framerate limit.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.get_fps">get_fps</a></td><td><div><p>Get the average FPS of recent history.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.schedule">schedule</a></td><td><div><p>Schedule a function to be called every frame.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock._schedule_item">_schedule_item</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.schedule_interval">schedule_interval</a></td><td><div><p>Schedule a function to be called every `interval` seconds.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.schedule_once">schedule_once</a></td><td><div><p>Schedule a function to be called once after `delay` seconds.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.clock.Clock.unschedule">unschedule</a></td><td><div><p>Remove a function from the schedule.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.clock.Clock.__init__">__init__(self, fps_limit=None, time_function=time.time):</a></div>
@@ -44,8 +44,8 @@ This will call any scheduled functions that have elapsed.
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.clock.Clock._limit">_limit(self):</a></div>
             <div class="functionBody"><div><p>Sleep until the next frame is due.  Called automatically by `tick` if a 
 framerate limit has been set.</p>
-This method uses several heuristics to determine whether to sleep or 
-busy-wait (or both).
+<p>This method uses several heuristics to determine whether to sleep or 
+busy-wait (or both).</p>
 </div></div>
             </div>
             <div class="function">
@@ -71,7 +71,7 @@ busy-wait (or both).
 <p>The result is the average of a sliding window of the last &quot;n&quot; 
 frames, where &quot;n&quot; is some number designed to cover approximately 
 1 second.</p>
-:rtype: float :return: The measured frames per second.
+<p>:rtype: float :return: The measured frames per second.</p>
 </div></div>
             </div>
             <div class="function">

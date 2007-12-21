@@ -3,75 +3,75 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.polynomials.roots_&rdquo;</title>
         </head>
-        <body><h1 class="module">Module s.p.roots_</h1><span id="part">Part of <a href="sympy.polynomials.html">sympy.polynomials</a></span><div class="toplevel"><div>Algorithms to determine the roots of polynomials
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.cubic">cubic</a></td><td><div>Computes the roots of a cubic polynomial.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.n_poly">n_poly</a></td><td><div>Tries to substitute a power of a variable, to simplify.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.quadratic">quadratic</a></td><td><div>Computes the roots of a quadratic polynomial.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.rat_roots">rat_roots</a></td><td><div>Computes the rational roots of a polynomial.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.count_real_roots">count_real_roots</a></td><td><div>Returns the number of unique real roots of f in the interval (a, b].
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.sturm">sturm</a></td><td><div>Compute the Sturm sequence of given polynomial.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.roots">roots</a></td><td><div>Compute the roots of a univariate polynomial.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.solve_system">solve_system</a></td><td><div>Solves a system of polynomial equations.
+        <body><h1 class="module">Module s.p.roots_</h1><span id="part">Part of <a href="sympy.polynomials.html">sympy.polynomials</a></span><div class="toplevel"><div><p>Algorithms to determine the roots of polynomials</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.cubic">cubic</a></td><td><div><p>Computes the roots of a cubic polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.n_poly">n_poly</a></td><td><div><p>Tries to substitute a power of a variable, to simplify.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.quadratic">quadratic</a></td><td><div><p>Computes the roots of a quadratic polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.rat_roots">rat_roots</a></td><td><div><p>Computes the rational roots of a polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.count_real_roots">count_real_roots</a></td><td><div><p>Returns the number of unique real roots of f in the interval (a, b].</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.sturm">sturm</a></td><td><div><p>Compute the Sturm sequence of given polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.roots">roots</a></td><td><div><p>Compute the roots of a univariate polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.roots_.solve_system">solve_system</a></td><td><div><p>Solves a system of polynomial equations.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.roots_.cubic">cubic(f):</a></div>
-            <div class="functionBody"><div>Computes the roots of a cubic polynomial.
+            <div class="functionBody"><div><p>Computes the roots of a cubic polynomial.</p>
 <h1 class="heading">Usage:</h1>
-  This function is called by the wrapper <a 
+  <p>This function is called by the wrapper <a 
   href="sympy.polynomials.roots_.roots.html">roots</a>, don't use it 
   directly. The input is assumed to be a univariate instance of Polynomial 
-  of degree 3.
+  of degree 3.</p>
 <h1 class="heading">References:</h1>
-  http://en.wikipedia.org/wiki/Cubic_equation#Cardano.27s_method
+  <p>http://en.wikipedia.org/wiki/Cubic_equation#Cardano.27s_method</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.roots_.n_poly">n_poly(f):</a></div>
-            <div class="functionBody"><div>Tries to substitute a power of a variable, to simplify.
+            <div class="functionBody"><div><p>Tries to substitute a power of a variable, to simplify.</p>
 <h1 class="heading">Usage:</h1>
-  This function is called by the wrapper <a 
+  <p>This function is called by the wrapper <a 
   href="sympy.polynomials.roots_.roots.html">roots</a>, don't use it 
   directly. It returns 'None' if no such simplifcation is possible. The 
-  input f is assumed to be a univariate instance of Polynomial.
+  input f is assumed to be a univariate instance of Polynomial.</p>
 <h1 class="heading">References:</h1>
-  http://en.wikipedia.org/wiki/Root_of_unity 
-  http://en.wikipedia.org/wiki/Radical_root#Positive_real_numbers
+  <p>http://en.wikipedia.org/wiki/Root_of_unity 
+  http://en.wikipedia.org/wiki/Radical_root#Positive_real_numbers</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.roots_.quadratic">quadratic(f):</a></div>
-            <div class="functionBody"><div>Computes the roots of a quadratic polynomial.
+            <div class="functionBody"><div><p>Computes the roots of a quadratic polynomial.</p>
 <h1 class="heading">Usage:</h1>
-  This function is called by the wrapper <a 
+  <p>This function is called by the wrapper <a 
   href="sympy.polynomials.roots_.roots.html">roots</a>, don't use it 
   directly. The input is assumed to be a univariate instance of Polynomial 
-  of degree 2.
+  of degree 2.</p>
 <h1 class="heading">References:</h1>
-  http://en.wikipedia.org/wiki/Quadratic_equation#Quadratic_formula
+  <p>http://en.wikipedia.org/wiki/Quadratic_equation#Quadratic_formula</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.roots_.rat_roots">rat_roots(f):</a></div>
-            <div class="functionBody"><div>Computes the rational roots of a polynomial.
+            <div class="functionBody"><div><p>Computes the rational roots of a polynomial.</p>
 <h1 class="heading">Usage:</h1>
-  This function is called by the wrapper <a 
+  <p>This function is called by the wrapper <a 
   href="sympy.polynomials.roots_.roots.html">roots</a>, don't use it 
   directly. The input is assumed to be a univariate and square-free 
-  instance of Polynomial, with integer coefficients.
+  instance of Polynomial, with integer coefficients.</p>
 <h1 class="heading">References:</h1>
-  http://en.wikipedia.org/wiki/Rational_root_theorem
+  <p>http://en.wikipedia.org/wiki/Rational_root_theorem</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.roots_.count_real_roots">count_real_roots(s, a=None, b=None):</a></div>
-            <div class="functionBody"><div>Returns the number of unique real roots of f in the interval (a, b].
+            <div class="functionBody"><div><p>Returns the number of unique real roots of f in the interval (a, b].</p>
 <h1 class="heading">Usage:</h1>
   <p>The input can be a square-free and univariate polynomial, or a 
   precomputed Sturm sequence, if you want to check one specific polynomial 
   with several intervals. See <a 
   href="sympy.polynomials.roots_.sturm.html">sturm</a>.</p>
-  The boundaries a and b can be omitted to check the whole real line or 
-  one ray.
+  <p>The boundaries a and b can be omitted to check the whole real line or 
+  one ray.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
@@ -80,22 +80,22 @@
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>count_real_roots(x**2 - 1, 0, 2)
 <span class="py-output">1</span></pre>
 <h1 class="heading">References:</h1>
-  Davenport, Siret, Tournier: Computer Algebra, 1988
+  <p>Davenport, Siret, Tournier: Computer Algebra, 1988</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.roots_.sturm">sturm(f):</a></div>
-            <div class="functionBody"><div>Compute the Sturm sequence of given polynomial.
+            <div class="functionBody"><div><p>Compute the Sturm sequence of given polynomial.</p>
 <h1 class="heading">Usage:</h1>
   <p>The input is assumed to be a square-free and univariate polynomial, 
   either as a SymPy expression or as instance of Polynomial.</p>
   <p>The output is a list representing f's Sturm sequence, which is built 
   similarly to the euclidian algorithm, beginning with f and its 
   derivative.</p>
-  The result can be used in <a 
-  href="sympy.polynomials.roots_.count_real_roots.html">count_real_roots</a>.
+  <p>The result can be used in <a 
+  href="sympy.polynomials.roots_.count_real_roots.html">count_real_roots</a>.</p>
 <h1 class="heading">References:</h1>
-  Davenport, Siret, Tournier: Computer Algebra, 1988
+  <p>Davenport, Siret, Tournier: Computer Algebra, 1988</p>
 </div></div>
             </div>
             <div class="function">
@@ -124,16 +124,16 @@ L{count_real_roots}.</pre></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.roots_.solve_system">solve_system(eqs, var=None, order=None):</a></div>
-            <div class="functionBody"><div>Solves a system of polynomial equations.
+            <div class="functionBody"><div><p>Solves a system of polynomial equations.</p>
 <h1 class="heading">Usage:</h1>
   <p>Assumes to get a list of polynomials, either as SymPy expressions or 
   instances of Polynomial. In the first case, you should specify the 
   variables and monomial order through 'var' and 'order'. Otherwise, the 
   polynomials should have matching variables and orders already. Only the 
   first polynomial is checked for its type.</p>
-  This algorithm uses variable elimination and only works for 
+  <p>This algorithm uses variable elimination and only works for 
   zero-dimensional varieties, that is, a finite number of solutions, which 
-  is currently not tested.
+  is currently not tested.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
@@ -142,8 +142,8 @@ L{count_real_roots}.</pre></div>
 <span class="py-prompt">&gt;&gt;&gt; </span>solve_system([f, g])
 <span class="py-output">[(-(1/2)**(1/2), -(1/2)**(1/2)), ((1/2)**(1/2), (1/2)**(1/2))]</span></pre>
 <h1 class="heading">References:</h1>
-  Cox, Little, O'Shea: Ideals, Varieties and Algorithms, Springer, 2. 
-  edition, p. 113
+  <p>Cox, Little, O'Shea: Ideals, Varieties and Algorithms, Springer, 2. 
+  edition, p. 113</p>
 </div></div>
             </div></body>
         

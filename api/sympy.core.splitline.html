@@ -3,39 +3,39 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.core.splitline&rdquo;</title>
         </head>
-        <body><h1 class="module">Module s.c.splitline</h1><span id="part">Part of <a href="sympy.core.html">sympy.core</a></span><div class="toplevel"><div>Defines LineSplitter and helper functions.
-</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.core.splitline.String.html">String</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.splitline.ParenString.html">ParenString</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.splitline.split2">split2</a></td><td><div>Split line into non-string part and into a start of a string part.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.splitline.string_replace_dict.html">string_replace_dict</a></td><td><div>Dictionary object that is callable for applying map returned
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.splitline.string_replace_map">string_replace_map</a></td><td><div>1) Replaces string constants with symbol 
-`'_F2PY_STRING_CONSTANT_&lt;index&gt;_'`
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.splitline.splitquote">splitquote</a></td><td><div>Fast LineSplitter
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.splitline.LineSplitterBase.html">LineSplitterBase</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.splitline.LineSplitter.html">LineSplitter</a></td><td><div>Splits a line into non strings and strings. E.g.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.splitline.splitparen">splitparen</a></td><td><div>Fast LineSplitterParen.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.splitline.LineSplitterParen.html">LineSplitterParen</a></td><td><div>Splits a line into strings and strings with parenthesis. E.g.
+        <body><h1 class="module">Module s.c.splitline</h1><span id="part">Part of <a href="sympy.core.html">sympy.core</a></span><div class="toplevel"><div><p>Defines LineSplitter and helper functions.</p>
+</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.core.splitline.String.html">String</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.splitline.ParenString.html">ParenString</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.splitline.split2">split2</a></td><td><div><p>Split line into non-string part and into a start of a string part.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.splitline.string_replace_dict.html">string_replace_dict</a></td><td><div><p>Dictionary object that is callable for applying map returned</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.splitline.string_replace_map">string_replace_map</a></td><td><div><p>1) Replaces string constants with symbol 
+`'_F2PY_STRING_CONSTANT_&lt;index&gt;_'`</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.splitline.splitquote">splitquote</a></td><td><div><p>Fast LineSplitter</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.splitline.LineSplitterBase.html">LineSplitterBase</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.splitline.LineSplitter.html">LineSplitter</a></td><td><div><p>Splits a line into non strings and strings. E.g.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.splitline.splitparen">splitparen</a></td><td><div><p>Fast LineSplitterParen.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.splitline.LineSplitterParen.html">LineSplitterParen</a></td><td><div><p>Splits a line into strings and strings with parenthesis. E.g.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.splitline.test">test</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.splitline.split2">split2(line, lower=False):</a></div>
-            <div class="functionBody"><div>Split line into non-string part and into a start of a string part. 
+            <div class="functionBody"><div><p>Split line into non-string part and into a start of a string part. 
 Returns 2-tuple. The second item either is empty string or start of a 
-string part.
+string part.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.splitline.string_replace_map">string_replace_map(line, lower=False, _cache={'index':0,'pindex':0,}):</a></div>
-            <div class="functionBody"><div>1) Replaces string constants with symbol 
+            <div class="functionBody"><div><p>1) Replaces string constants with symbol 
 `'_F2PY_STRING_CONSTANT_&lt;index&gt;_'` 2) Replaces (expression) with 
 symbol `(F2PY_EXPR_TUPLE_&lt;index&gt;)` Returns a new line and the 
-replacement map.
+replacement map.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.splitline.splitquote">splitquote(line, stopchar=None, lower=False, quotechars='"\''):</a></div>
-            <div class="functionBody"><div>Fast LineSplitter
+            <div class="functionBody"><div><p>Fast LineSplitter</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.splitline.splitparen">splitparen(line, paren='()'):</a></div>
-            <div class="functionBody"><div>Fast LineSplitterParen.
+            <div class="functionBody"><div><p>Fast LineSplitterParen.</p>
 </div></div>
             </div>
             <div class="function">

@@ -10,17 +10,17 @@ SomeQuadRule(&lt;options&gt;)(lambda x: sin(x), 3, 8))</p>
 tuple containing two values: (y, err) where y is the calculated value of 
 the integral, and err is an estimate of the approximation error (or None if
 the error cannot be estimated from the rule).</p>
-By default, the quadrature rule is assumed to be defined on [-1, 1] or 
+<p>By default, the quadrature rule is assumed to be defined on [-1, 1] or 
 (-1, 1). __call__ automatically transforms other (finite) intervals to this
 default interval. This behavior can be modified by overriding the 
-'transform' method.
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.numerics.quad.Quadrature.transform">transform</a></td><td><div>Given an integrand function f and boundaries a, b,
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.quad.Quadrature.__call__">__call__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.quad.Quadrature.adaptive">adaptive</a></td><td><div>Apply rule adaptively (must support error estimation)
+'transform' method.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.numerics.quad.Quadrature.transform">transform</a></td><td><div><p>Given an integrand function f and boundaries a, b,</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.quad.Quadrature.__call__">__call__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.quad.Quadrature.adaptive">adaptive</a></td><td><div><p>Apply rule adaptively (must support error estimation)</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.numerics.quad.Quadrature.transform">transform(self, f, a, b):</a></div>
-            <div class="functionBody"><div>Given an integrand function f and boundaries a, b, return an equivalent 
-integrand defined on [-1, 1]
+            <div class="functionBody"><div><p>Given an integrand function f and boundaries a, b, return an equivalent 
+integrand defined on [-1, 1]</p>
 </div></div>
             </div>
             <div class="function">
@@ -29,7 +29,7 @@ integrand defined on [-1, 1]
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.numerics.quad.Quadrature.adaptive">adaptive(self, f, a, b, eps, steps=0, maxsteps=5000, verbose=False):</a></div>
-            <div class="functionBody"><div>Apply rule adaptively (must support error estimation)
+            <div class="functionBody"><div><p>Apply rule adaptively (must support error estimation)</p>
 </div></div>
             </div></body>
         

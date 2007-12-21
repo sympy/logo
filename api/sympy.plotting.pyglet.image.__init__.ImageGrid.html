@@ -5,22 +5,22 @@
         </head>
         <body><h1 class="class">Class s.p.p.i._.ImageGrid(<a href="sympy.plotting.pyglet.image.__init__.AbstractImage.html">AbstractImage</a>, <a href="sympy.plotting.pyglet.image.__init__.AbstractImageSequence.html">AbstractImageSequence</a>):</h1><span id="part">Part of <a href="sympy.plotting.pyglet.image.__init__.html">sympy.plotting.pyglet.image.__init__</a></span><div class="toplevel"><div><p>An imaginary grid placed over an image allowing easy access to regular 
 regions of that image.</p>
-The grid can be accessed either as a complete image, or as a sequence of
+<p>The grid can be accessed either as a complete image, or as a sequence of
 images.  The most useful applications are to access the grid as a 
-`TextureGrid`:
+`TextureGrid`:</p>
 <pre class="literalblock">
    image_grid = ImageGrid(...)
    texture_grid = image_grid.texture_sequence
 </pre>
-or as a `Texture3D`:
+<p>or as a `Texture3D`:</p>
 <pre class="literalblock">
    image_grid = ImageGrid(...)
    texture_3d = Texture3D.create_for_image_grid(image_grid)
 </pre>
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.ImageGrid.__init__">__init__</a></td><td><div>Construct a grid for the given image.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.ImageGrid._get_texture">_get_texture</a></td><td><div>Retrieve a Texture instance for this image.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.ImageGrid._get_image_data">_get_image_data</a></td><td><div>Retrieve an ImageData instance for this image.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.ImageGrid._get_texture_sequence">_get_texture_sequence</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.ImageGrid.__len__">__len__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.ImageGrid.__getitem__">__getitem__</a></td><td><div>Retrieve a (list of) image.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.ImageGrid.__init__">__init__</a></td><td><div><p>Construct a grid for the given image.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.ImageGrid._get_texture">_get_texture</a></td><td><div><p>Retrieve a Texture instance for this image.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.ImageGrid._get_image_data">_get_image_data</a></td><td><div><p>Retrieve an ImageData instance for this image.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.ImageGrid._get_texture_sequence">_get_texture_sequence</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.ImageGrid.__len__">__len__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.__init__.ImageGrid.__getitem__">__getitem__</a></td><td><div><p>Retrieve a (list of) image.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.ImageGrid.__init__">__init__(self, image, rows, columns, item_width=None, item_height=None, row_padding=0, column_padding=0):</a></div>
@@ -52,12 +52,12 @@ bottom-left corner of the image.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.ImageGrid._get_texture">_get_texture(self):</a></div>
-            <div class="functionBody"><div>Retrieve a Texture instance for this image.
+            <div class="functionBody"><div><p>Retrieve a Texture instance for this image.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.ImageGrid._get_image_data">_get_image_data(self):</a></div>
-            <div class="functionBody"><div>Retrieve an ImageData instance for this image.
+            <div class="functionBody"><div><p>Retrieve an ImageData instance for this image.</p>
 </div></div>
             </div>
             <div class="function">
@@ -71,7 +71,7 @@ bottom-left corner of the image.
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.__init__.ImageGrid.__getitem__">__getitem__(self, index):</a></div>
             <div class="functionBody"><div><p>Retrieve a (list of) image.</p>
-:rtype: AbstractImage
+<p>:rtype: AbstractImage</p>
 </div></div>
             </div></body>
         

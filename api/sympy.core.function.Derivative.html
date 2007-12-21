@@ -7,9 +7,9 @@
 symbols.</p>
 <p>expr must define ._eval_derivative(symbol) method that returns 
 differentation result or None.</p>
-Derivative(Derivative(expr, x), y) -&gt; Derivative(expr, x, y)
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.xas_apply">xas_apply</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative._eval_derivative">_eval_derivative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.doit">doit</a></td><td><div>Evaluate objects that are not evaluated by default like limits,
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.expr">expr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.symbols">symbols</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative._eval_subs">_eval_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.matches">matches</a></td><td><div>Helper method for match() - switches the pattern and expr.
+<p>Derivative(Derivative(expr, x), y) -&gt; Derivative(expr, x, y)</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.xas_apply">xas_apply</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative._eval_derivative">_eval_derivative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.doit">doit</a></td><td><div><p>Evaluate objects that are not evaluated by default like limits,</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.expr">expr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.symbols">symbols</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative._eval_subs">_eval_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Derivative.matches">matches</a></td><td><div><p>Helper method for match() - switches the pattern and expr.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.function.Derivative.__new__">__new__(cls, expr, *symbols, **assumptions):</a></div>
@@ -25,9 +25,9 @@ Derivative(Derivative(expr, x), y) -&gt; Derivative(expr, x, y)
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.function.Derivative.doit">doit(self):</a></div>
-            <div class="functionBody"><div>Evaluate objects that are not evaluated by default like limits, 
+            <div class="functionBody"><div><p>Evaluate objects that are not evaluated by default like limits, 
 integrals, sums and products. All objects of this kind will be evaluated 
-unless some species were excluded via 'hints'.
+unless some species were excluded via 'hints'.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
@@ -58,7 +58,7 @@ unless some species were excluded via 'hints'.
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.function.Derivative.matches">matches(pattern, expr, repl_dict={}, evaluate=False):</a></div>
             <div class="functionBody"><div><p>Helper method for match() - switches the pattern and expr.</p>
-Can be used to solve linear equations:
+<p>Can be used to solve linear equations:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol, Wild
 <span class="py-prompt">&gt;&gt;&gt; </span>a,b = map(Symbol, <span class="py-string">'ab'</span>)

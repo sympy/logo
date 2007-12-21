@@ -3,21 +3,21 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.polynomials.groebner_&rdquo;</title>
         </head>
-        <body><h1 class="module">Module s.p.groebner_</h1><span id="part">Part of <a href="sympy.polynomials.html">sympy.polynomials</a></span><div class="toplevel"><div>Algorithms for the computation of Groebner bases
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.groebner_.groebner">groebner</a></td><td><div>Computes a (reduced) Groebner base for a given list of polynomials.
+        <body><h1 class="module">Module s.p.groebner_</h1><span id="part">Part of <a href="sympy.polynomials.html">sympy.polynomials</a></span><div class="toplevel"><div><p>Algorithms for the computation of Groebner bases</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.groebner_.groebner">groebner</a></td><td><div><p>Computes a (reduced) Groebner base for a given list of polynomials.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.polynomials.groebner_.groebner">groebner(f, var=None, order=None, reduced=True):</a></div>
-            <div class="functionBody"><div>Computes a (reduced) Groebner base for a given list of polynomials.
+            <div class="functionBody"><div><p>Computes a (reduced) Groebner base for a given list of polynomials.</p>
 <h1 class="heading">Usage:</h1>
   <p>The input consists of a list of polynomials, either as SymPy 
   expressions or instances of Polynomials. In the first case, you should 
   also specify the variables and the monomial order with the arguments 
   'var' and 'order'. Only the first polynomial is checked for its type, the
   rest is assumed to match.</p>
-  By default, this algorithm returns the unique reduced Groebner base 
+  <p>By default, this algorithm returns the unique reduced Groebner base 
   for the given ideal. By setting reduced=False, you can prevent the 
-  reduction steps.
+  reduction steps.</p>
 <h1 class="heading">Examples:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)
@@ -33,17 +33,17 @@
   They can also be applied to equation systems: By choosing lexicographic 
   ordering, you can eliminate one variable at a time, given that the ideal 
   is zero-dimensional (finite number of solutions).</p>
-  Here, an improved version of Buchberger's algorithm is used. For all 
+  <p>Here, an improved version of Buchberger's algorithm is used. For all 
   pairs of polynomials, the s-polynomial is computed, by mutually 
   eliminating the leading terms of these 2 polynomials. It's remainder 
   (after division by the base) is then added. Sometimes, it is easy to see,
   that one s-polynomial will be reduced to 0 before computing it. At the 
   end, the base is reduced, by trying to eliminate as many terms as 
   possible with the leading terms of other base elements. The final step is
-  to make all polynomials monic.
+  to make all polynomials monic.</p>
 <h1 class="heading">References:</h1>
-  Cox, Little, O'Shea: Ideals, Varieties and Algorithms, Springer, 2. 
-  edition, p. 87
+  <p>Cox, Little, O'Shea: Ideals, Varieties and Algorithms, Springer, 2. 
+  edition, p. 87</p>
 </div></div>
             </div></body>
         

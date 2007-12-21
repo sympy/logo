@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.printing.pretty.stringpict.prettyForm&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.s.prettyForm(<a href="sympy.printing.pretty.stringpict.stringPict.html">stringPict</a>):</h1><span id="part">Part of <a href="sympy.printing.pretty.stringpict.html">sympy.printing.pretty.stringpict</a></span><div class="toplevel"><div><p>Extension of the stringPict class that knows about basic math 
+applications, optimizing double minus signs. &quot;Binding&quot; is 
+interpreted as follows: ATOM this is an atom: never needs to be 
+parenthesised FUNC this is a function application: parenthesise if added 
+(?) DIV  this is a division: make wider division if divided POW  this is a 
+power: only parenthesise if exponent MUL  this is a multiplication: 
+parenthesise if powered ADD  this is an addition: parenthesise if 
+multiplied or powered NEG  this is a negative number: optimise if added, 
+parenthesise if multiplied or powered</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.printing.pretty.stringpict.prettyForm.__init__">__init__</a></td><td><div><p>Initialize from stringPict and binding power.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.pretty.stringpict.prettyForm.__add__">__add__</a></td><td><div><p>Make a pretty addition.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.pretty.stringpict.prettyForm.__div__">__div__</a></td><td><div><p>Make a pretty division; stacked or slashed.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.pretty.stringpict.prettyForm.__mul__">__mul__</a></td><td><div><p>Make a pretty multiplication.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.pretty.stringpict.prettyForm.__repr__">__repr__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.pretty.stringpict.prettyForm.__pow__">__pow__</a></td><td><div><p>Make a pretty power.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.pretty.stringpict.prettyForm.apply">apply</a></td><td><div><p>Functions of one or more variables.</p>
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.pretty.stringpict.prettyForm.__init__">__init__(self, s, baseline=0, binding=0, unicode=None):</a></div>
+            <div class="functionBody"><div><p>Initialize from stringPict and binding power.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.pretty.stringpict.prettyForm.__add__">__add__(self, *others):</a></div>
+            <div class="functionBody"><div><p>Make a pretty addition. Addition of negative numbers is simplified.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.pretty.stringpict.prettyForm.__div__">__div__(self, den, slashed=False):</a></div>
+            <div class="functionBody"><div><p>Make a pretty division; stacked or slashed.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.pretty.stringpict.prettyForm.__mul__">__mul__(self, *others):</a></div>
+            <div class="functionBody"><div><p>Make a pretty multiplication. Parentheses are needed around +, - and 
+neg.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.pretty.stringpict.prettyForm.__repr__">__repr__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.pretty.stringpict.prettyForm.__pow__">__pow__(self, b):</a></div>
+            <div class="functionBody"><div><p>Make a pretty power.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.pretty.stringpict.prettyForm.apply">apply(function, *args):</a></div>
+            <div class="functionBody"><div><p>Functions of one or more variables.</p>
+</div></div>
+            </div></body>
+        

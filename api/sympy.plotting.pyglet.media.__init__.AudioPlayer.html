@@ -13,26 +13,26 @@ Applications should not use this class directly, but instead use `Player`.
 
 :Ivariables:
     `audio_format` : `AudioFormat`
-        The player's audio format (read-only).</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.__init__">__init__</a></td><td><div>Create a new audio player for the given audio format.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.get_write_size">get_write_size</a></td><td><div>Return the maximum number of bytes that can be written.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.write">write</a></td><td><div>Write audio_data to the stream.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.write_eos">write_eos</a></td><td><div>Write an EOS marker to the stream at the current write point.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.write_end">write_end</a></td><td><div>Mark that there will be no more audio data past the current write
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.play">play</a></td><td><div>Begin playback.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.stop">stop</a></td><td><div>Stop playback.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.clear">clear</a></td><td><div>Clear all buffered data and prepare for replacement data.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.pump">pump</a></td><td><div>Called once per loop iteration before checking for eos
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.get_time">get_time</a></td><td><div>Return best guess of current playback time.  The time is relative
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.clear_eos">clear_eos</a></td><td><div>Check if an EOS marker has been passed, and clear it.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_volume">set_volume</a></td><td><div>See `Player.volume`.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_position">set_position</a></td><td><div>See `Player.position`.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_min_distance">set_min_distance</a></td><td><div>See `Player.min_distance`.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_max_distance">set_max_distance</a></td><td><div>See `Player.max_distance`.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_pitch">set_pitch</a></td><td><div>See `Player.pitch`.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_cone_orientation">set_cone_orientation</a></td><td><div>See `Player.cone_orientation`.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_cone_inner_angle">set_cone_inner_angle</a></td><td><div>See `Player.cone_inner_angle`.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_cone_outer_angle">set_cone_outer_angle</a></td><td><div>See `Player.cone_outer_angle`.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_cone_outer_gain">set_cone_outer_gain</a></td><td><div>See `Player.cone_outer_gain`.
+        The player's audio format (read-only).</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.__init__">__init__</a></td><td><div><p>Create a new audio player for the given audio format.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.get_write_size">get_write_size</a></td><td><div><p>Return the maximum number of bytes that can be written.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.write">write</a></td><td><div><p>Write audio_data to the stream.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.write_eos">write_eos</a></td><td><div><p>Write an EOS marker to the stream at the current write point.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.write_end">write_end</a></td><td><div><p>Mark that there will be no more audio data past the current write</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.play">play</a></td><td><div><p>Begin playback.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.stop">stop</a></td><td><div><p>Stop playback.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.clear">clear</a></td><td><div><p>Clear all buffered data and prepare for replacement data.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.pump">pump</a></td><td><div><p>Called once per loop iteration before checking for eos</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.get_time">get_time</a></td><td><div><p>Return best guess of current playback time.  The time is relative</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.clear_eos">clear_eos</a></td><td><div><p>Check if an EOS marker has been passed, and clear it.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_volume">set_volume</a></td><td><div><p>See `Player.volume`.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_position">set_position</a></td><td><div><p>See `Player.position`.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_min_distance">set_min_distance</a></td><td><div><p>See `Player.min_distance`.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_max_distance">set_max_distance</a></td><td><div><p>See `Player.max_distance`.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_pitch">set_pitch</a></td><td><div><p>See `Player.pitch`.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_cone_orientation">set_cone_orientation</a></td><td><div><p>See `Player.cone_orientation`.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_cone_inner_angle">set_cone_inner_angle</a></td><td><div><p>See `Player.cone_inner_angle`.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_cone_outer_angle">set_cone_outer_angle</a></td><td><div><p>See `Player.cone_outer_angle`.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.AudioPlayer.set_cone_outer_gain">set_cone_outer_gain</a></td><td><div><p>See `Player.cone_outer_gain`.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.__init__">__init__(self, audio_format):</a></div>
@@ -47,7 +47,7 @@ Applications should not use this class directly, but instead use `Player`.
             <div class="functionBody"><div><p>Return the maximum number of bytes that can be written.</p>
 <p>This is used as a hint for preparing data for `write`, not as a strict 
 contract.</p>
-:rtype: int
+<p>:rtype: int</p>
 </div></div>
             </div>
             <div class="function">
@@ -62,36 +62,36 @@ This method calls `AudioData.consume` to remove data actually written.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.write_eos">write_eos(self):</a></div>
-            <div class="functionBody"><div>Write an EOS marker to the stream at the current write point.
+            <div class="functionBody"><div><p>Write an EOS marker to the stream at the current write point.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.write_end">write_end(self):</a></div>
             <div class="functionBody"><div><p>Mark that there will be no more audio data past the current write 
 point.</p>
-This does not produce an EOS, but is required to prevent data underrun 
-artifacts.
+<p>This does not produce an EOS, but is required to prevent data underrun 
+artifacts.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.play">play(self):</a></div>
-            <div class="functionBody"><div>Begin playback.
+            <div class="functionBody"><div><p>Begin playback.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.stop">stop(self):</a></div>
-            <div class="functionBody"><div>Stop playback.
+            <div class="functionBody"><div><p>Stop playback.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.clear">clear(self):</a></div>
             <div class="functionBody"><div><p>Clear all buffered data and prepare for replacement data.</p>
-The player should be stopped before calling this method.
+<p>The player should be stopped before calling this method.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.pump">pump(self):</a></div>
-            <div class="functionBody"><div>Called once per loop iteration before checking for eos triggers.
+            <div class="functionBody"><div><p>Called once per loop iteration before checking for eos triggers.</p>
 </div></div>
             </div>
             <div class="function">
@@ -99,7 +99,7 @@ The player should be stopped before calling this method.
             <div class="functionBody"><div><p>Return best guess of current playback time.  The time is relative to the
 timestamps provided in the data supplied to `write`.  The time is 
 meaningless unless proper care has been taken to clear EOS markers.</p>
-:rtype: float :return: current play cursor time, in seconds.
+<p>:rtype: float :return: current play cursor time, in seconds.</p>
 </div></div>
             </div>
             <div class="function">
@@ -107,52 +107,52 @@ meaningless unless proper care has been taken to clear EOS markers.</p>
             <div class="functionBody"><div><p>Check if an EOS marker has been passed, and clear it.</p>
 <p>This method should be called repeatedly to clear all pending EOS 
 markers.</p>
-:rtype: bool :return: True if an EOS marker was cleared.
+<p>:rtype: bool :return: True if an EOS marker was cleared.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.set_volume">set_volume(self, volume):</a></div>
-            <div class="functionBody"><div>See `Player.volume`.
+            <div class="functionBody"><div><p>See `Player.volume`.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.set_position">set_position(self, position):</a></div>
-            <div class="functionBody"><div>See `Player.position`.
+            <div class="functionBody"><div><p>See `Player.position`.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.set_min_distance">set_min_distance(self, min_distance):</a></div>
-            <div class="functionBody"><div>See `Player.min_distance`.
+            <div class="functionBody"><div><p>See `Player.min_distance`.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.set_max_distance">set_max_distance(self, max_distance):</a></div>
-            <div class="functionBody"><div>See `Player.max_distance`.
+            <div class="functionBody"><div><p>See `Player.max_distance`.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.set_pitch">set_pitch(self, pitch):</a></div>
-            <div class="functionBody"><div>See `Player.pitch`.
+            <div class="functionBody"><div><p>See `Player.pitch`.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.set_cone_orientation">set_cone_orientation(self, cone_orientation):</a></div>
-            <div class="functionBody"><div>See `Player.cone_orientation`.
+            <div class="functionBody"><div><p>See `Player.cone_orientation`.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.set_cone_inner_angle">set_cone_inner_angle(self, cone_inner_angle):</a></div>
-            <div class="functionBody"><div>See `Player.cone_inner_angle`.
+            <div class="functionBody"><div><p>See `Player.cone_inner_angle`.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.set_cone_outer_angle">set_cone_outer_angle(self, cone_outer_angle):</a></div>
-            <div class="functionBody"><div>See `Player.cone_outer_angle`.
+            <div class="functionBody"><div><p>See `Player.cone_outer_angle`.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.AudioPlayer.set_cone_outer_gain">set_cone_outer_gain(self, cone_outer_gain):</a></div>
-            <div class="functionBody"><div>See `Player.cone_outer_gain`.
+            <div class="functionBody"><div><p>See `Player.cone_outer_gain`.</p>
 </div></div>
             </div></body>
         

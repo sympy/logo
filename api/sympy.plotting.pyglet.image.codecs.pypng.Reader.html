@@ -3,48 +3,48 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.plotting.pyglet.image.codecs.pypng.Reader&rdquo;</title>
         </head>
-        <body><h1 class="class">Class s.p.p.i.c.p.Reader:</h1><span id="part">Part of <a href="sympy.plotting.pyglet.image.codecs.pypng.html">sympy.plotting.pyglet.image.codecs.pypng</a></span><div class="toplevel"><div>PNG decoder in pure Python.
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader.__init__">__init__</a></td><td><div>Create a PNG decoder object.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader.read_chunk">read_chunk</a></td><td><div>Read a PNG chunk from the input file, return tag name and data.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader._reconstruct_sub">_reconstruct_sub</a></td><td><div>Reverse sub filter.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader._reconstruct_up">_reconstruct_up</a></td><td><div>Reverse up filter.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader._reconstruct_average">_reconstruct_average</a></td><td><div>Reverse average filter.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader._reconstruct_paeth">_reconstruct_paeth</a></td><td><div>Reverse Paeth filter.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader.reconstruct_line">reconstruct_line</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader.deinterlace">deinterlace</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader.read_flat">read_flat</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader.read">read</a></td><td><div>Read a simple PNG file, return width, height, pixels and image 
-metadata
+        <body><h1 class="class">Class s.p.p.i.c.p.Reader:</h1><span id="part">Part of <a href="sympy.plotting.pyglet.image.codecs.pypng.html">sympy.plotting.pyglet.image.codecs.pypng</a></span><div class="toplevel"><div><p>PNG decoder in pure Python.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader.__init__">__init__</a></td><td><div><p>Create a PNG decoder object.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader.read_chunk">read_chunk</a></td><td><div><p>Read a PNG chunk from the input file, return tag name and data.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader._reconstruct_sub">_reconstruct_sub</a></td><td><div><p>Reverse sub filter.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader._reconstruct_up">_reconstruct_up</a></td><td><div><p>Reverse up filter.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader._reconstruct_average">_reconstruct_average</a></td><td><div><p>Reverse average filter.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader._reconstruct_paeth">_reconstruct_paeth</a></td><td><div><p>Reverse Paeth filter.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader.reconstruct_line">reconstruct_line</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader.deinterlace">deinterlace</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader.read_flat">read_flat</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.pypng.Reader.read">read</a></td><td><div><p>Read a simple PNG file, return width, height, pixels and image 
+metadata</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Reader.__init__">__init__(self, _guess=None, **kw):</a></div>
             <div class="functionBody"><div><p>Create a PNG decoder object.</p>
-The constructor expects exactly one keyword argument. If you supply a 
+<p>The constructor expects exactly one keyword argument. If you supply a 
 positional argument instead, it will guess the input type. You can choose 
 among the following arguments: filename - name of PNG input file file - 
-object with a read() method pixels - array or string with PNG data
+object with a read() method pixels - array or string with PNG data</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Reader.read_chunk">read_chunk(self):</a></div>
-            <div class="functionBody"><div>Read a PNG chunk from the input file, return tag name and data.
+            <div class="functionBody"><div><p>Read a PNG chunk from the input file, return tag name and data.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Reader._reconstruct_sub">_reconstruct_sub(self, offset, xstep, ystep):</a></div>
-            <div class="functionBody"><div>Reverse sub filter.
+            <div class="functionBody"><div><p>Reverse sub filter.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Reader._reconstruct_up">_reconstruct_up(self, offset, xstep, ystep):</a></div>
-            <div class="functionBody"><div>Reverse up filter.
+            <div class="functionBody"><div><p>Reverse up filter.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Reader._reconstruct_average">_reconstruct_average(self, offset, xstep, ystep):</a></div>
-            <div class="functionBody"><div>Reverse average filter.
+            <div class="functionBody"><div><p>Reverse average filter.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Reader._reconstruct_paeth">_reconstruct_paeth(self, offset, xstep, ystep):</a></div>
-            <div class="functionBody"><div>Reverse Paeth filter.
+            <div class="functionBody"><div><p>Reverse Paeth filter.</p>
 </div></div>
             </div>
             <div class="function">
@@ -63,8 +63,8 @@ object with a read() method pixels - array or string with PNG data
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.pypng.Reader.read">read(self):</a></div>
             <div class="functionBody"><div><p>Read a simple PNG file, return width, height, pixels and image 
 metadata</p>
-This function is a very early prototype with limited flexibility and 
-excessive use of memory.
+<p>This function is a very early prototype with limited flexibility and 
+excessive use of memory.</p>
 </div></div>
             </div></body>
         

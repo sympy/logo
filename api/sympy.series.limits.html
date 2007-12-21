@@ -12,7 +12,7 @@
   infinity using the following rules. Any two functions f and g can be 
   compared using the properties of L:</p>
   <p>L=lim  log|f(x)| / log|g(x)|           (for x -&gt; oo)</p>
-  We define &gt;, &lt; ~ according to:
+  <p>We define &gt;, &lt; ~ according to:</p>
 <pre class="literalblock">
    1. f &gt; g .... L=+-oo 
    
@@ -34,7 +34,7 @@
          powers of the other
 </pre>
 <h1 class="heading">Examples</h1>
-  :
+  <p>:</p>
 <pre class="literalblock">
    2 &lt; x &lt; exp(x) &lt; exp(x**2) &lt; exp(exp(x))
    2 ~ 3 ~ -5
@@ -47,19 +47,19 @@
   In principle, we could compare any two functions, but in our algorithm, 
   we don't compare anything below the class 2~3~-5 (for example log(x) is 
   below this), so we set 2~3~-5 as the lowest comparability class.</p>
-  Given the function f, we find the list of most rapidly varying (mrv 
+  <p>Given the function f, we find the list of most rapidly varying (mrv 
   set) subexpressions of it. This list belongs to the same comparability 
   class. Let's say it is {exp(x), exp(2x)}. Using the rule f ~ 1/f we find 
   an element &quot;w&quot; (either from the list or a new one) from the 
   same comparability class which goes to zero at infinity. In our example 
   we set w=exp(-x) (but we could also set w=exp(-2x) or w=exp(-3x) ...). We
   rewrite the mrv set using w, in our case {1/w,1/w^2}, and substitute it 
-  into f. Then we expand f into a series in w:
+  into f. Then we expand f into a series in w:</p>
 <pre class="literalblock">
    f = c0*w^e0 + c1*w^e1 + ... + O(w^en),        where e0&lt;e1&lt;...&lt;en, c0!=0
 </pre>
-  but for x-&gt;oo, lim f = lim c0*w^e0, because all the other terms go 
-  to zero, because w goes to zero faster than the ci and ei. So:
+  <p>but for x-&gt;oo, lim f = lim c0*w^e0, because all the other terms go 
+  to zero, because w goes to zero faster than the ci and ei. So:</p>
 <pre class="literalblock">
    for e0&gt;0, lim f = 0
    for e0&lt;0, lim f = +-oo   (the sign depends on the sign of c0)
@@ -79,80 +79,80 @@
   rewrite(), which is the most difficult/complex part of the algorithm. 
   When the algorithm fails, the bugs are usually in the series expansion 
   (i.e. in SymPy) or in rewrite.</p>
-  This code is almost exact rewrite of the Maple code inside the Gruntz 
-  thesis.
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.debug">debug</a></td><td><div>Only for debugging purposes: prints a tree
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.tree">tree</a></td><td><div>Only debugging purposes: prints a tree
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.maketree">maketree</a></td><td><div>Only debugging purposes: prints a tree
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.compare">compare</a></td><td><div>Returns &quot;&lt;&quot; if a&lt;b, &quot;=&quot; for a==b, 
-&quot;&gt;&quot; for a&gt;b
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.mrv">mrv</a></td><td><div>Returns a python set of  most rapidly varying (mrv) subexpressions of 
-'e'
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.mrv_max">mrv_max</a></td><td><div>Computes the maximum of two sets of expressions f and g, which
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.rewrite">rewrite</a></td><td><div>e(x) ... the function
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.sign">sign</a></td><td><div>Returns a sign of an expression e(x) for x-&gt;oo.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.limitinf">limitinf</a></td><td><div>Limit e(x) for x-&gt; oo
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.moveup">moveup</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.movedown">movedown</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.subexp">subexp</a></td><td><div>Is &quot;sub&quot; a subexpression of &quot;e&quot;?
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.calculate_series">calculate_series</a></td><td><div>Calculates at least one term of the series of &quot;e&quot; in 
-&quot;x&quot;.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.calculate_leadterm">calculate_leadterm</a></td><td><div>Calculates the leadterm of &quot;e&quot; in &quot;x&quot;.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.mrv_leadterm">mrv_leadterm</a></td><td><div>Returns (c0, e0) for e.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.series.limits.Limit2.html">Limit2</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.limit">limit</a></td><td><div>Compute the limit of e(z) at the point z0.
+  <p>This code is almost exact rewrite of the Maple code inside the Gruntz 
+  thesis.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.debug">debug</a></td><td><div><p>Only for debugging purposes: prints a tree</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.tree">tree</a></td><td><div><p>Only debugging purposes: prints a tree</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.maketree">maketree</a></td><td><div><p>Only debugging purposes: prints a tree</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.compare">compare</a></td><td><div><p>Returns &quot;&lt;&quot; if a&lt;b, &quot;=&quot; for a==b, 
+&quot;&gt;&quot; for a&gt;b</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.mrv">mrv</a></td><td><div><p>Returns a python set of  most rapidly varying (mrv) subexpressions of 
+'e'</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.mrv_max">mrv_max</a></td><td><div><p>Computes the maximum of two sets of expressions f and g, which</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.rewrite">rewrite</a></td><td><div><p>e(x) ... the function</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.sign">sign</a></td><td><div><p>Returns a sign of an expression e(x) for x-&gt;oo.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.limitinf">limitinf</a></td><td><div><p>Limit e(x) for x-&gt; oo</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.moveup">moveup</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.movedown">movedown</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.subexp">subexp</a></td><td><div><p>Is &quot;sub&quot; a subexpression of &quot;e&quot;?</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.calculate_series">calculate_series</a></td><td><div><p>Calculates at least one term of the series of &quot;e&quot; in 
+&quot;x&quot;.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.calculate_leadterm">calculate_leadterm</a></td><td><div><p>Calculates the leadterm of &quot;e&quot; in &quot;x&quot;.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.mrv_leadterm">mrv_leadterm</a></td><td><div><p>Returns (c0, e0) for e.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.series.limits.Limit2.html">Limit2</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.limits.limit">limit</a></td><td><div><p>Compute the limit of e(z) at the point z0.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.debug">debug(func):</a></div>
             <div class="functionBody"><div><p>Only for debugging purposes: prints a tree</p>
-It will print a nice execution tree with arguments and results of all 
-decorated functions.
+<p>It will print a nice execution tree with arguments and results of all 
+decorated functions.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.tree">tree(subtrees):</a></div>
-            <div class="functionBody"><div>Only debugging purposes: prints a tree
+            <div class="functionBody"><div><p>Only debugging purposes: prints a tree</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.maketree">maketree(f, *args, **kw):</a></div>
-            <div class="functionBody"><div>Only debugging purposes: prints a tree
+            <div class="functionBody"><div><p>Only debugging purposes: prints a tree</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.compare">compare(a, b, x):</a></div>
-            <div class="functionBody"><div>Returns &quot;&lt;&quot; if a&lt;b, &quot;=&quot; for a==b, 
-&quot;&gt;&quot; for a&gt;b
+            <div class="functionBody"><div><p>Returns &quot;&lt;&quot; if a&lt;b, &quot;=&quot; for a==b, 
+&quot;&gt;&quot; for a&gt;b</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.mrv">mrv(e, x):</a></div>
-            <div class="functionBody"><div>Returns a python set of  most rapidly varying (mrv) subexpressions of 
-'e'
+            <div class="functionBody"><div><p>Returns a python set of  most rapidly varying (mrv) subexpressions of 
+'e'</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.mrv_max">mrv_max(f, g, x):</a></div>
-            <div class="functionBody"><div>Computes the maximum of two sets of expressions f and g, which are in 
+            <div class="functionBody"><div><p>Computes the maximum of two sets of expressions f and g, which are in 
 the same comparability class, i.e. max() compares (two elements of) f and g
 and returns the set, which is in the higher comparability class of the 
-union of both, if they have the same order of variation.
+union of both, if they have the same order of variation.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.rewrite">rewrite(e, Omega, x, wsym):</a></div>
             <div class="functionBody"><div><p>e(x) ... the function Omega ... the mrv set wsym ... the symbol which is
 going to be used for w</p>
-Returns the rewritten e in terms of w and log(w). See test_rewrite1() 
-for examples and correct results.
+<p>Returns the rewritten e in terms of w and log(w). See test_rewrite1() 
+for examples and correct results.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.sign">sign(e, x):</a></div>
             <div class="functionBody"><div><p>Returns a sign of an expression e(x) for x-&gt;oo.</p>
-e &gt;  0 ...  1 e == 0 ...  0 e &lt;  0 ... -1
+<p>e &gt;  0 ...  1 e == 0 ...  0 e &lt;  0 ... -1</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.limitinf">limitinf(e, x):</a></div>
-            <div class="functionBody"><div>Limit e(x) for x-&gt; oo
+            <div class="functionBody"><div><p>Limit e(x) for x-&gt; oo</p>
 </div></div>
             </div>
             <div class="function">
@@ -165,36 +165,36 @@ e &gt;  0 ...  1 e == 0 ...  0 e &lt;  0 ... -1
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.subexp">subexp(e, sub):</a></div>
-            <div class="functionBody"><div>Is &quot;sub&quot; a subexpression of &quot;e&quot;?
+            <div class="functionBody"><div><p>Is &quot;sub&quot; a subexpression of &quot;e&quot;?</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.calculate_series">calculate_series(e, x):</a></div>
             <div class="functionBody"><div><p>Calculates at least one term of the series of &quot;e&quot; in 
 &quot;x&quot;.</p>
-This is a place that fails most often, so it is made robust so that 
-meaningful errors are printed out in case of problems.
+<p>This is a place that fails most often, so it is made robust so that 
+meaningful errors are printed out in case of problems.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.calculate_leadterm">calculate_leadterm(e, x):</a></div>
             <div class="functionBody"><div><p>Calculates the leadterm of &quot;e&quot; in &quot;x&quot;.</p>
-Make a nice report if it fails, that signals a bug either in limits or 
-series expansion.
+<p>Make a nice report if it fails, that signals a bug either in limits or 
+series expansion.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.mrv_leadterm">mrv_leadterm(e, x, Omega=):</a></div>
-            <div class="functionBody"><div>Returns (c0, e0) for e.
+            <div class="functionBody"><div><p>Returns (c0, e0) for e.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.limits.limit">limit(e, z, z0, dir='+'):</a></div>
             <div class="functionBody"><div><p>Compute the limit of e(z) at the point z0.</p>
 <p>z0 can be any expression, including oo and -oo.</p>
-For dir=&quot;+&quot; (default) it calculates the limit from the right 
+<p>For dir=&quot;+&quot; (default) it calculates the limit from the right 
 (z-&gt;z0+) and for dir=&quot;-&quot; the limit from the left (z-&gt;z0-). 
-For infinite z0 (oo or -oo), the dir argument doesn't matter.
+For infinite z0 (oo or -oo), the dir argument doesn't matter.</p>
 </div></div>
             </div></body>
         

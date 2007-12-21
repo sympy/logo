@@ -3,7 +3,7 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.core.basic.Basic&rdquo;</title>
         </head>
-        <body><h1 class="class">Class s.c.b.Basic(<a href="sympy.core.basic_methods.BasicMeths.html">BasicMeths</a>):</h1><span id="part">Part of <a href="sympy.core.basic.html">sympy.core.basic</a></span><p>known subclasses: <a href="sympy.core.function.Function.html">sympy.core.function.Function</a>, <a href="sympy.core.function.Derivative.html">sympy.core.function.Derivative</a>, <a href="sympy.series.limits_series.Limit.html">sympy.series.limits_series.Limit</a>, <a href="sympy.series.limits_series.InfLimit.html">sympy.series.limits_series.InfLimit</a>, <a href="sympy.core.relational.Relational.html">sympy.core.relational.Relational</a>, <a href="sympy.core.operations.AssocOp.html">sympy.core.operations.AssocOp</a>, <a href="sympy.core.basic.Atom.html">sympy.core.basic.Atom</a>, <a href="sympy.core.basic.Singleton.html">sympy.core.basic.Singleton</a>, <a href="sympy.series.order.Order.html">sympy.series.order.Order</a>, <a href="sympy.core.interval.Interval.html">sympy.core.interval.Interval</a>, <a href="sympy.core.power.Pow.html">sympy.core.power.Pow</a></p><div class="toplevel"><div>Base class for all objects in sympy.
+        <body><h1 class="class">Class s.c.b.Basic(<a href="sympy.core.basic_methods.BasicMeths.html">BasicMeths</a>):</h1><span id="part">Part of <a href="sympy.core.basic.html">sympy.core.basic</a></span><p>known subclasses: <a href="sympy.core.function.Function.html">sympy.core.function.Function</a>, <a href="sympy.core.function.Derivative.html">sympy.core.function.Derivative</a>, <a href="sympy.series.limits_series.Limit.html">sympy.series.limits_series.Limit</a>, <a href="sympy.series.limits_series.InfLimit.html">sympy.series.limits_series.InfLimit</a>, <a href="sympy.core.relational.Relational.html">sympy.core.relational.Relational</a>, <a href="sympy.core.operations.AssocOp.html">sympy.core.operations.AssocOp</a>, <a href="sympy.core.basic.Atom.html">sympy.core.basic.Atom</a>, <a href="sympy.core.basic.Singleton.html">sympy.core.basic.Singleton</a>, <a href="sympy.series.order.Order.html">sympy.series.order.Order</a>, <a href="sympy.core.interval.Interval.html">sympy.core.interval.Interval</a>, <a href="sympy.core.power.Pow.html">sympy.core.power.Pow</a></p><div class="toplevel"><div><p>Base class for all objects in sympy.</p>
 <h1 class="heading">Conventions</h1>
   <p>1) When you want to access parameters of some instance, always use [].
   Example:</p>
@@ -13,32 +13,32 @@
   <p>In [5]: (x*y)[1] Out[5]: y</p>
   <p>2) Never use internal methods or variables (the ones prefixed with 
   &quot;_&quot;). Example:</p>
-  In [6]: cot(x)._args    #don't use this, use cot(x)[:] instead Out[6]:
-  (x,)
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.sympify">sympify</a></td><td><div>Converts an arbitrary expression to a type that can be used
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.atoms">atoms</a></td><td><div>Returns the atoms that form current object.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.is_hypergeometric">is_hypergeometric</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.is_number">is_number</a></td><td><div>Returns True if self is a number (like 1, or 1+log(2)), and False
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.is_fraction">is_fraction</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_is_polynomial">_eval_is_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.is_polynomial">is_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_polynomial">as_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_subs">_eval_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.subs">subs</a></td><td><div>Substitutes an expression old -&gt; new.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._seq_subs">_seq_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.has">has</a></td><td><div>Return True if self has any of the patterns.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_power">_eval_power</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_derivative">_eval_derivative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_integral">_eval_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_defined_integral">_eval_defined_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_fapply">_eval_fapply</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_fpower">_eval_fpower</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_apply_evalf">_eval_apply_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_eq_nonzero">_eval_eq_nonzero</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_apply_subs">_eval_apply_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._calc_apply_positive">_calc_apply_positive</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._calc_apply_real">_calc_apply_real</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_conjugate">_eval_conjugate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.conjugate">conjugate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.subs_dict">subs_dict</a></td><td><div>Substitutes &quot;self&quot; using the keys and values from the 
-&quot;old_new_dict&quot;.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.matches">matches</a></td><td><div>Helper method for match() - switches the pattern and expr.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.match">match</a></td><td><div>Pattern matching.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.solve4linearsymbol">solve4linearsymbol</a></td><td><div>Solve equation
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._calc_splitter">_calc_splitter</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.splitter">splitter</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.count_ops">count_ops</a></td><td><div>Return the number of operations in expressions.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.doit">doit</a></td><td><div>Evaluate objects that are not evaluated by default like limits,
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_expand_basic">_eval_expand_basic</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_expand_power">_eval_expand_power</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_expand_complex">_eval_expand_complex</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_expand_trig">_eval_expand_trig</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_expand_func">_eval_expand_func</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.expand">expand</a></td><td><div>Expand an expression based on different hints. Currently
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_rewrite">_eval_rewrite</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.rewrite">rewrite</a></td><td><div>Rewrites expression containing applications of functions
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_coefficient">as_coefficient</a></td><td><div>Extracts symbolic coefficient at the given expression. In
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_independent">as_independent</a></td><td><div>Returns a pair with separated parts of a given expression
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_real_imag">as_real_imag</a></td><td><div>Performs complex expansion on 'self' and returns a tuple
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_powers_dict">as_powers_dict</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_base_exp">as_base_exp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_coeff_terms">as_coeff_terms</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_indep_terms">as_indep_terms</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_coeff_factors">as_coeff_factors</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_numer_denom">as_numer_denom</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_expr_orders">as_expr_orders</a></td><td><div>Split expr + Order(..) to (expr, Order(..)).
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.normal">normal</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.diff">diff</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.fdiff">fdiff</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.integral">integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.__call__">__call__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_evalf">_eval_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._seq_eval_evalf">_seq_eval_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.__float__">__float__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.evalf">evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.series">series</a></td><td><div>Usage
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.oseries">oseries</a></td><td><div>Return the series of an expression upto given Order symbol (without 
-the
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_oseries">_eval_oseries</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._compute_oseries">_compute_oseries</a></td><td><div>compute series sum(taylor_term(i, arg), i=0..n-1) such
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.limit">limit</a></td><td><div>Compute limit x-&gt;xlim.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.inflimit">inflimit</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_leading_term">as_leading_term</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_coeff_exponent">as_coeff_exponent</a></td><td><div>c*x**e -&gt; c,e where x can be any symbolic expression.
+  <p>In [6]: cot(x)._args    #don't use this, use cot(x)[:] instead Out[6]:
+  (x,)</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.sympify">sympify</a></td><td><div><p>Converts an arbitrary expression to a type that can be used</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.atoms">atoms</a></td><td><div><p>Returns the atoms that form current object.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.is_hypergeometric">is_hypergeometric</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.is_number">is_number</a></td><td><div><p>Returns True if self is a number (like 1, or 1+log(2)), and False</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.is_fraction">is_fraction</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_is_polynomial">_eval_is_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.is_polynomial">is_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_polynomial">as_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_subs">_eval_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.subs">subs</a></td><td><div><p>Substitutes an expression old -&gt; new.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._seq_subs">_seq_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.has">has</a></td><td><div><p>Return True if self has any of the patterns.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_power">_eval_power</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_derivative">_eval_derivative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_integral">_eval_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_defined_integral">_eval_defined_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_fapply">_eval_fapply</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_fpower">_eval_fpower</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_apply_evalf">_eval_apply_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_eq_nonzero">_eval_eq_nonzero</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_apply_subs">_eval_apply_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._calc_apply_positive">_calc_apply_positive</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._calc_apply_real">_calc_apply_real</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_conjugate">_eval_conjugate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.conjugate">conjugate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.subs_dict">subs_dict</a></td><td><div><p>Substitutes &quot;self&quot; using the keys and values from the 
+&quot;old_new_dict&quot;.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.matches">matches</a></td><td><div><p>Helper method for match() - switches the pattern and expr.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.match">match</a></td><td><div><p>Pattern matching.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.solve4linearsymbol">solve4linearsymbol</a></td><td><div><p>Solve equation</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._calc_splitter">_calc_splitter</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.splitter">splitter</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.count_ops">count_ops</a></td><td><div><p>Return the number of operations in expressions.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.doit">doit</a></td><td><div><p>Evaluate objects that are not evaluated by default like limits,</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_expand_basic">_eval_expand_basic</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_expand_power">_eval_expand_power</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_expand_complex">_eval_expand_complex</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_expand_trig">_eval_expand_trig</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_expand_func">_eval_expand_func</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.expand">expand</a></td><td><div><p>Expand an expression based on different hints. Currently</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_rewrite">_eval_rewrite</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.rewrite">rewrite</a></td><td><div><p>Rewrites expression containing applications of functions</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_coefficient">as_coefficient</a></td><td><div><p>Extracts symbolic coefficient at the given expression. In</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_independent">as_independent</a></td><td><div><p>Returns a pair with separated parts of a given expression</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_real_imag">as_real_imag</a></td><td><div><p>Performs complex expansion on 'self' and returns a tuple</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_powers_dict">as_powers_dict</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_base_exp">as_base_exp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_coeff_terms">as_coeff_terms</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_indep_terms">as_indep_terms</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_coeff_factors">as_coeff_factors</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_numer_denom">as_numer_denom</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_expr_orders">as_expr_orders</a></td><td><div><p>Split expr + Order(..) to (expr, Order(..)).</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.normal">normal</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.diff">diff</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.fdiff">fdiff</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.integral">integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.__call__">__call__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_evalf">_eval_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._seq_eval_evalf">_seq_eval_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.__float__">__float__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.evalf">evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.series">series</a></td><td><div><p>Usage</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.oseries">oseries</a></td><td><div><p>Return the series of an expression upto given Order symbol (without 
+the</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_oseries">_eval_oseries</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._compute_oseries">_compute_oseries</a></td><td><div><p>compute series sum(taylor_term(i, arg), i=0..n-1) such</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.limit">limit</a></td><td><div><p>Compute limit x-&gt;xlim.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.inflimit">inflimit</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_leading_term">as_leading_term</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_coeff_exponent">as_coeff_exponent</a></td><td><div><p>c*x**e -&gt; c,e where x can be any symbolic expression.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.ldegree">ldegree</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.leadterm">leadterm</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.__new__">__new__(cls, *args, **assumptions):</a></div>
@@ -51,7 +51,7 @@ sympy. For example, it will convert python int's into instance of
 sympy.Rational, floats into intances of sympy.Real, etc. It is also able to
 coerce symbolic expressions which does inherit after Basic. This can be 
 useful in cooperation with SAGE.</p>
-It currently accepts as arguments:
+<p>It currently accepts as arguments:</p>
 <ul>
   <li>
     any object defined in sympy (except maybe matrices [TODO])
@@ -66,9 +66,9 @@ It currently accepts as arguments:
 <p>If sympify_lists is set to True then sympify will also accept lists, 
 tuples and sets. It will return the same type but with all of the entries 
 sympified.</p>
-If the argument is already a type that sympy understands, it will do 
+<p>If the argument is already a type that sympy understands, it will do 
 nothing but return that value. This can be used at the begining of a 
-function to ensure you are working with the correct type.
+function to ensure you are working with the correct type.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *</pre>
 <pre class="py-doctest">
@@ -91,8 +91,8 @@ function to ensure you are working with the correct type.
 <p>Example: &gt;&gt;&gt; from sympy import * &gt;&gt;&gt; x = Symbol('x') 
 &gt;&gt;&gt; y = Symbol('y') &gt;&gt;&gt; (x+y**2+ 2*x*y).atoms() set([2, 
 x, y])</p>
-You can also filter the results by a given type(s) of object 
-&gt;&gt;&gt; (x+y+2+y**2*sin(x)).atoms(type=Symbol) set([x, y])
+<p>You can also filter the results by a given type(s) of object 
+&gt;&gt;&gt; (x+y+2+y**2*sin(x)).atoms(type=Symbol) set([x, y])</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>(x+y+2+y**2*sin(x)).atoms(type=Number)
 <span class="py-output">set([2])</span></pre>
@@ -107,8 +107,8 @@ You can also filter the results by a given type(s) of object
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.is_number">is_number(self):</a></div>
-            <div class="functionBody"><div>Returns True if self is a number (like 1, or 1+log(2)), and False 
-otherwise (e.g. 1+x).
+            <div class="functionBody"><div><p>Returns True if self is a number (like 1, or 1+log(2)), and False 
+otherwise (e.g. 1+x).</p>
 </div></div>
             </div>
             <div class="function">
@@ -133,7 +133,7 @@ otherwise (e.g. 1+x).
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.subs">subs(self, old, new):</a></div>
-            <div class="functionBody"><div>Substitutes an expression old -&gt; new.
+            <div class="functionBody"><div><p>Substitutes an expression old -&gt; new.</p>
 </div></div>
             </div>
             <div class="function">
@@ -142,7 +142,7 @@ otherwise (e.g. 1+x).
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.has">has(self, *patterns):</a></div>
-            <div class="functionBody"><div>Return True if self has any of the patterns.
+            <div class="functionBody"><div><p>Return True if self has any of the patterns.</p>
 </div></div>
             </div>
             <div class="function">
@@ -211,7 +211,7 @@ exp(x) is always substituted before x</pre></div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.matches">matches(pattern, expr, repl_dict={}, evaluate=False):</a></div>
             <div class="functionBody"><div><p>Helper method for match() - switches the pattern and expr.</p>
-Can be used to solve linear equations:
+<p>Can be used to solve linear equations:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol, Wild
 <span class="py-prompt">&gt;&gt;&gt; </span>a,b = map(Symbol, <span class="py-string">'ab'</span>)
@@ -251,15 +251,15 @@ trivial solution (eqn, rhs).</pre></div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.count_ops">count_ops(self, symbolic=True):</a></div>
             <div class="functionBody"><div><p>Return the number of operations in expressions.</p>
-Examples: &gt;&gt;&gt; (1+a+b**2).count_ops() POW + 2 * ADD &gt;&gt;&gt;
-(sin(x)*x+sin(x)**2).count_ops() ADD + MUL + POW + 2 * SIN
+<p>Examples: &gt;&gt;&gt; (1+a+b**2).count_ops() POW + 2 * ADD &gt;&gt;&gt;
+(sin(x)*x+sin(x)**2).count_ops() ADD + MUL + POW + 2 * SIN</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.doit">doit(self, **hints):</a></div>
-            <div class="functionBody"><div>Evaluate objects that are not evaluated by default like limits, 
+            <div class="functionBody"><div><p>Evaluate objects that are not evaluated by default like limits, 
 integrals, sums and products. All objects of this kind will be evaluated 
-unless some species were excluded via 'hints'.
+unless some species were excluded via 'hints'.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
@@ -293,8 +293,8 @@ unless some species were excluded via 'hints'.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.expand">expand(self, *args, **hints):</a></div>
-            <div class="functionBody"><div>Expand an expression based on different hints. Currently supported hints
-are basic, power, complex, trig and func.
+            <div class="functionBody"><div><p>Expand an expression based on different hints. Currently supported hints
+are basic, power, complex, trig and func.</p>
 </div></div>
             </div>
             <div class="function">
@@ -311,10 +311,10 @@ as gamma function.</p>
 (instances of DefinedFunction class). As rule you can use string or a 
 destinaton function instance (in this cas rewrite() will use tostr() 
 method).</p>
-There is also possibility to pass hints on how to rewrite the given 
+<p>There is also possibility to pass hints on how to rewrite the given 
 expressions. For now there is only one such hint defined called 'deep'. 
 When 'deep' is set to False it will forbid functions to rewrite their 
-contents.
+contents.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
@@ -325,9 +325,9 @@ contents.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.as_coefficient">as_coefficient(self, expr):</a></div>
-            <div class="functionBody"><div>Extracts symbolic coefficient at the given expression. In other words, 
+            <div class="functionBody"><div><p>Extracts symbolic coefficient at the given expression. In other words, 
 this functions separates 'self' into product of 'expr' and 'expr'-free 
-coefficient. If such separation is not possible it will return None.
+coefficient. If such separation is not possible it will return None.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
@@ -348,9 +348,9 @@ coefficient. If such separation is not possible it will return None.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.as_independent">as_independent(self, *deps):</a></div>
-            <div class="functionBody"><div>Returns a pair with separated parts of a given expression independent of
+            <div class="functionBody"><div><p>Returns a pair with separated parts of a given expression independent of
 specified symbols in the first place and dependend on them in the other. 
-Both parts are valid SymPy expressions.
+Both parts are valid SymPy expressions.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
@@ -365,8 +365,8 @@ Both parts are valid SymPy expressions.
 collected both real and imaginary parts. This method can't be confused with
 re() and im() functions, which does not perform complex expansion at 
 evaluation.</p>
-However it is possible to expand both re() and im() functions and get 
-exactly the same results as with a single call to this function.
+<p>However it is possible to expand both re() and im() functions and get 
+exactly the same results as with a single call to this function.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *</pre>
 <pre class="py-doctest">
@@ -407,7 +407,7 @@ exactly the same results as with a single call to this function.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.as_expr_orders">as_expr_orders(self):</a></div>
-            <div class="functionBody"><div>Split expr + Order(..) to (expr, Order(..)).
+            <div class="functionBody"><div><p>Split expr + Order(..) to (expr, Order(..)).</p>
 </div></div>
             </div>
             <div class="function">
@@ -449,14 +449,14 @@ exactly the same results as with a single call to this function.
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.series">series(self, x, n=6):</a></div>
             <div class="functionBody"><div><h1 class="heading">Usage</h1>
-  Return the Taylor series around 0 of self with respect to x until the 
-  n-th term (default n is 6).
+  <p>Return the Taylor series around 0 of self with respect to x until the 
+  n-th term (default n is 6).</p>
 <h1 class="heading">Notes</h1>
   <p>This method is the most high level method and it returns the series 
   including the O(x**n) term.</p>
-  Internally, it executes a method oseries(), which takes an O instance 
+  <p>Internally, it executes a method oseries(), which takes an O instance 
   as the only parameter and it is responsible for returning a series 
-  (without the O term) up to the given order.
+  (without the O term) up to the given order.</p>
 </div></div>
             </div>
             <div class="function">
@@ -467,8 +467,8 @@ actual O term).</p>
 (laurent) term and calculate one be one and use order.contains(term) method
 to determine if your term is still significant and should be added to the 
 series, or we should stop.</p>
-The _cache parameter is not meant to be used by a user. It is here only 
-to detect an infinite recursion.
+<p>The _cache parameter is not meant to be used by a user. It is here only 
+to detect an infinite recursion.</p>
 </div></div>
             </div>
             <div class="function">
@@ -477,13 +477,13 @@ to detect an infinite recursion.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic._compute_oseries">_compute_oseries(self, arg, order, taylor_term, unevaluated_func, correction=0):</a></div>
-            <div class="functionBody"><div>compute series sum(taylor_term(i, arg), i=0..n-1) such that 
-order.contains(taylor_term(n, arg)). Assumes that arg-&gt;0 as x-&gt;0.
+            <div class="functionBody"><div><p>compute series sum(taylor_term(i, arg), i=0..n-1) such that 
+order.contains(taylor_term(n, arg)). Assumes that arg-&gt;0 as x-&gt;0.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.limit">limit(self, x, xlim, direction='<'):</a></div>
-            <div class="functionBody"><div>Compute limit x-&gt;xlim.
+            <div class="functionBody"><div><p>Compute limit x-&gt;xlim.</p>
 </div></div>
             </div>
             <div class="function">
@@ -496,7 +496,7 @@ order.contains(taylor_term(n, arg)). Assumes that arg-&gt;0 as x-&gt;0.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.basic.Basic.as_coeff_exponent">as_coeff_exponent(self, x):</a></div>
-            <div class="functionBody"><div>c*x**e -&gt; c,e where x can be any symbolic expression.
+            <div class="functionBody"><div><p>c*x**e -&gt; c,e where x can be any symbolic expression.</p>
 </div></div>
             </div>
             <div class="function">

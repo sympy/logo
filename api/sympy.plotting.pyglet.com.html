@@ -11,7 +11,7 @@ We don't need anything that sophisticated to work with DirectX.</p>
 <p>All interfaces should derive from IUnknown (defined in this module).  
 The Python COM interfaces are actually pointers to the implementation (take
 note when translating methods that take an interface as argument).</p>
-Interfaces can define methods:
+<p>Interfaces can define methods:</p>
 <pre class="literalblock">
    class IDirectSound8(com.IUnknown):
        _methods_ = [
@@ -20,9 +20,9 @@ Interfaces can define methods:
            ...
        ]
 </pre>
-Only use STDMETHOD or METHOD for the method types (not ordinary ctypes 
+<p>Only use STDMETHOD or METHOD for the method types (not ordinary ctypes 
 function types).  The 'this' pointer is bound automatically... e.g., 
-call:
+call:</p>
 <pre class="literalblock">
    device = IDirectSound8()
    DirectSoundCreate8(None, ctypes.byref(device), None)
@@ -32,13 +32,13 @@ call:
 </pre>
 <p>Because STDMETHODs use HRESULT as the return type, there is no need to 
 check the return value.</p>
-Don't forget to manually manage memory... call Release() when you're 
-done with an interface.
-</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.GUID.html">GUID</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.METHOD.html">METHOD</a></td><td><div>COM method.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.STDMETHOD.html">STDMETHOD</a></td><td><div>COM method with HRESULT return value.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.COMMethodInstance.html">COMMethodInstance</a></td><td><div>Binds a COM interface method.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.COMInterface.html">COMInterface</a></td><td><div>Dummy struct to serve as the type of all COM pointers.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.InterfaceMetaclass.html">InterfaceMetaclass</a></td><td><div>Creates COM interface pointers.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.Interface.html">Interface</a></td><td><div>Base COM interface pointer.
+<p>Don't forget to manually manage memory... call Release() when you're 
+done with an interface.</p>
+</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.GUID.html">GUID</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.METHOD.html">METHOD</a></td><td><div><p>COM method.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.STDMETHOD.html">STDMETHOD</a></td><td><div><p>COM method with HRESULT return value.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.COMMethodInstance.html">COMMethodInstance</a></td><td><div><p>Binds a COM interface method.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.COMInterface.html">COMInterface</a></td><td><div><p>Dummy struct to serve as the type of all COM pointers.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.InterfaceMetaclass.html">InterfaceMetaclass</a></td><td><div><p>Creates COM interface pointers.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.Interface.html">Interface</a></td><td><div><p>Base COM interface pointer.</p>
 </div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.com.IUnknown.html">IUnknown</a></td><td><span class="undocumented">Undocumented</span></td></tr></table></body>
         

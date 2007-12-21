@@ -5,42 +5,42 @@
         </head>
         <body><h1 class="module">Module s.s.acceleration</h1><span id="part">Part of <a href="sympy.series.html">sympy.series</a></span><div class="toplevel"><div><p>Convergence acceleration / extrapolation methods for series and 
 sequences.</p>
-References: Carl M. Bender &amp; Steven A. Orszag, &quot;Advanced 
+<p>References: Carl M. Bender &amp; Steven A. Orszag, &quot;Advanced 
 Mathematical Methods for Scientists and Engineers: Asymptotic Methods and 
 Perturbation Theory&quot;, Springer 1999. (Shanks transformation: pp. 
-368-375, Richardson extrapolation: pp. 375-377.)
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.series.acceleration.richardson">richardson</a></td><td><div>Calculate an approximation for lim k-&gt;oo A(k) using Richardson
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.acceleration.shanks">shanks</a></td><td><div>Calculate an approximation for lim k-&gt;oo A(k) using the n-term 
-Shanks
+368-375, Richardson extrapolation: pp. 375-377.)</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.series.acceleration.richardson">richardson</a></td><td><div><p>Calculate an approximation for lim k-&gt;oo A(k) using Richardson</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.acceleration.shanks">shanks</a></td><td><div><p>Calculate an approximation for lim k-&gt;oo A(k) using the n-term 
+Shanks</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.acceleration.richardson">richardson(A, k, n, N):</a></div>
             <div class="functionBody"><div><p>Calculate an approximation for lim k-&gt;oo A(k) using Richardson 
 extrapolation with the terms A(n), A(n+1), ..., A(n+N+1). Choosing N ~= 2*n
 often gives good results.</p>
-A simple example is to calculate exp(1) using the limit definition. This
-limit converges slowly; n = 100 only produces two accurate digits:
+<p>A simple example is to calculate exp(1) using the limit definition. This
+limit converges slowly; n = 100 only produces two accurate digits:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>n = Symbol(<span class="py-string">'n'</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>e = (1 + 1/n)**n
 <span class="py-prompt">&gt;&gt;&gt; </span>e.subs(n, 100).evalf()
 <span class="py-output">2.704813829421526093267194711</span></pre>
-Richardson extrapolation with 11 appropriately chosen terms gives a 
-value that is accurate to the indicated precision:
+<p>Richardson extrapolation with 11 appropriately chosen terms gives a 
+value that is accurate to the indicated precision:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>richardson(e, n, 10, 20).evalf()
 <span class="py-output">2.718281828459045235360287471</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>E.evalf()
 <span class="py-output">2.718281828459045235360287471</span></pre>
-Another useful application is to speed up convergence of series. 
+<p>Another useful application is to speed up convergence of series. 
 Computing 100 terms of the zeta(2) series 1/k**2 yields only two accurate 
-digits:
+digits:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>k = Symbol(<span class="py-string">'k'</span>); n = Symbol(<span class="py-string">'n'</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>A = Sum2(k**-2, (k, 1, n))
 <span class="py-prompt">&gt;&gt;&gt; </span>A.subs(n, 100).evalf()
 <span class="py-output">1.634983900184892865077169498</span></pre>
-Richardson extrapolation performs much better:
+<p>Richardson extrapolation performs much better:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>richardson(A, n, 10, 20).evalf()
 <span class="py-output">1.644934066848226436472414853</span>
@@ -53,8 +53,8 @@ Richardson extrapolation performs much better:
             <div class="functionBody"><div><p>Calculate an approximation for lim k-&gt;oo A(k) using the n-term Shanks
 transformation S(A)(n). With m &gt; 1, calculate the m-fold recursive 
 Shanks transformation S(S(...S(A)...))(n).</p>
-The Shanks transformation is useful for summing Taylor series that 
-converge slowly near a pole or singularity, e.g. for log(2):
+<p>The Shanks transformation is useful for summing Taylor series that 
+converge slowly near a pole or singularity, e.g. for log(2):</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>n = Symbol(<span class="py-string">'n'</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>k = Symbol(<span class="py-string">'k'</span>)
@@ -65,7 +65,7 @@ converge slowly near a pole or singularity, e.g. for log(2):
 <span class="py-output">0.6931396564055737564958186845</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>shanks(A, n, 25, 5).evalf()
 <span class="py-output">0.6931471805599451716132607039</span></pre>
-The correct value is 0.6931471805599453094172321215.
+<p>The correct value is 0.6931471805599453094172321215.</p>
 </div></div>
             </div></body>
         

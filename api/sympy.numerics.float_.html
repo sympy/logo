@@ -3,30 +3,30 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.numerics.float_&rdquo;</title>
         </head>
-        <body><h1 class="module">Module s.n.float_</h1><span id="part">Part of <a href="sympy.numerics.html">sympy.numerics</a></span><div class="toplevel"><div>This module implements a class Float for arbitrary-precision binary 
+        <body><h1 class="module">Module s.n.float_</h1><span id="part">Part of <a href="sympy.numerics.html">sympy.numerics</a></span><div class="toplevel"><div><p>This module implements a class Float for arbitrary-precision binary 
 floating-point arithmetic. It is typically 10-100 times faster than 
 Python's standard Decimals. For details on usage, refer to the docstrings 
-in the Float class. A ComplexFloat class is also provided.
-</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.numerics.float_._RoundingMode.html">_RoundingMode</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.rshift">rshift</a></td><td><div>Shift x n bits to the right (i.e., calculate x/(2**n)), and
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.normalize">normalize</a></td><td><div>Normalize the binary floating-point number represented by
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.makefloat">makefloat</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.binary_to_decimal">binary_to_decimal</a></td><td><div>Represent as a decimal string with at most n digits
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.numerics.float_.Float.html">Float</a></td><td><div>A Float is a rational number of the form
+in the Float class. A ComplexFloat class is also provided.</p>
+</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.numerics.float_._RoundingMode.html">_RoundingMode</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.rshift">rshift</a></td><td><div><p>Shift x n bits to the right (i.e., calculate x/(2**n)), and</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.normalize">normalize</a></td><td><div><p>Normalize the binary floating-point number represented by</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.makefloat">makefloat</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.numerics.float_.binary_to_decimal">binary_to_decimal</a></td><td><div><p>Represent as a decimal string with at most n digits</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.numerics.float_.Float.html">Float</a></td><td><div><p>A Float is a rational number of the form</p>
 </div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.numerics.float_.ComplexFloat.html">ComplexFloat</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.numerics.float_.rshift">rshift(x, n, mode):</a></div>
-            <div class="functionBody"><div>Shift x n bits to the right (i.e., calculate x/(2**n)), and round to the
+            <div class="functionBody"><div><p>Shift x n bits to the right (i.e., calculate x/(2**n)), and round to the
 nearest integer in accordance with the specified rounding mode. The 
 exponent n may be negative, in which case x is shifted to the left (and no 
-rounding is necessary).
+rounding is necessary).</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.numerics.float_.normalize">normalize(man, exp, prec, mode):</a></div>
-            <div class="functionBody"><div>Normalize the binary floating-point number represented by man * 2**exp 
+            <div class="functionBody"><div><p>Normalize the binary floating-point number represented by man * 2**exp 
 to the specified precision level, rounding according to the specified 
 rounding mode if necessary. The mantissa is also stripped of trailing zero 
 bits, and its bits are counted. The returned value is a tuple (man, exp, 
-bc).
+bc).</p>
 </div></div>
             </div>
             <div class="function">
@@ -35,7 +35,7 @@ bc).
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.numerics.float_.binary_to_decimal">binary_to_decimal(man, exp, n):</a></div>
-            <div class="functionBody"><div>Represent as a decimal string with at most n digits
+            <div class="functionBody"><div><p>Represent as a decimal string with at most n digits</p>
 </div></div>
             </div></body>
         

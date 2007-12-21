@@ -6,7 +6,7 @@
         <body><h1 class="module">Module s.p.p.i.c.__init__</h1><span id="part">Part of <a href="sympy.plotting.pyglet.image.codecs.html">sympy.plotting.pyglet.image.codecs</a></span><div class="toplevel"><div><p>Collection of image encoders and decoders.</p>
 <p>Modules must subclass ImageDecoder and ImageEncoder for each method of 
 decoding/encoding they support.</p>
-Modules must also implement the two functions:
+<p>Modules must also implement the two functions:</p>
 <pre class="literalblock">
    def get_decoders():
        # Return a list of ImageDecoder instances or []
@@ -16,35 +16,35 @@ Modules must also implement the two functions:
        # Return a list of ImageEncoder instances or []
        return []
 </pre>
-</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.__init__.ImageDecodeException.html">ImageDecodeException</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.__init__.ImageEncodeException.html">ImageEncodeException</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.__init__.ImageDecoder.html">ImageDecoder</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.__init__.ImageEncoder.html">ImageEncoder</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.__init__.get_encoders">get_encoders</a></td><td><div>Get an ordered list of encoders to attempt.  filename can be used
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.__init__.get_decoders">get_decoders</a></td><td><div>Get an ordered list of decoders to attempt.  filename can be used
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.__init__.add_decoders">add_decoders</a></td><td><div>Add a decoder module.  The module must define `get_decoders`.  Once
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.__init__.add_encoders">add_encoders</a></td><td><div>Add an encoder module.  The module must define `get_encoders`.  Once
+</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.__init__.ImageDecodeException.html">ImageDecodeException</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.__init__.ImageEncodeException.html">ImageEncodeException</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.__init__.ImageDecoder.html">ImageDecoder</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.image.codecs.__init__.ImageEncoder.html">ImageEncoder</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.__init__.get_encoders">get_encoders</a></td><td><div><p>Get an ordered list of encoders to attempt.  filename can be used</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.__init__.get_decoders">get_decoders</a></td><td><div><p>Get an ordered list of decoders to attempt.  filename can be used</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.__init__.add_decoders">add_decoders</a></td><td><div><p>Add a decoder module.  The module must define `get_decoders`.  Once</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.__init__.add_encoders">add_encoders</a></td><td><div><p>Add an encoder module.  The module must define `get_encoders`.  Once</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.image.codecs.__init__.add_default_image_codecs">add_default_image_codecs</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.__init__.get_encoders">get_encoders(filename=None):</a></div>
-            <div class="functionBody"><div>Get an ordered list of encoders to attempt.  filename can be used as a 
-hint for the filetype.
+            <div class="functionBody"><div><p>Get an ordered list of encoders to attempt.  filename can be used as a 
+hint for the filetype.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.__init__.get_decoders">get_decoders(filename=None):</a></div>
-            <div class="functionBody"><div>Get an ordered list of decoders to attempt.  filename can be used as a 
-hint for the filetype.
+            <div class="functionBody"><div><p>Get an ordered list of decoders to attempt.  filename can be used as a 
+hint for the filetype.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.__init__.add_decoders">add_decoders(module):</a></div>
-            <div class="functionBody"><div>Add a decoder module.  The module must define `get_decoders`.  Once 
+            <div class="functionBody"><div><p>Add a decoder module.  The module must define `get_decoders`.  Once 
 added, the appropriate decoders defined in the codec will be returned by 
-pyglet.image.codecs.get_decoders.
+pyglet.image.codecs.get_decoders.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.image.codecs.__init__.add_encoders">add_encoders(module):</a></div>
-            <div class="functionBody"><div>Add an encoder module.  The module must define `get_encoders`.  Once 
+            <div class="functionBody"><div><p>Add an encoder module.  The module must define `get_encoders`.  Once 
 added, the appropriate encoders defined in the codec will be returned by 
-pyglet.image.codecs.get_encoders.
+pyglet.image.codecs.get_encoders.</p>
 </div></div>
             </div>
             <div class="function">

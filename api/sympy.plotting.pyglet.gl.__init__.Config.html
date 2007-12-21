@@ -52,15 +52,15 @@ See also `pyglet.window.Screen.get_best_config` and
         buffer.
     `accum_alpha_size` : int
         Bits per pixel devoted to the alpha component in the accumulation
-        buffer.</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Config.__init__">__init__</a></td><td><div>Create a template config with the given attributes.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Config.get_gl_attributes">get_gl_attributes</a></td><td><div>Return a list of attributes set on this config.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Config.create_context">create_context</a></td><td><div>Create a GL context that satisifies this configuration.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Config.is_complete">is_complete</a></td><td><div>Determine if this config is complete and able to create a context.
+        buffer.</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Config.__init__">__init__</a></td><td><div><p>Create a template config with the given attributes.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Config.get_gl_attributes">get_gl_attributes</a></td><td><div><p>Return a list of attributes set on this config.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Config.create_context">create_context</a></td><td><div><p>Create a GL context that satisifies this configuration.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Config.is_complete">is_complete</a></td><td><div><p>Determine if this config is complete and able to create a context.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.gl.__init__.Config.__repr__">__repr__</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.gl.__init__.Config.__init__">__init__(self, **kwargs):</a></div>
             <div class="functionBody"><div><p>Create a template config with the given attributes.</p>
-Specify attributes as keyword arguments, for example:
+<p>Specify attributes as keyword arguments, for example:</p>
 <pre class="literalblock">
    template = Config(double_buffer=True)
 </pre>
@@ -91,8 +91,8 @@ Specify attributes as keyword arguments, for example:
 <p>Configs created directly are not complete, they can only serve as 
 templates for retrieving a supported config from the system. For example, 
 `pyglet.window.Screen.get_matching_configs` returns complete configs.</p>
-:rtype: bool :return: True if the config is complete and can create a 
-context.
+<p>:rtype: bool :return: True if the config is complete and can create a 
+context.</p>
 </div></div>
             </div>
             <div class="function">

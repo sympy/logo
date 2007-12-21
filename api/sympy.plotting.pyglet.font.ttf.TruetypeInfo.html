@@ -7,23 +7,23 @@
 <p>The class memory-maps the font file to read the tables, so it is vital 
 that you call the `close` method to avoid large memory leaks.  Once closed,
 you cannot call any of the ``get_*`` methods.</p>
-Not all tables have been implemented yet (or likely ever will). 
+<p>Not all tables have been implemented yet (or likely ever will). 
 Currently only the name and metric tables are read; in particular there is 
-no glyph or hinting information.
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.__init__">__init__</a></td><td><div>Read the given truetype file.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_font_selection_flags">get_font_selection_flags</a></td><td><div>Return the font selection flags, as defined in OS/2 table
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.is_bold">is_bold</a></td><td><div>Returns True iff the font describes itself as bold.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.is_italic">is_italic</a></td><td><div>Returns True iff the font describes itself as italic.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_names">get_names</a></td><td><div>Returns a dictionary of names defined in the file.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_name">get_name</a></td><td><div>Returns the value of the given name in this font.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_horizontal_metrics">get_horizontal_metrics</a></td><td><div>Return all horizontal metric entries in table format.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_character_advances">get_character_advances</a></td><td><div>Return a dictionary of character-&gt;advance.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_glyph_advances">get_glyph_advances</a></td><td><div>Return a dictionary of glyph-&gt;advance.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_character_kernings">get_character_kernings</a></td><td><div>Return a dictionary of (left,right)-&gt;kerning
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_glyph_kernings">get_glyph_kernings</a></td><td><div>Return a dictionary of (left,right)-&gt;kerning
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo._add_kernings_format0">_add_kernings_format0</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_glyph_map">get_glyph_map</a></td><td><div>Calculate and return a reverse character map.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_character_map">get_character_map</a></td><td><div>Return the character map.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo._get_character_map_format4">_get_character_map_format4</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo._read_array">_read_array</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.close">close</a></td><td><div>Close the font file.
+no glyph or hinting information.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.__init__">__init__</a></td><td><div><p>Read the given truetype file.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_font_selection_flags">get_font_selection_flags</a></td><td><div><p>Return the font selection flags, as defined in OS/2 table</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.is_bold">is_bold</a></td><td><div><p>Returns True iff the font describes itself as bold.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.is_italic">is_italic</a></td><td><div><p>Returns True iff the font describes itself as italic.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_names">get_names</a></td><td><div><p>Returns a dictionary of names defined in the file.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_name">get_name</a></td><td><div><p>Returns the value of the given name in this font.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_horizontal_metrics">get_horizontal_metrics</a></td><td><div><p>Return all horizontal metric entries in table format.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_character_advances">get_character_advances</a></td><td><div><p>Return a dictionary of character-&gt;advance.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_glyph_advances">get_glyph_advances</a></td><td><div><p>Return a dictionary of glyph-&gt;advance.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_character_kernings">get_character_kernings</a></td><td><div><p>Return a dictionary of (left,right)-&gt;kerning</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_glyph_kernings">get_glyph_kernings</a></td><td><div><p>Return a dictionary of (left,right)-&gt;kerning</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo._add_kernings_format0">_add_kernings_format0</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_glyph_map">get_glyph_map</a></td><td><div><p>Calculate and return a reverse character map.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_character_map">get_character_map</a></td><td><div><p>Return the character map.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo._get_character_map_format4">_get_character_map_format4</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo._read_array">_read_array</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.font.ttf.TruetypeInfo.close">close</a></td><td><div><p>Close the font file.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.ttf.TruetypeInfo.__init__">__init__(self, filename):</a></div>
@@ -40,17 +40,17 @@ be read.</pre></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_font_selection_flags">get_font_selection_flags(self):</a></div>
-            <div class="functionBody"><div>Return the font selection flags, as defined in OS/2 table
+            <div class="functionBody"><div><p>Return the font selection flags, as defined in OS/2 table</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.ttf.TruetypeInfo.is_bold">is_bold(self):</a></div>
-            <div class="functionBody"><div>Returns True iff the font describes itself as bold.
+            <div class="functionBody"><div><p>Returns True iff the font describes itself as bold.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.ttf.TruetypeInfo.is_italic">is_italic(self):</a></div>
-            <div class="functionBody"><div>Returns True iff the font describes itself as italic.
+            <div class="functionBody"><div><p>Returns True iff the font describes itself as italic.</p>
 </div></div>
             </div>
             <div class="function">
@@ -58,8 +58,8 @@ be read.</pre></div>
             <div class="functionBody"><div><p>Returns a dictionary of names defined in the file.</p>
 <p>The key of each item is a tuple of ``platform_id``, ``name_id``, where 
 each ID is the number as described in the Truetype format.</p>
-The value of each item is a tuple of ``encoding_id``, ``language_id``, 
-``value``, where ``value`` is an encoded string.
+<p>The value of each item is a tuple of ``encoding_id``, ``language_id``, 
+``value``, where ``value`` is an encoded string.</p>
 </div></div>
             </div>
             <div class="function">
@@ -116,37 +116,37 @@ Valid platforms to request are (supply as a string)::
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_horizontal_metrics">get_horizontal_metrics(self):</a></div>
-            <div class="functionBody"><div>Return all horizontal metric entries in table format.
+            <div class="functionBody"><div><p>Return all horizontal metric entries in table format.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_character_advances">get_character_advances(self):</a></div>
             <div class="functionBody"><div><p>Return a dictionary of character-&gt;advance.</p>
-They key of the dictionary is a unit-length unicode string, and the 
-value is a float giving the horizontal advance in em.
+<p>They key of the dictionary is a unit-length unicode string, and the 
+value is a float giving the horizontal advance in em.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_glyph_advances">get_glyph_advances(self):</a></div>
             <div class="functionBody"><div><p>Return a dictionary of glyph-&gt;advance.</p>
-They key of the dictionary is the glyph index and the value is a float 
-giving the horizontal advance in em.
+<p>They key of the dictionary is the glyph index and the value is a float 
+giving the horizontal advance in em.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_character_kernings">get_character_kernings(self):</a></div>
             <div class="functionBody"><div><p>Return a dictionary of (left,right)-&gt;kerning</p>
-The key of the dictionary is a tuple of ``(left, right)`` where each 
+<p>The key of the dictionary is a tuple of ``(left, right)`` where each 
 element is a unit-length unicode string.  The value of the dictionary is 
-the horizontal pairwise kerning in em.
+the horizontal pairwise kerning in em.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_glyph_kernings">get_glyph_kernings(self):</a></div>
             <div class="functionBody"><div><p>Return a dictionary of (left,right)-&gt;kerning</p>
-The key of the dictionary is a tuple of ``(left, right)`` where each 
+<p>The key of the dictionary is a tuple of ``(left, right)`` where each 
 element is a glyph index.  The value of the dictionary is the horizontal 
-pairwise kerning in em.
+pairwise kerning in em.</p>
 </div></div>
             </div>
             <div class="function">
@@ -156,16 +156,16 @@ pairwise kerning in em.
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_glyph_map">get_glyph_map(self):</a></div>
             <div class="functionBody"><div><p>Calculate and return a reverse character map.</p>
-Returns a dictionary where the key is a glyph index and the value is a 
-unit-length unicode string.
+<p>Returns a dictionary where the key is a glyph index and the value is a 
+unit-length unicode string.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.ttf.TruetypeInfo.get_character_map">get_character_map(self):</a></div>
             <div class="functionBody"><div><p>Return the character map.</p>
-Returns a dictionary where the key is a unit-length unicode string and 
+<p>Returns a dictionary where the key is a unit-length unicode string and 
 the value is a glyph index.  Currently only format 4 character maps are 
-read.
+read.</p>
 </div></div>
             </div>
             <div class="function">
@@ -179,9 +179,9 @@ read.
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.font.ttf.TruetypeInfo.close">close(self):</a></div>
             <div class="functionBody"><div><p>Close the font file.</p>
-This is a good idea, since the entire file is memory mapped in until 
+<p>This is a good idea, since the entire file is memory mapped in until 
 this method is called.  After closing cannot rely on the ``get_*`` 
-methods.
+methods.</p>
 </div></div>
             </div></body>
         

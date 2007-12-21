@@ -12,11 +12,11 @@ calculus, probability, number theory etc.</p>
 <p>There is strict relation of factorial with gamma function. In fact n! = 
 gamma(n+1) for nonnegarive integers. Rewrite of this kind is very useful in
 case of combinatorial simplification.</p>
-Computation of the factorial is done using two algorithms. For small 
+<p>Computation of the factorial is done using two algorithms. For small 
 arguments naive product is evaluated. However for bigger input algorithm 
 Prime-Swing is used. It is the fastest algorithm known and computes n! via 
 prime factorization of special class of numbers, called here the 'Swing 
-Numbers'.
+Numbers'.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
 <span class="py-prompt">&gt;&gt;&gt; </span>n = Symbol(<span class="py-string">'n'</span>, integer=True)</pre>
@@ -35,7 +35,7 @@ Numbers'.
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>factorial(2*n)
 <span class="py-output">(2*n)!</span></pre>
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial._swing">_swing</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial._recursive">_recursive</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial.canonize">canonize</a></td><td><div>Returns a canonical form of cls applied to arguments args.
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial._swing">_swing</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial._recursive">_recursive</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial.canonize">canonize</a></td><td><div><p>Returns a canonical form of cls applied to arguments args.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial._eval_rewrite_as_gamma">_eval_rewrite_as_gamma</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.combinatorial.factorials.Factorial._eval_is_integer">_eval_is_integer</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.functions.combinatorial.factorials.Factorial._swing">_swing(cls, n):</a></div>

@@ -3,25 +3,25 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.geometry.polygon.RegularPolygon&rdquo;</title>
         </head>
-        <body><h1 class="class">Class s.g.p.RegularPolygon(<a href="sympy.geometry.polygon.Polygon.html">Polygon</a>):</h1><span id="part">Part of <a href="sympy.geometry.polygon.html">sympy.geometry.polygon</a></span><div class="toplevel"><div>A polygon which is regular. Such a polygon has all internal angles equal
-and all sides the same length.
+        <body><h1 class="class">Class s.g.p.RegularPolygon(<a href="sympy.geometry.polygon.Polygon.html">Polygon</a>):</h1><span id="part">Part of <a href="sympy.geometry.polygon.html">sympy.geometry.polygon</a></span><div class="toplevel"><div><p>A polygon which is regular. Such a polygon has all internal angles equal
+and all sides the same length.</p>
 <h1 class="heading">Usage:</h1>
-  The polygon is constructed from a center point, a radius value, and 
+  <p>The polygon is constructed from a center point, a radius value, and 
   the number of sides. The radius value is the distance from the center to 
-  a vertex.
+  a vertex.</p>
 <h1 class="heading">Example:</h1>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>RegularPolygon(Point(0, 0), 5, 5)
 <span class="py-output">RegularPolygon(Point(0, 0), 5, 5)</span></pre>
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.vertices">vertices</a></td><td><div>The vertices that define the polygon.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.center">center</a></td><td><div>Returns the center of the regular polygon (i.e., the center of the
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.radius">radius</a></td><td><div>Returns the radius of the regular polygon (i.e., the radius of the
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.apothem">apothem</a></td><td><div>Returns the apothem/inradius of the regular polygon (i.e., the
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.interior_angle">interior_angle</a></td><td><div>Returns the measure of the interior angles.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.exterior_angle">exterior_angle</a></td><td><div>Returns the measure of the exterior angles.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.circumcircle">circumcircle</a></td><td><div>Returns a Circle instance describing the circumcircle.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.incircle">incircle</a></td><td><div>Returns a Circle instance describing the inscribed circle.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.angles">angles</a></td><td><div>Returns a dictionary of {point: angle} entries containing the
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.vertices">vertices</a></td><td><div><p>The vertices that define the polygon.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.center">center</a></td><td><div><p>Returns the center of the regular polygon (i.e., the center of the</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.radius">radius</a></td><td><div><p>Returns the radius of the regular polygon (i.e., the radius of the</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.apothem">apothem</a></td><td><div><p>Returns the apothem/inradius of the regular polygon (i.e., the</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.interior_angle">interior_angle</a></td><td><div><p>Returns the measure of the interior angles.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.exterior_angle">exterior_angle</a></td><td><div><p>Returns the measure of the exterior angles.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.circumcircle">circumcircle</a></td><td><div><p>Returns a Circle instance describing the circumcircle.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.incircle">incircle</a></td><td><div><p>Returns a Circle instance describing the inscribed circle.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.polygon.RegularPolygon.angles">angles</a></td><td><div><p>Returns a dictionary of {point: angle} entries containing the</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.polygon.RegularPolygon.__new__">__new__(self, c, r, n, **kwargs):</a></div>
@@ -29,45 +29,45 @@ and all sides the same length.
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.polygon.RegularPolygon.vertices">vertices(self):</a></div>
-            <div class="functionBody"><div>The vertices that define the polygon.
+            <div class="functionBody"><div><p>The vertices that define the polygon.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.polygon.RegularPolygon.center">center(self):</a></div>
-            <div class="functionBody"><div>Returns the center of the regular polygon (i.e., the center of the 
-circumscribing circle).
+            <div class="functionBody"><div><p>Returns the center of the regular polygon (i.e., the center of the 
+circumscribing circle).</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.polygon.RegularPolygon.radius">radius(self):</a></div>
-            <div class="functionBody"><div>Returns the radius of the regular polygon (i.e., the radius of the 
-circumscribing circle).
+            <div class="functionBody"><div><p>Returns the radius of the regular polygon (i.e., the radius of the 
+circumscribing circle).</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.polygon.RegularPolygon.apothem">apothem(self):</a></div>
-            <div class="functionBody"><div>Returns the apothem/inradius of the regular polygon (i.e., the radius of
-the inscribed circle).
+            <div class="functionBody"><div><p>Returns the apothem/inradius of the regular polygon (i.e., the radius of
+the inscribed circle).</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.polygon.RegularPolygon.interior_angle">interior_angle(self):</a></div>
-            <div class="functionBody"><div>Returns the measure of the interior angles.
+            <div class="functionBody"><div><p>Returns the measure of the interior angles.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.polygon.RegularPolygon.exterior_angle">exterior_angle(self):</a></div>
-            <div class="functionBody"><div>Returns the measure of the exterior angles.
+            <div class="functionBody"><div><p>Returns the measure of the exterior angles.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.polygon.RegularPolygon.circumcircle">circumcircle(self):</a></div>
-            <div class="functionBody"><div>Returns a Circle instance describing the circumcircle.
+            <div class="functionBody"><div><p>Returns a Circle instance describing the circumcircle.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.polygon.RegularPolygon.incircle">incircle(self):</a></div>
-            <div class="functionBody"><div>Returns a Circle instance describing the inscribed circle.
+            <div class="functionBody"><div><p>Returns a Circle instance describing the inscribed circle.</p>
 </div></div>
             </div>
             <div class="function">

@@ -3,9 +3,9 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.printing.latex&rdquo;</title>
         </head>
-        <body><h1 class="module">Module s.p.latex</h1><span id="part">Part of <a href="sympy.printing.html">sympy.printing</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.printing.latex.LatexPrinter.html">LatexPrinter</a></td><td><div>A printer which converts an expression into its LaTeX equivalent.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.latex">latex</a></td><td><div>Usage
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.print_latex">print_latex</a></td><td><div>Prints expr in pretty form.
+        <body><h1 class="module">Module s.p.latex</h1><span id="part">Part of <a href="sympy.printing.html">sympy.printing</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.printing.latex.LatexPrinter.html">LatexPrinter</a></td><td><div><p>A printer which converts an expression into its LaTeX equivalent.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.latex">latex</a></td><td><div><p>Usage</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.print_latex">print_latex</a></td><td><div><p>Prints expr in pretty form.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.printing.latex.latex">latex(expr):</a></div>
@@ -25,13 +25,13 @@ Examples
     >>> y = Symbol('y')
     >>> from sympy.printing.latex import latex
     
-    #>>> print latex(Integral(x*y-2, x))
-    #$\int -2+x y\,dx$</pre></div>
+    >>> print latex(Integral(x*y-2, x))
+    $\int -2+x y\,dx$</pre></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.printing.latex.print_latex">print_latex(expr):</a></div>
             <div class="functionBody"><div><p>Prints expr in pretty form.</p>
-pprint is just a shortcut for this function
+<p>pprint is just a shortcut for this function</p>
 </div></div>
             </div></body>
         

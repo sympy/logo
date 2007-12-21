@@ -6,22 +6,22 @@
         <body><h1 class="package">Package s.p.p.media</h1><span id="part">Part of <a href="sympy.plotting.pyglet.html">sympy.plotting.pyglet</a></span><div class="toplevel"><div><p>Audio and video playback.</p>
 <p>pyglet can play WAV files, and if AVbin is installed, many other audio 
 and video formats.</p>
-Playback is handled by the `Player` class, which reads raw data from 
+<p>Playback is handled by the `Player` class, which reads raw data from 
 `Source` objects and provides methods for pausing, seeking, adjusting the 
 volume, and so on.  The `Player` class implements a the best available 
-audio device (currently, only OpenAL is supported):
+audio device (currently, only OpenAL is supported):</p>
 <pre class="literalblock">
    player = Player()
 </pre>
-A `Source` is used to decode arbitrary audio and video files.  It is 
-associated with a single player by &quot;queuing&quot; it:
+<p>A `Source` is used to decode arbitrary audio and video files.  It is 
+associated with a single player by &quot;queuing&quot; it:</p>
 <pre class="literalblock">
    source = load('background_music.mp3')
    player.queue(source)
 </pre>
-Use the `Player` to control playback.  Within your main run loop, you 
+<p>Use the `Player` to control playback.  Within your main run loop, you 
 must periodically call `dispatch_events` to ensure the audio buffers are 
-refilled:
+refilled:</p>
 <pre class="literalblock">
    player.play()
    while player.source:    # While the source hasn't finished
@@ -30,17 +30,17 @@ refilled:
 <p>If the source contains video, the `Source.video_format` attribute will 
 be non-None, and the `Player.texture` attribute will contain the current 
 video image synchronised to the audio.</p>
-Decoding sounds can be processor-intensive and may introduce latency, 
+<p>Decoding sounds can be processor-intensive and may introduce latency, 
 particularly for short sounds that must be played quickly, such as bullets 
 or explosions.  You can force such sounds to be decoded and retained in 
 memory rather than streamed from disk by wrapping the source in a 
-`StaticSource`:
+`StaticSource`:</p>
 <pre class="literalblock">
    bullet_sound = StaticSource(load('bullet.wav'))
 </pre>
-The other advantage of a `StaticSource` is that it can be queued on any 
-number of players, and so played many times simultaneously.
-</div></div><table class="children"><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.media.avbin.html">avbin</a></td><td><div>Use avbin to decode audio and video media.
-</div></td></tr><tr class="package"><td>Package</td><td><a href="sympy.plotting.pyglet.media.drivers.html">drivers</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.media.procedural.html">procedural</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.media.riff.html">riff</a></td><td><div>Simple Python-only RIFF reader, supports uncompressed WAV files.
+<p>The other advantage of a `StaticSource` is that it can be queued on any 
+number of players, and so played many times simultaneously.</p>
+</div></div><table class="children"><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.media.avbin.html">avbin</a></td><td><div><p>Use avbin to decode audio and video media.</p>
+</div></td></tr><tr class="package"><td>Package</td><td><a href="sympy.plotting.pyglet.media.drivers.html">drivers</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.media.procedural.html">procedural</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="module"><td>Module</td><td><a href="sympy.plotting.pyglet.media.riff.html">riff</a></td><td><div><p>Simple Python-only RIFF reader, supports uncompressed WAV files.</p>
 </div></td></tr></table></body>
         

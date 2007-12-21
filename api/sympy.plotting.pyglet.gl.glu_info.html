@@ -5,16 +5,16 @@
         </head>
         <body><h1 class="module">Module s.p.p.g.glu_info</h1><span id="part">Part of <a href="sympy.plotting.pyglet.gl.html">sympy.plotting.pyglet.gl</a></span><div class="toplevel"><div><p>Information about version and extensions of current GLU 
 implementation.</p>
-Usage:
+<p>Usage:</p>
 <pre class="literalblock">
    from pyglet.gl import glu_info
 
    if glu_info.have_extension('GLU_EXT_nurbs_tessellator'):
        # ...
 </pre>
-If multiple contexts are in use you can use a separate GLUInfo object 
+<p>If multiple contexts are in use you can use a separate GLUInfo object 
 for each context.  Call `set_active_context` after switching to the desired
-context for each GLUInfo:
+context for each GLUInfo:</p>
 <pre class="literalblock">
    from pyglet.gl.glu_info import GLUInfo
 
@@ -23,8 +23,8 @@ context for each GLUInfo:
    if info.have_version(1, 3):
        # ...
 </pre>
-Note that GLUInfo only returns meaningful information if a context has 
-been created.
-</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.gl.glu_info.GLUInfo.html">GLUInfo</a></td><td><div>Information interface for the GLU library.
+<p>Note that GLUInfo only returns meaningful information if a context has 
+been created.</p>
+</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.gl.glu_info.GLUInfo.html">GLUInfo</a></td><td><div><p>Information interface for the GLU library.</p>
 </div></td></tr></table></body>
         

@@ -6,22 +6,22 @@
         <body><h1 class="module">Module s.p.p.m.__init__</h1><span id="part">Part of <a href="sympy.plotting.pyglet.media.html">sympy.plotting.pyglet.media</a></span><div class="toplevel"><div><p>Audio and video playback.</p>
 <p>pyglet can play WAV files, and if AVbin is installed, many other audio 
 and video formats.</p>
-Playback is handled by the `Player` class, which reads raw data from 
+<p>Playback is handled by the `Player` class, which reads raw data from 
 `Source` objects and provides methods for pausing, seeking, adjusting the 
 volume, and so on.  The `Player` class implements a the best available 
-audio device (currently, only OpenAL is supported):
+audio device (currently, only OpenAL is supported):</p>
 <pre class="literalblock">
    player = Player()
 </pre>
-A `Source` is used to decode arbitrary audio and video files.  It is 
-associated with a single player by &quot;queuing&quot; it:
+<p>A `Source` is used to decode arbitrary audio and video files.  It is 
+associated with a single player by &quot;queuing&quot; it:</p>
 <pre class="literalblock">
    source = load('background_music.mp3')
    player.queue(source)
 </pre>
-Use the `Player` to control playback.  Within your main run loop, you 
+<p>Use the `Player` to control playback.  Within your main run loop, you 
 must periodically call `dispatch_events` to ensure the audio buffers are 
-refilled:
+refilled:</p>
 <pre class="literalblock">
    player.play()
    while player.source:    # While the source hasn't finished
@@ -30,31 +30,31 @@ refilled:
 <p>If the source contains video, the `Source.video_format` attribute will 
 be non-None, and the `Player.texture` attribute will contain the current 
 video image synchronised to the audio.</p>
-Decoding sounds can be processor-intensive and may introduce latency, 
+<p>Decoding sounds can be processor-intensive and may introduce latency, 
 particularly for short sounds that must be played quickly, such as bullets 
 or explosions.  You can force such sounds to be decoded and retained in 
 memory rather than streamed from disk by wrapping the source in a 
-`StaticSource`:
+`StaticSource`:</p>
 <pre class="literalblock">
    bullet_sound = StaticSource(load('bullet.wav'))
 </pre>
-The other advantage of a `StaticSource` is that it can be queued on any 
-number of players, and so played many times simultaneously.
-</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.MediaException.html">MediaException</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.MediaFormatException.html">MediaFormatException</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.CannotSeekException.html">CannotSeekException</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.AudioFormat.html">AudioFormat</a></td><td><div>Audio details.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.VideoFormat.html">VideoFormat</a></td><td><div>Video details.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.AudioData.html">AudioData</a></td><td><div>A single packet of audio data.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.AudioPlayer.html">AudioPlayer</a></td><td><div>Abstract low-level interface for playing audio.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.Source.html">Source</a></td><td><div>An audio and/or video source.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.StreamingSource.html">StreamingSource</a></td><td><div>A source that is decoded as it is being played, and can only be
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.StaticSource.html">StaticSource</a></td><td><div>A source that has been completely decoded in memory.  This source 
-can
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.StaticMemorySource.html">StaticMemorySource</a></td><td><div>Helper class for default implementation of `StaticSource`.  Do not 
-use
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.Player.html">Player</a></td><td><div>A sound and/or video player.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.ManagedSoundPlayer.html">ManagedSoundPlayer</a></td><td><div>A player which takes care of updating its own audio buffers.
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.Listener.html">Listener</a></td><td><div>The listener properties for positional audio.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.load">load</a></td><td><div>Load a source from a file.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.dispatch_events">dispatch_events</a></td><td><div>Process managed audio events.
+<p>The other advantage of a `StaticSource` is that it can be queued on any 
+number of players, and so played many times simultaneously.</p>
+</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.MediaException.html">MediaException</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.MediaFormatException.html">MediaFormatException</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.CannotSeekException.html">CannotSeekException</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.AudioFormat.html">AudioFormat</a></td><td><div><p>Audio details.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.VideoFormat.html">VideoFormat</a></td><td><div><p>Video details.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.AudioData.html">AudioData</a></td><td><div><p>A single packet of audio data.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.AudioPlayer.html">AudioPlayer</a></td><td><div><p>Abstract low-level interface for playing audio.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.Source.html">Source</a></td><td><div><p>An audio and/or video source.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.StreamingSource.html">StreamingSource</a></td><td><div><p>A source that is decoded as it is being played, and can only be</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.StaticSource.html">StaticSource</a></td><td><div><p>A source that has been completely decoded in memory.  This source 
+can</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.StaticMemorySource.html">StaticMemorySource</a></td><td><div><p>Helper class for default implementation of `StaticSource`.  Do not 
+use</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.Player.html">Player</a></td><td><div><p>A sound and/or video player.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.ManagedSoundPlayer.html">ManagedSoundPlayer</a></td><td><div><p>A player which takes care of updating its own audio buffers.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.plotting.pyglet.media.__init__.Listener.html">Listener</a></td><td><div><p>The listener properties for positional audio.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.load">load</a></td><td><div><p>Load a source from a file.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.plotting.pyglet.media.__init__.dispatch_events">dispatch_events</a></td><td><div><p>Process managed audio events.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.load">load(filename, file=None, streaming=True):</a></div>
@@ -77,8 +77,8 @@ as real paths.
             <div class="function">
             <div class="functionHeader">def <a name="sympy.plotting.pyglet.media.__init__.dispatch_events">dispatch_events():</a></div>
             <div class="functionBody"><div><p>Process managed audio events.</p>
-You must call this function regularly (typically once per run loop 
-iteration) in order to keep audio buffers of managed players full.
+<p>You must call this function regularly (typically once per run loop 
+iteration) in order to keep audio buffers of managed players full.</p>
 </div></div>
             </div></body>
         

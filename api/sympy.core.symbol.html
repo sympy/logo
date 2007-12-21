@@ -3,23 +3,23 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.core.symbol&rdquo;</title>
         </head>
-        <body><h1 class="module">Module s.c.symbol</h1><span id="part">Part of <a href="sympy.core.html">sympy.core</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.core.symbol.Symbol.html">Symbol</a></td><td><div>Assumptions:
+        <body><h1 class="module">Module s.c.symbol</h1><span id="part">Part of <a href="sympy.core.html">sympy.core</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.core.symbol.Symbol.html">Symbol</a></td><td><div><p>Assumptions:</p>
 <pre class="literalblock">
 
 </pre>
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.symbol.Wild.html">Wild</a></td><td><div>Wild() matches any expression but another Wild().
-</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.symbol.Temporary.html">Temporary</a></td><td><div>Indexed dummy symbol.
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.symbols">symbols</a></td><td><div>Returns a list of symbols with names taken from 'names'
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.var">var</a></td><td><div>Create a symbolic variable with the name *s*.
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.symbol.Wild.html">Wild</a></td><td><div><p>Wild() matches any expression but another Wild().</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.symbol.Temporary.html">Temporary</a></td><td><div><p>Indexed dummy symbol.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.symbols">symbols</a></td><td><div><p>Returns a list of symbols with names taken from 'names'</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.var">var</a></td><td><div><p>Create a symbolic variable with the name *s*.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.symbol.symbols">symbols(*names, **kwargs):</a></div>
             <div class="functionBody"><div><p>Returns a list of symbols with names taken from 'names' argument, which 
 can be a string, then each character forms a separate symbol, or a sequence
 of strings.</p>
-All newly created symbols have assumptions set acordingly to 'kwargs'. 
+<p>All newly created symbols have assumptions set acordingly to 'kwargs'. 
 Main intention behind this function is to simplify and shorten examples 
-code in doc-strings.
+code in doc-strings.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y, z = symbols(<span class="py-string">'xyz'</span>)</pre>
 <pre class="py-doctest">
