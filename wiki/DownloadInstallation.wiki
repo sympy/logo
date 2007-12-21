@@ -35,10 +35,14 @@ The only prerequisite is python 2.4 or newer. !SymPy optionally uses some other 
 
 * latest release *
 
-Download the latest tar.gz (something like `sympy-0.4.0.tar.gz`) from the front page (Featured Downloads). You can also access all the previous downloads
-from [http://code.google.com/p/sympy/downloads/list Downloads].
+Download the latest tar.gz (something like `sympy-0.4.0.tar.gz`) from the front page (Featured Downloads).
 
 On unix systems (linux, BSD, Mac OS X, cygwin, etc.): extract it with the command `"tar xzf sympy-0.4.0.tar.gz"` and follow the README located in the sympy directory.
+
+* previous releases *
+
+You can access all the previous downloads
+from [http://code.google.com/p/sympy/downloads/list Downloads].
 
 * hg version *
 
