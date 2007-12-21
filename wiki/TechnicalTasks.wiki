@@ -45,7 +45,7 @@ finalStateComputations
 writing html to apidocs using pydoctor.html.SystemWriter
 }}}
 
-a new directory `apidoc` is created with the documentation. 
+a new directory `apidoc` is created with the documentation. Copy `apidoc/*` to `http://sympy.googlecode.com/svn/sympy/api/`
 
 Don't forget to do:
 {{{
