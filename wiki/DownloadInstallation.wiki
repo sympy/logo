@@ -41,7 +41,7 @@ On unix systems (linux, BSD, Mac OS X, cygwin, etc.): extract it with the comman
 
 * previous releases *
 
-You can access all the previous downloads
+You can access all the previous (and other) downloads
 from [http://code.google.com/p/sympy/downloads/list Downloads].
 
 * hg version *
