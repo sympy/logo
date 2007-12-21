@@ -4,7 +4,7 @@
 
 !SymPy is packaged for the following systems, so if you use one of them, simply follow the instructions. Otherwise (or if you prefer), you can install the sources directly. All you need is Python 2.4 or newer.
 
-== Packages ==
+= Packages =
 
 [http://www.debian.org/ http://sympy.googlecode.com/svn/materials/web/images/debian.png] * Debian * 
 
@@ -29,7 +29,7 @@ http://www.sagemath.org/packages/standard
 Download the windows installer from the frontpage and execute it. There is one known [http://code.google.com/p/sympy/issues/detail?id=188 issue] with missing MSVCR71.dll, but !SymPy works fine.
 
 
-== Sources ==
+= Sources =
 
 The only prerequisite is python 2.4 or newer. !SymPy optionally uses some other modules or packages, but they are optional. If you have problems using it on a pure Python installation, please report the problems into the Issues and we'll fix that.
 
@@ -37,7 +37,7 @@ The only prerequisite is python 2.4 or newer. !SymPy optionally uses some other 
 
 Go to the "Downloads" tab and download the latest source archive (something like `sympy-0.4.0.tar.gz`).
 
-On unix systems (linux, BSD, cygwin, etc.): extract it with the command `"tar xzf sympy-0.4.0.tar.gz"` and follow the README located in the sympy directory.
+On unix systems (linux, BSD, Mac OS X, cygwin, etc.): extract it with the command `"tar xzf sympy-0.4.0.tar.gz"` and follow the README located in the sympy directory.
 
 * hg version *
 
