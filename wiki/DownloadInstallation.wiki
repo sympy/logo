@@ -2,32 +2,7 @@
 
 = Download =
 
-!SymPy is packaged for the following systems, so if you use one of them, simply follow the instructions. Otherwise (or if you prefer), you can install the sources directly. All you need is Python 2.4 or newer.
-
-= Packages =
-
-[http://www.debian.org/ http://sympy.googlecode.com/svn/materials/web/images/debian.png] * Debian * 
-
-!SymPy is in Debian unstable and testing. The exact !SymPy versions in Debian can be seen  here: http://packages.debian.org/python-sympy
-
-So just add the unstable (or testing) among your sources and
-{{{
-apt-get install python-sympy
-}}}
-
-[http://www.ubuntu.com/ http://sympy.googlecode.com/svn/materials/web/images/ubuntu.png] * Ubuntu *
-
-!SymPy is in Gutsy and Hardy. The exact !SymPy versions in Ubuntu can be seen here:  https://launchpad.net/ubuntu/+source/sympy
-
-[http://www.sagemath.org/ http://sympy.googlecode.com/svn/materials/web/images/sage.png] * SAGE *
-
-!SymPy is in SAGE 2.7 and later. The exact version of !SymPy in SAGE can be seen here:
-http://www.sagemath.org/packages/standard
-
-[http://www.microsoft.com/ http://sympy.googlecode.com/svn/materials/web/images/windows.png] * Windows *
-
-Download the windows installer from the frontpage (Featured Downloads) and execute it. There is one known [http://code.google.com/p/sympy/issues/detail?id=188 issue] with missing MSVCR71.dll, but !SymPy works fine.
-
+!SymPy is packaged for the following systems below, so if you use one of them, simply follow the instructions. Otherwise (or if you prefer), you can install the sources directly. All you need is Python 2.4 or newer.
 
 = Sources =
 
@@ -58,6 +33,36 @@ http://hg.sympy.org/sympy/
 where (besides other things) you can download any revision you want as a gz, bz2 or zip file. For example, you can download the latest !SymPy snapshot here:
 
 http://hg.sympy.org/sympy/archive/tip.tar.gz
+
+
+
+
+= Packages =
+
+[http://www.debian.org/ http://sympy.googlecode.com/svn/materials/web/images/debian.png] * Debian * 
+
+!SymPy is in Debian unstable and testing. The exact !SymPy versions in Debian can be seen  here: http://packages.debian.org/python-sympy
+
+So just add the unstable (or testing) among your sources and
+{{{
+apt-get install python-sympy
+}}}
+
+[http://www.ubuntu.com/ http://sympy.googlecode.com/svn/materials/web/images/ubuntu.png] * Ubuntu *
+
+!SymPy is in Gutsy and Hardy. The exact !SymPy versions in Ubuntu can be seen here:  https://launchpad.net/ubuntu/+source/sympy
+
+[http://www.sagemath.org/ http://sympy.googlecode.com/svn/materials/web/images/sage.png] * SAGE *
+
+!SymPy is in SAGE 2.7 and later. The exact version of !SymPy in SAGE can be seen here:
+http://www.sagemath.org/packages/standard
+
+[http://www.microsoft.com/ http://sympy.googlecode.com/svn/materials/web/images/windows.png] * Windows *
+
+Download the windows installer from the frontpage (Featured Downloads) and execute it. There is one known [http://code.google.com/p/sympy/issues/detail?id=188 issue] with missing MSVCR71.dll, but !SymPy works fine.
+
+
+
 
 = Installation =
 
