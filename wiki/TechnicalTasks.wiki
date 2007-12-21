@@ -70,21 +70,43 @@ svn ci
 
 = How to make a new release =
 
-Create a new branch:
-
+Clone main repository
 {{{
-svn checkout https://sympy.googlecode.com/svn/ sympy --username ondrej.certik
+hg clone ssh://hg@hg.sympy.org/sympy
 cd sympy
-svn copy trunk tags/sympy-0.4
 }}}
 
-Then in this branch:
 
+Change version in `sympy/__init__.py`, e.g.
 {{{
-./setup.py sdist
+vim sympy/__init__.py
+hg ci -m v0.5.9
 }}}
 
-and put the dist/sympy-0.4-pre.tar.gz on the website.
+Tag it, e.g.
+{{{
+hg tag sympy-0.5.9
+}}}
+
+Prepare the release tarball and win32 installer (should work ok even on Linux)
+{{{
+python setup.py sdist
+python setup.py bdist_wininst
+}}}
+
+And put dist/sympy-0.5.9.tar.gz and dist/sympy-0.5.9.win32.exe on website
+
+Change version to x.y.z-hg, and start new development cycle
+{{{
+vim sympy/__init__.py
+hg ci -m 'Start of x.y.z+1 development cycle'
+}}}
+
+
+Don't forget to finally push you changes back to the main repository:
+{{{
+hg push
+}}}
 
 == Sites to update ==
 
@@ -95,13 +117,3 @@ and put the dist/sympy-0.4-pre.tar.gz on the website.
   * http://en.wikipedia.org/wiki/Comparison_of_computer_algebra_systems
   * http://freshmeat.net/projects/sympy/
   * http://pypi.python.org/pypi/SymPy/
-
-= How to make a windows installer =
-
-Start with the source release as described above.
-
-{{{
-python setup.py build bdist_wininst
-}}}
-
-If all goes well, the resulting exe will be found in .\dist.
