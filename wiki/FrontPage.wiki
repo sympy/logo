@@ -10,7 +10,7 @@ http://sympy.googlecode.com/svn/materials/logo/sympy-160px.png
 
 ==Downloads==
 
-Use "Featured Downloads" on the right hand side. For more options and information, go to the [DownloadInstallation Downloads] tab.
+Use "Featured Downloads" on the right hand side. For more options and information, go to the [http://code.google.com/p/sympy/wiki/DownloadInstallation?tm=2 Downloads] tab.
 
 Mercurial repository (you can track current progress in there): http://hg.sympy.org/sympy/
 
