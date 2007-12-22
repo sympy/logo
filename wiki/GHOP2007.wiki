@@ -18,3 +18,5 @@ and claim it. We'll get a notice that you did that and we can discuss more detai
 
 You can claim any task till January 22, 2008 and you need to finish all your tasks till
 February 4, 2008.
+
+If you have more ideas for tasks, please let us know on the !SymPy mailinglist.
