@@ -4,6 +4,8 @@
 
 !SymPy participates in the [http://code.google.com/opensource/ghop/2007-8/ GHOP 2007-8] under the umbrella of PSF.
 
+If you're a student age 13 or older who has not yet begun university studies, that's exactly for you.
+
 = Details =
 
 Go to:
