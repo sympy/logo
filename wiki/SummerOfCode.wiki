@@ -4,6 +4,8 @@ This page served for applying for 2007 GSoC. See [http://code.google.com/p/sympy
 
 For 2008, see [http://code.google.com/p/sympy/wiki/GSoC2008 GSoC 2008].
 
+See also [http://code.google.com/p/sympy/wiki/GHOP2007 GHOP2007-8].
+
 !SymPy is a symbolic manipulation package, written in pure Python. Its aim is to become a full featured CAS in Python, while keeping the code as simple as possible in order to be comprehensible and easily extensible. See http://code.google.com/p/sympy for more details.
 
 == Detailed ideas ==
