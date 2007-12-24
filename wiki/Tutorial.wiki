@@ -3,7 +3,7 @@
 
 = Introduction =
 
-This tutorial gives an overview and introduction to !SymPy. Read this to have an idea what !SymPy can do for you (and how) and if you want to know more, read the [http://sympy.googlecode.com/svn/api/index.html API] documentation (that is generated from the sources) or the [http://sympy.googlecode.com/svn/trunk/ sources] directly.
+This tutorial gives an overview and introduction to !SymPy. Read this to have an idea what !SymPy can do for you (and how) and if you want to know more, read the [http://sympy.googlecode.com/svn/api/sympy.html API] documentation (that is generated from the sources) or the [http://sympy.googlecode.com/svn/trunk/ sources] directly.
 
 == Installation ==
 
@@ -288,6 +288,17 @@ dx dx
 
 In [10]: dsolve(f(x).diff(x, x) + f(x) == 0, f(x))
 Out[10]: C₁*sin(x) + C₂*cos(x)
+}}}
+
+== Algebraic equations ==
+
+In `isympy`:
+{{{
+In [19]: solve(x**4 == 1, x)
+Out[19]: [ⅈ, 1, -1, -ⅈ]
+
+In [20]: solve([x + 5*y == 2, -3*x + 6*y == 15], [x, y])
+Out[20]: {y: 1, x: -3}
 }}}
 
 = Linear Algebra =
