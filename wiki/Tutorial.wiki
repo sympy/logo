@@ -7,7 +7,7 @@ This tutorial gives an overview and introduction to !SymPy. Read this to have an
 
 == Installation ==
 
-See DownloadInstallation and follow the instructions specific to your platform.
+See the [http://code.google.com/p/sympy/wiki/DownloadInstallation?tm=2 Downloads] Tab and follow the instructions specific to your platform.
 
 == Importing !SymPy ==
 
