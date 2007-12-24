@@ -275,6 +275,21 @@ exp(I*x)
 I*sin(x) + cos(x)
 }}}
 
+== Differential Equations ==
+
+In `isympy`:
+{{{
+In [9]: f(x).diff(x, x) + f(x) == 0
+Out[9]: 
+   2                  
+  d                   
+─────(f(x)) + f(x) = 0
+dx dx                 
+
+In [10]: dsolve(f(x).diff(x, x) + f(x) == 0, f(x))
+Out[10]: C₁*sin(x) + C₂*cos(x)
+}}}
+
 = Linear Algebra =
 
 == Matrices ==
