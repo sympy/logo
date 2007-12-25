@@ -44,6 +44,14 @@ Send it to list:
 hg email -o -a
 }}}
 
+= Other =
+
+Because empty files cannot be represented in patches, you need to use this
+{{{
+[diff]
+git = true
+}}}
+in your `~/.hgrc`.
 
 = Links =
 
