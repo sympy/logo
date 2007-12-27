@@ -6,6 +6,9 @@ The !SymPy linear algebra module is an easy-to-learn, functional library for mat
 
 For a more general tutorial remember to read the general [http://code.google.com/p/sympy/wiki/Tutorial Tutorial].
 
+Note: the matrix output in !SymPy has improved a lot, but otherwise
+this wiki is accurate.
+
 = Creating Matrices =
 
 The linear algebra module is designed to be as simple as possible. First, we import and declare our first Matrix object:
