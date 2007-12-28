@@ -2,7 +2,7 @@
 
 = Introduction =
 
-!SymPy can be used in !TeXmacs. To run a session just select `Insert/Session/SymPy` and `sympy]` prompt will show to you. If you can't find !SymPy under `Session` menu, then select other and type `sympy` and press return twice.
+!SymPy can be used in !TeXmacs. To run a session just select `Insert/Session/SymPy` and `sympy]` prompt will show up to you. If you can't find !SymPy under ``Insert/Session/` menu, then select `Insert/Session/Other` and type `sympy` and press return twice.
 
 Currently supported features include:
 
