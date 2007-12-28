@@ -11,7 +11,7 @@ Currently supported features include:
   * last captured output via '`_`' variable
   * multi-line input expressions
 
-!TeXmacs encodes new-lines as spaces so we must use heuristics to know where a multi-line expression is broken. As a result you can't use more than one space in a sequence. However you can and must indent your expression using standard !Pyhon rules (see examples for explanation).
+!TeXmacs encodes new-lines as spaces so we must use heuristics to know where a multi-line expression is broken. As a result you can't use more than one space in a sequence. However you can and must indent your expression using standard Pyhon rules (see examples for explanation).
 
 = Sample session =
 
