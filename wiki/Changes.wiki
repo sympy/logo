@@ -14,8 +14,10 @@ http://hg.sympy.org/sympy/
 Find the latest release tag and see what is new since then.
 
   * `view` renamed to `preview`, `pngview`, `pdfview`, `dviview` added ([http://hg.sympy.org/sympy/rev/49161c434035 commit 1])
-  * latex printer was rewritten, `preview` uses builtin pyglet instead of pygame ([http://hg.sympy.org/sympy/rev/5cf8987d6744 commit 1])
+  * latex printer was rewritten, `preview` uses builtin pyglet instead of pygame ([http://hg.sympy.org/sympy/rev/5cf8987d6744 commit 1], [http://hg.sympy.org/sympy/rev/2cbb895ae8b3 2])
   * parser of simple Mathematica expressions added ([http://hg.sympy.org/sympy/rev/54c7ceb12a75 commit 1])
+  * TeXmacs interface written ([http://hg.sympy.org/sympy/rev/9c1293a56e3d commit 1])
+  * line width in 2D plotting can be specified ([http://hg.sympy.org/sympy/rev/06fbc18a5837 commit 1])
 
 == 0.5.9 ==
 
