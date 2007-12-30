@@ -70,7 +70,7 @@ svn ci
 
 = How to make a new release =
 
-== Check that overall quality of SymPy ==
+== Check that overall quality of !SymPy ==
 
 === speed of import ==
 
