@@ -70,6 +70,34 @@ svn ci
 
 = How to make a new release =
 
+== Check that overall quality of SymPy ==
+
+=== speed of import ==
+
+After several runs, this should be around:
+{{{
+$ ipython 
+
+In [1]: time import sympy
+CPU times: user 0.08 s, sys: 0.00 s, total: 0.09 s
+Wall time: 0.09
+}}}
+
+=== does it depend on python2.4 only? ===
+
+{{{
+$ cd bin
+$ sudo cowbuilder --execute test_pure
+}}}
+All tests need to run here.
+
+=== does the tarball contain all the needed files? ===
+
+The previous paragraph tests, that all tests pass in the tarball,
+but still check by inspection, that the tarball includes all necessary files.
+
+== Do the actual release ==
+
 Clone main repository
 {{{
 hg clone ssh://hg@hg.sympy.org/sympy
