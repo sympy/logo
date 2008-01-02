@@ -21,6 +21,7 @@ Find the latest release tag and see what is new since then.
   * line width in 2D plotting can be specified ([http://hg.sympy.org/sympy/rev/06fbc18a5837 commit])
   * README was updated ([http://hg.sympy.org/sympy/rev/07f59495f136 commit 1], [http://hg.sympy.org/sympy/rev/a9e246fbd464 2])
   * `pyglet` and `mpmath` were updated and moved to sympy/thirdparty ([http://hg.sympy.org/sympy/rev/35ea4723788e commit 1], [http://hg.sympy.org/sympy/rev/7e62d0d6a179 2], [http://hg.sympy.org/sympy/rev/931e4bbbec07 3], [http://hg.sympy.org/sympy/rev/f17e3ff93118 4], [http://hg.sympy.org/sympy/rev/df56f8070da9 5])
+  * all `sys.path` hacks were removed except pyglet ([http://hg.sympy.org/sympy/rev/ccd8afb93124 commit 1], [http://hg.sympy.org/sympy/rev/b62b512edd2f 2], [http://hg.sympy.org/sympy/rev/2c5c759d4eed 3], [http://hg.sympy.org/sympy/rev/1ee1a59b01a6 4])
 
 == 0.5.9 ==
 
