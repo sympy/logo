@@ -7,7 +7,7 @@ The !SymPy linear algebra module is an easy-to-learn, functional library for mat
 For a more general tutorial remember to read the general [http://code.google.com/p/sympy/wiki/Tutorial Tutorial].
 
 *Note*: the matrix output in !SymPy has improved a lot, but otherwise
-this wiki is accurate.
+this wiki is accurate (only the first section here contains the new matrix output).
 
 = Creating Matrices =
 
@@ -36,10 +36,10 @@ More interestingly (and usefully), we can use a 2-variable function (or lambda) 
 ...             return 0
 ... 
 >>> Matrix(4, 4, f)
-1 0 0 0 
-0 1 0 0 
-0 0 1 0 
-0 0 0 1 
+⎡1 0 0 0⎤
+⎢0 1 0 0⎥
+⎢0 0 1 0⎥
+⎣0 0 0 1⎦
 }}}
 
 Finally let's use lambda to create a 1-line matrix with 1's in the even permutation entries:
