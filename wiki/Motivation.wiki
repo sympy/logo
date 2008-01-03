@@ -6,6 +6,8 @@ http://ondrejcertik.blogspot.com/2008/01/sympysympycore-pure-python-up-to-5x.htm
 
 *Update December 22, 2007*: The motivation is slightly changing over the time - Sage has currently the biggest potential to compete with Mathematica and Maple. Sage's notebook is just awesome. Sage uses Maxima for Sage.calculus now, because Maxima is well tested and works most of the time (also it's quite fast, etc.), but it has issues - it's in LISP and it's difficult (impossible) to extend using Python. So !SymPy's approach is the way to go in the long term.
 
+*Older text*
+
 Why not use CAS with its own language (like Maple/Mathematica/Maxima)
 is best described by: http://www.ginac.de/FAQ.html#whynotmaple
 
