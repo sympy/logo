@@ -1,5 +1,11 @@
 #summary Motivation behind sympy
 
+*Update January 3, 2008*: Current state is written in the blogpost:
+
+http://ondrejcertik.blogspot.com/2008/01/sympysympycore-pure-python-up-to-5x.html
+
+*Update December 22, 2007*: The motivation is slightly changing over the time - Sage has currently the biggest potential to compete with Mathematica and Maple. Sage's notebook is just awesome. Sage uses Maxima for Sage.calculus now, because Maxima is well tested and works most of the time (also it's quite fast, etc.), but it has issues - it's in LISP and it's difficult (impossible) to extend using Python. So !SymPy's approach is the way to go in the long term.
+
 Why not use CAS with its own language (like Maple/Mathematica/Maxima)
 is best described by: http://www.ginac.de/FAQ.html#whynotmaple
 
@@ -32,5 +38,3 @@ Another advantage of !SymPy is that since it is written in pure Python (and does
 The code is still in development, but it's already quite useful - for
 example, we believe !SymPy has the shortest (around 300 lines) open source
 code for computing symbolic limits.
-
-Update December 22, 2007: The motivation is slightly changing over the time - Sage has currently the biggest potential to compete with Mathematica and Maple. Sage's notebook is just awesome. Sage uses Maxima for Sage.calculus now, because Maxima is well tested and works most of the time (also it's quite fast, etc.), but it has issues - it's in LISP and it's difficult (impossible) to extend using Python. So !SymPy's approach is the way to go in the long term.
