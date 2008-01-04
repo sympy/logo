@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.thirdparty.mpmath.lib.convert&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.t.m.l.convert</h1><span id="part">Part of <a href="sympy.thirdparty.mpmath.lib.html">sympy.thirdparty.mpmath.lib</a></span><div class="toplevel"><div><p>Functions for converting between raw mpmath floating-point numbers and 
+other types and number representations (int, float, str...).</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.to_digits_exp">to_digits_exp</a></td><td><div><p>Helper function for representing the floating-point number s as a</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.to_str">to_str</a></td><td><div><p>Convert a raw mpf to a decimal floating-point literal with at</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.str_to_man_exp">str_to_man_exp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.from_str">from_str</a></td><td><div><p>Create a raw mpf from a decimal literal, rounding in the</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.from_bstr">from_bstr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.to_bstr">to_bstr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.from_int">from_int</a></td><td><div><p>Create a raw mpf from an integer, rounding if necessary.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.from_int_exact">from_int_exact</a></td><td><div><p>Create a raw mpf from an integer, automatically choosing the</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.to_int">to_int</a></td><td><div><p>Convert a raw mpf to the nearest int, rounding down.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.from_float">from_float</a></td><td><div><p>Create a raw mpf from a Python float, rounding if necessary.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.to_float">to_float</a></td><td><div><p>Convert a raw mpf to a Python float. The result is exact if the</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.from_rational">from_rational</a></td><td><div><p>Create a raw mpf from a rational number p/q, rounding if</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.convert.to_rational">to_rational</a></td><td><div><p>Convert a raw mpf to a rational number. Return integers (p, q)</p>
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.to_digits_exp">to_digits_exp(s, dps):</a></div>
+            <div class="functionBody"><div><p>Helper function for representing the floating-point number s as a 
+decimal with dps places. Returns (sign, string, exponent) containing '' or 
+'-', the decimal digits as a string, and an integer for the decimal 
+exponent.</p>
+<p>If inexact, the decimal representation is rounded toward zero.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.to_str">to_str(s, dps):</a></div>
+            <div class="functionBody"><div><p>Convert a raw mpf to a decimal floating-point literal with at most `dps`
+decimal digits in the mantissa (not counting extra zeros that may be 
+inserted for visual purposes).</p>
+<p>The literal is formatted so that it can be parsed back to a number by 
+to_str, float() or Decimal().</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.str_to_man_exp">str_to_man_exp(x, base=10):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.from_str">from_str(x, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Create a raw mpf from a decimal literal, rounding in the specified 
+direction if the input number cannot be represented exactly as a binary 
+floating-point number with the given number of bits. The literal syntax 
+accepted is the same as for Python floats.</p>
+<p>TODO: the rounding does not work properly for large exponents.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.from_bstr">from_bstr(x):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.to_bstr">to_bstr(x):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.from_int">from_int(n, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Create a raw mpf from an integer, rounding if necessary.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.from_int_exact">from_int_exact(n):</a></div>
+            <div class="functionBody"><div><p>Create a raw mpf from an integer, automatically choosing the precision 
+high enough to represent the integer exactly.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.to_int">to_int(s):</a></div>
+            <div class="functionBody"><div><p>Convert a raw mpf to the nearest int, rounding down.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.from_float">from_float(x, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Create a raw mpf from a Python float, rounding if necessary. If prec 
+&gt;= 53, the result is guaranteed to represent exactly the same number as 
+the input.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.to_float">to_float(s):</a></div>
+            <div class="functionBody"><div><p>Convert a raw mpf to a Python float. The result is exact if the bitcount
+of s is &lt;= 53 and no underflow/overflow occurs. An OverflowError is 
+raised if the number is too large to be represented as a regular float.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.from_rational">from_rational(p, q, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Create a raw mpf from a rational number p/q, rounding if necessary.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.convert.to_rational">to_rational(s):</a></div>
+            <div class="functionBody"><div><p>Convert a raw mpf to a rational number. Return integers (p, q) such that
+s = p/q exactly. p and q are not reduced to lowest terms.</p>
+</div></div>
+            </div></body>
+        

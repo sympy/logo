@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.thirdparty.mpmath.lib.floatop&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.t.m.l.floatop</h1><span id="part">Part of <a href="sympy.thirdparty.mpmath.lib.html">sympy.thirdparty.mpmath.lib</a></span><div class="toplevel"><div><p>Functions for basic operations on raw mpfs: normalization, comparison, 
+addition, subtraction, multiplication, division, integer powers.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.normalize">normalize</a></td><td><div><p>normalize(man, exp, prec, rounding) -&gt; return tuple representing</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.fpos">fpos</a></td><td><div><p>Calculate 0+s for a raw mpf (i.e., just round s to the specified</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.feq">feq</a></td><td><div><p>Test equality of two raw mpfs. (This is simply tuple comparion;</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.fcmp">fcmp</a></td><td><div><p>Compare the raw mpfs s and t. Return -1 if s &lt; t, 0 if s == t,</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.fadd">fadd</a></td><td><div><p>Add two raw mpfs and round the result to the specified precision,</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.fsub">fsub</a></td><td><div><p>Return the difference of two raw mpfs, s-t. This function is</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.fneg">fneg</a></td><td><div><p>Negate a raw mpf (return -s), rounding the result to the</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.fneg_exact">fneg_exact</a></td><td><div><p>Negate a raw mpf (return -s), without performing any rounding.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.fabs">fabs</a></td><td><div><p>Return abs(s) of the raw mpf s, rounded to the specified</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.fmul">fmul</a></td><td><div><p>Return the product of two raw mpfs, s*t, rounded to the</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.fdiv">fdiv</a></td><td><div><p>Floating-point division</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.fshift_exact">fshift_exact</a></td><td><div><p>Quickly multiply the raw mpf s by 2**n without rounding.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.fpow">fpow</a></td><td><div><p>Compute s**n, where n is an integer</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.floatop.frand">frand</a></td><td><div><p>Return a raw mpf chosen randomly from [0, 1), with prec bits</p>
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.normalize">normalize(man, exp, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>normalize(man, exp, prec, rounding) -&gt; return tuple representing a 
+fully rounded and normalized raw mpf with value (man * 2**exp)</p>
+<p>The mantissa is rounded in the specified direction if the number of 
+exceeds the precision. Trailing zero bits are also stripped from the 
+mantissa to ensure that the representation is canonical.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.fpos">fpos(s, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Calculate 0+s for a raw mpf (i.e., just round s to the specified 
+precision, or return s unchanged if its mantissa is smaller than the 
+precision).</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.feq">feq(s, t):</a></div>
+            <div class="functionBody"><div><p>Test equality of two raw mpfs. (This is simply tuple comparion; this 
+function is provided only for completeness).</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.fcmp">fcmp(s, t):</a></div>
+            <div class="functionBody"><div><p>Compare the raw mpfs s and t. Return -1 if s &lt; t, 0 if s == t, and 1 
+if s &gt; t. (Same convention as Python's cmp() function.)</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.fadd">fadd(s, t, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Add two raw mpfs and round the result to the specified precision, in the
+specified direction.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.fsub">fsub(s, t, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Return the difference of two raw mpfs, s-t. This function is simply a 
+wrapper of fadd that changes the sign of t.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.fneg">fneg(s, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Negate a raw mpf (return -s), rounding the result to the specified 
+precision.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.fneg_exact">fneg_exact(s):</a></div>
+            <div class="functionBody"><div><p>Negate a raw mpf (return -s), without performing any rounding.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.fabs">fabs(s, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Return abs(s) of the raw mpf s, rounded to the specified precision.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.fmul">fmul(s, t, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Return the product of two raw mpfs, s*t, rounded to the specified 
+precision.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.fdiv">fdiv(s, t, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Floating-point division</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.fshift_exact">fshift_exact(s, n):</a></div>
+            <div class="functionBody"><div><p>Quickly multiply the raw mpf s by 2**n without rounding.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.fpow">fpow(s, n, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Compute s**n, where n is an integer</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.floatop.frand">frand(prec):</a></div>
+            <div class="functionBody"><div><p>Return a raw mpf chosen randomly from [0, 1), with prec bits in the 
+mantissa.</p>
+</div></div>
+            </div></body>
+        

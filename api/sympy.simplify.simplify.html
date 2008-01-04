@@ -92,7 +92,11 @@ without any expanding, ie. rewriting products to summations.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>separate((x*sin(x))**y + (x*cos(x))**y)
 <span class="py-output">x**y*cos(x)**y + x**y*sin(x)**y</span></pre>
-<p>#&gt;&gt;&gt; separate((exp(x)*exp(y))**x) #exp(x*y)*exp(x**2)</p>
+<p>#this does not work because of exp combining #&gt;&gt;&gt; 
+separate((exp(x)*exp(y))**x) #exp(x*y)*exp(x**2)</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>separate((sin(x)*cos(x))**y)
+<span class="py-output">cos(x)**y*sin(x)**y</span></pre>
 <p>Notice that summations are left un touched. If this is not the requested
 behaviour, apply 'expand' to input expression before:</p>
 <pre class="py-doctest">

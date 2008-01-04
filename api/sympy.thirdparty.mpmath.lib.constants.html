@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.thirdparty.mpmath.lib.constants&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.t.m.l.constants</h1><span id="part">Part of <a href="sympy.thirdparty.mpmath.lib.html">sympy.thirdparty.mpmath.lib</a></span><div class="toplevel"><div><p>Mathematical constants</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.constant_memo">constant_memo</a></td><td><div><p>Memoization for calculation of constants using fixed-point</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.acot">acot</a></td><td><div><p>Compute acot of an integer using fixed-point arithmetic. With</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.machin">machin</a></td><td><div><p>Evaluate a Machin-like formula, i.e., a linear combination of</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.agm_status">agm_status</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.pi_agm">pi_agm</a></td><td><div><p>Compute floor(pi * 2**prec) as a big integer using the Brent-</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.pi_fixed">pi_fixed</a></td><td><div><p>Compute floor(pi * 2**prec) as a big integer.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.fpi">fpi</a></td><td><div><p>Compute a floating-point approximation of pi</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.log2_fixed">log2_fixed</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.flog2">flog2</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.log10_fixed">log10_fixed</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.flog10">flog10</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.gamma_fixed">gamma_fixed</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.constants.fgamma">fgamma</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.constant_memo">constant_memo(f):</a></div>
+            <div class="functionBody"><div><p>Memoization for calculation of constants using fixed-point arithmetic. 
+Only store the value computed with highest precision; if a lower or equal 
+precision is requested later, the result can be generated directly through 
+downshifting the cached value.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.acot">acot(n, prec, hyperbolic):</a></div>
+            <div class="functionBody"><pre>Compute acot of an integer using fixed-point arithmetic. With
+hyperbolic=True, compute acoth. We use the series expansion
+
+               1        1        1
+    acot(n) = ---  -  ----  +  ----  -  ...,
+                        3         5
+               n      3 n      5 n
+
+optimized for integer arguments. In the hyperbolic case, all
+negative terms are changed to positive ones.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.machin">machin(coefs, prec, hyperbolic=False):</a></div>
+            <div class="functionBody"><div><p>Evaluate a Machin-like formula, i.e., a linear combination of acot(n) or
+acoth(n) for specific integer values of n, using fixed- point 
+arithmetic.</p>
+<p>The input should be a list [(c, n), ...], giving c*acot[h](n) + ...</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.agm_status">agm_status(prec, step, adiff, verbose_base):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.pi_agm">pi_agm(prec, verbose=False, verbose_base=10):</a></div>
+            <div class="functionBody"><pre>Compute floor(pi * 2**prec) as a big integer using the Brent-
+Salamin algorithm based on the arithmetic-geometric mean.
+
+See for example Wikipedia (http://en.wikipedia.org/wiki/Brent-
+Salamin_algorithm) or "Pi and the AGM" by Jonathan and Peter
+Borwein (Wiley, 1987). The algorithm (as stated in the Wikipedia
+article) consists of setting
+
+  a_0 = 1
+  b_0 = 1/sqrt(2)
+  t_0 = 1/4
+  p_0 = 1
+
+and computing
+
+  a_{n+1} = (a_n + b_n)/2
+  b_{n+1} = sqrt(a_n * b_n)
+  t_{n+1} = t_n - p_n*(a_n - a_{n+1})**2
+  p_{n+1} = 2*p_n
+
+for n = 0, 1, 2, 3, ..., after which the approximation is given by
+pi ~= (a_n + b_n)**2 / (4*t_n). Each step roughly doubles the
+number of correct digits.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.pi_fixed">pi_fixed(prec):</a></div>
+            <div class="functionBody"><div><p>Compute floor(pi * 2**prec) as a big integer.</p>
+<p>For low precisions, Machin's formula pi = 16*acot(5)-4*acot(239) is 
+used. For high precisions, the more efficient arithmetic- geometric mean 
+iteration is used.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.fpi">fpi(prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Compute a floating-point approximation of pi</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.log2_fixed">log2_fixed(prec):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.flog2">flog2(prec, rounding):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.log10_fixed">log10_fixed(prec):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.flog10">flog10(prec, rounding):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.gamma_fixed">gamma_fixed(prec):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.constants.fgamma">fgamma(prec, rounding):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

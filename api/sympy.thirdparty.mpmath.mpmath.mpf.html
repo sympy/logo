@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.thirdparty.mpmath.mpmath.mpf&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.t.m.m.mpf(<a href="sympy.thirdparty.mpmath.mpmath.mpnumeric.html">mpnumeric</a>):</h1><span id="part">Part of <a href="sympy.thirdparty.mpmath.mpmath.html">sympy.thirdparty.mpmath.mpmath</a></span><p>known subclasses: <a href="sympy.thirdparty.mpmath.mpmath.constant.html">sympy.thirdparty.mpmath.mpmath.constant</a></p><div class="toplevel"><pre>An mpf instance holds a real-valued floating-point number. mpf:s
+work analogously to Python floats, but support arbitrary-precision
+arithmetic. The mpf class has two properties 'dps' and 'prec' which
+respectively hold the working precision as measured in decimal
+digits and in bits. (The default is 15 digits / 53 bits, the same
+as Python floats.) For example, this increases precision by 10
+bits:
+
+    mpf.prec += 10
+
+The global working precision controls the precision at which all
+arithmetic operations on mpf:s is carried out. Directed rounding is
+also (partially) implemented; all calculations will be rounded up
+after calling
+
+    mpf.round_up()
+
+mpf.round_half_even() is the default rounding.
+
+An mpf is represented internally as a tuple of integers (man, exp,
+bc) where man is the mantissa, exp is the exponent and bc is the
+number of bits in the mantissa (bc <= mpf.prec if the number is
+normalized to the current working precision). Mathematically, that
+means the mpf x has the value x = man * 2**exp. The components can
+be accessed using the .val property of an mpf.
+
+A useful difference between mpf:s and Python floats is that
+operations on mpf:s that mathematically produce complex numbers
+(like mpf(-1)**0.5) return mpc:s instead of raising exceptions.</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__new__">__new__</a></td><td><div><p>A new mpf can be created from a Python float, an int, a</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__repr__">__repr__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__str__">__str__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__hash__">__hash__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__int__">__int__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__float__">__float__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__complex__">__complex__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__nonzero__">__nonzero__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__eq__">__eq__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__ne__">__ne__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__cmp__">__cmp__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__abs__">__abs__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__pos__">__pos__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__neg__">__neg__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__add__">__add__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__sub__">__sub__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__rsub__">__rsub__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__mul__">__mul__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__div__">__div__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__rdiv__">__rdiv__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__pow__">__pow__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.__rpow__">__rpow__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.sqrt">sqrt</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.ae">ae</a></td><td><div><p>Determine whether the difference between s and t is smaller</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.mpf.almost_zero">almost_zero</a></td><td><div><p>Quick check if |s| &lt; 2**-prec. May return a false negative</p>
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__new__">__new__(cls, val=fzero):</a></div>
+            <div class="functionBody"><pre>A new mpf can be created from a Python float, an int, a
+Decimal, or a decimal string representing a number in
+floating-point format. Examples:
+
+    mpf(25)
+    mpf(2.5)
+    mpf('2.5')
+    mpf('1.6e1000')
+
+An mpf can also be created from a tuple (man, exp) or
+(man, exp, bc):
+
+    >>> mpf((3, -1))
+    1.5</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__repr__">__repr__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__str__">__str__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__hash__">__hash__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__int__">__int__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__float__">__float__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__complex__">__complex__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__nonzero__">__nonzero__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__eq__">__eq__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__ne__">__ne__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__cmp__">__cmp__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__abs__">__abs__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__pos__">__pos__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__neg__">__neg__(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__add__">__add__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__sub__">__sub__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__rsub__">__rsub__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__mul__">__mul__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__div__">__div__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__rdiv__">__rdiv__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__pow__">__pow__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.__rpow__">__rpow__(s, t):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.sqrt">sqrt(s):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.ae">ae(s, t, rel_eps=None, abs_eps=None):</a></div>
+            <div class="functionBody"><div><p>Determine whether the difference between s and t is smaller than a given
+epsilon (&quot;ae&quot; is short for &quot;almost equal&quot;).</p>
+<p>Both a maximum relative difference and a maximum difference ('epsilons')
+may be specified. The absolute difference is defined as |s-t| and the 
+relative difference is defined as |s-t|/max(|s|, |t|).</p>
+<p>If only one epsilon is given, both are set to the same value. If none is
+given, both epsilons are set to 2**(-prec+m) where prec is the current 
+working precision and m is a small integer.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.mpf.almost_zero">almost_zero(s, prec):</a></div>
+            <div class="functionBody"><div><p>Quick check if |s| &lt; 2**-prec. May return a false negative if s is 
+very close to the threshold.</p>
+</div></div>
+            </div></body>
+        

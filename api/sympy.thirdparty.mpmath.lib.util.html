@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.thirdparty.mpmath.lib.util&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.t.m.l.util</h1><span id="part">Part of <a href="sympy.thirdparty.mpmath.lib.html">sympy.thirdparty.mpmath.lib</a></span><div class="toplevel"><div><p>Contents of this module:</p>
+<p>* Integer and bit-level operations * Miscellaneous utilities</p>
+</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.thirdparty.mpmath.lib.util.Rounding.html">Rounding</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.giant_steps">giant_steps</a></td><td><div><p>Generate a list of precisions ranging from 'start' to 'target'</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.rshift_quick">rshift_quick</a></td><td><div><p>For an integer x, calculate x &gt;&gt; n with the fastest (floor)</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.lshift_quick">lshift_quick</a></td><td><div><p>For an integer x, calculate x &lt;&lt; n. Unlike the plain Python</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.make_fixed">make_fixed</a></td><td><div><p>Convert a floating-point number to a fixed-point big integer</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.bitcount">bitcount</a></td><td><div><p>Give size of n in bits; i.e. the position of the highest set bit</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.bitcount2">bitcount2</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.trailing_zeros">trailing_zeros</a></td><td><div><p>Count trailing zero bits in an integer. If n is negative, it is</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.round_floor">round_floor</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.round_ceiling">round_ceiling</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.round_down">round_down</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.round_up">round_up</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.round_half_up">round_half_up</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.round_half_down">round_half_down</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.round_half_even">round_half_even</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.rshift">rshift</a></td><td><div><p>Shift x (a plain Python integer) n bits to the right (i.e.,</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.bin_to_radix">bin_to_radix</a></td><td><div><p>Radix conversion for fixed-point numbers. That is, convert</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.small_numeral">small_numeral</a></td><td><div><p>Return the string numeral of a positive integer in an arbitrary</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.util.numeral">numeral</a></td><td><div><p>Represent the integer n as a string of digits in the given base.</p>
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.giant_steps">giant_steps(start, target):</a></div>
+            <div class="functionBody"><pre>Generate a list of precisions ranging from 'start' to 'target'
+that doubles with each step. This is used by quadratically
+convergent iterations (that is, Newton iterations), where we want
+to keep the precision at the same level as the accuracy in each
+step to minimize work.
+
+For example, to find a sequence of precisions to reach 1000 bits
+starting from a 53-bit estimate, giant_steps(53, 1000) gives
+
+    [64, 126, 251, 501, 1000]
+
+So, if we start Newton's method with a 53-bit accurate initial
+guess, the first iteration should be carried out at 64-bit
+precision, the second at 126-bit precision, and so on.
+
+Note the conservative rounding (1000 to 501, etc); this is used
+guard against unit errors in the last place.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.rshift_quick">rshift_quick(x, n):</a></div>
+            <div class="functionBody"><div><p>For an integer x, calculate x &gt;&gt; n with the fastest (floor) 
+rounding. Unlike the plain Python expression (x &gt;&gt; n), n is allowed 
+to be negative, in which case a left shift is performed.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.lshift_quick">lshift_quick(x, n):</a></div>
+            <div class="functionBody"><div><p>For an integer x, calculate x &lt;&lt; n. Unlike the plain Python 
+expression (x &lt;&lt; n), n is allowed to be negative, in which case a 
+right shift with default (floor) rounding is performed.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.make_fixed">make_fixed(s, prec):</a></div>
+            <div class="functionBody"><div><p>Convert a floating-point number to a fixed-point big integer</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.bitcount">bitcount(n, log=math.log, table=(0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4)):</a></div>
+            <div class="functionBody"><div><p>Give size of n in bits; i.e. the position of the highest set bit in n. 
+If n is negative, the absolute value is used. The bitcount of zero is taken
+to be 0.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.bitcount2">bitcount2(n, correction={'0':4,'1':3,'2':2,'3':2,'4':1,'5':1,'6':1,'7':1,'8':0,'9':0,'a':0,'b':0,'c':0,'d':0,'e':0,'f':0,}):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.trailing_zeros">trailing_zeros(n):</a></div>
+            <div class="functionBody"><div><p>Count trailing zero bits in an integer. If n is negative, it is replaced
+by its absolute value.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.round_floor">round_floor(x, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.round_ceiling">round_ceiling(x, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.round_down">round_down(x, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.round_up">round_up(x, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.round_half_up">round_half_up(x, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.round_half_down">round_half_down(x, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.round_half_even">round_half_even(x, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.rshift">rshift(x, n, rounding):</a></div>
+            <div class="functionBody"><div><p>Shift x (a plain Python integer) n bits to the right (i.e., calculate 
+x/(2**n)), and round to the nearest integer in accordance with the 
+specified rounding mode. The exponent n may be negative, in which case x is
+shifted to the left (and no rounding is necessary).</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.bin_to_radix">bin_to_radix(x, xbits, base, bdigits):</a></div>
+            <div class="functionBody"><div><p>Radix conversion for fixed-point numbers. That is, convert x * 2**xbits 
+to floor(x * 10**bdigits).</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.small_numeral">small_numeral(n, base=10, digits=stddigits):</a></div>
+            <div class="functionBody"><div><p>Return the string numeral of a positive integer in an arbitrary base. 
+Most efficient for small input.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.util.numeral">numeral(n, base=10, size=0, digits=stddigits):</a></div>
+            <div class="functionBody"><div><p>Represent the integer n as a string of digits in the given base. 
+Recursive division is used to make this function about 3x faster than 
+Python's str() for converting integers to decimal strings.</p>
+<p>The 'size' parameters specifies the number of digits in n; this number 
+is only used to determine splitting points and need not be exact.</p>
+</div></div>
+            </div></body>
+        

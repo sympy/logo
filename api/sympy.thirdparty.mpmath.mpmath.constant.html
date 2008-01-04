@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.thirdparty.mpmath.mpmath.constant&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.t.m.m.constant(<a href="sympy.thirdparty.mpmath.mpmath.mpf.html">mpf</a>):</h1><span id="part">Part of <a href="sympy.thirdparty.mpmath.mpmath.html">sympy.thirdparty.mpmath.mpmath</a></span><div class="toplevel"><div><p>Represents a mathematical constant with dynamic precision. When printed 
+or used in an arithmetic operation, a constant is converted to a regular 
+mpf at the working precision. A regular mpf can also be obtained using the 
+operation +x.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.constant.__new__">__new__</a></td><td><div><p>A new mpf can be created from a Python float, an int, a</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.mpmath.constant.val">val</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.constant.__new__">__new__(cls, func, name):</a></div>
+            <div class="functionBody"><pre>A new mpf can be created from a Python float, an int, a
+Decimal, or a decimal string representing a number in
+floating-point format. Examples:
+
+    mpf(25)
+    mpf(2.5)
+    mpf('2.5')
+    mpf('1.6e1000')
+
+An mpf can also be created from a tuple (man, exp) or
+(man, exp, bc):
+
+    >>> mpf((3, -1))
+    1.5</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.mpmath.constant.val">val(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

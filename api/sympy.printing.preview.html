@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.printing.preview&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.p.preview</h1><span id="part">Part of <a href="sympy.printing.html">sympy.printing</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.printing.preview.preview">preview</a></td><td><div><p>View expression in PNG, DVI, PostScript or PDF form.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.preview.pngview">pngview</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.preview.pdfview">pdfview</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.preview.dviview">dviview</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.preview.preview">preview(expr, output='ps', viewer=None, euler=True):</a></div>
+            <div class="functionBody"><div><p>View expression in PNG, DVI, PostScript or PDF form.</p>
+<p>This will generate LaTeX representation of the given expression and 
+compile it using available TeX distribiution. Then it will run appropriate 
+viewer for the given output format or use the user defined one. If you 
+prefer not to use external viewer then you can use combination of 'png' 
+output and 'pyglet' viewer. By default PostScript output is generated.</p>
+<p>By default pretty Euler fonts are used for typesetting (they were used 
+to typeset the well known &quot;Concrete Mathematics&quot; book). If you 
+prefer default AMS fonts or your system lacks 'eulervm' LaTeX package then 
+unset 'euler' keyword argument.</p>
+<p>To use viewer auto-detection, lets say for 'png' output, issue:</p>
+<p>&gt;&gt; from sympy import * &gt;&gt; x, y = symbols(&quot;xy&quot;)</p>
+<p>&gt;&gt; preview(x + y, output='png')</p>
+<p>This will choose 'pyglet by default. To select different one:</p>
+<p>&gt;&gt; preview(x + y, output='png', viewer='gimp')</p>
+<p>The 'png' format is considered special. For all other formats the rules 
+are sligtly different. As an example we will take 'dvi' output format. If 
+you would run:</p>
+<p>&gt;&gt; preview(x + y, output='dvi')</p>
+<p>then 'view' will look for available 'dvi' viewers on your system 
+(predefined in the function, so it will try evince, first, then kdvi and 
+xdvi). If nothing is found you will need to set the viewer explicitely:</p>
+<p>&gt;&gt; preview(x + y, output='dvi', viewer='superior-dvi-viwer')</p>
+<p>This will skip auto-dection and will run user specified 
+'superior-dvi-viwer'. If 'view' fails to find it on your system it will 
+gracefully raise an exception.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.preview.pngview">pngview(expr, viewer=None, euler=True):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.preview.pdfview">pdfview(expr, viewer=None, euler=True):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.preview.dviview">dviview(expr, viewer=None, euler=True):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

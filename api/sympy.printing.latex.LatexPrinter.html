@@ -4,83 +4,159 @@
         <title>API docs for &ldquo;sympy.printing.latex.LatexPrinter&rdquo;</title>
         </head>
         <body><h1 class="class">Class s.p.l.LatexPrinter(<a href="sympy.printing.printer.Printer.html">Printer</a>):</h1><span id="part">Part of <a href="sympy.printing.latex.html">sympy.printing.latex</a></span><div class="toplevel"><div><p>A printer which converts an expression into its LaTeX equivalent.</p>
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter.doprint">doprint</a></td><td><div><p>Returns printer's representation for expr (as a string)</p>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Mul">_print_Mul</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Add">_print_Add</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Integral">_print_Integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Function">_print_Function</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_exp">_print_exp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Derivative">_print_Derivative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Rational">_print_Rational</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Factorial">_print_Factorial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_RisingFactorial">_print_RisingFactorial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_FallingFactorial">_print_FallingFactorial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Binomial2">_print_Binomial2</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Infinity">_print_Infinity</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_NegativeInfinity">_print_NegativeInfinity</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_ImaginaryUnit">_print_ImaginaryUnit</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Pi">_print_Pi</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Pow">_print_Pow</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Symbol">_print_Symbol</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Relational">_print_Relational</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter.__init__">__init__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter.doprint">doprint</a></td><td><div><p>Returns printer's representation for expr (as a string)</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._needs_brackets">_needs_brackets</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._do_exponent">_do_exponent</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Add">_print_Add</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Mul">_print_Mul</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Pow">_print_Pow</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Derivative">_print_Derivative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Integral">_print_Integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Limit">_print_Limit</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Function">_print_Function</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_floor">_print_floor</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_ceiling">_print_ceiling</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_abs">_print_abs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_re">_print_re</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_im">_print_im</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_conjugate">_print_conjugate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_exp">_print_exp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_gamma">_print_gamma</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Factorial">_print_Factorial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Binomial">_print_Binomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_RisingFactorial">_print_RisingFactorial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_FallingFactorial">_print_FallingFactorial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Rational">_print_Rational</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Infinity">_print_Infinity</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_NegativeInfinity">_print_NegativeInfinity</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_ComplexInfinity">_print_ComplexInfinity</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_ImaginaryUnit">_print_ImaginaryUnit</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_NaN">_print_NaN</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Pi">_print_Pi</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_EulerGamma">_print_EulerGamma</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Order">_print_Order</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Symbol">_print_Symbol</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Relational">_print_Relational</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_Matrix">_print_Matrix</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_tuple">_print_tuple</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_list">_print_list</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.LatexPrinter._print_dict">_print_dict</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter.doprint">doprint(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter.__init__">__init__(self, inline=True):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter.doprint">doprint(self, expr):</a></div>
             <div class="functionBody"><div><p>Returns printer's representation for expr (as a string)</p>
 </div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Mul">_print_Mul(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._needs_brackets">_needs_brackets(self, expr):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Add">_print_Add(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._do_exponent">_do_exponent(self, expr, exp):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Integral">_print_Integral(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Add">_print_Add(self, expr):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Function">_print_Function(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Mul">_print_Mul(self, expr):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_exp">_print_exp(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Pow">_print_Pow(self, expr):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Derivative">_print_Derivative(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Derivative">_print_Derivative(self, expr):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Rational">_print_Rational(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Integral">_print_Integral(self, expr):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Factorial">_print_Factorial(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Limit">_print_Limit(self, expr):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_RisingFactorial">_print_RisingFactorial(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Function">_print_Function(self, expr, exp=None):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_FallingFactorial">_print_FallingFactorial(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_floor">_print_floor(self, expr, exp=None):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Binomial2">_print_Binomial2(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_ceiling">_print_ceiling(self, expr, exp=None):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Infinity">_print_Infinity(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_abs">_print_abs(self, expr, exp=None):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_NegativeInfinity">_print_NegativeInfinity(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_re">_print_re(self, expr, exp=None):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_ImaginaryUnit">_print_ImaginaryUnit(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_im">_print_im(self, expr, exp=None):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Pi">_print_Pi(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_conjugate">_print_conjugate(self, expr, exp=None):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Pow">_print_Pow(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_exp">_print_exp(self, expr, exp=None):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Symbol">_print_Symbol(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_gamma">_print_gamma(self, expr, exp=None):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Relational">_print_Relational(self, e):</a></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Factorial">_print_Factorial(self, expr, exp=None):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Binomial">_print_Binomial(self, expr, exp=None):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_RisingFactorial">_print_RisingFactorial(self, expr, exp=None):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_FallingFactorial">_print_FallingFactorial(self, expr, exp=None):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Rational">_print_Rational(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Infinity">_print_Infinity(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_NegativeInfinity">_print_NegativeInfinity(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_ComplexInfinity">_print_ComplexInfinity(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_ImaginaryUnit">_print_ImaginaryUnit(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_NaN">_print_NaN(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Pi">_print_Pi(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_EulerGamma">_print_EulerGamma(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Order">_print_Order(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Symbol">_print_Symbol(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Relational">_print_Relational(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_Matrix">_print_Matrix(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_tuple">_print_tuple(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_list">_print_list(self, expr):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.printing.latex.LatexPrinter._print_dict">_print_dict(self, expr):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div></body>
         

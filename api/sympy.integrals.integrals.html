@@ -4,22 +4,48 @@
         <title>API docs for &ldquo;sympy.integrals.integrals&rdquo;</title>
         </head>
         <body><h1 class="module">Module s.i.integrals</h1><span id="part">Part of <a href="sympy.integrals.html">sympy.integrals</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.integrals.integrals.Integral.html">Integral</a></td><td><div><p>Represents unevaluated integral.</p>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.integrals.integrate">integrate</a></td><td><div><p>Compute definite or indefinite integral of one or more variables</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.integrals.integrate">integrate</a></td><td><div><p>integrate(f, var, ...)</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.integrals.integrals.integrate">integrate(*args, **kwargs):</a></div>
-            <div class="functionBody"><div><p>Compute definite or indefinite integral of one or more variables using 
-Risch-Norman algorithm and table lookup. This procedure is able to handle 
-elementary algebraic and transcendental functions and also a huge class of 
-special functions, including Airy, Bessel, Whittaker and Lambert.</p>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
-<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
-<pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>integrate(log(x), x)
-<span class="py-output">-x + x*log(x)</span></pre>
-<p>See also the doctest of Integral._eval_integral(), which explains 
-thoroughly the strategy that SymPy uses for integration.</p>
-</div></div>
+            <div class="functionBody"><pre>integrate(f, var, ...)
+
+Compute definite or indefinite integral of one or more variables
+using Risch-Norman algorithm and table lookup. This procedure is
+able to handle elementary algebraic and transcendental functions
+and also a huge class of special functions, including Airy,
+Bessel, Whittaker and Lambert.
+
+var can be:
+
+- a symbol                   -- indefinite integration
+- a tuple (symbol, a, b)     -- definite integration
+
+Several variables can be specified, in which case the result is multiple
+integration.
+
+Also, if no var is specified at all, then full-antiderivative of f is
+returned. This is equivalent of integrating f over all it's variables.
+
+Examples
+--------
+
+>>> from sympy import *
+>>> x, y = symbols('xy')
+
+>>> integrate(x*y, x)
+(1/2)*y*x**2
+
+>>> integrate(log(x), x)
+-x + x*log(x)
+
+>>> integrate(x)
+(1/2)*x**2
+
+>>> integrate(x*y)
+(1/4)*x**2*y**2
+
+See also the doctest of Integral._eval_integral(), which explains
+thoroughly the strategy that SymPy uses for integration.</pre></div>
             </div></body>
         

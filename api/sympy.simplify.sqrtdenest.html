@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.simplify.sqrtdenest&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.s.sqrtdenest</h1><span id="part">Part of <a href="sympy.simplify.html">sympy.simplify</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.simplify.sqrtdenest.sqrtdenest">sqrtdenest</a></td><td><div><p>Denests an expression that contains nested square roots.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.sqrtdenest.denester">denester</a></td><td><div><p>Denests a list of expressions that contain nested square roots.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.sqrtdenest.subsets">subsets</a></td><td><div><p>Returns all possible subsets of the set (0, 1, ..., n-1) except the 
+empty set.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.sqrtdenest.prod">prod</a></td><td><div><p>Returns the product of all elements of n, as a Rational.</p>
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.sqrtdenest.sqrtdenest">sqrtdenest(expr):</a></div>
+            <div class="functionBody"><div><p>Denests an expression that contains nested square roots. This algorithm 
+is based on 
+&lt;http://www.almaden.ibm.com/cs/people/fagin/symb85.pdf&gt;.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.sqrtdenest.denester">denester(nested):</a></div>
+            <div class="functionBody"><div><p>Denests a list of expressions that contain nested square roots. This 
+method should not be called directly - use 'denest' instead. This algorithm
+is based on 
+&lt;http://www.almaden.ibm.com/cs/people/fagin/symb85.pdf&gt;.</p>
+<p>It is assumed that all of the elements of 'nested' share the same 
+bottom-level radicand. (This is stated in the paper, on page 177, in the 
+paragraph immediately preceding the algorithm.)</p>
+<p>When evaluating all of the arguments in parallel, the bottom-level 
+radicand only needs to be denested once. This means that calling denester 
+with x arguments results in a recursive invocation with x+1 arguments; 
+hence denester has polynomial complexity.</p>
+<p>However, if the arguments were evaluated separately, each call would 
+result in two recursive invocations, and the algorithm would have 
+exponential complexity.</p>
+<p>This is discussed in the paper in the middle paragraph of page 179.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.sqrtdenest.subsets">subsets(n):</a></div>
+            <div class="functionBody"><div><p>Returns all possible subsets of the set (0, 1, ..., n-1) except the 
+empty set.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.sqrtdenest.prod">prod(n):</a></div>
+            <div class="functionBody"><div><p>Returns the product of all elements of n, as a Rational.</p>
+</div></div>
+            </div></body>
+        

@@ -4,34 +4,35 @@
         <title>API docs for &ldquo;sympy.printing.latex&rdquo;</title>
         </head>
         <body><h1 class="module">Module s.p.latex</h1><span id="part">Part of <a href="sympy.printing.html">sympy.printing</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.printing.latex.LatexPrinter.html">LatexPrinter</a></td><td><div><p>A printer which converts an expression into its LaTeX equivalent.</p>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.latex">latex</a></td><td><div><p>Usage</p>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.print_latex">print_latex</a></td><td><div><p>Prints expr in pretty form.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.latex">latex</a></td><td><div><p>Convert the given expression to LaTeX representation.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.printing.latex.print_latex">print_latex</a></td><td><div><p>Prints LaTeX representation of the given expression.</p>
 </div></td></tr></table>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.printing.latex.latex">latex(expr):</a></div>
-            <div class="functionBody"><pre>Usage
-=====
-    Returns the latex code representing the current object.
-
-Notes
-=====
-    @param x: a sympy object. It can be any expression as long 
-        as it inherits from basic
-    @return: a string with TeX code (something like $\int \left( 1 +yxight)dx$)
-Examples
-========
-    >>> from sympy import *
-    >>> x = Symbol('x')
-    >>> y = Symbol('y')
-    >>> from sympy.printing.latex import latex
-    
-    >>> print latex(Integral(x*y-2, x))
-    $\int -2+x y\,dx$</pre></div>
+            <div class="functionHeader">def <a name="sympy.printing.latex.latex">latex(expr, inline=True):</a></div>
+            <div class="functionBody"><div><p>Convert the given expression to LaTeX representation.</p>
+<p>You can specify how the generated code will be delimited. If the 
+'inline' keyword is set then inline LaTeX $ $ will be used. Otherwise the 
+resulting code will be enclosed in 'equation*' environment (remember to 
+import 'amsmath').</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy.abc <span class="py-keyword">import</span> *</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>latex((2*tau)**Rational(7,2))
+<span class="py-output">'$\\sqrt[7]{2 \\tau}$'</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>latex((2*mu)**Rational(7,2), inline=False)
+<span class="py-output">'\\begin{equation*}\\sqrt[7]{2 \\mu}\\end{equation*}'</span></pre>
+<p>Besides all Basic based expressions, you can recursively convert Pyhon 
+containers (lists, tuples and dicts) and also SymPy matrices:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>latex([2/x, y])
+<span class="py-output">'$\\begin{bmatrix}\\frac{2}{x}, &amp; y\\end{bmatrix}$'</span></pre>
+</div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.printing.latex.print_latex">print_latex(expr):</a></div>
-            <div class="functionBody"><div><p>Prints expr in pretty form.</p>
-<p>pprint is just a shortcut for this function</p>
+            <div class="functionBody"><div><p>Prints LaTeX representation of the given expression.</p>
 </div></div>
             </div></body>
         

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.thirdparty.mpmath.lib.squareroot&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.t.m.l.squareroot</h1><span id="part">Part of <a href="sympy.thirdparty.mpmath.lib.html">sympy.thirdparty.mpmath.lib</a></span><div class="toplevel"><div><p>This module provides functions for computing approximate square roots 
+(in fixed-point or floating-point form) of positive real numbers.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.squareroot.sqrt_initial">sqrt_initial</a></td><td><div><p>Given y = floor(x * 2**prec), compute floor(sqrt(x) * 2**50),</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.squareroot.invsqrt_initial">invsqrt_initial</a></td><td><div><p>Like sqrt_initial, but computes 1/sqrt(y) instead of sqrt(y).</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.squareroot.sqrt_fixed">sqrt_fixed</a></td><td><div><p>Square root of a fixed-point number.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.squareroot.sqrt_fixed2">sqrt_fixed2</a></td><td><div><p>This function is essentially equivalent to sqrt_fixed (see its</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.squareroot.fsqrt">fsqrt</a></td><td><div><p>Floating-point square root.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.squareroot.fhypot">fhypot</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.squareroot.sqrt_initial">sqrt_initial(y, prec):</a></div>
+            <div class="functionBody"><div><p>Given y = floor(x * 2**prec), compute floor(sqrt(x) * 2**50), i.e. 
+calculate a 50-bit approximation of the square root. This is done quickly 
+using regular floating-point arithmetic. It is assumed that x ~= 1.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.squareroot.invsqrt_initial">invsqrt_initial(y, prec):</a></div>
+            <div class="functionBody"><div><p>Like sqrt_initial, but computes 1/sqrt(y) instead of sqrt(y).</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.squareroot.sqrt_fixed">sqrt_fixed(y, prec):</a></div>
+            <div class="functionBody"><pre>Square root of a fixed-point number.
+
+Given the big integer y = floor(x * 2**prec), this function returns
+floor(r * 2**prec) where r = sqrt(x).
+
+We start from a 50-bit estimate for r generated with ordinary
+floating-point arithmetic, and then refines the value to full
+accuracy using the iteration
+
+             1  /        y          r     = --- | r  +  --- |
+     n+1     2  \ n     r_n /
+
+which is simply Newton's method applied to the equation r**2 = y.
+
+Newton's method doubles the accuracy with each step. We make use of
+this fact by only using a precision corresponding to the current
+accuracy during intermediate iterations. For example, with a 50-bit
+accurate r_1, r_2 can be computed using 100-bit precision, r_3
+using 200-bit precision, and so on. (In practice, the precision
+levels must be chosen slightly more conservatively to account for
+rounding errors in the last one or two bits.)
+
+It is assumed that x ~= 1 (the main fsqrt() function fiddles with
+the exponent of the input to reduce it to unit magnitude before
+passing it here.)
+
+TODO: it would be possible to specify separate precision levels
+for the input and output, which could be useful when calculating
+pure-integer square roots.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.squareroot.sqrt_fixed2">sqrt_fixed2(y, prec):</a></div>
+            <div class="functionBody"><pre>This function is essentially equivalent to sqrt_fixed (see its
+documentation), but uses an asymptotically faster algorithm.
+
+Instead of using Newton's method to calculate sqrt(y) directly,
+we calculate 1/sqrt(y) with Newton's method and multiply by y to
+obtain sqrt(y). The Newton iteration for 1/sqrt(y) is
+
+             r
+              n      /            2         r    =  ----  *  | 3  - y * r   |.
+     n+1      2      \           n  /
+
+This is slightly slower at low precision levels since it requires
+three multiplications in each step, as opposed to the single
+division in the Newton iteration for sqrt(y).
+
+However, since Python uses Karatsuba algorithm for multiplication,
+three multiplications can be performed much more quickly than a
+single division at high precision levels. In practice, the cutoff
+where sqrt_fixed2 becomes faster than sqrt_fixed seems to be around
+60,000 bits.</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.squareroot.fsqrt">fsqrt(s, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Floating-point square root.</p>
+<p>Returns a tuple representing the square root of s, rounded to the 
+nearest floating-point number in the specified rounding direction. The 
+input must be a tuple representing a nonnegative floating-point number.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.squareroot.fhypot">fhypot(x, y, prec, rounding):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

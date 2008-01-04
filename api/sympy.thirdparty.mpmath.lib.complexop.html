@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.thirdparty.mpmath.lib.complexop&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.t.m.l.complexop</h1><span id="part">Part of <a href="sympy.thirdparty.mpmath.lib.html">sympy.thirdparty.mpmath.lib</a></span><div class="toplevel"><div><p>Arithmetic operations and functions on complex numbers, represented on 
+rectangular form as tuples of real floating-point numbers.</p>
+<p>This module is quite compact, since most of the dirty work can be 
+delegated to functions that work on real numbers.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.complexop.fcabs">fcabs</a></td><td><div><p>Absolute value of a complex number, |a+bi|. Returns a single</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.complexop.fcmul">fcmul</a></td><td><div><p>Complex multiplication.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.complexop.fcsqrt">fcsqrt</a></td><td><div><p>Complex square root (principal branch).</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.complexop.fcexp">fcexp</a></td><td><div><p>Complex exponential function.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.complexop.fccos">fccos</a></td><td><div><p>Complex cosine.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.complexop.fcsin">fcsin</a></td><td><div><p>Complex sine.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.complexop.fccosh">fccosh</a></td><td><div><p>Complex hyperbolic cosine. Computed as cosh(z) = cos(z*i).</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.thirdparty.mpmath.lib.complexop.fcsinh">fcsinh</a></td><td><div><p>Complex hyperbolic sine. Computed as sinh(z) = -i*sin(z*i).</p>
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.complexop.fcabs">fcabs(a, b, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Absolute value of a complex number, |a+bi|. Returns a single real 
+number.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.complexop.fcmul">fcmul(a, b, c, d, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Complex multiplication.</p>
+<p>Returns the real and imaginary part of (a+bi)*(c+di), rounded to the 
+specified precision. The rounding mode applies to the real and imaginary 
+parts separately.</p>
+<p>Implemented the straightforward way. TODO: use a more stable algorithm 
+to avoid cancellation.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.complexop.fcsqrt">fcsqrt(a, b, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Complex square root (principal branch).</p>
+<p>We have sqrt(a+bi) = sqrt((r+a)/2) + b/sqrt(2*(r+a))*i where r = 
+abs(a+bi), when a+bi is not a negative real number.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.complexop.fcexp">fcexp(a, b, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Complex exponential function.</p>
+<p>We use the direct formula exp(a+bi) = exp(a) * (cos(b) + sin(b)*i) for 
+the computation. This formula is very nice because it is perfectly stable; 
+since we just do real multiplications, the only numerical errors that can 
+creep in are single-ulp rounding errors.</p>
+<p>The formula is efficient since mpmath's real exp is quite fast and since
+we can compute cos and sin simultaneously.</p>
+<p>It is no problem if a and b are large; if the implementations of 
+exp/cos/sin are accurate and efficient for all real numbers, then so is 
+this function for all complex numbers.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.complexop.fccos">fccos(a, b, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Complex cosine.</p>
+<p>The formula used is cos(a+bi) = cos(a)*cosh(b) - sin(a)*sinh(b)*i.</p>
+<p>The same comments apply as for the complex exp: only real 
+multiplications are performed, so no cancellation errors are possible. The 
+formula is also efficient since we can compute both pairs (cos, sin) and 
+(cosh, sinh) in single steps.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.complexop.fcsin">fcsin(a, b, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Complex sine.</p>
+<p>We have sin(a+bi) = sin(a)*cosh(b) + cos(a)*sinh(b)*i. See the docstring
+for fccos for additional comments.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.complexop.fccosh">fccosh(a, b, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Complex hyperbolic cosine. Computed as cosh(z) = cos(z*i).</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.thirdparty.mpmath.lib.complexop.fcsinh">fcsinh(a, b, prec, rounding):</a></div>
+            <div class="functionBody"><div><p>Complex hyperbolic sine. Computed as sinh(z) = -i*sin(z*i).</p>
+</div></div>
+            </div></body>
+        
