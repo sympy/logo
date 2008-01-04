@@ -47,7 +47,7 @@ writing html to apidocs using pydoctor.html.SystemWriter
 
 a new directory `apidoc` is created with the documentation. Copy `apidoc/*` to `http://sympy.googlecode.com/svn/sympy/api/`
 
-Don't forget to do:
+Don't forget to:
 {{{
 svn propset svn:mime-type text/css apidocs.css
 svn propset svn:mime-type text/html *.html
@@ -70,7 +70,7 @@ svn ci
 
 = How to make a new release =
 
-== Check that overall quality of !SymPy ==
+== Check the overall quality of !SymPy ==
 
 === speed of import ==
 
