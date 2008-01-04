@@ -15,6 +15,7 @@ Find the latest release tag and see what is new since then.
 
   * `view` renamed to `preview`, `pngview`, `pdfview`, `dviview` added ([http://hg.sympy.org/sympy/rev/49161c434035 commit])
   * latex printer was rewritten, `preview` uses builtin pyglet instead of pygame ([http://hg.sympy.org/sympy/rev/5cf8987d6744 commit 1], [http://hg.sympy.org/sympy/rev/2cbb895ae8b3 2])
+  * square root denesting implemented ([http://hg.sympy.org/sympy/rev/f794a01195b7 commit])
   * parser of simple Mathematica expressions added ([http://hg.sympy.org/sympy/rev/54c7ceb12a75 commit])
   * !TeXmacs interface written ([http://hg.sympy.org/sympy/rev/9c1293a56e3d commit])
   * some integration fixes ([http://hg.sympy.org/sympy/rev/9a7ba9499c43 commit 1], [http://hg.sympy.org/sympy/rev/0a57a070f8ee 2], [http://hg.sympy.org/sympy/rev/c660cc8d6201 3])
@@ -23,6 +24,7 @@ Find the latest release tag and see what is new since then.
   * `pyglet` and `mpmath` were updated and moved to sympy/thirdparty ([http://hg.sympy.org/sympy/rev/35ea4723788e commit 1], [http://hg.sympy.org/sympy/rev/7e62d0d6a179 2], [http://hg.sympy.org/sympy/rev/931e4bbbec07 3], [http://hg.sympy.org/sympy/rev/f17e3ff93118 4], [http://hg.sympy.org/sympy/rev/df56f8070da9 5])
   * all `sys.path` hacks were moved to just 2 places - pyglet and examples ([http://hg.sympy.org/sympy/rev/ccd8afb93124 commit 1], [http://hg.sympy.org/sympy/rev/b62b512edd2f 2], [http://hg.sympy.org/sympy/rev/2c5c759d4eed 3])
   * !SymPy objects should work in `numpy` arrays now ([http://hg.sympy.org/sympy/rev/23473c1194e4 commit 1], [http://hg.sympy.org/sympy/rev/ab960e55ee42 2])
+  * hand written sympify() parser was rewritten and simplified using Python AST ([http://hg.sympy.org/sympy/rev/ad3704adbd53 commit])
 
 == 0.5.9 ==
 
