@@ -14,7 +14,7 @@ http://code.google.com/p/google-highly-open-participation-psf/
 
 and read the instructions. Basically, just pick a !SymPy task from:
 
-http://code.google.com/p/google-highly-open-participation-psf/issues/list
+http://code.google.com/p/google-highly-open-participation-psf/issues/list?can=1&q=sympy
 
 and claim it. We'll get a notice that you did that and we can discuss more details in that particular issue.
 
