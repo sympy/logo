@@ -17,6 +17,7 @@ Find the latest release tag and see what is new since then.
 
   * `./setup.py install` installs pyglet correctly now ([http://hg.sympy.org/sympy/rev/e01db9e8b6e6 commit])
   * `var("k")` fixed ([http://hg.sympy.org/sympy/rev/6d226ac58d84 commit])
+  * script for automatic testing of plotting in pure environment added ([http://hg.sympy.org/sympy/rev/79ff83053040 commit 1], [http://hg.sympy.org/sympy/rev/535bde464363 1])
 
 == 0.5.10 ==
 
