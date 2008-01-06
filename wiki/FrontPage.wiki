@@ -18,7 +18,7 @@ Mercurial repository (you can track current progress in there): http://hg.sympy.
 
 !SymPy [http://code.google.com/p/sympy/wiki/GHOP2007 participates] in the Google Highly Open Participation Contest 2007-8, if you are a high school student, go for it. Last chance to claim a task is January 22!
 
-  * *04 Jan 2008* Version 0.5.10 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
+  * *04 Jan 2008* Version 0.5.10 released ([http://code.google.com/p/sympy/wiki/Changes changes]), but pyglet is broken in this release, use 0.5.9 until we fix it.
   * *22 Dec 2007* Version 0.5.9 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *18 Dec 2007* [http://code.google.com/p/symfe/ symfe] project, lightweight symbolic finite element calculations in Python, has started.
   * *06 Dec 2007* Version 0.5.8 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
@@ -90,7 +90,12 @@ There are extensive tests (6148 lines in 58 files) for every single feature in !
   * You can also check our blogs: [http://planet.sympy.org/ PlanetSympy]
   * Or join us at #sympy on irc.freenode.net
 
-But generally, we are trying to polish things, fix bugs, improve documentation, make !SymPy reliable and faster.
+But generally, we are trying to polish things, fix bugs, improve documentation, make !SymPy reliable and faster. It's very important for us, that you grab
+the tarball and it just works (if it doesn't, it's a bug and please report it).
+Until we reach the 1.0 version, the internal structure of !SymPy can change,
+as we are still investigating the most efficient ways of doing symbolic manipulation
+in Python, but from the user point of view, the API shouldn't change much, unless
+there is a very good reason for it.
 
 ===Some ideas for future development===
 
