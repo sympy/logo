@@ -19,6 +19,8 @@ On unix systems (linux, BSD, Mac OS X, cygwin, etc.): extract it with the comman
 You can access all the previous (and other) downloads
 from [http://code.google.com/p/sympy/downloads/list Downloads].
 
+This is useful if the latest one doesn't work for you for some reason.
+
 * hg version *
 
 To get the Mercurial repository, use:
