@@ -1,0 +1,2 @@
+#summary Step by step to make a new release of SymPy
+
