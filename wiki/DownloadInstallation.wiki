@@ -52,6 +52,31 @@ apt-get install python-sympy
 
 !SymPy is in Gutsy and Hardy. The exact !SymPy versions in Ubuntu can be seen here:  https://launchpad.net/ubuntu/+source/sympy
 
+[http://www.gentoo.org http://www.gentoo.org/images/gentoo-new.gif] *Gentoo*
+
+!SymPy is not available in portage tree. However you can install it form `sunrise` overlay.
+
+To setup this overlay, issue:
+{{{
+emerge -va layman
+echo "source /usr/portage/local/layman/make.conf" >> /etc/make.conf
+layman -f -a sunrise
+}}}
+You can then regularly update to the latest reviewed revision:
+{{{
+layman -s sunrise
+}}}
+
+All packages in `sunrise` overlay are considered unstable, so:
+{{{
+echo "sci-libs/sympy ~x86" >> /etc/portage/package.keywords
+}}}
+
+Then you can install !SymPy as any other package:
+{{{
+emerge -av sympy
+}}}
+
 [http://www.sagemath.org/ http://sympy.googlecode.com/svn/materials/web/images/sage.png] * SAGE *
 
 !SymPy is in SAGE 2.7 and later. The exact version of !SymPy in SAGE can be seen here:
