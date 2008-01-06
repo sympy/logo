@@ -91,6 +91,24 @@ $ sudo cowbuilder --execute test_pure
 }}}
 All tests need to run here.
 
+=== Does pyglet work? ===
+
+{{{
+$ cd bin
+$ sudo cowbuilder --execute test_pure_plotting
+[...]
+running install_egg_info
+Writing /usr/lib/python2.4/site-packages/sympy-0.5.10_hg.egg-info
+[0]: cos(x)*sin(y), sin(x)*sin(y), 0.2000000000000000111022302463*x + cos(y) + log(tan((1/2)*y)), 'mode=parametric'
+Window initialization failed: Cannot connect to ""
+/run: line 36: 14889 Segmentation fault      python plotting.py
+Was the plot successful? If not, fix it and do 'python plotting.py'.
+root@fuji:/# 
+}}}
+
+Important is the `[0]: cos(x)*sin(y), ...` line, that shows that plotting was ok
+and pyglet started. It cannot plot in the chroot, so segmentation fault happens. That's ok. If it says "cannot import pyglet", that's bad and needs to be fixed.
+
 === does the tarball contain all the needed files? ===
 
 The previous paragraph tests, that all tests pass in the tarball,
