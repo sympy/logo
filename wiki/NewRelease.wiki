@@ -68,8 +68,8 @@ hg tag sympy-0.5.9
 
 Prepare the release tarball and win32 installer (should work ok even on Linux)
 {{{
-python setup.py sdist
-python setup.py bdist_wininst
+./setup.py sdist
+./setup.py bdist_wininst
 }}}
 
 And put dist/sympy-0.5.9.tar.gz and dist/sympy-0.5.9.win32.exe on website
