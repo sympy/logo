@@ -6,7 +6,7 @@
 
 If you found a bug, please report it in [http://code.google.com/p/sympy/issues/list Issues] or the [http://groups.google.com/group/sympy mailinglist]. 
 
-[http://wiki.sympy.org wiki.sympy.org]: feel free to edit/improve/add anything to the wiki.
+[http://wiki.sympy.org wiki.sympy.org]: we encourage you to edit/improve/add anything to the wiki, it's open to everyone.
 
 http://sympy.googlecode.com/svn/materials/logo/sympy-160px.png
 
