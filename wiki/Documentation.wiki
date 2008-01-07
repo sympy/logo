@@ -13,6 +13,8 @@ For all instructions how to download and install !SymPy, see DownloadInstallatio
 
 If you are new to !SymPy, start with the [http://code.google.com/p/sympy/wiki/Tutorial Tutorial].
 
+Read [http://wiki.sympy.org/index.php/FAQ FAQ] on our emerging [http://wiki.sympy.org/ wiki.sympy.org] (feel free to edit the wiki, add new pages, etc.).
+
 Then browse the documentation of individual !SymPy modules:
 
   * [GeometryModule Geometry Module]
