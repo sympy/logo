@@ -359,3 +359,7 @@ We were also discussing about our plans on IRC:
 (05:42:37 PM) ondrej: let's put the discussion into the wiki?
 (05:42:38 PM) fredrik: my 2c is just that IS is never going to be faster than isinstance in the best case, and therefore i don't see a benefit with it
 }}}
+
+See also a blogspot explaining the relation between sympycore and sympy and Sage:
+
+http://ondrejcertik.blogspot.com/2008/01/sympysympycore-pure-python-up-to-5x.html
