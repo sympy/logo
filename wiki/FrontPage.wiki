@@ -4,7 +4,9 @@
 
 !SymPy is easy to install and get started with. See the [http://code.google.com/p/sympy/wiki/DownloadInstallation?tm=2 download instructions] and [Tutorial tutorial] for more information. It works everywhere, where Python 2.4 or newer is installed (Linux, Windows, Mac Os X, ...).
 
-If you found a bug, please report it in [http://code.google.com/p/sympy/issues/list Issues] or the [http://groups.google.com/group/sympy mailinglist].
+If you found a bug, please report it in [http://code.google.com/p/sympy/issues/list Issues] or the [http://groups.google.com/group/sympy mailinglist]. 
+
+[http://wiki.sympy.org wiki.sympy.org]: Feel free to edit/improve/add anything to the wiki.
 
 http://sympy.googlecode.com/svn/materials/logo/sympy-160px.png
 
