@@ -152,4 +152,4 @@ as you would expect or if you created some algorithm using !SymPy and would like
 
 More information can be found in SympyDevelopment.
 
-See also the list of [[http://wiki.sympy.org/wiki/Contributors contributors]].
+See also the list of [http://wiki.sympy.org/wiki/Contributors contributors].
