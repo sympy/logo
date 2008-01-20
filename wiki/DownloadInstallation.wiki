@@ -23,6 +23,14 @@ This is useful if the latest release doesn't work for you for some reason.
 
 * hg version *
 
+>>> We have temporary problems with main Mercurial server. In the meantime, please use the following mirror: <<<
+
+{{{
+http://landau.phys.spbu.ru/~kirr/cgi-bin/hg.cgi/sympy--mirror/
+}}}
+
+-.-.-.-.-.-.-.-
+
 To get the Mercurial repository, use:
 {{{
 hg clone http://hg.sympy.org/sympy/
