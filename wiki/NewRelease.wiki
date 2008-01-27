@@ -115,6 +115,7 @@ hg push
 == Sites to update ==
 
   * http://code.google.com/p/sympy/wiki/FrontPage
+  * http://code.google.com/p/sympy/wiki/Changes
   * http://code.google.com/p/sympy/
   * http://sympy.googlecode.com/svn/api/sympy.html
   * http://en.wikipedia.org/wiki/SymPy
