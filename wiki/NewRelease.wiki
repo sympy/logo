@@ -9,6 +9,13 @@ Do all the following tests on the tarball generated with:
 $ ./setup.py sdist
 }}}
 
+=== Are all tests included? ===
+
+As directed in `setup.py`, check the tests list using the command:
+{{{
+$ find * -name test_*.py | cut -d "/" -f 1-3 | sort -u
+}}}
+
 === speed of import ==
 
 After several runs, this should be around:
