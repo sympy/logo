@@ -18,11 +18,11 @@ Mercurial repository (you can track current progress in there): http://hg.sympy.
 
 ==News==
 
-!SymPy [http://code.google.com/p/sympy/wiki/GHOP2007 participates] in the Google Highly Open Participation Contest 2007-8, if you are a high school student, go for it. Last chance to claim a task is January 22!
-
+  * *27 Jan 2008* Version 0.5.12 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *07 Jan 2008* Version 0.5.11 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *04 Jan 2008* Version 0.5.10 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *22 Dec 2007* Version 0.5.9 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
+  * *21 Dec 2007* !SymPy [http://code.google.com/p/sympy/wiki/GHOP2007 participates] in the Google Highly Open Participation Contest 2007-8
   * *18 Dec 2007* [http://code.google.com/p/symfe/ symfe] project, lightweight symbolic finite element calculations in Python, has started.
   * *06 Dec 2007* Version 0.5.8 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
   * *17 Nov 2007* Version 0.5.7 released ([http://code.google.com/p/sympy/wiki/Changes changes]).
