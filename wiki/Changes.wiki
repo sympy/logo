@@ -13,6 +13,8 @@ http://hg.sympy.org/sympy/
 
 Find the latest release tag and see what is new since then.
 
+== 0.5.12 ==
+
   * Lambda support works now ([http://hg.sympy.org/sympy/rev/bc07efdd1346 commit])
   * Derivative is now unevaluated ([http://hg.sympy.org/sympy/rev/0c3e9db6004f commit])
   * `list2numpy()` implemented ([http://hg.sympy.org/sympy/rev/b63450f364bc commit])
