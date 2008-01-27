@@ -4,6 +4,11 @@
 
 == Check the overall quality of !SymPy ==
 
+Do all the following tests on the tarball generated with:
+{{{
+$ ./setup.py sdist
+}}}
+
 === speed of import ==
 
 After several runs, this should be around:
@@ -15,13 +20,24 @@ CPU times: user 0.08 s, sys: 0.00 s, total: 0.09 s
 Wall time: 0.09
 }}}
 
-=== does it depend on python2.4 only? ===
+=== Does it depend on python2.4 only? ===
 
 {{{
 $ cd bin
 $ sudo cowbuilder --execute test_pure
 }}}
 All tests need to run here.
+
+=== Do all tests run in the isolated environment? ===
+
+{{{
+$ bin/test_isolated 
+Generating py.test isolated testsuite...
+Done. Run '/tmp/test_sympy.sh'.
+$ /tmp/test_sympy.sh |less
+}}}
+
+And check manually, that no py.test run generated a stack trace.
 
 === Does pyglet work? ===
 
