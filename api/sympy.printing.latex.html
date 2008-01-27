@@ -19,10 +19,10 @@ import 'amsmath').</p>
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy.abc <span class="py-keyword">import</span> *</pre>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>latex((2*tau)**Rational(7,2))
-<span class="py-output">'$\\sqrt[7]{2 \\tau}$'</span></pre>
+<span class="py-output">'$8 \\sqrt{2} \\sqrt[7]{\\tau}$'</span></pre>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>latex((2*mu)**Rational(7,2), inline=False)
-<span class="py-output">'\\begin{equation*}\\sqrt[7]{2 \\mu}\\end{equation*}'</span></pre>
+<span class="py-output">'\\begin{equation*}8 \\sqrt{2} \\sqrt[7]{\\mu}\\end{equation*}'</span></pre>
 <p>Besides all Basic based expressions, you can recursively convert Pyhon 
 containers (lists, tuples and dicts) and also SymPy matrices:</p>
 <pre class="py-doctest">

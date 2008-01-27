@@ -14,6 +14,8 @@
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.GramSchmidt">GramSchmidt</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.wronskian">wronskian</a></td><td><div><p>Compute wronskian for [] of functions</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.casoratian">casoratian</a></td><td><div><p>Given linear difference operator L of order 'k' and homogeneous</p>
 </div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.matrices.matrices.SMatrix.html">SMatrix</a></td><td><div><p>Sparse matrix</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.list2numpy">list2numpy</a></td><td><div><p>Converts python list of SymPy expressions to a NumPy array.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.matrices.matrices.matrix2numpy">matrix2numpy</a></td><td><div><p>Converts SymPy's matrix to a NumPy array.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.matrices.matrices.zero">zero(n):</a></div>
@@ -93,5 +95,15 @@ Exponential and factorial are lineary independent:
 
 >>> casoratian([2**n, factorial(n)], n) != 0
 True</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.list2numpy">list2numpy(l):</a></div>
+            <div class="functionBody"><div><p>Converts python list of SymPy expressions to a NumPy array.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.matrices.matrices.matrix2numpy">matrix2numpy(m):</a></div>
+            <div class="functionBody"><div><p>Converts SymPy's matrix to a NumPy array.</p>
+</div></div>
             </div></body>
         

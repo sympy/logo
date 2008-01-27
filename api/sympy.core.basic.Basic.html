@@ -18,6 +18,7 @@
 </div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.sympify">sympify</a></td><td><div><p>Converts an arbitrary expression to a type that can be used</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.atoms">atoms</a></td><td><div><p>Returns the atoms that form current object.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.is_hypergeometric">is_hypergeometric</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.is_number">is_number</a></td><td><div><p>Returns True if self is a number (like 1, or 1+log(2)), and False</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.args">args</a></td><td><div><p>Returns a tuple of arguments of &quot;self&quot;.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.is_fraction">is_fraction</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_is_polynomial">_eval_is_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.is_polynomial">is_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.as_polynomial">as_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_subs">_eval_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.subs">subs</a></td><td><div><p>Substitutes an expression old -&gt; new.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._seq_subs">_seq_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.has">has</a></td><td><div><p>Return True if self has any of the patterns.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_power">_eval_power</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_derivative">_eval_derivative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_integral">_eval_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_defined_integral">_eval_defined_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_fapply">_eval_fapply</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_fpower">_eval_fpower</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_apply_evalf">_eval_apply_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_eq_nonzero">_eval_eq_nonzero</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_apply_subs">_eval_apply_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._calc_apply_positive">_calc_apply_positive</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._calc_apply_real">_calc_apply_real</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic._eval_conjugate">_eval_conjugate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.conjugate">conjugate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.basic.Basic.subs_dict">subs_dict</a></td><td><div><p>Substitutes &quot;self&quot; using the keys and values from the 
@@ -45,7 +46,7 @@ the</p>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.core.basic.Basic.sympify">sympify(a, sympify_lists=False):</a></div>
+            <div class="functionHeader">def <a name="sympy.core.basic.Basic.sympify">sympify(a, sympify_lists=False, locals={}):</a></div>
             <div class="functionBody"><div><p>Converts an arbitrary expression to a type that can be used inside 
 sympy. For example, it will convert python int's into instance of 
 sympy.Rational, floats into intances of sympy.Real, etc. It is also able to
@@ -112,7 +113,30 @@ otherwise (e.g. 1+x).</p>
 </div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.core.basic.Basic.is_fraction">is_fraction(self, syms):</a></div>
+            <div class="functionHeader">def <a name="sympy.core.basic.Basic.args">args(self):</a></div>
+            <div class="functionBody"><pre>Returns a tuple of arguments of "self".
+
+Example
+-------
+In [2]: cot(x).args[:]
+Out[2]: (x,)
+
+In [3]: cot(x).args[0]
+Out[3]: x
+
+In [4]: (x*y).args[:]
+Out[4]: (x, y)
+
+In [5]: (x*y).args[1]
+Out[5]: y
+
+Note for developers: Never use self._args, always use self.args.
+Only when you are creating your own new function, use _args
+in the __new__. Don't override .args() from Basic (so that it's
+easy to change the interface in the future if needed).</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.basic.Basic.is_fraction">is_fraction(self, *syms):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
@@ -447,10 +471,11 @@ exactly the same results as with a single call to this function.</p>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.core.basic.Basic.series">series(self, x, n=6):</a></div>
+            <div class="functionHeader">def <a name="sympy.core.basic.Basic.series">series(self, x, point=0, n=6):</a></div>
             <div class="functionBody"><div><h1 class="heading">Usage</h1>
-  <p>Return the Taylor (Laurent or generalized) series around 0 of self 
-  with respect to x until the n-th term (default n is 6).</p>
+  <p>Returns the Taylor (Laurent or generalized) series of &quot;self&quot;
+  around the point &quot;point&quot; (default 0) with respect to 
+  &quot;x&quot; until the n-th term (default n is 6).</p>
 <h1 class="heading">Notes</h1>
   <p>This method is the most high level method and it returns the series 
   including the O(x**n) term.</p>
@@ -460,15 +485,13 @@ exactly the same results as with a single call to this function.</p>
 </div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.core.basic.Basic.oseries">oseries(self, order, _cache={}):</a></div>
+            <div class="functionHeader">def <a name="sympy.core.basic.Basic.oseries">oseries(self, order):</a></div>
             <div class="functionBody"><div><p>Return the series of an expression upto given Order symbol (without the 
 actual O term).</p>
 <p>The general philosophy is this: simply start with the most simple taylor
 (laurent) term and calculate one be one and use order.contains(term) method
 to determine if your term is still significant and should be added to the 
 series, or we should stop.</p>
-<p>The _cache parameter is not meant to be used by a user. It is here only 
-to detect an infinite recursion.</p>
 </div></div>
             </div>
             <div class="function">

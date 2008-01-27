@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.simplify.rootof.RootOf&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.s.r.RootOf(Basic, <a href="sympy.core.methods.NoRelMeths.html">NoRelMeths</a>, <a href="sympy.core.methods.ArithMeths.html">ArithMeths</a>):</h1><span id="part">Part of <a href="sympy.simplify.rootof.html">sympy.simplify.rootof</a></span><div class="toplevel"><div><p>Represents all roots or a specific root of a polynomial.</p>
+<p>RootOf class is dual to support handling of all roots of a given 
+polynomial or just a single root specified using integer index. In both 
+cases roots can be computed exactly, if possible, or using numerical 
+approximation.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>prec = Basic.set_precision(6)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>RootOf(2 + x**2, x).count()
+<span class="py-output">2</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>RootOf(2 + x**2, x, 0)
+<span class="py-output">I*2**(1/2)</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>RootOf(2 + x**2, x, 1)
+<span class="py-output">-I*2**(1/2)</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>list(RootOf(2 + x**2, x).roots())
+<span class="py-output">[I*2**(1/2), -I*2**(1/2)]</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>roots = list(RootOf(1 + x + x**7, x).roots())
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> roots[0]
+<span class="py-output">RootOf(1 + x + x**7, x, 0)</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> roots[1]
+<span class="py-output">RootOf(1 + x + x**7, x, 1)</span></pre>
+<p>and so on ...</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>RootOf(1 + x + x**7, x, 1).evalf()
+<span class="py-output">-0.705298 - 0.637624*I</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>_ = Basic.set_precision(prec)</pre>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rootof.RootOf.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rootof.RootOf.poly">poly</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rootof.RootOf.x">x</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rootof.RootOf.index">index</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rootof.RootOf.represents_all">represents_all</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rootof.RootOf.represents_one">represents_one</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rootof.RootOf.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rootof.RootOf.count">count</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rootof.RootOf.roots">roots</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rootof.RootOf._eval_evalf">_eval_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rootof.RootOf.approx">approx</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rootof.RootOf.atoms">atoms</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rootof.RootOf.__new__">__new__(cls, poly, x, index=None, **assumptions):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rootof.RootOf.poly">poly(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rootof.RootOf.x">x(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rootof.RootOf.index">index(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rootof.RootOf.represents_all">represents_all(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rootof.RootOf.represents_one">represents_one(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rootof.RootOf.tostr">tostr(self, level=0):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rootof.RootOf.count">count(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rootof.RootOf.roots">roots(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rootof.RootOf._eval_evalf">_eval_evalf(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rootof.RootOf.approx">approx(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rootof.RootOf.atoms">atoms(self, *args, **kwargs):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

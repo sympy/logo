@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.integrals.trigonometry.Cos_2k_integrate&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.i.t.Cos_2k_integrate(<a href="sympy.functions.special.polynomials.PolynomialSequence.html">PolynomialSequence</a>):</h1><span id="part">Part of <a href="sympy.integrals.trigonometry.html">sympy.integrals.trigonometry</a></span><div class="toplevel"><div><p>efficient integrate(cos(x)**2k, x)</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.integrals.trigonometry.Cos_2k_integrate.calc">calc</a></td><td><div><p>recursively calculate \int(cos(x)**2k, x)</p>
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.integrals.trigonometry.Cos_2k_integrate.calc">calc(k, prev):</a></div>
+            <div class="functionBody"><pre>recursively calculate \int(cos(x)**2k, x)
+
+formula used:
+
+⌠             n-1                ⌠
+⎮ n          C (x)*S(x)    n-1   ⎮  n-2
+⎮C (x)  =   ──────────── + ─── * ⎮ C (x)
+⌡                 n         n    ⌡ 
+
+see: http://en.wikipedia.org/wiki/List_of_integrals_of_trigonometric_functions
+
+                   n-1
+XXX maybe combine C (x)*S(x)  ->  C(n*x) + ...?</pre></div>
+            </div></body>
+        
