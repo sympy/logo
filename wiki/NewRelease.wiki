@@ -22,6 +22,7 @@ Wall time: 0.09
 
 === Does it depend on python2.4 only? ===
 
+Do this on the hg version:
 {{{
 $ cd bin
 $ sudo cowbuilder --execute test_pure
@@ -30,6 +31,7 @@ All tests need to run here.
 
 === Do all tests run in the isolated environment? ===
 
+Do this on the hg version:
 {{{
 $ bin/test_isolated 
 Generating py.test isolated testsuite...
@@ -41,6 +43,7 @@ And check manually, that no py.test run generated a stack trace.
 
 === Does pyglet work? ===
 
+Do this on the hg version:
 {{{
 $ cd bin
 $ sudo cowbuilder --execute test_pure_plotting
