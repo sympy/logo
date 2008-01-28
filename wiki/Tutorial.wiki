@@ -436,3 +436,5 @@ The following list provides links to documentation for some of the various modul
   * [PolynomialsTutorial Polynomials Module]
   * [StatisticsModule Statistics Module]
   * [PrettyPrinting Pretty Printing]
+
+Be sure to also browse the [http://wiki.sympy.org/ wiki.sympy.org], that contains a lot of useful examples, tutorials, cookbooks that we and our users contributed and we encourage you to edit it.
