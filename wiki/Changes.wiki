@@ -13,6 +13,10 @@ http://hg.sympy.org/sympy/
 
 Find the latest release tag and see what is new since then.
 
+  * !SymPy is 25% faster ([http://hg.sympy.org/sympy/rev/5db289e227f9 commit 1], [http://hg.sympy.org/sympy/rev/b8a3f509123d 2], [http://hg.sympy.org/sympy/rev/2146efe6d6ed 3], [http://hg.sympy.org/sympy/rev/9ae600a3134f 4])
+  * Basic.cos et. al. removed, use C.cos ([http://hg.sympy.org/sympy/rev/fa487034bbb1 commit 1], [http://hg.sympy.org/sympy/rev/add2007e2df6 2], [http://hg.sympy.org/sympy/rev/5393aaff17f0 3], [http://hg.sympy.org/sympy/rev/7b94988ea0fc 4])
+  * .expand() for noncommutative symbols fixed ([http://hg.sympy.org/sympy/rev/f3841bb49aba commit])
+
 == 0.5.12 ==
 
   * !SymPy works with !NumPy out of the box ([http://hg.sympy.org/sympy/rev/82e8ff0a8a3e commit 1], [http://hg.sympy.org/sympy/rev/1f8444d3a4c8 2])
