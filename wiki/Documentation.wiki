@@ -25,6 +25,7 @@ Then browse the documentation of individual !SymPy modules:
   * [PolynomialsTutorial Polynomials Module]
   * [StatisticsModule Statistics Module]
   * [PrintingSystem Printing System]
+  * [PrettyPrinting Pretty Printing] 
 
 Then read how !SymPy works internally: HowItWorks.
 
