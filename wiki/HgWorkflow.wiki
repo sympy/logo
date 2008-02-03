@@ -41,7 +41,7 @@ hg qrefresh -e
 }}}
 Send it to list:
 {{{
-hg email -o -a
+hg email -o
 }}}
 
 = Other =
