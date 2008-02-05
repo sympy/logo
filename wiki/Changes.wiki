@@ -18,6 +18,7 @@ Find the latest release tag and see what is new since then.
   * Basic.cos et. al. removed, use C.cos instead ([http://hg.sympy.org/sympy/rev/fa487034bbb1 commit 1], [http://hg.sympy.org/sympy/rev/add2007e2df6 2], [http://hg.sympy.org/sympy/rev/5393aaff17f0 3], [http://hg.sympy.org/sympy/rev/7b94988ea0fc 4])
   * .expand() for noncommutative symbols fixed ([http://hg.sympy.org/sympy/rev/f3841bb49aba commit])
   * !BasicMeths merged into Basic ([http://hg.sympy.org/sympy/rev/652651dc90e5 commit 1], [http://hg.sympy.org/sympy/rev/a95ff37e15a1 2], [http://hg.sympy.org/sympy/rev/5b77303888e2 3], [http://hg.sympy.org/sympy/rev/241e2f20a139 4], [http://hg.sympy.org/sympy/rev/31044aa38e49 5], [http://hg.sympy.org/sympy/rev/20a6ba547347 6], [http://hg.sympy.org/sympy/rev/f4630ac97369 7], [http://hg.sympy.org/sympy/rev/873665a234e3 8])
+  * sympy.core now uses direct imports ([http://hg.sympy.org/sympy/rev/ad1660d022eb commit])
 
 == 0.5.12 ==
 
