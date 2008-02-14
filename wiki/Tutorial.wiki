@@ -206,9 +206,9 @@ Use `.series(var, order)`:
 {{{
 >>> from sympy import *
 >>> x = Symbol('x')
->>> cos(x).series(x,10)
+>>> cos(x).series(x, 0, 10)
 1 - 1/2*x**2 - 1/720*x**6 + (1/24)*x**4 + (1/40320)*x**8 + O(x**10)
->>> (1/cos(x)).series(x,10)
+>>> (1/cos(x)).series(x, 0, 10)
 1 + (1/2)*x**2 + (5/24)*x**4 + (61/720)*x**6 + (277/8064)*x**8 + O(x**10)
 }}}
 
