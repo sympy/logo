@@ -56,7 +56,7 @@ apt-get install python-sympy
 
 [http://www.gentoo.org http://www.gentoo.org/images/gentoo-new.gif] *Gentoo*
 
-!SymPy is not available in portage tree. However you can install it form `sunrise` overlay.
+!SymPy is not available in the portage tree. However you can install it form the `sunrise` overlay.
 
 To setup this overlay, issue:
 {{{
@@ -69,7 +69,7 @@ You can then regularly update to the latest reviewed revision:
 layman -s sunrise
 }}}
 
-All packages in `sunrise` overlay are considered unstable, so:
+All packages in the `sunrise` overlay are considered unstable, so:
 {{{
 echo "sci-libs/sympy ~x86" >> /etc/portage/package.keywords
 }}}
