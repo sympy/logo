@@ -1,0 +1,3 @@
+#summary How to create a spkg for Sage
+
+= Introduction =
