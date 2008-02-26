@@ -13,4 +13,11 @@ $ cd ..
 $ mv sympy-spkg sympy-0.5.13
 $ ~/ext/sage/sage -pkg sympy-0.5.13
 }}}
-And a fresh package sympy-0.5.13.spkg is created.
+And a fresh package sympy-0.5.13.spkg is created. Install it:
+{{{
+$ ~/ext/sage/sage -f sympy-0.5.13.spkg
+}}}
+Test it
+{{{
+$ ~/ext/sage/sage -t ~/ext/sage/devel/sage/sage/calculus/test_sympy.py
+}}}
