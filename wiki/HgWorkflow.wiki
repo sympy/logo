@@ -53,6 +53,12 @@ git = true
 }}}
 in your `~/.hgrc` to enable "git patches".
 
+== how to convert from MQ to regular changesets ==
+
+{{{
+hg qdelete -r qbase:qtip
+}}}
+
 = Links =
 
 == How to setup the email ==
