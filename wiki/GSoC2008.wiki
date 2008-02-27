@@ -6,6 +6,10 @@
 
 Now it's time to get involved in the project - sign up to the !SymPy mailinglist, try to fix issues, send patches, simply let us know about yourself.
 
+= Ideas list =
+
+On our public wiki: http://wiki.sympy.org/wiki/GSoC2008Ideas
+
 = Links =
 
 *Main GSoC2008 site*: http://code.google.com/soc/2008/
