@@ -2,6 +2,10 @@
 
 = Introduction =
 
-If Google is going to do GSoC 2008, !SymPy is going to participate, the same way as in 2007 (see [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007]).
+!SymPy is going to participate, the same way as in 2007 (see [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007]).
 
 Now it's time to get involved in the project - sign up to the !SymPy mailinglist, try to fix issues, send patches, simply let us know about yourself.
+
+= Links =
+
+*Main GSoC2008 site*: http://code.google.com/soc/2008/
