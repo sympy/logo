@@ -6,7 +6,7 @@
 
 Now it's time to get involved in the project - sign up to the !SymPy mailinglist, try to fix issues, send patches, simply let us know about yourself.
 
-You don't have to be an expert in Python or other technologies. All we require is that you work on your project as your main job over the summer. If you work hard, we'll help you with everything, e.g. to improve your Python skills and to learn how to work with Mercurial, how to send patches, etc. We also require that you blog at least once every week about what you do.
+You don't have to be an expert in Python or other technologies. All we require is that you work on your project as your main job over the summer. If you work hard, we'll help you with everything, e.g. to improve your Python skills and to learn how to work with Mercurial, how to send patches, etc. We also require that you blog at least once a week about what you do.
 
 We encourage you to read the GSoC 2007 students reports (see the wiki link above) and feel free to ask them directly for their experience - either on the mailinglist, or privately.
 
