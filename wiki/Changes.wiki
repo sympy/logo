@@ -13,13 +13,52 @@ http://hg.sympy.org/sympy/
 
 Find the latest release tag and see what is new since then.
 
-  * !SymPy is 25% faster ([http://hg.sympy.org/sympy/rev/5db289e227f9 commit 1], [http://hg.sympy.org/sympy/rev/b8a3f509123d 2], [http://hg.sympy.org/sympy/rev/2146efe6d6ed 3], [http://hg.sympy.org/sympy/rev/9ae600a3134f 4])
-  * `((2+3*I)**1000).expand()` is now at least 100x faster ([http://hg.sympy.org/sympy/rev/83fd6783459b commit])
+===== user-visible changes: =====
+
+  * !SymPy is now 2x faster in average compared to the previous release (see below)
   * `integrate()` can handle most of the basic integrals now ([http://hg.sympy.org/sympy/rev/045f9b4d28e1 commit])
+  * interactive experience with isympy was improved through adding support for [], () and {} to pretty-printer, and switching to it as the default ipython printer ([http://hg.sympy.org/sympy/rev/1952e5872712 commit 1], [http://hg.sympy.org/sympy/rev/8b8d52652bc8 2], [http://hg.sympy.org/sympy/rev/9d872c1768b2 3])
+  * new `trim()` function to map all non-atomic expressions, ie. functions, derivatives and more complex objects, to symbols and remove common factors from numerator and denominator. also `cancel()` was improved ([http://hg.sympy.org/sympy/rev/b36abe849cae commit 1], [http://hg.sympy.org/sympy/rev/2c7a8f13af0c 2])
+  * `.expand()` for noncommutative symbols fixed ([http://hg.sympy.org/sympy/rev/f3841bb49aba commit])
+  * bug in `(x+y+sin(x)).as_independent()` fixed ([http://hg.sympy.org/sympy/rev/6e53d4e4f31b commit])
+  * `.subs_dict()` improved ([http://hg.sympy.org/sympy/rev/6d82fc2f132a commit])
+  * support for plotting geometry objects added ([http://hg.sympy.org/sympy/rev/81b5ea2f798f commit])
+  * bug in `.tangent_line()` of ellipse fixed ([http://hg.sympy.org/sympy/rev/7a4895d2a5c6 commit 1], [http://hg.sympy.org/sympy/rev/7e931942af76 2])
+  * new `atan2` function and assotiated fixes for `.arg()` and expanding rational powers ([http://hg.sympy.org/sympy/rev/6b122f035a59 commit 1], [http://hg.sympy.org/sympy/rev/59e098c67d2a 2], [http://hg.sympy.org/sympy/rev/730666b691ab 3])
+  * new `.coeff()` method for returning coefficient of a poly ([http://hg.sympy.org/sympy/rev/fe28b857f840 commit 1], [http://hg.sympy.org/sympy/rev/823a98e61f39 2], [http://hg.sympy.org/sympy/rev/2462e919c263 3])
+  * pretty-printer now uses unicode by default ([http://hg.sympy.org/sympy/rev/3287de8a4632 commit])
+  * recognition of geometric sums were generalized ([http://hg.sympy.org/sympy/rev/46592846838b commit])
+  * `.is_positive` and `.is_negative` now fallback to evalf() when appropriate ([http://hg.sympy.org/sympy/rev/22824466ecc3 commit])
+  * as the result `oo*(pi-1)` now correctly simplifies to `oo` ([http://hg.sympy.org/sympy/rev/595807013bfc commit])
+  * support for objects which provide `__int__` method was added ([http://hg.sympy.org/sympy/rev/499b40d2b273 commit])
+  * we finally started SymPy User's Guide ([http://hg.sympy.org/sympy/rev/fdf6ca3287f9 commit])
+
+
+
+
+===== changes that affected speed: =====
+
+  * first patches with 25% speedup ([http://hg.sympy.org/sympy/rev/5db289e227f9 commit 1], [http://hg.sympy.org/sympy/rev/b8a3f509123d 2], [http://hg.sympy.org/sympy/rev/2146efe6d6ed 3], [http://hg.sympy.org/sympy/rev/9ae600a3134f 4])
   * Basic.cos et. al. removed, use C.cos instead ([http://hg.sympy.org/sympy/rev/fa487034bbb1 commit 1], [http://hg.sympy.org/sympy/rev/add2007e2df6 2], [http://hg.sympy.org/sympy/rev/5393aaff17f0 3], [http://hg.sympy.org/sympy/rev/7b94988ea0fc 4])
-  * .expand() for noncommutative symbols fixed ([http://hg.sympy.org/sympy/rev/f3841bb49aba commit])
+  * sympy.core now uses direct imports ([http://hg.sympy.org/sympy/rev/ad1660d022eb commit 1], [http://hg.sympy.org/sympy/rev/9fefd2f55cca 2])
+  * sympifyit decorator ([http://hg.sympy.org/sympy/rev/0ff293ced56e commit 1], [http://hg.sympy.org/sympy/rev/09af91e6d0f5 2], [http://hg.sympy.org/sympy/rev/e41996ef5e80 3], [http://hg.sympy.org/sympy/rev/8bff90e3d9be 4], [http://hg.sympy.org/sympy/rev/cf70b0b2ef8b 5], [http://hg.sympy.org/sympy/rev/141d4a8de633 6], [http://hg.sympy.org/sympy/rev/91ab79697a8c 7])
+  * speedup Integers creation and arithmetic ([http://hg.sympy.org/sympy/rev/710dd41fdbfc commit 1], [http://hg.sympy.org/sympy/rev/97558045dae6 2])
+  * speedup unary operations for singleton numbers ([http://hg.sympy.org/sympy/rev/ea74c5f5c8c7 commit])
+  * remove silly slowdowns from fast-path of __mul__ and __div__ ([http://hg.sympy.org/sympy/rev/89925b6ebf7b commit 1], [http://hg.sympy.org/sympy/rev/5598327b36c3 2])
+  * significant speedup was achieved by reusing dummy variables ([http://hg.sympy.org/sympy/rev/5056059c2d74 commit 1], [http://hg.sympy.org/sympy/rev/5d242cf4a6cf 2], [http://hg.sympy.org/sympy/rev/c9e5d083a61d 3], [http://hg.sympy.org/sympy/rev/213ab1bc4cd7 4])
+  * `is_dummy` is not an assumption anymore ([http://hg.sympy.org/sympy/rev/532e467b57a3 commit 1], [http://hg.sympy.org/sympy/rev/6a36b59d6558 2])
+  * Symbols & Wilds are cached ([http://hg.sympy.org/sympy/rev/8bdffd52db99 commit 1], [http://hg.sympy.org/sympy/rev/c374fbd5b444 2], [http://hg.sympy.org/sympy/rev/6d57d8846471 3])
+  * `((2+3*I)**1000).expand()` is now at least 100x faster ([http://hg.sympy.org/sympy/rev/83fd6783459b commit])
+  * `.expand()` was made faster for cases where an expression is already expanded ([http://hg.sympy.org/sympy/rev/dcdb94326a38 commit])
+  * rational powers of integers are now computed more efficiently ([http://hg.sympy.org/sympy/rev/7ad4283378aa commit])
+  * unknown assumptions are now cached as well as known assumptions ([http://hg.sympy.org/sympy/rev/c54cd4b2c5aa commit])
+
+
+===== general cleanup: =====
+
   * !BasicMeths merged into Basic ([http://hg.sympy.org/sympy/rev/652651dc90e5 commit 1], [http://hg.sympy.org/sympy/rev/a95ff37e15a1 2], [http://hg.sympy.org/sympy/rev/5b77303888e2 3], [http://hg.sympy.org/sympy/rev/241e2f20a139 4], [http://hg.sympy.org/sympy/rev/31044aa38e49 5], [http://hg.sympy.org/sympy/rev/20a6ba547347 6], [http://hg.sympy.org/sympy/rev/f4630ac97369 7], [http://hg.sympy.org/sympy/rev/873665a234e3 8])
-  * sympy.core now uses direct imports ([http://hg.sympy.org/sympy/rev/ad1660d022eb commit])
+  * cache subsystem was cleaned up -- now it supports only immutable objects ([http://hg.sympy.org/sympy/rev/0a53991871e4 commit 1], [http://hg.sympy.org/sympy/rev/3fbb7fe833ba 2], [http://hg.sympy.org/sympy/rev/d42933e9bdeb 3], [http://hg.sympy.org/sympy/rev/aea7205bb832 4], [http://hg.sympy.org/sympy/rev/1e7b490b3a7b 5])
+
 
 == 0.5.12 ==
 
