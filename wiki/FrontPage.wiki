@@ -66,6 +66,9 @@ There are extensive tests (6148 lines in 58 files) for every single feature in !
   * [http://code.google.com/p/symbide/ symbide]: GUI for !SymPy in PyGTK
   * [http://code.google.com/p/sfepy/ sfepy]: Full featured finite element library written in Python and C
   * [http://code.google.com/p/symfe/ symfe]: Lightweight symbolic finite element calculations in Python (sfepy will use symfe in the future)
+  * [http://scipy.org/ scipy.org]: SciPy + NumPy
+
+The community around all these tools is wonderful, feel free to join the respective lists of these projects and also share your code, so that we can build on each other's work.
 
 ===Things we are working on===
 
