@@ -1,0 +1,7 @@
+#summary SymPy in the News and Blogs
+
+= Introduction =
+
+Here we list blog/news items mentioning !SymPy that we know of.
+
+  * [http://pymag.phparch.com/ Python Magazine], `Volume 1`, `Issue 11`, November 2007
