@@ -18,7 +18,7 @@ On our public wiki: http://wiki.sympy.org/wiki/GSoC2008Ideas
 
 Technically, on March 24 Google opens applications for students as described on the official [http://code.google.com/soc/2008/faqs.html#0.1_timeline timeline], the deadline is March 31. You'll apply directly to mentorship organizations, you can apply to anyone you want, last year it was Python Software Foundation, Portland State University and the Space Telescope Science Institute that students were successful at. The applications at each organization will be judged and the best ones will be selected (according to the number of slots that Google assigns to each organization).
 
-Informally however, it's good to get involved with the !SymPy project before, so that we can help you write a good application and select a good topic, that fits you and us.
+Informally however, it's good to get involved with the !SymPy project before, so that we can help you write a good application and select a good topic, that fits you and us well (and that has a good chance of succeeding).
 
 = Links =
 
