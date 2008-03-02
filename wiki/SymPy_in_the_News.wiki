@@ -1,8 +1,8 @@
 #summary SymPy in the News and Blogs
 
-= Introduction =
+= Blogs, News, Magazines =
 
-Here we list blog/news items mentioning !SymPy that we know of.
+Here we list blog/news/magazines mentioning !SymPy that we know of.
 
   * Penguin.cz: [http://www.penguin.cz/novinky-view.php?id=1142 Zajímavé programy 50] (Czech), July 2007
   * Penguin.cz: [http://www.penguin.cz/novinky-view.php?id=1149 Zajímavé programy 55] (Czech), October 2007
