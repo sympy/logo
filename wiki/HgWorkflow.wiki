@@ -16,6 +16,12 @@ hg ci
 }}}
 as many times as you want.
 
+Make sure your `~/.hgrc` contains your username and email, that goes into the patch:
+{{{
+[ui]
+username = Ondrej Certik <ondrej@somewhere.com>
+}}}
+
 = Publish your patches =
 
 What has changed?
