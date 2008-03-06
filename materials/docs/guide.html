@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>SymPy User's Guide &mdash; SymPy Documentation</title>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <style type="text/css">
+    .syntax  { background: #ffffff; }
+.syntax .c { color: #888888 } /* Comment */
+.syntax .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+.syntax .k { color: #008800; font-weight: bold } /* Keyword */
+.syntax .cm { color: #888888 } /* Comment.Multiline */
+.syntax .cp { color: #cc0000; font-weight: bold } /* Comment.Preproc */
+.syntax .c1 { color: #888888 } /* Comment.Single */
+.syntax .cs { color: #cc0000; font-weight: bold; background-color: #fff0f0 } /* Comment.Special */
+.syntax .gd { color: #000000; background-color: #ffdddd } /* Generic.Deleted */
+.syntax .ge { font-style: italic } /* Generic.Emph */
+.syntax .gr { color: #aa0000 } /* Generic.Error */
+.syntax .gh { color: #303030 } /* Generic.Heading */
+.syntax .gi { color: #000000; background-color: #ddffdd } /* Generic.Inserted */
+.syntax .go { color: #888888 } /* Generic.Output */
+.syntax .gp { color: #555555 } /* Generic.Prompt */
+.syntax .gs { font-weight: bold } /* Generic.Strong */
+.syntax .gu { color: #606060 } /* Generic.Subheading */
+.syntax .gt { color: #aa0000 } /* Generic.Traceback */
+.syntax .kc { color: #008800; font-weight: bold } /* Keyword.Constant */
+.syntax .kd { color: #008800; font-weight: bold } /* Keyword.Declaration */
+.syntax .kp { color: #008800 } /* Keyword.Pseudo */
+.syntax .kr { color: #008800; font-weight: bold } /* Keyword.Reserved */
+.syntax .kt { color: #888888; font-weight: bold } /* Keyword.Type */
+.syntax .m { color: #0000DD; font-weight: bold } /* Literal.Number */
+.syntax .s { color: #dd2200; background-color: #fff0f0 } /* Literal.String */
+.syntax .na { color: #336699 } /* Name.Attribute */
+.syntax .nb { color: #003388 } /* Name.Builtin */
+.syntax .nc { color: #bb0066; font-weight: bold } /* Name.Class */
+.syntax .no { color: #003366; font-weight: bold } /* Name.Constant */
+.syntax .nd { color: #555555 } /* Name.Decorator */
+.syntax .ne { color: #bb0066; font-weight: bold } /* Name.Exception */
+.syntax .nf { color: #0066bb; font-weight: bold } /* Name.Function */
+.syntax .nl { color: #336699; font-style: italic } /* Name.Label */
+.syntax .nn { color: #bb0066; font-weight: bold } /* Name.Namespace */
+.syntax .py { color: #336699; font-weight: bold } /* Name.Property */
+.syntax .nt { color: #bb0066; font-weight: bold } /* Name.Tag */
+.syntax .nv { color: #336699 } /* Name.Variable */
+.syntax .ow { color: #008800 } /* Operator.Word */
+.syntax .w { color: #bbbbbb } /* Text.Whitespace */
+.syntax .mf { color: #0000DD; font-weight: bold } /* Literal.Number.Float */
+.syntax .mh { color: #0000DD; font-weight: bold } /* Literal.Number.Hex */
+.syntax .mi { color: #0000DD; font-weight: bold } /* Literal.Number.Integer */
+.syntax .mo { color: #0000DD; font-weight: bold } /* Literal.Number.Oct */
+.syntax .sb { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Backtick */
+.syntax .sc { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Char */
+.syntax .sd { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Doc */
+.syntax .s2 { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Double */
+.syntax .se { color: #0044dd; background-color: #fff0f0 } /* Literal.String.Escape */
+.syntax .sh { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Heredoc */
+.syntax .si { color: #3333bb; background-color: #fff0f0 } /* Literal.String.Interpol */
+.syntax .sx { color: #22bb22; background-color: #f0fff0 } /* Literal.String.Other */
+.syntax .sr { color: #008800; background-color: #fff0ff } /* Literal.String.Regex */
+.syntax .s1 { color: #dd2200; background-color: #fff0f0 } /* Literal.String.Single */
+.syntax .ss { color: #aa6600; background-color: #fff0f0 } /* Literal.String.Symbol */
+.syntax .bp { color: #003388 } /* Name.Builtin.Pseudo */
+.syntax .vc { color: #336699 } /* Name.Variable.Class */
+.syntax .vg { color: #dd7700 } /* Name.Variable.Global */
+.syntax .vi { color: #3333bb } /* Name.Variable.Instance */
+.syntax .il { color: #0000DD; font-weight: bold } /* Literal.Number.Integer.Long */
+  </style>
+</head>
+<body>
+  <div id="content">
+    
+      <h1 class="heading"><span>SymPy</span></h1>
+      <h2 class="subheading">SymPy User's Guide</h2>
+    
+    
+    <div id="toc">
+      <h2>Navigation</h2>
+      <ul>
+        <li><a href="index.html">back to index</a></li>
+      </ul>
+      
+        <h2>Contents</h2>
+        <ul class="contents">
+        
+          <li><a href="#getting-started">1   Getting Started</a></li>
+        
+          <li><a href="#learning-sympy">2   Learning SymPy</a></li>
+        
+          <li><a href="#contributing">3   Contributing</a></li>
+        
+          <li><a href="#about">4   About</a></li>
+        
+        </ul>
+      
+    </div>
+    
+    <div id="contentwrapper">
+      <div class="sidebar">
+<p class="first sidebar-title">Table of contents</p>
+<div class="contents local last topic">
+<ul class="auto-toc simple">
+<li><a class="reference" href="#getting-started" id="id1" name="id1">1&nbsp;&nbsp;&nbsp;Getting Started</a></li>
+<li><a class="reference" href="#learning-sympy" id="id2" name="id2">2&nbsp;&nbsp;&nbsp;Learning SymPy</a></li>
+<li><a class="reference" href="#contributing" id="id3" name="id3">3&nbsp;&nbsp;&nbsp;Contributing</a></li>
+<li><a class="reference" href="#about" id="id4" name="id4">4&nbsp;&nbsp;&nbsp;About</a></li>
+</ul>
+</div>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id1" id="getting-started" name="getting-started">1&nbsp;&nbsp;&nbsp;Getting Started</a></h2>
+<div class="section">
+<h3><a id="introduction" name="introduction">1.1&nbsp;&nbsp;&nbsp;Introduction</a></h3>
+<p>SymPy is a Python library for symbolic mathematics. It aims to become a
+full-featured computer algebra system (CAS) while keeping the code as simple as
+possible in order to be comprehensible and easily extensible.  SymPy is written
+entirely in Python and does not require any external libraries.</p>
+</div>
+<div class="section">
+<h3><a id="first-steps-with-sympy" name="first-steps-with-sympy">1.2&nbsp;&nbsp;&nbsp;First Steps with SymPy</a></h3>
+<p>The easiest way to download it is to go to
+<a class="reference" href="http://code.google.com/p/sympy/">http://code.google.com/p/sympy/</a> and
+download the latest tarball from the Featured Downloads:</p>
+<div class="figure">
+<img alt="A page being displayed in a browser window." src="figures/featured-downloads.png" />
+<p class="caption">Download part of the SymPy's webpage</p>
+</div>
+<p>Unpack it:</p>
+<pre class="literal-block">
+$ <strong>tar xzf sympy-0.5.12.tar.gz</strong>
+</pre>
+<p>and try it from a Python intepreter:</p>
+<pre class="literal-block">
+$ <strong>cd sympy-0.5.12</strong>
+$ <strong>python</strong>
+Python 2.4.4 (#2, Jan  3 2008, 13:36:28)
+[GCC 4.2.3 20071123 (prerelease) (Debian 4.2.2-4)] on linux2
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; <strong>from sympy import Symbol, cos</strong>
+&gt;&gt;&gt; <strong>x = Symbol(&quot;x&quot;)</strong>
+&gt;&gt;&gt; <strong>(1/cos(x)).series(x, 0, 10)</strong>
+1 + (1/2)*x**2 + (5/24)*x**4 + (61/720)*x**6 + (277/8064)*x**8 + O(x**10)
+</pre>
+<p>You can use SymPy as shown above and this is indeed the recommended way if you
+use it in your program. You can also install it using <cite>./setup.py install</cite> as
+any other Python module, or just install a package in your favourite Linux
+distribution (see e.g. <a class="reference" href="#installing-sympy-in-debian">Installing SymPy in Debian</a>).</p>
+<!-- Installing SymPy in Debian -->
+<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+<!-- XXX admonition ok? -->
+<!-- .. admonition:: Installing SymPy in Debian -->
+<div class="topic">
+<p class="topic-title first"><a id="installing-sympy-in-debian" name="installing-sympy-in-debian">Installing SymPy in Debian</a></p>
+<pre class="literal-block">
+$ <strong>sudo apt-get install python-sympy</strong>
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following NEW packages will be installed:
+  python-sympy
+0 upgraded, 1 newly installed, 0 to remove and 18 not upgraded.
+Need to get 991kB of archives.
+After this operation, 5976kB of additional disk space will be used.
+Get:1 http://ftp.cz.debian.org unstable/main python-sympy 0.5.12-1 [991kB]
+Fetched 991kB in 2s (361kB/s)
+Selecting previously deselected package python-sympy.
+(Reading database ... 232619 files and directories currently installed.)
+Unpacking python-sympy (from .../python-sympy_0.5.12-1_all.deb) ...
+Setting up python-sympy (0.5.12-1) ...
+</pre>
+</div>
+<p>For other means how to install SymPy, consult the  <a class="reference" href="http://code.google.com/p/sympy/wiki/DownloadInstallation?tm=2">Downloads</a> section on the
+SymPy's webpage.</p>
+</div>
+<div class="section">
+<h3><a id="isympy-console" name="isympy-console">1.3&nbsp;&nbsp;&nbsp;<cite>isympy</cite> Console</a></h3>
+<p>For experimenting with new features, or when figuring out how to do things, you
+can use our special wrapper around IPython</p>
+<pre class="literal-block">
+$ <strong>cd sympy-0.5.12</strong>
+$ <strong>./bin/isympy</strong>
+Python 2.4.4 console for SymPy 0.5.12-hg. These commands were executed:
+&gt;&gt;&gt; from __future__ import division
+&gt;&gt;&gt; from sympy import *
+&gt;&gt;&gt; x, y, z = symbols('xyz')
+&gt;&gt;&gt; k, m, n = symbols('kmn', integer=True)
+&gt;&gt;&gt; f = Function(&quot;f&quot;)
+
+Documentation can be found at <a class="reference" href="http://sympy.org/">http://sympy.org/</a>
+
+
+In [1]: <strong>(1/cos(x)).series(x, 0, 10)</strong>
+Out[1]:
+     2      4       6        8
+    x    5*x    61*x    277*x
+1 + ── + ──── + ───── + ────── + O(x**10)
+    2     24     720     8064
+</pre>
+<div class="note">
+<p class="first admonition-title">Note</p>
+<img align="left" alt="figures/admon-note.png" class="align-left" src="figures/admon-note.png" />
+<p class="last">Commands entered by you are bold. Thus what we did in 3 lines in a regular
+Python interpeter can be done in 1 line in isympy.</p>
+</div>
+</div>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id2" id="learning-sympy" name="learning-sympy">2&nbsp;&nbsp;&nbsp;Learning SymPy</a></h2>
+<div class="section">
+<h3><a id="documentation" name="documentation">2.1&nbsp;&nbsp;&nbsp;Documentation</a></h3>
+<p>Recommended way of learning SymPy is to go to the main <a class="reference" href="#documentation">Documentation</a> page on
+SymPy's webpage and go through tutorial. Then browse other links and the wiki.
+It's also very useful to look into tests, that are located in the <tt class="docutils literal"><span class="pre">tests/</span></tt>
+directories.</p>
+</div>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id3" id="contributing" name="contributing">3&nbsp;&nbsp;&nbsp;Contributing</a></h2>
+<div class="section">
+<h3><a id="program" name="program">3.1&nbsp;&nbsp;&nbsp;Program</a></h3>
+<p>Go to <a class="reference" href="http://code.google.com/p/sympy/issues/list">issues</a> that are sorted by priority and simply find something that you
+would like to get fixed and fix it.  Feel free to consult with us on the
+<a class="reference" href="http://groups.google.com/group/sympy">mailinglist</a>.  Then send your patch either to the issues or the malinglist. See
+the <a class="reference" href="http://code.google.com/p/sympy/wiki/SympyDevelopment">SympyDevelopment</a> wiki, but don't worry about it too much if you find it
+too formal - simply get in touch with us on the mailinglist and we'll help you
+get your patch accepted.</p>
+</div>
+<div class="section">
+<h3><a id="user-s-guide" name="user-s-guide">3.2&nbsp;&nbsp;&nbsp;User's Guide</a></h3>
+<p>To edit this User's Guide, edit the file <tt class="docutils literal"><span class="pre">guide.txt</span></tt> and then execute:</p>
+<pre class="literal-block">
+$ <strong>make</strong>
+...
+</pre>
+<p>This will generate html files in the same directory.</p>
+<p>To learn how to write the ReST syntax consult the <a class="reference" href="http://docutils.sourceforge.net/rst.html">ReStructuredText</a> web page.</p>
+</div>
+</div>
+<div class="section">
+<h2><a class="toc-backref" href="#id4" id="about" name="about">4&nbsp;&nbsp;&nbsp;About</a></h2>
+<div class="section">
+<h3><a id="credits" name="credits">4.1&nbsp;&nbsp;&nbsp;Credits</a></h3>
+<p>SymPy was written by the SymPy Development Team,  to find more information
+about who wrote what, please visit the <a class="reference" href="http://wiki.sympy.org/wiki/Contributors">Contributors wiki page</a>.</p>
+<p>This manual was written by Ondřej Čertík (<a class="reference" href="mailto:ondrej&#64;certik.cz">ondrej&#64;certik.cz</a>).</p>
+</div>
+<div class="section">
+<h3><a id="license" name="license">4.2&nbsp;&nbsp;&nbsp;License</a></h3>
+<p>Unless stated otherwise, all files in the SymPy project, SymPy's webpage (and
+wiki), all images and all documentation including this User's Guide is licensed
+using the new BSD license:</p>
+<pre class="literal-block">
+Copyright (c) 2006, 2007, 2008 SymPy developers
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+  a. Redistributions of source code must retain the above copyright notice,
+     this list of conditions and the following disclaimer.
+  b. Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+  c. Neither the name of the SymPy nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot;
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
+DAMAGE.
+
+</pre>
+</div>
+</div>
+
+    </div>
+  </div>
+</body>
+<!-- generated on: 2008-03-06 18:21:00.141649
+     file id: guide -->
+</html>
