@@ -63,6 +63,16 @@ date: 6 Mar 2008
   * !BasicMeths merged into Basic ([http://hg.sympy.org/sympy/rev/652651dc90e5 commit 1], [http://hg.sympy.org/sympy/rev/a95ff37e15a1 2], [http://hg.sympy.org/sympy/rev/5b77303888e2 3], [http://hg.sympy.org/sympy/rev/241e2f20a139 4], [http://hg.sympy.org/sympy/rev/31044aa38e49 5], [http://hg.sympy.org/sympy/rev/20a6ba547347 6], [http://hg.sympy.org/sympy/rev/f4630ac97369 7], [http://hg.sympy.org/sympy/rev/873665a234e3 8])
   * cache subsystem was cleaned up -- now it supports only immutable objects ([http://hg.sympy.org/sympy/rev/0a53991871e4 commit 1], [http://hg.sympy.org/sympy/rev/3fbb7fe833ba 2], [http://hg.sympy.org/sympy/rev/d42933e9bdeb 3], [http://hg.sympy.org/sympy/rev/aea7205bb832 4], [http://hg.sympy.org/sympy/rev/1e7b490b3a7b 5])
 
+The following people have contributed to this release:
+
+    * Kirill Smelkov
+    * Mateusz Paprocki
+    * Saroj Adhikari
+    * Fredrik Johansson
+    * Jaroslaw Tworek
+    * Robert Kern
+    * Pauli Virtanen
+    * Ondřej Čertík
 
 == 0.5.12 ==
 
@@ -87,6 +97,19 @@ date: 27 Jan 2008
   * Python printing implemented ([http://hg.sympy.org/sympy/rev/d0ae0c3f38e1 commit])
   * 2D plots now don't rotate in 3D, but translate instead ([http://hg.sympy.org/sympy/rev/03b3348eac8a commit])
   * many bug fixes, see the Mercurial history for details
+
+The following people have contributed to this release:
+
+    * Kirill Smelkov
+    * Mateusz Paprocki
+    * Fredrik Johansson
+    * Jaroslaw Tworek
+    * Saroj Adhikari
+    * Andrej Tokarčík
+    * David Marek
+    * Or Dvory
+    * Bernhard R. Link
+    * Ondřej Čertík
 
 == 0.5.11 ==
 
