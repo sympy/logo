@@ -35,7 +35,7 @@ date: 6 Mar 2008
   * `.is_positive` and `.is_negative` now fallback to evalf() when appropriate ([http://hg.sympy.org/sympy/rev/22824466ecc3 commit])
   * as the result `oo*(pi-1)` now correctly simplifies to `oo` ([http://hg.sympy.org/sympy/rev/595807013bfc commit])
   * support for objects which provide `__int__` method was added ([http://hg.sympy.org/sympy/rev/499b40d2b273 commit])
-  * we finally started !SymPy User's Guide ([http://hg.sympy.org/sympy/rev/fdf6ca3287f9 commit])
+  * we finally started !SymPy User's Guide ([http://hg.sympy.org/sympy/rev/fdf6ca3287f9 commit 1], [http://hg.sympy.org/sympy/rev/18ad24318344 2])
 
 
 
