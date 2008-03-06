@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.symbol.Dummy&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.c.s.Dummy(<a href="sympy.core.symbol.Symbol.html">Symbol</a>):</h1><span id="part">Part of <a href="sympy.core.symbol.html">sympy.core.symbol</a></span><p>known subclasses: <a href="sympy.core.symbol.Temporary.html">sympy.core.symbol.Temporary</a></p><div class="toplevel"><div><p>Dummy Symbol</p>
+<p>use this through Symbol:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x1 = Symbol(<span class="py-string">'x'</span>, dummy=True)
+<span class="py-prompt">&gt;&gt;&gt; </span>x2 = Symbol(<span class="py-string">'x'</span>, dummy=True)
+<span class="py-prompt">&gt;&gt;&gt; </span>bool(x1 == x2)
+<span class="py-output">False</span></pre>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Dummy.__new__">__new__</a></td><td><div><p>if dummy == True, then this Symbol is totally unique, i.e.:</p>
+<pre class="literalblock">
+
+</pre>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Dummy._hashable_content">_hashable_content</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Dummy.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Dummy.__new__">__new__(cls, name, commutative=True, **assumptions):</a></div>
+            <div class="functionBody"><div><p>if dummy == True, then this Symbol is totally unique, i.e.:</p>
+<pre class="literalblock">
+       &gt;&gt;&gt; bool(Symbol(&quot;x&quot;) == Symbol(&quot;x&quot;)) == True
+       True
+
+       but with the dummy variable ::
+
+       &gt;&gt;&gt; bool(Symbol(&quot;x&quot;, dummy = True) == Symbol(&quot;x&quot;, dummy = True)) == True
+       False
+</pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Dummy._hashable_content">_hashable_content(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Dummy.tostr">tostr(self, level=0):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

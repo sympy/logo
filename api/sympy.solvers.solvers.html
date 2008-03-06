@@ -108,10 +108,10 @@ efficiency and simplicity reason.</p>
 <span class="py-prompt">&gt;&gt;&gt; </span>a, b, c, x = symbols(<span class="py-string">'a'</span>, <span class="py-string">'b'</span>, <span class="py-string">'c'</span>, <span class="py-string">'x'</span>)</pre>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>solve_undetermined_coeffs(2*a*x + a+b == x, [a, b], x)
-<span class="py-output">{a: 1/2, b: -1/2}</span></pre>
+<span class="py-output">{b: -1/2, a: 1/2}</span></pre>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>solve_undetermined_coeffs(a*c*x + a+b == x, [a, b], x)
-<span class="py-output">{a: 1/c, b: -1/c}</span></pre>
+<span class="py-output">{b: -1/c, a: 1/c}</span></pre>
 </div></div>
             </div>
             <div class="function">

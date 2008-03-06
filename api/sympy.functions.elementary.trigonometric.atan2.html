@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.functions.elementary.trigonometric.atan2&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.f.e.t.atan2(<a href="sympy.core.function.Function.html">Function</a>):</h1><span id="part">Part of <a href="sympy.functions.elementary.trigonometric.html">sympy.functions.elementary.trigonometric</a></span><div class="toplevel"><div><p>Returns the atan(y/x) taking two arguments y and x. Signs of both y and 
+x are considered to determine the appropriate quadrant of atan(y/x). The 
+range is (-pi, pi].</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.trigonometric.atan2.canonize">canonize</a></td><td><div><p>Returns a canonical form of cls applied to arguments args.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.trigonometric.atan2._eval_is_real">_eval_is_real</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.trigonometric.atan2.canonize">canonize(cls, y, x):</a></div>
+            <div class="functionBody"><pre>Returns a canonical form of cls applied to arguments args.
+
+The canonize() method is called when the class cls is about to be
+instantiated and it should return either some simplified instance
+(possible of some other class), or if the class cls should be
+unmodified, return None.
+
+Example of canonize() for the function "sign"
+---------------------------------------------
+
+@classmethod
+def canonize(cls, arg):
+    if arg is S.NaN:
+        return S.NaN
+    if arg is S.Zero: return S.One
+    if arg.is_positive: return S.One
+    if arg.is_negative: return S.NegativeOne
+    if isinstance(arg, C.Mul):
+        coeff, terms = arg.as_coeff_terms()
+        if coeff is not S.One:
+            return cls(coeff) * cls(C.Mul(*terms))</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.functions.elementary.trigonometric.atan2._eval_is_real">_eval_is_real(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

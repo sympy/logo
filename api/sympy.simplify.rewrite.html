@@ -5,15 +5,16 @@
         </head>
         <body><h1 class="module">Module s.s.rewrite</h1><span id="part">Part of <a href="sympy.simplify.html">sympy.simplify</a></span><div class="toplevel"><div><p>Module 'rewrite.py' contains advanced term rewriting methods concerning 
 partial fraction decomposition, combinig together and collecting terms.</p>
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rewrite.cancel">cancel</a></td><td><div><p>Cancel common factors in the given rational function.</p>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rewrite.cancel">cancel</a></td><td><div><p>Cancel common factors in a given rational function.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rewrite.trim">trim</a></td><td><div><p>Cancel common factors in a given formal rational expression.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.simplify.rewrite.apart">apart</a></td><td><div><p>Compute partial fraction decomposition of a rational function.</p>
 </div></td></tr></table>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.simplify.rewrite.cancel">cancel(f, *syms):</a></div>
-            <div class="functionBody"><div><p>Cancel common factors in the given rational function.</p>
+            <div class="functionHeader">def <a name="sympy.simplify.rewrite.cancel">cancel(f, *syms, **flags):</a></div>
+            <div class="functionBody"><div><p>Cancel common factors in a given rational function.</p>
 <p>Given a quotient of polynomials, performing only gcd and quo operations 
-in polynomial algebra, return rational function with numerator and 
-denominator of minimal total degree.</p>
+in polynomial algebra,  return rational function with numerator and 
+denominator of minimal total degree in an expanded form.</p>
 <p>For all other kinds of expressions the input is returned in an unchanged
 form. Note however, that 'cancel' function can thread over sums and 
 relational operators.</p>
@@ -31,6 +32,34 @@ more efficiently using only those symbols.</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>cancel((x**2-2)/(x+sqrt(2)))
 <span class="py-output">x - 2**(1/2)</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.simplify.rewrite.trim">trim(f, *syms, **flags):</a></div>
+            <div class="functionBody"><div><p>Cancel common factors in a given formal rational expression.</p>
+<p>Given an arbitrary expression, map all functional components to 
+temporary symbols, rewriting this expression to rational function form and 
+perform cancelation of common factors.</p>
+<p>When given a rational function or a list of symbols discards all 
+functional components, then this procedure is equivalent to cancel().</p>
+<p>Note that this procedure can thread over composite objects like big 
+operators, matrices, relational operators etc. It can be also called 
+recursively (to change this behaviour unset 'recursive' flag).</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>f = Function(<span class="py-string">'f'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>trim((f(x)**2+f(x))/f(x))
+<span class="py-output">1 + f(x)</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>trim((x**2+x)/x)
+<span class="py-output">1 + x</span></pre>
+<p>Recursively simplify expressions:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>trim(sin((f(x)**2+f(x))/f(x)))
+<span class="py-output">sin(1 + f(x))</span></pre>
 </div></div>
             </div>
             <div class="function">

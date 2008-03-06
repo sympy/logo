@@ -29,15 +29,15 @@ Example of canonize() for the function "sign"
 
 @classmethod
 def canonize(cls, arg):
-    if isinstance(arg, Basic.NaN):
+    if arg is S.NaN:
         return S.NaN
-    if isinstance(arg, Basic.Zero): return S.One
+    if arg is S.Zero: return S.One
     if arg.is_positive: return S.One
     if arg.is_negative: return S.NegativeOne
-    if isinstance(arg, Basic.Mul):
+    if isinstance(arg, C.Mul):
         coeff, terms = arg.as_coeff_terms()
-        if not isinstance(coeff, Basic.One):
-            return cls(coeff) * cls(Basic.Mul(*terms))</pre></div>
+        if coeff is not S.One:
+            return cls(coeff) * cls(C.Mul(*terms))</pre></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.functions.elementary.hyperbolic.acoth.taylor_term">taylor_term(n, x, *previous_terms):</a></div>

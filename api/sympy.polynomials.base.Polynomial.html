@@ -90,6 +90,7 @@ href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.content">content</a></td><td><div><p>Return the content of a Polynomial.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.diff">diff</a></td><td><div><p>Derivative of a Polynomial.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.integrate">integrate</a></td><td><div><p>Primitive function of a Polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.coeff">coeff</a></td><td><div><p>Returns the coefficient at x**n</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.leading_coeff">leading_coeff</a></td><td><div><p>Return the leading coefficient of a Polynomial.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.leading_term">leading_term</a></td><td><div><p>Return the leading term of a Polynomial.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polynomials.base.Polynomial.nth_coeff">nth_coeff</a></td><td><div><p>Return a specific coefficient of a Polynomial.</p>
@@ -353,6 +354,14 @@ href="sympy.polynomials.base.Polynomial.__mul__.html">__mul__</a>.</p>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>fz = f.integrate(z)
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> fz
 <span class="py-output">6*x*z + 20*y*z + 4*x*y*z</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polynomials.base.Polynomial.coeff">coeff(self, x, n):</a></div>
+            <div class="functionBody"><div><p>Returns the coefficient at x**n</p>
+<p>Example: &gt;&gt;&gt; a, x = symbols(&quot;ax&quot;) &gt;&gt;&gt; f = 
+(a+1)*x + (a+2)*x**2 + a &gt;&gt;&gt; Polynomial(f).coeff(x, 2) 2 + a 
+&gt;&gt;&gt; Polynomial(f).coeff(a, 1) 1 + x + x**2</p>
 </div></div>
             </div>
             <div class="function">

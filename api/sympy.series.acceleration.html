@@ -23,29 +23,29 @@ limit converges slowly; n = 100 only produces two accurate digits:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>n = Symbol(<span class="py-string">'n'</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>e = (1 + 1/n)**n
-<span class="py-prompt">&gt;&gt;&gt; </span>e.subs(n, 100).evalf()
-<span class="py-output">2.704813829421526093267194711</span></pre>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> round(e.subs(n, 100).evalf(), 10)
+<span class="py-output">2.7048138294</span></pre>
 <p>Richardson extrapolation with 11 appropriately chosen terms gives a 
 value that is accurate to the indicated precision:</p>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>richardson(e, n, 10, 20).evalf()
-<span class="py-output">2.718281828459045235360287471</span>
-<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>E.evalf()
-<span class="py-output">2.718281828459045235360287471</span></pre>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> round(richardson(e, n, 10, 20).evalf(), 10)
+<span class="py-output">2.7182818285</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> round(E.evalf(), 10)
+<span class="py-output">2.7182818285</span></pre>
 <p>Another useful application is to speed up convergence of series. 
 Computing 100 terms of the zeta(2) series 1/k**2 yields only two accurate 
 digits:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>k = Symbol(<span class="py-string">'k'</span>); n = Symbol(<span class="py-string">'n'</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>A = Sum2(k**-2, (k, 1, n))
-<span class="py-prompt">&gt;&gt;&gt; </span>A.subs(n, 100).evalf()
-<span class="py-output">1.634983900184892865077169498</span></pre>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> round(A.subs(n, 100).evalf(), 10)
+<span class="py-output">1.6349839002</span></pre>
 <p>Richardson extrapolation performs much better:</p>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>richardson(A, n, 10, 20).evalf()
-<span class="py-output">1.644934066848226436472414853</span>
-<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>((pi**2)/6).evalf()     <span class="py-comment"># Exact value</span>
-<span class="py-output">1.644934066848226436472415167</span></pre>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> round(richardson(A, n, 10, 20).evalf(), 10)
+<span class="py-output">1.6449340668</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> round(((pi**2)/6).evalf(), 10)     <span class="py-comment"># Exact value</span>
+<span class="py-output">1.6449340668</span></pre>
 </div></div>
             </div>
             <div class="function">
@@ -59,12 +59,12 @@ converge slowly near a pole or singularity, e.g. for log(2):</p>
 <span class="py-prompt">&gt;&gt;&gt; </span>n = Symbol(<span class="py-string">'n'</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>k = Symbol(<span class="py-string">'k'</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>A = Sum2(Integer(-1)**(k+1) / k, (k, 1, n))
-<span class="py-prompt">&gt;&gt;&gt; </span>A.subs(n, 100).evalf()
-<span class="py-output">0.6881721793101952032446458827</span>
-<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>shanks(A, n, 25).evalf()
-<span class="py-output">0.6931396564055737564958186845</span>
-<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>shanks(A, n, 25, 5).evalf()
-<span class="py-output">0.6931471805599451716132607039</span></pre>
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> round(A.subs(n, 100).evalf(), 10)
+<span class="py-output">0.6881721793</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> round(shanks(A, n, 25).evalf(), 10)
+<span class="py-output">0.6931396564</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> round(shanks(A, n, 25, 5).evalf(), 10)
+<span class="py-output">0.6931471806</span></pre>
 <p>The correct value is 0.6931471805599453094172321215.</p>
 </div></div>
             </div></body>

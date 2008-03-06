@@ -172,8 +172,13 @@ of collection variable:</p>
 <span class="py-output">c + x*(a - b) + x**2*(a + b)</span></pre>
 <p>The same result can achieved in dictionary form:</p>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>collect(a*x**2 + b*x**2 + a*x - b*x + c, x, evaluate=False)
-<span class="py-output">{1: c, x**2: a + b, x: a - b}</span></pre>
+<span class="py-prompt">&gt;&gt;&gt; </span>d = collect(a*x**2 + b*x**2 + a*x - b*x + c, x, evaluate=False)
+<span class="py-prompt">&gt;&gt;&gt; </span>d[x**2]
+<span class="py-output">a + b</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>d[x]
+<span class="py-output">a - b</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>d[sympify(1)]
+<span class="py-output">c</span></pre>
 <p>You can also work with multi-variate polynomials. However remember that 
 this function is greedy so it will care only about a single symbol at time,
 in specification order:</p>

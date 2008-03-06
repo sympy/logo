@@ -5,7 +5,8 @@
         </head>
         <body><h1 class="module">Module s.i.risch</h1><span id="part">Part of <a href="sympy.integrals.html">sympy.integrals</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.integrals.risch.components">components</a></td><td><div><p>Returns a set of all functional components of the given expression</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.risch.monomials">monomials</a></td><td><div><p>Generate monomial set of the given total degree or less.</p>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.risch.symbols">symbols</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.risch.heurisch">heurisch</a></td><td><div><p>Compute indefinite integral using heuristic Risch algorithm.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.risch._symbols">_symbols</a></td><td><div><p>get vector of symbols local to this module</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.integrals.risch.heurisch">heurisch</a></td><td><div><p>Compute indefinite integral using heuristic Risch algorithm.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.integrals.risch.components">components(f, x):</a></div>
@@ -18,7 +19,7 @@ exponents.</p>
 <span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>components(sin(x)*cos(x)**2, x)
-<span class="py-output">set([sin(x), cos(x), x])</span></pre>
+<span class="py-output">set([x, sin(x), cos(x)])</span></pre>
 </div></div>
             </div>
             <div class="function">
@@ -36,11 +37,12 @@ exponents.</p>
 </div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.integrals.risch.symbols">symbols(name, n, **kwargs):</a></div>
-            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            <div class="functionHeader">def <a name="sympy.integrals.risch._symbols">_symbols(name, n):</a></div>
+            <div class="functionBody"><div><p>get vector of symbols local to this module</p>
+</div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.integrals.risch.heurisch">heurisch(f, x, rewrite=False):</a></div>
+            <div class="functionHeader">def <a name="sympy.integrals.risch.heurisch">heurisch(f, x, **kwargs):</a></div>
             <div class="functionBody"><pre>Compute indefinite integral using heuristic Risch algorithm.
 
 This is a huristic approach to indefinite integration in finite
@@ -53,13 +55,38 @@ Bessel, Whittaker and Lambert.
 
 Note that this algorithm is not a decision procedure. If it isn't
 able to compute antiderivative for a given function, then this is
-not a proof that such a functions does not exist. One should use
-recursive Risch algorithm in such case. It's an open question if
+not a proof that such a functions does not exist.  One should use
+recursive Risch algorithm in such case.  It's an open question if
 this algorithm can be made a full decision procedure.
 
 This is an internal integrator procedure. You should use toplevel
-'integrate' function in most cases, as this procedure needs some
+'integrate' function in most cases,  as this procedure needs some
 preprocessing steps and otherwise may fail.
+
+Specificaion
+============
+
+  heurisch(f, x, rewrite=False, hints=None)
+
+    where
+      f : expression
+      x : symbol
+
+      rewrite -> force rewrite 'f' in terms of 'tan' and 'tanh'
+      hints   -> a list of functions that may appear in antiderivate
+
+       - hints = None          --> no suggestions at all
+       - hints = [ ]           --> try to figure out
+       - hints = [f1, ..., fn] --> we know better
+
+Examples
+========
+
+>>> from sympy import *
+>>> x,y = symbols('xy')
+
+>>> heurisch(y*tan(x), x)
+(1/2)*y*log(1 + tan(x)**2)
 
 See Manuel Bronstein's "Poor Man's Integrator":
 

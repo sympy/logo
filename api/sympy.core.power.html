@@ -3,23 +3,17 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.core.power&rdquo;</title>
         </head>
-        <body><h1 class="module">Module s.c.power</h1><span id="part">Part of <a href="sympy.core.html">sympy.core</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.power.integer_nthroot">integer_nthroot</a></td><td><div><p>Usage</p>
+        <body><h1 class="module">Module s.c.power</h1><span id="part">Part of <a href="sympy.core.html">sympy.core</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.power.integer_nthroot">integer_nthroot</a></td><td><div><p>Return a tuple containing x = floor(y**(1/n))</p>
 </div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.power.Pow.html">Pow</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.power.integer_nthroot">integer_nthroot(y, n):</a></div>
-            <div class="functionBody"><div><h1 class="heading">Usage</h1>
-  <p>Return a tuple containing x = floor(y**(1/n)) and a boolean indicating
-  whether the result is exact (that is, whether x**n == y).</p>
-<h1 class="heading">Examples</h1>
+            <div class="functionBody"><div><p>Return a tuple containing x = floor(y**(1/n)) and a boolean indicating 
+whether the result is exact (that is, whether x**n == y).</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span>integer_nthroot(16,2)
 <span class="py-output">(4, True)</span>
 <span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>integer_nthroot(26,2)
-<span class="py-output">(5, False)</span>
-<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>integer_nthroot(1234567**7, 7)
-<span class="py-output">(1234567L, True)</span>
-<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>integer_nthroot(1234567**7+1, 7)
-<span class="py-output">(1234567L, False)</span></pre>
+<span class="py-output">(5, False)</span></pre>
 </div></div>
             </div></body>
         

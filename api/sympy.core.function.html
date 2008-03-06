@@ -38,6 +38,7 @@ type.</p>
 symbols.</p>
 </div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.function.Lambda.html">Lambda</a></td><td><div><p>Lambda(x, expr) represents a lambda function similar to Python's</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.diff">diff</a></td><td><div><p>Differentiate f with respect to x</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.expand">expand</a></td><td><div><p>Expand an expression using hints.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.function.diff">diff(f, x, times=1, evaluate=True):</a></div>
@@ -46,6 +47,14 @@ symbols.</p>
 interface is similar to that of integrate()</p>
 <p>see 
 http://documents.wolfram.com/v5/Built-inFunctions/AlgebraicComputation/Calculus/D.html</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.expand">expand(e, **hints):</a></div>
+            <div class="functionBody"><div><p>Expand an expression using hints.</p>
+<p>This is just a wrapper around Basic.expand(), see it's docstring of for 
+a thourough docstring for this function. In isympy you can just type 
+Basic.expand? and enter.</p>
 </div></div>
             </div></body>
         

@@ -8,10 +8,10 @@
 <pre class="literalblock">
 
 </pre>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Wild.matches">matches</a></td><td><div><p>Helper method for match() - switches the pattern and expr.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Wild.__xnew__">__xnew__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Wild._hashable_content">_hashable_content</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Wild.matches">matches</a></td><td><div><p>Helper method for match() - switches the pattern and expr.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Wild.__call__">__call__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.symbol.Wild.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.core.symbol.Wild.__new__">__new__(cls, name=None, exclude=None, **assumptions):</a></div>
+            <div class="functionHeader">def <a name="sympy.core.symbol.Wild.__new__">__new__(cls, name, exclude=None, **assumptions):</a></div>
             <div class="functionBody"><div><p>if dummy == True, then this Symbol is totally unique, i.e.:</p>
 <pre class="literalblock">
        &gt;&gt;&gt; bool(Symbol(&quot;x&quot;) == Symbol(&quot;x&quot;)) == True
@@ -23,6 +23,14 @@
        False
 </pre>
 </div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Wild.__xnew__">__xnew__(cls, name, exclude, **assumptions):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.symbol.Wild._hashable_content">_hashable_content(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.symbol.Wild.matches">matches(pattern, expr, repl_dict={}, evaluate=False):</a></div>

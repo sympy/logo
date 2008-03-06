@@ -18,6 +18,16 @@ vertical radius (along the y-axis).</p>
 <span class="py-prompt">&gt;&gt;&gt; </span>e = Ellipse(Point(0, 0), 5, 1)
 <span class="py-prompt">&gt;&gt;&gt; </span>e.hradius, e.vradius
 <span class="py-output">(5, 1)</span></pre>
+  <h2 class="heading">Plotting example</h2>
+    <p>In [1]: c1 = Circle(Point(0,0), 1)</p>
+    <p>In [2]: Plot(c1) Out[2]: [0]: cos(t), sin(t), 'mode=parametric'</p>
+    <p>In [3]: p = Plot()</p>
+    <p>In [4]: p[0] = c1</p>
+    <p>In [5]: radius = Segment(c1.center, c1.random_point())</p>
+    <p>In [6]: p[1] = radius</p>
+    <p>In [7]: p Out[7]: [0]: cos(t), sin(t), 'mode=parametric' [1]: 
+    t*cos(1.546086215036205357975518382), 
+    t*sin(1.546086215036205357975518382), 'mode=parametric'</p>
 </div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.center">center</a></td><td><div><p>The center of the ellipse.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.hradius">hradius</a></td><td><div><p>The horizontal radius of the ellipse.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.vradius">vradius</a></td><td><div><p>The vertical radius of the ellipse.</p>
@@ -27,6 +37,7 @@ vertical radius (along the y-axis).</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.tangent_line">tangent_line</a></td><td><div><p>If p is on the ellipse, returns the tangent line through point p.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.is_tangent">is_tangent</a></td><td><div><p>Returns True if o is tangent to the ellipse, False otherwise.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.arbitrary_point">arbitrary_point</a></td><td><div><p>Returns a symbolic point that is on the ellipse.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.plot_interval">plot_interval</a></td><td><div><p>Returns a typical plot interval used by the plotting module.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.random_point">random_point</a></td><td><div><p>Returns a random point on the ellipse.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse.equation">equation</a></td><td><div><p>Returns the equation of the ellipse.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.geometry.ellipse.Ellipse._do_line_intersection">_do_line_intersection</a></td><td><div><p>Find the intersection of a LinearEntity and the ellipse. Makes no</p>
@@ -72,6 +83,13 @@ another</p>
             <div class="functionBody"><div><p>If p is on the ellipse, returns the tangent line through point p. 
 Otherwise, returns the tangent line(s) from p to the ellipse, or None if no
 tangent line is possible (e.g., p inside ellipse).</p>
+<p>Example:</p>
+<p>In [1]: e = Ellipse(Point(0,0), 3, 2)</p>
+<p>In [2]: t = e.tangent_line(e.random_point())</p>
+<p>In [3]: p = Plot()</p>
+<p>In [4]: p[0] = e</p>
+<p>In [5]: p[1] = t</p>
+<p>The above will plot an ellipse together with a tangent line.</p>
 </div></div>
             </div>
             <div class="function">
@@ -82,6 +100,11 @@ tangent line is possible (e.g., p inside ellipse).</p>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.arbitrary_point">arbitrary_point(self, parameter_name='t'):</a></div>
             <div class="functionBody"><div><p>Returns a symbolic point that is on the ellipse.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.geometry.ellipse.Ellipse.plot_interval">plot_interval(self, parameter_name='t'):</a></div>
+            <div class="functionBody"><div><p>Returns a typical plot interval used by the plotting module.</p>
 </div></div>
             </div>
             <div class="function">

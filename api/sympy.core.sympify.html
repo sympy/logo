@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.core.sympify&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.c.sympify</h1><span id="part">Part of <a href="sympy.core.html">sympy.core</a></span><div class="toplevel"><div><p>sympify -- convert objects SymPy internal format</p>
+</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.core.sympify.SympifyError.html">SympifyError</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.sympify.sympify">sympify</a></td><td><div><p>Converts an arbitrary expression to a type that can be used</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.sympify._sympify">_sympify</a></td><td><div><p>short version of sympify for internal usage</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.sympify.__sympifyit">__sympifyit</a></td><td><div><p>decorator to _sympify `arg` argument for function `func`</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.sympify._sympifyit">_sympifyit</a></td><td><div><p>decorator to smartly _sympify function arguments</p>
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.sympify.sympify">sympify(a, sympify_lists=False, locals={}):</a></div>
+            <div class="functionBody"><div><p>Converts an arbitrary expression to a type that can be used inside 
+sympy. For example, it will convert python int's into instance of 
+sympy.Rational, floats into intances of sympy.Real, etc. It is also able to
+coerce symbolic expressions which does inherit after Basic. This can be 
+useful in cooperation with SAGE.</p>
+<p>It currently accepts as arguments:</p>
+<ul>
+  <li>
+    any object defined in sympy (except maybe matrices [TODO])
+  </li>
+  <li>
+    standard numeric python types: int, long, float, Decimal
+  </li>
+  <li>
+    strings (like &quot;0.09&quot; or &quot;2e-19&quot;)
+  </li>
+</ul>
+<p>If sympify_lists is set to True then sympify will also accept lists, 
+tuples and sets. It will return the same type but with all of the entries 
+sympified.</p>
+<p>If the argument is already a type that sympy understands, it will do 
+nothing but return that value. This can be used at the begining of a 
+function to ensure you are working with the correct type.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>sympify(2).is_integer
+<span class="py-output">True</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>sympify(2).is_real
+<span class="py-output">True</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>sympify(2.0).is_real
+<span class="py-output">True</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>sympify(<span class="py-string">&quot;2.0&quot;</span>).is_real
+<span class="py-output">True</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>sympify(<span class="py-string">&quot;2e-45&quot;</span>).is_real
+<span class="py-output">True</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.sympify._sympify">_sympify(a):</a></div>
+            <div class="functionBody"><div><p>short version of sympify for internal usage</p>
+<p>When adding and comparing symbolic expressions, it is unwise to allow 
+e.g. strings to mixin. On the other hand Python integers and floats are 
+allowed.</p>
+<p>So we don't use full-featured sympify in __add__ and __eq__ methods, but
+instead use this small-crafted function there instead.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Integer(1) == 1
+<span class="py-output">True</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Integer(1) == <span class="py-string">'1'</span>
+<span class="py-output">False</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>x + 1
+<span class="py-output">1 + x</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x + <span class="py-string">'1'</span>
+<span class="py-except">Traceback (most recent call last):</span>
+<span class="py-except">    ...</span>
+<span class="py-except">TypeError: unsupported operand type(s) for +: 'Symbol' and 'str'</span></pre>
+<p>see: sympify</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.sympify.__sympifyit">__sympifyit(func, arg, retval=None):</a></div>
+            <div class="functionBody"><div><p>decorator to _sympify `arg` argument for function `func`</p>
+<p>don't use directly -- use _sympifyit instead</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.sympify._sympifyit">_sympifyit(arg, retval=None):</a></div>
+            <div class="functionBody"><pre>decorator to smartly _sympify function arguments
+
+@_sympifyit('other', NotImplemented)
+def add(self, other):
+    ...
+
+In add, other can be though as being SymPy object already.
+
+If it is not, the code is likely to catch an exception, then other will
+be explicitly _sympified, and the whole code restarted.
+
+if _sympify(arg) fails, NotImplemented will be returned
+
+see: __sympifyit</pre></div>
+            </div></body>
+        
