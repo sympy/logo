@@ -66,6 +66,8 @@ date: 6 Mar 2008
 
 == 0.5.12 ==
 
+date: 27 Jan 2008
+
   * !SymPy works with !NumPy out of the box ([http://hg.sympy.org/sympy/rev/82e8ff0a8a3e commit 1], [http://hg.sympy.org/sympy/rev/1f8444d3a4c8 2])
   * !RootOf implemented ([http://hg.sympy.org/sympy/rev/8463c5d8a2de commit])
   * Lambda support works now ([http://hg.sympy.org/sympy/rev/bc07efdd1346 commit])
@@ -88,11 +90,15 @@ date: 6 Mar 2008
 
 == 0.5.11 ==
 
+date: 07 Jan 2008
+
   * `./setup.py install` installs pyglet correctly now ([http://hg.sympy.org/sympy/rev/e01db9e8b6e6 commit])
   * `var("k")` fixed ([http://hg.sympy.org/sympy/rev/6d226ac58d84 commit])
   * script for automatic testing of plotting in pure environment added ([http://hg.sympy.org/sympy/rev/79ff83053040 commit 1], [http://hg.sympy.org/sympy/rev/535bde464363 2])
 
 == 0.5.10 ==
+
+date: 04 Jan 2008
 
   * `view` renamed to `preview`, `pngview`, `pdfview`, `dviview` added ([http://hg.sympy.org/sympy/rev/49161c434035 commit])
   * latex printer was rewritten, `preview` uses builtin pyglet instead of pygame ([http://hg.sympy.org/sympy/rev/5cf8987d6744 commit 1], [http://hg.sympy.org/sympy/rev/2cbb895ae8b3 2])
@@ -110,6 +116,8 @@ date: 6 Mar 2008
     * 3D plotting doesn't work in this release if you install it using `./setup.py install`. It only works if you use it directly without installing. Fixed in 0.5.11.
 
 == 0.5.9 ==
+
+date: 22 Dec 2007
 
   * Differential solvers were polished ([http://hg.sympy.org/sympy/rev/fed3bf172cd5 commit 1], [http://hg.sympy.org/sympy/rev/31bf80b8afb4 2], [http://hg.sympy.org/sympy/rev/6aaa2e4e40af 3])
   * `isympy` now predefines `f` as a function ([http://hg.sympy.org/sympy/rev/aded3f85df9b commit])
