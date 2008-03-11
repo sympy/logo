@@ -65,7 +65,6 @@ date: 6 Mar 2008
 
 The following people have contributed patches to this release:
 
-    * Kirill Smelkov
     * Mateusz Paprocki
     * Saroj Adhikari
     * Fredrik Johansson
@@ -73,6 +72,7 @@ The following people have contributed patches to this release:
     * Robert Kern
     * Pauli Virtanen
     * Ondřej Čertík
+    * Kirill Smelkov
 
 == 0.5.12 ==
 
@@ -100,7 +100,6 @@ date: 27 Jan 2008
 
 The following people have contributed patches to this release:
 
-    * Kirill Smelkov
     * Mateusz Paprocki
     * Fredrik Johansson
     * Jaroslaw Tworek
@@ -110,6 +109,7 @@ The following people have contributed patches to this release:
     * Or Dvory
     * Bernhard R. Link
     * Ondřej Čertík
+    * Kirill Smelkov
 
 == 0.5.11 ==
 
@@ -159,9 +159,9 @@ date: 22 Dec 2007
   * pyglet updated to 1.0beta2
 
 People who contributed to this release:
-  * Kirill Smelkov
   * Goutham Lakshminarayan
   * Ondřej Čertík
+  * Kirill Smelkov
 
 == 0.5.7 ==
 
@@ -172,9 +172,9 @@ People who contributed to this release:
       * the series expansion fails for some more complex expressions (the same problem since !SymPy 0.5.0), see the relevant [http://code.google.com/p/sympy/issues/list?can=2&q=%22series+bug%22 issues].
 
 People who contributed to this release:
-  * Kirill Smelkov
   * Fredrik Johansson
   * Ondřej Čertík
+  * Kirill Smelkov
 
 == 0.5.6 ==
 
