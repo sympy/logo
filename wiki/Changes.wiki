@@ -29,6 +29,7 @@ The following people have contributed patches to this release:
 
     * Mateusz Paprocki
     * Fredrik Johansson
+    * James Aspnes
     * Ondřej Čertík
     * Kirill Smelkov
 
