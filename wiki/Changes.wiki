@@ -17,10 +17,12 @@ Find the latest release tag and see what is new since then.
 
   * !SymPy is now 25% faster in average compared to the previous release (see below)
   * `rsolve_poly` & `rsolve_hyper` fixed ([http://hg.sympy.org/sympy/rev/191d906f553b commit 1], [http://hg.sympy.org/sympy/rev/95722c586c3c 2])
+  * subs and subs_dict unified to .subs() ([http://hg.sympy.org/sympy/rev/c78c01651791 commit 1], [http://hg.sympy.org/sympy/rev/cf7db1715d61 2])
   
 ===== changes that affected speed: =====
 
   * `__eq__`/`__ne__` returns True/False directly so dict lookups are not expensive anymore ([http://hg.sympy.org/sympy/rev/1f52bd36839c commit 1], [http://hg.sympy.org/sympy/rev/d9965888a005 2], [http://hg.sympy.org/sympy/rev/9e7131a4533b 3], [http://hg.sympy.org/sympy/rev/76542a035dd6 4], [http://hg.sympy.org/sympy/rev/92af27a9e8bd 5])
+  * `sum(x**i/i,i=1..400)` is now 4.8x faster ([http://hg.sympy.org/sympy/rev/9fa720169ed9 commit 1], [http://hg.sympy.org/sympy/rev/15fc2acb7231 2], [http://hg.sympy.org/sympy/rev/a602e5369326 3], [http://hg.sympy.org/sympy/rev/2e496abeb32b 4], [http://hg.sympy.org/sympy/rev/4962f6641827 5])
 
 == 0.5.13 ==
 
