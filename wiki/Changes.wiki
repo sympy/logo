@@ -18,6 +18,7 @@ Find the latest release tag and see what is new since then.
   * !SymPy is now 25% faster in average compared to the previous release (see below)
   * `rsolve_poly` & `rsolve_hyper` fixed ([http://hg.sympy.org/sympy/rev/191d906f553b commit 1], [http://hg.sympy.org/sympy/rev/95722c586c3c 2])
   * subs and subs_dict unified to .subs() ([http://hg.sympy.org/sympy/rev/c78c01651791 commit 1], [http://hg.sympy.org/sympy/rev/cf7db1715d61 2])
+  * faster and more robust polynomials module ([http://hg.sympy.org/sympy/rev/eae5a978e965 commit 1], [http://hg.sympy.org/sympy/rev/a2b46b6a9339 2], [http://hg.sympy.org/sympy/rev/068fe612ab61 3], [http://hg.sympy.org/sympy/rev/94ce7584098a 4])
   
 ===== changes that affected speed: =====
 
