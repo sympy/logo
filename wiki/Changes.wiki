@@ -23,6 +23,7 @@ Find the latest release tag and see what is new since then.
 
   * `__eq__`/`__ne__` returns True/False directly so dict lookups are not expensive anymore ([http://hg.sympy.org/sympy/rev/1f52bd36839c commit 1], [http://hg.sympy.org/sympy/rev/d9965888a005 2], [http://hg.sympy.org/sympy/rev/9e7131a4533b 3], [http://hg.sympy.org/sympy/rev/76542a035dd6 4], [http://hg.sympy.org/sympy/rev/92af27a9e8bd 5])
   * `sum(x**i/i,i=1..400)` is now 4.8x faster ([http://hg.sympy.org/sympy/rev/9fa720169ed9 commit 1], [http://hg.sympy.org/sympy/rev/15fc2acb7231 2], [http://hg.sympy.org/sympy/rev/a602e5369326 3], [http://hg.sympy.org/sympy/rev/2e496abeb32b 4], [http://hg.sympy.org/sympy/rev/4962f6641827 5])
+  * `isinstance(term, C.Mul)`  was replaced by `term.is_Mul` and similarly for other basic classes ([http://hg.sympy.org/sympy/rev/f83106bc39a5 commit 1], [http://hg.sympy.org/sympy/rev/a522f77cd5e9 2])
 
 == 0.5.13 ==
 
