@@ -12,7 +12,7 @@ If you found a bug, please report it in [http://code.google.com/p/sympy/issues/l
 
 !SymPy is accepting applications for the Google Summer of Code 2008 now. See [GSoC2008] for details. Deadline is March 31.
 
-  * *24 Mar 2008* GSoC Student application period opens. Deadline is March 31.
+  * *24 Mar 2008* GSoC Student application period opens.
   * *06 Mar 2008* Version 0.5.13 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *27 Jan 2008* Version 0.5.12 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *07 Jan 2008* Version 0.5.11 released ([http://code.google.com/p/sympy/wiki/Changes changes])
