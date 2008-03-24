@@ -1,18 +1,33 @@
 #summary list of other CAS systems
 
 GiNaC http://www.ginac.de/
+
 Giac http://www-fourier.ujf-grenoble.fr/~parisse/giac.html
+
 Maxima http://maxima.sourceforge.net/
+
 Sage http://www.sagemath.org/
+
 Singular http://www.singular.uni-kl.de/
+
 Mathomatic http://mathomatic.orgserve.de/math/
+
 Octave http://octave.sourceforge.net/index/symbolic.html
+
 Symbide http://code.google.com/p/symbide/
+
 mpmath http://code.google.com/p/mpmath/
+
 Qalculate http://qalculate.sourceforge.net/
+
 sympycore http://code.google.com/p/sympycore/
+
 Yacas http://yacas.sourceforge.net/
+
 Eigenmath http://eigenmath.sf.net/
+
 Swiginac http://swiginac.berlios.de/
+
 Axiom http://www.axiom-developer.org/
+
 PARI http://pari.math.u-bordeaux.fr/
