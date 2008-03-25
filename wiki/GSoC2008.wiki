@@ -22,7 +22,7 @@ On March 24 Google opened applications for students as described on the official
 
 Informally however, it's good to get involved with the !SymPy project before, so that we can help you write a good application and select a good topic, that fits you and us well (and that has a good chance of succeeding).
 
-Ondřej's note: if you want me to proof read your appliction (recommended:), send it to me before you send it to PSF or other orgs.
+[http://wiki.sympy.org/wiki/Ond%C5%99ej_%C4%8Cert%C3%ADk Ondřej]'s note: if you want me to proof read your appliction (recommended:), send it to me before you send it to PSF or other orgs.
 
 = Links =
 
