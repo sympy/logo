@@ -59,6 +59,10 @@ $
 
 The difference is that all of this happens locally and thus you can work offline (in the underground, in the plane, airport, bus, forrest, anywhere).
 
+--- Most of the following is now *obsoleted* by [http://docs.sympy.org/sympy-patches-tutorial.html SymPy Patches Tutorial] ---
+
+-------
+
 == how to commit the svn way ==
 
 It's called pushing.
