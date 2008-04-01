@@ -29,6 +29,10 @@ Use "Featured Downloads" on the right hand side. For more options and informatio
 
 Mercurial repository (you can track current progress in there): http://hg.sympy.org/sympy/
 
+==Documentation==
+
+All documentation is at: http://docs.sympy.org/
+
 ==Features==
 
 Currently, !SymPy core has around 6300 lines of code (including extensive comments and docstrings) and its capabilities include:
@@ -96,10 +100,6 @@ there is a very good reason for it.
   * rewrite the core to C++ or C or Cython, and use it as an optional module, if the user would like to speed things up (in any case the Python core will always be the default)
 
 and more... Feel free to tell us your ideas in Issues or the mailinglist.
-
-==Documentation==
-
-All documentation is at: http://docs.sympy.org/
 
 ==Motivation==
 
