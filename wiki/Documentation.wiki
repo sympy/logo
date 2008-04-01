@@ -1,7 +1,12 @@
 #summary Documentation to sympy.
+#labels Featured
+
+= SymPy documentation =
 
 All documentation is at: http://docs.sympy.org/
 
-This page used to be the old documentation portal. If you want to see how it used to look like, go to:
+===old docs===
+
+Our docs used to be in the wikis, if you want to see how it used to look like, go to:
 
 http://code.google.com/p/sympy/source/browse/wiki/Documentation.wiki?r=2896
