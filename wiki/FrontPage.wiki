@@ -99,7 +99,7 @@ and more... Feel free to tell us your ideas in Issues or the mailinglist.
 
 ==Documentation==
 
-All the documentation is in the wiki [http://code.google.com/p/sympy/wiki/Documentation Documentation].
+All documentation is at: http://docs.sympy.org/
 
 ==Motivation==
 
