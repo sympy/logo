@@ -69,7 +69,7 @@ There are extensive tests (6148 lines in 58 files) for every single feature in !
   * [http://sagemath.org/ Sage]: an open source alternative to Mathematica, Maple, Matlab and Magma (!SymPy is included in Sage)
   * [http://code.google.com/p/mpmath/ mpmath]: a Python library for arbitrary-precision floating-point arithmetic (included in !SymPy)
   * [http://pyglet.org pyglet]: a fast cross-platform windowing and multimedia library in pure Python, that we use in !SymPy for 2D and 3D stuff
-  * [http://code.google.com/p/sympycore/ sympycore]: a fork of the !SymPy core package (see SymPyCore for more information)
+  * [http://code.google.com/p/sympycore/ sympycore]: another Python CAS (see SymPyCore for more information)
   * [http://code.google.com/p/symbide/ symbide]: GUI for !SymPy in PyGTK
   * [http://code.google.com/p/sfepy/ sfepy]: Full featured finite element library written in Python and C
   * [http://code.google.com/p/symfe/ symfe]: Lightweight symbolic finite element calculations in Python (sfepy will use symfe in the future)
