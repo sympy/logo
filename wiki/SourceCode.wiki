@@ -11,3 +11,5 @@ hg clone http://hg.sympy.org/sympy
 == Online access ==
 
 You can browse the repository online at the same address: http://hg.sympy.org/sympy
+
+You may also go to the original googlecode [http://code.google.com/p/sympy/source/checkout Source tab].
