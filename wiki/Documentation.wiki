@@ -1,56 +1,7 @@
 #summary Documentation to sympy.
-#labels Featured
 
-= Introduction =
+All documentation is at: http://docs.sympy.org/
 
-This is the central page for all documentation to !SymPy.
+This page used to be the old documentation portal. If you want to see how it used to look like, go to:
 
-= Download & Installation =
-
-For all instructions how to download and install !SymPy, see DownloadInstallation.
-
-= Main documentation =
-
-If you are new to !SymPy, start with the [http://code.google.com/p/sympy/wiki/Tutorial Tutorial].
-
-Read [http://wiki.sympy.org/index.php/FAQ FAQ] on our emerging [http://wiki.sympy.org/ wiki.sympy.org] (feel free to edit the wiki, add new pages, etc.).
-
-Then browse the documentation of individual !SymPy modules:
-
-  * [GeometryModule Geometry Module]
-  * [LinearAlgebraTutorial Linear Algebra Module]
-  * [NumericsModule Numerics Module]
-  * [PlottingModule Plotting Module]
-  * [ConcreteMathAndTermRewriting Concrete Mathematics Module]
-  * [PolynomialsTutorial Polynomials Module]
-  * [StatisticsModule Statistics Module]
-  * [PrintingSystem Printing System]
-  * [PrettyPrinting Pretty Printing] 
-
-Then read how !SymPy works internally: HowItWorks.
-
-And finally, read the [http://hg.sympy.org/sympy sources] itself or just the [http://sympy.googlecode.com/svn/api/sympy.html API] documentation, that is automatically generated from the sources for the latest stable release of !SymPy. Because every feature of !SymPy must have a test case, when you are not sure how to use something, just look into the `tests/` directory, find that feature and read the tests for it, that will tell you everything you need to know.
-
-= Other =
-
-Presentations about !SymPy given at conferences are at SymPyPresentations.
-
-[SymPy_in_the_News SymPy in the News]
-
-Useful information can also be found on our blog [http://planet.sympy.org/ Planet SymPy].
-
-You may want to look at [GSoC2007 2007 Google Summer of Code in SymPy] and apply in [GSoC2008 2008]. :)
-
-!SymPy logos: SymPyLogos.
-
-You are welcomed to join (or just follow) the development. SympyDevelopment describes the details, with links to places that you should watch.
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+http://code.google.com/p/sympy/source/browse/wiki/Documentation.wiki?r=2896
