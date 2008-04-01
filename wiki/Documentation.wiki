@@ -5,7 +5,7 @@
 
 All documentation is at: http://docs.sympy.org/
 
-You can also easily generate all the docs in your copy of SymPy by doing:
+You can also easily generate all the docs in your copy of !SymPy by doing:
 {{{
 $ cd doc
 $ make html
