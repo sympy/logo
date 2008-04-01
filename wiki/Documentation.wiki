@@ -1,7 +1,7 @@
 #summary Documentation to sympy.
 #labels Featured
 
-= SymPy documentation =
+= !SymPy documentation =
 
 All documentation is at: http://docs.sympy.org/
 
