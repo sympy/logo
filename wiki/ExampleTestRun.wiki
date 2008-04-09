@@ -114,7 +114,8 @@ Explanation:
  * "X" ... the test was XFAILed and passed
  * "F" ... the test failed
 
-Both "f" and "X" are fine (ok to commit), "F" is bad (do not commit).
+Both "f" and "X" are fine (ok to commit), "F" is bad (do not commit). The "f" and "X" are generated using the @XFAIL decorator, that means that the test is ok to both pass or fail,
+we use it when we know some test sometimes fail (instead of commenting out the test completely).
 
 = Failing tests =
 
