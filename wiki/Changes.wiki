@@ -39,6 +39,7 @@ The following people have contributed patches to this release:
     * Abderrahim Kitouni
     * Nimish Telang
     * Jurjen N.E. Bos
+    * Elrond der Elbenfuerst
     * Ondřej Čertík
     * Kirill Smelkov
 
