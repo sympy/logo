@@ -10,7 +10,7 @@ Edit get-hg
 {{{
 $ ./get-hg
 $ cd ..
-$ mv sympy-spkg sympy-0.5.13
+$ cp -a sympy-spkg sympy-0.5.13
 $ ~/ext/sage/sage -pkg sympy-0.5.13
 }}}
 And a fresh package sympy-0.5.13.spkg is created. Install it:
