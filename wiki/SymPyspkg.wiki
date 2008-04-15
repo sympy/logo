@@ -1,5 +1,20 @@
 #summary How to create a spkg for Sage
 
+= Download & setup Sage =
+
+{{{
+wget http://sagemath.org/SAGEbin/linux/32bit/sage-2.11-debian32-intel-i686-Linux.tar.gz
+cd ~/ext
+tar xzf sage-2.11-debian32-intel-i686-Linux.tar.gz
+ln -s sage-2.11-debian32-intel-i686-Linux sage
+}}}
+
+Now you can always call it using `~/ext/sage/sage`. Now put this:
+{{{
+~/ext/sage/sage $@
+}}}
+into `~/bin/` and put `~/bin/` into your search path. Then you start Sage just by typing `sage`.
+
 = Steps =
 
 {{{
