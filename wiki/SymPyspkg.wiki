@@ -21,3 +21,13 @@ Test it
 {{{
 $ ~/ext/sage/sage -t ~/ext/sage/devel/sage/sage/calculus/test_sympy.py
 }}}
+
+== how to install the original sympy version ==
+
+{{{
+cd spkg/standard
+rm sympy-0.5.7.spkg
+wget http://sagemath.org/packages/standard/sympy-0.5.7.spkg
+cd ../..
+./sage -f spkg/standard/sympy-0.5.7.spkg
+}}}
