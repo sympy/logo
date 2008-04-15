@@ -26,15 +26,15 @@ Edit get-hg
 $ ./get-hg
 $ cd ..
 $ cp -a sympy-spkg sympy-0.5.13
-$ ~/ext/sage/sage -pkg sympy-0.5.13
+$ sage -pkg sympy-0.5.13
 }}}
 And a fresh package sympy-0.5.13.spkg is created. Install it:
 {{{
-$ ~/ext/sage/sage -f sympy-0.5.13.spkg
+$ sage -f sympy-0.5.13.spkg
 }}}
 Test it
 {{{
-$ ~/ext/sage/sage -t ~/ext/sage/devel/sage/sage/calculus/test_sympy.py
+$ sage -t ~/ext/sage/devel/sage/sage/calculus/test_sympy.py
 }}}
 
 == how to install the original sympy version ==
@@ -43,6 +43,5 @@ $ ~/ext/sage/sage -t ~/ext/sage/devel/sage/sage/calculus/test_sympy.py
 cd spkg/standard
 rm sympy-0.5.7.spkg
 wget http://sagemath.org/packages/standard/sympy-0.5.7.spkg
-cd ../..
-./sage -f spkg/standard/sympy-0.5.7.spkg
+sage -f sympy-0.5.7.spkg
 }}}
