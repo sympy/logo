@@ -45,3 +45,10 @@ rm sympy-0.5.7.spkg
 wget http://sagemath.org/packages/standard/sympy-0.5.7.spkg
 sage -f sympy-0.5.7.spkg
 }}}
+
+== How to develop with Sage ==
+
+Change some files in Sage and do:
+{{{
+sage -b
+}}}
