@@ -25,6 +25,7 @@ Find the latest release tag and see what is new since then.
   * pretty-printing improved ([http://hg.sympy.org/sympy/rev/16f56992f467 commit 1], [http://hg.sympy.org/sympy/rev/31c518a87450 2], [http://hg.sympy.org/sympy/rev/e12accf6a9d1 3])
   * Rel, Eq, Ne, Lt, Le, Gt, Ge implemented ([http://hg.sympy.org/sympy/rev/4bb011af2d0c commit 1])
   * Limit class represents unevaluated limits now ([http://hg.sympy.org/sympy/rev/936e73c6bafd commit 1]) 
+  * Bailey-Borwein-Plouffe algorithm (finds the nth hexidecimal digit of pi without calculating the previous digits) implemented ([http://hg.sympy.org/sympy/rev/6d73013adce3 commit 1])
   
 ===== changes that affected speed: =====
 
