@@ -1,4 +1,4 @@
-#summary Changes in each release
+﻿#summary Changes in each release
 
 = Introduction =
 
@@ -40,6 +40,9 @@ The following people have contributed patches to this release:
     * Nimish Telang
     * Jurjen N.E. Bos
     * Elrond der Elbenfuerst
+    * Rizgar Mella
+    * Felix Kaiser
+    * Roberto Nobrega
     * Ondřej Čertík
     * Kirill Smelkov
 
