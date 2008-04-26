@@ -8,6 +8,7 @@
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_integral">_eval_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_defined_integral">_eval_defined_integral</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_is_polynomial">_eval_is_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.as_numer_denom">as_numer_denom</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.matches">matches</a></td><td><div><p>Helper method for match() - switches the pattern and expr.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_oseries">_eval_oseries</a></td><td><div><p>f**g + O(h) == (f+O(k))**g -&gt; .. -&gt; f**g + O(f**(g-1)*k), hence 
 O(k)==O(h*f**(1-g)).</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.nseries">nseries</a></td><td><div><p>Calculates a generalized series expansion.</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._eval_as_leading_term">_eval_as_leading_term</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow.taylor_term">taylor_term</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.power.Pow._sage_">_sage_</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.power.Pow.__new__">__new__(cls, a, b, **assumptions):</a></div>
@@ -142,6 +143,19 @@ n is positive integer</p>
             <div class="functionHeader">def <a name="sympy.core.power.Pow._eval_oseries">_eval_oseries(self, order):</a></div>
             <div class="functionBody"><div><p>f**g + O(h) == (f+O(k))**g -&gt; .. -&gt; f**g + O(f**(g-1)*k), hence 
 O(k)==O(h*f**(1-g)). If f-&gt;0 as x-&gt;0 then</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.power.Pow.nseries">nseries(self, x, x0, n):</a></div>
+            <div class="functionBody"><div><p>Calculates a generalized series expansion.</p>
+<p>The difference between oseries and nseries is that nseries calculates 
+&quot;n&quot; terms in the innermost expressions and then builds up the 
+final series just by &quot;cross-mutliplying&quot; everything out.</p>
+<p>Advantage -- it's fast, because we don't have to determine how many 
+terms we need to calculate in advance.</p>
+<p>Disadvantage -- you may endup with less terms than you may have 
+expected, but the O(x**n) term appended will always be correct, so the 
+result is correct, but maybe shorter.</p>
 </div></div>
             </div>
             <div class="function">

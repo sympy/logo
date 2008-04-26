@@ -6,7 +6,8 @@
         <body><h1 class="class">Class s.c.f.WildFunction(<a href="sympy.core.function.Function.html">Function</a>, <a href="sympy.core.basic.Atom.html">Atom</a>):</h1><span id="part">Part of <a href="sympy.core.function.html">sympy.core.function</a></span><div class="toplevel"><div><p>WildFunction() matches any expression but another WildFunction() XXX is 
 this as intended, does it work ?</p>
 </div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.matches">matches</a></td><td><div><p>Helper method for match() - switches the pattern and expr.</p>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.torepr">torepr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction._eval_apply_evalf">_eval_apply_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.torepr">torepr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction._eval_apply_evalf">_eval_apply_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.WildFunction.is_number">is_number</a></td><td><div><p>Returns True if 'self' is a number.</p>
+</div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.function.WildFunction.__new__">__new__(cls, name=None, **assumptions):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
@@ -34,5 +35,20 @@ this as intended, does it work ?</p>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.function.WildFunction._eval_apply_evalf">_eval_apply_evalf(cls, arg):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.WildFunction.is_number">is_number(self):</a></div>
+            <div class="functionBody"><div><p>Returns True if 'self' is a number.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x.is_number
+<span class="py-output">False</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>(2*x).is_number
+<span class="py-output">False</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>(2 + log(2)).is_number
+<span class="py-output">True</span></pre>
+</div></div>
             </div></body>
         

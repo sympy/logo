@@ -3,5 +3,61 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.core.relational&rdquo;</title>
         </head>
-        <body><h1 class="module">Module s.c.relational</h1><span id="part">Part of <a href="sympy.core.html">sympy.core</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="class"><td>Class</td><td><a href="sympy.core.relational.Relational.html">Relational</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.relational.Equality.html">Equality</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.relational.Unequality.html">Unequality</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.relational.StrictInequality.html">StrictInequality</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.relational.Inequality.html">Inequality</a></td><td><span class="undocumented">Undocumented</span></td></tr></table></body>
+        <body><h1 class="module">Module s.c.relational</h1><span id="part">Part of <a href="sympy.core.html">sympy.core</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.relational.Rel">Rel</a></td><td><div><p>A handy wrapper around the Relational class.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.relational.Eq">Eq</a></td><td><div><p>A handy wrapper around the Relational class.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.relational.Ne">Ne</a></td><td><div><p>A handy wrapper around the Relational class.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.relational.Lt">Lt</a></td><td><div><p>A handy wrapper around the Relational class.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.relational.Le">Le</a></td><td><div><p>A handy wrapper around the Relational class.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.relational.Gt">Gt</a></td><td><div><p>A handy wrapper around the Relational class.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.relational.Ge">Ge</a></td><td><div><p>A handy wrapper around the Relational class.</p>
+</div></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.relational.Relational.html">Relational</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.relational.Equality.html">Equality</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.relational.Unequality.html">Unequality</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.relational.StrictInequality.html">StrictInequality</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="class"><td>Class</td><td><a href="sympy.core.relational.Inequality.html">Inequality</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.relational.Rel">Rel(a, b, op):</a></div>
+            <div class="functionBody"><div><p>A handy wrapper around the Relational class. Rel(a,b, op)</p>
+<p>Example: &gt;&gt;&gt; from sympy import * &gt;&gt;&gt; x,y = 
+symbols('xy') &gt;&gt;&gt; Rel(y, x+x**2, '==') y == x + x**2</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.relational.Eq">Eq(a, b):</a></div>
+            <div class="functionBody"><div><p>A handy wrapper around the Relational class. Eq(a,b)</p>
+<p>Example: &gt;&gt;&gt; from sympy import * &gt;&gt;&gt; x,y = 
+symbols('xy') &gt;&gt;&gt; Eq(y, x+x**2) y == x + x**2</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.relational.Ne">Ne(a, b):</a></div>
+            <div class="functionBody"><div><p>A handy wrapper around the Relational class. Ne(a,b)</p>
+<p>Example: &gt;&gt;&gt; from sympy import * &gt;&gt;&gt; x,y = 
+symbols('xy') &gt;&gt;&gt; Eq(y, x+x**2) y != x + x**2</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.relational.Lt">Lt(a, b):</a></div>
+            <div class="functionBody"><div><p>A handy wrapper around the Relational class. Lt(a,b)</p>
+<p>Example: &gt;&gt;&gt; from sympy import * &gt;&gt;&gt; x,y = 
+symbols('xy') &gt;&gt;&gt; Eq(y, x+x**2) y &lt; x + x**2</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.relational.Le">Le(a, b):</a></div>
+            <div class="functionBody"><div><p>A handy wrapper around the Relational class. Le(a,b)</p>
+<p>Example: &gt;&gt;&gt; from sympy import * &gt;&gt;&gt; x,y = 
+symbols('xy') &gt;&gt;&gt; Eq(y, x+x**2) y &lt;= x + x**2</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.relational.Gt">Gt(a, b):</a></div>
+            <div class="functionBody"><div><p>A handy wrapper around the Relational class. Gt(a,b)</p>
+<p>Example: &gt;&gt;&gt; from sympy import * &gt;&gt;&gt; x,y = 
+symbols('xy') &gt;&gt;&gt; Eq(y, x+x**2) x + x**2 &lt; y</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.relational.Ge">Ge(a, b):</a></div>
+            <div class="functionBody"><div><p>A handy wrapper around the Relational class. Ge(a,b)</p>
+<p>Example: &gt;&gt;&gt; from sympy import * &gt;&gt;&gt; x,y = 
+symbols('xy') &gt;&gt;&gt; Eq(y, x+x**2) x + x**2 &lt;= y</p>
+</div></div>
+            </div></body>
         

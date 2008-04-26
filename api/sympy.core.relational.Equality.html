@@ -3,9 +3,38 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.core.relational.Equality&rdquo;</title>
         </head>
-        <body><h1 class="class">Class s.c.r.Equality(<a href="sympy.core.relational.Relational.html">Relational</a>):</h1><span id="part">Part of <a href="sympy.core.relational.html">sympy.core.relational</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.relational.Equality.__nonzero__">__nonzero__</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+        <body><h1 class="class">Class s.c.r.Equality(<a href="sympy.core.relational.Relational.html">Relational</a>):</h1><span id="part">Part of <a href="sympy.core.relational.html">sympy.core.relational</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.relational.Equality.__nonzero__">__nonzero__</a></td><td><div><p>Tests if 'self' is an instance of Zero class.</p>
+</div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.relational.Equality.__nonzero__">__nonzero__(self):</a></div>
-            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            <div class="functionBody"><pre>Tests if 'self' is an instance of Zero class.
+
+This should be understand as an idiom:
+
+    [1] bool(x) <=> bool(x is not S.Zero)
+
+    [2] bool(not x) <=> bool(x is S.Zero)
+
+Allowing definition of __nonzero__ method is important in
+algorithms where uniform handling of int, long values and
+and sympy expressions is required.
+
+>>> from sympy import *
+>>> x,y = symbols('xy')
+
+>>> bool(0)
+False
+>>> bool(1)
+True
+
+>>> bool(S.Zero)
+False
+>>> bool(S.One)
+True
+
+>>> bool(x*y)
+True
+>>> bool(x + y)
+True</pre></div>
             </div></body>
         

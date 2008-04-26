@@ -4,7 +4,11 @@
         <title>API docs for &ldquo;sympy.core.numbers.NumberSymbol&rdquo;</title>
         </head>
         <body><h1 class="class">Class s.c.n.NumberSymbol(<a href="sympy.core.basic.Singleton.html">Singleton</a>, <a href="sympy.core.basic.Atom.html">Atom</a>, <a href="sympy.core.methods.RelMeths.html">RelMeths</a>, <a href="sympy.core.methods.ArithMeths.html">ArithMeths</a>):</h1><span id="part">Part of <a href="sympy.core.numbers.html">sympy.core.numbers</a></span><p>known subclasses: <a href="sympy.core.numbers.Exp1.html">sympy.core.numbers.Exp1</a>, <a href="sympy.core.numbers.Pi.html">sympy.core.numbers.Pi</a>, <a href="sympy.core.numbers.GoldenRatio.html">sympy.core.numbers.GoldenRatio</a>, <a href="sympy.core.numbers.EulerGamma.html">sympy.core.numbers.EulerGamma</a>, <a href="sympy.core.numbers.Catalan.html">sympy.core.numbers.Catalan</a></p><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.approximation">approximation</a></td><td><div><p>Return an interval with number_cls endpoints</p>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol._eval_derivative">_eval_derivative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.__eq__">__eq__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.__ne__">__ne__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.__lt__">__lt__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.__le__">__le__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.__gt__">__gt__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.__ge__">__ge__</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol._eval_derivative">_eval_derivative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.__eq__">__eq__</a></td><td><div><p>a == b  -&gt; Compare two symbolic trees and see whether they are 
+equal</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.__ne__">__ne__</a></td><td><div><p>a != b  -&gt; Compare two symbolic trees and see whether they are 
+different</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.__lt__">__lt__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.__le__">__le__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.__gt__">__gt__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.NumberSymbol.__ge__">__ge__</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.numbers.NumberSymbol.approximation">approximation(self, number_cls):</a></div>
             <div class="functionBody"><div><p>Return an interval with number_cls endpoints that contains the value of 
@@ -17,11 +21,23 @@ NumberSymbol. If not implemented, then return None.</p>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.numbers.NumberSymbol.__eq__">__eq__(self, other):</a></div>
-            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            <div class="functionBody"><pre>a == b  -> Compare two symbolic trees and see whether they are equal
+
+this is the same as:
+
+  a.compare(b) == 0
+
+but faster</pre></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.numbers.NumberSymbol.__ne__">__ne__(self, other):</a></div>
-            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            <div class="functionBody"><pre>a != b  -> Compare two symbolic trees and see whether they are different
+
+this is the same as:
+
+  a.compare(b) != 0
+
+but faster</pre></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.numbers.NumberSymbol.__lt__">__lt__(self, other):</a></div>

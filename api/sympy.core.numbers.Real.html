@@ -17,7 +17,11 @@ arbitrary-precision floating-point numbers</p>
 </div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.float_to_decimal">float_to_decimal</a></td><td><div><p>Convert a floating point number to a Decimal with no loss of 
 information</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real._hashable_content">_hashable_content</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.torepr">torepr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real._eval_is_positive">_eval_is_positive</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real._eval_is_negative">_eval_is_negative</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real._eval_evalf">_eval_evalf</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real._as_decimal">_as_decimal</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__neg__">__neg__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__mul__">__mul__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__add__">__add__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real._eval_power">_eval_power</a></td><td><div><p>b is Real but not equal to rationals, integers, 0.5, oo, -oo, nan</p>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__abs__">__abs__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__int__">__int__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__float__">__float__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__eq__">__eq__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__ne__">__ne__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__lt__">__lt__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__le__">__le__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.epsilon_eq">epsilon_eq</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__abs__">__abs__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__int__">__int__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__float__">__float__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__eq__">__eq__</a></td><td><div><p>a == b  -&gt; Compare two symbolic trees and see whether they are 
+equal</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__ne__">__ne__</a></td><td><div><p>a != b  -&gt; Compare two symbolic trees and see whether they are 
+different</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__lt__">__lt__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.__le__">__le__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.numbers.Real.epsilon_eq">epsilon_eq</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.numbers.Real.__new__">__new__(cls, num):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
@@ -90,11 +94,23 @@ e is symbolic object but not equal to 0, 1
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.numbers.Real.__eq__">__eq__(self, other):</a></div>
-            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            <div class="functionBody"><pre>a == b  -> Compare two symbolic trees and see whether they are equal
+
+this is the same as:
+
+  a.compare(b) == 0
+
+but faster</pre></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.numbers.Real.__ne__">__ne__(self, other):</a></div>
-            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            <div class="functionBody"><pre>a != b  -> Compare two symbolic trees and see whether they are different
+
+this is the same as:
+
+  a.compare(b) != 0
+
+but faster</pre></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.numbers.Real.__lt__">__lt__(self, other):</a></div>

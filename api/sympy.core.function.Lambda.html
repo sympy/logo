@@ -13,11 +13,43 @@ expr).</p>
 <span class="py-prompt">&gt;&gt;&gt; </span>f = Lambda(x, x**2)
 <span class="py-prompt">&gt;&gt;&gt; </span>f(4)
 <span class="py-output">16</span></pre>
-</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Lambda.canonize">canonize</a></td><td><div><p>Returns a canonical form of cls applied to arguments args.</p>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Lambda.apply">apply</a></td><td><div><p>Applies the Lambda function &quot;self&quot; to the &quot;x&quot;</p>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Lambda.__call__">__call__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Lambda.__eq__">__eq__</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+<p>For multivariate functions, use:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>y = Symbol(<span class="py-string">'y'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>z = Symbol(<span class="py-string">'z'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>t = Symbol(<span class="py-string">'t'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>f2 = Lambda(x,y,z,t,x+y**z+t**z)
+<span class="py-prompt">&gt;&gt;&gt; </span>f2(1,2,3,4)
+<span class="py-output">73</span></pre>
+<p>Multivariate functions can be curries for partial applications:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>sum2numbers = Lambda(x,y,x+y)
+<span class="py-prompt">&gt;&gt;&gt; </span>sum2numbers(1,2)
+<span class="py-output">3</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>plus1 = sum2numbers(1)
+<span class="py-prompt">&gt;&gt;&gt; </span>plus1(3)
+<span class="py-output">4</span></pre>
+<p>A handy shortcut for lots of arguments:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>var(<span class="py-string">'x y z'</span>)
+<span class="py-output">(x, y, z)</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>p = x, y, z
+<span class="py-prompt">&gt;&gt;&gt; </span>f = Lambda(p, x + y*z)
+<span class="py-prompt">&gt;&gt;&gt; </span>f(*p)
+<span class="py-output">x + y*z</span></pre>
+</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Lambda.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Lambda.canonize">canonize</a></td><td><div><p>Returns a canonical form of cls applied to arguments args.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Lambda.apply">apply</a></td><td><div><p>Applies the Lambda function &quot;self&quot; to the arguments given.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Lambda.__call__">__call__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.core.function.Lambda.__eq__">__eq__</a></td><td><div><p>a == b  -&gt; Compare two symbolic trees and see whether they are 
+equal</p>
+</div></td></tr></table>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.core.function.Lambda.canonize">canonize(cls, x, expr):</a></div>
+            <div class="functionHeader">def <a name="sympy.core.function.Lambda.__new__">__new__(cls, *args):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.core.function.Lambda.canonize">canonize(cls, *args):</a></div>
             <div class="functionBody"><pre>Returns a canonical form of cls applied to arguments args.
 
 The canonize() method is called when the class cls is about to be
@@ -41,15 +73,23 @@ def canonize(cls, arg):
             return cls(coeff) * cls(C.Mul(*terms))</pre></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.core.function.Lambda.apply">apply(self, x):</a></div>
-            <div class="functionBody"><div><p>Applies the Lambda function &quot;self&quot; to the &quot;x&quot;</p>
+            <div class="functionHeader">def <a name="sympy.core.function.Lambda.apply">apply(self, *args):</a></div>
+            <div class="functionBody"><div><p>Applies the Lambda function &quot;self&quot; to the arguments given. 
+This supports partial application.</p>
 <p>Example:</p>
 <pre class="py-doctest">
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> Symbol
 <span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>y = Symbol(<span class="py-string">'y'</span>)
 <span class="py-prompt">&gt;&gt;&gt; </span>f = Lambda(x, x**2)
 <span class="py-prompt">&gt;&gt;&gt; </span>f.apply(4)
-<span class="py-output">16</span></pre>
+<span class="py-output">16</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>sum2numbers = Lambda(x,y,x+y)
+<span class="py-prompt">&gt;&gt;&gt; </span>sum2numbers(1,2)
+<span class="py-output">3</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>plus1 = sum2numbers(1)
+<span class="py-prompt">&gt;&gt;&gt; </span>plus1(3)
+<span class="py-output">4</span></pre>
 </div></div>
             </div>
             <div class="function">
@@ -58,6 +98,12 @@ def canonize(cls, arg):
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.core.function.Lambda.__eq__">__eq__(self, other):</a></div>
-            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            <div class="functionBody"><pre>a == b  -> Compare two symbolic trees and see whether they are equal
+
+this is the same as:
+
+  a.compare(b) == 0
+
+but faster</pre></div>
             </div></body>
         
