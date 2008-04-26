@@ -1,4 +1,4 @@
-#summary Step by step to make a new release of SymPy
+﻿#summary Step by step to make a new release of SymPy
 
 = How to make a new release =
 
@@ -25,6 +25,15 @@ $ ipython
 In [1]: time import sympy
 CPU times: user 0.08 s, sys: 0.00 s, total: 0.09 s
 Wall time: 0.09
+}}}
+You can also use the `test_import` utility like this:
+{{{
+$ bin/test_import 
+Note: the first run (warm up) was not included in the average + std dev
+All runs (including warm up):
+[0.112630844116, 0.112730026245, 0.13080096244799999, 0.11622381210299999, 0.113546848297, 0.13612699508699999, 0.115744113922, 0.112670898438, 0.11331987381, 0.13219594955399999, 0.113155126572]
+Number of tests: 10
+The speed of "import sympy" is: 0.119651 +- 0.008924
 }}}
 
 === Does it depend on python2.4 only? ===
