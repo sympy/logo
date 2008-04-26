@@ -19,7 +19,7 @@ date: 26 Mar 2008
 
 ===== user-visible changes: =====
 
-  * !SymPy is now 25% faster in average compared to the previous release (see below)
+  * !SymPy is now 25% faster on average compared to the previous release (see below)
   * Documentation was improved a *lot* ([http://hg.sympy.org/sympy/rev/26d75a5b7dbc commit 1], [http://hg.sympy.org/sympy/rev/a0a01fc08c63 2], [http://hg.sympy.org/sympy/rev/526612998a02 3]). See http://docs.sympy.org/
   * `rsolve_poly` & `rsolve_hyper` fixed ([http://hg.sympy.org/sympy/rev/191d906f553b commit 1], [http://hg.sympy.org/sympy/rev/95722c586c3c 2])
   * subs and subs_dict unified to .subs() ([http://hg.sympy.org/sympy/rev/c78c01651791 commit 1], [http://hg.sympy.org/sympy/rev/cf7db1715d61 2])
@@ -31,7 +31,7 @@ date: 26 Mar 2008
   * Limit class represents unevaluated limits now ([http://hg.sympy.org/sympy/rev/936e73c6bafd commit 1]) 
   * Bailey-Borwein-Plouffe algorithm (finds the nth hexidecimal digit of pi without calculating the previous digits) implemented ([http://hg.sympy.org/sympy/rev/6d73013adce3 commit 1])
   * solver for transcendental equations added ([http://hg.sympy.org/sympy/rev/e2db18455951 commit 1])
-  * .nseries() methods implemented (more robust/faster than .oseries) ([http://hg.sympy.org/sympy/rev/81f8e2c98500 commit 1])
+  * .nseries() methods implemented (more robust/faster than .oseries) ([http://hg.sympy.org/sympy/rev/81f8e2c98500 commit 1], [http://hg.sympy.org/sympy/rev/a2eed9dc6a91 2])
   * multivariate Lambdas implemented ([http://hg.sympy.org/sympy/rev/0097b68ac3c5 commit 1])
   
 ===== changes that affected speed: =====
