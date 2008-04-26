@@ -62,7 +62,7 @@ And check manually, that no py.test run generated a stack trace.
 Do this on the hg version:
 {{{
 $ cd bin
-$ sudo cowbuilder --execute test_pure_plotting
+$ sudo pbuilder --execute test_pure_plotting
 [...]
 running install_egg_info
 Writing /usr/lib/python2.4/site-packages/sympy-0.5.10_hg.egg-info
@@ -107,7 +107,7 @@ Prepare the release tarball and win32 installer (should work ok even on Linux)
 ./setup.py bdist_wininst
 }}}
 
-And put dist/sympy-0.5.9.tar.gz and dist/sympy-0.5.9.win32.exe on website
+And put dist/sympy-0.5.9.tar.gz and dist/sympy-0.5.9.win32.exe on the website
 
 Change version to x.y.z-hg, and start new development cycle
 {{{
