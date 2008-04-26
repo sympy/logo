@@ -11,7 +11,7 @@ If you found a bug, please report it in [http://code.google.com/p/sympy/issues/l
 ==News==
 
   * *26 Apr 2008* Version 0.5.14 released ([http://code.google.com/p/sympy/wiki/Changes changes])
-  * *21 Apr 2008* Results of the !GSoC applications [http://groups.google.com/group/sympy/browse_thread/thread/f99c94b56328b962 announced].
+  * *21 Apr 2008* Results of the GSoC applications [http://groups.google.com/group/sympy/browse_thread/thread/f99c94b56328b962 announced].
   * *31 Mar 2008* Google [http://groups.google.com/group/google-summer-of-code-announce/browse_thread/thread/9fa88f31aa401f70 has extended] the GSoC application deadline to April 7.
   * *27 Mar 2008* [http://docs.sympy.org docs.sympy.org] launched.
   * *24 Mar 2008* GSoC Student application period opens. See [GSoC2008] for details.
