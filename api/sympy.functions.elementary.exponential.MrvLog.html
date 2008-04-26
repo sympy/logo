@@ -3,11 +3,23 @@
         <link rel="stylesheet" type="text/css" href="apidocs.css"/>
         <title>API docs for &ldquo;sympy.functions.elementary.exponential.MrvLog&rdquo;</title>
         </head>
-        <body><h1 class="class">Class s.f.e.e.MrvLog(<a href="sympy.functions.elementary.exponential.log.html">log</a>):</h1><span id="part">Part of <a href="sympy.functions.elementary.exponential.html">sympy.functions.elementary.exponential</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.MrvLog.subs">subs</a></td><td><div><p>Substitutes an expression old -&gt; new.</p>
+        <body><h1 class="class">Class s.f.e.e.MrvLog(<a href="sympy.functions.elementary.exponential.log.html">log</a>):</h1><span id="part">Part of <a href="sympy.functions.elementary.exponential.html">sympy.functions.elementary.exponential</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.functions.elementary.exponential.MrvLog.subs">subs</a></td><td><div><p>Substitutes an expression.</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.functions.elementary.exponential.MrvLog.subs">subs(self, old, new):</a></div>
-            <div class="functionBody"><div><p>Substitutes an expression old -&gt; new.</p>
+            <div class="functionBody"><div><p>Substitutes an expression.</p>
+<p>Calls either _subs_old_new, _subs_dict or _subs_list depending if you 
+give it two arguments (old, new), a dictionary or a list.</p>
+<p>Examples:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)
+<span class="py-prompt">&gt;&gt;&gt; </span>(1+x*y).subs(x, pi)
+<span class="py-output">1 + pi*y</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>(1+x*y).subs({x:pi, y:2})
+<span class="py-output">1 + 2*pi</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>(1+x*y).subs([(x,pi), (y,2)])
+<span class="py-output">1 + 2*pi</span></pre>
 </div></div>
             </div></body>
         
