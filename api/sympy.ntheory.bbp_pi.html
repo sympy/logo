@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.ntheory.bbp_pi&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.n.bbp_pi</h1><span id="part">Part of <a href="sympy.ntheory.html">sympy.ntheory</a></span><div class="toplevel"><pre>This implimentation is a heavily modified fixed point implimentation of BBP_formula
+for calculating the nth position of pi. The original hosted at:
+http://en.literateprograms.org/Pi_with_the_BBP_formula_(Python)
+
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of this software and associated documentation files (the
+# "Software"), to deal in the Software without restriction, including
+# without limitation the rights to use, copy, modify, merge, publish,
+# distribute, sublicense, and/or sell copies of the Software, and to
+# permit persons to whom the Software is furnished to do so, subject to
+# the following conditions:
+#
+# The above copyright notice and this permission notice shall be
+# included in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+# IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+# CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+# TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+# SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Modifications:
+1.Once the nth digit is selected the number of digits of working precision is
+caluclated to ensure that the 14 Hexidecimal representation of that region is
+accurate. This was found eimperically to be int((math.log10(n//1000))+18).
+This was found by searching for a value of working precision for the n = 0 and
+n = 1 then n was increased untill the result was less precise, therefore increased again
+this was repeated for increasing n and an effective fit was found between n and
+the working precision value.
+
+2. The while loop to evaluate whether the series has convergered has be replaced
+with a fixed for loop, that option was selected because in a very large number of
+cases the loop convereged to a point where no difference can be detected in less than
+15 iterations. (done for more accurate memory and time banking).
+
+3. output hex string constrained to 14 characters (accuarcy assured to n = 10**7)
+
+4. pi_hex_digits(n) changed to have coeffiecient to the formula in an array (perhaps just
+a matter of preference).</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.ntheory.bbp_pi.Series">Series</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.ntheory.bbp_pi.pi_hex_digits">pi_hex_digits</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.ntheory.bbp_pi.dn">dn</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.ntheory.bbp_pi.Series">Series(j, n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.ntheory.bbp_pi.pi_hex_digits">pi_hex_digits(n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.ntheory.bbp_pi.dn">dn(n):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        
