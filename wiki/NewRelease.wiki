@@ -132,6 +132,16 @@ hg push
   * http://freshmeat.net/projects/sympy/
   * http://pypi.python.org/pypi/SymPy/
 
+=== pypi ===
+
+{{{
+$ hg up sympy-0.5.14
+$ python setup.py register
+$ python setup.py sdist upload
+}}}
+You may have to fix the uploaded file by hand over the web, so that it has the
+same md5sum as the one on googlecode.
+
 == Other things ==
 
   * Create a Debian package
