@@ -41,7 +41,7 @@ The speed of "import sympy" is: 0.119651 +- 0.008924
 Do this on the hg version:
 {{{
 $ cd bin
-$ sudo cowbuilder --execute test_pure
+$ sudo pbuilder --execute test_pure
 }}}
 All tests need to run here.
 
