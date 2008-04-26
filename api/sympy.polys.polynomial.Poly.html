@@ -1,0 +1,957 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.polys.polynomial.Poly&rdquo;</title>
+        </head>
+        <body><h1 class="class">Class s.p.p.Poly(<a href="sympy.core.basic.Basic.html">Basic</a>, <a href="sympy.core.methods.RelMeths.html">RelMeths</a>, <a href="sympy.core.methods.ArithMeths.html">ArithMeths</a>):</h1><span id="part">Part of <a href="sympy.polys.polynomial.html">sympy.polys.polynomial</a></span><p>known subclasses: <a href="sympy.polys.polynomial.IntegerPoly.html">sympy.polys.polynomial.IntegerPoly</a></p><div class="toplevel"><pre>Represents polynomials with symbolic coefficients.
+
+Polynomials are internally represented as two lists containing
+coefficients and monomials (tuples of exponents) respectively.
+Stored are only terms with non-zero coefficients, so generally
+all polynomials are considered sparse. However algorithms will
+detect dense polynomials and use the appropriate method to
+solve the given problem in the most efficient way.
+
+The most common way to initialize a polynomial instance is to
+provide a valid expression together witch a set of ordered
+symbols and, additionally, monomial ordering:
+
+     Poly(expression, x_1, x_2, ..., x_n, order='grlex')
+
+If the given expression is not a polynomial with respect to
+the given variables, an exception is raised. Alternatively
+you can use Basic.as_poly to avoid exception handling.
+
+By default ordering of monomials can be omitted. In this case
+graded lexicographic order will be used. Anyway remember that
+'order' is a keyword argument.
+
+Currently there are supported four standard orderings:
+
+    [1] lex       -> lexicographic order
+    [2] grlex     -> graded lex order
+    [3] grevlex   -> reversed grlex order
+    [4] 1-el      -> first elimination order
+
+Polynomial can be also constructed explicitly by specifying
+a collection of coefficients and monomials. This can be done
+in at least three different ways:
+
+    [1] [(c_1, M_1), (c_2, M_2), ..., (c_1, M_1)]
+
+    [2] (c_1, c2, ..., c_n), (M_1, M_2, ..., M_n)
+
+    [3] { M_1 : c_1, M_2 : c_2, ..., M_n : c_n }
+
+Although all three representation look similar, they are
+designed for different tasks and have specific properties:
+
+    [1] All coefficients and monomials  are validated before
+        polynomial instance is created. Monomials are sorted
+        with respect to the given order.
+
+    [2] No validity checking, no sorting, just a raw copy.
+
+    [3] Also no validity checking however monomials are
+        sorted with respect to the given order.
+
+For interactive usage choose [1] as it's safe and relatively
+fast. Use [2] or [3] internally for time critical algorithms,
+when you know that coefficients and monomials will be valid.
+
+Implemented methods:
+
+    U --> handles uniformly int | long and Basic coefficients
+          (other methods need to be overridden in IntegerPoly)
+
+    P --> a property (with appropriate decorator)
+
+    - --> otherwise
+
+[1] Representation conversion:
+
+   [1.1] [--] as_basic   --> converts to a valid sympy expression
+   [1.2] [U-] as_dict    --> returns { M_1 : c_1, ..., M_1 : c_1 }
+   [1.3] [U-] as_uv_dict --> returns dict with integer keys
+
+[2] Polynomial internals:
+
+   [2.1] [UP] coeffs  --> list of coefficients
+   [2.2] [UP] monoms  --> list of monomials
+   [2.3] [UP] symbols --> an ordered list of symbols
+   [2.4] [UP] order   --> the ordering of monomials
+   [2.5] [UP] stamp   --> frozen set of polynomial's variables
+   [2.6] [UP] domain  --> coefficient domain, see [8] for details
+   [2.7] [UP] args    --> required for printing and hashing
+   [2.8] [UP] flags   --> dict of keyword arguments to Poly
+
+[3] General characteristics:
+
+   [3.1] [UP] norm         --> computes oo-norm of coefficients
+   [3.2] [UP] length       --> counts the total number of terms
+   [3.3] [UP] degree       --> returns degree of the leading monomial
+   [3.4] [UP] total_degree --> returns true total degree of a polynomial
+
+[4] Items generators:
+
+   [4.1] [U-] iter_coeffs --> iterate over coefficients
+   [4.2] [U-] iter_monoms --> iterate over monomials
+   [4.3] [U-] iter_terms  --> iterate over terms
+
+[5] Leading items:
+
+   [5.1] [UP] lead_coeff or LC --> returns leading coefficient
+   [5.2] [UP] lead_monom or LM --> returns leading monomial
+   [5.3] [UP] lead_term  or LT --> returns leading term
+
+[6] Arithmetic operators:
+
+   [6.1]  [U-] __abs__     --> for all i, abs(c_i)
+   [6.2]  [U-] __neg__     --> polynomial negation
+   [6.3]  [U-] __add__     --> polynomial addition
+   [6.4]  [U-] __sub__     --> polynomial subtraction
+   [6.5]  [--] __mul__     --> polynomial multiplication
+   [6.6]  [U-] __pow__     --> polynomial exponentiation
+   [6.7]  [U-] __div__     --> polynomial quotient
+   [6.8]  [U-] __mod__     --> polynomial remainder
+   [6.9]  [U-] __divmod__  --> both 'div' and 'mod'
+   [6.10] [U-] __truediv__ --> the same as 'div'
+
+[7] Polynomial properties:
+
+   [7.1]  [UP] is_zero          --> only one term c_0 == 0
+   [7.2]  [UP] is_one           --> only one term c_0 == 1
+   [7.3]  [-P] is_number        --> only numeric constant term
+   [7.4]  [UP] is_constant      --> only arbitrary constant term
+   [7.5]  [UP] is_monomial      --> number of terms == 1
+   [7.6]  [UP] is_univariate    --> number of variables = 1
+   [7.7]  [UP] is_multivariate  --> number of variables > 1
+   [7.8]  [UP] is_homogeneous   --> has constant term
+   [7.9]  [UP] is_inhomogeneous --> no constant term
+   [7.10] [UP] is_sparse        --> filled with less than 90% of terms
+   [7.11] [UP] is_dense         --> filled with more than 90% of terms
+   [7.12] [UP] is_monic         --> returns True if leading coeff is one
+   [7.13] [UP] is_primitive     --> returns True if content is one
+   [7.14] [UP] is_squarefree    --> no factors of multiplicity >= 2
+
+[8] Coefficients properties:
+
+   [8.1] [UP] has_integer_coeffs  --> for all i, c_i in Z
+   [8.2] [UP] has_rational_coeffs --> for all i, c_i in Q
+   [8.3] [UP] has_radical_coeffs  --> for all i, c_i in R
+   [8.4] [UP] has_complex_coeffs  --> for all i, c_i in C
+   [8.5] [UP] has_symbolic_coeffs --> otherwise
+
+[9] Special functionality:
+
+   [9.1]  [--] as_monic      --> divides all coefficients by LC
+
+   [9.2]  [-P] content       --> returns GCD of polynomial coefficients
+   [9.3]  [--] as_primitive  --> returns content and primitive part
+
+   [9.4]  [U-] as_squarefree --> returns square-free part of a polynomial
+
+   [9.5]  [U-] as_reduced    --> extract GCD of polynomial monomials
+
+   [9.6]  [--] map_coeffs    --> applies a function to all coefficients
+   [9.7]  [U-] coeff         --> returns coefficient of the given monomial
+
+   [9.8]  [U-] unify_with    --> returns polys with a common set of symbols
+
+   [9.9]  [U-] diff          --> efficient polynomial differentiation
+   [9.10] [U-] integrate     --> efficient polynomial integration
+
+[10] Operations on terms:
+
+   [10.1] [U-] add_term --> add a term to a polynomial
+   [10.2] [U-] sub_term --> subtract a term from a polynomial
+
+   [10.3] [--] mul_term --> multiply a polynomial with a term
+   [10.4] [--] div_term --> divide a polynomial by a term
+
+   [10.5] [U-] remove_lead_term --> remove leading term (up to order)
+   [10.6] [U-] remove_last_term --> remove last term (up to order)
+
+[11] Substitution and evaluation:
+
+   [11.1] [U-] __call__    --> evaluates poly a the given point
+   [11.2] [U-] evaluate    --> evaluates poly for specific vars
+   [11.3] [--] _eval_subs  --> efficiently substitute variables
+
+[12] Comparison functions:
+
+   [12.1] [U-] __eq__      --> P1 == P, up to order of monomials
+   [12.2] [U-] __ne__      --> P1 != P, up to order of monomials
+   [12.3] [U-] __nonzero__ --> check if zero polynomial
+
+[13] Basic functionality:
+
+   [13.1] [--] atoms       --> returns the atoms that form a polynomial
+
+[14] Other functionality:
+
+   [14.1] [U-] _eval_is_polynomial --> checks if poly is a poly
+
+
+For general information on polynomials and algorithms, refer to:
+
+[1] D. E. Knuth, The Art of Computer Programming: Seminumerical
+    Algorithms, v.2, Addison-Wesley Professional, 1997
+
+[2] J. von zur Gathen, J. Gerhard, Modern Computer Algebra,
+    Second Edition, Cambridge University Press, 2003
+
+[3] K. Geddes, S. R. Czapor, G. Labahn, Algorithms for
+    Computer Algebra, Springer, 1992
+
+[4] D. Bini, V. Y.Pan, Polynomial and Matrix Computations:
+    Volume 1: Fundamental Algorithms, Birkhauser Boston, 1994
+
+[5] R. T. Moenck, Practical Fast Polynomial Multiplication,
+    Proceedings of the third ACM symposium on Symbolic and
+    algebraic computation, ACM Press, Yorktown Heights,
+    New York, USA, 1976, pp. 136-148
+
+[6] M. Bronstein, Symbolic Integration I: Transcendental
+    Functions, Second Edition, Springer-Verlang, 2005
+
+See also documentation of particular methods.</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly._permute">_permute</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly._decompose">_decompose</a></td><td><div><p>Converts basic expression to dictionary representation.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly._cancel">_cancel</a></td><td><div><p>Cancel common factors in a fractional expression.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.as_basic">as_basic</a></td><td><div><p>Converts polynomial to a valid sympy expression.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.as_dict">as_dict</a></td><td><div><p>Convert list representation to dictionary representation.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.as_uv_dict">as_uv_dict</a></td><td><div><p>Return dictionary representation with integer keys.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.coeffs">coeffs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.monoms">monoms</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.symbols">symbols</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.order">order</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.stamp">stamp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.domain">domain</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.args">args</a></td><td><div><p>Returns a tuple of arguments of &quot;self&quot;.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.flags">flags</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.length">length</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.degree">degree</a></td><td><div><p>Returns degree of the leading term.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.total_degree">total_degree</a></td><td><div><p>Returns true total degree of a polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.norm">norm</a></td><td><div><p>Computes oo-norm of polynomial's coefficients.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.iter_coeffs">iter_coeffs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.iter_monoms">iter_monoms</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.iter_terms">iter_terms</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.lead_coeff">lead_coeff</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.lead_monom">lead_monom</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.lead_term">lead_term</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__abs__">__abs__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__neg__">__neg__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__add__">__add__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__sub__">__sub__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__mul__">__mul__</a></td><td><div><p>Efficiently multiply sparse and dense polynomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__pow__">__pow__</a></td><td><div><p>Polynomial exponentiation using binary method.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__div__">__div__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__mod__">__mod__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__divmod__">__divmod__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_zero">is_zero</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_one">is_one</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_number">is_number</a></td><td><div><p>Returns True if 'self' is a number.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_constant">is_constant</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_monomial">is_monomial</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_univariate">is_univariate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_multivariate">is_multivariate</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_homogeneous">is_homogeneous</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_inhomogeneous">is_inhomogeneous</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_sparse">is_sparse</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_dense">is_dense</a></td><td><div><p>Returns True if 'self' is dense.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_primitive">is_primitive</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_monic">is_monic</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.is_squarefree">is_squarefree</a></td><td><div><p>Returns True if 'self' has no factors of multiplicity &gt;= 2.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.has_integer_coeffs">has_integer_coeffs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.has_rational_coeffs">has_rational_coeffs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.has_radical_coeffs">has_radical_coeffs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.has_complex_coeffs">has_complex_coeffs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.has_symbolic_coeffs">has_symbolic_coeffs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.as_monic">as_monic</a></td><td><div><p>Returns leading coefficient and monic polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.content">content</a></td><td><div><p>Returns integer GCD of all the coefficients.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.as_primitive">as_primitive</a></td><td><div><p>Returns content and primitive part of a polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.as_squarefree">as_squarefree</a></td><td><div><p>Returns square-free part of a polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.as_reduced">as_reduced</a></td><td><div><p>Remove GCD of monomials from 'self'.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.map_coeffs">map_coeffs</a></td><td><div><p>Apply a function to all the coefficients.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.coeff">coeff</a></td><td><div><p>Returns coefficient of a particular monomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.unify_with">unify_with</a></td><td><div><p>Unify 'self' with a polynomial or a set of polynomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.diff">diff</a></td><td><div><p>Efficiently differentiate polynomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.integrate">integrate</a></td><td><div><p>Efficiently integrate polynomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.add_term">add_term</a></td><td><div><p>Efficiently add a single term to 'self'.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.sub_term">sub_term</a></td><td><div><p>Efficiently subtract a single term from 'self'.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.mul_term">mul_term</a></td><td><div><p>Efficiently multiply 'self' with a single term.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.div_term">div_term</a></td><td><div><p>Efficiently divide 'self' by a single term.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.kill_lead_term">kill_lead_term</a></td><td><div><p>Removes leading term from 'self'.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.kill_last_term">kill_last_term</a></td><td><div><p>Removes last term from 'self'.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__call__">__call__</a></td><td><div><p>Efficiently evaluate polynomial at a given point.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.evaluate">evaluate</a></td><td><div><p>Evaluates polynomial for a given set of symbols.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly._eval_subs">_eval_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__eq__">__eq__</a></td><td><div><p>Compare polynomials up to order of symbols and monomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__ne__">__ne__</a></td><td><div><p>Compare polynomials up to order of symbols and monomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.__nonzero__">__nonzero__</a></td><td><div><p>Tests if 'self' is an instance of Zero class.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly.atoms">atoms</a></td><td><div><p>Returns the atoms that form a polynomial.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.polynomial.Poly._eval_is_polynomial">_eval_is_polynomial</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__new__">__new__(cls, poly, *symbols, **flags):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly._permute">_permute(poly, *symbols):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly._decompose">_decompose(poly, *symbols):</a></div>
+            <div class="functionBody"><div><p>Converts basic expression to dictionary representation.</p>
+<p>This procedure will expand given expression and scan it, extracting 
+coefficients and monomials according to a set of symbols, if possible. At 
+this point there is no need for specifying ordering information. If 
+conversion is not possible an exception is raised.</p>
+<p>This method should be left for internal use. To convert expression to a 
+polynomial use Polynomial constructor explicitly or Basic.as_poly 
+method.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Poly._decompose(y*x**2 + 3, x)
+<span class="py-output">{(2,): y, (0,): 3}</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Poly._decompose(y*x**2 + 3, x, y)
+<span class="py-output">{(0, 0): 3, (2, 1): 1}</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly._cancel">_cancel(f):</a></div>
+            <div class="functionBody"><div><p>Cancel common factors in a fractional expression.</p>
+<p>Given a quotient of polynomials, cancel common factors from the the 
+numerator and the denominator. The result is formed in an expanded form, 
+even if there was no cancellation.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Poly._cancel((x**2-y**2)/(x-y))
+<span class="py-output">x + y</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.as_basic">as_basic(self):</a></div>
+            <div class="functionBody"><div><p>Converts polynomial to a valid sympy expression.</p>
+<p>Takes list representation of a polynomial and constructs expression 
+using symbols used during creation of a given polynomial. If you wish to 
+have different symbols in the resulting expressions, use subs() first.</p>
+<p>Note that the result is always returned in expanded form.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = Poly(x**2+3, x)
+<span class="py-prompt">&gt;&gt;&gt; </span>p.as_basic()
+<span class="py-output">3 + x**2</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.as_dict">as_dict(self):</a></div>
+            <div class="functionBody"><div><p>Convert list representation to dictionary representation.</p>
+<p>Due to hashing of immutable expressions in Python, we can not store a 
+dictionary directly in a polynomial instance. Also it would be inconvenient
+in case of ordering of monomials (unnecessary sorting).</p>
+<p>This method creates dictionary efficiently, so it can be used in several
+algorithms which perform best when dicts are being used, eg. addition, 
+multiplication etc.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = Poly(x**2+3, x)
+<span class="py-prompt">&gt;&gt;&gt; </span>p.as_dict()
+<span class="py-output">{(2,): 1, (0,): 3}</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.as_uv_dict">as_uv_dict(self):</a></div>
+            <div class="functionBody"><div><p>Return dictionary representation with integer keys.</p>
+<p>In case of univariate polynomials it is in efficient to to handle 
+exponents as singleton tuples, as an example see multiplication algorithm. 
+This procedure will convert tuples to explicit integers.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = Poly(x**2+3, x)
+<span class="py-prompt">&gt;&gt;&gt; </span>p.as_uv_dict()
+<span class="py-output">{0: 3, 2: 1}</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.coeffs">coeffs(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.monoms">monoms(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.symbols">symbols(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.order">order(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.stamp">stamp(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.domain">domain(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.args">args(self):</a></div>
+            <div class="functionBody"><pre>Returns a tuple of arguments of "self".
+
+Example
+-------
+
+>>> from sympy import symbols, cot
+>>> x, y = symbols('xy')
+
+>>> cot(x).args
+(x,)
+
+>>> cot(x).args[0]
+x
+
+>>> (x*y).args
+(x, y)
+
+>>> (x*y).args[1]
+y
+
+Note for developers: Never use self._args, always use self.args.
+Only when you are creating your own new function, use _args
+in the __new__. Don't override .args() from Basic (so that it's
+easy to change the interface in the future if needed).</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.flags">flags(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.length">length(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.degree">degree(self):</a></div>
+            <div class="functionBody"><div><p>Returns degree of the leading term.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.total_degree">total_degree(self):</a></div>
+            <div class="functionBody"><div><p>Returns true total degree of a polynomial.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.norm">norm(self):</a></div>
+            <div class="functionBody"><div><p>Computes oo-norm of polynomial's coefficients.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.iter_coeffs">iter_coeffs(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.iter_monoms">iter_monoms(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.iter_terms">iter_terms(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.lead_coeff">lead_coeff(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.lead_monom">lead_monom(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.lead_term">lead_term(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__abs__">__abs__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__neg__">__neg__(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__add__">__add__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__sub__">__sub__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__mul__">__mul__(self, other):</a></div>
+            <div class="functionBody"><pre>Efficiently multiply sparse and dense polynomials.
+
+Given polynomials P and Q, if both of them are dense, then
+in univariate case perform dense multiplication, otherwise
+apply Kronecker 'trick', mapping multivariate polynomials
+to univariate ones in last variable and then multiply.
+
+If any of the polynomials is sparse then in both univariate
+and multivariate cases use naive multiplication algorithm.
+
+For more information on implemented algorithms refer to:
+
+[1] R. T. Moenck, Practical Fast Polynomial Multiplication,
+    Proceedings of the third ACM symposium on Symbolic and
+    algebraic computation, ACM Press, Yorktown Heights,
+    New York, USA, 1976, pp. 136-148</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__pow__">__pow__(self, other):</a></div>
+            <div class="functionBody"><pre>Polynomial exponentiation using binary method.
+
+Given a polynomial P and integer exponent N, raise P to power
+N in floor(lg(N)) + 1(N) multiplications,  where lg(N) stands
+for binary logarithm and 1(N) is the number of ones in binary
+representation of N.
+
+For more information on the implemented algorithm refer to:
+
+[1] D. E. Knuth, The Art of Computer Programming: Seminumerical
+    Algorithms, v.2, Addison-Wesley Professional, 1997, pp. 461</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__div__">__div__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__mod__">__mod__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__divmod__">__divmod__(self, other):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_zero">is_zero(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_one">is_one(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_number">is_number(self):</a></div>
+            <div class="functionBody"><div><p>Returns True if 'self' is a number.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>x.is_number
+<span class="py-output">False</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>(2*x).is_number
+<span class="py-output">False</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>(2 + log(2)).is_number
+<span class="py-output">True</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_constant">is_constant(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_monomial">is_monomial(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_univariate">is_univariate(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_multivariate">is_multivariate(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_homogeneous">is_homogeneous(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_inhomogeneous">is_inhomogeneous(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_sparse">is_sparse(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_dense">is_dense(self):</a></div>
+            <div class="functionBody"><pre>Returns True if 'self' is dense.
+
+Let 'self' be a polynomial in M variables of a total degree N
+and having L terms (with non-zero coefficients). Let K be the
+number of monomials in M variables of degree at most N.  Then
+'self' is considered dense if it's at least 90% filled.
+
+The total number of monomials is given by (M + N)! / (M! N!),
+where the factorials are estimated using improved Stirling's
+approximation:
+
+            n! = sqrt((2 n + 1/3) pi) n**n exp(-n)
+
+For more information on this subject refer to:
+
+  http://mathworld.wolfram.com/StirlingsApproximation.html</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_primitive">is_primitive(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_monic">is_monic(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.is_squarefree">is_squarefree(self):</a></div>
+            <div class="functionBody"><div><p>Returns True if 'self' has no factors of multiplicity &gt;= 2.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Poly(x-1, x).is_squarefree
+<span class="py-output">True</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Poly((x-1)**2, x).is_squarefree
+<span class="py-output">False</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.has_integer_coeffs">has_integer_coeffs(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.has_rational_coeffs">has_rational_coeffs(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.has_radical_coeffs">has_radical_coeffs(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.has_complex_coeffs">has_complex_coeffs(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.has_symbolic_coeffs">has_symbolic_coeffs(self):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.as_monic">as_monic(self):</a></div>
+            <div class="functionBody"><div><p>Returns leading coefficient and monic polynomial.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Poly(x**2 + 4, x).as_monic()
+<span class="py-output">Poly((1, 4), ((2,), (0,)), (x,), 'grlex')</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Poly(2*x**2 + 4, x).as_monic()
+<span class="py-output">Poly((1, 2), ((2,), (0,)), (x,), 'grlex')</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Poly(y*x**2 + (y**2+y), x).as_monic()
+<span class="py-output">Poly((1, 1 + y), ((2,), (0,)), (x,), 'grlex')</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.content">content(self):</a></div>
+            <div class="functionBody"><div><p>Returns integer GCD of all the coefficients.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y,z = symbols(<span class="py-string">'xyz'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = Poly(2*x + 5*x*y, x, y)
+<span class="py-prompt">&gt;&gt;&gt; </span>p.content
+<span class="py-output">1</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = Poly(2*x + 4*x*y, x, y)
+<span class="py-prompt">&gt;&gt;&gt; </span>p.content
+<span class="py-output">2</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = Poly(2*x + z*x*y, x, y)
+<span class="py-prompt">&gt;&gt;&gt; </span>p.content
+<span class="py-output">1</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.as_primitive">as_primitive(self):</a></div>
+            <div class="functionBody"><div><p>Returns content and primitive part of a polynomial.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = Poly(4*x**2 + 2*x, x)
+<span class="py-prompt">&gt;&gt;&gt; </span>p.as_primitive()
+<span class="py-output">(2, Poly((2, 1), ((2,), (1,)), (x,), 'grlex'))</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.as_squarefree">as_squarefree(self):</a></div>
+            <div class="functionBody"><div><p>Returns square-free part of a polynomial.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Poly((x-1)**2, x).as_squarefree()
+<span class="py-output">Poly((1, -1), ((1,), (0,)), (x,), 'grlex')</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.as_reduced">as_reduced(self):</a></div>
+            <div class="functionBody"><div><p>Remove GCD of monomials from 'self'.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Poly(x**3 + x, x).as_reduced()
+<span class="py-output">((1,), Poly((1, 1), ((2,), (0,)), (x,), 'grlex'))</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Poly(x**3*y+x**2*y**2, x, y).as_reduced()
+<span class="py-output">((2, 1), Poly((1, 1), ((1, 0), (0, 1)), (x, y), 'grlex'))</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.map_coeffs">map_coeffs(self, f, *args, **kwargs):</a></div>
+            <div class="functionBody"><div><p>Apply a function to all the coefficients.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y,u,v = symbols(<span class="py-string">'xyuv'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = Poly(x**2 + 2*x*y, x, y)
+<span class="py-prompt">&gt;&gt;&gt; </span>q = p.map_coeffs(<span class="py-keyword">lambda</span> c: 2*c)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>q.as_basic()
+<span class="py-output">4*x*y + 2*x**2</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = Poly(u*x**2 + v*x*y, x, y)
+<span class="py-prompt">&gt;&gt;&gt; </span>q = p.map_coeffs(expand, complex=True)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>q.as_basic()
+<span class="py-output">x**2*(I*im(u) + re(u)) + x*y*(I*im(v) + re(v))</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.coeff">coeff(self, *monom):</a></div>
+            <div class="functionBody"><div><p>Returns coefficient of a particular monomial.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = Poly(3*x**2*y + 4*x*y**2 + 1, x, y)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p.coeff(2, 1)
+<span class="py-output">3</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>p.coeff(1, 2)
+<span class="py-output">4</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>p.coeff(1, 1)
+<span class="py-output">0</span></pre>
+<p>If len(monom) == 0 then returns coeff of the constant term:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p.coeff(0, 0)
+<span class="py-output">1</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>p.coeff()
+<span class="py-output">1</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.unify_with">unify_with(self, other):</a></div>
+            <div class="functionBody"><div><p>Unify 'self' with a polynomial or a set of polynomials.</p>
+<p>This method will return polynomials of the same type,  dominated by 
+'self', with a common set of symbols (which is a union of all symbols from 
+all polynomials) and with common monomial ordering.</p>
+<p>You can pass a polynomial  or an expression to this method, or a list or
+a tuple of polynomials or expressions. If any of the inputs would be an 
+expression then it will be converted to a polynomial.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.diff">diff(self, *symbols):</a></div>
+            <div class="functionBody"><div><p>Efficiently differentiate polynomials.</p>
+<p>Differentiate a polynomial with respect to a set of symbols.  If a 
+symbol is polynomial's variable, then monomial differentiation is performed
+and coefficients updated with integer factors. In other case each of the 
+coefficients is differentiated.</p>
+<p>Additionally, for each of the symbols you can specify a single positive 
+integer which will indicate the number of times to perform differentiation 
+using this symbol.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y,z = symbols(<span class="py-string">'xyz'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = Poly(x**2*y + z**2, x, y)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> p
+<span class="py-output">Poly((1, z**2), ((2, 1), (0, 0)), (x, y), 'grlex')</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p.diff(x)
+<span class="py-output">Poly((2,), ((1, 1),), (x, y), 'grlex')</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p.diff(x, 2)
+<span class="py-output">Poly((2,), ((0, 1),), (x, y), 'grlex')</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p.diff(x, 2, y)
+<span class="py-output">Poly((2,), ((0, 0),), (x, y), 'grlex')</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p.diff(z)
+<span class="py-output">Poly((2*z,), ((0, 0),), (x, y), 'grlex')</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.integrate">integrate(self, *symbols):</a></div>
+            <div class="functionBody"><div><p>Efficiently integrate polynomials.</p>
+<p>Integrate a polynomial with respect a set of symbols. If a symbol is 
+polynomial's variable, then monomial integration is performed and 
+coefficients updated with integer factors. In other case each of the 
+coefficients is integrated.</p>
+<p>Additionally, for each of the symbols you can specify a single positive 
+integer which will indicate the number of times to perform integration 
+using this symbol.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y,z = symbols(<span class="py-string">'xyz'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p = Poly(x**2*y + z**2, x, y)
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> p
+<span class="py-output">Poly((1, z**2), ((2, 1), (0, 0)), (x, y), 'grlex')</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p.integrate(x)
+<span class="py-output">Poly((1/3, z**2), ((3, 1), (1, 0)), (x, y), 'grlex')</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p.integrate(x, 2)
+<span class="py-output">Poly((1/12, (1/2)*z**2), ((4, 1), (2, 0)), (x, y), 'grlex')</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p.integrate(x, 2, y)
+<span class="py-output">Poly((1/24, (1/2)*z**2), ((4, 2), (2, 1)), (x, y), 'grlex')</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>p.integrate(z)
+<span class="py-output">Poly((z, (1/3)*z**3), ((2, 1), (0, 0)), (x, y), 'grlex')</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.add_term">add_term(self, coeff, monom):</a></div>
+            <div class="functionBody"><pre>Efficiently add a single term to 'self'.
+
+The list of monomials is sorted at initialization time, this
+motivates usage of binary search algorithm to find an index
+of an existing monomial or a suitable place for a new one.
+This gives O(lg(n)) complexity, where 'n' is the initial
+number of terms, superior to naive approach.
+
+For more information on the implemented algorithm refer to:
+
+[1] D. E. Knuth, The Art of Computer Programming: Sorting
+    and Searching, v.1, Addison-Wesley Professional, 1998</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.sub_term">sub_term(self, coeff, monom):</a></div>
+            <div class="functionBody"><pre>Efficiently subtract a single term from 'self'.
+
+The list of monomials is sorted at initialization time, this
+motivates usage of binary search algorithm to find an index
+of an existing monomial or a suitable place for a new one.
+This gives O(lg(n)) complexity, where 'n' is the initial
+number of terms, superior to naive approach.
+
+For more information on the implemented algorithm refer to:
+
+[1] D. E. Knuth, The Art of Computer Programming: Sorting
+    and Searching, v.2, Addison-Wesley Professional, 1998</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.mul_term">mul_term(self, coeff, monom=None):</a></div>
+            <div class="functionBody"><div><p>Efficiently multiply 'self' with a single term.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.div_term">div_term(self, coeff, monom=None):</a></div>
+            <div class="functionBody"><div><p>Efficiently divide 'self' by a single term.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.kill_lead_term">kill_lead_term(self):</a></div>
+            <div class="functionBody"><div><p>Removes leading term from 'self'.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.kill_last_term">kill_last_term(self):</a></div>
+            <div class="functionBody"><div><p>Removes last term from 'self'.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__call__">__call__(self, *point):</a></div>
+            <div class="functionBody"><pre>Efficiently evaluate polynomial at a given point.
+
+Evaluation is always done using Horner scheme.  In multivariate
+case a greedy algorithm is used to obtain a sequence of partial
+evaluations which minimizes the total number of multiplications
+required to perform this evaluation. This strategy is efficient
+for most of multivariate polynomials.
+
+Note that evaluation is done for all variables, which means the
+dimension of the given point must match the number of symbols.
+
+If you wish to efficiently evaluate polynomial for a subset of
+symbols use 'evaluate' method instead. Alternatively one can
+use Basic.subs() for this purpose.
+
+>>> from sympy import *
+>>> x,y = symbols('xy')
+
+>>> p = Poly(x**2 + 2*x + 1, x)
+
+>>> p(2)
+9
+>>> p(y)
+1 + y*(2 + y)
+
+For more information on the implemented algorithm refer to:
+
+[1] M. Ceberio, V. Kreinovich, Greedy Algorithms for Optimizing
+    Multivariate Horner Schemes, ACM SIGSAM Bulletin, Volume 38,
+    Issue 1, 2004, pp. 8-15</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.evaluate">evaluate(self, pattern):</a></div>
+            <div class="functionBody"><div><p>Evaluates polynomial for a given set of symbols.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly._eval_subs">_eval_subs(self, old, new):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__eq__">__eq__(self, other):</a></div>
+            <div class="functionBody"><div><p>Compare polynomials up to order of symbols and monomials.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__ne__">__ne__(self, other):</a></div>
+            <div class="functionBody"><div><p>Compare polynomials up to order of symbols and monomials.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.__nonzero__">__nonzero__(self):</a></div>
+            <div class="functionBody"><pre>Tests if 'self' is an instance of Zero class.
+
+This should be understand as an idiom:
+
+    [1] bool(x) <=> bool(x is not S.Zero)
+
+    [2] bool(not x) <=> bool(x is S.Zero)
+
+Allowing definition of __nonzero__ method is important in
+algorithms where uniform handling of int, long values and
+and sympy expressions is required.
+
+>>> from sympy import *
+>>> x,y = symbols('xy')
+
+>>> bool(0)
+False
+>>> bool(1)
+True
+
+>>> bool(S.Zero)
+False
+>>> bool(S.One)
+True
+
+>>> bool(x*y)
+True
+>>> bool(x + y)
+True</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly.atoms">atoms(self, type=None):</a></div>
+            <div class="functionBody"><div><p>Returns the atoms that form a polynomial.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>Poly(x + 1, x, y).atoms()
+<span class="py-output">set([1, x])</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.polynomial.Poly._eval_is_polynomial">_eval_is_polynomial(self, symbols):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div></body>
+        

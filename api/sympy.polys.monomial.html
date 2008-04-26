@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html><head>
+        <link rel="stylesheet" type="text/css" href="apidocs.css"/>
+        <title>API docs for &ldquo;sympy.polys.monomial&rdquo;</title>
+        </head>
+        <body><h1 class="module">Module s.p.monomial</h1><span id="part">Part of <a href="sympy.polys.html">sympy.polys</a></span><div class="toplevel"><div class="undocumented">Undocumented</div></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomials">monomials</a></td><td><div><p>Generate a set of monomials of the given total degree or less.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_count">monomial_count</a></td><td><div><p>Computes the number of monomials of degree N in #V variables.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_lex_cmp">monomial_lex_cmp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_grlex_cmp">monomial_grlex_cmp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_grevlex_cmp">monomial_grevlex_cmp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_1_el_cmp">monomial_1_el_cmp</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_cmp">monomial_cmp</a></td><td><div><p>Returns a function defining admissible order on monomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_mul">monomial_mul</a></td><td><div><p>Multiplication of tuples representing monomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_div">monomial_div</a></td><td><div><p>Division of tuples representing monomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_gcd">monomial_gcd</a></td><td><div><p>Greatest common divisor of tuples representing monomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_lcm">monomial_lcm</a></td><td><div><p>Least common multiple of tuples representing monomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_max">monomial_max</a></td><td><div><p>Returns maximal degree for each variable in a set of monomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_min">monomial_min</a></td><td><div><p>Returns minimal degree for each variable in a set of monomials.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.polys.monomial.monomial_as_basic">monomial_as_basic</a></td><td><div><p>Converts tuple representing monomial to a valid sympy expression.</p>
+</div></td></tr></table>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomials">monomials(variables, degree):</a></div>
+            <div class="functionBody"><div><p>Generate a set of monomials of the given total degree or less.</p>
+<p>Given a set of variables V and a total degree  N generate a set of 
+monomials of degree at most N. The total number of monomials is defined as 
+(#V + N)! / (#V! N!) so is huge.</p>
+<p>For example if we would like to generate a dense polynomial of a total 
+degree N = 50 in 5 variables,  assuming that exponents and all of 
+coefficients are 32-bit long and stored in an array we would need almost 80
+GiB of memory! Fortunately most polynomials, that we will encounter, are 
+sparse.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x, y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>sorted(monomials([x, y], 2))
+<span class="py-output">[1, x, y, x**2, y**2, x*y]</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>sorted(monomials([x, y], 3))
+<span class="py-output">[1, x, y, x**2, x**3, y**2, y**3, x*y, x*y**2, y*x**2]</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_count">monomial_count(V, N):</a></div>
+            <div class="functionBody"><div><p>Computes the number of monomials of degree N in #V variables.</p>
+<p>The number of monomials is given as (#V + N)! / (#V! N!), eg:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y = symbols(<span class="py-string">'xy'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>monomial_count(2, 2)
+<span class="py-output">6</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>M = monomials([x, y], 2)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> M
+<span class="py-output">[1, x, y, x**2, y**2, x*y]</span>
+<span class="py-output"></span><span class="py-prompt">&gt;&gt;&gt; </span>len(M)
+<span class="py-output">6</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_lex_cmp">monomial_lex_cmp(a, b):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_grlex_cmp">monomial_grlex_cmp(a, b):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_grevlex_cmp">monomial_grevlex_cmp(a, b):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_1_el_cmp">monomial_1_el_cmp(a, b):</a></div>
+            <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_cmp">monomial_cmp(order):</a></div>
+            <div class="functionBody"><pre>Returns a function defining admissible order on monomials.
+
+Currently supported orderings are:
+
+    [1] lex       -> lexicographic order
+    [2] grlex     -> graded lex order
+    [3] grevlex   -> reversed grlex order
+    [4] 1-el      -> first elimination order</pre></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_mul">monomial_mul(a, b):</a></div>
+            <div class="functionBody"><div><p>Multiplication of tuples representing monomials.</p>
+<p>Lets multiply x**3*y**4*z with x*y**2:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>monomial_mul((3, 4, 1), (1, 2, 0))
+<span class="py-output">(4, 5, 1)</span></pre>
+<p>which gives x**4*y**5*z.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_div">monomial_div(a, b):</a></div>
+            <div class="functionBody"><div><p>Division of tuples representing monomials.</p>
+<p>Lets divide x**3*y**4*z by x*y**2:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>monomial_div((3, 4, 1), (1, 2, 0))
+<span class="py-output">(2, 2, 1)</span></pre>
+<p>which gives x**2*y**2*z. However</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>monomial_div((3, 4, 1), (1, 2, 2))
+<span class="py-output">None</span></pre>
+<p>x*y**2*z**2 does not divide x**3*y**4*z.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_gcd">monomial_gcd(a, b):</a></div>
+            <div class="functionBody"><div><p>Greatest common divisor of tuples representing monomials.</p>
+<p>Lets compute GCD of x**3*y**4*z and x*y**2:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>monomial_gcd((3, 4, 1), (1, 2, 0))
+<span class="py-output">(1, 2, 0)</span></pre>
+<p>which gives x*y**2.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_lcm">monomial_lcm(a, b):</a></div>
+            <div class="functionBody"><div><p>Least common multiple of tuples representing monomials.</p>
+<p>Lets compute LCM of x**3*y**4*z and x*y**2:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>monomial_lcm((3, 4, 1), (1, 2, 0))
+<span class="py-output">(3, 4, 1)</span></pre>
+<p>which gives x**3*y**4*z.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_max">monomial_max(*monoms):</a></div>
+            <div class="functionBody"><div><p>Returns maximal degree for each variable in a set of monomials.</p>
+<p>Consider monomials x**3*y**4*z**5, y**5*z and x**6*y**3*z**9. We wish to
+find out what is the maximal degree for each of x, y, z variables:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>monomial_max((3,4,5), (0,5,1), (6,3,9))
+<span class="py-output">(6, 5, 9)</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_min">monomial_min(*monoms):</a></div>
+            <div class="functionBody"><div><p>Returns minimal degree for each variable in a set of monomials.</p>
+<p>Consider monomials x**3*y**4*z**5, y**5*z and x**6*y**3*z**9. We wish to
+find out what is the maximal degree for each of x, y, z variables:</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>monomial_max((3,4,5), (0,5,1), (6,3,9))
+<span class="py-output">(0, 3, 1)</span></pre>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.polys.monomial.monomial_as_basic">monomial_as_basic(monom, *syms):</a></div>
+            <div class="functionBody"><div><p>Converts tuple representing monomial to a valid sympy expression.</p>
+<p>Given a monomial and a list of symbols, both tuples must be of the same 
+length, returns a sympy expression representing this monomial, eg. consider
+monomial (3, 2, 1) over (x, y, z):</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x,y,z = symbols(<span class="py-string">'xyz'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>monomial_as_basic((3, 2, 1), x, y, z)
+<span class="py-output">x**3*y**2*z</span></pre>
+</div></div>
+            </div></body>
+        
