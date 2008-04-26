@@ -28,7 +28,7 @@ or equivalently:
 
 lim_{x->0} | (x**5/5! - x**7/7! + ....) / x**5| < oo
 
-which surely is true, because 
+which surely is true, because
 
 lim_{x->0} | (x**5/5! - x**7/7! + ....) / x**5| = 1/5!
 
@@ -72,12 +72,38 @@ Notes:
     O(f(x,y),x,y) is transformed to O(f(x,y).as_leading_term(x,y).as_leading_term(y), x, y)
 
   If O is used with only expression argument then the symbols are
-  all symbols in the expression.</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order._get_cache_index">_get_cache_index</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order.find_limit">find_limit</a></td><td><div><p>Basically identical to:</p>
+  all symbols in the expression.</pre></div><table class="children"><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order.__new__">__new__</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order.oseries">oseries</a></td><td><div><p>Return the series of an expression up to given Order symbol (without 
+the</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order.nseries">nseries</a></td><td><div><p>Calculates a generalized series expansion.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order._get_cache_index">_get_cache_index</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order.find_limit">find_limit</a></td><td><div><p>Basically identical to:</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order.expr">expr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order.symbols">symbols</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order.tostr">tostr</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order._eval_power">_eval_power</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order.as_expr_symbols">as_expr_symbols</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order.contains">contains</a></td><td><div><p>Return True if expr belongs to Order(self.expr, *self.symbols).</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order._eval_subs">_eval_subs</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order._calc_splitter">_calc_splitter</a></td><td><span class="undocumented">Undocumented</span></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.series.order.Order._sage_">_sage_</a></td><td><span class="undocumented">Undocumented</span></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.order.Order.__new__">__new__(cls, expr, *symbols, **assumptions):</a></div>
             <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.series.order.Order.oseries">oseries(self, order):</a></div>
+            <div class="functionBody"><div><p>Return the series of an expression up to given Order symbol (without the
+actual O term).</p>
+<p>The general philosophy is this: simply start with the most simple Taylor
+(Laurent) term and calculate one be one and use order.contains(term) method
+to determine if your term is still significant and should be added to the 
+series, or we should stop.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.series.order.Order.nseries">nseries(self, x, x0, n):</a></div>
+            <div class="functionBody"><div><p>Calculates a generalized series expansion.</p>
+<p>The difference between oseries and nseries is that nseries calculates 
+&quot;n&quot; terms in the innermost expressions and then builds up the 
+final series just by &quot;cross-mutliplying&quot; everything out.</p>
+<p>Advantage -- it's fast, because we don't have to determine how many 
+terms we need to calculate in advance.</p>
+<p>Disadvantage -- you may endup with less terms than you may have 
+expected, but the O(x**n) term appended will always be correct, so the 
+result is correct, but maybe shorter.</p>
+</div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.series.order.Order._get_cache_index">_get_cache_index(obj, symbol):</a></div>
