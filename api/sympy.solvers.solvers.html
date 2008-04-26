@@ -20,9 +20,12 @@
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_undetermined_coeffs">solve_undetermined_coeffs</a></td><td><div><p>Solve equation of a type p(x; a_1, ..., a_k) == q(x) where both</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_linear_system_LU">solve_linear_system_LU</a></td><td><div><p>LU function works for invertible only</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.dsolve">dsolve</a></td><td><div><p>Solves any (supported) kind of differential equation.</p>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_ODE_first_order">solve_ODE_first_order</a></td><td><div><p>a*f'(x)+b = 0</p>
-</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_ODE_second_order">solve_ODE_second_order</a></td><td><div><p>a*f''(x) + b*f'(x) + c*f(x) = 0</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.deriv_degree">deriv_degree</a></td><td><div><p>get the order of a given ode, the function is implemented</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_ODE_first_order">solve_ODE_first_order</a></td><td><div><p>solves many kinds of first order odes, different methods are used</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_ODE_second_order">solve_ODE_second_order</a></td><td><div><p>solves many kinds of second order odes, different methods are used</p>
 </div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.solve_ODE_1">solve_ODE_1</a></td><td><div><p>(x*exp(-f(x)))'' = 0</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers._generate_patterns">_generate_patterns</a></td><td><div><p>Generates patterns for transcendental equations.</p>
+</div></td></tr><tr class="function"><td>Function</td><td><a href="#sympy.solvers.solvers.tsolve">tsolve</a></td><td><div><p>Solves a transcendental equation with respect to the given</p>
 </div></td></tr></table>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.solvers.solvers.solve">solve(eq, syms, simplified=True):</a></div>
@@ -51,13 +54,13 @@ problem specific methods.</p>
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">print</span> r
 <span class="py-output">[1, 2]</span></pre>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>solve(x**2 == a, x)
+<span class="py-prompt">&gt;&gt;&gt; </span>solve(Eq(x**2, a), x)
 <span class="py-output">[-a**(1/2), a**(1/2)]</span></pre>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>solve(x**4 == 1, x)
+<span class="py-prompt">&gt;&gt;&gt; </span>solve(Eq(x**4, 1), x)
 <span class="py-output">[I, 1, -1, -I]</span></pre>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>solve([x + 5*y == 2, -3*x + 6*y == 15], [x, y])
+<span class="py-prompt">&gt;&gt;&gt; </span>solve([Eq(x + 5*y, 2), Eq(-3*x + 6*y, 15)], [x, y])
 <span class="py-output">{y: 1, x: -3}</span></pre>
 </div></div>
             </div>
@@ -107,10 +110,10 @@ efficiency and simplicity reason.</p>
 <span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
 <span class="py-prompt">&gt;&gt;&gt; </span>a, b, c, x = symbols(<span class="py-string">'a'</span>, <span class="py-string">'b'</span>, <span class="py-string">'c'</span>, <span class="py-string">'x'</span>)</pre>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>solve_undetermined_coeffs(2*a*x + a+b == x, [a, b], x)
+<span class="py-prompt">&gt;&gt;&gt; </span>solve_undetermined_coeffs(Eq(2*a*x + a+b, x), [a, b], x)
 <span class="py-output">{b: -1/2, a: 1/2}</span></pre>
 <pre class="py-doctest">
-<span class="py-prompt">&gt;&gt;&gt; </span>solve_undetermined_coeffs(a*c*x + a+b == x, [a, b], x)
+<span class="py-prompt">&gt;&gt;&gt; </span>solve_undetermined_coeffs(Eq(a*c*x + a+b, x), [a, b], x)
 <span class="py-output">{b: -1/c, a: 1/c}</span></pre>
 </div></div>
             </div>
@@ -138,12 +141,12 @@ Details
     - you can declare the derivative of an unknown function this way:
     >>> from sympy import *
     >>> x = Symbol('x') # x is the independent variable
-    
+
     >>> f = Function("f")(x) # f is a function of x
     >>> f_ = Derivative(f, x) # f_ will be the derivative of f with respect to x
 
     - This function just parses the equation "eq" and determines the type of
-    differential equation, then it determines all the coefficients and then
+    differential equation by its order, then it determines all the coefficients and then
     calls the particular solver, which just accepts the coefficients.
     - "eq" can be either an Equality, or just the left hand side (in which
       case the right hand side is assumed to be 0)
@@ -158,22 +161,58 @@ Examples
     >>> f = Function('f')
     >>> dsolve(Derivative(f(x),x,x)+9*f(x), f(x))
     C1*sin(3*x) + C2*cos(3*x)
-    >>> dsolve(Derivative(f(x),x,x)+9*f(x)+1==1, f(x))
+    >>> dsolve(Eq(Derivative(f(x),x,x)+9*f(x)+1, 1), f(x))
     C1*sin(3*x) + C2*cos(3*x)</pre></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.solvers.solvers.solve_ODE_first_order">solve_ODE_first_order(a, b, f, x):</a></div>
-            <div class="functionBody"><div><p>a*f'(x)+b = 0</p>
+            <div class="functionHeader">def <a name="sympy.solvers.solvers.deriv_degree">deriv_degree(expr, func):</a></div>
+            <div class="functionBody"><div><p>get the order of a given ode, the function is implemented 
+recursively</p>
 </div></div>
             </div>
             <div class="function">
-            <div class="functionHeader">def <a name="sympy.solvers.solvers.solve_ODE_second_order">solve_ODE_second_order(a, b, c, f, x):</a></div>
-            <div class="functionBody"><div><p>a*f''(x) + b*f'(x) + c*f(x) = 0</p>
+            <div class="functionHeader">def <a name="sympy.solvers.solvers.solve_ODE_first_order">solve_ODE_first_order(eq, f):</a></div>
+            <div class="functionBody"><div><p>solves many kinds of first order odes, different methods are used 
+depending on the form of the given equation. Now the linear case is 
+implemented.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.solvers.solvers.solve_ODE_second_order">solve_ODE_second_order(eq, f):</a></div>
+            <div class="functionBody"><div><p>solves many kinds of second order odes, different methods are used 
+depending on the form of the given equation. Now the constanst coefficients
+case and a special case are implemented.</p>
 </div></div>
             </div>
             <div class="function">
             <div class="functionHeader">def <a name="sympy.solvers.solvers.solve_ODE_1">solve_ODE_1(f, x):</a></div>
             <div class="functionBody"><div><p>(x*exp(-f(x)))'' = 0</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.solvers.solvers._generate_patterns">_generate_patterns():</a></div>
+            <div class="functionBody"><div><p>Generates patterns for transcendental equations.</p>
+<p>This is lazily calculated (called) in the tsolve() function and stored 
+in the patterns global variable.</p>
+</div></div>
+            </div>
+            <div class="function">
+            <div class="functionHeader">def <a name="sympy.solvers.solvers.tsolve">tsolve(eq, sym):</a></div>
+            <div class="functionBody"><div><p>Solves a transcendental equation with respect to the given symbol. 
+Various equations containing mixed linear terms, powers, and logarithms, 
+can be solved.</p>
+<p>Only a single solution is returned. This solution is generally not 
+unique. In some cases, a complex solution may be returned even though a 
+real solution exists.</p>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> sympy <span class="py-keyword">import</span> *
+<span class="py-prompt">&gt;&gt;&gt; </span>x = Symbol(<span class="py-string">'x'</span>)</pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>tsolve(3**(2*x+5)-4, x)
+<span class="py-output">(1/2)/log(3)*(-5*log(3) + log(4))</span></pre>
+<pre class="py-doctest">
+<span class="py-prompt">&gt;&gt;&gt; </span>tsolve(log(x) + 2*x, x)
+<span class="py-output">(1/2)*LambertW(2)</span></pre>
 </div></div>
             </div></body>
         
