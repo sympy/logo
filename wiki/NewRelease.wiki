@@ -57,6 +57,15 @@ $ /tmp/test_sympy.sh |less
 
 And check manually, that no py.test run generated a stack trace.
 
+=== Do all examples work? ===
+
+{{{
+$ cd examples
+$ ./all
+}}}
+
+Make sure no traceback is generated.
+
 === Does pyglet work? ===
 
 Do this on the hg version:
