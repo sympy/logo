@@ -1,4 +1,4 @@
-#summary Simple "cookbook" how to hack on SymPy
+﻿#summary Simple "cookbook" how to hack on SymPy
 
 --- Most of this page is now *obsoleted* by [http://docs.sympy.org/sympy-patches-tutorial.html SymPy Patches Tutorial] ---
 
@@ -88,7 +88,7 @@ http://code.google.com/p/sympy/issues/detail?id=451
 
 For Mutt, put something like the following into .muttrc:
 {{{
-macro pager A "<pipe-entry>(umask 022; hg -R ~/study/sympy/sympy import -)"
+folder-hook =sympy-patches/ 'macro pager A "<pipe-entry>(umask 022; hg -R ~/src/sympy/sympy import -)<enter>"'
 }}}
 
 Then, when you press 'A', a patch will be imported into sympy repository.
