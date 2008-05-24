@@ -2,13 +2,6 @@
 
 = How to make a new release =
 
-== Check the overall quality of !SymPy ==
-
-Do all the following tests on the tarball generated with:
-{{{
-$ ./setup.py sdist
-}}}
-
 === Are all tests included? ===
 
 As directed in `setup.py`, check the tests list using the command:
