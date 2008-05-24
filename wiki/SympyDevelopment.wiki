@@ -36,14 +36,14 @@ Optionally, when debugging, you may want to only execute some particular tests u
 = How to work with Mercurial in !SymPy =
 
   * `hg clone http://hg.sympy.org/sympy/` to get the !SymPy repository
-  * do some modifications in your local copy (implement a new feature, fix a bug, add some new files using `svn add` etc.)
+  * do some modifications in your local copy (implement a new feature, fix a bug, add some new files using `hg add` etc.)
   * `./setup test` to make sure all the tests pass
   * `hg st` (optional) prints a list of files, that you modified
   * `hg di` (optional) shows a "diff", so that you can see what exact changes you are going to commit
   * `hg ci` will fire up an editor and you write a comment about what you changed (the `hg di` output from above will help you). This command can also be run non-interactively using `hg ci -m "comment"`.
   * do some more commits if you want
   * `hg out` (optional) to see all your local changesets
-  * `hg email -o sympy-patches@googlegroups.com to send your changes the mailinglist, and we will review it and either commit it, or help you improve it.
+  * `hg email -o sympy-patches@googlegroups.com` to send your changes the mailinglist, and we will review it and either commit it, or help you improve it.
 
 See [http://code.google.com/p/sympy/wiki/Mercurial Mercurial] and HgWorkflow for detailed instructions and tips how to work with Mercurial and !SymPy.
 
