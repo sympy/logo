@@ -22,6 +22,7 @@ date: 24 May 2008
   * all !SymPy functions support vector arguments, e.g. sin([1, 2, 3]) ([http://hg.sympy.org/sympy/rev/3cff481efa3b commit 1], [http://hg.sympy.org/sympy/rev/0b48760c55f9 2])
   * lambdify can now use numpy/math/mpmath ([http://hg.sympy.org/sympy/rev/e513289b6a6b 1], [http://hg.sympy.org/sympy/rev/99999069151e 2], [http://hg.sympy.org/sympy/rev/7b1100a86d25 3])
   * the order of lambdify arguments has changed ([http://hg.sympy.org/sympy/rev/7cc82cfb14fc commit])
+  * .nseries() improved a lot ([http://hg.sympy.org/sympy/rev/e627c389bf35 commit 1], [http://hg.sympy.org/sympy/rev/04a4fff3127f 2], [http://hg.sympy.org/sympy/rev/2917e1061a1b 3])
 
 == 0.5.14 ==
 
