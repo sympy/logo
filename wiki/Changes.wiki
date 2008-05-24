@@ -30,6 +30,17 @@ date: 24 May 2008
   * Polys improved ([http://hg.sympy.org/sympy/rev/518fc875fed3 commit])
   * Basic kronecker delta and Levi-Civita implementation ([http://hg.sympy.org/sympy/rev/1d61eb463510 commit])
 
+The following 8 people have contributed patches to this release:
+
+  * Sebastian Krämer
+  * Friedrich Hagedorn
+  * Mateusz Paprocki
+  * Saroj Adhikari
+  * Vinzent Steinberg
+  * David Roberts
+  * Nimish Telang
+  * Ondřej Čertík
+
 == 0.5.14 ==
 
 date: 26 Apr 2008
