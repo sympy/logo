@@ -84,7 +84,7 @@ The community around all these tools is wonderful, feel free to join the respect
 
 ===Things we are working on===
 
-  * Make !SymPy very easy to use within [http://www.sagemath.org/ Sage]
+  * Make !SymPy very easy to use with [http://www.sagemath.org/ Sage], [http://scipy.org/ NumPy], [http://ipython.scipy.org ipython], [http://matplotlib.sourceforge.net/ matplotlib] and similar tools...
   * See also [http://code.google.com/p/sympy/issues/list Issues]
   * You can also check our blogs: [http://planet.sympy.org/ PlanetSympy]
   * Or join us at #sympy on irc.freenode.net
