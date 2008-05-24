@@ -12,6 +12,7 @@ If you found a bug, please report it in [http://code.google.com/p/sympy/issues/l
 
 ==News==
 
+  * *24 May 2008* Version 0.5.15 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *19 May 2008* online !SymPy shell at [http://live.sympy.org live.sympy.org] created
   * *26 Apr 2008* Version 0.5.14 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *21 Apr 2008* Results of the GSoC applications [http://groups.google.com/group/sympy/browse_thread/thread/f99c94b56328b962 announced].
