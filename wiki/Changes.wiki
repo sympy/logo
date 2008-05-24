@@ -13,6 +13,15 @@ http://hg.sympy.org/sympy/
 
 Find the latest release tag and see what is new since then.
 
+== 0.5.15 ==
+
+date: 24 May 2008
+
+===== user-visible changes: =====
+
+  * lambdify now accepts 
+  * all !SymPy functions support vector arguments, e.g. sin([1, 2, 3]) ([http://hg.sympy.org/sympy/rev/3cff481efa3b commit 1, http://hg.sympy.org/sympy/rev/0b48760c55f9 2], [http://hg.sympy.org/sympy/rev/e513289b6a6b 3], [http://hg.sympy.org/sympy/rev/7cc82cfb14fc 4], [http://hg.sympy.org/sympy/rev/99999069151e 5], [http://hg.sympy.org/sympy/rev/7b1100a86d25 6])
+
 == 0.5.14 ==
 
 date: 26 Apr 2008
