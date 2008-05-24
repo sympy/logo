@@ -78,6 +78,16 @@ root@fuji:/#
 Important is the `[0]: cos(x)*sin(y), ...` line, that shows that plotting was ok
 and pyglet started. It cannot plot in the chroot, so the segmentation fault happens. That's ok. If it says "cannot import pyglet", that's bad and needs to be fixed.
 
+=== check docs ===
+
+{{{
+$ cd doc
+$ make html
+$ epiphany _build/html/index.html
+}}}
+
+and check the version, contributors.
+
 === does the tarball contain all the needed files? ===
 
 The previous paragraph tests, that all tests pass in the tarball,
