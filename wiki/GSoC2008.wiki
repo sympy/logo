@@ -1,5 +1,7 @@
 #summary Information about the 2008 Google Summer of Code and SymPy
 
+You can watch the progress at http://planet.sympy.org/
+
 = Introduction =
 
 [http://code.google.com/p/sympy/ SymPy] is going to participate, the same way as in 2007 (see [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007]).
