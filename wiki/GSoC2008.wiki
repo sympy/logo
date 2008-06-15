@@ -1,6 +1,6 @@
 #summary Information about the 2008 Google Summer of Code and SymPy
 
-You can watch the progress at http://planet.sympy.org/
+You can watch the progress during the summer at http://planet.sympy.org/
 
 = Introduction =
 
