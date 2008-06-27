@@ -322,7 +322,7 @@ Let's take a look at the vectors:
 -11/706*706**(1/2) 
 -3/706*706**(1/2)
 }}}
-We can spot-check their orthogonality with dot() and their orthogonality with norm():
+We can spot-check their orthogonality with dot() and their normality with norm():
 {{{
 >>> out1[0].dot(out1[1])
 0
