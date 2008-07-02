@@ -1,6 +1,9 @@
 #summary Discussion about some decisions.
 
-This page is obsolete and not accurate anymore.
+This page is obsolete and not accurate anymore. We do patch reviews now and all code that goes in needs to be reviewed by at least one other developer and it needs to be maintainable. That's how we work now.
+
+
+Below is some old info:
 
 = Introduction =
 
