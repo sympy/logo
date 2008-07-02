@@ -61,17 +61,3 @@ http://groups.google.com/group/sympy-commits
 And also, we review each-other's patches here:
 
 http://groups.google.com/group/sympy-patches
-
-
-= Other =
-
-Some ideas why we chose this way and not that way are in:
-
-http://code.google.com/p/sympy/wiki/Discussion
-
-LinksToArticles contains links to articles on the internet, that describe many CAS algorithms.
-
-!SymPy's involvement in the Google Summer of Code 2007 page is described at SummerOfCode.
-
-How to create a release, man page and some other stuff is described in TechnicalTasks.
- 
