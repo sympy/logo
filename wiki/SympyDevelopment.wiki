@@ -16,9 +16,10 @@ So please subscribe to both the mailinglists and issues, to be in touch with the
 
 = Rules =
 
-We have only one rule:
+We have just two rules:
 
- * As long as all the tests pass, the code is considered fine and can be include into the  [http://hg.sympy.org/sympy main repository].
+ * The patch needs to be reviewed by at least one other developer.
+ * All the tests need to pass.
 
 This means, that _all_ the functionality that the user expects from a symbolic system need to have a test case. If you implement a new feature, write a test case for it (and as long as this test case passes, the feature is considered to work). If you think there is a bug, write a test case which fails and then fix the bug. 
 If you think some other test case should be modified, please discuss it on the mailing list first. It's very important, so let's repeat it once more: if you don't write a test case for all your features that you implement/fix, it will be like you contributed nothing and just wasted your time, because those features will stop working the next time we refactor the library (and conversely, if you write tests for the new features, they will be guaranteed to work forever).
