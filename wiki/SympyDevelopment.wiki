@@ -18,7 +18,7 @@ So please subscribe to both the mailinglists and issues, to be in touch with the
 
 We have just two rules:
 
- * The patch needs to be reviewed by at least one other developer.
+ * All code that goes to !SymPy needs to be reviewed by at least one other developer.
  * All the tests need to pass.
 
 This means, that _all_ the functionality that the user expects from a symbolic system need to have a test case. If you implement a new feature, write a test case for it (and as long as this test case passes, the feature is considered to work). If you think there is a bug, write a test case which fails and then fix the bug. 
