@@ -9,6 +9,15 @@ As directed in `setup.py`, check the tests list using the command:
 $ python bin/generate_test_list.py
 }}}
 
+=== Does it depend on python2.4 only? ===
+
+Do this on the hg version:
+{{{
+$ cd bin
+$ sudo pbuilder --execute test_pure
+}}}
+All tests need to run here.
+
 === speed of import ==
 
 After several runs, this should be around:
@@ -28,15 +37,6 @@ All runs (including warm up):
 Number of tests: 10
 The speed of "import sympy" is: 0.119651 +- 0.008924
 }}}
-
-=== Does it depend on python2.4 only? ===
-
-Do this on the hg version:
-{{{
-$ cd bin
-$ sudo pbuilder --execute test_pure
-}}}
-All tests need to run here.
 
 === Do all tests run in the isolated environment? ===
 
