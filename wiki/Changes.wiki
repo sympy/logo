@@ -22,7 +22,7 @@ date: 7 July 2008
  * all documentation wiki pages moved to [http://docs.sympy.org/ docs.sympy.org]
  * mpmath was integrated in !SymPy, numerics module removed
  * mpmath can use gmpy optionally, thus [http://wiki.sympy.org/wiki/Million_digits_of_pi calculating] 1000000 digits of pi in 7.5s
- * Common subexpression elimination implemented ([http://hg.sympy.org/sympy/rev/f26c5d4fd984 commit 1], [http://hg.sympy.org/sympy/rev/d799b0e232f2 2], [http://hg.sympy.org/sympy/rev/a899701f1e4f 3], [http://hg.sympy.org/sympy/rev/841260b1596e 4])
+ * Common subexpression elimination implemented ([http://hg.sympy.org/sympy/rev/f26c5d4fd984 commit 1], [http://hg.sympy.org/sympy/rev/d799b0e232f2 2], [http://hg.sympy.org/sympy/rev/a899701f1e4f 3], [http://hg.sympy.org/sympy/rev/841260b1596e 4]), see [http://docs.sympy.org/modules/rewriting.html#module-sympy.simplify.cse_main docs]
  * roots, !RootsOf, !RootSum implemented
  * lambdify() now accepts Matrices ([http://hg.sympy.org/sympy/rev/f5000a5a06df commit])
  * source command implemented
