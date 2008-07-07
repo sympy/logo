@@ -23,7 +23,8 @@ date: 7 July 2008
  * mpmath can use gmpy optionally, thus [http://wiki.sympy.org/wiki/Million_digits_of_pi calculating] 1000000 digits of pi in 7.5s
  * roots, RootsOf, RootSum implemented
  * source command implemented
- *  
+ * Polys were made the default polynomials in SymPy
+ * Add, Mul, Pow now accept evaluate=False argument ([http://hg.sympy.org/sympy/rev/c51330c0f3da commit])
 
 == 0.5.15 ==
 
