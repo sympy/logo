@@ -25,7 +25,7 @@ date: 7 July 2008
  * Common subexpression elimination implemented ([http://hg.sympy.org/sympy/rev/f26c5d4fd984 commit 1], [http://hg.sympy.org/sympy/rev/d799b0e232f2 2], [http://hg.sympy.org/sympy/rev/a899701f1e4f 3], [http://hg.sympy.org/sympy/rev/841260b1596e 4]), see [http://docs.sympy.org/modules/rewriting.html#module-sympy.simplify.cse_main docs]
  * roots, !RootsOf, !RootSum implemented
  * lambdify() now accepts Matrices ([http://hg.sympy.org/sympy/rev/f5000a5a06df commit])
- * Matrices polished and spedup ([http://hg.sympy.org/sympy/rev/3d48d6181a30 commit 1], [http://hg.sympy.org/sympy/rev/0491496aeb09 2], [http://hg.sympy.org/sympy/rev/62fd8a6aebca 3], [http://hg.sympy.org/sympy/rev/5ce3cdd10ed0 4], [http://hg.sympy.org/sympy/rev/22e3cedc3386 5], [http://hg.sympy.org/sympy/rev/9c285548be1a 6], [http://hg.sympy.org/sympy/rev/0842457787a9 7], [http://hg.sympy.org/sympy/rev/c6e57bb8de9a 8], [http://hg.sympy.org/sympy/rev/ccebd03423df 9], [http://hg.sympy.org/sympy/rev/86b9ff6c04f5 10]
+ * Matrices polished and spedup ([http://hg.sympy.org/sympy/rev/3d48d6181a30 commit 1], , [http://hg.sympy.org/sympy/rev/62fd8a6aebca 3], [http://hg.sympy.org/sympy/rev/5ce3cdd10ed0 4], [http://hg.sympy.org/sympy/rev/22e3cedc3386 5], [http://hg.sympy.org/sympy/rev/9c285548be1a 6], [http://hg.sympy.org/sympy/rev/0842457787a9 7], [http://hg.sympy.org/sympy/rev/c6e57bb8de9a 8], [http://hg.sympy.org/sympy/rev/ccebd03423df 9], [http://hg.sympy.org/sympy/rev/86b9ff6c04f5 10]
  * source command implemented
  * Polys were made the default polynomials in !SymPy
  * Add, Mul, Pow now accept evaluate=False argument ([http://hg.sympy.org/sympy/rev/c51330c0f3da commit])
