@@ -21,7 +21,9 @@ date: 7 July 2008
 
  * mpmath was integrated in !SymPy, numerics module removed
  * mpmath can use gmpy optionally, thus [http://wiki.sympy.org/wiki/Million_digits_of_pi calculating] 1000000 digits of pi in 7.5s
- * 
+ * roots, RootsOf, RootSum implemented
+ * source command implemented
+ *  
 
 == 0.5.15 ==
 
