@@ -30,6 +30,20 @@ date: 7 July 2008
  * Polys were made the default polynomials in !SymPy
  * Add, Mul, Pow now accept evaluate=False argument ([http://hg.sympy.org/sympy/rev/c51330c0f3da commit])
 
+The following 11 people have contributed patches to this release:
+
+  * Mateusz Paprocki
+  * Fredrik Johansson
+  * Robert Kern
+  * Riccardo Gori
+  * Vinzent Steinberg
+  * Friedrich Hagedorn
+  * Roberto Nobrega
+  * David Roberts
+  * Sebastian Krämer
+  * Kirill Smelkov
+  * Ondrej Certik
+
 == 0.5.15 ==
 
 date: 24 May 2008
