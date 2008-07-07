@@ -20,7 +20,7 @@ date: 7 July 2008
 ===== user-visible changes: =====
 
  * mpmath was integrated in !SymPy, numerics module removed
- * mpmath can use gmpy optionally, thus [calculating http://wiki.sympy.org/wiki/Million_digits_of_pi] 1000000 digits of pi in 7.5s
+ * mpmath can use gmpy optionally, thus [http://wiki.sympy.org/wiki/Million_digits_of_pi calculating] 1000000 digits of pi in 7.5s
  * 
 
 == 0.5.15 ==
