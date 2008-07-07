@@ -19,9 +19,10 @@ date: 7 July 2008
 
 ===== user-visible changes: =====
 
+ * all documentation wiki pages moved to [http://docs.sympy.org/ docs.sympy.org]
  * mpmath was integrated in !SymPy, numerics module removed
  * mpmath can use gmpy optionally, thus [http://wiki.sympy.org/wiki/Million_digits_of_pi calculating] 1000000 digits of pi in 7.5s
- * roots, RootsOf, RootSum implemented
+ * roots, !RootsOf, !RootSum implemented
  * source command implemented
  * Polys were made the default polynomials in SymPy
  * Add, Mul, Pow now accept evaluate=False argument ([http://hg.sympy.org/sympy/rev/c51330c0f3da commit])
