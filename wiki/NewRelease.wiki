@@ -105,6 +105,7 @@ hg clone ssh://hg@hg.sympy.org/sympy
 cd sympy
 }}}
 
+(always clone it, otherwise the "./setup.py sdist" below can put garbage into the tarball)
 
 Change version in `sympy/__init__.py`, e.g.
 {{{
