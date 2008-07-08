@@ -26,7 +26,7 @@ date: 7 July 2008
  * roots, !RootsOf, !RootSum implemented ([http://hg.sympy.org/sympy/rev/a620a8af6134 commit])
  * lambdify() now accepts Matrices ([http://hg.sympy.org/sympy/rev/f5000a5a06df commit])
  * Matrices polished and spedup ([http://hg.sympy.org/sympy/rev/3d48d6181a30 commit 1], [http://hg.sympy.org/sympy/rev/62fd8a6aebca 2], [http://hg.sympy.org/sympy/rev/5ce3cdd10ed0 3], [http://hg.sympy.org/sympy/rev/22e3cedc3386 4], [http://hg.sympy.org/sympy/rev/9c285548be1a 5], [http://hg.sympy.org/sympy/rev/0842457787a9 6], [http://hg.sympy.org/sympy/rev/c6e57bb8de9a 7], [http://hg.sympy.org/sympy/rev/ccebd03423df 8], [http://hg.sympy.org/sympy/rev/86b9ff6c04f5 9])
- * source command implemented
+ * source command implemented ([http://hg.sympy.org/sympy/rev/c81de1a03811 commit 1], [http://hg.sympy.org/sympy/rev/c0b091408696 2])
  * Polys were made the default polynomials in !SymPy ([http://hg.sympy.org/sympy/rev/a45312e68f12 commit 1], + many following commits)
  * Add, Mul, Pow now accept evaluate=False argument ([http://hg.sympy.org/sympy/rev/c51330c0f3da commit])
 
