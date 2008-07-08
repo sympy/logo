@@ -36,11 +36,11 @@ The following 11 people have contributed patches to this release:
   * Fredrik Johansson
   * Robert Kern
   * Riccardo Gori
-  * Vinzent Steinberg
-  * Friedrich Hagedorn
-  * Roberto Nobrega
-  * David Roberts
   * Sebastian Krämer
+  * Vinzent Steinberg
+  * Roberto Nobrega
+  * Friedrich Hagedorn
+  * David Roberts
   * Kirill Smelkov
   * Ondrej Certik
 
