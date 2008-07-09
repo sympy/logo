@@ -16,6 +16,8 @@ Download the latest tar.gz (something like `sympy-0.4.0.tar.gz`) from the [http:
 
 On unix systems (linux, BSD, Mac OS X, cygwin, etc.): extract it with the command `"tar xzf sympy-0.4.0.tar.gz"` and follow the README located in the sympy directory.
 
+You can also download it from the Python Package Index: http://pypi.python.org/pypi/sympy/
+
 * previous releases *
 
 You can access all the previous (and other) downloads
