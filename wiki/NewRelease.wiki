@@ -80,7 +80,7 @@ and pyglet started. It cannot plot in the chroot, so the segmentation fault happ
 
 === check all tests in sympy/test_external ===
 
-Currently numpy.
+Currently numpy and sage.
 
 === check docs ===
 
