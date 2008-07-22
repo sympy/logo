@@ -40,16 +40,16 @@ The following 8 people have contributed patches to this release:
   * Fredrik Johansson
   * Riccardo Gori
   * Kirill Smelkov
-  * Stepan Roucka
+  * Štěpán Roučka
   * Ali Raza Syed
-  * Ondrej Certik
+  * Ondřej Čertík
 
 The following people helped review patches:
 
   * Riccardo Gori
   * Fredrik Johansson
   * Kirill Smelkov
-  * Ondrej Certik
+  * Ondřej Čertík
   * Mateusz Paprocki
 
 == 0.6.0 ==
@@ -82,7 +82,7 @@ The following 12 people have contributed patches to this release:
   * Friedrich Hagedorn
   * David Roberts
   * Kirill Smelkov
-  * Ondrej Certik
+  * Ondřej Čertík
 
 The following people helped review patches:
 
@@ -92,7 +92,7 @@ The following people helped review patches:
   * Vinzent Steinberg
   * Fredrik Johansson
   * Sebastian Krämer
-  * Ondrej Certik
+  * Ondřej Čertík
 
 == 0.5.15 ==
 
