@@ -19,8 +19,8 @@ Not released yet. Preliminary list of changes:
 
 ===== user-visible changes: =====
 
-  * almot all functions and constants can be converted to Sage
-  * multivariate factorization algorithm fixed
+  * almost all functions and constants can be converted to Sage
+  * univariate factorization algorithm was fixed
   * .evalf() method fixed, pi.evalf(10**6) calculates 1 000 000 digits of pi
   * @threaded decorator
   * more robust solvers
