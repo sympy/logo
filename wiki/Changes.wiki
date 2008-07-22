@@ -39,6 +39,13 @@ The following 8 people have contributed patches to this release:
   * Ali Raza Syed
   * Ondrej Certik
 
+The following people helped review patches:
+
+  * Riccardo Gori
+  * Fredrik Johansson
+  * Kirill Smelkov
+  * Ondrej Certik
+
 == 0.6.0 ==
 
 date: 7 July 2008
