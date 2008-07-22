@@ -30,7 +30,8 @@ Not released yet. Preliminary list of changes:
 
 ===== changes that affected speed: =====
 
-  * caching was removed from the Order class: 1.5x speedups in series tests
+  * ((x+y+z)**50).expand() is now 3 times faster ([http://hg.sympy.org/sympy/rev/16cfc09420ee commit])
+  * caching was removed from the Order class: 1.5x speedups in series tests ([http://hg.sympy.org/sympy/rev/c23f4a589832 commit 1], [http://hg.sympy.org/sympy/rev/aee6b586dbca 2], [http://hg.sympy.org/sympy/rev/e192c4e04e2e 3], [http://hg.sympy.org/sympy/rev/ff575d1e085b 4], [http://hg.sympy.org/sympy/rev/d09500d91a83 5])
 
 The following 8 people have contributed patches to this release:
 
