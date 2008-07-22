@@ -19,18 +19,18 @@ Not released yet. Preliminary list of changes:
 
 ===== user-visible changes: =====
 
-  * almost all functions and constants can be converted to Sage
-  * univariate factorization algorithm was fixed
-  * .evalf() method fixed, pi.evalf(10**6) calculates 1 000 000 digits of pi
-  * @threaded decorator
+  * almost all functions and constants can be converted to Sage ([http://hg.sympy.org/sympy/rev/414880e1c8be commit 1], [http://hg.sympy.org/sympy/rev/245efb21d82f 2])
+  * univariate factorization algorithm was fixed ([http://hg.sympy.org/sympy/rev/1bf5f90b3a97 commit])
+  * .evalf() method fixed, pi.evalf(10**6) calculates 1 000 000 digits of pi ([http://hg.sympy.org/sympy/rev/c46eed7e289f commit 1])
+  * @threaded decorator ([http://hg.sympy.org/sympy/rev/c45b351e93cf commit 1], [http://hg.sympy.org/sympy/rev/26ac349099d2 2], [http://hg.sympy.org/sympy/rev/affb2ee1be2d 3])
   * more robust solvers
   * better simplify, that makes a solver more robust ([http://hg.sympy.org/sympy/rev/93a2ec3a7651 commit])
-  * compiling of functions to machine code
-  * msolve: solving of nonlinear equation systems using Newton's method
+  * optional compiling of functions to machine code ([http://hg.sympy.org/sympy/rev/8af2d333319c commit])
+  * msolve: solving of nonlinear equation systems using Newton's method ([http://hg.sympy.org/sympy/rev/c70e9302f0d4 commit])
 
 ===== changes that affected speed: =====
 
-  * ((x+y+z)**50).expand() is now 3 times faster ([http://hg.sympy.org/sympy/rev/16cfc09420ee commit])
+  * `((x+y+z)**50).expand()` is now 3 times faster ([http://hg.sympy.org/sympy/rev/16cfc09420ee commit])
   * caching was removed from the Order class: 1.5x speedups in series tests ([http://hg.sympy.org/sympy/rev/c23f4a589832 commit 1], [http://hg.sympy.org/sympy/rev/aee6b586dbca 2], [http://hg.sympy.org/sympy/rev/e192c4e04e2e 3], [http://hg.sympy.org/sympy/rev/ff575d1e085b 4], [http://hg.sympy.org/sympy/rev/d09500d91a83 5])
 
 The following 8 people have contributed patches to this release:
