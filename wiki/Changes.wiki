@@ -28,6 +28,17 @@ Find the latest release tag and see what is new since then.
 
   * caching was removed from the Order class: 1.5x speedups in series tests
 
+The following 8 people have contributed patches to this release:
+
+  * Mateusz Paprocki
+  * Vinzent Steinberg
+  * Fredrik Johansson
+  * Riccardo Gori
+  * Kirill Smelkov
+  * Stepan Roucka
+  * Ali Raza Syed
+  * Ondrej Certik
+
 == 0.6.0 ==
 
 date: 7 July 2008
