@@ -15,6 +15,8 @@ Find the latest release tag and see what is new since then.
 
 == 0.6.1 ==
 
+date: 22 July 2008
+
 ===== user-visible changes: =====
 
   * almost all functions and constants can be converted to Sage ([http://hg.sympy.org/sympy/rev/414880e1c8be commit 1], [http://hg.sympy.org/sympy/rev/245efb21d82f 2])
