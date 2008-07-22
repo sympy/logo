@@ -71,6 +71,16 @@ The following 12 people have contributed patches to this release:
   * Kirill Smelkov
   * Ondrej Certik
 
+The following people helped review patches:
+
+  * Kirill Smelkov
+  * Mateusz Paprocki
+  * Robert Kern
+  * Vinzent Steinberg
+  * Fredrik Johansson
+  * Sebastian Krämer
+  * Ondrej Certik
+
 == 0.5.15 ==
 
 date: 24 May 2008
