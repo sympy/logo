@@ -1,6 +1,6 @@
 #summary Pretty-printing information and examples
 
-This page is obsoleted by http://wiki.sympy.org/wiki/Pretty_Printing
+This page is *obsoleted* by http://wiki.sympy.org/wiki/Pretty_Printing
 
 ----
 
