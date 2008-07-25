@@ -1,5 +1,10 @@
 #summary Pretty-printing information and examples
 
+This page is obsoleted by http://wiki.sympy.org/wiki/Pretty_Printing
+
+----
+
+
 = Introduction =
 
 !SymPy is able to display nice-looking formulas on a pure terminal using ascii-art. Even more -- when unicode is available, it uses special better-looking symbols for drawing.
