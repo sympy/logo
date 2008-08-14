@@ -13,6 +13,11 @@ http://hg.sympy.org/sympy/
 
 Find the latest release tag and see what is new since then.
 
+----
+>>> By the way, sympy-hg accumulated some interesting stuff. Any volunteers to write a changelog?
+----
+
+
 The following people helped review patches:
 
   * Riccardo Gori
