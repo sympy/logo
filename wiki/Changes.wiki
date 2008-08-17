@@ -19,6 +19,12 @@ date: 17 August 2008
 
 ===== user-visible changes: =====
 
+  * .evalf() fixed
+  * fast and accurate numerical summation
+  * oscillatory quadrature
+  * printing system refactored
+  * many bug fixes
+
 ===== changes that affected speed: =====
 
   * `((x+y+z)**50).expand()` is now 4.8x faster
