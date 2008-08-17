@@ -17,6 +17,13 @@ Find the latest release tag and see what is new since then.
 
 date: 17 August 2008
 
+===== user-visible changes: =====
+
+===== changes that affected speed: =====
+
+  * `((x+y+z)**50).expand()` is now 4.8x faster
+  * All object creation is about 10% or more faster
+
 The following 11 people have contributed patches to this release:
 
   * Kirill Smelkov
