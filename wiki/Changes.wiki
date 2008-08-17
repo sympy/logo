@@ -32,7 +32,7 @@ date: 17 August 2008
   * pprint: matrices now look much better ([http://hg.sympy.org/sympy/rev/0460ebc36574 commit]) + example ([http://hg.sympy.org/sympy/rev/7c36e4e62552 commit 1], [http://hg.sympy.org/sympy/rev/77ba6e02c3b9 2])
   * printing of dicts and sets are now more human-friendly ([http://hg.sympy.org/sympy/rev/d2142abff624 commit 1], [http://hg.sympy.org/sympy/rev/88c92a032421 2], [http://hg.sympy.org/sympy/rev/210c0b2c41f3 3], [http://hg.sympy.org/sympy/rev/52013020a48d 5])
   * latex: now supports sub- and superscripts in symbol names ([http://hg.sympy.org/sympy/rev/2e99982a94f4 commit])
-  * RootSum.doit, now works on all roots ([http://hg.sympy.org/sympy/rev/16ecba299530 commit])
+  * !RootSum.doit, now works on all roots ([http://hg.sympy.org/sympy/rev/16ecba299530 commit])
   * Wild can now have additional predicates ([http://hg.sympy.org/sympy/rev/af81bfff9c5f commit])
   * numpy-like zeros and ones functions ([http://hg.sympy.org/sympy/rev/3ff3349e6df1 commit 1], [http://hg.sympy.org/sympy/rev/a87f81d5b17f 2], [http://hg.sympy.org/sympy/rev/4c866cf85b39 3], [http://hg.sympy.org/sympy/rev/945423d11129 4])
   * var('x,y,z') now works ([http://hg.sympy.org/sympy/rev/1030f3b48a9e commit])
