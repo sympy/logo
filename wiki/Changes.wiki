@@ -19,7 +19,7 @@ date: 17 August 2008
 
 ===== user-visible changes: =====
 
-  * SymPy is now 50% faster on average (cache:on) and 130% (cache:off) compared to previous release.
+  * !SymPy is now 50% faster on average (cache:on) and 130% (cache:off) compared to previous release.
   * adaptive and faster evalf() ([http://hg.sympy.org/sympy/rev/f2603e998194 commit 1], [http://hg.sympy.org/sympy/rev/16104562dc53 2], [http://hg.sympy.org/sympy/rev/77e7ddf1e3f4 3], [http://hg.sympy.org/sympy/rev/ee9372681a64 4], [http://hg.sympy.org/sympy/rev/e61438b324d3 5])
   * evalf: numerical summation of hypergeometric series ([http://hg.sympy.org/sympy/rev/40b3cff7b9ff commit])
   * evalf: fast and accurate numerical summation ([http://hg.sympy.org/sympy/rev/95eca1e72c47 commit 1], [http://hg.sympy.org/sympy/rev/f0f06daa11e7 2], [http://hg.sympy.org/sympy/rev/ef0395c6b6c4 3])
