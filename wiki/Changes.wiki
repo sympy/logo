@@ -23,6 +23,12 @@ date: 17 August 2008
 
   * `((x+y+z)**50).expand()` is now 4.8x faster
   * All object creation is about 10% or more faster
+  * assumptions cleanup and rewrite
+
+===== general cleanup: =====
+
+  * multiple inheritance removed (NoArithMeths, NoRelMeths, RelMeths, ArithMeths are gone)
+  * .nseries() is now used as default in .series()
 
 The following 11 people have contributed patches to this release:
 
