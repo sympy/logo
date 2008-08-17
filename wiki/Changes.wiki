@@ -19,26 +19,43 @@ date: 17 August 2008
 
 ===== user-visible changes: =====
 
-  * .evalf() fixed
-  * fast and accurate numerical summation
-  * oscillatory quadrature
-  * printing system refactored
+  * SymPy is now 50% faster on average (cache:on) and 130% (cache:off) compared to previous release.
+  * adaptive and faster evalf() ([http://hg.sympy.org/sympy/rev/f2603e998194 commit 1], [http://hg.sympy.org/sympy/rev/16104562dc53 2], [http://hg.sympy.org/sympy/rev/77e7ddf1e3f4 3], [http://hg.sympy.org/sympy/rev/ee9372681a64 4], [http://hg.sympy.org/sympy/rev/e61438b324d3 5])
+  * evalf: numerical summation of hypergeometric series ([http://hg.sympy.org/sympy/rev/40b3cff7b9ff commit])
+  * evalf: fast and accurate numerical summation ([http://hg.sympy.org/sympy/rev/95eca1e72c47 commit 1], [http://hg.sympy.org/sympy/rev/f0f06daa11e7 2], [http://hg.sympy.org/sympy/rev/ef0395c6b6c4 3])
+  * evalf: oscillatory quadrature ([http://hg.sympy.org/sympy/rev/353584ecf19d commit])
+  * integrals now support variable transformation ([http://hg.sympy.org/sympy/rev/32a178e2a8b9 commit])
+  * we can now integrate(f(x)⋅diff(f(x),x), x) ([http://hg.sympy.org/sympy/rev/4810adeada5c commit 1], [http://hg.sympy.org/sympy/rev/ce9a981c8c64 2], [http://hg.sympy.org/sympy/rev/73be255e7992 3])
+  * we can now solve a⋅cos(x)=y ([http://hg.sympy.org/sympy/rev/953090f5209e comit]) and exp(x)+exp(-x)=y ([http://hg.sympy.org/sympy/rev/61478855c294 commit 1], [http://hg.sympy.org/sympy/rev/b43beaab3bb1 2])
+  * printing system refactored ([http://hg.sympy.org/sympy/rev/d56cca1785c5 commit 1], [http://hg.sympy.org/sympy/rev/d8c5c92db412 2], [http://hg.sympy.org/sympy/rev/db09ebd06fb4 3], [http://hg.sympy.org/sympy/rev/b13d7cb0fde2 4], [http://hg.sympy.org/sympy/rev/c7fd2ed49ec3 5], [http://hg.sympy.org/sympy/rev/58eade7e7944 6], [http://hg.sympy.org/sympy/rev/786a5c7b7dfa 7], [http://hg.sympy.org/sympy/rev/0e69a491ac1d 8], [http://hg.sympy.org/sympy/rev/5cb4de19cc66 9], [http://hg.sympy.org/sympy/rev/a735af6bfe76 10], [http://hg.sympy.org/sympy/rev/d04abe71fd96 11], [http://hg.sympy.org/sympy/rev/8512eff4ce57 12], [http://hg.sympy.org/sympy/rev/b996f9beb406 13], [http://hg.sympy.org/sympy/rev/c4188be75ff5 14], [http://hg.sympy.org/sympy/rev/2f2fea6ab447 15], [http://hg.sympy.org/sympy/rev/ca74a684946c 16], [http://hg.sympy.org/sympy/rev/6809c89c8913 17], [http://hg.sympy.org/sympy/rev/6f7e70376ba3 18], [http://hg.sympy.org/sympy/rev/4b31dc02128c 19], [http://hg.sympy.org/sympy/rev/45bb843aa79a 20], [http://hg.sympy.org/sympy/rev/5a03af88b9a2 21])
+  * pprint: new symbol for multiply in unicode mode(x*y -> x⋅y) ([http://hg.sympy.org/sympy/rev/96b3bd3dbb39 commit])
+  * pprint: matrices now look much better ([http://hg.sympy.org/sympy/rev/0460ebc36574 commit]) + example ([http://hg.sympy.org/sympy/rev/7c36e4e62552 commit 1], [http://hg.sympy.org/sympy/rev/77ba6e02c3b9 2])
+  * printing of dicts and sets are now more human-friendly ([http://hg.sympy.org/sympy/rev/d2142abff624 commit 1], [http://hg.sympy.org/sympy/rev/88c92a032421 2], [http://hg.sympy.org/sympy/rev/210c0b2c41f3 3], [http://hg.sympy.org/sympy/rev/52013020a48d 5])
+  * latex: now supports sub- and superscripts in symbol names ([http://hg.sympy.org/sympy/rev/2e99982a94f4 commit])
+  * RootSum.doit, now works on all roots ([http://hg.sympy.org/sympy/rev/16ecba299530 commit])
+  * Wild can now have additional predicates ([http://hg.sympy.org/sympy/rev/af81bfff9c5f commit])
+  * numpy-like zeros and ones functions ([http://hg.sympy.org/sympy/rev/3ff3349e6df1 commit 1], [http://hg.sympy.org/sympy/rev/a87f81d5b17f 2], [http://hg.sympy.org/sympy/rev/4c866cf85b39 3], [http://hg.sympy.org/sympy/rev/945423d11129 4])
+  * var('x,y,z') now works ([http://hg.sympy.org/sympy/rev/1030f3b48a9e commit])
   * many bug fixes
 
 ===== changes that affected speed: =====
 
-  * `((x+y+z)**50).expand()` is now 4.8x faster
-  * All object creation is about 10% or more faster
-  * big assumptions cleanup and rewrite
+  * `((x+y+z)**50).expand()` is now 4.8x faster ([http://hg.sympy.org/sympy/rev/af4887673d3d commit 1], [http://hg.sympy.org/sympy/rev/a8b30539405e 2] + other commits which all summed up)
+  * big assumptions cleanup and rewrite ([http://hg.sympy.org/sympy/rev/282cd00aaaa1 commit1], [http://hg.sympy.org/sympy/rev/a8301bbe56fc 2], [http://hg.sympy.org/sympy/rev/d455e5d19826 3], [http://hg.sympy.org/sympy/rev/27890fc7df0a 4], [http://hg.sympy.org/sympy/rev/913d34d179c5 5], [http://hg.sympy.org/sympy/rev/78f62e09c6b3 6], [http://hg.sympy.org/sympy/rev/2686e5b35812 7], [http://hg.sympy.org/sympy/rev/44046f890462 8], [http://hg.sympy.org/sympy/rev/2f6b3d5cc571 9], [http://hg.sympy.org/sympy/rev/a6ddc80bd679 10], [http://hg.sympy.org/sympy/rev/86fb85c10898 11], [http://hg.sympy.org/sympy/rev/27bf7b1fcf51 12], [http://hg.sympy.org/sympy/rev/3da1ce1a590d 13], [http://hg.sympy.org/sympy/rev/ac93092655ce 14], [http://hg.sympy.org/sympy/rev/7fd4ccbf8177 15], [http://hg.sympy.org/sympy/rev/07d1d690579c 16], [http://hg.sympy.org/sympy/rev/8a93cd729d4b 17], [http://hg.sympy.org/sympy/rev/ac803c9988d1 18], [http://hg.sympy.org/sympy/rev/7077bdb157ad 19], [http://hg.sympy.org/sympy/rev/960c13f64fbc 20], [http://hg.sympy.org/sympy/rev/65694f0c4930 21], [http://hg.sympy.org/sympy/rev/37e7c1592ee4 22], [http://hg.sympy.org/sympy/rev/929e567d9d59 23], [http://hg.sympy.org/sympy/rev/37f28f01a0a8 24], [http://hg.sympy.org/sympy/rev/f082b056f0ef 25])
+  * access to all object attributes is now ~2.5 times faster ([http://hg.sympy.org/sympy/rev/f5aa87669950 commit])
+  * we try not to let 'is_commutative' to go through (slow) assumptions path ([http://hg.sympy.org/sympy/rev/ee75a18ca7b2 commit 1], [http://hg.sympy.org/sympy/rev/de81757d7898 2])
+  * Add/Mul were optimized (for some cases significantly) ([http://hg.sympy.org/sympy/rev/66657a9d94f4 commit 1], [http://hg.sympy.org/sympy/rev/3950c0a9c67f 2], [http://hg.sympy.org/sympy/rev/964fd3f4314d 3], [http://hg.sympy.org/sympy/rev/3b39ffb44b3a 4], [http://hg.sympy.org/sympy/rev/be61828f7a46 5], [http://hg.sympy.org/sympy/rev/8a31d8eebe32 6])
 
 ===== general cleanup: =====
 
-  * multiple inheritance removed (!NoArithMeths, !NoRelMeths, !RelMeths, !ArithMeths are gone)
+  * isympy and sympy.interactive code were merged ([http://hg.sympy.org/sympy/rev/d0d91349a007 commit])
+  * multiple inheritance removed (!NoArithMeths, !NoRelMeths, !RelMeths, !ArithMeths are gone) ([http://hg.sympy.org/sympy/rev/06cad30fdaef commit 1], [http://hg.sympy.org/sympy/rev/aaf5c230783e 2], [http://hg.sympy.org/sympy/rev/79d490a601ab 3], [http://hg.sympy.org/sympy/rev/fa9012e14995 4], [http://hg.sympy.org/sympy/rev/05e95f08f3c5 5], [http://hg.sympy.org/sympy/rev/8744641b59a3 6])
   * .nseries() is now used as default in .series()
+  * doctesting was made more robust ([http://hg.sympy.org/sympy/rev/955d16bc63d3 commit 1], [http://hg.sympy.org/sympy/rev/bf338ee0722f 2], [http://hg.sympy.org/sympy/rev/ceb485e51516 3], [http://hg.sympy.org/sympy/rev/f09b630df594 4], [http://hg.sympy.org/sympy/rev/490a46fa2482 5])
 
 The following 11 people have contributed patches to this release:
 
-  * Kirill Smelkov
+
   * Sebastian Krämer
   * Fredrik Johansson
   * Ondřej Čertík
@@ -49,6 +66,7 @@ The following 11 people have contributed patches to this release:
   * Bastian Weber
   * Sebastian Kreft
   * Štěpán Roučka
+  * Kirill Smelkov
 
 The following people helped review patches:
 
