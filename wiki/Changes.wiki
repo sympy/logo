@@ -33,7 +33,7 @@ date: 17 August 2008
 
 ===== general cleanup: =====
 
-  * multiple inheritance removed (NoArithMeths, NoRelMeths, RelMeths, ArithMeths are gone)
+  * multiple inheritance removed (!NoArithMeths, !NoRelMeths, !RelMeths, !ArithMeths are gone)
   * .nseries() is now used as default in .series()
 
 The following 11 people have contributed patches to this release:
