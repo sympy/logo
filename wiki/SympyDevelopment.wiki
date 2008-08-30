@@ -2,7 +2,7 @@
 
 = Introduction =
 
-We are looking for new developers - so far there were more than 40 people who contributed patches, some of them are long term SymPy developers. Are you using !SymPy? We are interested to hear from you - join our mailinglist and if you have some nice code, we would like to include it in !SymPy. See WhyToJoin for some reasons why you should join us. :)
+We are looking for new developers - so far there were more than 40 people who contributed patches, some of them are long term !SymPy developers. Are you using !SymPy? We are interested to hear from you - join our mailinglist and if you have some nice code, we would like to include it in !SymPy. See WhyToJoin for some reasons why you should join us. :)
 
 !SymPy development discussion takes place on
 [http://groups.google.com/group/sympy sympy] and [http://groups.google.com/group/sympy-patches sympy-patches] mailing lists, and also in the !SymPy [http://code.google.com/p/sympy/issues/list issues tracker]. You can send your patch to either of them. Live discussions and coordination is done over IRC at #sympy on irc.freenode.net (but everything important is then also put into Issues/list, so that all decisions are documented). Also, all mercurial and svn commits (code, issues, wiki changes) are sent live to the #sympy channel, so when working on sympy, it's a nice idea to log in, to see what other people are doing on the project.
