@@ -2,16 +2,16 @@
 
 = Introduction =
 
-We are looking for new developers - there are currently around 9 people (mostly students) working on !SymPy, some of them as part of the Google Summer of Code, some other just because they need the features. Are you using !SymPy? We are interested to hear from you - join our mailinglist and if you have some nice code, we would like to include it in !SymPy. See WhyToJoin for some reasons why you should join us. :)
+We are looking for new developers - so far there were more than 40 people who contributed patches, some of them are long term SymPy developers. Are you using !SymPy? We are interested to hear from you - join our mailinglist and if you have some nice code, we would like to include it in !SymPy. See WhyToJoin for some reasons why you should join us. :)
 
 !SymPy development discussion takes place on
-[http://groups.google.com/group/sympy sympy] and [http://groups.google.com/group/sympy-patches sympy-patches] mailing lists, and also in the !SymPy [http://code.google.com/p/sympy/issues/list issues tracker]. You can send your patch to either of them. Live discussions and coordination is done over IRC at #sympy on irc.freenode.net (but everything important is then also put into Issues, so that all decisions are documented). Also, all mercurial and svn commits (code, issues, wiki changes) are sent live to the #sympy channel, so when working on sympy, it's a nice idea to log in, to see what other people are doing on the project.
+[http://groups.google.com/group/sympy sympy] and [http://groups.google.com/group/sympy-patches sympy-patches] mailing lists, and also in the !SymPy [http://code.google.com/p/sympy/issues/list issues tracker]. You can send your patch to either of them. Live discussions and coordination is done over IRC at #sympy on irc.freenode.net (but everything important is then also put into Issues/list, so that all decisions are documented). Also, all mercurial and svn commits (code, issues, wiki changes) are sent live to the #sympy channel, so when working on sympy, it's a nice idea to log in, to see what other people are doing on the project.
 
 Then there is a [http://planet.sympy.org/ Planet SymPy], that aggregates blogs of all developers of !SymPy, so you can read what they are doing at one place.
 
-When writing some code for !SymPy, please follow the guidelines in [http://code.google.com/p/sympy/wiki/Mercurial Mercurial] and HgWorkflow
+When writing some code for !SymPy, please follow the guidelines in the [http://docs.sympy.org/sympy-patches-tutorial.html SymPy patches tutorial]
 
-So please subscribe to both the mailinglists and issues, to be in touch with the other developers. Submit enough patches and you will be given hg push access. Start by going into the Issues and try to fix/implement something, or create a new issue for something you want to implement and then do it and send your patch to [http://groups.google.com/group/sympy-patches sympy-patches], or append it to the issue. We'll review it and commit it.
+So please subscribe to both the mailinglists and issues, to be in touch with the other developers. Submit enough patches and you will be given hg push access (but all code is reviewed anyway, see below). Start by going into the Issues and try to fix/implement something, or create a new issue for something you want to implement and then do it and send your patch to [http://groups.google.com/group/sympy-patches sympy-patches], or append it to the issue. We'll review it and commit it.
 
 
 = Rules =
