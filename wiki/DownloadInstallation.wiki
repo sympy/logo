@@ -64,7 +64,7 @@ apt-get install python-sympy
 {{{
 emerge -av dev-python/sympy
 }}}
-You can also install !SymPy form `sunrise` overlay.
+You can also install !SymPy from `sunrise` overlay.
 
 To setup this overlay, issue:
 {{{
