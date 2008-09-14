@@ -5,11 +5,23 @@
 Use this command to check out the latest project source code:
 
 {{{
-hg clone http://hg.sympy.org/sympy
+git clone git://git.sympy.org/sympy.git
 }}}
 
 == Online access ==
 
-You can browse the repository online at the same address: http://hg.sympy.org/sympy
+You can browse the repository online here: http://git.sympy.org/?p=sympy.git
+
+
+==== Legacy ====
+
+The following also works:
+
+{{{
+hg clone http://hg.sympy.org/sympy
+}}}
+
+and http://hg.sympy.org/sympy
+
 
 You may also go to the original googlecode [http://code.google.com/p/sympy/source/checkout Source tab].
