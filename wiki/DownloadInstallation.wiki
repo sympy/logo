@@ -87,6 +87,16 @@ Then you can install !SymPy as any other package:
 emerge -av sci-libs/sympy
 }}}
 
+[http://www.opensuse.org/ http://files.opensuse.org/opensuse/de/2/2d/Opensuse_2.gif]
+* openSUSE *
+
+You can get it using the Build Service: http://software.opensuse.org/search?q=sympy
+or using zypper:
+{{{
+zypper ar http://download.opensuse.org/repositories/science/openSUSE_11.0/science.repo
+zypper in python-sympy
+}}}
+
 [http://www.sagemath.org/ http://sympy.googlecode.com/svn/materials/web/images/sage.png] * SAGE *
 
 !SymPy is in SAGE 2.7 and later. The exact version of !SymPy in SAGE can be seen here:
