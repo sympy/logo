@@ -48,7 +48,7 @@ Done. Run '/tmp/test_sympy.sh'.
 $ /tmp/test_sympy.sh |less
 }}}
 
-And check manually, that no py.test run generated a stack trace. (search for "COMMIT" in the `less` environment, when all tests has finished)
+And check manually, that no py.test run generated a stack trace. (search for "COMMIT" in the `less` environment, when all tests have finished)
 
 === Do all examples work? ===
 
