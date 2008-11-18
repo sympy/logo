@@ -24,6 +24,8 @@ Find the latest release tag and see what is new since then.
   * Piecewise function added
   * nsimplify() implemented
   * symbols and var syntax unified
+  * C code printing
+  * many bugfixes
 
 The following 17 people have contributed patches to this release:
 
