@@ -4,6 +4,7 @@
 
 ==News==
 
+  * *17 Nov 2008* Version 0.6.3.beta1 [http://groups.google.com/group/sympy/browse_thread/thread/3ee19d16871e1c0d released]
   * *17 Aug 2008* Version 0.6.2 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *22 Jul 2008* Version 0.6.1 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *7 Jul 2008* Version 0.6.0 released ([http://code.google.com/p/sympy/wiki/Changes changes])
