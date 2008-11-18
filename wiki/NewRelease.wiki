@@ -90,7 +90,14 @@ $ make html
 $ epiphany _build/html/index.html
 }}}
 
-and update the version in `src/conf.py`, update the list of contributors.
+and update the version in `src/conf.py`, update the list of contributors both in docs and in README, using:
+{{{
+$ git shortlog -s sympy-0.6.2..
+}}}
+(use the tag of the latest release) and then update the information what each contributor changed using 
+{{{
+$ git shortlog sympy-0.6.2..
+}}}
 
 === does the tarball contain all the needed files? ===
 
