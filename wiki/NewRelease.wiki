@@ -156,6 +156,7 @@ hg push
   * http://freshmeat.net/projects/sympy/
   * http://pypi.python.org/pypi/sympy/
   * http://live.sympy.org/
+  * http://docs.sympy.org/
 
 === pypi ===
 
