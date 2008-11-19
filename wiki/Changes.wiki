@@ -15,6 +15,8 @@ Find the latest release tag and see what is new since then.
 
 == 0.6.3 ==
 
+date: 19 November 2008
+
   * port to python2.6 (all tests pass)
   * port to jython (all tests pass except those depending on the "ast" module)
   * true division fixed (all tests pass with "-Qnew" Python option)
