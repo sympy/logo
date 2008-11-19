@@ -51,6 +51,20 @@ The following 17 people have contributed patches to this release:
   * Robert (average.programmer)
   * Ondrej Certik
 
+The following people helped review patches:
+
+  * Andy R. Terrel
+  * Riccardo Gori
+  * Fredrik Johansson
+  * Vinzent Steinberg
+  * Fabian Seoane
+  * Kirill Smelkov
+  * Sebastian Krämer
+  * Mateusz Paprocki
+  * Stepan Roucka
+  * Friedrich Hagedorn
+  * Brian Granger
+  * Ondrej Certik
 
 == 0.6.2 ==
 
