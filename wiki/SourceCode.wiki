@@ -18,10 +18,10 @@ You can browse the repository online here: http://git.sympy.org/?p=sympy.git
 The following also works:
 
 {{{
-hg clone http://hg.sympy.org/sympy
+hg clone http://hg.sympy.org/sympy-git.hg
 }}}
 
-and http://hg.sympy.org/sympy
+and http://hg.sympy.org/sympy-git.hg, but this mercurial repository is automatically converted from our main git repository above. If you prefer mercurial to git, you can use it.
 
 
 You may also go to the original googlecode [http://code.google.com/p/sympy/source/checkout Source tab].
