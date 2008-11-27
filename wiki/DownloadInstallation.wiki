@@ -25,23 +25,20 @@ from [http://code.google.com/p/sympy/downloads/list Downloads].
 
 This is useful if the latest release doesn't work for you for some reason.
 
-* hg version *
+* git version *
 
-To get the Mercurial repository, use:
+To get the git repository, use:
 {{{
-hg clone http://hg.sympy.org/sympy/
+git clone git://git.sympy.org/sympy.git
 }}}
 
 And you can also access it on the web:
 
-http://hg.sympy.org/sympy/
+http://git.sympy.org/?p=sympy.git;a=summary
 
 where (besides other things) you can download any revision you want as a gz, bz2 or zip file. For example, you can download the latest !SymPy snapshot here:
 
-http://hg.sympy.org/sympy/archive/tip.tar.gz
-
-
-
+http://git.sympy.org/?p=sympy.git;a=snapshot;h=HEAD;sf=tgz
 
 = Packages =
 
