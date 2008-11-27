@@ -34,7 +34,7 @@ git clone git://git.sympy.org/sympy.git
 
 And you can also access it on the web:
 
-http://git.sympy.org/?p=sympy.git;a=summary
+http://git.sympy.org/?p=sympy.git
 
 where (besides other things) you can download any revision you want as a gz, bz2 or zip file. For example, you can download the latest !SymPy snapshot here:
 
