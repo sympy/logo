@@ -87,7 +87,7 @@ See our roadmap: http://wiki.sympy.org/wiki/Plan_for_SymPy_1.0
   * Make !SymPy very easy to use with [http://www.sagemath.org/ Sage], [http://scipy.org/ NumPy], [http://ipython.scipy.org ipython], [http://matplotlib.sourceforge.net/ matplotlib] and similar tools...
   * See also [http://code.google.com/p/sympy/issues/list Issues]
   * You can also check our blogs: [http://planet.sympy.org/ PlanetSympy]
-  * Or join us at #sympy on irc.freenode.net
+  * Or join us at #sympy on irc.freenode.net (see our [http://wiki.sympy.org/wiki/FAQ#How_to_connect_to_our_IRC_channel.3F FAQ] for instructions how to connect)
 
 But generally, we are trying to polish things, fix bugs, improve documentation, make !SymPy reliable and faster. It's very important for us, that you grab
 the tarball and it just works (if it doesn't, it's a bug and please report it).
