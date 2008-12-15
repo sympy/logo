@@ -1,7 +1,5 @@
 #summary Information about the 2008 Google Summer of Code and SymPy
 
-You can watch the progress during the summer at http://planet.sympy.org/
-
 = Introduction =
 
 [http://code.google.com/p/sympy/ SymPy] has had one student this year due to a lot of other excellent GSoC proposals.
