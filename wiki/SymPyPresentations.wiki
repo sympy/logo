@@ -4,6 +4,6 @@ On this page you can find all presentations about !SymPy that were given at conf
 
 || *Date* || *Author* || *Venue* || *Slides* || *Video* ||
 || 2009-1-6 || Ondřej Čertík || [http://spilka.math.unr.edu/events/femtec-2009/ FEMTEC 2009], Lake Tahoe, CA, USA || [http://ondrej.certik.cz/site_media/femtec2009.pdf femtec2009.pdf] || ||
-|| 2008-7-27 || Robert Cimrman and Ondřej Čertík || EuroSciPy 2008 Conference, Leipzig, Germany || [http://ondrej.certik.cz/site_media/euroscipy2008.pdf euroscipy2008.pdf] || ||
+|| 2008-7-27 || Robert Cimrman and Ondřej Čertík || [http://www.scipy.org/EuroSciPy2008 EuroSciPy 2008] Conference, Leipzig, Germany || [http://ondrej.certik.cz/site_media/euroscipy2008.pdf euroscipy2008.pdf] || ||
 || 2007-10-13 || Ondřej Čertík || [http://wiki.sagemath.org/days6/ SAGE Days 6], Bristol, UK || [http://sympy.googlecode.com/svn/materials/presentations/SD6.pdf SD6.pdf] || [http://dakol.fsik.cvut.cz/~ondra/SD6.mpg SD6.mpg] (full resolution, 602MB) ||
 || 2007-8-17 || Ondřej Čertík || [http://www.scipy.org/SciPy2007/ SciPy2007] Conference, Caltech, Los Angeles, CA, USA || [http://sympy.googlecode.com/svn/materials/presentations/scipy2007.pdf scipy2007.pdf] || ||
