@@ -1,24 +1,7 @@
 #summary Presentations about SymPy
 
-= Introduction =
-
 On this page you can find all presentations about !SymPy that were given at conferences.
 
-== !SciPy 2007==
-
-[http://www.scipy.org/SciPy2007/ SciPy2007] was a conference at Caltech (Los Angeles, USA), where Ondřej gave this talk: 
-
-date: August 14-18, 2007
-
-slides: [http://sympy.googlecode.com/svn/materials/presentations/scipy2007.pdf scipy2007.pdf]
- 
-== SAGE Days 6 ==
-
-[http://wiki.sagemath.org/days6/ SAGE Days 6] was a conference in Bristol (UK) where Ondřej gave this talk:
-
-date: November 10-14, 2007
-
-slides: [http://sympy.googlecode.com/svn/materials/presentations/SD6.pdf SD6.pdf]
-
-video: [http://dakol.fsik.cvut.cz/~ondra/SD6.mpg SD6.mpg] (full resolution, 602MB)
- 
+|| *Date* || *Author* || *Venue* || *Slides* || *Video* ||
+|| 2007-10-13 || Ondřej Čertík || [http://wiki.sagemath.org/days6/ SAGE Days 6], Bristol, UK || [http://sympy.googlecode.com/svn/materials/presentations/SD6.pdf SD6.pdf] || [http://dakol.fsik.cvut.cz/~ondra/SD6.mpg SD6.mpg] (full resolution, 602MB) ||
+|| 2007-8-17 || Ondřej Čertík || [http://www.scipy.org/SciPy2007/ SciPy2007] Conference, Caltech, Los Angeles, CA, USA || [http://sympy.googlecode.com/svn/materials/presentations/scipy2007.pdf scipy2007.pdf] || ||
