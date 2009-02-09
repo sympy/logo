@@ -11,7 +11,7 @@ $ python bin/generate_test_list.py
 
 === Does it depend on python2.4 only? ===
 
-Do this on the hg version:
+Do this on the git version:
 {{{
 $ cd bin
 $ sudo pbuilder --execute test_pure
@@ -40,7 +40,7 @@ The speed of "import sympy" is: 0.119651 +- 0.008924
 
 === Do all tests run in the isolated environment? ===
 
-Do this on the hg version:
+Do this on the git version:
 {{{
 $ bin/test_isolated 
 Generating py.test isolated testsuite...
@@ -65,7 +65,7 @@ NO FAILED EXAMPLES
 
 === Does pyglet work? ===
 
-Do this on the hg version:
+Do this on the git version:
 {{{
 $ cd bin
 $ sudo pbuilder --execute test_pure_plotting
@@ -112,7 +112,7 @@ but still check by inspection, that the tarball includes all necessary files.
 
 Clone main repository
 {{{
-hg clone ssh://hg@hg.sympy.org/sympy
+git clone git://git.sympy.org/sympy.git
 cd sympy
 }}}
 
@@ -121,12 +121,12 @@ cd sympy
 Change version in `sympy/__init__.py`, e.g.
 {{{
 vim sympy/__init__.py
-hg ci -m v0.5.9
+git ci -m v0.5.9
 }}}
 
 Tag it, e.g.
 {{{
-hg tag sympy-0.5.9
+git tag sympy-0.5.9
 }}}
 
 Prepare the release tarball and win32 installer (should work ok even on Linux)
@@ -137,16 +137,16 @@ Prepare the release tarball and win32 installer (should work ok even on Linux)
 
 And put dist/sympy-0.5.9.tar.gz and dist/sympy-0.5.9.win32.exe on the website
 
-Change version to x.y.z-hg, and start new development cycle
+Change version to x.y.z-git, and start new development cycle
 {{{
 vim sympy/__init__.py
-hg ci -m 'Start of x.y.z+1 development cycle'
+git ci -m 'Start of x.y.z+1 development cycle'
 }}}
 
 
 Don't forget to finally push you changes back to the main repository:
 {{{
-hg push
+git push
 }}}
 
 == Sites to update ==
