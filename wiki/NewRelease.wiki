@@ -54,10 +54,14 @@ And check manually, that no py.test run generated a stack trace. (search for "CO
 
 {{{
 $ cd examples
-$ ./all
+$ ./all.py
 }}}
 
-Make sure no traceback is generated.
+Make sure no traceback is generated and this is printed at the end:
+{{{
+NO FAILED EXAMPLES
+}}}
+
 
 === Does pyglet work? ===
 
