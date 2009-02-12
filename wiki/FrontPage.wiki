@@ -2,7 +2,10 @@
 
 !SymPy is a Python library for symbolic mathematics. It aims to become a full-featured computer algebra system (CAS) while keeping the code as simple as possible in order to be comprehensible and easily extensible. !SymPy is written entirely in Python and does not require any external libraries.
 
+
 ==News==
+
+!SymPy will participate in the *Google Summer of Code 2009*, now it's the time to get involved with the project! More info [http://code.google.com/p/sympy/wiki/GSoC2009 here].
 
   * *9 Feb 2009* Version 0.6.4.beta1 [http://groups.google.com/group/sympy/browse_thread/thread/7f2db9097a3bfa37 released]
   * *19 Nov 2008* Version 0.6.3 released ([http://code.google.com/p/sympy/wiki/Changes changes])
