@@ -16,7 +16,9 @@ We encourage you to read the GSoC 2007 and 2008 students reports (see the wiki l
 
 = Ideas list =
 
-On our public wiki: http://wiki.sympy.org/wiki/GSoC2008Ideas
+On our public wiki: http://wiki.sympy.org/wiki/GSoC2009Ideas
+
+Feel free to discuss other ideas on our mailinglist.
 
 = How to apply =
 
