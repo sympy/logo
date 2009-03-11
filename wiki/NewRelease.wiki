@@ -121,7 +121,7 @@ cd sympy
 Change version in `sympy/__init__.py`, e.g.
 {{{
 vim sympy/__init__.py
-git ci -m v0.5.9
+git ci -a -m v0.5.9
 }}}
 
 Tag it, e.g.
