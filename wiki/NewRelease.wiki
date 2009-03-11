@@ -146,7 +146,7 @@ git ci -a -m 'Start of x.y.z+1 development cycle'
 
 Don't forget to finally push you changes back to the main repository:
 {{{
-git push
+git push --tags git@git.sympy.org:repos/sympy.git
 }}}
 
 == Sites to update ==
