@@ -140,7 +140,7 @@ And put dist/sympy-0.5.9.tar.gz and dist/sympy-0.5.9.win32.exe on the website
 Change version to x.y.z-git, and start new development cycle
 {{{
 vim sympy/__init__.py
-git ci -m 'Start of x.y.z+1 development cycle'
+git ci -a -m 'Start of x.y.z+1 development cycle'
 }}}
 
 
