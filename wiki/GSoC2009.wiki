@@ -32,4 +32,4 @@ Informally however, it's good to get involved with the !SymPy project before, so
 
 *GSoC2009 FAQ*: http://code.google.com/opensource/gsoc/2009/faqs.html
 
-*Main GSoC2009 site*: http://code.google.com/soc/2009/ (doesn't work yet)
+*Main GSoC2009 site*: http://code.google.com/soc/
