@@ -28,8 +28,6 @@ If you found a bug, please report it in [http://code.google.com/p/sympy/issues/l
   * [http://wiki.sympy.org wiki.sympy.org]: we encourage you to edit/improve/add anything to the wiki, it's open to everyone.
   * [http://live.sympy.org live.sympy.org]: try !SymPy online now
 
-http://sympy.googlecode.com/svn/materials/logo/sympy-160px.png
-
 ==Downloads==
 
 Use "Featured Downloads" on the right hand side. For more options and information, go to the [http://code.google.com/p/sympy/wiki/DownloadInstallation?tm=2 Downloads] tab.
