@@ -125,8 +125,9 @@ cd sympy
 
 (always clone it, otherwise the "./setup.py sdist" below can put garbage into the tarball)
 
-Change version in `sympy/__init__.py`, e.g.
+Change version in `sympy/__init__.py` and `doc/src/conf.py`, e.g.
 {{{
+vim doc/src/conf.py 
 vim sympy/__init__.py
 git ci -a -m v0.5.9
 }}}
