@@ -2,8 +2,11 @@
 
 = Introduction =
 
-This page documents the major changes made to !SymPy in each release and hg (small bugfixes are not included here).
+This page documents the major changes made to !SymPy in each release and git (small bugfixes are not included here).
+
+<wiki:comment>
 We try to mimic http://kernelnewbies.org/LinuxChanges
+</wiki:comment>
 
 == git ==
 
