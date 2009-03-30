@@ -18,6 +18,10 @@ The following people helped review patches:
   * Riccardo Gori
   * Fabian Seoane
   * Vinzent Steinberg
+  * Gael Varoquaux
+  * Fredrik Johansson
+  * Robert Kern
+  * Alan Bromborsky
 
 == 0.6.3 ==
 
