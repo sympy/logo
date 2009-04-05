@@ -29,7 +29,7 @@ date: 4 April 2008
   * mpmath updated
   * many bugfixes (more than 200 patches since the last release)
 
-The following 21 people have contributed patches to this release:
+The following 21 people have contributed patches to this release (sorted by the number of patches):
 
   *  Ondrej Certik
   *  Mateusz Paprocki
