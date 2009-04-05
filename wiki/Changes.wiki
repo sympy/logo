@@ -62,6 +62,7 @@ The following people helped review patches:
   * Fredrik Johansson
   * Robert Kern
   * Alan Bromborsky
+  * Ondrej Certik
 
 == 0.6.3 ==
 
