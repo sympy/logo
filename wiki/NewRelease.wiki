@@ -173,7 +173,7 @@ git push --tags git@git.sympy.org:repos/sympy.git master
 === pypi ===
 
 {{{
-$ hg up sympy-0.5.14
+$ git co sympy-0.5.14
 $ python setup.py register
 $ python setup.py sdist upload
 }}}
