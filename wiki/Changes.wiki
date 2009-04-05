@@ -16,6 +16,10 @@ http://git.sympy.org/?p=sympy.git;a=summary
 
 Find the latest release tag and see what is new since then.
 
+== 0.6.4 ==
+
+date: 4 April 2008
+
   * robust and fast (still pure Python) multivariate factorization
   * sympy works with pickle protocol 2 (thus works in ipython parallel)
   * `./sympy test` now uses our testing suite and it tests both regular tests and doctests
