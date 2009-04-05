@@ -44,7 +44,7 @@ http://git.sympy.org/?p=sympy.git;a=snapshot;h=HEAD;sf=tgz
 
 [http://www.debian.org/ http://sympy.googlecode.com/svn/materials/web/images/debian.png] * Debian * 
 
-!SymPy is in Debian unstable and testing. The exact !SymPy versions in Debian can be seen  here: http://packages.debian.org/python-sympy
+!SymPy is in Debian Lenny and later. The exact !SymPy versions in Debian can be seen  here: http://packages.debian.org/python-sympy
 
 So just add the unstable (or testing) among your sources and
 {{{
@@ -53,7 +53,7 @@ apt-get install python-sympy
 
 [http://www.ubuntu.com/ http://sympy.googlecode.com/svn/materials/web/images/ubuntu.png] * Ubuntu *
 
-!SymPy is in Gutsy and Hardy. The exact !SymPy versions in Ubuntu can be seen here:  https://launchpad.net/ubuntu/+source/sympy
+!SymPy is in all version starting from Gutsy. The exact !SymPy versions in Ubuntu can be seen here:  https://launchpad.net/ubuntu/+source/sympy
 
 [http://www.gentoo.org http://www.gentoo.org/images/gentoo-new.gif] *Gentoo*
 
