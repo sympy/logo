@@ -7,7 +7,7 @@ You can watch the progress during the summer at http://planet.sympy.org/
 
 || *student* || *mentor* || *mentoring organisation* || *proposal* ||
 || Priit Laes  || Ondřej Čertík || PSF || http://socghop.appspot.com/student_project/show/google/gsoc2009/python/t124024631607 || 
-
+|| Freddie Witherden || John Hunter  || PSF || http://socghop.appspot.com/student_project/show/google/gsoc2009/python/t124024631352 ||
 
 
 = Old info =
