@@ -2,7 +2,20 @@
 
 You can watch the progress during the summer at http://planet.sympy.org/
 
+
+= Details =
+
+|| *student* || *mentor* || *mentoring organisation* || *proposal* ||
+|| Priit Laes  || Ondřej Čertík || PSF || http://socghop.appspot.com/student_project/show/google/gsoc2009/python/t124024631607 || 
+
+
+
+= Old info =
+
+Older information follows:
+
 = Introduction =
+
 
 [http://code.google.com/p/sympy/ SymPy] is going to participate, the same way as in 2007 (see [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007]) and 2008 (see [http://code.google.com/p/sympy/wiki/GSoC2008 GSoC2008]).
 
