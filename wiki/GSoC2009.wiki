@@ -5,12 +5,12 @@ You can watch the progress during the summer at http://planet.sympy.org/
 
 = Details =
 
-|| *student* || *mentor* || *mentoring organisation* || *proposal* ||
-|| Priit Laes  || Ondřej Čertík || PSF || http://socghop.appspot.com/student_project/show/google/gsoc2009/python/t124024631607 || 
-|| Freddie Witherden || John Hunter  || PSF || http://socghop.appspot.com/student_project/show/google/gsoc2009/python/t124024631352 ||
-|| Aaron Meurer || Andy Terrel || PSU ||  http://socghop.appspot.com/student_project/show/google/gsoc2009/portland_state/t124024247418 ||
-|| Fabian Pedregosa || Mateusz Paprocki || PSU || http://socghop.appspot.com/student_project/show/google/gsoc2009/portland_state/t124024247737 ||
-|| Dale Peterson || Ondřej Čertík || PSU ||  http://socghop.appspot.com/student_project/show/google/gsoc2009/portland_state/t124024249684 ||
+|| *student* || *mentor* || *mentoring organisation* || *blog* || *proposal* ||
+|| Priit Laes  || Ondřej Čertík || PSF || || http://socghop.appspot.com/student_project/show/google/gsoc2009/python/t124024631607 || 
+|| Freddie Witherden || John Hunter  || PSF || || http://socghop.appspot.com/student_project/show/google/gsoc2009/python/t124024631352 ||
+|| Aaron Meurer || Andy Terrel || PSU || http://asmeurersympy.wordpress.com/ || http://socghop.appspot.com/student_project/show/google/gsoc2009/portland_state/t124024247418 ||
+|| Fabian Pedregosa || Mateusz Paprocki || PSU || || http://socghop.appspot.com/student_project/show/google/gsoc2009/portland_state/t124024247737 ||
+|| Dale Peterson || Ondřej Čertík || PSU || || http://socghop.appspot.com/student_project/show/google/gsoc2009/portland_state/t124024249684 ||
 
 = Old info =
 
