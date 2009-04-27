@@ -1,7 +1,6 @@
 #summary Curvilinear coordinates demo
-
 {{{
-$ python examples/advanced/curvilinear_coordinates.py 
+$ python examples/advanced/curvilinear_coordinates.py
 ________________________________________________________________________________
 Transformation: polar
 ρ = ρ⋅cos(φ)
@@ -83,15 +82,6 @@ Jacobian:
 ⎢                                                ⎥
 ⎣   cos(θ)         -ρ⋅sin(θ)            0        ⎦
 metric tensor g_{ij}:
-⎡   2         2       2       2         2       2       2                                                        ⎤
-⎢cos (θ) + cos (φ)⋅cos (θ)⋅tan (θ) + cos (θ)⋅sin (φ)⋅tan (θ)  0                          0                       ⎥
-⎢                                                                                                                ⎥
-⎢                                                              2                                                 ⎥
-⎢                             0                               ρ                          0                       ⎥
-⎢                                                                                                                ⎥
-⎢                                                                  2    2       2       2    2       2       2   ⎥
-⎣                             0                               0   ρ ⋅cos (φ)⋅sin (θ) + ρ ⋅cos (θ)⋅sin (φ)⋅tan (θ)⎦
-metric tensor g_{ij} specified by hand:
 ⎡1  0       0     ⎤
 ⎢                 ⎥
 ⎢    2            ⎥
@@ -256,27 +246,26 @@ Laplace:
 2⋅a ⋅cos (ν)⋅cosh (μ)⋅sin (ν)⋅sinh (μ) + a ⋅cos (ν)⋅sinh (μ) + a ⋅cosh (μ)⋅sin (ν)   2⋅a ⋅cos (ν)⋅cosh (μ)⋅sin (ν)⋅sinh (μ) + a ⋅cos (ν)⋅sinh (μ) + a ⋅cosh
 
                                                                                                                                                            
-               ⎛ 2    2        2       2     2       2   ⎞ ⎛   4    4        3                 4     3       4                 4    2        3       2     
-               ⎝a ⋅cos (ν)⋅sinh (μ) + a ⋅cosh (μ)⋅sin (ν)⎠⋅⎝4⋅a ⋅cos (ν)⋅sinh (μ)⋅cosh(μ) + 4⋅a ⋅cosh (μ)⋅sin (ν)⋅sinh(μ) + 4⋅a ⋅cos (ν)⋅cosh (μ)⋅sin (ν)⋅s
+               ⎛ 2    2        2       2     2       2   ⎞ ⎛     4    3        4                4     4       3                4     2       3        2    
+               ⎝a ⋅cos (ν)⋅sinh (μ) + a ⋅cosh (μ)⋅sin (ν)⎠⋅⎝- 4⋅a ⋅cos (ν)⋅sinh (μ)⋅sin(ν) + 4⋅a ⋅cosh (μ)⋅sin (ν)⋅cos(ν) - 4⋅a ⋅cosh (μ)⋅sin (ν)⋅sinh (μ)⋅
                                                                                                                                                            
 ──────────── + ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 4       4                   ⎛   4    2        2       2        2       4    4        4       4     4       4   ⎞ ⎛   4    2        2       2        2      
  (μ)⋅sin (ν)                ⎝2⋅a ⋅cos (ν)⋅cosh (μ)⋅sin (ν)⋅sinh (μ) + a ⋅cos (ν)⋅sinh (μ) + a ⋅cosh (μ)⋅sin (ν)⎠⋅⎝4⋅a ⋅cos (ν)⋅cosh (μ)⋅sin (ν)⋅sinh (μ) + 
 
                                                                                                                                                            
-            4    2       2        3           ⎞ d             ⎛ 2    2        2       2     2       2   ⎞ ⎛     4    3        4                4     4     
-inh(μ) + 4⋅a ⋅cos (ν)⋅sin (ν)⋅sinh (μ)⋅cosh(μ)⎠⋅──(f(μ, ν))   ⎝a ⋅cos (ν)⋅sinh (μ) + a ⋅cosh (μ)⋅sin (ν)⎠⋅⎝- 4⋅a ⋅cos (ν)⋅sinh (μ)⋅sin(ν) + 4⋅a ⋅cosh (μ)⋅s
-                                                dμ                                                                                                         
+            4    3        2        2          ⎞ d             ⎛ 2    2        2       2     2       2   ⎞ ⎛   4    4        3                 4     3      
+cos(ν) + 4⋅a ⋅cos (ν)⋅cosh (μ)⋅sinh (μ)⋅sin(ν)⎠⋅──(f(μ, ν))   ⎝a ⋅cos (ν)⋅sinh (μ) + a ⋅cosh (μ)⋅sin (ν)⎠⋅⎝4⋅a ⋅cos (ν)⋅sinh (μ)⋅cosh(μ) + 4⋅a ⋅cosh (μ)⋅si
+                                                dν                                                                                                         
 ─────────────────────────────────────────────────────────── + ─────────────────────────────────────────────────────────────────────────────────────────────
    4    4        4         4     4       4   ⎞                             ⎛   4    2        2       2        2       4    4        4       4     4       4
 2⋅a ⋅cos (ν)⋅sinh (μ) + 2⋅a ⋅cosh (μ)⋅sin (ν)⎠                             ⎝2⋅a ⋅cos (ν)⋅cosh (μ)⋅sin (ν)⋅sinh (μ) + a ⋅cos (ν)⋅sinh (μ) + a ⋅cosh (μ)⋅sin 
 
                                                                                                           
-  3                4     2       3        2                4    3        2        2          ⎞ d          
-in (ν)⋅cos(ν) - 4⋅a ⋅cosh (μ)⋅sin (ν)⋅sinh (μ)⋅cos(ν) + 4⋅a ⋅cos (ν)⋅cosh (μ)⋅sinh (μ)⋅sin(ν)⎠⋅──(f(μ, ν))
-                                                                                               dν         
+ 4                 4    2        3       2                 4    2       2        3           ⎞ d          
+n (ν)⋅sinh(μ) + 4⋅a ⋅cos (ν)⋅cosh (μ)⋅sin (ν)⋅sinh(μ) + 4⋅a ⋅cos (ν)⋅sin (ν)⋅sinh (μ)⋅cosh(μ)⎠⋅──(f(μ, ν))
+                                                                                               dμ         
 ──────────────────────────────────────────────────────────────────────────────────────────────────────────
    ⎞ ⎛   4    2        2       2        2         4    4        4         4     4       4   ⎞             
 (ν)⎠⋅⎝4⋅a ⋅cos (ν)⋅cosh (μ)⋅sin (ν)⋅sinh (μ) + 2⋅a ⋅cos (ν)⋅sinh (μ) + 2⋅a ⋅cosh (μ)⋅sin (ν)⎠             
-
 }}}
