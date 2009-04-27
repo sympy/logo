@@ -1,4 +1,7 @@
 #summary Curvilinear coordinates demo
+
+This page shows the `curvilinear_coordinates.py` example, which demonstrates how to use sympy to calculate metric tensors (and other things like a laplace operator) in curvilinear coordinates.
+
 {{{
 $ python examples/advanced/curvilinear_coordinates.py
 ________________________________________________________________________________
