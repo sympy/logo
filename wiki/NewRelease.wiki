@@ -101,7 +101,7 @@ $ make html
 $ epiphany _build/html/index.html
 }}}
 
-and update the version in `src/conf.py`, update the list of contributors both in docs and in README, using:
+and update the version in `src/conf.py`, update the list of contributors both in docs and in AUTHORS, using:
 {{{
 $ git shortlog -ns sympy-0.6.2..
 }}}
