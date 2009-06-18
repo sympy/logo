@@ -15,4 +15,4 @@ This video teaches you how to create patches using the `git diff` technique:
 
 This video explains how to work with git branches and how to prepare patches the "right" way:
 
-<wiki:video url="http://www.youtube.com/watch?v=Hxr5axLxTZk"/>
+<wiki:video url="http://www.youtube.com/watch?v=XRSazdVUL8s"/>
