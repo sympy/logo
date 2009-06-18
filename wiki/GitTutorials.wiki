@@ -1,0 +1,12 @@
+#summary Video tutorials about git
+
+= Introduction =
+
+This page will teach you how to work with git. If you have only 60 seconds to spend on this, read just the first section. If you can spend 5 minutes learning git, read also the second section.
+
+
+= 60s introduction =
+
+This video teaches you how to create patches using the `git diff` technique:
+
+<wiki:video url="http://www.youtube.com/watch?v=Hxr5axLxTZk"/>
