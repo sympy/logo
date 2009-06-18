@@ -2,10 +2,10 @@
 
 = Introduction =
 
-This page will teach you how to work with git. If you have only 60 seconds to spend on this, read just the first section. If you can spend 5 minutes learning git, read also the second section.
+This page will teach you how to work with git. If you have only 50 seconds to spend on this, read just the first section. If you can spend 5 minutes learning git, read also the second section.
 
 
-= 60s introduction =
+= 50s introduction =
 
 This video teaches you how to create patches using the `git diff` technique:
 
