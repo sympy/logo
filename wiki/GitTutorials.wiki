@@ -10,3 +10,9 @@ This page will teach you how to work with git. If you have only 50 seconds to sp
 This video teaches you how to create patches using the `git diff` technique:
 
 <wiki:video url="http://www.youtube.com/watch?v=Hxr5axLxTZk"/>
+
+= 5 min introduction =
+
+This video explains how to work with git branches and how to prepare patches the "right" way:
+
+<wiki:video url="http://www.youtube.com/watch?v=Hxr5axLxTZk"/>
