@@ -19,7 +19,7 @@ This video explains how to work with git branches and how to prepare patches the
 
 <wiki:video url="http://www.youtube.com/watch?v=XRSazdVUL8s"/>
 
-= git branches tutorial =
+= git branches tutorial (3 min) =
 
 This video explains local and remote branches, as well as remotes and how to download them:
 
