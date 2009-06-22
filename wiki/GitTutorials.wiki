@@ -25,6 +25,12 @@ This video explains local and remote branches, as well as remotes and how to dow
 
 <wiki:video url="http://www.youtube.com/watch?v=T5pRg7VIh8M"/>
 
+= git fetch and push tutorial (10 min) =
+
+This video shows how to use fetch and push commands (as well as rebase).
+
+<wiki:video url="http://www.youtube.com/watch?v=M7Rca-EUeXs"/>
+
 = How the videos were created =
 
 I (Ondrej) use the following script that I wrote:
