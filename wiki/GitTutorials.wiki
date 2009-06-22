@@ -34,7 +34,9 @@ This video shows how to use fetch and push commands (as well as rebase).
 = Links to other (video) tutorials =
 
 http://learn.github.com/
+
 http://book.git-scm.com/
+
 http://www-cs-students.stanford.edu/~blynn/gitmagic/
 
 
