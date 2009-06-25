@@ -16,6 +16,67 @@ http://git.sympy.org/?p=sympy.git;a=summary
 
 Find the latest release tag and see what is new since then.
 
+== 0.6.5-beta1 ==
+
+We are pleased to announce the release of first public beta for 0.6.5. This release has been marked by improved documentation, C code generation, solve and dsolve improvements, mpath update, a new logic module and the start of Google's Summer of Code program.
+
+Source distribution can be downloaded from http://sympy.googlecode.com/files/sympy-0.6.5-beta1.tar.gz
+
+Major changes in this release:
+
+      - Geometric Algebra Improvements
+      	 - Upgrade GA module with left and right contraction operations for multivectors
+	  and extend capability of multivector setup and constructor functions. Modify
+	  multivector subs function to accept same arguments as sympy subs. Fix
+	  mutivector == function to work with multivector scalars on lhs and sympy
+	  symbols on rhs  (Alan Bromborsky)
+       -  Add intersection test for the vertical segment, reimplementation of convex_hull
+           (Florian Mickler)
+
+    - Implement series() as function as opposed to classmethod (Barry Wardell)
+
+    - Matrix improvements: 
+        - Improve jacobian function, introduce vec and vech (Ben Goodrich)
+
+    - Solver improvements:
+        - solutions past linear factor found in tsolve (Chris Smith)
+	- refactor sympy.solvers.guess_solve_strategy (Fabian Pedregosa)
+	- Small cleanups to the ODE solver and tests. (Priit Laes)
+	- Fix corner case for Bernoulli equation. (Priit Laes)
+
+    - Documentation improvements:
+        - Test also documentation under doc/ (Fabian Pedregosa)
+	- Added many docstrings
+	- Fix Sphinx complaints/warnings/errors (Priit Laes)
+
+    - New logic module (Fabian Pedregosa)
+
+    - LaTeX printer improvements:
+        - Handle standard form in the LaTeX printer correctly (Freddie Witherde)
+	- Latex: _print_Mul fix (issue 1282) (Nicolas Pourcelot)
+
+    - MathML printing improvements:
+        - MathML's printer extended (Thomas Sidoti)
+
+    - Testing framework improvements 
+        - Make tests pass without the "py" module (Ondrej Certik)
+
+    - Polynomial module improvements:
+      - Fixed subresultant PRS computation and ratint() (Mateusz Paprocki)
+      - Removed old module sympy.polynomials (Priit Laes)
+
+    - limit fixes:
+        Compute the finite parts of the limit of a sum by direct substitution (Ronan Lamy)
+
+    - Test coverage script (Ronan Lamy)
+ 
+    - Code quality improvements (remove string exceptions, code quality test improvements) (Tomasz Buchert)
+
+    - C code generation (Toon Verstraelen)
+
+    - Update mpmath (Fredrik Johansson, Fredrik Johansson)
+
+
 == 0.6.4 ==
 
 date: 4 April 2009
