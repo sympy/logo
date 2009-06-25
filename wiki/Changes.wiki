@@ -51,7 +51,7 @@ Major changes in this release:
 
   * LaTeX printer improvements:
         - Handle standard form in the LaTeX printer correctly (Freddie Witherde)
-	- Latex: _print_Mul fix (issue 1282) (Nicolas Pourcelot)
+	- Latex: print_Mul fix (issue 1282) (Nicolas Pourcelot)
 
   * MathML printing improvements:
         - MathML's printer extended (Thomas Sidoti)
