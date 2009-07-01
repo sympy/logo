@@ -1,4 +1,5 @@
 #summary Shows how the tests should look like when everything is ok.
+#labels Deprecated
 
 = All tests pass - ok to commit =
 
