@@ -1,4 +1,0 @@
-#summary Documentation for the SymPy geometry module
-#labels Phase-Implementation
-
-This is now documented here: http://docs.sympy.org/modules/geometry.html
