@@ -1,6 +1,0 @@
-#summary Description of sympy's printing system
-#labels Phase-Design
-
-This is now documented here:
-
-http://docs.sympy.org/modules/printing.html
