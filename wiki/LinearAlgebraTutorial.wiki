@@ -1,3 +1,0 @@
-#summary Introduction to using Sympy's linear algebra module
-
-This is now documented here: http://docs.sympy.org/modules/matrices.html
