@@ -1,3 +1,0 @@
-#summary Documentation for the SymPy plotting module
-
-This is now documented here: http://docs.sympy.org/modules/plotting.html
