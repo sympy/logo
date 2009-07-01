@@ -1,7 +1,0 @@
-﻿#summary First steps with sympy
-
-This used to be the old Tutorial for !SymPy, but now we manage all our docs at http://docs.sympy.org/, so the new Tutorial is here:
-
-http://docs.sympy.org/tutorial.html
-
-This old wiki could be accesible from [http://sympy.googlecode.com/svn-history/r2896/wiki/Tutorial.wiki svn] if someone needs it.
