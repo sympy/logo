@@ -1,3 +1,0 @@
-#summary Documentation statistics module
-
-This is now documented here: http://docs.sympy.org/modules/statistics.html
