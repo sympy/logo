@@ -1,3 +1,0 @@
-#summary Introduction to the numerics module
-
-This is now documented here: http://docs.sympy.org/modules/mpmath/index.html
