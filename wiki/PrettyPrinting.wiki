@@ -1,4 +1,5 @@
 #summary Pretty-printing information and examples
+#labels Deprecated
 
 This page is *obsoleted* by http://wiki.sympy.org/wiki/Pretty_Printing
 
