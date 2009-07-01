@@ -1,3 +1,0 @@
-#summary SymPy in the News and Blogs
-
-See: http://wiki.sympy.org/wiki/SymPy_in_the_news
