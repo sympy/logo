@@ -132,6 +132,8 @@ vim sympy/__init__.py
 git ci -a -m v0.5.9
 }}}
 
+Change the copyright year in README if needed
+
 Tag it, e.g.
 {{{
 git tag sympy-0.5.9
