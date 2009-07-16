@@ -7,6 +7,8 @@
 
 !SymPy is participating in the *Google Summer of Code 2009*. More info [http://code.google.com/p/sympy/wiki/GSoC2009 here].
 
+
+  * *16 Jul 2009* Version 0.6.5.rc1 released ([http://groups.google.com/group/sympy/browse_thread/thread/2fb2bd459fbaf936 changes])
   * *11 Jul 2009* Version 0.6.5.rc1 released ([http://groups.google.com/group/sympy/browse_thread/thread/2fb2bd459fbaf936 changes])
   * *25 Jun 2009* Version 0.6.5-beta2 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *4 Apr 2009* Version 0.6.4 released ([http://code.google.com/p/sympy/wiki/Changes changes], [http://sympy.blogspot.com/2009/04/sympy-0.html release notes])
