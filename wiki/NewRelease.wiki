@@ -161,7 +161,8 @@ git push --tags git@git.sympy.org:repos/sympy.git master
 
 == Sites to update ==
 
-  * http://code.google.com/p/sympy/wiki/FrontPage
+  * http://code.google.com/p/sympy/ (FrontPage)
+  * http://wiki.sympy.org
   * http://code.google.com/p/sympy/wiki/Changes  (use `git shortlog -n sympy-0.6.3..` to get the list of contributors)
   * http://code.google.com/p/sympy/
   * http://sympy.googlecode.com/svn/api/sympy.html (see TechnicalTasks)
