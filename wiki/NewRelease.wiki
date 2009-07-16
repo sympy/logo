@@ -164,7 +164,6 @@ git push --tags git@git.sympy.org:repos/sympy.git master
   * http://code.google.com/p/sympy/ (FrontPage)
   * http://wiki.sympy.org
   * http://code.google.com/p/sympy/wiki/Changes  (use `git shortlog -n sympy-0.6.3..` to get the list of contributors)
-  * http://code.google.com/p/sympy/
   * http://sympy.googlecode.com/svn/api/sympy.html (see TechnicalTasks)
   * http://en.wikipedia.org/wiki/SymPy
   * http://en.wikipedia.org/wiki/Comparison_of_computer_algebra_systems
