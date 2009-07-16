@@ -16,9 +16,9 @@ http://git.sympy.org/?p=sympy.git;a=summary
 
 Find the latest release tag and see what is new since then.
 
-== 0.6.5.rc2 ==
+== 0.6.5 ==
 
-date: 16 july 2008
+date: 17 july 2008
 
 This release has been marked by improved documentation,
 C code generation, solve and dsolve improvements, mpath update, a new
@@ -62,7 +62,7 @@ Goodrich)
 
        - Expand improvements (Aaron Meurer)
          	- Refactoring
-           - exp(x)*exp(y)  is no longer automatically combined into
+           - exp(x) exp(y)  is no longer automatically combined into
              exp(x+y), use powsimp for that
 
 
