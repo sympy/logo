@@ -182,6 +182,9 @@ $ python setup.py sdist upload
 You may have to fix the uploaded file by hand over the web, so that it has the
 same md5sum as the one on googlecode.
 
+Make sure it is installable using easy_install
+
+
 == Other things ==
 
   * Create a Debian package
