@@ -39,6 +39,7 @@ http://book.git-scm.com/
 
 http://www-cs-students.stanford.edu/~blynn/gitmagic/
 
+http://progit.org/book/
 
 = How the videos were created =
 
