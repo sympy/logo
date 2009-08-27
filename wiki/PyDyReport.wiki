@@ -1,0 +1,18 @@
+#summary Review of the 2009 Summer of Code project.
+#labels PyDy,GSoC
+
+= About Me =
+My name is Dale Lukas Peterson ('Luke') and I am a Ph.D candidate in the Mechanical and Aerospace Engineering department at the University of California Davis.  My research emphasis is dynamical systems and control, with a special interest in bicycle dynamics and control.  
+
+= Introduction =
+This page summarizes the events of my Google Summer of code project "PyDy: Newtonian Mechanics with Python".  The main goals of my project are:
+
+  # Provide a convenient and easy to use framework for performing kinematic and dynamic analysis of mechanical systems.
+  # Symbolic derivation of equations of motion of systems of rigid bodies and particles with applied forces or torques, and nonholonomic or holonomic constraints.
+  # Automatic generation of first order ODE's which allow for numerical integration using existing packages such as Scipy and Numpy. 
+  # Automatic generation of functions which make animation of the system very easy
+  # Customized LaTeX output of equations of motion and symbolic vector expressions
+
+
+= Details =
+I first contacted the Sympy mailing list in January with a question [http://groups.google.com/group/sympy/browse_thread/thread/e5a92f7b766bcf51#] about how hard it might be to implement some code that deals with rotations in a convenient fashion for classical mechanics.  
