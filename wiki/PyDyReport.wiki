@@ -14,5 +14,9 @@ This page summarizes the events of my Google Summer of code project "PyDy: Newto
   # Customized LaTeX output of equations of motion and symbolic vector expressions
 
 
-= Details =
-I first contacted the Sympy mailing list in January with a [http://groups.google.com/group/sympy/browse_thread/thread/e5a92f7b766bcf51# question] about how hard it might be to implement some code that deals with rotations in a convenient fashion for classical mechanics.  
+= First Contact =
+I first contacted the Sympy mailing list in January with a [http://groups.google.com/group/sympy/browse_thread/thread/e5a92f7b766bcf51# question] about how hard it might be to implement some code that deals with rotations in a convenient fashion for classical mechanics.  I had been using a closed source program [http://www.autolev.com Autolev] to do some of my research, and while it was quite mature and well tested, it lacked many modern features and I found my workflow in using it to be quite cumbersome and frustrating.  I had a solid understanding of the mathematics behind what it did, but I didn't have much of an idea how I would go about implementing my own code that provided many of the same features.
+
+Ondrej responded to me and suggested I come visit him in Reno and we could start hacking.  So I did, and few days later we had a lot of the basic functionality for working with Symbolic vector expressions.  In that short period of time, the power of Python as a high level language really sunk in -- to implement what we did in 4 days of heavy coding would have taken weeks or months in other languages.
+
+From there, I began working on the project on my own and began writing the GSoC application.  
