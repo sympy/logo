@@ -51,6 +51,14 @@ There are few things that I would recommend to anybody doing a GSoC project:
   # Be consistent about working your 40 hours -- don't slack off or you will get impossibly behind.
   # Don't be afraid to ask questions -- but make sure you have at least looked in the obvious places (i.e., searched google or read/skimmed the documentation) before you ask your question.
 
-I am still working actively on !PyDy and will continue to do so as much as possible.  It is my hope that other people who study dynamical systems will be interested in collaborative efforts to improve and extend !PyDy in order to give it much more functionality.  My most pressing goals at the moment are to use !PyDy to derive the equations of motion for a bicycle model that I use in my research.  This is a notoriously difficult system to model without making lots of simplifying assumptions, so if !PyDy can do it, I am confident that it can do nearly any system that is thrown its way.
+I am still working actively on !PyDy and will continue to do so as much as possible.  It is my hope that other people who study dynamical systems will be interested in collaborative efforts to improve and extend !PyDy in order to give it much more functionality.  These sorts of applications will also really help improve Sympy -- the more users there are to test things out, the faster new changes get implemented and bugs get fixed.  
+
+An important issue to me in the sciences is that of verifiability and reproducibility.  If others cannot verify your work or reproduce it, it hurts everybody because:
+  # Nobody will be able to double check to make sure you didn't make a mistake and people may carry on assuming your conclusions are correct when they may in fact be incorrect.
+  # People will waste a lot of time on duplicating efforts of others if they can't work with a common tool that is peer reviewed (Open Source) and available to everybody.
+
+With a tool like Sympy and PyDy, people in the field of dynamical systems now have a the beginnings of a tool which is cross-platform, free, open-source and collaborative in nature -- this is how science should be!  For more information on this line of thinking, check out [http://www.openscience.org/blog/ The Open Science Project].   
+
+My most pressing goal at the moment is to use !PyDy to derive the equations of motion for a bicycle model that I use in my research.  This is a notoriously difficult system to model without making lots of simplifying assumptions, so if !PyDy can do it, I am confident that it can do nearly any system that is thrown its way.
 
 Integrating !PyDy into a !MayaVi / Traits application is on my list of things to do as well.  This would be an amazing way to interact and study a dynamical system -- visualize it, perform stability analysis, and perform symbolic manipulations to the equations all within one place.
