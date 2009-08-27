@@ -15,4 +15,4 @@ This page summarizes the events of my Google Summer of code project "PyDy: Newto
 
 
 = Details =
-I first contacted the Sympy mailing list in January with a question [http://groups.google.com/group/sympy/browse_thread/thread/e5a92f7b766bcf51#] about how hard it might be to implement some code that deals with rotations in a convenient fashion for classical mechanics.  
+I first contacted the Sympy mailing list in January with a [http://groups.google.com/group/sympy/browse_thread/thread/e5a92f7b766bcf51# question] about how hard it might be to implement some code that deals with rotations in a convenient fashion for classical mechanics.  
