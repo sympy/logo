@@ -24,7 +24,7 @@ From there, I began working on the project on my own and began writing the GSoC 
 By the time my Google Summer of Code application was submitted, I had somewhere around 800-1000 lines of Python code written, and many tests written for the functionality I had implemented.
 
 = The Summer =
-Classes got out June 16th and at that point I dedicated myself full time to PyDy.  My approach was to start working on deriving the equations of motion for several examples and in doing so see what sort of functionality would be needed and what would make the derivation as straight forward and clear as possible.  A couple of examples that I worked on were the rolling disc, the rolling torus, a rigid body, and a pendulum.  
+Classes got out June 16th and at that point I dedicated myself full time to !PyDy.  My approach was to start working on deriving the equations of motion for several examples and in doing so see what sort of functionality would be needed and what would make the derivation as straight forward and clear as possible.  A couple of examples that I worked on were the rolling disc, the rolling torus, a rigid body, and a pendulum.  
 
 I started a website for my project and a Google group.  This made discussion of the project with others much easier.  The details of my project are fairly technical so I won't go into them here, but all of the source is available on my [http://github.com/hazelnusse/pydy/tree/master github] and there are lots of examples of use there.
 
