@@ -9,7 +9,7 @@ This page summarizes the events of my Google Summer of code project "!PyDy: Newt
 
   # Provide a convenient and easy to use framework for performing kinematic and dynamic analysis of mechanical systems.
   # Symbolic derivation of equations of motion of systems of rigid bodies and particles with applied forces or torques, and nonholonomic or holonomic constraints.
-  # Automatic generation of first order ODE's which allow for numerical integration using existing packages such as Scipy and Numpy. 
+  # Automatic generation of first order ODE's which allow for numerical integration using existing packages such as [http://www.scipy.org/ !SciPy] and [http://numpy.scipy.org/ !NumPy]. 
   # Automatic generation of functions which make animation of the system very easy.
   # Customized LaTeX output of equations of motion and symbolic vector expressions.
 
@@ -57,7 +57,7 @@ An important issue to me in the sciences is that of verifiability and reproducib
   # Nobody will be able to double check to make sure you didn't make a mistake and people may carry on assuming your conclusions are correct when they may in fact be incorrect.
   # People will waste a lot of time on duplicating efforts of others if they can't work with a common tool that is peer reviewed (Open Source) and available to everybody.
 
-With a tool like Sympy and PyDy, people in the field of dynamical systems now have a the beginnings of a tool which is cross-platform, free, open-source and collaborative in nature -- this is how science should be!  For more information on this line of thinking, check out [http://www.openscience.org/blog/ The Open Science Project].   
+With a tool like Sympy and !PyDy, people in the field of dynamical systems now have a the beginnings of a tool which is cross-platform, free, open-source and collaborative in nature -- this is how science should be!  For more information on this line of thinking, check out [http://www.openscience.org/blog/ The Open Science Project].   
 
 My most pressing goal at the moment is to use !PyDy to derive the equations of motion for a bicycle model that I use in my research.  This is a notoriously difficult system to model without making lots of simplifying assumptions, so if !PyDy can do it, I am confident that it can do nearly any system that is thrown its way.
 
