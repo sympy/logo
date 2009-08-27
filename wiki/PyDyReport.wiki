@@ -37,7 +37,7 @@ Throughout the summer, Ondrej was always responsive via email/phone/chat.  He wa
 
 My office mate, Thomas Johnston, and I had numerous discussions about dynamics and how to implement things in a generic setting.  We spent many lunches and afternoons discussion the general procedure one takes when deriving equations of motion using Kane's method, and many of his suggestions were implemented in PyDy.  It was great having somebody else who is familiar with Kane's method (and who also knows Python) to talk with.  The discussion with him have definitely improved PyDy.
 
-I am thankful that large company like Google is such a strong sponsor of open source software.  This project wouldn't have happened at the speed it did if it hadn't been for there Summer of Code program, so I am indebted to them for this.  Thanks Google!
+I am thankful that Google is such a strong sponsor of open source software.  This project wouldn't have happened at the speed it did if it hadn't been for there Summer of Code program, so I am indebted to them for this.  Thanks Google!
 
 = Conclusions and Future Work =
 There are few things that I would recommend to anybody doing a GSoC project:
@@ -47,6 +47,7 @@ There are few things that I would recommend to anybody doing a GSoC project:
   # Study the language in which you will be programming so that you are familiar with the tools in the language and this won't be a hurdling block.
   # Study the existing code base for the project you wish to be involved with.  This will help you understand how your project will integrate with what has already been completed.
   # Be consistent about working your 40 hours -- don't slack off or you will get impossibly behind.
+  # Don't be afraid to ask questions -- but make sure you have at least looked in the obvious places (i.e., searched google or read/skimmed the documentation) before you ask your question.
 
 I am still working actively on PyDy and will continue to do so as much as possible.  It is my hope that other people who study dynamical systems will be interested in collaborative efforts to improve and extend PyDy in order to give it much more functionality.  My most pressing goals at the moment are to use PyDy to derive the equations of motion for a bicycle model that I use in my research.  This is a notoriously difficult system to model without making lots of simplifying assumptions, so if PyDy can do it, I am confident that it can do nearly any system that is thrown its way.
 
