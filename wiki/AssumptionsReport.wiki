@@ -1,13 +1,30 @@
-#summary One-sentence summary of this page.
+#summary Review of the 2009 Summer of Code project
 
 = Introduction =
 
-GSOC 2009 Assumptions
+The main goals in my project are to build a new assumption system. By an assumption system I mean a module that can extract conclusions from assumptions and known facts. My module should have the following qualities:
+
+  - It should be out of the core, and the core should not have any dependencies on this.
+  - It should be easily extensible.
+  - It should have a nice user interface.
+  - It should be fast.
 
 
-= Details =
+= First steps =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+In the month of march I had some initial code for a new assumption system. It depended heavily on sympy.core.facts and was rather slow, but that served as a model for future work. It already had some nice ideas: all computations where done in modules that got imported at runtime and thus there was no overhead at load time (as opposed to the old system).
+
+
+= Facing some problems =
+
+In the initial implementation of the module is that it made extensive use of sympy.core.facts, and that module was extremely difficult to extend. It is necessary to implement a new logic and facts module. At that point I discussed the problem with Ondrej Certik and he suggested that it would be a nice Summer of Code Project.
+
+= GSoC =
+
+The first thing to do was to implement a new logic module.
+
+= Query module =
+
+= Refine module =
+
+= Future work and removing the old assumption system =
