@@ -5,8 +5,11 @@
 The main goals in my project are to build a new assumption system. By an assumption system I mean a module that can extract conclusions from assumptions and known facts. My module should have the following qualities:
 
   - It should be out of the core, and the core should not have any dependencies on this.
+
   - It should be easily extensible.
+
   - It should have a nice user interface.
+
   - It should be fast.
 
 
