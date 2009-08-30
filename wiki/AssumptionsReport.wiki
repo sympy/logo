@@ -54,7 +54,7 @@ The next week, I managed to recode the DPLL algorithm to use integer representat
 
 = Future work and removing the old assumption system =
 
-Despite some progress, I could not remove the old assumption system without breaking lots of things, so I am still working on that in my [http://fseoane.net/cgi-bin/gitweb.cgi?p=sympy.git;a=shortlog;h=refs/heads/remove_assumptions git branch]. This is a major work that still remains to be done and that affects to all sympy's community.
+All of what was proposed in my application was done, with one notable exception: removing the old assumption system. Despite some progress, I could not remove the old assumption system without breaking lots of things, so I am still working on that in my [http://fseoane.net/cgi-bin/gitweb.cgi?p=sympy.git;a=shortlog;h=refs/heads/remove_assumptions git branch]. This is a major work that still remains to be done and that affects to all sympy's community.
 
 There is also some work to be done in performance: the logic module can still be improved, some ideas are listed in doc/src/modules/logic.txt
 
