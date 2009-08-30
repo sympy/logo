@@ -56,6 +56,10 @@ The next week, I managed to recode the DPLL algorithm to use integer representat
 
 Despite some progress, I could not remove the old assumption system without breaking lots of things, so I am still working on that in my [http://fseoane.net/cgi-bin/gitweb.cgi?p=sympy.git;a=shortlog;h=refs/heads/remove_assumptions git branch]. This is a major work that still remains to be done and that affects to all sympy's community.
 
-There is some work to be done in performance: the logic module can still be improved, some ideas are listed in doc/src/modules/logic.txt
+There is also some work to be done in performance: the logic module can still be improved, some ideas are listed in doc/src/modules/logic.txt
 
 = Conclusions =
+
+I had a great time working on this project. The whole community was great responding to questions and patches both in IRC and mailing list. Also, knowing them in person was one of the best experiences in this summer.
+
+There were also some difficult moments. For a number of reasons, some weeks I could not concentrate on this project 100% and I wish I would have had more time to work on this. So my advice to new students is: don't overbook yourself!.
