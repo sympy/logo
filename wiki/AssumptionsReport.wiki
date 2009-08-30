@@ -1,5 +1,9 @@
 #summary Review of the 2009 Summer of Code project
 
+= About me =
+
+I'm an math undergraduate student from Granada's University (Spain). I am fascinated with math, open source and music, so this project matches most of my main interests.
+
 = Introduction =
 
 The main goals in my project are to build a new assumption system. By an assumption system I mean a module that can extract conclusions from assumptions and known facts. My module should have the following qualities:
