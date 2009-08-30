@@ -36,8 +36,12 @@ Back home, I made the changes we discussed in Leipzig and [http://fseoane.net/bl
 
 = Refine module =
 
+Shortly after that, [http://fseoane.net/blog/?p=162 I began working on the refine module]. This module makes simplifications on expressions based on assumptions. It is the last step that we need to finally remove the old assumption system.
+
+After this was committed, we had implemented all that the old system was able to do (and some more things). However, there were some problems. Some of the goals listed in my introduction were not met: It was horribly slow!!
+
 = Speed improvements =
 
-The logic module proved to be the real bottleneck for the query and refine module, 
+The logic module proved to be the real bottleneck for the query and refine module. 
 
 = Future work and removing the old assumption system =
