@@ -24,10 +24,20 @@ In the initial implementation of the module is that it made extensive use of sym
 
 = GSoC =
 
-The first thing to do was to implement a new logic module.
+The first thing to do was to implement a new logic module. I adapted source code from project aima-python, so initially that went really fast, but it revealed to have some hidden bugs that were very hard to debug. I finally solved those bugs and committed module sympy.logic. We decided then to make sympy release before committing source code of the query module. That was mid June. 
 
 = Query module =
 
+While preparing sympy 0.6.5 relase, I coded the query module. This module is responsible for asking questions about expressions, e.g. Is 2*x even given that x is integer ?. Having a logic module that was solid and clean made this process really fast, although it is quite a big module (+2200 lines).
+
+When the query module was ready to be merged into trunk, I had to opportunity to meat some sympy developers attending EuroSciPy in Leipzip. I had some very interesting conversations regarding user interface, and I decided to change most of the user interface.
+
+Back home, I made the changes we discussed in Leipzig and [http://fseoane.net/blog/?p=161 merged in the query module]. 
+
 = Refine module =
+
+= Speed improvements =
+
+The logic module proved to be the real bottleneck for the query and refine module, 
 
 = Future work and removing the old assumption system =
