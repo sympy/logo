@@ -42,6 +42,14 @@ After this was committed, we had implemented all that the old system was able to
 
 = Speed improvements =
 
-The logic module proved to be the real bottleneck for the query and refine module. 
+The logic module proved to be the real bottleneck for the query and refine module. Making logic work internally with instances of sympy.Symbol was making the whole system horribly slow.
+
+Solution is simple, the logic module and concretely the DPLL algorithm should not use symbols internally, but some lighter structures. Integers where perfect for my purposes.
+
+The next week, I managed to recode the DPLL algorithm to use integer representation and avoid the conversion to integer representation in ask(). The speed gains where far beyond what [http://fseoane.net/blog/?p=164 I had expected].
 
 = Future work and removing the old assumption system =
+
+Despite some progress, I could not remove the old assumption system without breaking lots of things, so I am still working on that in my [http://fseoane.net/cgi-bin/gitweb.cgi?p=sympy.git;a=shortlog;h=refs/heads/remove_assumptions git branch]. This is a major work that still remains to be done and that affects to all sympy's community.
+
+There is some work to be done in performance: the logic module can still be improved, some ideas are listed in doc/src/modules/logic.txt
