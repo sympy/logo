@@ -28,7 +28,7 @@ In the initial implementation of the module is that it made extensive use of sym
 
 = GSoC =
 
-The first thing to do was to implement a new logic module. I adapted source code from project aima-python, so initially that went really fast, but it revealed to have some hidden bugs that were very hard to debug. I finally solved those bugs and committed module sympy.logic. We decided then to make sympy release before committing source code of the query module. That was mid June. 
+The first thing to do was to implement a new logic module. I adapted source code from project aima-python, so initially that went really fast, but it revealed to have some hidden bugs that were very hard to debug. I finally solved those bugs and committed module sympy.logic. We decided then to make sympy release before committing source code of the query module. That was mid June, and I had still some exams. In Spain, academic year ends really late (July).
 
 = Query module =
 
@@ -57,3 +57,5 @@ The next week, I managed to recode the DPLL algorithm to use integer representat
 Despite some progress, I could not remove the old assumption system without breaking lots of things, so I am still working on that in my [http://fseoane.net/cgi-bin/gitweb.cgi?p=sympy.git;a=shortlog;h=refs/heads/remove_assumptions git branch]. This is a major work that still remains to be done and that affects to all sympy's community.
 
 There is some work to be done in performance: the logic module can still be improved, some ideas are listed in doc/src/modules/logic.txt
+
+= Conclusions =
