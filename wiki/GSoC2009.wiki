@@ -7,7 +7,7 @@ You can watch the progress during the summer at http://planet.sympy.org/
 
 || *student* || *mentor* || *mentoring organisation* || *blog* || *report* || *proposal* ||
 || Priit Laes  || Ondřej Čertík || PSF || http://plaes.org/blog/tags/sympy || || http://socghop.appspot.com/student_project/show/google/gsoc2009/python/t124024631607 || 
-|| Freddie Witherden || John Hunter  || PSF || http://gsoc-mathtex.blogspot.com/ || || http://socghop.appspot.com/student_project/show/google/gsoc2009/python/t124024631352 ||
+|| Freddie Witherden || John Hunter  || PSF || http://gsoc-mathtex.blogspot.com/ || MathtexReport || http://socghop.appspot.com/student_project/show/google/gsoc2009/python/t124024631352 ||
 || Aaron Meurer || Andy Terrel || PSU || http://asmeurersympy.wordpress.com/ || ODEsModuleReport || http://socghop.appspot.com/student_project/show/google/gsoc2009/portland_state/t124024247418 ||
 || Fabian Pedregosa || Mateusz Paprocki || PSU || http://fseoane.net/blog/ || AssumptionsReport || http://socghop.appspot.com/student_project/show/google/gsoc2009/portland_state/t124024247737 ||
 || Dale Peterson || Ondřej Čertík || PSU || http://dlpeterson.com/blog/ || PyDyReport || http://socghop.appspot.com/student_project/show/google/gsoc2009/portland_state/t124024249684 ||
