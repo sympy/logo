@@ -1,15 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Review of the 2009 Summer of Code project
+#labels GSoC
 
-= Introduction =
-
-Add your content here.
-
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
-
-More to come soon (I promise).
+I have written up a review on my blog [http://asmeurersympy.wordpress.com/2009/09/07/google-summer-of-code-2009-wrap-up/ here], but I still need to transfer here.  
