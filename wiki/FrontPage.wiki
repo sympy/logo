@@ -45,6 +45,8 @@ git repository (you can track current progress in there): http://git.sympy.org/?
 
 All documentation is at: http://docs.sympy.org/
 
+For the documentation of the development version see: http://certik.github.com/sympy/
+
 ==Features==
 
 Currently, !SymPy core has around 6300 lines of code (including extensive comments and docstrings) and its capabilities include:
