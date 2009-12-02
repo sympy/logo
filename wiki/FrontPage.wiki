@@ -49,7 +49,7 @@ For the documentation of the development version see: http://certik.github.com/s
 
 ==Features==
 
-Currently, !SymPy core has around 6300 lines of code (including extensive comments and docstrings) and its capabilities include:
+Currently, !SymPy core has around 13000 lines of code (including extensive comments and docstrings) and its capabilities include:
 
   * basic arithmetics `*,/,+,-,**`
   * basic simplification (like `a*b*b + 2*b*a*b  -> 3*a*b^2`)
@@ -63,7 +63,7 @@ Currently, !SymPy core has around 6300 lines of code (including extensive commen
   * noncommutative symbols
   * pattern matching
  
-Then there are !SymPy modules (18200 lines including documentation) for these tasks:
+Then there are !SymPy modules (73000 lines including documentation) for these tasks:
 
   * more functions (sin, cos, tan, atan, asin, acos, factorial, zeta, legendre)
   * limits (like `limit(x*log(x), x, 0) -> 0`)
@@ -76,7 +76,7 @@ Then there are !SymPy modules (18200 lines including documentation) for these ta
   * plotting (2D and 3D)
 
 
-There are extensive tests (6148 lines in 58 files) for every single feature in !SymPy. [SymPyTests More...] 
+There are extensive tests (15000 lines in 142 files) for every single feature in !SymPy. [SymPyTests More...] 
 
 === Related projects ===
 
