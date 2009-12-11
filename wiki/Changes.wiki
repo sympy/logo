@@ -22,6 +22,7 @@ date: hopefully before Christmas
 
   * many documentation improvements, including docstrings and doctests
   * new assumptions system (GSoC)
+    * Note: The old assumptions system is depreciated.  All new code should use Ask(x, Q.real) instead of x.is_real.  See assumptions documentation for more information.
   * improvements to test runner
   * printing improvements (especially LaTeX, but also mathml and pretty printing)
   * discriminant of polys 
