@@ -26,7 +26,7 @@ date: hopefully before Christmas
   * printing improvements (especially LaTeX, but also mathml and pretty printing)
   * discriminant of polys 
   * block diagonal methods for matrices
-  * vast improvements to solving of ODEs (GSoC)
+  * vast improvements to solving of ODEs (GSoC) (See ODE documentation for full details). 
   * logcombine function
   * improvements to sets
   * better trigonometric simplification
