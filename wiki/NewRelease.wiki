@@ -60,8 +60,7 @@ And check manually, that no py.test run generated a stack trace. (search for "CO
 === Do all examples work? ===
 
 {{{
-$ cd examples
-$ ./all.py
+$ examples/all.py
 }}}
 
 Make sure no traceback is generated and this is printed at the end:
