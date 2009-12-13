@@ -42,29 +42,32 @@ date: hopefully before Christmas
   * pyglet updated
   * many, many bug fixes and small improvements
 
-The following 21 people have contributed patches to this release (sorted by the number of patches):
+The following 21 people have contributed patches to this release (sorted alphabetically):
 
   * Aaron Meurer
-  * Chris Smith
-  * Vinzent Steinberg
-  * Jorn Baayen
-  * Ondrej Certik
-  * Øyvind Jensen
-  * Ronan Lamy
-  * Fabian Pedregosa
-  * Toon Verstraelen
-  * Luke Peterson
-  * Renato Coutinho
-  * Bill Flynn
-  * Ryan Krauss
   * Alan Bromborsky
   * Andy R. Terrel
+  * Bill Flynn
+  * Chris Smith
   * Eh Tan
+  * Fabian Pedregosa
   * Fredrik Johansson
+  * Jorn Baayen
+  * Julio Idichekop Filho
   * Kevin Goodsell
+  * Luke Peterson
+  * Øyvind Jensen
+  * Ondrej Certik
   * Oscar Benjamin
   * Priit Laes
+  * Renato Coutinho
+  * Ronan Lamy
+  * Ryan Krauss
   * Ted Horst
+  * Toon Verstraelen
+  * Vinzent Steinberg
+
+
 
 
 == 0.6.5 ==
