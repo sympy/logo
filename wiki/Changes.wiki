@@ -42,7 +42,7 @@ date: December 20
   * pyglet updated
   * many, many bug fixes and small improvements
 
-The following 21 people have contributed patches to this release (sorted alphabetically):
+The following 22 people have contributed patches to this release (sorted alphabetically):
 
   * Aaron Meurer
   * Alan Bromborsky
@@ -55,6 +55,7 @@ The following 21 people have contributed patches to this release (sorted alphabe
   * Jorn Baayen
   * Julio Idichekop Filho
   * Kevin Goodsell
+  * Łukasz Pankowski
   * Luke Peterson
   * Øyvind Jensen
   * Ondrej Certik
