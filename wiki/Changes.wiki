@@ -87,7 +87,7 @@ The following 10 people helped reviewing patches:
 date: 17 july 2008
 
 This release has been marked by improved documentation,
-C code generation, solve and dsolve improvements, mpath update, a new
+C code generation, solve and dsolve improvements, mpmath update, a new
 logic module and the start of Google's Summer of Code program.
 
 Source distribution can be downloaded from
