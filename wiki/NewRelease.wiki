@@ -116,14 +116,6 @@ but still check by inspection, that the tarball includes all necessary files.
 
 == Do the actual release ==
 
-Clone main repository
-{{{
-git clone git://git.sympy.org/sympy.git
-cd sympy
-}}}
-
-(always clone it, otherwise the "./setup.py sdist" below can put garbage into the tarball)
-
 Change version in `sympy/__init__.py` and `doc/src/conf.py`, e.g.
 {{{
 vim doc/src/conf.py 
