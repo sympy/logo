@@ -136,7 +136,16 @@ Prepare the release tarball and win32 installer (should work ok even on Linux)
 ./setup.py bdist_wininst
 }}}
 
-And put dist/sympy-0.5.9.tar.gz and dist/sympy-0.5.9.win32.exe on the website
+Compile the html documentation
+{{{
+cd doc
+make html
+cd _build
+mv html sympy-0.5.9-docs-html
+zip -9lr sympy-0.5.9-docs-html.zip sympy-0.5.9-docs-html
+}}}
+
+And put dist/sympy-0.5.9.tar.gz, dist/sympy-0.5.9.win32.exe and sympy-0.5.9-docs-html.zip on the website.
 
 Change version to x.y.z-git, and start new development cycle
 {{{
@@ -155,7 +164,6 @@ git push --tags git@git.sympy.org:repos/sympy.git master
   * http://code.google.com/p/sympy/ (FrontPage)
   * http://wiki.sympy.org
   * http://code.google.com/p/sympy/wiki/Changes  (use `git shortlog -n sympy-0.6.3..` to get the list of contributors)
-  * http://sympy.googlecode.com/svn/api/sympy.html (see TechnicalTasks)
   * http://en.wikipedia.org/wiki/SymPy
   * http://en.wikipedia.org/wiki/Comparison_of_computer_algebra_systems
   * http://freshmeat.net/projects/sympy/
