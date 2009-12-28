@@ -21,13 +21,13 @@ Find the latest release tag and see what is new since then.
 date: 20 December 2009
 
   * many documentation improvements, including docstrings and doctests
-  * new assumptions system (GSoC) (See assumptions documentation for more information or have a look at [http://fseoane.net/blog/?cat=16 Fabian's blog].)
+  * new assumptions system (GSoC) (See [http://docs.sympy.org/modules/assumptions.html assumptions documentation] for more information or have a look at [http://fseoane.net/blog/?cat=16 Fabian's blog].)
     * Note: This is going to replace the old assumption system. It is encouraged to use it for new code, however it is not completely finished and parts of sympy have yet to be rewritten to use it; this scheduled for the 0.7 release. 
   * improvements to test runner
   * printing improvements (especially LaTeX, but also mathml and pretty printing)
   * discriminant of polys 
   * block diagonal methods for matrices
-  * vast improvements to solving of ODEs (GSoC) (See ODE documentation for full details or [http://asmeurersympy.wordpress.com/ Aaron's blog]). 
+  * vast improvements to solving of ODEs (GSoC) (See [http://docs.sympy.org/modules/solvers/ode.html ODE documentation] for full details or [http://asmeurersympy.wordpress.com/ Aaron's blog]). 
   * logcombine function
   * improvements to sets
   * better trigonometric simplification
