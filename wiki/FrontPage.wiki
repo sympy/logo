@@ -144,7 +144,7 @@ Out[1]:
     2     24     720     8064            
 }}}
 
-Read the [http://code.google.com/p/sympy/wiki/Tutorial tutorial] for more examples.
+Read the [http://docs.sympy.org/tutorial.html tutorial] for more examples.
 
 
 ==Development==
