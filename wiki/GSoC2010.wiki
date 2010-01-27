@@ -4,7 +4,7 @@ You can watch the progress during the summer at http://planet.sympy.org/
 
 = Introduction =
 
-[http://code.google.com/p/sympy/ SymPy] is going to participate, the same way as in 2007 (see [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007]) and 2008 (see [http://code.google.com/p/sympy/wiki/GSoC2008 GSoC2008]).
+[http://code.google.com/p/sympy/ SymPy] is going to participate, the same way as in 2007 (see [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007]), 2008 (see [http://code.google.com/p/sympy/wiki/GSoC2008 GSoC2008]), and 2009 (see [http://code.google.com/p/sympy/wiki/GSoC2009 GSoC2009]).
 
 Now it's time to get involved in the project - sign up to the !SymPy mailinglist, try to fix issues, send patches, simply let us know about yourself.
 
@@ -22,14 +22,16 @@ Feel free to discuss other ideas on our mailinglist.
 
 = How to apply =
 
-On March 23 Google will open applications for students as described on the official [http://socghop.appspot.com/document/show/program/google/gsoc2009/timeline timeline], the deadline is April 3. If !SymPy is accepted as an organization, apply to it. Otherwise please apply directly to mentorship organizations, you can apply to anyone you want, in 2007 it was Python Software Foundation (PSF), Portland State University and the Space Telescope Science Institute that students were successful at, in 2008 it was PSF. The applications at each organization will be judged and the best ones will be selected (according to the number of slots that Google assigns to each organization).
+Sometime in March Google will open applications for students as described on the official [http://socghop.appspot.com/document/show/program/google/gsoc2009/timeline timeline], the deadline will probably be in April.  See [http://socghop.appspot.com/ the GSoC page] for an official timeline.  If !SymPy is accepted as an organization, apply to it. Otherwise please apply directly to mentorship organizations, you can apply to anyone you want, in 2007 it was Python Software Foundation (PSF), Portland State University and the Space Telescope Science Institute that students were successful at, in 2008 it was PSF, and in 2009 is was PSF and Portland State University (PSU). The applications at each organization will be judged and the best ones will be selected (according to the number of slots that Google assigns to each organization).
 
-Informally however, it's good to get involved with the !SymPy project before, so that we can help you write a good application and select a good topic, that fits you and us well (and that has a good chance of succeeding).
+Informally however, it's good to get involved with the !SymPy project before, so that we can help you write a good application and select a good topic, that fits you and us well (and that has a good chance of succeeding).  We do require that you submit at least one patch that passes review to become accepted.  
 
 [http://wiki.sympy.org/wiki/Ond%C5%99ej_%C4%8Cert%C3%ADk Ondřej]'s note: if you want me to proof read your appliction (recommended:), send it to me before you send it to PSF or other orgs.
 
 = Links =
 
-*GSoC2009 FAQ*: http://code.google.com/opensource/gsoc/2009/faqs.html
+*GSoC 2010 FAQ*: http://code.google.com/opensource/gsoc/2010/faqs.html
 
-*Main GSoC2009 site*: http://code.google.com/soc/
+*Main GSoC 2010 site*: http://code.google.com/soc/
+
+*Other GSoC 2001 site (where the applications will go)*: http://socghop.appspot.com/
