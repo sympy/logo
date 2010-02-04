@@ -112,7 +112,9 @@ $ git shortlog -n sympy-0.6.2..
 === does the tarball contain all the needed files? ===
 
 The previous paragraph tests, that all tests pass in the tarball,
-but still check by inspection, that the tarball includes all necessary files.
+but still check by inspection, that the tarball includes all necessary files. Files in the bin directory are potentially installed to /usr/bin, so be careful.
+
+You may have a look an at MANIFEST.in which defines the files to be included in the tarball.
 
 == Do the actual release ==
 
