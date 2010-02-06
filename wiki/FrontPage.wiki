@@ -76,7 +76,7 @@ Then there are !SymPy modules (73000 lines including documentation) for these ta
   * plotting (2D and 3D)
 
 
-There are extensive tests (15000 lines in 142 files) for every single feature in !SymPy. [SymPyTests More...] 
+There are extensive tests (15000 lines in 142 files) for every single feature in !SymPy. 
 
 === Related projects ===
 
