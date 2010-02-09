@@ -26,6 +26,9 @@ date: February 2010
   * try to expand integrand if integration fails
   * improved isprime() (pseudoprimes were falsely reported as being prime)
   * runtests.py prints less when testing documentation
+  * ODE code clean-up and fixes
+  * documentation fixes
+  * runtests.py is now more verbose about expected failures to avoid confusion
 
 == 0.6.6 ==
 
