@@ -30,6 +30,21 @@ date: February 2010
   * documentation fixes
   * runtests.py is now more verbose about expected failures to avoid confusion
 
+The following 4 people have contributed patches to this release:
+
+  * Aaron Meurer
+  * Chris Smith
+  * Ronan Lamy
+  * Vinzent Steinberg
+
+The following 5 people helped reviewing patches:
+
+  * Aaron Meurer
+  * Chris Smith
+  * Ondrej Certik
+  * Ronan Lamy
+  * Vinzent Steinberg
+
 == 0.6.6 ==
 
 date: 20 December 2009
