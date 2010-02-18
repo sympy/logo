@@ -9,7 +9,7 @@ As directed in `setup.py`, check the tests list using the command:
 $ python bin/generate_test_list.py
 }}}
 
-=== Are all modules include? ==
+=== Are all modules included? ==
 
 As directed in `setup.py`, check the module list using the command:
 {{{
