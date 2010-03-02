@@ -18,7 +18,7 @@ Find the latest release tag and see what is new since then.
 
 == 0.6.7 (Release Candidate) ==
 
-date: February 2010
+date: March 2010
 
   * fix a bug where bin/test and bin/doctest would be installed into /usr/bin
   * fix an example for recent matpoltlib versions
