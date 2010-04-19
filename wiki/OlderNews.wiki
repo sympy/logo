@@ -1,5 +1,23 @@
 #summary Older news, that don't fit on the front page anymore
 
+ * * 23 May 2009* !SymPy is participating in the Google Summer of Code 2009. See [http://code.google.com/p/sympy/wiki/GSoC2009 GSoC2009]
+  * *17 Jul 2009* Version 0.6.5 released ([http://sympy.blogspot.com/2009/07/sympy-065-released.html changes])
+  * *16 Jul 2009* Version 0.6.5.rc2 released ([http://groups.google.com/group/sympy/browse_thread/thread/cdbfc9e95a8ce140 changes])
+  * *11 Jul 2009* Version 0.6.5.rc1 released ([http://groups.google.com/group/sympy/browse_thread/thread/2fb2bd459fbaf936 changes])
+  * *25 Jun 2009* Version 0.6.5-beta2 released ([http://code.google.com/p/sympy/wiki/Changes changes])
+  * *4 Apr 2009* Version 0.6.4 released ([http://code.google.com/p/sympy/wiki/Changes changes], [http://sympy.blogspot.com/2009/04/sympy-0.html release notes])
+  * *29 Mar 2009* Version 0.6.4.beta3 [http://groups.google.com/group/sympy/browse_thread/thread/b798743505304a2 released]
+  * *11 Mar 2009* Version 0.6.4.beta2 [http://groups.google.com/group/sympy/browse_thread/thread/50ed6ecdb1709405/ released]
+  * *9 Feb 2009* Version 0.6.4.beta1 [http://groups.google.com/group/sympy/browse_thread/thread/7f2db9097a3bfa37 released]
+  * *19 Nov 2008* Version 0.6.3 released ([http://code.google.com/p/sympy/wiki/Changes changes])
+  * *18 Nov 2008* Version 0.6.3.beta2 [http://groups.google.com/group/sympy/browse_thread/thread/f96c98545a3fdf25 released]
+  * *17 Nov 2008* Version 0.6.3.beta1 [http://groups.google.com/group/sympy/browse_thread/thread/3ee19d16871e1c0d released]
+  * *17 Aug 2008* Version 0.6.2 released ([http://code.google.com/p/sympy/wiki/Changes changes])
+  * *22 Jul 2008* Version 0.6.1 released ([http://code.google.com/p/sympy/wiki/Changes changes])
+  * *7 Jul 2008* Version 0.6.0 released ([http://code.google.com/p/sympy/wiki/Changes changes])
+  * *24 May 2008* Version 0.5.15 released ([http://code.google.com/p/sympy/wiki/Changes changes])
+  * *19 May 2008* online !SymPy shell at [http://live.sympy.org live.sympy.org] created
+  * *26 Apr 2008* Version 0.5.14 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *21 Apr 2008* Results of the GSoC applications [http://groups.google.com/group/sympy/browse_thread/thread/f99c94b56328b962 announced].
   * *31 Mar 2008* Google [http://groups.google.com/group/google-summer-of-code-announce/browse_thread/thread/9fa88f31aa401f70 has extended] the GSoC application deadline to April 7.
   * *27 Mar 2008* [http://docs.sympy.org docs.sympy.org] launched.
