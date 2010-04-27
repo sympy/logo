@@ -2,6 +2,16 @@
 
 You can watch the progress during the summer at http://planet.sympy.org/
 
+= Details =
+
+|| *student* || *mentor* || *mentoring organisation* || *blog* || *report* || *proposal* ||
+|| Christian Muise  || Ondřej Čertík || PSF || http://haz-tech.blogspot.com/search/label/sympy || || http://socghop.appspot.com/gsoc/student_project/show/google/gsoc2010/python/t127230762878 || 
+
+
+= Old info =
+
+Older information follows:
+
 = Introduction =
 
 [http://code.google.com/p/sympy/ SymPy] is going to participate, the same way as in 2007 (see [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007]), 2008 (see [http://code.google.com/p/sympy/wiki/GSoC2008 GSoC2008]), and 2009 (see [http://code.google.com/p/sympy/wiki/GSoC2009 GSoC2009]).
