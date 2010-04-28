@@ -1,4 +1,4 @@
-#summary Older news, that don't fit on the front page anymore
+#summary Older news that doesn't fit on the front page anymore
 
  * * 23 May 2009* !SymPy is participating in the Google Summer of Code 2009. See [http://code.google.com/p/sympy/wiki/GSoC2009 GSoC2009]
   * *17 Jul 2009* Version 0.6.5 released ([http://sympy.blogspot.com/2009/07/sympy-065-released.html changes])
