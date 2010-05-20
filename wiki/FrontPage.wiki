@@ -5,7 +5,7 @@
 
 ==News==
 
-!SymPy participates in the *Google Summer of Code 2010*. More info [http://code.google.com/p/sympy/wiki/GSoC2010 here].
+!SymPy is participating in *Google Summer of Code 2010*. More info [http://code.google.com/p/sympy/wiki/GSoC2010 here].
 
   * *17 Mar 2010* Version 0.6.7 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *20 Dec 2009* Version 0.6.6 released ([http://code.google.com/p/sympy/wiki/Changes changes])
