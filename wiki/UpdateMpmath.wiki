@@ -20,4 +20,4 @@ to fix the import statements in the mpmath tests.  Read the docstring of adapt_p
 
   * Run tests and see if everything works, usually then one has to fix some little bugs.
 
-  * If everything works, submit a patch.  
+  * If everything works, submit a patch.  When you commit, be sure to add any new untracked files in the mpmath directory ({{{git status}}} will show you all untracked files, and {{{git add}}} will add them, or if you use {{{git commit --interactive}}}, choose "add untracked", and add everything in the mpmath directory).  
