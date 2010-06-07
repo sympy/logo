@@ -10,9 +10,10 @@ An announcement will be sent to the sympy mailing list whenever mpmath is update
   
   * Use:
 
+{{{
 python bin/adapt_paths.py > /tmp/x
 patch -p0 < /tmp/x
-
+}}}
 to fix the import statements in the mpmath tests.  Read the docstring of adapt_paths.py for more info.
 
   * Run tests and see if everything works, usually then one has to fix some little bugs.
