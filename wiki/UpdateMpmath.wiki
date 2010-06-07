@@ -14,7 +14,7 @@ An announcement will be sent to the sympy mailing list whenever mpmath is update
 python bin/adapt_paths.py > /tmp/x
 patch -p0 < /tmp/x
 }}}
-to fix the import statements in the mpmath tests.  Read the docstring of adapt_paths.py for more info.
+to fix the import statements in the mpmath tests.  Remove any .orig files that {{{patch}}} creates ({{{find sympy/mpmath | grep orig}}}). Read the docstring of adapt_paths.py for more info.
 
   * Run {{{./bin/strip_whitespace sympy/mpmath/ --recursive}}} to fix carriage returns in the mpmath source files.  {{{./bin/test sympy/utilities/tests/test_code_quality.py}}} will verify that everything is fixed here.
 
