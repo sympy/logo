@@ -1,0 +1,33 @@
+#summary Design ideas for Sympy's code generation features
+#labels Phase-Design
+= Introduction =
+
+This page is intended for sketches and design ideas related to the code generation features of Sympy which I (Øyvind) will improve during the GSOC 2010 project http://socghop.appspot.com/gsoc/student_project/show/google/gsoc2010/python/t127230762991 .  
+
+Everyone should feel free to add comments, suggestions and corrections.
+
+I will use this page as a working document and try to keep it up to date both with my current understanding of the issues and the actual implementation, so that in the end of the summer I can convert this page into documentation of the implemented code.  
+
+= Details =
+
+== Code generation step ==
+
+Fortran and C code printers will be used
+
+Scalar arguments are already implemented, but we need a mechanism to handle array arguments.  This is my current focus, and here is a tentative plan along with thoughts about some decisions that must be made:
+
+  * In order to handle large arrays, it is necessary to pass arrays by reference.  This is always the case in Fortran, and in C this corresponds to passing a memory address to a pointer.  In this sense, array arguments are actually just scalar arguments, but in order to access the array correctly in the subroutine it is necessary to also communicate information about how the array is stored in memory, i.e. rank and dimensions.  (Let's call it 'array metadata')
+
+  * Before the array metadata can be communicated to the subroutine, it must also be extracted from the mathematical expression.  This functionality could go into the code printers, the math objects themselves (by adding methods to Expr) or it could be determined by a standalone function in the codegen module.  My current conclusion is that since rank information of an object can be determined without knowing the context, but dimensions need to be synchronized across an equation, 1) Expr should get a property .array_rank, 2)  a standalone function should determine dimensions.
+
+  * A standalone function to determine dimensions must be able to synchronize the dimensions of the objects in the expression.  E.g. for a matrix A and vectors x and b it must be able to determine and distribute dimensions m,n, such that an equation b=Ax would result in code with arrays declared something like A <=> a(m,n), x <=> x(n) and b <=> b(m)
+
+  * I am considering whether array indices should be represented as objects of an 'Index' class that inherits from Symbol.  Each Index instance would keep track of its own range, so that it carries the information needed to construct a loop over its full range.  The function that determines dimensions should insert Index objects into the expression before it is handed over to the Code generators.
+
+  * The codegen utility implements a class 'Argument' with a subclass 'InputArgument'.  It is meant for scalar arguments, and I am not sure if I should put the array arguments in a subclass on its own, or simply extend InputArgument to handle arrays as well.
+
+  * I need to to implement corresponding classes for 'OutputArgument', so that we can have more than one return object.  This will be needed for instance to return both eigenvectors and eigenvalues in one call.
+
+== Code compilation step ==
+
+The plan is to have a singleton compiler object that encapsulates system resources such as compilers and libraries (blas, lapack etc.) and creates compiled binaries with python bindings.
