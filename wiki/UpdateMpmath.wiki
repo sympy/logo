@@ -16,6 +16,8 @@ patch -p0 < /tmp/x
 }}}
 to fix the import statements in the mpmath tests.  Read the docstring of adapt_paths.py for more info.
 
+  * Run {{{./bin/strip_whitespace sympy/mpmath/ --recursive}}} to fix carriage returns in the mpmath source files.  {{{./bin/test sympy/utilities/tests/test_code_quality.py}}} will verify that everything is fixed here.
+
   * Run tests and see if everything works, usually then one has to fix some little bugs.
 
   * If everything works, submit a patch.  
