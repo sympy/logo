@@ -1,0 +1,14 @@
+#summary How-to on updating the mpmath install in SymPy.
+
+*Note: this needs more detailed information*
+
+An announcement will be sent to the sympy mailing list whenever mpmath is updated.  When this happens, the mpmath that is included with SymPy needs to be updated.  
+
+You can obtain the new mpmath from http://code.google.com/p/mpmath/.  
+
+You need to copy the new mpmath into sympy/mpmath, then use:
+
+bin/adapt_paths.py
+
+(just read the module docstring for more info) and then run tests and
+see if everything works, usually then one has to fix some little bugs.
