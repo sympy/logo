@@ -6,7 +6,7 @@ This page is intended for sketches and design ideas related to the code generati
 
 Everyone should feel free to add comments, suggestions and corrections.
 
-I will use this page as a working document and try to keep it up to date both with my current understanding of the issues and the actual implementation, so that in the end of the summer I can convert this page into documentation of the implemented code.  
+I am thinking aloud here, so don't expect everything to be 100% clever.  On the contrary, expect that anything I write on this page can be substantially revised in the future, as my understanding evolves.  I will use this page as a working document and try to keep it up to date both with my current understanding of the issues and the actual implementation, so that in the end of the summer I can convert this page into documentation of the implemented code.  
 
 = Details =
 
