@@ -4,11 +4,17 @@
 
 An announcement will be sent to the sympy mailing list whenever mpmath is updated.  When this happens, the mpmath that is included with SymPy needs to be updated.  
 
-You can obtain the new mpmath from http://code.google.com/p/mpmath/.  
+  * You can obtain the new mpmath from http://code.google.com/p/mpmath/.  
+  
+  * You need to copy the new mpmath into sympy/mpmath.
+  
+  * Use:
 
-You need to copy the new mpmath into sympy/mpmath, then use:
+python bin/adapt_paths.py > /tmp/x
+patch -p0 < /tmp/x
 
-bin/adapt_paths.py
+to fix the import statements in the mpmath tests.  Read the docstring of adapt_paths.py for more info.
 
-(just read the module docstring for more info) and then run tests and
-see if everything works, usually then one has to fix some little bugs.
+  * Run tests and see if everything works, usually then one has to fix some little bugs.
+
+  * If everything works, submit a patch.  
