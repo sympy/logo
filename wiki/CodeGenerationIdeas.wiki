@@ -18,16 +18,28 @@ Scalar arguments are already implemented, but we need a mechanism to handle arra
 
   * In order to handle large arrays, it is necessary to pass arrays by reference.  This is always the case in Fortran, and in C this corresponds to passing a memory address to a pointer.  In this sense, array arguments are actually just scalar arguments, but in order to access the array correctly in the subroutine it is necessary to also communicate information about how the array is stored in memory, i.e. rank and dimensions.  (Let's call it 'array metadata')
 
-  * Before the array metadata can be communicated to the subroutine, it must also be extracted from the mathematical expression.  This functionality could go into the code printers, the math objects themselves (by adding methods to Expr) or it could be determined by a standalone function in the codegen module.  My current conclusion is that since rank information of an object can be determined without knowing the context, but dimensions need to be synchronized across an equation, 1) Expr should get a property .array_rank, 2)  a standalone function should determine dimensions.
+  * Before the array metadata can be communicated to the subroutine, it must also be extracted from the mathematical expression.  This functionality could go into the code printers, the math objects themselves (by adding methods to Expr) or it could be determined by a standalone function in the codegen module.  My current conclusion is that since rank information of an object can be determined without knowing the context, but dimensions need to be synchronized across an equation, 1) Expr should get a property .array_rank, 2)  a standalone function should determine dimensions.  Aaron suggested using assumptions to store array metadata.
 
   * A standalone function to determine dimensions must be able to synchronize the dimensions of the objects in the expression.  E.g. for a matrix A and vectors x and b it must be able to determine and distribute dimensions m,n, such that an equation b=Ax would result in code with arrays declared something like A <=> a(m,n), x <=> x(n) and b <=> b(m)
 
-  * I am considering whether array indices should be represented as objects of an 'Index' class that inherits from Symbol.  Each Index instance would keep track of its own range, so that it carries the information needed to construct a loop over its full range.  The function that determines dimensions should insert Index objects into the expression before it is handed over to the Code generators.
+  * I am considering whether array indices should be represented as objects of an 'Index' class ~~that inherits from Symbol~~.  Each Index instance would keep track of its own range, so that it carries the information needed to construct a loop over its full range.  The function that determines dimensions should insert Index objects into the expression before it is handed over to the Code generators.
 
   * The codegen utility implements a class 'Argument' with a subclass 'InputArgument'.  It is meant for scalar arguments, and I am not sure if I should put the array arguments in a subclass on its own, or simply extend InputArgument to handle arrays as well.
 
-  * I need to to implement corresponding classes for 'OutputArgument', so that we can have more than one return object.  This will be needed for instance to return both eigenvectors and eigenvalues in one call.
+  * I need to to implement corresponding classes for 'OutputArgument' and 'InOutArgument', so that we can have more than one return object.  This will be needed for instance to return both eigenvectors and eigenvalues in one call.
+
+=== More about the Index class ===
+
+Motivation:
+
+In the process of code generation, the symbolic math expressions need to be converted to a numerical expression. The problem must be discretized, dimensions must be specified and the problem formulation looses some generality.  I want to keep the expression as general as possible as long as possible.  In particular, I want to decide dimensions of arrays after the binary has been compiled, and pass them as arguments when calling the subroutine.  This is the reason I believe I need an Index class.  I think this would be similar to the Idx class in GiNaC.
+
+Implementation:
+
+The Index instances will store a label as well as upper and lower bounds of its range.  The upper and lower bounds will typically be Symbol objects, and the code generator must detect them and add them to the list of input arguments.  
+
+Index objects are not atomic since they contain other symbols, so it would not make sense to inherit from Symbol.
 
 == Code compilation step ==
 
-The plan is to have a singleton compiler object that encapsulates system resources such as compilers and libraries (blas, lapack etc.) and creates compiled binaries with python bindings.
+The plan is to have a ~~singleton~~ compiler object that encapsulates system resources such as compilers and libraries (blas, lapack etc.) and creates compiled binaries with python bindings.  We should use the CCompiler from distutils for this, and do the necessary hacking to get fortran support.
