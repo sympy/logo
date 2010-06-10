@@ -42,4 +42,17 @@ Index objects are not atomic since they contain other symbols, so it would not m
 
 == Code compilation step ==
 
-The plan is to have a ~~singleton~~ compiler object that encapsulates system resources such as compilers and libraries (blas, lapack etc.) and creates compiled binaries with python bindings.  We should use the CCompiler from distutils for this, and do the necessary hacking to get fortran support.
+The plan is to have a ~~singleton~~ compiler object that encapsulates system resources such as compilers and libraries (blas, lapack etc.) and creates compiled binaries with python bindings.  
+
+Luckily, we don't need to start from scratch, some options are
+
+=== compilers ===
+  # CCompiler from distutils
+  # scipy_distutils is extended to handle fortran compilation (used by f2py)
+  # fwrap has compilation functionality (also based on scipy_distutils?) 
+
+=== python bindings ===
+  # Cython can create python bindings to C
+  # fwrap can create python bindings to Fortran
+  # swig can be used to make python bindings to C
+  # f2py can be used to make python bindings to Fortran
