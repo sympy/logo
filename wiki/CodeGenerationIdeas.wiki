@@ -10,6 +10,26 @@ I am thinking aloud here, so don't expect everything to be 100% clever.  On the 
 
 = Details =
 
+= Examples =
+
+A simple example of the functionality is a low-level implementation of a matrix vector product.  We may express the matrix-vector product as
+
+{{{
+y(i) = M(i,j)*x(j)                (implicit sum over repeated indices)
+}}}
+
+The corresponding code should include the following loop:
+
+{{{
+do i=1, dim_1
+  do j = 1, dim_2
+    y(i) = M(i, j)*x(j)
+  end do
+end do
+}}}
+
+Here, dim_1 and dim_2 should be input arguments that must be supplied to the routine at runtime along with the arrays y, M and x.   The integers i,j are local variables.
+
 == Code generation step ==
 
 Fortran and C code printers will be used
