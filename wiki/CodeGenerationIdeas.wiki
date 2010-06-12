@@ -48,6 +48,8 @@ Scalar arguments are already implemented, but we need a mechanism to handle arra
 
   * I need to to implement corresponding classes for 'OutputArgument' and 'InOutArgument', so that we can have more than one return object.  This will be needed for instance to return both eigenvectors and eigenvalues in one call.
 
+  * We should have a way to to optimize loops over arrays.  Since Fortran and C  store arrays row-wise and column-wise, respectively, the loop order must be determined in the sub-classes of CodeGen.
+
 === More about the Index class ===
 
 Motivation:
