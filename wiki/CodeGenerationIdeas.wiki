@@ -10,7 +10,7 @@ I am thinking aloud here, so don't expect everything to be 100% clever.  On the 
 
 = Details =
 
-= Examples =
+== Examples ==
 
 A simple example of the functionality is a low-level implementation of a matrix vector product.  We may express the matrix-vector product as
 
@@ -38,7 +38,9 @@ Scalar arguments are already implemented, but we need a mechanism to handle arra
 
   * In order to handle large arrays, it is necessary to pass arrays by reference.  This is always the case in Fortran, and in C this corresponds to passing a memory address to a pointer.  In this sense, array arguments are actually just scalar arguments, but in order to access the array correctly in the subroutine it is necessary to also communicate information about how the array is stored in memory, i.e. rank and dimensions.  (Let's call it 'array metadata')
 
-  * Before the array metadata can be communicated to the subroutine, it must also be extracted from the mathematical expression.  This functionality could go into the code printers, the math objects themselves (by adding methods to Expr) or it could be determined by a standalone function in the codegen module.  My current conclusion is that since rank information of an object can be determined without knowing the context, but dimensions need to be synchronized across an equation, 1) Expr should get a property .array_rank, 2)  a standalone function should determine dimensions.  Aaron suggested using assumptions to store array metadata.
+  * Before the array metadata can be communicated to the subroutine, it must also be extracted from the mathematical expression.  This functionality could go into the code printers, the math objects themselves (by adding methods to Expr) or it could be determined by a standalone function in the codegen module.  My current conclusion is that since rank information of an object can be determined without knowing the context, but dimensions need to be synchronized across an equation, 1) Expr should get a property .array_rank, 2)  a standalone function should determine dimensions.  Aaron suggested using assumptions to store array metadata.  
+
+*Update:* I created Indexed and Idx classes, inspired from GiNaC, and they work very well for generating the loops.  I now think this is the way to go, so that in order to generate code with arrays, you will need to use Indexed objects from the point of setting up and manipulating the equations.  However, the Indexed and Idx classes are lightweight and general, so they can easily be subclassed for different applications.  I still like the idea of using assumptions on Symbols because it is an elegant user interface.  When the Idx based approach stabilizes it can be implemented simply as a call to a conversion function.  Codegen can be set up to always call _convert_assumed_shape_to_Idx(expr) before processing.
 
   * A standalone function to determine dimensions must be able to synchronize the dimensions of the objects in the expression.  E.g. for a matrix A and vectors x and b it must be able to determine and distribute dimensions m,n, such that an equation b=Ax would result in code with arrays declared something like A <=> a(m,n), x <=> x(n) and b <=> b(m)
 
