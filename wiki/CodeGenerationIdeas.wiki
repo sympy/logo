@@ -15,7 +15,7 @@ I am thinking aloud here, so don't expect everything to be 100% clever.  On the 
 A simple example of the functionality is a low-level implementation of a matrix vector product.  We may express the matrix-vector product as
 
 {{{
-y(i) = y(i) + M(i,j)*x(j)                (implicit sum over repeated indices)
+y(i) = M(i,j)*x(j)                (implicit sum over repeated indices)
 }}}
 
 The corresponding code should include the following loop:
@@ -23,7 +23,7 @@ The corresponding code should include the following loop:
 {{{
 do i=1, dim_1
   do j = 1, dim_2
-    y(i) = M(i, j)*x(j)
+    y(i) = y(i) + M(i, j)*x(j)
   end do
 end do
 }}}
