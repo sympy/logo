@@ -21,6 +21,7 @@ y(i) = M(i,j)*x(j)                (implicit sum over repeated indices)
 The corresponding code should include the following loop:
 
 {{{
+y = 0
 do i=1, dim_1
   do j = 1, dim_2
     y(i) = y(i) + M(i, j)*x(j)
@@ -29,6 +30,26 @@ end do
 }}}
 
 Here, dim_1 and dim_2 should be input arguments that must be supplied to the routine at runtime along with the arrays y, M and x.   The integers i,j are local variables.
+
+== Math interpretation step ==
+
+Before the code can be generated, it is necessary to have a clear idea of what the symbolic relation is supposed to express.  The math expression that implement a mathematical statement in code may not correspond directly with the hand written form, as exemplified by the matrix vector loop above.  Each element y(i) is calculated as a sum over j where the terms are added one at a time.   In order to implement the loop as above, `y(i)` must be added to the right hand side expression, `M(i,j)*x(j)` in an "interpretation step".
+
+I am unsure whether the interpretation step should be implemented in the Printers or in the codegen utility:  The modification of right hand side must go hand in hand with proper initialization of the result vector.  What is the correct initialization depends on whether it is identified as an InOutArgument or an OutputArgument, and currently this information is only available in codegen.  On the other hand, what the Printers are doing is of course interpreting math to code, so it would also naturally belong there.
+
+Alternatively, the loop can be implemented in a slightly different way:
+{{{
+do i=1, dim_1
+  temp = 0
+  do j = 1, dim_2
+    temp = temp + M(i, j)*x(j)
+  end do
+  y(i) = temp
+end do
+}}}
+
+This has an advantage of simplicity and it does not require initialization of y, so it would no doubt belong in the Printers.  The disadvantage is that the loops must be ordered such that all left hand side indices are in the outer loops, and this may hinder loop optimizations.  For instance, the above loop is optimized for C where arrays are column-first, but cannot easily be optimized for Fortran row-first arrays.  That would require reordering indices of the array.
+
 
 == Code generation step ==
 
