@@ -5,23 +5,18 @@
 Use this command to check out the latest project source code:
 
 {{{
+git clone git://github.com/sympy/sympy.git
+}}}
+
+You can browse the repository online here: http://github.com/sympy/sympy/
+as well as find there other options to download it (http transport, tgz, zip, ...)
+
+The above repository is mirrored into this read-only repository:
+
+{{{
 git clone git://git.sympy.org/sympy.git
 }}}
 
-== Online access ==
-
-You can browse the repository online here: http://git.sympy.org/?p=sympy.git
-
-
-==== Legacy ====
-
-The following also works:
-
-{{{
-hg clone http://hg.sympy.org/sympy-git.hg
-}}}
-
-and http://hg.sympy.org/sympy-git.hg, but this mercurial repository is automatically converted from our main git repository above. If you prefer mercurial to git, you can use it.
 
 
 You may also go to the original googlecode [http://code.google.com/p/sympy/source/checkout Source tab].
