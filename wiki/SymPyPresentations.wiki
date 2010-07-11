@@ -3,6 +3,8 @@
 On this page you can find presentations about !SymPy that were given at conferences.
 
 || *Date* || *Author* || *Venue* || *Slides* || *Video* ||
+|| 2010-7-10 || Mateusz Paprocki || [http://www.euroscipy.org EuroSciPy 2010] Conference, Paris, France || [http://sympy.googlecode.com/svn/materials/presentations/euroscipy2010.pdf euroscipy2010.pdf] || ||
+|| 2010-5-12 || Mateusz Paprocki || [https://cirl.berkeley.edu/view/Py4Science Py4Science 2010] UC Berkeley, CA, US || [http://sympy.googlecode.com/svn/materials/presentations/py4science2010.pdf py4science2010.pdf] || ||
 || 2009-7-24 || Mateusz Paprocki || [http://www.euroscipy.org EuroSciPy 2009] Conference, Leipzig, Germany || [http://sympy.googlecode.com/svn/materials/presentations/euroscipy2009.pdf euroscipy2009.pdf] || ||
 || 2009-5-19 || Mateusz Paprocki || [http://www.kns.pwr.wroc.pl/index.php?tr=2&la=en KNS 2009] Students Conference, Wrocław, Poland || [http://sympy.googlecode.com/svn/materials/presentations/kns2009.pdf kns2009.pdf] || ||
 || 2009-1-6 || Ondřej Čertík || [http://spilka.math.unr.edu/events/femtec-2009/ FEMTEC 2009], Lake Tahoe, CA, USA || [http://sympy.googlecode.com/svn/materials/presentations/femtec2009.pdf femtec2009.pdf] || ||
