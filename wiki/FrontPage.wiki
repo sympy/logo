@@ -43,7 +43,7 @@ If you found a bug, please report it in [http://code.google.com/p/sympy/issues/l
 
 Use "Featured Downloads" on the right hand side. For more options and information, go to the [http://code.google.com/p/sympy/wiki/DownloadInstallation?tm=2 Downloads] tab.
 
-git repository (you can track current progress in there): http://git.sympy.org/?p=sympy.git;a=summary
+git repository (you can track current progress in there): http://github.com/sympy/
 
 ==Documentation==
 
