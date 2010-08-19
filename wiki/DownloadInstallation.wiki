@@ -12,7 +12,7 @@ The only prerequisite is python 2.4 or newer. !SymPy optionally uses some other 
 
 * latest release *
 
-Download the latest tar.gz (something like `sympy-0.4.0.tar.gz`) from the [http://code.google.com/p/sympy/downloads/list?can=3&colspec=Filename+Summary+Uploaded+Size+DownloadCount Featured Downloads] on the front page.
+Download the latest tar.gz (something like `sympy-0.6.7.tar.gz`) from the [http://code.google.com/p/sympy/downloads/list?can=3&colspec=Filename+Summary+Uploaded+Size+DownloadCount Featured Downloads] on the front page.
 
 On unix systems (linux, BSD, Mac OS X, cygwin, etc.): extract it with the command `"tar xzf sympy-0.4.0.tar.gz"` and follow the README located in the sympy directory.
 
@@ -104,7 +104,9 @@ http://www.sagemath.org/packages/standard
 Download the windows installer from the frontpage ([http://code.google.com/p/sympy/downloads/list?can=3&colspec=Filename+Summary+Uploaded+Size+DownloadCount Featured Downloads]) and execute it. There is one known [http://code.google.com/p/sympy/issues/detail?id=188 issue] with missing MSVCR71.dll, but !SymPy works fine.
 
 
+*Mac OS X*
 
+An alternative for Mac OS X users is to use the [http://finkproject.org/ Fink] package manager system. You can install sympy by typing `fink install sympy-py26`.  Replace `py26` with whatever version of Python you want to use.  The most recent version available is recommended.  Do `fink list sympy` to see all available options.  
 
 = Installation =
 
