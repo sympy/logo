@@ -1,3 +1,4 @@
+#labels Deprecated,GSoC
 = Google Summer of Code 2009 Application =
 
 == List of questions in the application form ==
