@@ -1,4 +1,5 @@
 #summary Information about the 2008 Google Summer of Code and SymPy
+#labels GSoC
 
 = Introduction =
 
