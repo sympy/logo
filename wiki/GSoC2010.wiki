@@ -1,4 +1,5 @@
 #summary Information about the 2010 Google Summer of Code and SymPy
+#labels GSoC
 
 You can watch the progress during the summer at http://planet.sympy.org/
 
