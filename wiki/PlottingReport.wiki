@@ -1,4 +1,5 @@
 #summary Brian Jorgensen's Summer of Code 2007 experience.
+#labels GSoC
 
 = March - Proposal and Application Process =
 
