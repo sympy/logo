@@ -1,4 +1,5 @@
 #summary Review of the 2009 Summer of Code project
+#labels GSoC
 
 = About me =
 
