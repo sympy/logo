@@ -1,4 +1,5 @@
 #summary Review of the 2008 Summer of Code project.
+#labels GSoC
 
 My name is Fredrik Johansson, and I participated in Google Summer of Code 2008 as a !SymPy developer. The project consisted of implementing "robust high-precision numerical evaluation" for !SymPy (you can read the [http://code.google.com/soc/2008/psf/appinfo.html?csaid=523E75373CEC7F39 abstract of my application]).
 
