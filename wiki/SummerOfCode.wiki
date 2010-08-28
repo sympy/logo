@@ -1,4 +1,5 @@
 #summary Some project ideas that might work for the Google's summer of code.
+#labels Deprecated,GSoC
 
 This page served for applying for 2007 GSoC. See [http://code.google.com/p/sympy/wiki/GSoC2007 GSoC2007] for uptodate information about !SymPy's involvement in 2007 GSoC.
 
