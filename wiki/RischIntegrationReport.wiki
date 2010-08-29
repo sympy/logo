@@ -1,4 +1,4 @@
-#summary Review of the 2010 Risch Integration Project
+#summary Review of the 2010 Risch Integration GSoC Project
 #labels GSoC
 
 = About Me =
