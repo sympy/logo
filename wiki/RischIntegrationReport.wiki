@@ -1,0 +1,32 @@
+#summary Review of the 2010 Risch Integration Project
+#labels GSoC
+
+= About Me =
+
+My name is Aaron Meurer.  I am an undergraduate student at New Mexico Tech double majoring in Mathematics and Computer Science.  This is my second year participating in Google Summer of Code.  Last year (2009), I also worked with SymPy on improving the ODEs module (see the report for that project [http://code.google.com/p/sympy/wiki/ODEsModuleReport here].
+
+= Introduction =
+
+My project was to implement the full Risch Algorithm for Symbolic Integration in SymPy.  In particular, I worked on implementing the transcendental part of the algorithm.  My work consisted mostly of taking the algorithms from _[http://books.google.com/books?id=8SAaSd89sSkC&printsec=frontcover&dq=manuel+bronstein&hl=en&ei=Osp6TJK_IJPCsAPJ9oHuCg&sa=X&oi=book_result&ct=result&resnum=1&ved=0CCoQ6AEwAA#v=onepage&q&f=false Symbolic Integration I: Transcendental Functions]_ by Manuel Bronstein.  
+
+Note that this is just an overview of my work this summer.  For more details, see the posts to my [http://asmeurersympy.wordpress.com/ blog], which also include more information on the theory behind the Risch Algorithm.  
+
+= GSoC Review =
+
+== Beginning ==
+
+If you are interested in how I originally became involved with SymPy and Google Summer of Code, you should read my [http://code.google.com/p/sympy/wiki/ODEsModuleReport report] for last year's project. This year, I was already an active developer of SymPy and already knew the procedures for Google Summer of Code, which helped me to focus on my project itself.
+
+== The GSoC Period ==
+
+=== Preliminary Work ===
+
+The Risch Symbolic Integration Algorithm is essentially a bunch of polynomial manipulation algorithms.  Therefore, all of these algorithms that I implemented are based on top of SymPy's Polys module.  Prior to working on this project, I had only played with the Polys module a little, because I did not use it in my previous project, and because the module was new (it was merged into the SymPy trunk in March of this same year).  Therefore, the first thing that I decided to do for my project was to familiarize myself with the Polys module in SymPy.  The Polys module at that point had almost no doctests in the method/function docstrings, So the way that I chose to do this was to write doctests for all the major functions/methods in the Polys module.  This took me about two weeks to fully complete, after which I wrote almost 1000 doctests for the module.  Doing this forced me to understand what each function or method did, and in a way that required enough understanding to write a good doctest for it. In going through the functions and methods in the module, I also stumbled upon several bugs and efficiency problems, and I also added fixes for these in my development branch.  
+
+I also had another good reason for doing this first instead of jumping straight into coding the Risch Algorithm algorithms, which is that I had to get through two chapters of theory in Bronstein's book first before I got to the part that started elaborating and proving the correctness of the algorithm.  
+
+After documenting the Polys module, I still had a little bit to go in Bronstein's book before I got to some things that I could code, so I decided to go through the issues in the issue tracker that were related to integration.  For each of these, I labeled each of them, looked at what needed to be done to fix them, and I created a file of XFAILing tests in my branch for each failing integral, so that the progress for each could be tracked in the future. For a few, I was able to fix a bug or two to make them work.  
+
+One thing that I did also after documenting the Polys module was attempt to rewrite the already existing heuristic Risch integration routine to use the new Polys module.  Now, I was able to successfully recode the function to use the new Polys, but I found that this actually made it _slower_, not faster.  The reason is that that function uses highly multivariate polynomials (hundreds of variables is not uncommon), and the current internal implementation  of polynomials in Poly is inefficient for these (it is a dense representation, rather than a sparse one).  Thus, this implementation was not useful directly, but it did help me to understand how that algorithm works, and also what are the bottlenecks in it that make it so slow (there are two, first, it uses what is currently a slow function is sympy, which is expand(), and second, it solves a massive system of linear equations, and solve_linear_system() is not as fast as it could be). 
+
+== Starting Coding the Algorithm ==
