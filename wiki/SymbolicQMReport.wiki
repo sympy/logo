@@ -1,4 +1,4 @@
-#summary Report of Matt Curry's GSoC 2010 Project
+#summary Review of Matt Curry's GSoC 2010 Project
 #labels GSoC
 
 =About Me=
