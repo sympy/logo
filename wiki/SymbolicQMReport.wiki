@@ -1,5 +1,5 @@
+#summary Report of Matt Curry's GSoC 2010 Project
 #labels GSoC
-_Report of Matt Curry's GSoC 2010 Project_
 
 =About Me=
 I’m Matt Curry and I will be entering my senior year as a physics major at California Polytechnic State University (Cal Poly), San Luis Obispo, CA. My primary fields of interest (for research and otherwise) are quantum physics and quantum information science.
