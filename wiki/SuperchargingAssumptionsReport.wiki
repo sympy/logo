@@ -40,12 +40,23 @@ http://4.bp.blogspot.com/_DvrW_QLstcQ/TF3S_KdyDJI/AAAAAAAACLU/9qhiJV4q0CM/s1600/
   The method also captures things like `ask(x, Q.imaginary, Assume(x, Q.complex, False))` -- if Q.imaginary was true, then Q.complex must be true (because of the lookup we pre-compiled), and since we know this isn't the case, we can conclude that x is not imaginary as well. How are these facts compiled? Well we do the exhaustive checks with the SAT solver ([http://github.com/haz/sympy/blob/atms/sympy/assumptions/ask.py#L195 [this line]]), and dump the results just like the pre-computed CNF.
 
 = Working with !SymPy =
+== Communication ==
   The !SymPy organization communicates primarily through their Google Groups lists (one for patches and one for other discussion), on their IRC channel, and on the specific issues found in the Google Code project. Over the course of the summer, the different mediums served specific purposes for me:
 
   * The Google Groups list are a great place to engage with the general !SymPy developer community. If you have changes to be committed, or high level questions that impact the entire project (e.g. dropping support for Python 2.4), then this is the place to go.
   * The IRC channel served as a great resource for getting over small roadblocks when developing for !SymPy. Small questions about how the system works are best placed here.
   * Issue discussion is great for bringing up flaws with !SymPy, even if you aren't going to push forward in fixing them. They represent a fairly extensive view of what is currently being worked on and discussed. A lot of the detailed problem solving discussion happens here.
 
-  Learning Git was a bit of an undertaking, but fun and rewarding...<to be continued>
+== Version Control ==
+  Learning Git was a bit of an undertaking, but fun and rewarding. Unfortunately, early on I (for some unknown reason) pulled in a commit on another branch into the master I forked for everything. This caused some headaches on the merger of my GSoC work into the !SymPy trunk. As such, I'd suggest this as a more reasonable workflow:
+  * Fork the sympy/sympy project on !GitHub (found [http://github.com/sympy/sympy here]).
+  * Add sympy/sympy as a remote so you can continuously pull in new changes to the trunk.
+  * When it comes time to send a pull request, create a branch from sympy/sympy:master, and cherry-pick all of the commits you want to submit.
+
+  This would keep things very clean and avoid any nasty merge stuff in the pull request. It may be a bit more tedious, but it definitely would have saved me on my GSoC work.
 
 = Conclusions and Future Work =
+
+My experience with !SymPy was a great one for a number of reasons. The community is great, the project directly coincides with my interests, and my contributions have already made it into the project's core.
+
+Moving forward, I hope to implement a number of suggestions that came out of reviews on my summer's work. First and foremost I hope to address the removal of the old assumption system so my work will actually be used by default when assumptions are invoked in the !SymPy system. With any luck, I'll have my !SymPy skills up to snuff by next summer to apply as a mentor for the next round of students coming by.
