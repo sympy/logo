@@ -1,0 +1,14 @@
+#summary Review of the 2010 Assumptions & Logic: Supercharging SymPy GSoC Project
+#labels GSoC
+
+= About Me =
+  I am currently starting my fourth year of graduate school at the University of Toronto in the PhD program for Computer Science. My research focuses on Automated Planning and Satisfiability. I have a strong interest in various forms of logic, supported by a number of graduate courses and specific research projects.
+
+
+= Introduction =
+
+= The GSoC Project =
+
+= Working with !SymPy =
+
+= Conclusions and Future Work =
