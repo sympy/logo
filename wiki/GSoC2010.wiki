@@ -7,7 +7,7 @@ You can watch the progress during the summer at http://planet.sympy.org/
 
 || *student* || *mentor* || *mentoring organisation* || *blog* || *report* || *proposal* ||
 || Addison Cugini  || Brian Granger || PSU || http://addisoncugini.blogspot.com/ || || http://socghop.appspot.com/gsoc/student_project/show/google/gsoc2010/psu_home/t127230763035 || 
-|| Christian Muise  || Ondřej Čertík || PSF || http://haz-tech.blogspot.com/search/label/sympy || || http://socghop.appspot.com/gsoc/student_project/show/google/gsoc2010/python/t127230762878 || 
+|| Christian Muise  || Ondřej Čertík || PSF || http://haz-tech.blogspot.com/search/label/sympy || SuperchargingAssumptionsReport || http://socghop.appspot.com/gsoc/student_project/show/google/gsoc2010/python/t127230762878 || 
 || Aaron Meurer || Mateusz Paprocki || PSF || http://asmeurersympy.wordpress.com/ || RischIntegrationReport || http://socghop.appspot.com/gsoc/student_project/show/google/gsoc2010/python/t127230762920 http://wiki.sympy.org/wiki/User:Asmeurer/GSoC2010_Application || 
 || Matthew Curry  || Brian Granger || PSF || http://mattjcurry.blogspot.com/ ||[http://code.google.com/p/sympy/wiki/SymbolicQMReport SymbolicQMReport] || http://socghop.appspot.com/gsoc/student_project/show/google/gsoc2010/python/t127230762965 || 
 || Øyvind Jensen  || Andy Terrel || PSF || http://ojensen.wordpress.com/ || || http://socghop.appspot.com/gsoc/student_project/show/google/gsoc2010/python/t127230762991 || 
