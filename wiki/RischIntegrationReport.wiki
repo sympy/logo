@@ -84,4 +84,24 @@ Well, with the `risch_integrate()`, I was able to see directly how the new algor
 
 The second one, I was not so sure about.  The Risch Algorithm is very complicated, and I was half expecting it to be very slow in the general case.  But in fact, it is actually very fast.  For example, Bronstein suggests using the Heuristic Risch Algorithm as a fast preparser to the full algorithm, but it is clear to me that the full algorithm is *always* faster than the heuristic, and in many cases, *much* faster.
 
-Here are some examples that demonstrate this:
+Here are some examples that demonstrate this.  Remember that `integrate()` is the old integrator and `risch_integrate()` is the new one:
+
+*An example of a simple integral that the old engine could not handle but the new one can.*
+
+{{{ 
+In [1]: integrate(2*log(x)/x, x)
+Out[1]: 
+⌠            
+⎮ 2⋅log(x)   
+⎮ ──────── dx
+⎮    x       
+⌡            
+
+In [2]: risch_integrate(2*log(x)/x, x)
+Out[2]: 
+   2   
+log (x) 
+}}}
+
+*An example of a more complex integral that causes the old engine to hang but that the new one handles fine.*
+(Taken from _Algorithms for Computer Algebra_ by Keith O. Geddes, Stephen R. Czapor, and George Labahn, pg. 534.)
