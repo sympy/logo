@@ -1,8 +1,8 @@
 #summary How-to on updating the mpmath install in SymPy.
 
-*Follow this guide to update the mpmath install in SymPy whenever mpmath is updated.  If you discover any other things that belong here when updating, please edit the wiki and add them. *
+*Follow this guide to update the mpmath install in !SymPy whenever mpmath is updated.  If you discover any other things that belong here when updating, please edit the wiki and add them. *
 
-An announcement will be sent to the sympy mailing list whenever mpmath is updated.  When this happens, the mpmath that is included with SymPy needs to be updated.  
+An announcement will be sent to the sympy mailing list whenever mpmath is updated.  When this happens, the mpmath that is included with !SymPy needs to be updated.  
 
   * You can obtain the new mpmath from http://code.google.com/p/mpmath/.  
   
