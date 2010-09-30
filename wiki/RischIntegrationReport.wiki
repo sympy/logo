@@ -7,7 +7,7 @@
 My name is Aaron Meurer.  I am an undergraduate student at New Mexico Tech double majoring in Mathematics and Computer Science.  This is my second year participating in Google Summer of Code.  Last year (2009), I also worked with !SymPy on improving the ODEs module (see the report for that project [http://code.google.com/p/sympy/wiki/ODEsModuleReport here].  
 = Introduction =
 
-My project was to implement the full Risch Algorithm for Symbolic Integration in !SymPy.  In particular, I worked on implementing the transcendental part of the algorithm.  My work consisted mostly of taking the algorithms from _[http://books.google.com/books?id=8SAaSd89sSkC&printsec=frontcover&dq=manuel+bronstein&hl=en&ei=Osp6TJK_IJPCsAPJ9oHuCg&sa=X&oi=book_result&ct=result&resnum=1&ved=0CCoQ6AEwAA#v=onepage&q&f=false Symbolic Integration I: Transcendental Functions]_ by Manuel Bronstein.  
+My project was to implement the full Risch Algorithm for Symbolic Integration in !SymPy.  In particular, I worked on implementing the transcendental part of the algorithm.  My work consisted mostly of implementing the algorithms from _[http://books.google.com/books?id=8SAaSd89sSkC&printsec=frontcover&dq=manuel+bronstein&hl=en&ei=Osp6TJK_IJPCsAPJ9oHuCg&sa=X&oi=book_result&ct=result&resnum=1&ved=0CCoQ6AEwAA#v=onepage&q&f=false Symbolic Integration I: Transcendental Functions]_ by Manuel Bronstein.  
 
 Note that this is just an overview of my work this summer.  For more details, see the posts to my [http://asmeurersympy.wordpress.com/ blog], which also include more information on the theory behind the Risch Algorithm.  
 
