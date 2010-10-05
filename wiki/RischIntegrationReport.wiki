@@ -105,3 +105,43 @@ log (x)
 
 *An example of a more complex integral that causes the old engine to hang but that the new one handles fine.*
 (Taken from _Algorithms for Computer Algebra_ by Keith O. Geddes, Stephen R. Czapor, and George Labahn, pg. 534.)
+
+{{{
+
+In [3]: f = (x*(x + 1)*((x**2*exp(2*x**2) - log(x + 1)**2)**2 +
+   ...:     2*x*exp(3*x**2)*(x - (2*x**3 + 2*x**2 + x + 1)*log(x + 1))))/((x +
+   ...:     1)*log(x + 1)**2 - (x**3 + x**2)*exp(2*x**2))**2
+
+In [4]: f
+Out[4]: 
+          ⎛                          2                                                   ⎞
+          ⎜⎛                       2⎞                                                   2⎟
+          ⎜⎜     2           2  2⋅x ⎟        ⎛    ⎛           2      3⎞           ⎞  3⋅x ⎟
+x⋅(1 + x)⋅⎝⎝- log (1 + x) + x ⋅ℯ    ⎠  + 2⋅x⋅⎝x - ⎝1 + x + 2⋅x  + 2⋅x ⎠⋅log(1 + x)⎠⋅ℯ    ⎠
+──────────────────────────────────────────────────────────────────────────────────────────
+                                                                2                         
+                         ⎛                                    2⎞                          
+                         ⎜   2                  ⎛ 2    3⎞  2⋅x ⎟                          
+                         ⎝log (1 + x)⋅(1 + x) - ⎝x  + x ⎠⋅ℯ    ⎠                          
+
+In [5]: risch_integrate(f, x)
+Out[5]: 
+       ⎛              ⎛ 2⎞⎞                   ⎛                ⎛ 2⎞⎞                             
+       ⎜log(1 + x)    ⎝x ⎠⎟                   ⎜  log(1 + x)    ⎝x ⎠⎟          ⎛ 2⎞               
+    log⎜────────── + ℯ    ⎟                log⎜- ────────── + ℯ    ⎟       2  ⎝x ⎠               
+       ⎝    x             ⎠                   ⎝      x             ⎠      x ⋅ℯ    ⋅log(1 + x)    
+x + ─────────────────────── - log(1 + x) - ───────────────────────── + ──────────────────────────
+               2                                       2                                        2
+                                                                              2           3  2⋅x 
+                                                                       - x⋅log (1 + x) + x ⋅ℯ    
+
+In [6]: %timeit risch_integrate(f, x)
+1 loops, best of 3: 2.21 s per loop
+
+In [7] integrate(f, x)
+<hangs>
+}}}
+
+So we can see that not only can `risch_integrate()` handle this rather complicated integrand in a reasonable amount of time, but the old engine has no chance of doing it.  Even if you let `[7]` run for several hours, it will not complete.  
+
+* Some examples of some integrals that `risch_integrate()` can prove to be non-elementary.*
