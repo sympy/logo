@@ -145,3 +145,65 @@ In [7] integrate(f, x)
 So we can see that not only can `risch_integrate()` handle this rather complicated integrand in a reasonable amount of time, but the old engine has no chance of doing it.  Even if you let `[7]` run for several hours, it will not complete.  
 
 * Some examples of some integrals that `risch_integrate()` can prove to be non-elementary.*
+
+These are some of the most famous non-elemetary integrals.
+
+{{{
+In [8]: risch_integrate(exp(-x**2), x)
+Out[8]: 
+⌠        
+⎮    2   
+⎮  -x    
+⎮ ℯ    dx
+⌡        
+
+In [9]: risch_integrate(exp(exp(x)), x)
+Out[9]: 
+⌠         
+⎮  ⎛ x⎞   
+⎮  ⎝ℯ ⎠   
+⎮ ℯ     dx
+⌡         
+
+In [10]: risch_integrate(1/log(x), x)
+Out[10]: 
+⌠          
+⎮   1      
+⎮ ────── dx
+⎮ log(x)   
+⌡          
+
+In [11]: risch_integrate(exp(x)/x, x)
+Out[11]: 
+⌠      
+⎮  x   
+⎮ ℯ    
+⎮ ── dx
+⎮ x    
+⌡      
+
+In [12]: risch_integrate(exp(x*log(x)), x)
+Out[12]: 
+⌠             
+⎮  x⋅log(x)   
+⎮ ℯ         dx
+⌡             
+}}}
+
+The last function is `x**x`.  Whenever `risch_integrate()` returns an unevaluated `Integral`, it means that it has proven that the function does not have an elementary integral (it will raise `NotImplementedError` if it fails).  This is quite different from the old `heurisch()` in `integrate()`, for which an unevaluated Integral could mean that the integrand does not have an elementary anti-derivative, or it could just mean that the routine failed.  
+
+But this is not the most amazing part, because the engine can also split an integral into elementary and non-elementary parts in many cases.  Thus, it will return a partially integrated result.  For example:
+
+{{{
+
+In [4]: risch_integrate((1 + 2*x**2 + x**4 + 2*x**3*exp(2*x**2))/(x**4*exp(x**2) + 2*x**2*exp(x**2) + exp(x**2)), x)
+Out[4]: 
+⌠            ⎛ 2⎞ 
+⎮    2       ⎝x ⎠ 
+⎮  -x       ℯ     
+⎮ ℯ    dx + ──────
+⌡                2
+            1 + x 
+}}}
+
+As you can see, `risch_integrate()` was able to split the integral into `exp(x**2)/(x**2 + 1)` and the integral of `exp(-x**2)` (which is not elementary).  Actually, the old `integrate()` hangs on this integral, but if it didn't, it would just return an unevaluated `Integral` for the whole thing, since the `Integral(exp(-x**2), x)` makes the whole integral non-elementary.
