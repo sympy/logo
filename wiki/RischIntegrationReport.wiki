@@ -196,8 +196,19 @@ But this is not the most amazing part, because the engine can also split an inte
 
 {{{
 
-In [4]: risch_integrate((1 + 2*x**2 + x**4 + 2*x**3*exp(2*x**2))/(x**4*exp(x**2) + 2*x**2*exp(x**2) + exp(x**2)), x)
-Out[4]: 
+In [13]: (1 + 2*x**2 + x**4 + 2*x**3*exp(2*x**2))/(x**4*exp(x**2) + 2*x**2*exp(x**2) + exp(x**2))
+Out[13]: 
+                           2 
+         2    4      3  2⋅x  
+  1 + 2⋅x  + x  + 2⋅x ⋅ℯ     
+─────────────────────────────
+    ⎛ 2⎞         ⎛ 2⎞    ⎛ 2⎞
+ 4  ⎝x ⎠      2  ⎝x ⎠    ⎝x ⎠
+x ⋅ℯ     + 2⋅x ⋅ℯ     + ℯ    
+
+
+In [14]: risch_integrate((1 + 2*x**2 + x**4 + 2*x**3*exp(2*x**2))/(x**4*exp(x**2) + 2*x**2*exp(x**2) + exp(x**2)), x)
+Out[14]: 
 ⌠            ⎛ 2⎞ 
 ⎮    2       ⎝x ⎠ 
 ⎮  -x       ℯ     
@@ -206,4 +217,6 @@ Out[4]:
             1 + x 
 }}}
 
-As you can see, `risch_integrate()` was able to split the integral into `exp(x**2)/(x**2 + 1)` and the integral of `exp(-x**2)` (which is not elementary).  Actually, the old `integrate()` hangs on this integral, but if it didn't, it would just return an unevaluated `Integral` for the whole thing, since the `Integral(exp(-x**2), x)` makes the whole integral non-elementary.
+As you can see, `risch_integrate()` was able to split the integral into `exp(x**2)/(x**2 + 1)` and the integral of `exp(-x**2)` (which it has proven to be non-elementary).  Actually, the old `integrate()` hangs on this integral, but if it didn't, it would just return an unevaluated `Integral` for the whole thing, since the `Integral(exp(-x**2), x)` makes the whole integral non-elementary.
+
+* Some examples of the time differences between the old `integrate()` and `risch_integrate()`*
