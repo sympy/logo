@@ -29,16 +29,12 @@ This is useful if the latest release doesn't work for you for some reason.
 
 To get the git repository, use:
 {{{
-git clone git://git.sympy.org/sympy.git
+git clone git://github.com/sympy/sympy.git
 }}}
 
 And you can also access it on the web:
 
-http://git.sympy.org/?p=sympy.git
-
-where (besides other things) you can download any revision you want as a gz, bz2 or zip file. For example, you can download the latest !SymPy snapshot here:
-
-http://git.sympy.org/?p=sympy.git;a=snapshot;h=HEAD;sf=tgz
+https://github.com/sympy/sympy
 
 = Packages =
 
