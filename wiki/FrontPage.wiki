@@ -7,6 +7,7 @@
 
 !SymPy is participating in *Google Summer of Code 2010*. More info [http://code.google.com/p/sympy/wiki/GSoC2010 here].
 
+  * *23 Oct 2010* New website launched at sympy.org
   * *18 Oct 2010* The final page about the [http://code.google.com/p/sympy/wiki/GSoC2010 Google Summer of Code 2010 in SymPy] is available.
   * *17 Mar 2010* Version 0.6.7 released ([http://code.google.com/p/sympy/wiki/Changes changes])
   * *20 Dec 2009* Version 0.6.6 released ([http://code.google.com/p/sympy/wiki/Changes changes])
