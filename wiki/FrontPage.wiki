@@ -5,7 +5,7 @@
 
 ==News==
 
-!SymPy is participating in *Google Summer of Code 2010*. More info [http://code.google.com/p/sympy/wiki/GSoC2010 here].
+!SymPy is participating in *Google Summer of Code 2011*. See our [https://github.com/sympy/sympy/wiki/GSoC-2011-Ideas ideas page].
 
   * *18 Mar 2011* SymPy is accepted as a [http://www.google-melange.com/gsoc/org/show/google/gsoc2011/sympy mentoring organization] for Google Summer of Code 2011
   * *23 Oct 2010* New website launched at sympy.org
