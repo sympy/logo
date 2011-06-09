@@ -2,7 +2,7 @@
 
 = How to make a new release =
 
-Proposed workflow
+Proposed workflow (for the 0.7.0 release, for example)
 {{{
 1) fix all blockers
 2) create a new branch 0.7.0, do the release patches in it
