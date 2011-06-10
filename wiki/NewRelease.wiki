@@ -34,7 +34,7 @@ Do this on the git version:
 $ cd bin
 $ sudo pbuilder --execute test_pure
 }}}
-All tests need to run here.
+All tests need to run here.  Note that this request debian to work.  It's actually much better to run the tests sandboxed using tox.  See https://github.com/sympy/sympy/wiki/Using-Tox and the tox.ini.sample file in the git repo.
 
 === speed of import ==
 
