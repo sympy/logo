@@ -3,6 +3,7 @@
 On this page you can find presentations about !SymPy that were given at conferences.
 
 || *Date* || *Author* || *Venue* || *Slides* || *Video* ||
+|| 2011-07-12 || Mateusz Paprocki, Aaron Meurer || [http://conference.scipy.org/scipy2011/ SciPy 2011] Conference, Austin, TX, USA || [http://mattpap.github.com/scipy-2011-tutorial/html/index.html Tutorial] ||
 || 2011-03-02 || Mateusz Paprocki || [http://www.siam.org/meetings/cse11/ SIAM CSE 2011] Conference, Reno, NV, USA || [http://sympy.googlecode.com/svn/materials/presentations/siamcse2011.pdf siamcse2011.pdf] || ||
 || 2010-10-08 || Mateusz Paprocki || [http://pl.pycon.org/2010/ PyCon PL 2010] Conference, Ustroń, Poland || [http://sympy.googlecode.com/svn/materials/presentations/pyconpl2010.pdf pyconpl2010.pdf] || ||
 || 2010-07-10 || Mateusz Paprocki || [http://www.euroscipy.org EuroSciPy 2010] Conference, Paris, France || [http://sympy.googlecode.com/svn/materials/presentations/euroscipy2010.pdf euroscipy2010.pdf] || ||
