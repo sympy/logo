@@ -7,6 +7,7 @@
 
 !SymPy is participating in *Google Summer of Code 2011*. See our [https://github.com/sympy/sympy/wiki/GSoC-2011-Ideas ideas page].
 
+  * *29 Jul 2011* Version 0.7.1 released ([https://github.com/sympy/sympy/wiki/Release-Notes-for-0.7.1])
   * *28 Jun 2011* Version 0.7.0 released ([https://github.com/sympy/sympy/wiki/Release-Notes-for-0.7.0])
   * *18 Mar 2011* SymPy is accepted as a [http://www.google-melange.com/gsoc/org/show/google/gsoc2011/sympy mentoring organization] for Google Summer of Code 2011
   * *23 Oct 2010* New website launched at sympy.org
