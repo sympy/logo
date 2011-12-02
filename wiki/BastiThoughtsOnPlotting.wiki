@@ -1,4 +1,5 @@
 #summary Suggestions for further development of the plotting module
+#labels Deprecated
 
 Please see [PlottingFuture] for the central list of plotting goals.
 
@@ -58,7 +59,7 @@ What will need a little work are the camera settings, because the camera is now 
 
 This is made slightly more complicated by the camera's reliance on OpenGL matrix calls (which need a GL context, in our case a pyglet window, to function). We could always replace this stuff with our own matrix transform maths, or store camera transformations a different way and apply them to the model matrix each frame when a context is available.
 
-*update:* another thing, you have to be careful of [http://en.wikipedia.org/wiki/Gimbal_lock gimbal lock], which results from the fact that euler rotations are performed on non-independent axes.
+*update:* another thing, you have to be careful of [ gimbal lock], which results from the fact that euler rotations are performed on non-independent axes.
 
 ====Basti Comment====
 
@@ -69,13 +70,13 @@ A solution would be to have two camera objects. One that is accessible for the u
 
 This really is not easy to achieve, if the image gets bigger then the screen, because I couldn't find a way to render in the offset. There are some ways described in the net, but as I see it there is always a big platform dependency.
 
-I tried a little workaround with moving the window (of course invisible) over the desktop and get screenshot pieces that can finally put together. But I now get at different places of the code "invalid pointer" exceptions I can't trace back. Maybe someone wants to look at it [http://bastikr.ba.funpic.de/offset_rendering.py here]
+I tried a little workaround with moving the window (of course invisible) over the desktop and get screenshot pieces that can finally put together. But I now get at different places of the code "invalid pointer" exceptions I can't trace back. Maybe someone wants to look at it [ here]
 
 Anyway it should be possible to render to two windows at the same time. This would allow the user to interactively choose his view and save an image in any size smaller than his desktop without having to close the interactive window.
 
 ====Brian's Comment====
 
-The reason I've avoided an offscreen rendering approach is that it requires the use of GL extensions, which (as you said) are mostly platform dependent. Some available options are discussed [http://www.mesa3d.org/brianp/sig97/offscrn.htm here].
+The reason I've avoided an offscreen rendering approach is that it requires the use of GL extensions, which (as you said) are mostly platform dependent. Some available options are discussed [ here].
 
 ==Some other features that crossed my mind==
 
@@ -84,7 +85,7 @@ The reason I've avoided an offscreen rendering approach is that it requires the 
 
   * Just a matter of style ist the following: why isn't it possible to call p`[`0`]`? The indices have to be greater than 0! It would be more pythonic if it would behave like an ordinary list, although of course it is a dictionary. But nobody has to know;) *I originally did it that way because I was mimicing a graphing calculator like the ti89, which starts at 1. If it started at 0 I guess it would work for people who expected either convention. Let's do it your way. --Brian* _let's start counting from 0, we are in Python... --Ondrej_ *Ok, ok. Tell Guido I'm sorry, but it's fixed now. --Brian*
 
-  * Another feature that sometimes would be nice, is to split a window up and display in each part a different view of the plot-object. *You are welcome to implement this :-P [http://nehe.gamedev.net/data/lessons/lesson.asp?lesson=42 Here] is a tutorial covering multiple viewports in a single window, but I'm not sure how this would mix with pyglet. --Brian*
+  * Another feature that sometimes would be nice, is to split a window up and display in each part a different view of the plot-object. *You are welcome to implement this :-P [ Here] is a tutorial covering multiple viewports in a single window, but I'm not sure how this would mix with pyglet. --Brian*
 
   * I would also like to set single functions invisible, through scripting as well as interactively. Maybe with the keys 1-9. *Another great idea. --Brian*
 
