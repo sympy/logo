@@ -1,4 +1,5 @@
 #summary Discussion about some decisions.
+#labels Deprecated
 
 This page is obsolete and not accurate anymore. We do patch reviews now and all code that goes in needs to be reviewed by at least one other developer and it needs to be maintainable. That's how we work now.
 
@@ -64,8 +65,6 @@ The same with some methods in `limits.py` - they should cache results.
 
 See the issue tracker, where most of the discussions take part.
 
-http://www.inf.ethz.ch/personal/gonnet/CAII/HeuristicAlgorithms/
 
-http://www.ucw.cz/~fox/work/factoring/index.en.html
 
-http://www.amazon.com/Fundamental-Problems-Algorithmic-Algebra-Chee/dp/0195125169/ref=sr_1_1/002-4937825-8471200?ie=UTF8&s=books&qid=1174572166&sr=8-1
+
