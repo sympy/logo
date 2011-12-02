@@ -1,9 +1,10 @@
 #summary How to create a spkg for Sage
+#labels Deprecated
 
 = Download & setup Sage =
 
 {{{
-wget http://sagemath.org/SAGEbin/linux/32bit/sage-2.11-debian32-intel-i686-Linux.tar.gz
+wget 
 cd ~/ext
 tar xzf sage-2.11-debian32-intel-i686-Linux.tar.gz
 ln -s sage-2.11-debian32-intel-i686-Linux sage
@@ -18,7 +19,7 @@ into `~/bin/` and put `~/bin/` into your search path. Then you start Sage just b
 = Steps =
 
 {{{
-$ hg clone http://hg.sympy.org/sympy-spkg/
+$ hg clone 
 $ cd sympy-spkg
 }}}
 Edit get-hg
@@ -42,7 +43,7 @@ $ sage -t ~/ext/sage/devel/sage/sage/calculus/test_sympy.py
 {{{
 cd spkg/standard
 rm sympy-0.5.7.spkg
-wget http://sagemath.org/packages/standard/sympy-0.5.7.spkg
+wget 
 sage -f sympy-0.5.7.spkg
 }}}
 
