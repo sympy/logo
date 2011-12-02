@@ -1,0 +1,5 @@
+#summary This wiki have moved to https://github.com/sympy/sympy/wiki/_pages
+
+This wiki have moved to .  If you are looking for a page that was here, it should be there.  It should be under the same name, or a similar one (all pages there are listed at ).  
+
+Please do not use this wiki any more.  All new wiki content should go on the wiki at GitHub.
