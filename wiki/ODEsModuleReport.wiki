@@ -1,5 +1,5 @@
 #summary Review of the 2009 Summer of Code project
-#labels GSoC
+#labels GSoC,Deprecated
 
 *See my [http://asmeurersympy.wordpress.com/2009/09/07/google-summer-of-code-2009-wrap-up/ blog post] for the full report.*
 
