@@ -1,4 +1,5 @@
 #summary Proposed goals for the future of the plotting module
+#labels Deprecated
 
 This page provides a central location for future plotting goals.
 
