@@ -1,9 +1,9 @@
 #summary Information about the 2008 Google Summer of Code and SymPy
-#labels GSoC
+#labels GSoC,Deprecated
 
 = Introduction =
 
-[http://code.google.com/p/sympy/ SymPy] has had one student this year due to a lot of other excellent GSoC proposals. However, Fredrik has done an excellent job over the summer by integrating mpmath with sympy tightly and also implementing new numerical algorithms. Read his report below.
+[ SymPy] has had one student this year due to a lot of other excellent GSoC proposals. However, Fredrik has done an excellent job over the summer by integrating mpmath with sympy tightly and also implementing new numerical algorithms. Read his report below.
 
 = Details =
 
