@@ -1,4 +1,5 @@
 #summary How to work with setup.py, make releases, API documentation, ...
+#labels Deprecated
 
 = Introduction =
 
@@ -45,12 +46,12 @@ finalStateComputations
 writing html to apidocs using pydoctor.html.SystemWriter
 }}}
 
-a new directory `apidoc` is created with the documentation. Copy `apidoc/*` to `http://sympy.googlecode.com/svn/sympy/api/`
+a new directory `apidoc` is created with the documentation. Copy `apidoc/*` to ``
 
 Don't forget to:
 {{{
-svn propset svn:mime-type text/css apidocs.css
-svn propset svn:mime-type text/html *.html
+svn propset  text/css apidocs.css
+svn propset  text/html *.html
 }}}
 
 == epydoc ==
@@ -60,11 +61,11 @@ Unfortunately, this doesn't work for sympy anymore.
 You'll need epydoc (wajig install python-epydoc). (The output is written to ../api/ (you can change this editing the variable gen_doc.target_dir ))
 
 {{{
-svn checkout https://sympy.googlecode.com/svn/ sympy --username ondrej.certik
+svn checkout  sympy --username ondrej.certik
 cd sympy/trunk
 ./setup.py gen_doc
 cd ../api
-svn propset svn:mime-type text/html *.html
+svn propset  text/html *.html
 svn ci
 }}}
 
