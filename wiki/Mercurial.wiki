@@ -1,4 +1,5 @@
 #summary How to develop SymPy using Mercurial
+#labels Deprecated
 
 = Why Mercurial? =
 
@@ -6,25 +7,25 @@ Mercurial is much better than Subversion. With svn, one has to implement a new f
 
 Another advantage is that all Mercurial repositories are equal and thus have all history and one can work offline as long as one wishes. 
 
-I (Ondrej) am quite hesitant to try new things when the old ones work and work well (Subversion works very well), but Mercurial is really superior to Subversion. It's like a working [http://en.wikipedia.org/wiki/%C5%A0koda_105/120/125 Škoda 120] and working [http://en.wikipedia.org/wiki/BMW_E91 BMW].
+I (Ondrej) am quite hesitant to try new things when the old ones work and work well (Subversion works very well), but Mercurial is really superior to Subversion. It's like a working [ Škoda 120] and working [ BMW].
 
 Read hgbook:
 
-http://hgbook.red-bean.com/
+
 
 and watch this video from the author of Mercurial:
 
-http://video.google.com/videoplay?docid=-7724296011317502612
+
 
 = Details =
 
 Web:
 
-http://hg.sympy.org/sympy/
+
 
 Mercurial:
 {{{
-$ hg clone http://hg.sympy.org/sympy/
+$ hg clone 
 }}}
 
 == usage ==
@@ -59,7 +60,7 @@ $
 
 The difference is that all of this happens locally and thus you can work offline (in the underground, in the plane, airport, bus, forrest, anywhere).
 
---- Most of the following is now *obsoleted* by [http://docs.sympy.org/sympy-patches-tutorial.html SymPy Patches Tutorial] ---
+--- Most of the following is now *obsoleted* by [ SymPy Patches Tutorial] ---
 
 -------
 
@@ -68,7 +69,7 @@ The difference is that all of this happens locally and thus you can work offline
 It's called pushing.
 {{{
 $ hg out
-comparing with http://hg.sympy.org/sympy/
+comparing with 
 searching for changes
 changeset:   1535:173e12b16e48
 tag:         tip
@@ -77,7 +78,7 @@ date:        Sat Oct 20 13:40:49 2007 +0200
 summary:     README was incredibly improved
 
 $ hg push
-pushing to http://hg.sympy.org/sympy/
+pushing to 
 searching for changes
 ssl required
 }}}
@@ -87,10 +88,10 @@ $ hg bundle /tmp/mysuper.patch
 }}}
 and send it to Issues, or the mailinglist. We'll review it and either apply or help you improve it. You can also use the `hg email` when you configure it (see `hg help email`).
 
-Some long time active !SymPy developers have a write access using ssh, change "http://" to "ssh://hg@" like this:
+Some long time active !SymPy developers have a write access using ssh, change "http://" to "" like this:
 {{{
-$ hg out ssh://hg@hg.sympy.org/sympy/
-comparing with ssh://hg@hg.sympy.org/sympy/
+$ hg out 
+comparing with 
 searching for changes
 changeset:   1535:173e12b16e48
 tag:         tip
@@ -98,8 +99,8 @@ user:        Ondrej Certik <ondrej@certik.cz>
 date:        Sat Oct 20 13:40:49 2007 +0200
 summary:     README was incredibly improved
 
-$ hg push ssh://hg@hg.sympy.org/sympy/
-pushing to ssh://hg@hg.sympy.org/sympy/
+$ hg push 
+pushing to 
 searching for changes
 remote: adding changesets
 remote: adding manifests
@@ -109,18 +110,18 @@ remote: added 1 changesets with 1 changes to 1 files
 You can make this default by changing the `.hg/hgrc` from:
 {{{
 [paths]
-default = http://hg.sympy.org/sympy/
+default = 
 }}}
 to:
 {{{
 [paths]
-default = ssh://hg@hg.sympy.org/sympy/
+default = 
 }}}
 
 == Useful info ==
 
- * [http://hgbook.red-bean.com/hgbookch12.html Mercurial Queues] extension can be of great  help while working on your patches.
+ * [ Mercurial Queues] extension can be of great  help while working on your patches.
  * when using ssh:// transport, it is convenient to use ssh-agent.
  * "ssh -A" can be helpful if you want to reach the repository from a not-so-trusted host.
- * [http://wiki.pylonshq.com/display/pylonscookbook/Mercurial+for+Subversion+Users  Mercurial for Subversion Users] Howto.
+ * [  Mercurial for Subversion Users] Howto.
  * See also HgWorkflow.
