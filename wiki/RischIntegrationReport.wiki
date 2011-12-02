@@ -1,5 +1,5 @@
 #summary Review of the 2010 Risch Integration GSoC Project
-#labels GSoC
+#labels GSoC,Deprecated
 
 *Note, this report is not complete yet (it is still a work in progress).* 
 = About Me =
