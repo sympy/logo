@@ -1,4 +1,5 @@
 #summary Information about sympycore
+#labels Deprecated
 
 = Introduction =
 
