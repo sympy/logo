@@ -1,5 +1,5 @@
 #summary Review of the 2009 Summer of Code project
-#labels GSoC
+#labels GSoC,Deprecated
 
 = About me =
 
@@ -37,11 +37,11 @@ While preparing sympy 0.6.5 relase, I coded the query module. This module is res
 
 When the query module was ready to be merged into trunk, I had to opportunity to meat some sympy developers attending EuroSciPy in Leipzip. I had some very interesting conversations regarding user interface, and I decided to change most of the user interface.
 
-Back home, I made the changes we discussed in Leipzig and [http://fseoane.net/blog/?p=161 merged in the query module]. 
+Back home, I made the changes we discussed in Leipzig and [ merged in the query module]. 
 
 = Refine module =
 
-Shortly after that, [http://fseoane.net/blog/?p=162 I began working on the refine module]. This module makes simplifications on expressions based on assumptions. It is the last step that we need to finally remove the old assumption system.
+Shortly after that, [ I began working on the refine module]. This module makes simplifications on expressions based on assumptions. It is the last step that we need to finally remove the old assumption system.
 
 After this was committed, we had implemented all that the old system was able to do (and some more things). However, there were some problems. Some of the goals listed in my introduction were not met: It was horribly slow!!
 
@@ -51,11 +51,11 @@ The logic module proved to be the real bottleneck for the query and refine modul
 
 Solution is simple, the logic module and concretely the DPLL algorithm should not use symbols internally, but some lighter structures. Integers where perfect for my purposes.
 
-The following week, I managed to recode the DPLL algorithm to use integer representation and avoid the conversion to integer representation in ask(). The speed gains where far beyond what [http://fseoane.net/blog/?p=164 I had expected].
+The following week, I managed to recode the DPLL algorithm to use integer representation and avoid the conversion to integer representation in ask(). The speed gains where far beyond what [ I had expected].
 
 = Future work and removing the old assumption system =
 
-All of what was proposed in my application was done, with one notable exception: removing the old assumption system. Despite some progress, I could not remove the old assumption system without breaking lots of things, so I am still working on that in my [http://fseoane.net/cgi-bin/gitweb.cgi?p=sympy.git;a=shortlog;h=refs/heads/remove_assumptions git branch]. This is a major work that still remains to be done and that affects to all sympy's community.
+All of what was proposed in my application was done, with one notable exception: removing the old assumption system. Despite some progress, I could not remove the old assumption system without breaking lots of things, so I am still working on that in my [ git branch]. This is a major work that still remains to be done and that affects to all sympy's community.
 
 There is also some work to be done in performance: the logic module can still be improved, some ideas are listed in doc/src/modules/logic.txt
 
