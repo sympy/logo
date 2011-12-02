@@ -1,8 +1,9 @@
 #summary The Google Highly Open Participation Contest 2007-8
+#labels Deprecated
 
 = Introduction =
 
-!SymPy participates in the [http://code.google.com/opensource/ghop/2007-8/ GHOP 2007-8] under the umbrella of PSF.
+!SymPy participates in the [ GHOP 2007-8] under the umbrella of PSF.
 
 If you're a student age 13 or older who has not yet begun university studies, that's exactly for you.
 
@@ -10,11 +11,11 @@ If you're a student age 13 or older who has not yet begun university studies, th
 
 Go to:
 
-http://code.google.com/p/google-highly-open-participation-psf/
+
 
 and read the instructions. Basically, just pick a !SymPy task from:
 
-http://code.google.com/p/google-highly-open-participation-psf/issues/list?can=1&q=sympy
+
 
 and claim it. We'll get a notice that you did that and we can discuss more details in that particular issue.
 
