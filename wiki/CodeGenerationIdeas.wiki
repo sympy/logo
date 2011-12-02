@@ -1,8 +1,8 @@
 #summary Design ideas for Sympy's code generation features
-#labels Phase-Design
+#labels Phase-Design,Deprecated
 = Introduction =
 
-This page is intended for sketches and design ideas related to the code generation features of Sympy which I (Øyvind) will improve during the GSOC 2010 project http://socghop.appspot.com/gsoc/student_project/show/google/gsoc2010/python/t127230762991 .  
+This page is intended for sketches and design ideas related to the code generation features of Sympy which I (Øyvind) will improve during the GSOC 2010 project  .  
 
 Everyone should feel free to add comments, suggestions and corrections.
 
