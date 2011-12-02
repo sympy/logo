@@ -1,5 +1,5 @@
 #summary A report on the GSoC 2009 Mathtex project
-#labels GSoC
+#labels GSoC,Deprecated
 
 = Introduction =
 
