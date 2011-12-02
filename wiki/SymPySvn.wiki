@@ -1,8 +1,9 @@
 #summary Documentation to the svn version of SymPy
+#labels Deprecated
 
 = Introduction =
 
-This page serves as a reference for developers of !SymPy, how things are done internally and which idioms to use and which not. Please discuss new and current features in the [http://code.google.com/p/sympy/issues/detail?id=387 issue 387]. This page is a consensus, that we arrived at and thus if some code in !SymPy doesn't follow these recommendations, it's a bug. Note that we are still figuring things out and thus we may decide to change some recommendations on this page in the future. 
+This page serves as a reference for developers of !SymPy, how things are done internally and which idioms to use and which not. Please discuss new and current features in the [ issue 387]. This page is a consensus, that we arrived at and thus if some code in !SymPy doesn't follow these recommendations, it's a bug. Note that we are still figuring things out and thus we may decide to change some recommendations on this page in the future. 
 
 All changes to the trunk should be discussed in Issues and should follow this page. However, it's also necessary to try new ideas without asking others to agree with that and we do these things in other branches, like `sympy-sandbox`. When we discover, that something should be done differently, we'll arrive at a consensus and update this page.
 
@@ -35,7 +36,7 @@ class sign(Function):
         return isinstance(self[0], Basic.Zero)
 }}}
 
-and that's it. The `_eval_*` functions are called when something is needed. The `canonize` is called when the class is about to be instantiated and it should return either some simplified instance of some other class or if the class should be unmodified, return `None` (see `core/function.py` in `Function.__new__` for implementation details). See also tests in [http://hg.sympy.org/sympy/file/tip/sympy/functions/elementary/tests/test_interface.py sympy/functions/elementary/tests/test_interface.py], that test this interface and you can use them to create your own new functions.
+and that's it. The `_eval_*` functions are called when something is needed. The `canonize` is called when the class is about to be instantiated and it should return either some simplified instance of some other class or if the class should be unmodified, return `None` (see `core/function.py` in `Function.__new__` for implementation details). See also tests in [ sympy/functions/elementary/tests/test_interface.py], that test this interface and you can use them to create your own new functions.
 
 The applied function `sign(x)` is constructed using
 {{{
@@ -70,7 +71,7 @@ This is how to create a function of two variables:
 class chebyshevt_root(SingleValuedFunction):
     nofargs = 2
 
-    @classmethod
+    
     def _eval_apply(cls, n, k):
         if not 0 <= k < n:
             raise ValueError, "must have 0 <= k < n"
@@ -79,7 +80,7 @@ class chebyshevt_root(SingleValuedFunction):
 
 Note 1: the `nofargs` is obsoleted and will be removed in a near future.
 
-Note 2: the first argument of a @classmethod should be `cls` (not `self`).
+Note 2: the first argument of a  should be `cls` (not `self`).
 
 == common tasks ==
 
