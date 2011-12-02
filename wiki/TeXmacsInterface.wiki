@@ -1,4 +1,5 @@
 #summary Using TeXmacs interface for SymPy
+#labels Deprecated
 
 = Introduction =
 
@@ -15,4 +16,4 @@ Currently supported features include:
 
 = Sample session =
 
-[http://mattpap.webd.pl/sympy/tm_sympy.png]
+[]
