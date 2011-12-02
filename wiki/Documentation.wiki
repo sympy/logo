@@ -1,9 +1,9 @@
 #summary Documentation to sympy.
-#labels Featured
+#labels Featured,Deprecated
 
 = !SymPy documentation =
 
-All documentation is at: http://docs.sympy.org/
+All documentation is at: 
 
 You can also easily generate all the docs in your copy of !SymPy by doing:
 {{{
@@ -16,5 +16,3 @@ $ epiphany _build/html/index.html
 ===old docs===
 
 Our docs used to be in the wikis, if you want to see how it used to look like, go to:
-
-http://code.google.com/p/sympy/source/browse/wiki/Documentation.wiki?r=2896
