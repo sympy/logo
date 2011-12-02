@@ -1,4 +1,5 @@
 #summary This document describes the main ideas of how SymPy works.
+#labels Deprecated
 
 The internals of !SymPy has changed many times. The current state in the trunk is described in SymPySvn.
 
@@ -135,7 +136,7 @@ So, those are the main ideas behind sympy, which we try to obey. The rest depend
 = Other systems =
 
 very interesting link describing the algorithms used by mathematica: 
-[http://documents.wolfram.com/v5/TheMathematicaBook/MathematicaReferenceGuide/SomeNotesOnInternalImplementation/A.9.5.html here]
+[ here]
  
  
  
