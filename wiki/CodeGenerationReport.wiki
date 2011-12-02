@@ -1,5 +1,5 @@
 #summary Review of Øyvind Jensens GSOC 2010 project
-#labels GSoC
+#labels GSoC,Deprecated
 
 = About Me =
 
@@ -13,8 +13,8 @@ quantization framework to Sympy as well as some sporadic patches.
 The project was to improve the code generation features of Sympy, making it
 possible to generate complex code that can be compiled without manual
 intervention.  In particular I wanted to have this functionality available for
-quantum mechanical calculations.  The project proposal is available [http://socghop.appspot.com/gsoc/student_project/show/google/gsoc2010/python/t127230762991 here].  More details about this project are available in the
-[http://ojensen.wordpress.com blog] that I updated regularly during the
+quantum mechanical calculations.  The project proposal is available [ here].  More details about this project are available in the
+[ blog] that I updated regularly during the
 Summer.
 
 = The Summer =
@@ -64,9 +64,9 @@ of generating code, compile it and wrap it as a python callable.   Putting toget
 component that provides easy access to the heavy functionality that I spent
 the whole summer implementing.  The autowrap module also includes `ufuncify`, a function that can turn Sympy expressions into fast universal functions for use with numpy arrays.  Here is a plot showing the scaling of execution time of a "ufuncified" sympy expression with the same expression computed as a sequence of native numpy ufuncs:
 
-http://ojensen.files.wordpress.com/2010/08/time_numpy_sympy.png?w=450
 
-As _n_ increases, the complexity of the expression increases, leading to the slowdown. The values of each curve are normalized against the corresponding _n_=1 calculation.  More details about the plot is available in [http://ojensen.wordpress.com/2010/08/10/fast-ufunc-ish-hydrogen-solutions/ this blog post].
+
+As _n_ increases, the complexity of the expression increases, leading to the slowdown. The values of each curve are normalized against the corresponding _n_=1 calculation.  More details about the plot is available in [ this blog post].
 
 
 = Conclusion and Outlook =
