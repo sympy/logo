@@ -1,17 +1,18 @@
 #summary Development notes
+#labels Deprecated
 
 = Introduction =
 
 We are looking for new developers - so far there were more than 40 people who contributed patches, some of them are long term !SymPy developers. Are you using !SymPy? We are interested to hear from you - join our mailinglist and if you have some nice code, we would like to include it in !SymPy. See WhyToJoin for some reasons why you should join us. :)
 
 !SymPy development discussion takes place on
-[http://groups.google.com/group/sympy sympy] and [http://groups.google.com/group/sympy-patches sympy-patches] mailing lists, and also in the !SymPy [http://code.google.com/p/sympy/issues/list issues tracker]. You can send your patch to either of them. Live discussions and coordination is done over IRC at #sympy on irc.freenode.net (but everything important is then also put into Issues/list, so that all decisions are documented). Also, all mercurial and svn commits (code, issues, wiki changes) are sent live to the #sympy channel, so when working on sympy, it's a nice idea to log in, to see what other people are doing on the project.
+[ sympy] and [ sympy-patches] mailing lists, and also in the !SymPy [ issues tracker]. You can send your patch to either of them. Live discussions and coordination is done over IRC at #sympy on irc.freenode.net (but everything important is then also put into Issues/list, so that all decisions are documented). Also, all mercurial and svn commits (code, issues, wiki changes) are sent live to the #sympy channel, so when working on sympy, it's a nice idea to log in, to see what other people are doing on the project.
 
-Then there is a [http://planet.sympy.org/ Planet SymPy], that aggregates blogs of all developers of !SymPy, so you can read what they are doing at one place.
+Then there is a [ Planet SymPy], that aggregates blogs of all developers of !SymPy, so you can read what they are doing at one place.
 
-When writing some code for !SymPy, please follow the guidelines in the [http://docs.sympy.org/sympy-patches-tutorial.html SymPy patches tutorial]
+When writing some code for !SymPy, please follow the guidelines in the [ SymPy patches tutorial]
 
-So please subscribe to both the mailinglists and issues, to be in touch with the other developers. Submit enough patches and you will be given hg push access (but all code is reviewed anyway, see below). Start by going into the Issues and try to fix/implement something, or create a new issue for something you want to implement and then do it and send your patch to [http://groups.google.com/group/sympy-patches sympy-patches], or append it to the issue. We'll review it and commit it.
+So please subscribe to both the mailinglists and issues, to be in touch with the other developers. Submit enough patches and you will be given hg push access (but all code is reviewed anyway, see below). Start by going into the Issues and try to fix/implement something, or create a new issue for something you want to implement and then do it and send your patch to [ sympy-patches], or append it to the issue. We'll review it and commit it.
 
 
 = Rules =
@@ -36,7 +37,7 @@ Optionally, when debugging, you may want to only execute some particular tests u
 
 = How to work with git in !SymPy =
 
-  * `git clone git://github.com/sympy/sympy.git` to get the !SymPy repository
+  * `git clone ` to get the !SymPy repository
   * do some modifications in your local copy (implement a new feature, fix a bug, add some new files using `git add` etc.)
   * `./setup test` to make sure all the tests pass
   * `git status` (optional) prints a list of files that you modified
@@ -51,12 +52,10 @@ See GitTutorials for more information on working with git.
 
 Besides the mailing list, there is a list where all issue changes are sent:
 
-http://groups.google.com/group/sympy-issues
+
 
 So if you want to be notified of any change, subscribe to the list. Then there is a list which receives all subversion commits:
 
-http://groups.google.com/group/sympy-commits
+
 
 And also, we review each-other's patches here:
-
-http://groups.google.com/group/sympy-patches
