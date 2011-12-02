@@ -1,4 +1,5 @@
 #summary Reasons to join SymPy development.
+#labels Deprecated
 
 = Introduction =
 
