@@ -1,4 +1,5 @@
 ﻿#summary Simple "cookbook" how to hack on SymPy
+#labels Deprecated
 
 --- Most of this page is now *obsoleted* by [http://docs.sympy.org/sympy-patches-tutorial.html SymPy Patches Tutorial] ---
 
