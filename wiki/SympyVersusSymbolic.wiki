@@ -1,9 +1,9 @@
 #summary Compares implementation details of symbolic and sympy.
-#labels Phase-Design
+#labels Phase-Design,Deprecated
 
 = Introduction =
 
-symbolic is a pure Python package for doing symbolic manipulations within Python and is developed by Pearu Peterson <pearu.peterson@gmail.com>. symbolic is available in sympy svn repository, see the branch sympy-research.
+symbolic is a pure Python package for doing symbolic manipulations within Python and is developed by Pearu Peterson <>. symbolic is available in sympy svn repository, see the branch sympy-research.
 
 You'll know what is sympy:)
 
