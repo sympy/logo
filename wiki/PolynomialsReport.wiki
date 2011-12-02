@@ -1,5 +1,5 @@
 #summary Review of the 2007 Summer of Code project.
-#labels GSoC
+#labels GSoC,Deprecated
 
 = Introduction =
 
