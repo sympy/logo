@@ -1,5 +1,5 @@
 #summary Documentation for sympy-research branch of sympy.
-#labels Phase-Design
+#labels Phase-Design,Deprecated
 
 = Introduction =
 
