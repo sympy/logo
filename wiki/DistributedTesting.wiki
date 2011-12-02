@@ -1,4 +1,5 @@
 #summary How to run tests in parallel
+#labels Deprecated
 
 = Introduction =
 
