@@ -1,5 +1,4 @@
 #summary Source code
-#labels Deprecated
 
 == Command-Line Access ==
 
