@@ -2,6 +2,8 @@
 
 == Command-Line Access ==
 
+The SymPy source code is at GitHub: https://github.com/sympy/sympy/.
+
 Use this command to check out the latest project source code:
 
 {{{
