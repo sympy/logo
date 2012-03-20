@@ -5,7 +5,7 @@
 Use this command to check out the latest project source code:
 
 {{{
-git clone 
+git clone git://github.com/sympy/sympy.git
 }}}
 
 You can browse the repository online here: 
