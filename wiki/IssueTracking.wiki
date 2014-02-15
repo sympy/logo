@@ -1,5 +1,5 @@
 #summary Issue Tracking has moved to GitHub
 
-Issue tracking for SymPy has moved to GitHub. Please open all new issues at https://github.com/sympy/sympy/issues/.
+Issue tracking for !SymPy has moved to !GitHub. Please open all new issues at https://github.com/sympy/sympy/issues/.
 
-We are still working on migrating the issues in this tracker to GitHub. Until that time, you may view the issues in this tracker by going to https://code.google.com/p/sympy/issues/list.
+We are still working on migrating the issues in this tracker to !GitHub. Until that time, you may view the issues in this tracker by going to https://code.google.com/p/sympy/issues/list.
