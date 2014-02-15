@@ -2,6 +2,6 @@
 
 This wiki has moved to https://github.com/sympy/sympy/wiki/.  If you are looking for a page that was here, it should be there.  It should be under the same name, or a similar one (all pages there are listed at https://github.com/sympy/sympy/wiki/_pages).  
 
-Please do not use this wiki any more.  All new wiki content should go on the wiki at GitHub.
+Please do not use this wiki any more.  All new wiki content should go on the wiki at !GitHub.
 
 If you really want to see *this* wiki, go to [https://code.google.com/p/sympy/wiki/]
