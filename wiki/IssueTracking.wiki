@@ -2,4 +2,4 @@
 
 Issue tracking for !SymPy has moved to !GitHub. Please open all new issues at https://github.com/sympy/sympy/issues/.
 
-All issues from this tracker have been migrated to !GitHub. You can access the corresponding issue from this tracker on !GitHub by adding 3100 to the issue number and going to https://github.com/sympy/sympy/NNNN, replacing NNNN with the new issue number. 
+All issues from this tracker have been migrated to !GitHub. You can access the corresponding issue from this tracker on !GitHub by adding 3099 to the issue number and going to https://github.com/sympy/sympy/NNNN, replacing NNNN with the new issue number. 
